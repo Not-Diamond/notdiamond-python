@@ -11,7 +11,7 @@ import toml
 
 
 _DIR = Path(__file__).parent.absolute()
-with (_DIR.parents[1] / "notdiamond" / "pyproject.toml").open("r") as f:
+with (_DIR.parents[1] / "pyproject.toml").open("r") as f:
     data = toml.load(f)
 
 # -- Project information -----------------------------------------------------
