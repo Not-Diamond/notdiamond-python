@@ -1,0 +1,20 @@
+name: 'Set the working directory'
+description: 'Sets the environment variable {{ env.WORKING_DIRECTORY }} for use in subsequent actions'
+
+
+inputs:
+  working_directory:
+    description: 'Directory to set as env.WORKING_DIRECTORY'
+    required: false
+    default: ${{ github.workspace }}
+
+
+runs:
+  using: "composite"
+  steps:
+    - name: set-working-directory
+      run: |
+        WORKING_DIRECTORY=${{ inputs.working_directory }}
+        echo "WORKING_DIRECTORY: $WORKING_DIRECTORY"
+        echo "WORKING_DIRECTORY=$WORKING_DIRECTORY" >> "$GITHUB_ENV"
+      shell: bash

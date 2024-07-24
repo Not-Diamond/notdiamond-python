@@ -1,0 +1,102 @@
+[tool.poetry]
+name = "notdiamond"
+version = "0.3.0"
+description = "Not Diamond Python SDK"
+authors = ["Not Diamond <support@notdiamond.ai>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9.0,<3.12"
+litellm = "^1.34.40"
+python-dotenv = "^1.0.1"
+aiohttp = "^3.9.3"
+pandas = "^2.2.2"
+pydantic-partial = "^0.5.5"
+langchain = { version = ">=0.2.7", optional = true }
+langchain-google-genai = { version = ">=1.0.7", optional = true }
+langchain-openai = { version = "^0.1.16", optional = true }
+langchain-anthropic = { version = "^0.1.20", optional = true }
+langchain-community = { version = "^0.2.7", optional = true }
+langchain-mistralai = { version = "^0.1.10", optional = true }
+langchain-together = { version = "^0.1.4", optional = true }
+langchain-cohere = { version = "^0.1.9", optional = true }
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.0.0"
+pytest-asyncio = "^0.23.6"
+llama-index = "^0.10.34"
+pytest-mock = "^3.14.0"
+openai = ">=1.0.0"
+coverage = "^7.6.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.1"
+pydantic = "^2.5.3"
+pre-commit = "^3.7.0"
+black = "^24.3.0"
+flake8 = "^7.0.0"
+poetry-pre-commit-plugin = "^0.1.2"
+isort = "^5.13.2"
+nox = "^2024.3.2"
+pytest-mock = "^3.14.0"
+
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^7.3.7"
+autodoc = "^0.5.0"
+sphinx-rtd-theme = "^2.0.0"
+toml = "^0.10.2"
+
+[tool.poetry.extras]
+create = [
+    "langchain-cohere",
+    "langchain-anthropic",
+    "langchain-community",
+    "langchain-mistralai",
+    "langchain-google-genai",
+    "langchain-openai",
+    "langchain-together",
+    "langchain",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+markers = ["longrun"]
+
+[tool.black]
+line-length = 79
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+| \.mypy_cache
+| \.venv
+| _build
+)/
+'''
+
+[tool.flake8]
+max-line-length = 130
+extend-ignore = ["D203", "E203", "E251", "E266", "E302", "E305", "E401", "E402", "E501", "F401", "F403", "W503"]
+exclude = [".git", "__pycache__", "dist", "cookbooks"]
+max-complexity = 10
+
+[tool.isort]
+atomic = true
+profile = "black"
+line_length = 79
+skip_gitignore = true
+
+[tool.coverage.run]
+branch = true
+relative_files = true
+
+[tool.coverage.report]
+exclude_also = [
+    # Don't complain about abstract methods, they aren't run:
+    "@(abc\\.)?abstractmethod",
+]

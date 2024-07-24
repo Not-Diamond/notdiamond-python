@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>notdiamond.llms.providers &mdash; NotDiamond 0.2.7-beta</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=6352e504"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NotDiamond
+          </a>
+              <div class="version">
+                0.2.7-beta
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intro.html">Getting started with Not Diamond</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/notdiamond.html">NotDiamond package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NotDiamond</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">notdiamond.llms.providers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for notdiamond.llms.providers</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="kn">from</span> <span class="nn">notdiamond.llms.provider</span> <span class="kn">import</span> <span class="n">NDLLMProvider</span>
+
+
+<div class="viewcode-block" id="NDLLMProviders">
+<a class="viewcode-back" href="../../../source/notdiamond.llms.html#notdiamond.llms.providers.NDLLMProviders">[docs]</a>
+<span class="k">class</span> <span class="nc">NDLLMProviders</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NDLLMProviders serves as a registry for the supported LLM models by NotDiamond.</span>
+<span class="sd">    It allows developers to easily specify available LLM providers for the router.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        GPT_3_5_TURBO (NDLLMProvider): refers to &#39;gpt-3.5-turbo&#39; model by OpenAI</span>
+<span class="sd">        GPT_3_5_TURBO_0125 (NDLLMProvider): refers to &#39;gpt-3.5-turbo-0125&#39; model by OpenAI</span>
+<span class="sd">        GPT_4 (NDLLMProvider): refers to &#39;gpt-4&#39; model by OpenAI</span>
+<span class="sd">        GPT_4_0613 (NDLLMProvider): refers to &#39;gpt-4-0613&#39; model by OpenAI</span>
+<span class="sd">        GPT_4_1106_PREVIEW (NDLLMProvider): refers to &#39;gpt-4-1106-preview&#39; model by OpenAI</span>
+<span class="sd">        GPT_4_TURBO (NDLLMProvider): refers to &#39;gpt-4-turbo&#39; model by OpenAI</span>
+<span class="sd">        GPT_4_TURBO_PREVIEW (NDLLMProvider): refers to &#39;gpt-4-turbo-preview&#39; model by OpenAI</span>
+<span class="sd">        GPT_4_TURBO_2024_04_09 (NDLLMProvider): refers to &#39;gpt-4-turbo-2024-04-09&#39; model by OpenAI</span>
+<span class="sd">        GPT_4o_2024_05_13 (NDLLMProvider): refers to &#39;gpt-4o-2024-05-13&#39; model by OpenAI</span>
+<span class="sd">        GPT_4o (NDLLMProvider): refers to &#39;gpt-4o&#39; model by OpenAI</span>
+<span class="sd">        GPT_4_0125_PREVIEW (NDLLMProvider): refers to &#39;gpt-4-0125-preview&#39; model by OpenAI</span>
+
+<span class="sd">        CLAUDE_2_1 (NDLLMProvider): refers to &#39;claude-2.1&#39; model by Anthropic</span>
+<span class="sd">        CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to &#39;claude-3-opus-20240229&#39; model by Anthropic</span>
+<span class="sd">        CLAUDE_3_SONNET_20240229 (NDLLMProvider): refers to &#39;claude-3-sonnet-20240229&#39; model by Anthropic</span>
+<span class="sd">        CLAUDE_3_5_SONNET_20240620 (NDLLMProvider): refers to &#39;claude-3-5-sonnet-20240620&#39; model by Anthropic</span>
+<span class="sd">        CLAUDE_3_HAIKU_20240307 (NDLLMProvider): refers to &#39;claude-3-haiku-20240307&#39; model by Anthropic</span>
+
+<span class="sd">        GEMINI_PRO (NDLLMProvider): refers to &#39;gemini-pro&#39; model by Google</span>
+<span class="sd">        GEMINI_1_PRO_LATEST (NDLLMProvider): refers to &#39;gemini-1.0-pro-latest&#39; model by Google</span>
+<span class="sd">        GEMINI_15_PRO_LATEST (NDLLMProvider): refers to &#39;gemini-1.5-pro-latest&#39; model by Google</span>
+<span class="sd">        GEMINI_15_FLASH_LATEST (NDLLMProvider): refers to &#39;gemini-1.5-flash-latest&#39; model by Google</span>
+
+<span class="sd">        COMMAND_R (NDLLMProvider): refers to &#39;command-r&#39; model by Cohere</span>
+<span class="sd">        COMMAND_R_PLUS (NDLLMProvider): refers to &#39;command-r-plus&#39; model by Cohere</span>
+
+<span class="sd">        MISTRAL_LARGE_LATEST (NDLLMProvider): refers to &#39;mistral-large-latest&#39; model by Mistral AI</span>
+<span class="sd">        MISTRAL_MEDIUM_LATEST (NDLLMProvider): refers to &#39;mistral-medium-latest&#39; model by Mistral AI</span>
+<span class="sd">        MISTRAL_SMALL_LATEST (NDLLMProvider): refers to &#39;mistral-small-latest&#39; model by Mistral AI</span>
+<span class="sd">        OPEN_MISTRAL_7B (NDLLMProvider): refers to &#39;open-mistral-7b&#39; model by Mistral AI</span>
+<span class="sd">        OPEN_MIXTRAL_8X7B (NDLLMProvider): refers to &#39;open-mixtral-8x7b&#39; model by Mistral AI</span>
+<span class="sd">        OPEN_MIXTRAL_8X22B (NDLLMProvider): refers to &#39;open-mixtral-8x22b&#39; model by Mistral AI</span>
+
+<span class="sd">        TOGETHER_PHIND_CODELLAMA_34B_V2 (NDLLMProvider): refers to &#39;Phind-CodeLlama-34B-v2&#39; model served via TogetherAI</span>
+<span class="sd">        TOGETHER_MISTRAL_7B_INSTRUCT_V0_2 (NDLLMProvider): refers to &#39;Mistral-7B-Instruct-v0.2&#39; model served via TogetherAI</span>
+<span class="sd">        TOGETHER_MIXTRAL_8X7B_INSTRUCT_V0_1 (NDLLMProvider): refers to &#39;Mixtral-8x7B-Instruct-v0.1&#39; model served via TogetherAI</span>
+<span class="sd">        TOGETHER_MIXTRAL_8X22B_INSTRUCT_V0_1 (NDLLMProvider): refers to &#39;Mixtral-8x22B-Instruct-v0.1&#39; model served via TogetherAI</span>
+<span class="sd">        TOGETHER_LLAMA_3_70B_CHAT_HF (NDLLMProvider): refers to &#39;Llama-3-70b-chat-hf&#39; model served via TogetherAI</span>
+<span class="sd">        TOGETHER_LLAMA_3_8B_CHAT_HF (NDLLMProvider): refers to &#39;Llama-3-8b-chat-hf&#39; model served via TogetherAI</span>
+<span class="sd">        TOGETHER_QWEN2_72B_INSTRUCT (NDLLMProvider): refers to &#39;Qwen2-72B-Instruct&#39; model served via TogetherAI</span>
+
+<span class="sd">        REPLICATE_MISTRAL_7B_INSTRUCT_V0_2 (NDLLMProvider): refers to &quot;mistral-7b-instruct-v0.2&quot; model served via Replicate</span>
+<span class="sd">        REPLICATE_MIXTRAL_8X7B_INSTRUCT_V0_1 (NDLLMProvider): refers to &quot;mixtral-8x7b-instruct-v0.1&quot; model served via Replicate</span>
+<span class="sd">        REPLICATE_META_LLAMA_3_70B_INSTRUCT (NDLLMProvider): refers to &quot;meta-llama-3-70b-instruct&quot; model served via Replicate</span>
+<span class="sd">        REPLICATE_META_LLAMA_3_8B_INSTRUCT (NDLLMProvider): refers to &quot;meta-llama-3-8b-instruct&quot; model served via Replicate</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        This class is static and designed to be used without instantiation.</span>
+<span class="sd">        Access its attributes directly to obtain configurations for specific LLM providers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">GPT_3_5_TURBO</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">)</span>
+    <span class="n">GPT_3_5_TURBO_0125</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-3.5-turbo-0125&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4_0613</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-0613&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4_1106_PREVIEW</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-1106-preview&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4_TURBO</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-turbo&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4_TURBO_PREVIEW</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-turbo-preview&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4_TURBO_2024_04_09</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-turbo-2024-04-09&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4o_2024_05_13</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4o-2024-05-13&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4o</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4o&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4_0125_PREVIEW</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-0125-preview&quot;</span><span class="p">)</span>
+
+    <span class="n">CLAUDE_2_1</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;anthropic&quot;</span><span class="p">,</span> <span class="s2">&quot;claude-2.1&quot;</span><span class="p">)</span>
+    <span class="n">CLAUDE_3_OPUS_20240229</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;anthropic&quot;</span><span class="p">,</span> <span class="s2">&quot;claude-3-opus-20240229&quot;</span><span class="p">)</span>
+    <span class="n">CLAUDE_3_SONNET_20240229</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;anthropic&quot;</span><span class="p">,</span> <span class="s2">&quot;claude-3-sonnet-20240229&quot;</span><span class="p">)</span>
+    <span class="n">CLAUDE_3_5_SONNET_20240620</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;anthropic&quot;</span><span class="p">,</span> <span class="s2">&quot;claude-3-5-sonnet-20240620&quot;</span><span class="p">)</span>
+    <span class="n">CLAUDE_3_HAIKU_20240307</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;anthropic&quot;</span><span class="p">,</span> <span class="s2">&quot;claude-3-haiku-20240307&quot;</span><span class="p">)</span>
+
+    <span class="n">GEMINI_PRO</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;google&quot;</span><span class="p">,</span> <span class="s2">&quot;gemini-pro&quot;</span><span class="p">)</span>
+    <span class="n">GEMINI_1_PRO_LATEST</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;google&quot;</span><span class="p">,</span> <span class="s2">&quot;gemini-1.0-pro-latest&quot;</span><span class="p">)</span>
+    <span class="n">GEMINI_15_PRO_LATEST</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;google&quot;</span><span class="p">,</span> <span class="s2">&quot;gemini-1.5-pro-latest&quot;</span><span class="p">)</span>
+    <span class="n">GEMINI_15_FLASH_LATEST</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;google&quot;</span><span class="p">,</span> <span class="s2">&quot;gemini-1.5-flash-latest&quot;</span><span class="p">)</span>
+
+    <span class="n">COMMAND_R</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;cohere&quot;</span><span class="p">,</span> <span class="s2">&quot;command-r&quot;</span><span class="p">)</span>
+    <span class="n">COMMAND_R_PLUS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;cohere&quot;</span><span class="p">,</span> <span class="s2">&quot;command-r-plus&quot;</span><span class="p">)</span>
+
+    <span class="n">MISTRAL_LARGE_LATEST</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="s2">&quot;mistral-large-latest&quot;</span><span class="p">)</span>
+    <span class="n">MISTRAL_MEDIUM_LATEST</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">)</span>
+    <span class="n">MISTRAL_SMALL_LATEST</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="s2">&quot;mistral-small-latest&quot;</span><span class="p">)</span>
+    <span class="n">CODESTRAL_LATEST</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="s2">&quot;codestral-latest&quot;</span><span class="p">)</span>
+    <span class="n">OPEN_MISTRAL_7B</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="s2">&quot;open-mistral-7b&quot;</span><span class="p">)</span>
+    <span class="n">OPEN_MIXTRAL_8X7B</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="s2">&quot;open-mixtral-8x7b&quot;</span><span class="p">)</span>
+    <span class="n">OPEN_MIXTRAL_8X22B</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="s2">&quot;open-mixtral-8x22b&quot;</span><span class="p">)</span>
+
+    <span class="n">TOGETHER_PHIND_CODELLAMA_34B_V2</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Phind-CodeLlama-34B-v2&quot;</span><span class="p">)</span>
+    <span class="n">TOGETHER_MISTRAL_7B_INSTRUCT_V0_2</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;togetherai&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mistral-7B-Instruct-v0.2&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">TOGETHER_MIXTRAL_8X7B_INSTRUCT_V0_1</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;togetherai&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mixtral-8x7B-Instruct-v0.1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">TOGETHER_MIXTRAL_8X22B_INSTRUCT_V0_1</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;togetherai&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mixtral-8x22B-Instruct-v0.1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">TOGETHER_LLAMA_3_70B_CHAT_HF</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Llama-3-70b-chat-hf&quot;</span><span class="p">)</span>
+    <span class="n">TOGETHER_LLAMA_3_8B_CHAT_HF</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Llama-3-8b-chat-hf&quot;</span><span class="p">)</span>
+    <span class="n">TOGETHER_QWEN2_72B_INSTRUCT</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Qwen2-72B-Instruct&quot;</span><span class="p">)</span>
+
+    <span class="n">LLAMA_3_SONAR_LARGE_32K_ONLINE</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;perplexity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;llama-3-sonar-large-32k-online&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">REPLICATE_MISTRAL_7B_INSTRUCT_V0_2</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;replicate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mistral-7b-instruct-v0.2&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">REPLICATE_MIXTRAL_8X7B_INSTRUCT_V0_1</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;replicate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mixtral-8x7b-instruct-v0.1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">REPLICATE_META_LLAMA_3_70B_INSTRUCT</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;replicate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;meta-llama-3-70b-instruct&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">REPLICATE_META_LLAMA_3_8B_INSTRUCT</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;replicate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;meta-llama-3-8b-instruct&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">provider</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">NDLLMProvider</span><span class="p">(</span><span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, NotDiamond.
+      <span class="lastupdated">Last updated on Jul 08, 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+name: 'Setup python environment'
+description: 'Install python and packages into environment using Poetry'
+
+inputs:
+  working_directory:
+    description: 'Directory to run the action'
+    required: false
+    default: ${{ github.workspace }}
+  python_version:
+    description: 'Python version to use.'
+    required: false
+    default: '3.9'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install poetry
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install poetry==1.7.1
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+    - uses: actions/setup-python@v4
+      with:
+        cache: 'poetry'
+        python-version: ${{ inputs.python_version }}
+    - name: setup venv
+      run: |
+        poetry install
+        echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
