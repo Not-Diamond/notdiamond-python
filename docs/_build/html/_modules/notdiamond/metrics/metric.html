@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>notdiamond.metrics.metric &mdash; NotDiamond 0.2.7-beta</title>
+  <title>notdiamond.metrics.metric &mdash; NotDiamond 0.3.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=6352e504"></script>
+        <script src="../../../_static/documentation_options.js?v=0926e583"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -33,7 +33,7 @@
             NotDiamond
           </a>
               <div class="version">
-                0.2.7-beta
+                0.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -78,26 +78,26 @@
 
 <span class="kn">from</span> <span class="nn">notdiamond</span> <span class="kn">import</span> <span class="n">settings</span>
 <span class="kn">from</span> <span class="nn">notdiamond.exceptions</span> <span class="kn">import</span> <span class="n">ApiError</span>
-<span class="kn">from</span> <span class="nn">notdiamond.llms.provider</span> <span class="kn">import</span> <span class="n">NDLLMProvider</span>
+<span class="kn">from</span> <span class="nn">notdiamond.llms.config</span> <span class="kn">import</span> <span class="n">LLMConfig</span>
 <span class="kn">from</span> <span class="nn">notdiamond.metrics.request</span> <span class="kn">import</span> <span class="n">feedback_request</span>
 <span class="kn">from</span> <span class="nn">notdiamond.types</span> <span class="kn">import</span> <span class="n">NDApiKeyValidator</span>
 
 
-<div class="viewcode-block" id="NDMetric">
-<a class="viewcode-back" href="../../../source/notdiamond.metrics.html#notdiamond.metrics.metric.NDMetric">[docs]</a>
-<span class="k">class</span> <span class="nc">NDMetric</span><span class="p">:</span>
+<div class="viewcode-block" id="Metric">
+<a class="viewcode-back" href="../../../source/notdiamond.metrics.html#notdiamond.metrics.metric.Metric">[docs]</a>
+<span class="k">class</span> <span class="nc">Metric</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span>
 
-<div class="viewcode-block" id="NDMetric.feedback">
-<a class="viewcode-back" href="../../../source/notdiamond.metrics.html#notdiamond.metrics.metric.NDMetric.feedback">[docs]</a>
+<div class="viewcode-block" id="Metric.feedback">
+<a class="viewcode-back" href="../../../source/notdiamond.metrics.html#notdiamond.metrics.metric.Metric.feedback">[docs]</a>
     <span class="k">def</span> <span class="nf">feedback</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">llm_provider</span><span class="p">:</span> <span class="n">NDLLMProvider</span><span class="p">,</span>
+        <span class="n">llm_config</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span>
         <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
@@ -109,14 +109,14 @@
 
         <span class="k">return</span> <span class="n">feedback_request</span><span class="p">(</span>
             <span class="n">session_id</span><span class="o">=</span><span class="n">session_id</span><span class="p">,</span>
-            <span class="n">llm_provider</span><span class="o">=</span><span class="n">llm_provider</span><span class="p">,</span>
+            <span class="n">llm_config</span><span class="o">=</span><span class="n">llm_config</span><span class="p">,</span>
             <span class="n">feedback_payload</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request_payload</span><span class="p">(</span><span class="n">value</span><span class="p">),</span>
             <span class="n">notdiamond_api_key</span><span class="o">=</span><span class="n">notdiamond_api_key</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="NDMetric.request_payload">
-<a class="viewcode-back" href="../../../source/notdiamond.metrics.html#notdiamond.metrics.metric.NDMetric.request_payload">[docs]</a>
+<div class="viewcode-block" id="Metric.request_payload">
+<a class="viewcode-back" href="../../../source/notdiamond.metrics.html#notdiamond.metrics.metric.Metric.request_payload">[docs]</a>
     <span class="k">def</span> <span class="nf">request_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">:</span> <span class="n">value</span><span class="p">}</span></div>
 </div>
@@ -131,7 +131,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Jul 08, 2024.
+      <span class="lastupdated">Last updated on Jul 24, 2024.
       </span></p>
   </div>
 

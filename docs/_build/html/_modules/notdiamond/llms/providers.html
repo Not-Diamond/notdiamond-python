@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>notdiamond.llms.providers &mdash; NotDiamond 0.2.7-beta</title>
+  <title>notdiamond.llms.providers &mdash; NotDiamond 0.3.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=6352e504"></script>
+        <script src="../../../_static/documentation_options.js?v=0926e583"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -33,7 +33,7 @@
             NotDiamond
           </a>
               <div class="version">
-                0.2.7-beta
+                0.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -76,7 +76,7 @@
   <h1>Source code for notdiamond.llms.providers</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 
-<span class="kn">from</span> <span class="nn">notdiamond.llms.provider</span> <span class="kn">import</span> <span class="n">NDLLMProvider</span>
+<span class="kn">from</span> <span class="nn">notdiamond.llms.config</span> <span class="kn">import</span> <span class="n">LLMConfig</span>
 
 
 <div class="viewcode-block" id="NDLLMProviders">
@@ -97,6 +97,8 @@
 <span class="sd">        GPT_4_TURBO_2024_04_09 (NDLLMProvider): refers to &#39;gpt-4-turbo-2024-04-09&#39; model by OpenAI</span>
 <span class="sd">        GPT_4o_2024_05_13 (NDLLMProvider): refers to &#39;gpt-4o-2024-05-13&#39; model by OpenAI</span>
 <span class="sd">        GPT_4o (NDLLMProvider): refers to &#39;gpt-4o&#39; model by OpenAI</span>
+<span class="sd">        GPT_4o_MINI_2024_07_18 (NDLLMProvider): refers to &#39;gpt-4o-mini-2024-07-18&#39; model by OpenAI</span>
+<span class="sd">        GPT_4o_MINI (NDLLMProvider): refers to &#39;gpt-4o-mini&#39; model by OpenAI</span>
 <span class="sd">        GPT_4_0125_PREVIEW (NDLLMProvider): refers to &#39;gpt-4-0125-preview&#39; model by OpenAI</span>
 
 <span class="sd">        CLAUDE_2_1 (NDLLMProvider): refers to &#39;claude-2.1&#39; model by Anthropic</span>
@@ -127,11 +129,15 @@
 <span class="sd">        TOGETHER_LLAMA_3_70B_CHAT_HF (NDLLMProvider): refers to &#39;Llama-3-70b-chat-hf&#39; model served via TogetherAI</span>
 <span class="sd">        TOGETHER_LLAMA_3_8B_CHAT_HF (NDLLMProvider): refers to &#39;Llama-3-8b-chat-hf&#39; model served via TogetherAI</span>
 <span class="sd">        TOGETHER_QWEN2_72B_INSTRUCT (NDLLMProvider): refers to &#39;Qwen2-72B-Instruct&#39; model served via TogetherAI</span>
+<span class="sd">        TOGETHER_LLAMA_3_1_8B_INSTRUCT_TURBO (NDLLMProvider): refers to &#39;Meta-Llama-3.1-8B-Instruct-Turbo&#39; model served via TogetherAI</span>
+<span class="sd">        TOGETHER_LLAMA_3_1_70B_INSTRUCT_TURBO (NDLLMProvider): refers to &#39;Meta-Llama-3.1-70B-Instruct-Turbo&#39; model served via TogetherAI</span>
+<span class="sd">        TOGETHER_LLAMA_3_1_405B_INSTRUCT_TURBO (NDLLMProvider): refers to &#39;Meta-Llama-3.1-405B-Instruct-Turbo&#39; model served via TogetherAI</span>
 
 <span class="sd">        REPLICATE_MISTRAL_7B_INSTRUCT_V0_2 (NDLLMProvider): refers to &quot;mistral-7b-instruct-v0.2&quot; model served via Replicate</span>
 <span class="sd">        REPLICATE_MIXTRAL_8X7B_INSTRUCT_V0_1 (NDLLMProvider): refers to &quot;mixtral-8x7b-instruct-v0.1&quot; model served via Replicate</span>
 <span class="sd">        REPLICATE_META_LLAMA_3_70B_INSTRUCT (NDLLMProvider): refers to &quot;meta-llama-3-70b-instruct&quot; model served via Replicate</span>
 <span class="sd">        REPLICATE_META_LLAMA_3_8B_INSTRUCT (NDLLMProvider): refers to &quot;meta-llama-3-8b-instruct&quot; model served via Replicate</span>
+<span class="sd">        REPLICATE_META_LLAMA_3_1_405B_INSTRUCT (NDLLMProvider): refers to &quot;meta-llama-3.1-405b-instruct&quot; model served via Replicate</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        This class is static and designed to be used without instantiation.</span>
@@ -148,6 +154,8 @@
     <span class="n">GPT_4_TURBO_2024_04_09</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-turbo-2024-04-09&quot;</span><span class="p">)</span>
     <span class="n">GPT_4o_2024_05_13</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4o-2024-05-13&quot;</span><span class="p">)</span>
     <span class="n">GPT_4o</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4o&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4o_MINI_2024_07_18</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4o-mini-2024-07-18&quot;</span><span class="p">)</span>
+    <span class="n">GPT_4o_MINI</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">)</span>
     <span class="n">GPT_4_0125_PREVIEW</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-0125-preview&quot;</span><span class="p">)</span>
 
     <span class="n">CLAUDE_2_1</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;anthropic&quot;</span><span class="p">,</span> <span class="s2">&quot;claude-2.1&quot;</span><span class="p">)</span>
@@ -188,6 +196,9 @@
     <span class="n">TOGETHER_LLAMA_3_70B_CHAT_HF</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Llama-3-70b-chat-hf&quot;</span><span class="p">)</span>
     <span class="n">TOGETHER_LLAMA_3_8B_CHAT_HF</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Llama-3-8b-chat-hf&quot;</span><span class="p">)</span>
     <span class="n">TOGETHER_QWEN2_72B_INSTRUCT</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Qwen2-72B-Instruct&quot;</span><span class="p">)</span>
+    <span class="n">TOGETHER_LLAMA_3_1_8B_INSTRUCT_TURBO</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Meta-Llama-3.1-8B-Instruct-Turbo&quot;</span><span class="p">)</span>
+    <span class="n">TOGETHER_LLAMA_3_1_70B_INSTRUCT_TURBO</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Meta-Llama-3.1-70B-Instruct-Turbo&quot;</span><span class="p">)</span>
+    <span class="n">TOGETHER_LLAMA_3_1_405B_INSTRUCT_TURBO</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;Meta-Llama-3.1-405B-Instruct-Turbo&quot;</span><span class="p">)</span>
 
     <span class="n">LLAMA_3_SONAR_LARGE_32K_ONLINE</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">&quot;perplexity&quot;</span><span class="p">,</span>
@@ -210,9 +221,13 @@
         <span class="s2">&quot;replicate&quot;</span><span class="p">,</span>
         <span class="s2">&quot;meta-llama-3-8b-instruct&quot;</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="n">REPLICATE_META_LLAMA_3_1_405B_INSTRUCT</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;replicate&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;meta-llama-3.1-405b-instruct&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">provider</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">NDLLMProvider</span><span class="p">(</span><span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">LLMConfig</span><span class="p">(</span><span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span></div>
 
 </pre></div>
 
@@ -224,7 +239,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Jul 08, 2024.
+      <span class="lastupdated">Last updated on Jul 24, 2024.
       </span></p>
   </div>
 

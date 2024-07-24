@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>notdiamond.metrics.request &mdash; NotDiamond 0.2.7-beta</title>
+  <title>notdiamond.metrics.request &mdash; NotDiamond 0.3.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=6352e504"></script>
+        <script src="../../../_static/documentation_options.js?v=0926e583"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -33,7 +33,7 @@
             NotDiamond
           </a>
               <div class="version">
-                0.2.7-beta
+                0.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -74,21 +74,25 @@
            <div itemprop="articleBody">
              
   <h1>Source code for notdiamond.metrics.request</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="kn">from</span> <span class="nn">notdiamond</span> <span class="kn">import</span> <span class="n">settings</span>
 <span class="kn">from</span> <span class="nn">notdiamond.exceptions</span> <span class="kn">import</span> <span class="n">ApiError</span>
-<span class="kn">from</span> <span class="nn">notdiamond.llms.provider</span> <span class="kn">import</span> <span class="n">NDLLMProvider</span>
+<span class="kn">from</span> <span class="nn">notdiamond.llms.config</span> <span class="kn">import</span> <span class="n">LLMConfig</span>
 <span class="kn">from</span> <span class="nn">notdiamond.types</span> <span class="kn">import</span> <span class="n">FeedbackRequestPayload</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">LOGGER</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="feedback_request">
 <a class="viewcode-back" href="../../../source/notdiamond.metrics.html#notdiamond.metrics.request.feedback_request">[docs]</a>
 <span class="k">def</span> <span class="nf">feedback_request</span><span class="p">(</span>
     <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">llm_provider</span><span class="p">:</span> <span class="n">NDLLMProvider</span><span class="p">,</span>
+    <span class="n">llm_config</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span>
     <span class="n">feedback_payload</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
     <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -96,13 +100,14 @@
 
     <span class="n">payload</span><span class="p">:</span> <span class="n">FeedbackRequestPayload</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;session_id&quot;</span><span class="p">:</span> <span class="n">session_id</span><span class="p">,</span>
-        <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="n">llm_provider</span><span class="o">.</span><span class="n">prepare_for_request</span><span class="p">(),</span>
+        <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="n">llm_config</span><span class="o">.</span><span class="n">prepare_for_request</span><span class="p">(),</span>
         <span class="s2">&quot;feedback&quot;</span><span class="p">:</span> <span class="n">feedback_payload</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">notdiamond_api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Python-SDK/</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -111,8 +116,8 @@
         <span class="k">raise</span> <span class="n">ApiError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ND API error for feedback: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;ND API feedback error: faild to report feedback with status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;ND API feedback error: failed to report feedback with status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span>
 
@@ -128,7 +133,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Jul 08, 2024.
+      <span class="lastupdated">Last updated on Jul 24, 2024.
       </span></p>
   </div>
 

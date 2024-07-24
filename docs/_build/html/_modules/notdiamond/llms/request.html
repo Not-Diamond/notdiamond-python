@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>notdiamond.llms.request &mdash; NotDiamond 0.2.7-beta</title>
+  <title>notdiamond.llms.request &mdash; NotDiamond 0.3.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=6352e504"></script>
+        <script src="../../../_static/documentation_options.js?v=0926e583"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -33,7 +33,7 @@
             NotDiamond
           </a>
               <div class="version">
-                0.2.7-beta
+                0.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -75,25 +75,28 @@
              
   <h1>Source code for notdiamond.llms.request</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">aiohttp</span>
 <span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">langchain_core.utils.function_calling</span> <span class="kn">import</span> <span class="n">convert_to_openai_function</span>
 
 <span class="kn">from</span> <span class="nn">notdiamond</span> <span class="kn">import</span> <span class="n">settings</span>
-<span class="kn">from</span> <span class="nn">notdiamond.llms.provider</span> <span class="kn">import</span> <span class="n">NDLLMProvider</span>
-<span class="kn">from</span> <span class="nn">notdiamond.metrics.metric</span> <span class="kn">import</span> <span class="n">NDMetric</span>
-<span class="kn">from</span> <span class="nn">notdiamond.prompts.prompt</span> <span class="kn">import</span> <span class="n">NDChatPromptTemplate</span><span class="p">,</span> <span class="n">NDPromptTemplate</span>
+<span class="kn">from</span> <span class="nn">notdiamond._utils</span> <span class="kn">import</span> <span class="n">convert_tool_to_openai_function</span>
+<span class="kn">from</span> <span class="nn">notdiamond.llms.config</span> <span class="kn">import</span> <span class="n">LLMConfig</span>
+<span class="kn">from</span> <span class="nn">notdiamond.metrics.metric</span> <span class="kn">import</span> <span class="n">Metric</span>
 <span class="kn">from</span> <span class="nn">notdiamond.types</span> <span class="kn">import</span> <span class="n">ModelSelectRequestPayload</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">LOGGER</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="model_select_prepare">
 <a class="viewcode-back" href="../../../source/notdiamond.llms.html#notdiamond.llms.request.model_select_prepare">[docs]</a>
 <span class="k">def</span> <span class="nf">model_select_prepare</span><span class="p">(</span>
-    <span class="n">prompt_template</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">NDPromptTemplate</span><span class="p">,</span> <span class="n">NDChatPromptTemplate</span><span class="p">]],</span>
-    <span class="n">llm_providers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">NDLLMProvider</span><span class="p">],</span>
-    <span class="n">metric</span><span class="p">:</span> <span class="n">NDMetric</span><span class="p">,</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
+    <span class="n">llm_configs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">],</span>
+    <span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span><span class="p">,</span>
     <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">max_model_depth</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">hash_content</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
@@ -106,9 +109,9 @@
 <span class="sd">    It returns the best fitting LLM to call and a session ID that can be used for feedback.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        prompt_template (Optional[Union[NDPromptTemplate, NDChatPromptTemplate]]): prompt template for the LLM call</span>
-<span class="sd">        llm_providers (List[NDLLMProvider]): a list of available LLM providers that the router can decide from</span>
-<span class="sd">        metric (NDMetric): metric based off which the router makes the decision. As of now only &#39;accuracy&#39; supported.</span>
+<span class="sd">        messages (List[Dict[str, str]]): list of messages to be used for the LLM call</span>
+<span class="sd">        llm_configs (List[LLMConfig]): a list of available LLMs that the router can decide from</span>
+<span class="sd">        metric (Metric): metric based off which the router makes the decision. As of now only &#39;accuracy&#39; supported.</span>
 <span class="sd">        notdiamond_api_key (str): API key generated via the NotDiamond dashboard.</span>
 <span class="sd">        max_model_depth (int): if your top recommended model is down, specify up to which depth of routing you&#39;re willing to go.</span>
 <span class="sd">        hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.</span>
@@ -122,14 +125,13 @@
 <span class="sd">        tuple(url, payload, headers): returns data to be used for the API call of modelSelect</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">ND_BASE_URL</span><span class="si">}</span><span class="s2">/v2/optimizer/modelSelect&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">ND_BASE_URL</span><span class="si">}</span><span class="s2">/v2/modelRouter/modelSelect&quot;</span>
     <span class="n">tools_dict</span> <span class="o">=</span> <span class="n">get_tools_in_openai_format</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span>
 
     <span class="n">payload</span><span class="p">:</span> <span class="n">ModelSelectRequestPayload</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">prompt_template</span><span class="o">.</span><span class="n">prepare_for_request</span><span class="p">(),</span>
+        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">messages</span><span class="p">,</span>
         <span class="s2">&quot;llm_providers&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="n">llm_provider</span><span class="o">.</span><span class="n">prepare_for_request</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">llm_provider</span> <span class="ow">in</span> <span class="n">llm_providers</span>
+            <span class="n">llm_provider</span><span class="o">.</span><span class="n">prepare_for_request</span><span class="p">()</span> <span class="k">for</span> <span class="n">llm_provider</span> <span class="ow">in</span> <span class="n">llm_configs</span>
         <span class="p">],</span>
         <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="n">metric</span><span class="o">.</span><span class="n">metric</span><span class="p">,</span>
         <span class="s2">&quot;max_model_depth&quot;</span><span class="p">:</span> <span class="n">max_model_depth</span><span class="p">,</span>
@@ -146,6 +148,7 @@
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">notdiamond_api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Python-SDK/</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">url</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span></div>
@@ -169,7 +172,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">tools</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span>
-            <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">convert_to_openai_function</span><span class="p">(</span><span class="n">tool</span><span class="p">)}</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">convert_tool_to_openai_function</span><span class="p">(</span><span class="n">tool</span><span class="p">),</span>
+            <span class="p">}</span>
             <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">tools</span>
         <span class="p">]</span>
 
@@ -179,7 +185,7 @@
 
 <div class="viewcode-block" id="model_select_parse">
 <a class="viewcode-back" href="../../../source/notdiamond.llms.html#notdiamond.llms.request.model_select_parse">[docs]</a>
-<span class="k">def</span> <span class="nf">model_select_parse</span><span class="p">(</span><span class="n">response_code</span><span class="p">,</span> <span class="n">response_json</span><span class="p">,</span> <span class="n">llm_providers</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">model_select_parse</span><span class="p">(</span><span class="n">response_code</span><span class="p">,</span> <span class="n">response_json</span><span class="p">,</span> <span class="n">llm_configs</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">response_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
         <span class="n">providers</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;providers&quot;</span><span class="p">]</span>
         <span class="n">session_id</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;session_id&quot;</span><span class="p">]</span>
@@ -190,13 +196,13 @@
             <span class="nb">filter</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">top_provider</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">])</span>
                 <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">provider</span> <span class="o">==</span> <span class="n">top_provider</span><span class="p">[</span><span class="s2">&quot;provider&quot;</span><span class="p">]),</span>
-                <span class="n">llm_providers</span><span class="p">,</span>
+                <span class="n">llm_configs</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">best_llm</span><span class="p">,</span> <span class="n">session_id</span>
 
     <span class="n">error_message</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;detail&quot;</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ND API error: </span><span class="si">{</span><span class="n">response_code</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">error_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;API error: </span><span class="si">{</span><span class="n">response_code</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">error_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;NO-SESSION-ID&quot;</span></div>
 
 
@@ -204,9 +210,9 @@
 <div class="viewcode-block" id="model_select">
 <a class="viewcode-back" href="../../../source/notdiamond.llms.html#notdiamond.llms.request.model_select">[docs]</a>
 <span class="k">def</span> <span class="nf">model_select</span><span class="p">(</span>
-    <span class="n">prompt_template</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">NDPromptTemplate</span><span class="p">,</span> <span class="n">NDChatPromptTemplate</span><span class="p">]],</span>
-    <span class="n">llm_providers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">NDLLMProvider</span><span class="p">],</span>
-    <span class="n">metric</span><span class="p">:</span> <span class="n">NDMetric</span><span class="p">,</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
+    <span class="n">llm_configs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">],</span>
+    <span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span><span class="p">,</span>
     <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">max_model_depth</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">hash_content</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
@@ -220,9 +226,9 @@
 <span class="sd">    It returns the best fitting LLM to call and a session ID that can be used for feedback.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        prompt_template (Optional[Union[NDPromptTemplate, NDChatPromptTemplate]]): prompt template for the LLM call</span>
-<span class="sd">        llm_providers (List[NDLLMProvider]): a list of available LLM providers that the router can decide from</span>
-<span class="sd">        metric (NDMetric): metric based off which the router makes the decision. As of now only &#39;accuracy&#39; supported.</span>
+<span class="sd">        messages (List[Dict[str, str]]): list of messages to be used for the LLM call</span>
+<span class="sd">        llm_configs (List[LLMConfig]): a list of available LLMs that the router can decide from</span>
+<span class="sd">        metric (Metric): metric based off which the router makes the decision. As of now only &#39;accuracy&#39; supported.</span>
 <span class="sd">        notdiamond_api_key (str): API key generated via the NotDiamond dashboard.</span>
 <span class="sd">        max_model_depth (int): if your top recommended model is down, specify up to which depth of routing you&#39;re willing to go.</span>
 <span class="sd">        hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.</span>
@@ -233,13 +239,13 @@
 <span class="sd">        timeout (int, optional): timeout for the request. Defaults to 5.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple(NDLLMProvider, string): returns a tuple of the chosen NDLLMProvider to call and a session ID string.</span>
+<span class="sd">        tuple(LLMConfig, string): returns a tuple of the chosen LLMConfig to call and a session ID string.</span>
 <span class="sd">                                        In case of an error the LLM defaults to None and the session ID defaults</span>
 <span class="sd">                                        to &#39;NO-SESSION-ID&#39;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">model_select_prepare</span><span class="p">(</span>
-        <span class="n">prompt_template</span><span class="o">=</span><span class="n">prompt_template</span><span class="p">,</span>
-        <span class="n">llm_providers</span><span class="o">=</span><span class="n">llm_providers</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+        <span class="n">llm_configs</span><span class="o">=</span><span class="n">llm_configs</span><span class="p">,</span>
         <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
         <span class="n">notdiamond_api_key</span><span class="o">=</span><span class="n">notdiamond_api_key</span><span class="p">,</span>
         <span class="n">max_model_depth</span><span class="o">=</span><span class="n">max_model_depth</span><span class="p">,</span>
@@ -256,11 +262,11 @@
         <span class="n">response_code</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
         <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ND API error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;API error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;NO-SESSION-ID&quot;</span>
 
     <span class="n">best_llm</span><span class="p">,</span> <span class="n">session_id</span> <span class="o">=</span> <span class="n">model_select_parse</span><span class="p">(</span>
-        <span class="n">response_code</span><span class="p">,</span> <span class="n">response_json</span><span class="p">,</span> <span class="n">llm_providers</span>
+        <span class="n">response_code</span><span class="p">,</span> <span class="n">response_json</span><span class="p">,</span> <span class="n">llm_configs</span>
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">best_llm</span><span class="p">,</span> <span class="n">session_id</span></div>
@@ -270,9 +276,9 @@
 <div class="viewcode-block" id="amodel_select">
 <a class="viewcode-back" href="../../../source/notdiamond.llms.html#notdiamond.llms.request.amodel_select">[docs]</a>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">amodel_select</span><span class="p">(</span>
-    <span class="n">prompt_template</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">NDPromptTemplate</span><span class="p">,</span> <span class="n">NDChatPromptTemplate</span><span class="p">]],</span>
-    <span class="n">llm_providers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">NDLLMProvider</span><span class="p">],</span>
-    <span class="n">metric</span><span class="p">:</span> <span class="n">NDMetric</span><span class="p">,</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
+    <span class="n">llm_configs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">],</span>
+    <span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span><span class="p">,</span>
     <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">max_model_depth</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">hash_content</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
@@ -286,9 +292,9 @@
 <span class="sd">    It returns the best fitting LLM to call and a session ID that can be used for feedback.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        prompt_template (Optional[Union[NDPromptTemplate, NDChatPromptTemplate]]): prompt template for the LLM call</span>
-<span class="sd">        llm_providers (List[NDLLMProvider]): a list of available LLM providers that the router can decide from</span>
-<span class="sd">        metric (NDMetric): metric based off which the router makes the decision. As of now only &#39;accuracy&#39; supported.</span>
+<span class="sd">        messages (List[Dict[str, str]]): list of messages to be used for the LLM call</span>
+<span class="sd">        llm_configs (List[LLMConfig]): a list of available LLMs that the router can decide from</span>
+<span class="sd">        metric (Metric): metric based off which the router makes the decision. As of now only &#39;accuracy&#39; supported.</span>
 <span class="sd">        notdiamond_api_key (str): API key generated via the NotDiamond dashboard.</span>
 <span class="sd">        max_model_depth (int): if your top recommended model is down, specify up to which depth of routing you&#39;re willing to go.</span>
 <span class="sd">        hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.</span>
@@ -299,13 +305,13 @@
 <span class="sd">        timeout (int, optional): timeout for the request. Defaults to 5.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple(NDLLMProvider, string): returns a tuple of the chosen NDLLMProvider to call and a session ID string.</span>
+<span class="sd">        tuple(LLMConfig, string): returns a tuple of the chosen LLMConfig to call and a session ID string.</span>
 <span class="sd">                                        In case of an error the LLM defaults to None and the session ID defaults</span>
 <span class="sd">                                        to &#39;NO-SESSION-ID&#39;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">model_select_prepare</span><span class="p">(</span>
-        <span class="n">prompt_template</span><span class="o">=</span><span class="n">prompt_template</span><span class="p">,</span>
-        <span class="n">llm_providers</span><span class="o">=</span><span class="n">llm_providers</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+        <span class="n">llm_configs</span><span class="o">=</span><span class="n">llm_configs</span><span class="p">,</span>
         <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
         <span class="n">notdiamond_api_key</span><span class="o">=</span><span class="n">notdiamond_api_key</span><span class="p">,</span>
         <span class="n">max_model_depth</span><span class="o">=</span><span class="n">max_model_depth</span><span class="p">,</span>
@@ -323,11 +329,11 @@
                 <span class="n">response_code</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span>
                 <span class="n">response_json</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ND API error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;API error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;NO-SESSION-ID&quot;</span>
 
     <span class="n">best_llm</span><span class="p">,</span> <span class="n">session_id</span> <span class="o">=</span> <span class="n">model_select_parse</span><span class="p">(</span>
-        <span class="n">response_code</span><span class="p">,</span> <span class="n">response_json</span><span class="p">,</span> <span class="n">llm_providers</span>
+        <span class="n">response_code</span><span class="p">,</span> <span class="n">response_json</span><span class="p">,</span> <span class="n">llm_configs</span>
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">best_llm</span><span class="p">,</span> <span class="n">session_id</span></div>
@@ -338,7 +344,7 @@
 <a class="viewcode-back" href="../../../source/notdiamond.llms.html#notdiamond.llms.request.report_latency">[docs]</a>
 <span class="k">def</span> <span class="nf">report_latency</span><span class="p">(</span>
     <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">llm_provider</span><span class="p">:</span> <span class="n">NDLLMProvider</span><span class="p">,</span>
+    <span class="n">llm_config</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span>
     <span class="n">tokens_per_second</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <span class="p">):</span>
@@ -351,7 +357,7 @@
 <span class="sd">    Parameters:</span>
 <span class="sd">        session_id (str): the session ID that was returned from the `invoke` or `model_select` calls, so we know which</span>
 <span class="sd">                            router call your latency report refers to.</span>
-<span class="sd">        llm_provider (NDLLMProvider): specifying the LLM provider for which the latency is reported</span>
+<span class="sd">        llm_provider (LLMConfig): specifying the LLM provider for which the latency is reported</span>
 <span class="sd">        tokens_per_second (float): latency of the model call calculated based on time elapsed, input tokens, and output tokens</span>
 <span class="sd">        notdiamond_api_key (str): NotDiamond API call used for authentication</span>
 
@@ -365,19 +371,22 @@
 
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;session_id&quot;</span><span class="p">:</span> <span class="n">session_id</span><span class="p">,</span>
-        <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="n">llm_provider</span><span class="o">.</span><span class="n">prepare_for_request</span><span class="p">(),</span>
+        <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="n">llm_config</span><span class="o">.</span><span class="n">prepare_for_request</span><span class="p">(),</span>
         <span class="s2">&quot;feedback&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tokens_per_second&quot;</span><span class="p">:</span> <span class="n">tokens_per_second</span><span class="p">},</span>
     <span class="p">}</span>
 
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">notdiamond_api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Python-SDK/</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ND API error for report metrics latency: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;API error for report metrics latency: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="mi">500</span>
 
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span></div>
@@ -392,7 +401,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Jul 08, 2024.
+      <span class="lastupdated">Last updated on Jul 24, 2024.
       </span></p>
   </div>
 
