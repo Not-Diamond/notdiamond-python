@@ -38,6 +38,8 @@ class NDLLMProviders(Enum):
         COMMAND_R_PLUS (NDLLMProvider): refers to 'command-r-plus' model by Cohere
 
         MISTRAL_LARGE_LATEST (NDLLMProvider): refers to 'mistral-large-latest' model by Mistral AI
+        MISTRAL_LARGE_2407 (NDLLMProvider): refers to 'mistral-large-2407' model by Mistral AI
+        MISTRAL_LARGE_2402 (NDLLMProvider): refers to 'mistral-large-2402' model by Mistral AI
         MISTRAL_MEDIUM_LATEST (NDLLMProvider): refers to 'mistral-medium-latest' model by Mistral AI
         MISTRAL_SMALL_LATEST (NDLLMProvider): refers to 'mistral-small-latest' model by Mistral AI
         OPEN_MISTRAL_7B (NDLLMProvider): refers to 'open-mistral-7b' model by Mistral AI
@@ -95,6 +97,8 @@ class NDLLMProviders(Enum):
     COMMAND_R_PLUS = ("cohere", "command-r-plus")
 
     MISTRAL_LARGE_LATEST = ("mistral", "mistral-large-latest")
+    MISTRAL_LARGE_2407 = ("mistral", "mistral-large-2407")
+    MISTRAL_LARGE_2402 = ("mistral", "mistral-large-2402")
     MISTRAL_MEDIUM_LATEST = ("mistral", "mistral-medium-latest")
     MISTRAL_SMALL_LATEST = ("mistral", "mistral-small-latest")
     CODESTRAL_LATEST = ("mistral", "codestral-latest")

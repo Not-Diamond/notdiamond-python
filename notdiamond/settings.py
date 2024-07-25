@@ -147,6 +147,8 @@ PROVIDERS = {
     "mistral": {
         "models": [
             "mistral-large-latest",
+            "mistral-large-2402",
+            "mistral-large-2407",
             "mistral-medium-latest",
             "mistral-small-latest",
             "open-mistral-7b",
@@ -157,11 +159,15 @@ PROVIDERS = {
         "api_key": MISTRAL_API_KEY,
         "support_tools": [
             "mistral-large-latest",
+            "mistral-large-2402",
+            "mistral-large-2407",
             "mistral-small-latest",
             "open-mixtral-8x22b",
         ],
         "support_response_model": [
             "mistral-large-latest",
+            "mistral-large-2402",
+            "mistral-large-2407",
             "mistral-medium-latest",
             "mistral-small-latest",
             "open-mistral-7b",
@@ -171,6 +177,7 @@ PROVIDERS = {
         ],
         "openrouter_identifier": {
             "mistral-large-latest": "mistralai/mistral-large",
+            "mistral-large-2407": "mistralai/mistral-large",
             "mistral-medium-latest": "mistralai/mistral-medium",
             "mistral-small-latest": "mistralai/mistral-small",
             "open-mistral-7b": "mistralai/mistral-7b-instruct",
