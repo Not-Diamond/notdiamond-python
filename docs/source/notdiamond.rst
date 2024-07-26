@@ -8,7 +8,6 @@ NotDiamond package
 
    notdiamond.llms
    notdiamond.metrics
-   notdiamond.prompts
    notdiamond.toolkit
 
 notdiamond.callbacks
@@ -39,6 +38,14 @@ notdiamond.types
 -----------------------
 
 .. automodule:: notdiamond.types
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+notdiamond.prompts
+---------------------------------------
+
+.. automodule:: notdiamond.prompts
    :members:
    :undoc-members:
    :show-inheritance:
