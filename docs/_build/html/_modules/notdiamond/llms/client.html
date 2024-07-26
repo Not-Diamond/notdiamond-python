@@ -136,7 +136,7 @@
 
     <span class="k">class</span> <span class="nc">_NDRouterClient</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
-        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]]</span>
+        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span><span class="nb">str</span><span class="p">]]]</span>
         <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
         <span class="n">latency_tracking</span><span class="p">:</span> <span class="nb">bool</span>
@@ -151,7 +151,7 @@
 
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -572,7 +572,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
-        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]]</span>
+        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
         <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
         <span class="n">latency_tracking</span><span class="p">:</span> <span class="nb">bool</span>
@@ -584,7 +584,7 @@
 
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1561,7 +1561,7 @@
 <span class="sd">    If an API key is not set, it will check for NOTDIAMOND_API_KEY in .env file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]]</span>
+    <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The list of LLMs that are available to route between.&quot;&quot;&quot;</span>
 
     <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
