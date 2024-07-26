@@ -52,7 +52,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">NotDiamond package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.llms.html">notdiamond.llms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.metrics.html">notdiamond.metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notdiamond.prompts.html">notdiamond.prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.toolkit.html">notdiamond.toolkit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#notdiamond-callbacks">notdiamond.callbacks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-notdiamond.exceptions">notdiamond.exceptions</a><ul>
@@ -96,6 +95,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#notdiamond.types.NDApiKeyValidator.model_fields"><code class="docutils literal notranslate"><span class="pre">NDApiKeyValidator.model_fields</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-notdiamond.prompts">notdiamond.prompts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.prompts._curly_escape"><code class="docutils literal notranslate"><span class="pre">_curly_escape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.prompts.inject_system_prompt"><code class="docutils literal notranslate"><span class="pre">inject_system_prompt()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -172,11 +176,6 @@
 <li class="toctree-l3"><a class="reference internal" href="notdiamond.metrics.html#notdiamond.metrics.request.feedback_request"><code class="docutils literal notranslate"><span class="pre">feedback_request()</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="notdiamond.prompts.html">notdiamond.prompts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notdiamond.prompts.html#notdiamond-prompts-hash">notdiamond.prompts.hash</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notdiamond.prompts.html#notdiamond-prompts-prompt">notdiamond.prompts.prompt</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notdiamond.toolkit.html">notdiamond.toolkit</a><ul>
@@ -420,6 +419,41 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 </dd></dl>
 
 </section>
+<section id="module-notdiamond.prompts">
+<span id="notdiamond-prompts"></span><h2>notdiamond.prompts<a class="headerlink" href="#module-notdiamond.prompts" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.prompts._curly_escape">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.prompts.</span></span><span class="sig-name descname"><span class="pre">_curly_escape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/notdiamond/prompts.html#_curly_escape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.prompts._curly_escape" title="Link to this definition"></a></dt>
+<dd><p>Escape curly braces in the text, but only for single occurrences of alphabetic characters.
+This function will not escape double curly braces or non-alphabetic characters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.prompts.inject_system_prompt">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.prompts.</span></span><span class="sig-name descname"><span class="pre">inject_system_prompt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/notdiamond/prompts.html#inject_system_prompt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.prompts.inject_system_prompt" title="Link to this definition"></a></dt>
+<dd><p>Add a system prompt to an OpenAI-style message list. If a system prompt is already present, replace it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>messages</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>)</p></li>
+<li><p><strong>system_prompt</strong> (<em>str</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>List</em>[<em>Dict</em>[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -434,7 +468,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Jul 25, 2024.
+      <span class="lastupdated">Last updated on Jul 26, 2024.
       </span></p>
   </div>
 
