@@ -51,10 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Getting started with Not Diamond</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="notdiamond.html">NotDiamond package</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">notdiamond.llms</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#notdiamond-llms-client">notdiamond.llms.client</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#notdiamond.llms.client.NotDiamond"><code class="docutils literal notranslate"><span class="pre">NotDiamond</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond-llms-client">notdiamond.llms.client</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-notdiamond.llms.config">notdiamond.llms.config</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#notdiamond.llms.config.LLMConfig"><code class="docutils literal notranslate"><span class="pre">LLMConfig</span></code></a></li>
 </ul>
@@ -73,7 +70,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.metrics.html">notdiamond.metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.toolkit.html">notdiamond.toolkit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.callbacks">notdiamond.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.html#notdiamond-callbacks">notdiamond.callbacks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.exceptions">notdiamond.exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.settings">notdiamond.settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.types">notdiamond.types</a></li>
@@ -110,120 +107,6 @@
 <h1>notdiamond.llms<a class="headerlink" href="#notdiamond-llms" title="Link to this heading"></a></h1>
 <section id="notdiamond-llms-client">
 <h2>notdiamond.llms.client<a class="headerlink" href="#notdiamond-llms-client" title="Link to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.llms.client.</span></span><span class="sig-name descname"><span class="pre">NotDiamond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseCache</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_get_token_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback_manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseCallbackManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm_configs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><span class="pre">LLMConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><span class="pre">LLMConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_model_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_tracking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hash_content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tradeoff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preference_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tools</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/llms/client.html#NotDiamond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.llms.client.NotDiamond" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_NDInvokerClient</span></code></p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
-<li><p><strong>cache</strong> (<em>Union</em><em>[</em><em>BaseCache</em><em>, </em><em>bool</em><em>, </em><em>None</em><em>]</em>)</p></li>
-<li><p><strong>verbose</strong> (<em>bool</em>)</p></li>
-<li><p><strong>callbacks</strong> (<em>List</em><em> | </em><em>None</em>)</p></li>
-<li><p><strong>tags</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>metadata</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>custom_get_token_ids</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>, </em><em>List</em><em>[</em><em>int</em><em>]</em><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>callback_manager</strong> (<em>BaseCallbackManager</em><em> | </em><em>None</em>)</p></li>
-<li><p><strong>api_key</strong> (<em>str</em>)</p></li>
-<li><p><strong>llm_configs</strong> (<em>List</em><em>[</em><a class="reference internal" href="#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><em>LLMConfig</em></a><em> | </em><em>str</em><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>default</strong> (<a class="reference internal" href="#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><em>LLMConfig</em></a><em> | </em><em>int</em><em> | </em><em>str</em>)</p></li>
-<li><p><strong>max_model_depth</strong> (<em>int</em><em> | </em><em>None</em>)</p></li>
-<li><p><strong>latency_tracking</strong> (<em>bool</em>)</p></li>
-<li><p><strong>hash_content</strong> (<em>bool</em>)</p></li>
-<li><p><strong>tradeoff</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
-<li><p><strong>preference_id</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
-<li><p><strong>tools</strong> (<em>Sequence</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>] </em><em>| </em><em>Callable</em><em>] </em><em>| </em><em>None</em>)</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py class">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.Config">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Config</span></span><a class="reference internal" href="../_modules/notdiamond/llms/client.html#NotDiamond.Config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.Config" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.Config.arbitrary_types_allowed">
-<span class="sig-name descname"><span class="pre">arbitrary_types_allowed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.Config.arbitrary_types_allowed" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.api_key">
-<span class="sig-name descname"><span class="pre">api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.api_key" title="Link to this definition"></a></dt>
-<dd><p>API key required for making calls to NotDiamond.
-You can get an API key via our dashboard: <a class="reference external" href="https://app.notdiamond.ai">https://app.notdiamond.ai</a>
-If an API key is not set, it will check for NOTDIAMOND_API_KEY in .env file.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.default">
-<span class="sig-name descname"><span class="pre">default</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><span class="pre">LLMConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.default" title="Link to this definition"></a></dt>
-<dd><p>Set a default LLM, so in case anything goes wrong in the flow,
-as for example NotDiamond API call fails, your code won’t break and you have
-a fallback model. There are various ways to configure a default model:</p>
-<ul class="simple">
-<li><p>Integer, specifying the index of the default provider from the llm_configs list</p></li>
-<li><p>String, similar how you can specify llm_configs, of structure ‘provider_name/model_name’</p></li>
-<li><p>LLMConfig, just directly specify the object of the provider</p></li>
-</ul>
-<p>By default, we will set your first LLM in the list as the default.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.hash_content">
-<span class="sig-name descname"><span class="pre">hash_content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.hash_content" title="Link to this definition"></a></dt>
-<dd><p>Hashing the content before being sent to the NotDiamond API.
-By default this is False.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.latency_tracking">
-<span class="sig-name descname"><span class="pre">latency_tracking</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.latency_tracking" title="Link to this definition"></a></dt>
-<dd><p>Tracking and sending latency of LLM call to NotDiamond server as feedback, so we can improve our router.
-By default this is turned on, set it to False to turn off.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.llm_configs">
-<span class="sig-name descname"><span class="pre">llm_configs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><span class="pre">LLMConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.llm_configs" title="Link to this definition"></a></dt>
-<dd><p>The list of LLMs that are available to route between.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.max_model_depth">
-<span class="sig-name descname"><span class="pre">max_model_depth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.max_model_depth" title="Link to this definition"></a></dt>
-<dd><p>If your top recommended model is down, specify up to which depth of routing you’re willing to go.
-If max_model_depth is not set, it defaults to the length of the llm_configs list.
-If max_model_depth is set to 0, the init will fail.
-If the value is larger than the llm_configs list length, we reset the value to len(llm_configs).</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.preference_id">
-<span class="sig-name descname"><span class="pre">preference_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.preference_id" title="Link to this definition"></a></dt>
-<dd><p>The ID of the router preference that was configured via the Dashboard. Defaults to None.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.tools">
-<span class="sig-name descname"><span class="pre">tools</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.tools" title="Link to this definition"></a></dt>
-<dd><p>Bind tools to the LLM object. The tools will be passed to the LLM object when invoking it.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.tradeoff">
-<span class="sig-name descname"><span class="pre">tradeoff</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.tradeoff" title="Link to this definition"></a></dt>
-<dd><p>Define tradeoff between “cost” and “latency” for the router to determine the best LLM for a given query.
-If None is specified, then the router will not consider either cost or latency.</p>
-<p>The supported values: “cost”, “latency”</p>
-<p>Defaults to None.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 <section id="module-notdiamond.llms.config">
 <span id="notdiamond-llms-config"></span><h2>notdiamond.llms.config<a class="headerlink" href="#module-notdiamond.llms.config" title="Link to this heading"></a></h2>
@@ -412,7 +295,7 @@ the NotDiamond API.</p>
 <h2>notdiamond.llms.providers<a class="headerlink" href="#notdiamond-llms-providers" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.llms.providers.</span></span><span class="sig-name descname"><span class="pre">NDLLMProviders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/llms/providers.html#NDLLMProviders"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.llms.providers.</span></span><span class="sig-name descname"><span class="pre">NDLLMProviders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/llms/providers.html#NDLLMProviders"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <p>NDLLMProviders serves as a registry for the supported LLM models by NotDiamond.
 It allows developers to easily specify available LLM providers for the router.</p>
