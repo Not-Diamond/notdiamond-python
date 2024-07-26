@@ -5,7 +5,7 @@ notdiamond.llms
 notdiamond.llms.client
 --------------------------
 
-.. automodule:: notdiamond.llms.client
+.. autoclass:: notdiamond.llms.client.NotDiamond
    :members:
    :undoc-members:
    :show-inheritance:

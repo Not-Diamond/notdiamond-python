@@ -53,7 +53,10 @@
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.llms.html">notdiamond.llms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.metrics.html">notdiamond.metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.toolkit.html">notdiamond.toolkit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#notdiamond-callbacks">notdiamond.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-notdiamond.callbacks">notdiamond.callbacks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.callbacks.NDLLMBaseCallbackHandler"><code class="docutils literal notranslate"><span class="pre">NDLLMBaseCallbackHandler</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-notdiamond.exceptions">notdiamond.exceptions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.exceptions.ApiError"><code class="docutils literal notranslate"><span class="pre">ApiError</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.exceptions.CreateUnavailableError"><code class="docutils literal notranslate"><span class="pre">CreateUnavailableError</span></code></a></li>
@@ -134,7 +137,22 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notdiamond.llms.html">notdiamond.llms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notdiamond.llms.html#notdiamond-llms-client">notdiamond.llms.client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.llms.html#notdiamond-llms-client">notdiamond.llms.client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond"><code class="docutils literal notranslate"><span class="pre">NotDiamond</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.Config"><code class="docutils literal notranslate"><span class="pre">NotDiamond.Config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.api_key"><code class="docutils literal notranslate"><span class="pre">NotDiamond.api_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.default"><code class="docutils literal notranslate"><span class="pre">NotDiamond.default</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.hash_content"><code class="docutils literal notranslate"><span class="pre">NotDiamond.hash_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.latency_tracking"><code class="docutils literal notranslate"><span class="pre">NotDiamond.latency_tracking</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.llm_configs"><code class="docutils literal notranslate"><span class="pre">NotDiamond.llm_configs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.max_model_depth"><code class="docutils literal notranslate"><span class="pre">NotDiamond.max_model_depth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.preference_id"><code class="docutils literal notranslate"><span class="pre">NotDiamond.preference_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.tools"><code class="docutils literal notranslate"><span class="pre">NotDiamond.tools</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.client.NotDiamond.tradeoff"><code class="docutils literal notranslate"><span class="pre">NotDiamond.tradeoff</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.llms.html#module-notdiamond.llms.config">notdiamond.llms.config</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig"><code class="docutils literal notranslate"><span class="pre">LLMConfig</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig.provider"><code class="docutils literal notranslate"><span class="pre">LLMConfig.provider</span></code></a></li>
@@ -179,13 +197,29 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notdiamond.toolkit.html">notdiamond.toolkit</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond-toolkit-custom-router">notdiamond.toolkit.custom_router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond-toolkit-custom-router">notdiamond.toolkit.custom_router</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.custom_router.CustomRouter"><code class="docutils literal notranslate"><span class="pre">CustomRouter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.custom_router.CustomRouter.language"><code class="docutils literal notranslate"><span class="pre">CustomRouter.language</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.custom_router.CustomRouter.maximize"><code class="docutils literal notranslate"><span class="pre">CustomRouter.maximize</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.custom_router.CustomRouter.api_key"><code class="docutils literal notranslate"><span class="pre">CustomRouter.api_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.custom_router.CustomRouter.eval"><code class="docutils literal notranslate"><span class="pre">CustomRouter.eval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.custom_router.CustomRouter.fit"><code class="docutils literal notranslate"><span class="pre">CustomRouter.fit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
-<section id="notdiamond-callbacks">
-<h2>notdiamond.callbacks<a class="headerlink" href="#notdiamond-callbacks" title="Link to this heading"></a></h2>
+<section id="module-notdiamond.callbacks">
+<span id="notdiamond-callbacks"></span><h2>notdiamond.callbacks<a class="headerlink" href="#module-notdiamond.callbacks" title="Link to this heading"></a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.callbacks.NDLLMBaseCallbackHandler">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.callbacks.</span></span><span class="sig-name descname"><span class="pre">NDLLMBaseCallbackHandler</span></span><a class="headerlink" href="#notdiamond.callbacks.NDLLMBaseCallbackHandler" title="Link to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">_NDLLMBaseCallbackHandler</span></code></p>
+</dd></dl>
+
 </section>
 <section id="module-notdiamond.exceptions">
 <span id="notdiamond-exceptions"></span><h2>notdiamond.exceptions<a class="headerlink" href="#module-notdiamond.exceptions" title="Link to this heading"></a></h2>

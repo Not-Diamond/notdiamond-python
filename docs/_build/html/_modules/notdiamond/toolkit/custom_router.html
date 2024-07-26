@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>notdiamond.toolkit.custom_router &mdash; NotDiamond 0.2.7-beta</title>
+  <title>notdiamond.toolkit.custom_router &mdash; NotDiamond 0.3.0-beta-4</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=6352e504"></script>
+        <script src="../../../_static/documentation_options.js?v=49f83218"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -33,7 +33,7 @@
             NotDiamond
           </a>
               <div class="version">
-                0.2.7-beta
+                0.3.0-beta-4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -82,11 +82,12 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">notdiamond.exceptions</span> <span class="kn">import</span> <span class="n">ApiError</span>
-<span class="kn">from</span> <span class="nn">notdiamond.llms.llm</span> <span class="kn">import</span> <span class="n">NDLLM</span>
-<span class="kn">from</span> <span class="nn">notdiamond.llms.provider</span> <span class="kn">import</span> <span class="n">NDLLMProvider</span>
-<span class="kn">from</span> <span class="nn">notdiamond.settings</span> <span class="kn">import</span> <span class="n">ND_BASE_URL</span><span class="p">,</span> <span class="n">NOTDIAMOND_API_KEY</span>
+<span class="kn">from</span> <span class="nn">notdiamond.llms.client</span> <span class="kn">import</span> <span class="n">NotDiamond</span>
+<span class="kn">from</span> <span class="nn">notdiamond.llms.config</span> <span class="kn">import</span> <span class="n">LLMConfig</span>
+<span class="kn">from</span> <span class="nn">notdiamond.settings</span> <span class="kn">import</span> <span class="n">ND_BASE_URL</span><span class="p">,</span> <span class="n">NOTDIAMOND_API_KEY</span><span class="p">,</span> <span class="n">VERSION</span>
 <span class="kn">from</span> <span class="nn">notdiamond.types</span> <span class="kn">import</span> <span class="n">NDApiKeyValidator</span>
 
 
@@ -95,19 +96,12 @@
 <span class="k">class</span> <span class="nc">CustomRouter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implementation of CustomRouter class, used to train custom routers using custom datasets.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">language</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;english&quot;</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The language that the dataset is in. Default is &#39;english&#39;.&quot;&quot;&quot;</span>
-
-    <span class="n">maximize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the training objective is maximizing. Default to True.&quot;&quot;&quot;</span>
-
-    <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    API key required for making calls to NotDiamond.</span>
-<span class="sd">    You can get an API key via our dashboard: https://app.notdiamond.ai</span>
-<span class="sd">    If an API key is not set, it will check for NOTDIAMOND_API_KEY in .env file.</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        language (str): The language of the dataset in lowercase. Defaults to &quot;english&quot;.</span>
+<span class="sd">        maximize (bool): Whether higher score is better. Defaults to true.</span>
+<span class="sd">        api_key (Optional[str], optional): The NotDiamond API key. If not specified, will try to</span>
+<span class="sd">            find it in the environment variable NOTDIAMOND_API_KEY.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -128,7 +122,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">prompt_column</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">dataset_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">llm_providers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">NDLLMProvider</span><span class="p">],</span>
+        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">],</span>
         <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ND_BASE_URL</span><span class="si">}</span><span class="s2">/v2/pzn/trainCustomRouter&quot;</span>
@@ -138,14 +132,17 @@
         <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">,</span>
             <span class="s2">&quot;llm_providers&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-                <span class="p">[</span><span class="n">provider</span><span class="o">.</span><span class="n">prepare_for_request</span><span class="p">()</span> <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">llm_providers</span><span class="p">]</span>
+                <span class="p">[</span><span class="n">provider</span><span class="o">.</span><span class="n">prepare_for_request</span><span class="p">()</span> <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">llm_configs</span><span class="p">]</span>
             <span class="p">),</span>
             <span class="s2">&quot;prompt_column&quot;</span><span class="p">:</span> <span class="n">prompt_column</span><span class="p">,</span>
             <span class="s2">&quot;maximize&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximize</span><span class="p">,</span>
             <span class="s2">&quot;preference_id&quot;</span><span class="p">:</span> <span class="n">preference_id</span><span class="p">,</span>
         <span class="p">}</span>
 
-        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Python-SDK/</span><span class="si">{</span><span class="n">VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
             <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span>
@@ -164,17 +161,17 @@
         <span class="n">prompt_column</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">response_column</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">score_column</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">NDLLMProvider</span><span class="p">]]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]:</span>
         <span class="n">a_provider</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">prompts</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">a_provider</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prompt_column</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">prompts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prompt column </span><span class="si">{</span><span class="n">prompt_column</span><span class="si">}</span><span class="s2"> not found in df.&quot;</span><span class="p">)</span>
         <span class="n">prompts</span> <span class="o">=</span> <span class="n">prompts</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
 
-        <span class="n">llm_providers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">llm_configs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">joint_dataset</span> <span class="o">=</span> <span class="p">{</span><span class="n">prompt_column</span><span class="p">:</span> <span class="n">prompts</span><span class="p">}</span>
         <span class="k">for</span> <span class="n">provider</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">llm_providers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+            <span class="n">llm_configs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
 
             <span class="n">responses</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">response_column</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">responses</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -194,8 +191,8 @@
 
         <span class="n">joint_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">joint_dataset</span><span class="p">)</span>
 
-        <span class="n">llm_providers</span> <span class="o">=</span> <span class="n">NDLLM</span><span class="o">.</span><span class="n">_parse_llm_providers_data</span><span class="p">(</span><span class="n">llm_providers</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">joint_df</span><span class="p">,</span> <span class="n">llm_providers</span>
+        <span class="n">llm_configs</span> <span class="o">=</span> <span class="n">NotDiamond</span><span class="o">.</span><span class="n">_parse_llm_configs_data</span><span class="p">(</span><span class="n">llm_configs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">joint_df</span><span class="p">,</span> <span class="n">llm_configs</span>
 
 <div class="viewcode-block" id="CustomRouter.fit">
 <a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.custom_router.CustomRouter.fit">[docs]</a>
@@ -233,14 +230,14 @@
 <span class="sd">                    Use this preference_id in your routing calls to use the custom router.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">joint_df</span><span class="p">,</span> <span class="n">llm_providers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_joint_dataset</span><span class="p">(</span>
+        <span class="n">joint_df</span><span class="p">,</span> <span class="n">llm_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_joint_dataset</span><span class="p">(</span>
             <span class="n">dataset</span><span class="p">,</span> <span class="n">prompt_column</span><span class="p">,</span> <span class="n">response_column</span><span class="p">,</span> <span class="n">score_column</span>
         <span class="p">)</span>
 
         <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.csv&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">joint_csv</span><span class="p">:</span>
             <span class="n">joint_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">joint_csv</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">preference_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_train_router</span><span class="p">(</span>
-                <span class="n">prompt_column</span><span class="p">,</span> <span class="n">joint_csv</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">llm_providers</span><span class="p">,</span> <span class="n">preference_id</span>
+                <span class="n">prompt_column</span><span class="p">,</span> <span class="n">joint_csv</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">llm_configs</span><span class="p">,</span> <span class="n">preference_id</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">preference_id</span></div>
@@ -248,40 +245,43 @@
 
     <span class="k">def</span> <span class="nf">_eval_custom_router</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">client</span><span class="p">:</span> <span class="n">NDLLM</span><span class="p">,</span>
-        <span class="n">llm_providers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">NDLLMProvider</span><span class="p">],</span>
+        <span class="n">client</span><span class="p">:</span> <span class="n">NotDiamond</span><span class="p">,</span>
+        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">],</span>
         <span class="n">joint_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
         <span class="n">prompt_column</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]:</span>
         <span class="n">eval_results</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
         <span class="n">eval_results</span><span class="p">[</span><span class="n">prompt_column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;session_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">provider_score_columns</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">llm_providers</span><span class="p">:</span>
-            <span class="n">provider_score</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/score&quot;</span>
-            <span class="n">eval_results</span><span class="p">[</span><span class="n">provider_score</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">provider_score_columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider_score</span><span class="p">)</span>
-
-            <span class="n">provider_response</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/response&quot;</span>
-            <span class="p">)</span>
-            <span class="n">eval_results</span><span class="p">[</span><span class="n">provider_response</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-
         <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/response&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/recommended_provider&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="n">nd_score</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">joint_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">llm_configs</span><span class="p">:</span>
+            <span class="n">provider_score_column</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/score&quot;</span>
+            <span class="p">)</span>
+            <span class="n">eval_results</span><span class="p">[</span><span class="n">provider_score_column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="n">provider_response_column</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/response&quot;</span>
+            <span class="p">)</span>
+            <span class="n">eval_results</span><span class="p">[</span><span class="n">provider_response_column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">joint_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">joint_df</span><span class="p">)):</span>
             <span class="n">prompt</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">prompt_column</span><span class="p">]</span>
             <span class="n">eval_results</span><span class="p">[</span><span class="n">prompt_column</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
 
             <span class="n">session_id</span><span class="p">,</span> <span class="n">nd_provider</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">model_select</span><span class="p">(</span>
-                <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span>
             <span class="p">)</span>
+            <span class="k">if</span> <span class="n">nd_provider</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+
             <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;session_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">session_id</span><span class="p">)</span>
 
-            <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">llm_providers</span><span class="p">:</span>
+            <span class="n">provider_matched</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">llm_configs</span><span class="p">:</span>
                 <span class="n">provider_score</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span>
                     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/score&quot;</span>
                 <span class="p">]</span>
@@ -297,13 +297,20 @@
                 <span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider_response</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="p">(</span>
-                    <span class="n">provider</span><span class="o">.</span><span class="n">provider</span> <span class="o">==</span> <span class="n">nd_provider</span><span class="o">.</span><span class="n">provider</span>
+                    <span class="ow">not</span> <span class="n">provider_matched</span>
+                    <span class="ow">and</span> <span class="n">provider</span><span class="o">.</span><span class="n">provider</span> <span class="o">==</span> <span class="n">nd_provider</span><span class="o">.</span><span class="n">provider</span>
                     <span class="ow">and</span> <span class="n">provider</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">nd_provider</span><span class="o">.</span><span class="n">model</span>
                 <span class="p">):</span>
-                    <span class="n">nd_score</span> <span class="o">=</span> <span class="n">provider_score</span>
-                    <span class="n">nd_response</span> <span class="o">=</span> <span class="n">provider_response</span>
+                    <span class="n">provider_matched</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider_score</span><span class="p">)</span>
+                    <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/response&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">provider_response</span>
+                    <span class="p">)</span>
+                    <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/recommended_provider&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nd_provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">nd_provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">nd_score</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">provider_matched</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                    Custom router returned </span><span class="si">{</span><span class="n">nd_provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">nd_provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span>
@@ -311,14 +318,11 @@
 <span class="s2">                    &quot;&quot;&quot;</span>
                 <span class="p">)</span>
 
-            <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nd_score</span><span class="p">)</span>
-            <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/response&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nd_response</span><span class="p">)</span>
-
         <span class="n">eval_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">eval_results</span><span class="p">)</span>
 
         <span class="n">best_average_provider</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">best_average_score</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maximize</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
-        <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">llm_providers</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">llm_configs</span><span class="p">:</span>
             <span class="n">provider_avg_score</span> <span class="o">=</span> <span class="n">eval_results_df</span><span class="p">[</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/score&quot;</span>
             <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -385,18 +389,18 @@
 <span class="sd">                    and the &quot;Not Diamond Average Score&quot; achieved through custom router.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">joint_df</span><span class="p">,</span> <span class="n">llm_providers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_joint_dataset</span><span class="p">(</span>
+        <span class="n">joint_df</span><span class="p">,</span> <span class="n">llm_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_joint_dataset</span><span class="p">(</span>
             <span class="n">dataset</span><span class="p">,</span> <span class="n">prompt_column</span><span class="p">,</span> <span class="n">response_column</span><span class="p">,</span> <span class="n">score_column</span>
         <span class="p">)</span>
 
-        <span class="n">client</span> <span class="o">=</span> <span class="n">NDLLM</span><span class="p">(</span>
-            <span class="n">llm_providers</span><span class="o">=</span><span class="n">llm_providers</span><span class="p">,</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">NotDiamond</span><span class="p">(</span>
+            <span class="n">llm_configs</span><span class="o">=</span><span class="n">llm_configs</span><span class="p">,</span>
             <span class="n">api_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">,</span>
             <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">eval_results_df</span><span class="p">,</span> <span class="n">eval_stats_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eval_custom_router</span><span class="p">(</span>
-            <span class="n">client</span><span class="p">,</span> <span class="n">llm_providers</span><span class="p">,</span> <span class="n">joint_df</span><span class="p">,</span> <span class="n">prompt_column</span>
+            <span class="n">client</span><span class="p">,</span> <span class="n">llm_configs</span><span class="p">,</span> <span class="n">joint_df</span><span class="p">,</span> <span class="n">prompt_column</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">eval_results_df</span><span class="p">,</span> <span class="n">eval_stats_df</span></div>
 </div>
@@ -411,7 +415,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Jul 08, 2024.
+      <span class="lastupdated">Last updated on Jul 26, 2024.
       </span></p>
   </div>
 

@@ -87,22 +87,22 @@
 <section id="key-features">
 <h2>Key features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>[Maximize output quality](https://notdiamond.readme.io/v1.0.0/docs/quickstart)</strong>: Not Diamond [outperforms every foundation model](<a class="reference external" href="https://notdiamond.readme.io/v1.0.0/docs/benchmark-performance">https://notdiamond.readme.io/v1.0.0/docs/benchmark-performance</a>) on major evaluation benchmarks by always calling the best model for every prompt.</p></li>
-<li><p><strong>[Reduce cost and latency](https://notdiamond.readme.io/v1.0.0/docs/cost-and-latency-tradeoffs)</strong>: Not Diamond lets you define intelligent cost and latency tradeoffs to efficiently leverage smaller and cheaper models without degrading quality.</p></li>
-<li><p><strong>[Train your own router](https://notdiamond.readme.io/v1.0.0/docs/router-training-quickstart)</strong>: Not Diamond lets you train your own custom routers optimized to your data and use case.</p></li>
-<li><p><strong>[Python](https://python.notdiamond.ai/), [TypeScript](https://www.npmjs.com/package/notdiamond), and [REST API](https://notdiamond.readme.io/v1.0.0/reference/api-introduction) support</strong>: Not Diamond works across a variety of stacks.</p></li>
+<li><p><a class="reference external" href="https://notdiamond.readme.io/v1.0.0/docs/quickstart">Maximize output quality</a>: Not Diamond <a class="reference external" href="https://notdiamond.readme.io/v1.0.0/docs/benchmark-performance">outperforms every foundation model</a> on major evaluation benchmarks by always calling the best model for every prompt.</p></li>
+<li><p><a class="reference external" href="https://notdiamond.readme.io/v1.0.0/docs/cost-and-latency-tradeoffs">Reduce cost and latency</a>: Not Diamond lets you define intelligent cost and latency tradeoffs to efficiently leverage smaller and cheaper models without degrading quality.</p></li>
+<li><p><a class="reference external" href="https://notdiamond.readme.io/v1.0.0/docs/router-training-quickstart">Train your own router</a>: Not Diamond lets you train your own custom routers optimized to your data and use case.</p></li>
+<li><p><a class="reference external" href="https://python.notdiamond.ai/">Python</a>, <a class="reference external" href="https://www.npmjs.com/package/notdiamond">TypeScript</a>, and <a class="reference external" href="https://notdiamond.readme.io/v1.0.0/reference/api-introduction">REST API</a> support: Not Diamond works across a variety of stacks.</p></li>
 </ul>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p><strong>Python</strong>: Requires <strong>Python 3.9+</strong>. It’s recommended that you create and activate a [virtualenv](<a class="reference external" href="https://virtualenv.pypa.io/en/latest/">https://virtualenv.pypa.io/en/latest/</a>) prior to installing the package. For this example, we’ll be installing the optional additional <cite>create</cite> dependencies, which you can learn more about [here](<a class="reference external" href="https://notdiamond.readme.io/v1.0.0/docs/model_select-vs-create">https://notdiamond.readme.io/v1.0.0/docs/model_select-vs-create</a>).</p>
+<p><strong>Python</strong>: Requires <strong>Python 3.9+</strong>. It’s recommended that you create and activate a <a class="reference external" href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> prior to installing the package. For this example, we’ll be installing the optional additional <cite>create</cite> dependencies, which you can learn more about <a class="reference external" href="https://notdiamond.readme.io/v1.0.0/docs/model_select-vs-create">here</a>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>notdiamond<span class="o">[</span>create<span class="o">]</span>
 </pre></div>
 </div>
 </section>
 <section id="setting-up">
 <h2>Setting up<a class="headerlink" href="#setting-up" title="Link to this heading"></a></h2>
-<p>Create a <cite>.env</cite> file with your [Not Diamond API key](<a class="reference external" href="https://app.notdiamond.ai/keys">https://app.notdiamond.ai/keys</a>) and the [API keys of the models](<a class="reference external" href="https://notdiamond.readme.io/v1.0.0/docs/api-keys">https://notdiamond.readme.io/v1.0.0/docs/api-keys</a>) you want to route between:</p>
+<p>Create a <cite>.env</cite> file with your <a class="reference external" href="https://app.notdiamond.ai/keys">Not Diamond API key</a> and the <a class="reference external" href="https://notdiamond.readme.io/v1.0.0/docs/api-keys">API keys of the models</a> you want to route between:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">NOTDIAMOND_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_NOTDIAMOND_API_KEY&quot;</span>
 <span class="nv">OPENAI_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_OPENAI_API_KEY&quot;</span>
 <span class="nv">ANTHROPIC_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_ANTHROPIC_API_KEY&quot;</span>

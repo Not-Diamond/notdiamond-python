@@ -18,19 +18,12 @@ from notdiamond.types import NDApiKeyValidator
 class CustomRouter:
     """
     Implementation of CustomRouter class, used to train custom routers using custom datasets.
-    """
 
-    language: str = "english"
-    """The language that the dataset is in. Default is 'english'."""
-
-    maximize: bool = True
-    """Whether the training objective is maximizing. Default to True."""
-
-    api_key: Optional[str] = None
-    """
-    API key required for making calls to NotDiamond.
-    You can get an API key via our dashboard: https://app.notdiamond.ai
-    If an API key is not set, it will check for NOTDIAMOND_API_KEY in .env file.
+    Attributes:
+        language (str): The language of the dataset in lowercase. Defaults to "english".
+        maximize (bool): Whether higher score is better. Defaults to true.
+        api_key (Optional[str], optional): The NotDiamond API key. If not specified, will try to
+            find it in the environment variable NOTDIAMOND_API_KEY.
     """
 
     def __init__(
