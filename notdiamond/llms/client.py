@@ -60,7 +60,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
     class _NDRouterClient(BaseModel):
         api_key: str
-        llm_configs: Optional[List[LLMConfig | str]]
+        llm_configs: Optional[List[Union[LLMConfig ,str]]]
         default: Union[LLMConfig, int, str]
         max_model_depth: Optional[int]
         latency_tracking: bool
@@ -75,7 +75,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
         def __init__(
             self,
-            llm_configs: Optional[List[LLMConfig | str]] = None,
+            llm_configs: Optional[List[Union[LLMConfig , str]]] = None,
             api_key: Optional[str] = None,
             default: Union[LLMConfig, int, str] = 0,
             max_model_depth: Optional[int] = None,
@@ -496,7 +496,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         """
 
         api_key: str
-        llm_configs: Optional[List[LLMConfig | str]]
+        llm_configs: Optional[List[Union[LLMConfig , str]]]
         default: Union[LLMConfig, int, str]
         max_model_depth: Optional[int]
         latency_tracking: bool
@@ -508,7 +508,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
         def __init__(
             self,
-            llm_configs: Optional[List[LLMConfig | str]] = None,
+            llm_configs: Optional[List[Union[LLMConfig , str]]] = None,
             api_key: Optional[str] = None,
             default: Union[LLMConfig, int, str] = 0,
             max_model_depth: Optional[int] = None,
@@ -1483,7 +1483,7 @@ class NotDiamond(_NDClient):
     If an API key is not set, it will check for NOTDIAMOND_API_KEY in .env file.
     """
 
-    llm_configs: Optional[List[LLMConfig | str]]
+    llm_configs: Optional[List[Union[LLMConfig , str]]]
     """The list of LLMs that are available to route between."""
 
     default: Union[LLMConfig, int, str]
