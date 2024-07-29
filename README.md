@@ -4,14 +4,14 @@ Not Diamond is an AI model router that automatically determines which LLM is bes
 
 # Key features
 
-- **[Maximize output quality](https://notdiamond.readme.io/v1.0.0/docs/quickstart)**: Not Diamond [outperforms every foundation model](https://notdiamond.readme.io/v1.0.0/docs/benchmark-performance) on major evaluation benchmarks by always calling the best model for every prompt.
-- **[Reduce cost and latency](https://notdiamond.readme.io/v1.0.0/docs/cost-and-latency-tradeoffs)**: Not Diamond lets you define intelligent cost and latency tradeoffs to efficiently leverage smaller and cheaper models without degrading quality.
-- **[Train your own router](https://notdiamond.readme.io/v1.0.0/docs/router-training-quickstart)**: Not Diamond lets you train your own custom routers optimized to your data and use case.
-- **[Python](https://python.notdiamond.ai/), [TypeScript](https://www.npmjs.com/package/notdiamond), and [REST API](https://notdiamond.readme.io/v1.0.0/reference/api-introduction) support**: Not Diamond works across a variety of stacks.
+- **[Maximize output quality](https://notdiamond.readme.io/docs/quickstart)**: Not Diamond [outperforms every foundation model](https://notdiamond.readme.io/docs/benchmark-performance) on major evaluation benchmarks by always calling the best model for every prompt.
+- **[Reduce cost and latency](https://notdiamond.readme.io/docs/cost-and-latency-tradeoffs)**: Not Diamond lets you define intelligent cost and latency tradeoffs to efficiently leverage smaller and cheaper models without degrading quality.
+- **[Train your own router](https://notdiamond.readme.io/docs/router-training-quickstart)**: Not Diamond lets you train your own custom routers optimized to your data and use case.
+- **[Python](https://python.notdiamond.ai/), [TypeScript](https://www.npmjs.com/package/notdiamond), and [REST API](https://notdiamond.readme.io/reference/api-introduction) support**: Not Diamond works across a variety of stacks.
 
 # Installation
 
-**Python**: Requires **Python 3.9+**. It’s recommended that you create and activate a [virtualenv](https://virtualenv.pypa.io/en/latest/) prior to installing the package. For this example, we'll be installing the optional additional `create` dependencies, which you can learn more about [here](https://notdiamond.readme.io/v1.0.0/docs/model_select-vs-create).
+**Python**: Requires **Python 3.9+**. It’s recommended that you create and activate a [virtualenv](https://virtualenv.pypa.io/en/latest/) prior to installing the package. For this example, we'll be installing the optional additional `create` dependencies, which you can learn more about [here](https://notdiamond.readme.io/docs/model_select-vs-create).
 
 ```shell
 pip install notdiamond[create]
@@ -19,7 +19,7 @@ pip install notdiamond[create]
 
 # Setting up
 
-Create a `.env` file with your [Not Diamond API key](https://app.notdiamond.ai/keys) and the [API keys of the models](https://notdiamond.readme.io/v1.0.0/docs/api-keys) you want to route between:
+Create a `.env` file with your [Not Diamond API key](https://app.notdiamond.ai/keys) and the [API keys of the models](https://notdiamond.readme.io/docs/api-keys) you want to route between:
 
 ```shell
 NOTDIAMOND_API_KEY = "YOUR_NOTDIAMOND_API_KEY"
