@@ -11,7 +11,7 @@ Not Diamond is an AI model router that automatically determines which LLM is bes
 
 # Installation
 
-**Python**: Requires **Python 3.9+**. It’s recommended that you create and activate a [virtualenv](https://virtualenv.pypa.io/en/latest/) prior to installing the package. For this example, we'll be installing the optional additional `create` dependencies, which you can learn more about [here](https://notdiamond.readme.io/docs/model_select-vs-create).
+**Python**: Requires **Python 3.10+**. It’s recommended that you create and activate a [virtualenv](https://virtualenv.pypa.io/en/latest/) prior to installing the package. For this example, we'll be installing the optional additional `create` dependencies, which you can learn more about [here](https://notdiamond.readme.io/docs/model_select-vs-create).
 
 ```shell
 pip install notdiamond[create]
