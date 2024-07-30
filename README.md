@@ -41,7 +41,7 @@ client = NotDiamond()
 result, session_id, provider = client.chat.completions.create(
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Consiely explain merge sort."}  # Adjust as desired
+        {"role": "user", "content": "Concisely explain merge sort."}  # Adjust as desired
     ],
     model=['openai/gpt-3.5-turbo', 'openai/gpt-4o', 'anthropic/claude-3-5-sonnet-20240620']
 )
