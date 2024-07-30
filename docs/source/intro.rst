@@ -16,7 +16,7 @@ Key features
 Installation
 ============
 
-**Python**: Requires **Python 3.9+**. It’s recommended that you create and activate a `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ prior to installing the package. For this example, we'll be installing the optional additional `create` dependencies, which you can learn more about `here <https://notdiamond.readme.io/docs/model_select-vs-create>`_.
+**Python**: Requires **Python 3.10+**. It’s recommended that you create and activate a `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ prior to installing the package. For this example, we'll be installing the optional additional `create` dependencies, which you can learn more about `here <https://notdiamond.readme.io/docs/model_select-vs-create>`_.
 
 .. code:: shell
 
