@@ -34,7 +34,7 @@ from notdiamond.exceptions import (
 from notdiamond.llms.config import LLMConfig
 from notdiamond.llms.request import amodel_select, model_select, report_latency
 from notdiamond.metrics.metric import Metric
-from notdiamond.prompts import inject_system_prompt, _curly_escape
+from notdiamond.prompts import _curly_escape, inject_system_prompt
 from notdiamond.types import NDApiKeyValidator
 
 LOGGER = logging.getLogger(__name__)
@@ -60,7 +60,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
     class _NDRouterClient(BaseModel):
         api_key: str
-        llm_configs: Optional[List[Union[LLMConfig ,str]]]
+        llm_configs: Optional[List[Union[LLMConfig, str]]]
         default: Union[LLMConfig, int, str]
         max_model_depth: Optional[int]
         latency_tracking: bool
@@ -75,7 +75,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
         def __init__(
             self,
-            llm_configs: Optional[List[Union[LLMConfig , str]]] = None,
+            llm_configs: Optional[List[Union[LLMConfig, str]]] = None,
             api_key: Optional[str] = None,
             default: Union[LLMConfig, int, str] = 0,
             max_model_depth: Optional[int] = None,
@@ -496,7 +496,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         """
 
         api_key: str
-        llm_configs: Optional[List[Union[LLMConfig , str]]]
+        llm_configs: Optional[List[Union[LLMConfig, str]]]
         default: Union[LLMConfig, int, str]
         max_model_depth: Optional[int]
         latency_tracking: bool
@@ -508,7 +508,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
         def __init__(
             self,
-            llm_configs: Optional[List[Union[LLMConfig , str]]] = None,
+            llm_configs: Optional[List[Union[LLMConfig, str]]] = None,
             api_key: Optional[str] = None,
             default: Union[LLMConfig, int, str] = 0,
             max_model_depth: Optional[int] = None,
@@ -617,21 +617,15 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     LLMConfig: the best LLM selected by the router
             """
 
-            if model is not None:
-                llm_configs = self._parse_llm_configs_data(model)
-                self.llm_configs = llm_configs
-
-            self.validate_params(
+            return self.invoke(
+                messages=messages,
+                model=model,
                 default=default,
                 max_model_depth=max_model_depth,
                 latency_tracking=latency_tracking,
                 hash_content=hash_content,
                 tradeoff=tradeoff,
                 preference_id=preference_id,
-            )
-
-            return self.invoke(
-                messages=messages,
                 metric=metric,
                 response_model=response_model,
                 timeout=timeout,
@@ -689,21 +683,16 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     str: session_id returned by the NotDiamond API
                     LLMConfig: the best LLM selected by the router
             """
-            if model is not None and len(model) > 0:
-                llm_configs = self._parse_llm_configs_data(model)
-                self.llm_configs = llm_configs
 
-            self.validate_params(
+            result = await self.ainvoke(
+                messages=messages,
+                model=model,
                 default=default,
                 max_model_depth=max_model_depth,
                 latency_tracking=latency_tracking,
                 hash_content=hash_content,
                 tradeoff=tradeoff,
                 preference_id=preference_id,
-            )
-
-            result = await self.ainvoke(
-                messages=messages,
                 metric=metric,
                 response_model=response_model,
                 timeout=timeout,
@@ -714,10 +703,17 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         def invoke(
             self,
             messages: List[Dict[str, str]],
-            input: Optional[Dict[str, Any]] = None,
+            model: Optional[List[LLMConfig]] = None,
+            default: Optional[Union[LLMConfig, int, str]] = None,
+            max_model_depth: Optional[int] = None,
+            latency_tracking: Optional[bool] = None,
+            hash_content: Optional[bool] = None,
+            tradeoff: Optional[str] = None,
+            preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
+            input: Optional[Dict[str, Any]] = None,
             **kwargs,
         ) -> tuple[str, str, LLMConfig]:
             """
@@ -731,9 +727,16 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     the prompt template defined by the user. It also supports Langchain prompt template types.
                 messages (Optional[List[Dict[str, str]], optional): Can be used instead of prompt_template to pass
                     the messages OpenAI style.
-                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify
-                                                            the values for those variables. Defaults to None, assuming no
-                                                            variables.
+                model (Optional[List[LLMConfig]]): List of models to choose from.
+                default (Optional[Union[LLMConfig, int, str]]): Default LLM.
+                max_model_depth (Optional[int]): If your top recommended model is down, specify up to which depth
+                                                    of routing you're willing to go.
+                latency_tracking (Optional[bool]): Latency tracking flag.
+                hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.
+                tradeoff (Optional[str], optional): Define the "cost" or "latency" tradeoff
+                                                    for the router to determine the best LLM for a given query.
+                preference_id (Optional[str]): The ID of the router preference that was configured via the Dashboard.
+                                                Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
@@ -741,6 +744,9 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                                 dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
                                 Default to 5 seconds.
+                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify
+                                                            the values for those variables. Defaults to None, assuming no
+                                                            variables.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
 
             Raises:
@@ -753,8 +759,18 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     str: session_id returned by the NotDiamond API
                     LLMConfig: the best LLM selected by the router
             """
-            JsonOutputParser = _module_check(
-                "langchain_core.output_parsers", "JsonOutputParser"
+
+            if model is not None:
+                llm_configs = self._parse_llm_configs_data(model)
+                self.llm_configs = llm_configs
+
+            self.validate_params(
+                default=default,
+                max_model_depth=max_model_depth,
+                latency_tracking=latency_tracking,
+                hash_content=hash_content,
+                tradeoff=tradeoff,
+                preference_id=preference_id,
             )
 
             # If response_model is present, we will parse the response into the given model
@@ -888,10 +904,17 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         async def ainvoke(
             self,
             messages: List[Dict[str, str]],
-            input: Optional[Dict[str, Any]] = None,
+            model: Optional[List[LLMConfig]] = None,
+            default: Optional[Union[LLMConfig, int, str]] = None,
+            max_model_depth: Optional[int] = None,
+            latency_tracking: Optional[bool] = None,
+            hash_content: Optional[bool] = None,
+            tradeoff: Optional[str] = None,
+            preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
+            input: Optional[Dict[str, Any]] = None,
             **kwargs,
         ) -> tuple[str, str, LLMConfig]:
             """
@@ -902,15 +925,25 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
             Parameters:
                 messages (List[Dict[str, str]]): List of messages, OpenAI style
-                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify
-                                                            the values for those variables. Defaults to None, assuming no
-                                                            variables.
+                model (Optional[List[LLMConfig]]): List of models to choose from.
+                default (Optional[Union[LLMConfig, int, str]]): Default LLM.
+                max_model_depth (Optional[int]): If your top recommended model is down, specify up to which depth
+                                                    of routing you're willing to go.
+                latency_tracking (Optional[bool]): Latency tracking flag.
+                hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.
+                tradeoff (Optional[str], optional): Define the "cost" or "latency" tradeoff
+                                                    for the router to determine the best LLM for a given query.
+                preference_id (Optional[str]): The ID of the router preference that was configured via the Dashboard.
+                                                Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
                                                                 response into the given model. In which case result will a dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
                                 Default to 5 seconds.
+                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify
+                                                            the values for those variables. Defaults to None, assuming no
+                                                            variables.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
 
             Raises:
@@ -923,8 +956,18 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     str: session_id returned by the NotDiamond API
                     LLMConfig: the best LLM selected by the router
             """
-            JsonOutputParser = _module_check(
-                "langchain_core.output_parsers", "JsonOutputParser"
+
+            if model is not None:
+                llm_configs = self._parse_llm_configs_data(model)
+                self.llm_configs = llm_configs
+
+            self.validate_params(
+                default=default,
+                max_model_depth=max_model_depth,
+                latency_tracking=latency_tracking,
+                hash_content=hash_content,
+                tradeoff=tradeoff,
+                preference_id=preference_id,
             )
 
             response_model_parser = None
@@ -1058,7 +1101,13 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         def stream(
             self,
             messages: List[Dict[str, str]],
-            input: Optional[Dict[str, Any]] = None,
+            model: Optional[List[LLMConfig]] = None,
+            default: Optional[Union[LLMConfig, int, str]] = None,
+            max_model_depth: Optional[int] = None,
+            latency_tracking: Optional[bool] = None,
+            hash_content: Optional[bool] = None,
+            tradeoff: Optional[str] = None,
+            preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
@@ -1070,9 +1119,16 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
             Parameters:
                 messages (Optional[List[Dict[str, str]], optional): List of messages, OpenAI style
-                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify
-                                                            the values for those variables. Defaults to None, assuming no
-                                                            variables.
+                model (Optional[List[LLMConfig]]): List of models to choose from.
+                default (Optional[Union[LLMConfig, int, str]]): Default LLM.
+                max_model_depth (Optional[int]): If your top recommended model is down, specify up to which depth
+                                                    of routing you're willing to go.
+                latency_tracking (Optional[bool]): Latency tracking flag.
+                hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.
+                tradeoff (Optional[str], optional): Define the "cost" or "latency" tradeoff
+                                                    for the router to determine the best LLM for a given query.
+                preference_id (Optional[str]): The ID of the router preference that was configured via the Dashboard.
+                                                Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
@@ -1089,8 +1145,18 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 Iterator[Union[BaseMessageChunk, BaseModel]]: returns the response in chunks.
                     If response_model is present, it will return the partial model object
             """
-            JsonOutputParser = _module_check(
-                "langchain_core.output_parsers", "JsonOutputParser"
+
+            if model is not None:
+                llm_configs = self._parse_llm_configs_data(model)
+                self.llm_configs = llm_configs
+
+            self.validate_params(
+                default=default,
+                max_model_depth=max_model_depth,
+                latency_tracking=latency_tracking,
+                hash_content=hash_content,
+                tradeoff=tradeoff,
+                preference_id=preference_id,
             )
 
             response_model_parser = None
@@ -1099,9 +1165,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 response_model_parser = JsonOutputParser(
                     pydantic_object=response_model
                 )
-
-            if input is None:
-                input = {}
 
             best_llm, session_id = model_select(
                 messages=messages,
@@ -1153,7 +1216,13 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         async def astream(
             self,
             messages: List[Dict[str, str]],
-            input: Optional[Dict[str, Any]] = None,
+            model: Optional[List[LLMConfig]] = None,
+            default: Optional[Union[LLMConfig, int, str]] = None,
+            max_model_depth: Optional[int] = None,
+            latency_tracking: Optional[bool] = None,
+            hash_content: Optional[bool] = None,
+            tradeoff: Optional[str] = None,
+            preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
@@ -1165,9 +1234,16 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
             Parameters:
                 messages (Optional[List[Dict[str, str]], optional): List of messages, OpenAI style
-                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify
-                                                            the values for those variables. Defaults to None, assuming no
-                                                            variables.
+                model (Optional[List[LLMConfig]]): List of models to choose from.
+                default (Optional[Union[LLMConfig, int, str]]): Default LLM.
+                max_model_depth (Optional[int]): If your top recommended model is down, specify up to which depth
+                                                    of routing you're willing to go.
+                latency_tracking (Optional[bool]): Latency tracking flag.
+                hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.
+                tradeoff (Optional[str], optional): Define the "cost" or "latency" tradeoff
+                                                    for the router to determine the best LLM for a given query.
+                preference_id (Optional[str]): The ID of the router preference that was configured via the Dashboard.
+                                                Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
@@ -1183,6 +1259,20 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 AsyncIterator[Union[BaseMessageChunk, BaseModel]]: returns the response in chunks.
                     If response_model is present, it will return the partial model object
             """
+
+            if model is not None:
+                llm_configs = self._parse_llm_configs_data(model)
+                self.llm_configs = llm_configs
+
+            self.validate_params(
+                default=default,
+                max_model_depth=max_model_depth,
+                latency_tracking=latency_tracking,
+                hash_content=hash_content,
+                tradeoff=tradeoff,
+                preference_id=preference_id,
+            )
+
             response_model_parser = None
             if response_model is not None:
                 self.verify_against_response_model()
@@ -1202,9 +1292,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tools=self.tools,
                 timeout=timeout,
             )
-
-            if input is None:
-                input = {}
 
             if not best_llm:
                 LOGGER.warning(
@@ -1483,7 +1570,7 @@ class NotDiamond(_NDClient):
     If an API key is not set, it will check for NOTDIAMOND_API_KEY in .env file.
     """
 
-    llm_configs: Optional[List[Union[LLMConfig , str]]]
+    llm_configs: Optional[List[Union[LLMConfig, str]]]
     """The list of LLMs that are available to route between."""
 
     default: Union[LLMConfig, int, str]
