@@ -34,7 +34,7 @@ from notdiamond.exceptions import (
 from notdiamond.llms.config import LLMConfig
 from notdiamond.llms.request import amodel_select, model_select, report_latency
 from notdiamond.metrics.metric import Metric
-from notdiamond.prompts import inject_system_prompt, _curly_escape
+from notdiamond.prompts import _curly_escape, inject_system_prompt
 from notdiamond.types import NDApiKeyValidator
 
 LOGGER = logging.getLogger(__name__)
@@ -60,7 +60,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
     class _NDRouterClient(BaseModel):
         api_key: str
-        llm_configs: Optional[List[Union[LLMConfig ,str]]]
+        llm_configs: Optional[List[Union[LLMConfig, str]]]
         default: Union[LLMConfig, int, str]
         max_model_depth: Optional[int]
         latency_tracking: bool
@@ -75,7 +75,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
         def __init__(
             self,
-            llm_configs: Optional[List[Union[LLMConfig , str]]] = None,
+            llm_configs: Optional[List[Union[LLMConfig, str]]] = None,
             api_key: Optional[str] = None,
             default: Union[LLMConfig, int, str] = 0,
             max_model_depth: Optional[int] = None,
@@ -496,7 +496,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         """
 
         api_key: str
-        llm_configs: Optional[List[Union[LLMConfig , str]]]
+        llm_configs: Optional[List[Union[LLMConfig, str]]]
         default: Union[LLMConfig, int, str]
         max_model_depth: Optional[int]
         latency_tracking: bool
@@ -508,7 +508,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
         def __init__(
             self,
-            llm_configs: Optional[List[Union[LLMConfig , str]]] = None,
+            llm_configs: Optional[List[Union[LLMConfig, str]]] = None,
             api_key: Optional[str] = None,
             default: Union[LLMConfig, int, str] = 0,
             max_model_depth: Optional[int] = None,
@@ -773,10 +773,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=preference_id,
             )
 
-            JsonOutputParser = _module_check(
-                "langchain_core.output_parsers", "JsonOutputParser"
-            )
-
             # If response_model is present, we will parse the response into the given model
             # doing this here so that if validation errors occur, we can raise them before making the API call
             response_model_parser = None
@@ -974,10 +970,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=preference_id,
             )
 
-            JsonOutputParser = _module_check(
-                "langchain_core.output_parsers", "JsonOutputParser"
-            )
-
             response_model_parser = None
             if response_model is not None:
                 self.verify_against_response_model()
@@ -1167,10 +1159,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=preference_id,
             )
 
-            JsonOutputParser = _module_check(
-                "langchain_core.output_parsers", "JsonOutputParser"
-            )
-
             response_model_parser = None
             if response_model is not None:
                 self.verify_against_response_model()
@@ -1283,10 +1271,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 hash_content=hash_content,
                 tradeoff=tradeoff,
                 preference_id=preference_id,
-            )
-
-            JsonOutputParser = _module_check(
-                "langchain_core.output_parsers", "JsonOutputParser"
             )
 
             response_model_parser = None
@@ -1586,7 +1570,7 @@ class NotDiamond(_NDClient):
     If an API key is not set, it will check for NOTDIAMOND_API_KEY in .env file.
     """
 
-    llm_configs: Optional[List[Union[LLMConfig , str]]]
+    llm_configs: Optional[List[Union[LLMConfig, str]]]
     """The list of LLMs that are available to route between."""
 
     default: Union[LLMConfig, int, str]
