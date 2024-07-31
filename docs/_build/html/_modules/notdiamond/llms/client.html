@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>notdiamond.llms.client &mdash; NotDiamond 0.3.2</title>
+  <title>notdiamond.llms.client &mdash; NotDiamond 0.3.3</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=c0b9450b"></script>
+        <script src="../../../_static/documentation_options.js?v=a476954f"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -33,7 +33,7 @@
             NotDiamond
           </a>
               <div class="version">
-                0.3.2
+                0.3.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -110,7 +110,7 @@
 <span class="kn">from</span> <span class="nn">notdiamond.llms.config</span> <span class="kn">import</span> <span class="n">LLMConfig</span>
 <span class="kn">from</span> <span class="nn">notdiamond.llms.request</span> <span class="kn">import</span> <span class="n">amodel_select</span><span class="p">,</span> <span class="n">model_select</span><span class="p">,</span> <span class="n">report_latency</span>
 <span class="kn">from</span> <span class="nn">notdiamond.metrics.metric</span> <span class="kn">import</span> <span class="n">Metric</span>
-<span class="kn">from</span> <span class="nn">notdiamond.prompts</span> <span class="kn">import</span> <span class="n">inject_system_prompt</span><span class="p">,</span> <span class="n">_curly_escape</span>
+<span class="kn">from</span> <span class="nn">notdiamond.prompts</span> <span class="kn">import</span> <span class="n">_curly_escape</span><span class="p">,</span> <span class="n">inject_system_prompt</span>
 <span class="kn">from</span> <span class="nn">notdiamond.types</span> <span class="kn">import</span> <span class="n">NDApiKeyValidator</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -136,7 +136,7 @@
 
     <span class="k">class</span> <span class="nc">_NDRouterClient</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
-        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span><span class="nb">str</span><span class="p">]]]</span>
+        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
         <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
         <span class="n">latency_tracking</span><span class="p">:</span> <span class="nb">bool</span>
@@ -151,7 +151,7 @@
 
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -572,7 +572,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
-        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
+        <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
         <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
         <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
         <span class="n">latency_tracking</span><span class="p">:</span> <span class="nb">bool</span>
@@ -584,7 +584,7 @@
 
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -693,21 +693,15 @@
 <span class="sd">                    LLMConfig: the best LLM selected by the router</span>
 <span class="sd">            &quot;&quot;&quot;</span>
 
-            <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">llm_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_llm_configs_data</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">llm_configs</span> <span class="o">=</span> <span class="n">llm_configs</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">validate_params</span><span class="p">(</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
                 <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span>
                 <span class="n">max_model_depth</span><span class="o">=</span><span class="n">max_model_depth</span><span class="p">,</span>
                 <span class="n">latency_tracking</span><span class="o">=</span><span class="n">latency_tracking</span><span class="p">,</span>
                 <span class="n">hash_content</span><span class="o">=</span><span class="n">hash_content</span><span class="p">,</span>
                 <span class="n">tradeoff</span><span class="o">=</span><span class="n">tradeoff</span><span class="p">,</span>
                 <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
-            <span class="p">)</span>
-
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
-                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
                 <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
                 <span class="n">response_model</span><span class="o">=</span><span class="n">response_model</span><span class="p">,</span>
                 <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
@@ -765,21 +759,16 @@
 <span class="sd">                    str: session_id returned by the NotDiamond API</span>
 <span class="sd">                    LLMConfig: the best LLM selected by the router</span>
 <span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">llm_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_llm_configs_data</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">llm_configs</span> <span class="o">=</span> <span class="n">llm_configs</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">validate_params</span><span class="p">(</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span>
+                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
                 <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span>
                 <span class="n">max_model_depth</span><span class="o">=</span><span class="n">max_model_depth</span><span class="p">,</span>
                 <span class="n">latency_tracking</span><span class="o">=</span><span class="n">latency_tracking</span><span class="p">,</span>
                 <span class="n">hash_content</span><span class="o">=</span><span class="n">hash_content</span><span class="p">,</span>
                 <span class="n">tradeoff</span><span class="o">=</span><span class="n">tradeoff</span><span class="p">,</span>
                 <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
-            <span class="p">)</span>
-
-            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span>
-                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
                 <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
                 <span class="n">response_model</span><span class="o">=</span><span class="n">response_model</span><span class="p">,</span>
                 <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
@@ -790,10 +779,17 @@
         <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
-            <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">latency_tracking</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">hash_content</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">tradeoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">),</span>
             <span class="n">response_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">LLMConfig</span><span class="p">]:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
@@ -807,9 +803,16 @@
 <span class="sd">                    the prompt template defined by the user. It also supports Langchain prompt template types.</span>
 <span class="sd">                messages (Optional[List[Dict[str, str]], optional): Can be used instead of prompt_template to pass</span>
 <span class="sd">                    the messages OpenAI style.</span>
-<span class="sd">                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify</span>
-<span class="sd">                                                            the values for those variables. Defaults to None, assuming no</span>
-<span class="sd">                                                            variables.</span>
+<span class="sd">                model (Optional[List[LLMConfig]]): List of models to choose from.</span>
+<span class="sd">                default (Optional[Union[LLMConfig, int, str]]): Default LLM.</span>
+<span class="sd">                max_model_depth (Optional[int]): If your top recommended model is down, specify up to which depth</span>
+<span class="sd">                                                    of routing you&#39;re willing to go.</span>
+<span class="sd">                latency_tracking (Optional[bool]): Latency tracking flag.</span>
+<span class="sd">                hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.</span>
+<span class="sd">                tradeoff (Optional[str], optional): Define the &quot;cost&quot; or &quot;latency&quot; tradeoff</span>
+<span class="sd">                                                    for the router to determine the best LLM for a given query.</span>
+<span class="sd">                preference_id (Optional[str]): The ID of the router preference that was configured via the Dashboard.</span>
+<span class="sd">                                                Defaults to None.</span>
 <span class="sd">                metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.</span>
 <span class="sd">                                                Defaults to Metric(&quot;accuracy&quot;).</span>
 <span class="sd">                response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the</span>
@@ -817,6 +820,9 @@
 <span class="sd">                                                                dict.</span>
 <span class="sd">                timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.</span>
 <span class="sd">                                Default to 5 seconds.</span>
+<span class="sd">                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify</span>
+<span class="sd">                                                            the values for those variables. Defaults to None, assuming no</span>
+<span class="sd">                                                            variables.</span>
 <span class="sd">                **kwargs: Any other arguments that are supported by Langchain&#39;s invoke method, will be passed through.</span>
 
 <span class="sd">            Raises:</span>
@@ -829,8 +835,18 @@
 <span class="sd">                    str: session_id returned by the NotDiamond API</span>
 <span class="sd">                    LLMConfig: the best LLM selected by the router</span>
 <span class="sd">            &quot;&quot;&quot;</span>
-            <span class="n">JsonOutputParser</span> <span class="o">=</span> <span class="n">_module_check</span><span class="p">(</span>
-                <span class="s2">&quot;langchain_core.output_parsers&quot;</span><span class="p">,</span> <span class="s2">&quot;JsonOutputParser&quot;</span>
+
+            <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">llm_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_llm_configs_data</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">llm_configs</span> <span class="o">=</span> <span class="n">llm_configs</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">validate_params</span><span class="p">(</span>
+                <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span>
+                <span class="n">max_model_depth</span><span class="o">=</span><span class="n">max_model_depth</span><span class="p">,</span>
+                <span class="n">latency_tracking</span><span class="o">=</span><span class="n">latency_tracking</span><span class="p">,</span>
+                <span class="n">hash_content</span><span class="o">=</span><span class="n">hash_content</span><span class="p">,</span>
+                <span class="n">tradeoff</span><span class="o">=</span><span class="n">tradeoff</span><span class="p">,</span>
+                <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="c1"># If response_model is present, we will parse the response into the given model</span>
@@ -964,10 +980,17 @@
         <span class="k">async</span> <span class="k">def</span> <span class="nf">ainvoke</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
-            <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">latency_tracking</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">hash_content</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">tradeoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">),</span>
             <span class="n">response_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">LLMConfig</span><span class="p">]:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
@@ -978,15 +1001,25 @@
 
 <span class="sd">            Parameters:</span>
 <span class="sd">                messages (List[Dict[str, str]]): List of messages, OpenAI style</span>
-<span class="sd">                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify</span>
-<span class="sd">                                                            the values for those variables. Defaults to None, assuming no</span>
-<span class="sd">                                                            variables.</span>
+<span class="sd">                model (Optional[List[LLMConfig]]): List of models to choose from.</span>
+<span class="sd">                default (Optional[Union[LLMConfig, int, str]]): Default LLM.</span>
+<span class="sd">                max_model_depth (Optional[int]): If your top recommended model is down, specify up to which depth</span>
+<span class="sd">                                                    of routing you&#39;re willing to go.</span>
+<span class="sd">                latency_tracking (Optional[bool]): Latency tracking flag.</span>
+<span class="sd">                hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.</span>
+<span class="sd">                tradeoff (Optional[str], optional): Define the &quot;cost&quot; or &quot;latency&quot; tradeoff</span>
+<span class="sd">                                                    for the router to determine the best LLM for a given query.</span>
+<span class="sd">                preference_id (Optional[str]): The ID of the router preference that was configured via the Dashboard.</span>
+<span class="sd">                                                Defaults to None.</span>
 <span class="sd">                metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.</span>
 <span class="sd">                                                Defaults to Metric(&quot;accuracy&quot;).</span>
 <span class="sd">                response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the</span>
 <span class="sd">                                                                response into the given model. In which case result will a dict.</span>
 <span class="sd">                timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.</span>
 <span class="sd">                                Default to 5 seconds.</span>
+<span class="sd">                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify</span>
+<span class="sd">                                                            the values for those variables. Defaults to None, assuming no</span>
+<span class="sd">                                                            variables.</span>
 <span class="sd">                **kwargs: Any other arguments that are supported by Langchain&#39;s invoke method, will be passed through.</span>
 
 <span class="sd">            Raises:</span>
@@ -999,8 +1032,18 @@
 <span class="sd">                    str: session_id returned by the NotDiamond API</span>
 <span class="sd">                    LLMConfig: the best LLM selected by the router</span>
 <span class="sd">            &quot;&quot;&quot;</span>
-            <span class="n">JsonOutputParser</span> <span class="o">=</span> <span class="n">_module_check</span><span class="p">(</span>
-                <span class="s2">&quot;langchain_core.output_parsers&quot;</span><span class="p">,</span> <span class="s2">&quot;JsonOutputParser&quot;</span>
+
+            <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">llm_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_llm_configs_data</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">llm_configs</span> <span class="o">=</span> <span class="n">llm_configs</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">validate_params</span><span class="p">(</span>
+                <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span>
+                <span class="n">max_model_depth</span><span class="o">=</span><span class="n">max_model_depth</span><span class="p">,</span>
+                <span class="n">latency_tracking</span><span class="o">=</span><span class="n">latency_tracking</span><span class="p">,</span>
+                <span class="n">hash_content</span><span class="o">=</span><span class="n">hash_content</span><span class="p">,</span>
+                <span class="n">tradeoff</span><span class="o">=</span><span class="n">tradeoff</span><span class="p">,</span>
+                <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="n">response_model_parser</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1134,7 +1177,13 @@
         <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
-            <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">latency_tracking</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">hash_content</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">tradeoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">),</span>
             <span class="n">response_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
@@ -1146,9 +1195,16 @@
 
 <span class="sd">            Parameters:</span>
 <span class="sd">                messages (Optional[List[Dict[str, str]], optional): List of messages, OpenAI style</span>
-<span class="sd">                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify</span>
-<span class="sd">                                                            the values for those variables. Defaults to None, assuming no</span>
-<span class="sd">                                                            variables.</span>
+<span class="sd">                model (Optional[List[LLMConfig]]): List of models to choose from.</span>
+<span class="sd">                default (Optional[Union[LLMConfig, int, str]]): Default LLM.</span>
+<span class="sd">                max_model_depth (Optional[int]): If your top recommended model is down, specify up to which depth</span>
+<span class="sd">                                                    of routing you&#39;re willing to go.</span>
+<span class="sd">                latency_tracking (Optional[bool]): Latency tracking flag.</span>
+<span class="sd">                hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.</span>
+<span class="sd">                tradeoff (Optional[str], optional): Define the &quot;cost&quot; or &quot;latency&quot; tradeoff</span>
+<span class="sd">                                                    for the router to determine the best LLM for a given query.</span>
+<span class="sd">                preference_id (Optional[str]): The ID of the router preference that was configured via the Dashboard.</span>
+<span class="sd">                                                Defaults to None.</span>
 <span class="sd">                metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.</span>
 <span class="sd">                                                Defaults to Metric(&quot;accuracy&quot;).</span>
 <span class="sd">                response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the</span>
@@ -1165,8 +1221,18 @@
 <span class="sd">                Iterator[Union[BaseMessageChunk, BaseModel]]: returns the response in chunks.</span>
 <span class="sd">                    If response_model is present, it will return the partial model object</span>
 <span class="sd">            &quot;&quot;&quot;</span>
-            <span class="n">JsonOutputParser</span> <span class="o">=</span> <span class="n">_module_check</span><span class="p">(</span>
-                <span class="s2">&quot;langchain_core.output_parsers&quot;</span><span class="p">,</span> <span class="s2">&quot;JsonOutputParser&quot;</span>
+
+            <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">llm_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_llm_configs_data</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">llm_configs</span> <span class="o">=</span> <span class="n">llm_configs</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">validate_params</span><span class="p">(</span>
+                <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span>
+                <span class="n">max_model_depth</span><span class="o">=</span><span class="n">max_model_depth</span><span class="p">,</span>
+                <span class="n">latency_tracking</span><span class="o">=</span><span class="n">latency_tracking</span><span class="p">,</span>
+                <span class="n">hash_content</span><span class="o">=</span><span class="n">hash_content</span><span class="p">,</span>
+                <span class="n">tradeoff</span><span class="o">=</span><span class="n">tradeoff</span><span class="p">,</span>
+                <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="n">response_model_parser</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1175,9 +1241,6 @@
                 <span class="n">response_model_parser</span> <span class="o">=</span> <span class="n">JsonOutputParser</span><span class="p">(</span>
                     <span class="n">pydantic_object</span><span class="o">=</span><span class="n">response_model</span>
                 <span class="p">)</span>
-
-            <span class="k">if</span> <span class="nb">input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="nb">input</span> <span class="o">=</span> <span class="p">{}</span>
 
             <span class="n">best_llm</span><span class="p">,</span> <span class="n">session_id</span> <span class="o">=</span> <span class="n">model_select</span><span class="p">(</span>
                 <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
@@ -1229,7 +1292,13 @@
         <span class="k">async</span> <span class="k">def</span> <span class="nf">astream</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
-            <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">latency_tracking</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">hash_content</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">tradeoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">metric</span><span class="p">:</span> <span class="n">Metric</span> <span class="o">=</span> <span class="n">Metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">),</span>
             <span class="n">response_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
@@ -1241,9 +1310,16 @@
 
 <span class="sd">            Parameters:</span>
 <span class="sd">                messages (Optional[List[Dict[str, str]], optional): List of messages, OpenAI style</span>
-<span class="sd">                input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify</span>
-<span class="sd">                                                            the values for those variables. Defaults to None, assuming no</span>
-<span class="sd">                                                            variables.</span>
+<span class="sd">                model (Optional[List[LLMConfig]]): List of models to choose from.</span>
+<span class="sd">                default (Optional[Union[LLMConfig, int, str]]): Default LLM.</span>
+<span class="sd">                max_model_depth (Optional[int]): If your top recommended model is down, specify up to which depth</span>
+<span class="sd">                                                    of routing you&#39;re willing to go.</span>
+<span class="sd">                latency_tracking (Optional[bool]): Latency tracking flag.</span>
+<span class="sd">                hash_content (Optional[bool]): Flag for hashing content before sending to NotDiamond API.</span>
+<span class="sd">                tradeoff (Optional[str], optional): Define the &quot;cost&quot; or &quot;latency&quot; tradeoff</span>
+<span class="sd">                                                    for the router to determine the best LLM for a given query.</span>
+<span class="sd">                preference_id (Optional[str]): The ID of the router preference that was configured via the Dashboard.</span>
+<span class="sd">                                                Defaults to None.</span>
 <span class="sd">                metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.</span>
 <span class="sd">                                                Defaults to Metric(&quot;accuracy&quot;).</span>
 <span class="sd">                response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the</span>
@@ -1259,6 +1335,20 @@
 <span class="sd">                AsyncIterator[Union[BaseMessageChunk, BaseModel]]: returns the response in chunks.</span>
 <span class="sd">                    If response_model is present, it will return the partial model object</span>
 <span class="sd">            &quot;&quot;&quot;</span>
+
+            <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">llm_configs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_llm_configs_data</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">llm_configs</span> <span class="o">=</span> <span class="n">llm_configs</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">validate_params</span><span class="p">(</span>
+                <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span>
+                <span class="n">max_model_depth</span><span class="o">=</span><span class="n">max_model_depth</span><span class="p">,</span>
+                <span class="n">latency_tracking</span><span class="o">=</span><span class="n">latency_tracking</span><span class="p">,</span>
+                <span class="n">hash_content</span><span class="o">=</span><span class="n">hash_content</span><span class="p">,</span>
+                <span class="n">tradeoff</span><span class="o">=</span><span class="n">tradeoff</span><span class="p">,</span>
+                <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
+            <span class="p">)</span>
+
             <span class="n">response_model_parser</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">if</span> <span class="n">response_model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">verify_against_response_model</span><span class="p">()</span>
@@ -1278,9 +1368,6 @@
                 <span class="n">tools</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tools</span><span class="p">,</span>
                 <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
             <span class="p">)</span>
-
-            <span class="k">if</span> <span class="nb">input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="nb">input</span> <span class="o">=</span> <span class="p">{}</span>
 
             <span class="k">if</span> <span class="ow">not</span> <span class="n">best_llm</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
@@ -1561,7 +1648,7 @@
 <span class="sd">    If an API key is not set, it will check for NOTDIAMOND_API_KEY in .env file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span> <span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
+    <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The list of LLMs that are available to route between.&quot;&quot;&quot;</span>
 
     <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
@@ -1645,7 +1732,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Jul 30, 2024.
+      <span class="lastupdated">Last updated on Jul 31, 2024.
       </span></p>
   </div>
 
