@@ -19,7 +19,7 @@
 | notdiamond/prompts.py                                    |       18 |        2 |        6 |        2 |     83% |20-21, 24->26 |
 | notdiamond/settings.py                                   |       16 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/\_\_init\_\_.py                       |        2 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/custom\_router.py                     |      116 |        6 |       34 |        5 |     91% |35->37, 73, 198, 233, 255-257 |
+| notdiamond/toolkit/custom\_router.py                     |      116 |        6 |       34 |        6 |     91% |35->37, 73, 198, 233, 249->244, 255-257 |
 | notdiamond/types.py                                      |       28 |        0 |       16 |        0 |    100% |           |
 | tests/conftest.py                                        |       73 |        8 |       26 |        0 |     92% |55, 73, 134-149, 159 |
 | tests/helpers.py                                         |       22 |        0 |        8 |        2 |     93% |4->11, 17->24 |
@@ -33,7 +33,7 @@
 | tests/test\_documentation/test\_langchain.py             |        6 |        0 |        2 |        0 |    100% |           |
 | tests/test\_documentation/test\_openrouter.py            |       14 |        0 |        0 |        0 |    100% |           |
 | tests/test\_documentation/test\_personalization.py       |       10 |        0 |        0 |        0 |    100% |           |
-| tests/test\_documentation/test\_structured\_output.py    |       43 |       19 |        4 |        0 |     55% |46-56, 62-69 |
+| tests/test\_documentation/test\_structured\_output.py    |       43 |        3 |        4 |        1 |     91% |55-56, 107 |
 | tests/test\_llm\_calls/test\_anthropic.py                |       87 |        0 |        4 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_cohere.py                   |       37 |        0 |        2 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_google.py                   |      128 |      105 |        5 |        0 |     21% |12-24, 27-39, 42-53, 56-67, 70-82, 85-97, 100-114, 119-133, 136-149, 154-167, 170-184, 187-201, 206-220, 223-236, 241-254, 257-271 |
@@ -44,7 +44,7 @@
 | tests/test\_llm\_calls/test\_togetherai.py               |       70 |        6 |        4 |        0 |     92% |     42-55 |
 | tests/test\_toolkit/test\_custom\_router.py              |       68 |        0 |       12 |        0 |    100% |           |
 | tests/test\_types.py                                     |       16 |        0 |        6 |        0 |    100% |           |
-|                                                **TOTAL** | **2711** |  **299** |  **619** |   **53** | **88%** |           |
+|                                                **TOTAL** | **2711** |  **283** |  **619** |   **55** | **89%** |           |
 
 
 ## Setup coverage badge
