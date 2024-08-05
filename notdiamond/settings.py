@@ -230,11 +230,11 @@ PROVIDERS = {
     },
     "perplexity": {
         "models": [
-            "llama-3-sonar-large-32k-online",
+            "llama-3.1-sonar-large-128k-online",
         ],
         "api_key": PPLX_API_KEY,
         "openrouter_identifier": {
-            "llama-3-sonar-large-32k-online": "perplexity/llama-3-sonar-large-32k-online",
+            "llama-3.1-sonar-large-128k-online": "perplexity/llama-3.1-sonar-large-128k-online",
         },
     },
     "replicate": {

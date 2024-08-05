@@ -68,6 +68,8 @@ class NDLLMProviders(Enum):
         REPLICATE_META_LLAMA_3_1_405B_INSTRUCT (NDLLMProvider): refers to "meta-llama-3.1-405b-instruct"
             model served via Replicate
 
+        LLAMA_3_1_SONAR_LARGE_128K_ONLINE (NDLLMProvider): refers to "llama-3.1-sonar-large-128k-online" model by Perplexity
+
     Note:
         This class is static and designed to be used without instantiation.
         Access its attributes directly to obtain configurations for specific LLM providers.
@@ -141,9 +143,9 @@ class NDLLMProviders(Enum):
         "Meta-Llama-3.1-405B-Instruct-Turbo",
     )
 
-    LLAMA_3_SONAR_LARGE_32K_ONLINE = (
+    LLAMA_3_1_SONAR_LARGE_128K_ONLINE = (
         "perplexity",
-        "llama-3-sonar-large-32k-online",
+        "llama-3.1-sonar-large-128k-online",
     )
 
     REPLICATE_MISTRAL_7B_INSTRUCT_V0_2 = (
