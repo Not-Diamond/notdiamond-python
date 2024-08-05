@@ -11,7 +11,7 @@
 | notdiamond/llms/\_\_init\_\_.py                          |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/llms/client.py                                |      489 |       90 |      212 |       31 |     79% |90->92, 108, 178->181, 182-183, 208-211, 259->262, 333, 336-339, 349, 386->385, 396-397, 439->444, 445, 474-481, 538-540, 544, 564-566, 687-701, 785->788, 845-896, 961-962, 980->983, 998-1002, 1005, 1040-1093, 1150-1151, 1183-1186, 1189, 1264-1265, 1297-1300, 1303, 1339-1344, 1384-1389, 1447-1452, 1492->1494, 1527->1529, 1540, 1551, 1634-1639 |
 | notdiamond/llms/config.py                                |       44 |        5 |       14 |        2 |     88% |72, 97, 104, 125-127 |
-| notdiamond/llms/providers.py                             |       54 |        0 |        0 |        0 |    100% |           |
+| notdiamond/llms/providers.py                             |       55 |        0 |        0 |        0 |    100% |           |
 | notdiamond/llms/request.py                               |       71 |        9 |       16 |        0 |     90% |177-179, 241-243, 293-297 |
 | notdiamond/metrics/\_\_init\_\_.py                       |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/metrics/metric.py                             |       20 |        2 |        4 |        2 |     83% |15, 24->26, 28 |
@@ -33,10 +33,10 @@
 | tests/test\_documentation/test\_langchain.py             |        6 |        0 |        2 |        0 |    100% |           |
 | tests/test\_documentation/test\_openrouter.py            |       14 |        0 |        0 |        0 |    100% |           |
 | tests/test\_documentation/test\_personalization.py       |       10 |        0 |        0 |        0 |    100% |           |
-| tests/test\_documentation/test\_structured\_output.py    |       43 |        3 |        4 |        1 |     91% |55-56, 107 |
+| tests/test\_documentation/test\_structured\_output.py    |       43 |       19 |        4 |        0 |     55% |46-56, 62-69 |
 | tests/test\_llm\_calls/test\_anthropic.py                |       87 |        0 |        4 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_cohere.py                   |       37 |        0 |        2 |        0 |    100% |           |
-| tests/test\_llm\_calls/test\_google.py                   |      128 |      105 |        5 |        0 |     21% |12-24, 27-39, 42-53, 56-67, 70-82, 85-97, 100-114, 119-133, 136-149, 154-167, 170-184, 187-201, 206-220, 223-236, 241-254, 257-271 |
+| tests/test\_llm\_calls/test\_google.py                   |      166 |      138 |        5 |        0 |     19% |12-24, 27-39, 42-53, 56-67, 70-82, 85-97, 100-114, 119-133, 136-149, 154-167, 170-184, 187-201, 206-220, 223-236, 241-254, 257-271, 276-290, 295-309, 312-325, 330-343, 346-360 |
 | tests/test\_llm\_calls/test\_mistral.py                  |      141 |        0 |        2 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_openai.py                   |      354 |        0 |       10 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_perplexity.py               |       13 |        0 |        2 |        0 |    100% |           |
@@ -44,7 +44,7 @@
 | tests/test\_llm\_calls/test\_togetherai.py               |       70 |        6 |        4 |        0 |     92% |     42-55 |
 | tests/test\_toolkit/test\_custom\_router.py              |       68 |        0 |       12 |        0 |    100% |           |
 | tests/test\_types.py                                     |       16 |        0 |        6 |        0 |    100% |           |
-|                                                **TOTAL** | **2711** |  **283** |  **619** |   **55** | **89%** |           |
+|                                                **TOTAL** | **2750** |  **332** |  **619** |   **54** | **87%** |           |
 
 
 ## Setup coverage badge
