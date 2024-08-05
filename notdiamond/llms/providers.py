@@ -32,6 +32,7 @@ class NDLLMProviders(Enum):
         GEMINI_PRO (NDLLMProvider): refers to 'gemini-pro' model by Google
         GEMINI_1_PRO_LATEST (NDLLMProvider): refers to 'gemini-1.0-pro-latest' model by Google
         GEMINI_15_PRO_LATEST (NDLLMProvider): refers to 'gemini-1.5-pro-latest' model by Google
+        GEMINI_15_PRO_EXP_0801 (NDLLMProvider): refers to 'gemini-1.5-pro-exp-0801' model by Google
         GEMINI_15_FLASH_LATEST (NDLLMProvider): refers to 'gemini-1.5-flash-latest' model by Google
 
         COMMAND_R (NDLLMProvider): refers to 'command-r' model by Cohere
@@ -53,15 +54,21 @@ class NDLLMProviders(Enum):
         TOGETHER_LLAMA_3_70B_CHAT_HF (NDLLMProvider): refers to 'Llama-3-70b-chat-hf' model served via TogetherAI
         TOGETHER_LLAMA_3_8B_CHAT_HF (NDLLMProvider): refers to 'Llama-3-8b-chat-hf' model served via TogetherAI
         TOGETHER_QWEN2_72B_INSTRUCT (NDLLMProvider): refers to 'Qwen2-72B-Instruct' model served via TogetherAI
-        TOGETHER_LLAMA_3_1_8B_INSTRUCT_TURBO (NDLLMProvider): refers to 'Meta-Llama-3.1-8B-Instruct-Turbo' model served via TogetherAI
-        TOGETHER_LLAMA_3_1_70B_INSTRUCT_TURBO (NDLLMProvider): refers to 'Meta-Llama-3.1-70B-Instruct-Turbo' model served via TogetherAI
-        TOGETHER_LLAMA_3_1_405B_INSTRUCT_TURBO (NDLLMProvider): refers to 'Meta-Llama-3.1-405B-Instruct-Turbo' model served via TogetherAI
+        TOGETHER_LLAMA_3_1_8B_INSTRUCT_TURBO (NDLLMProvider): refers to 'Meta-Llama-3.1-8B-Instruct-Turbo'
+            model served via TogetherAI
+        TOGETHER_LLAMA_3_1_70B_INSTRUCT_TURBO (NDLLMProvider): refers to 'Meta-Llama-3.1-70B-Instruct-Turbo'
+            model served via TogetherAI
+        TOGETHER_LLAMA_3_1_405B_INSTRUCT_TURBO (NDLLMProvider): refers to 'Meta-Llama-3.1-405B-Instruct-Turbo'
+            model served via TogetherAI
 
         REPLICATE_MISTRAL_7B_INSTRUCT_V0_2 (NDLLMProvider): refers to "mistral-7b-instruct-v0.2" model served via Replicate
         REPLICATE_MIXTRAL_8X7B_INSTRUCT_V0_1 (NDLLMProvider): refers to "mixtral-8x7b-instruct-v0.1" model served via Replicate
         REPLICATE_META_LLAMA_3_70B_INSTRUCT (NDLLMProvider): refers to "meta-llama-3-70b-instruct" model served via Replicate
         REPLICATE_META_LLAMA_3_8B_INSTRUCT (NDLLMProvider): refers to "meta-llama-3-8b-instruct" model served via Replicate
-        REPLICATE_META_LLAMA_3_1_405B_INSTRUCT (NDLLMProvider): refers to "meta-llama-3.1-405b-instruct" model served via Replicate
+        REPLICATE_META_LLAMA_3_1_405B_INSTRUCT (NDLLMProvider): refers to "meta-llama-3.1-405b-instruct"
+            model served via Replicate
+
+        LLAMA_3_1_SONAR_LARGE_128K_ONLINE (NDLLMProvider): refers to "llama-3.1-sonar-large-128k-online" model by Perplexity
 
     Note:
         This class is static and designed to be used without instantiation.
@@ -91,6 +98,7 @@ class NDLLMProviders(Enum):
     GEMINI_PRO = ("google", "gemini-pro")
     GEMINI_1_PRO_LATEST = ("google", "gemini-1.0-pro-latest")
     GEMINI_15_PRO_LATEST = ("google", "gemini-1.5-pro-latest")
+    GEMINI_15_PRO_EXP_0801 = ("google", "gemini-1.5-pro-exp-0801")
     GEMINI_15_FLASH_LATEST = ("google", "gemini-1.5-flash-latest")
 
     COMMAND_R = ("cohere", "command-r")
@@ -122,13 +130,22 @@ class NDLLMProviders(Enum):
     TOGETHER_LLAMA_3_70B_CHAT_HF = ("togetherai", "Llama-3-70b-chat-hf")
     TOGETHER_LLAMA_3_8B_CHAT_HF = ("togetherai", "Llama-3-8b-chat-hf")
     TOGETHER_QWEN2_72B_INSTRUCT = ("togetherai", "Qwen2-72B-Instruct")
-    TOGETHER_LLAMA_3_1_8B_INSTRUCT_TURBO = ("togetherai", "Meta-Llama-3.1-8B-Instruct-Turbo")
-    TOGETHER_LLAMA_3_1_70B_INSTRUCT_TURBO = ("togetherai", "Meta-Llama-3.1-70B-Instruct-Turbo")
-    TOGETHER_LLAMA_3_1_405B_INSTRUCT_TURBO = ("togetherai", "Meta-Llama-3.1-405B-Instruct-Turbo")
+    TOGETHER_LLAMA_3_1_8B_INSTRUCT_TURBO = (
+        "togetherai",
+        "Meta-Llama-3.1-8B-Instruct-Turbo",
+    )
+    TOGETHER_LLAMA_3_1_70B_INSTRUCT_TURBO = (
+        "togetherai",
+        "Meta-Llama-3.1-70B-Instruct-Turbo",
+    )
+    TOGETHER_LLAMA_3_1_405B_INSTRUCT_TURBO = (
+        "togetherai",
+        "Meta-Llama-3.1-405B-Instruct-Turbo",
+    )
 
-    LLAMA_3_SONAR_LARGE_32K_ONLINE = (
+    LLAMA_3_1_SONAR_LARGE_128K_ONLINE = (
         "perplexity",
-        "llama-3-sonar-large-32k-online",
+        "llama-3.1-sonar-large-128k-online",
     )
 
     REPLICATE_MISTRAL_7B_INSTRUCT_V0_2 = (

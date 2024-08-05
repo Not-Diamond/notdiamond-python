@@ -112,6 +112,7 @@ PROVIDERS = {
             "gemini-pro",
             "gemini-1.0-pro-latest",
             "gemini-1.5-pro-latest",
+            "gemini-1.5-pro-exp-0801",
             "gemini-1.5-flash-latest",
         ],
         "api_key": GOOGLE_API_KEY,
@@ -119,18 +120,21 @@ PROVIDERS = {
             "gemini-pro",
             "gemini-1.0-pro-latest",
             "gemini-1.5-pro-latest",
+            "gemini-1.5-pro-exp-0801",
             "gemini-1.5-flash-latest",
         ],
         "support_response_model": [
             "gemini-pro",
             "gemini-1.0-pro-latest",
             "gemini-1.5-pro-latest",
+            "gemini-1.5-pro-exp-0801",
             "gemini-1.5-flash-latest",
         ],
         "openrouter_identifier": {
             "gemini-pro": "google/gemini-pro",
             "gemini-1.0-pro-latest": "google/gemini-pro",
             "gemini-1.5-pro-latest": "google/gemini-pro-1.5",  #
+            "gemini-1.5-pro-exp-0801": "google/gemini-pro-1.5-exp",  #
             "gemini-1.5-flash-latest": "google/gemini-flash-1.5",  #
         },
     },
@@ -226,11 +230,11 @@ PROVIDERS = {
     },
     "perplexity": {
         "models": [
-            "llama-3-sonar-large-32k-online",
+            "llama-3.1-sonar-large-128k-online",
         ],
         "api_key": PPLX_API_KEY,
         "openrouter_identifier": {
-            "llama-3-sonar-large-32k-online": "perplexity/llama-3-sonar-large-32k-online",
+            "llama-3.1-sonar-large-128k-online": "perplexity/llama-3.1-sonar-large-128k-online",
         },
     },
     "replicate": {
