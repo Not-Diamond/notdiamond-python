@@ -18,6 +18,7 @@ class NDLLMProviders(Enum):
         GPT_4_TURBO_PREVIEW (NDLLMProvider): refers to 'gpt-4-turbo-preview' model by OpenAI
         GPT_4_TURBO_2024_04_09 (NDLLMProvider): refers to 'gpt-4-turbo-2024-04-09' model by OpenAI
         GPT_4o_2024_05_13 (NDLLMProvider): refers to 'gpt-4o-2024-05-13' model by OpenAI
+        GPT_4o_2024_08_06 (NDLLMProvider): refers to 'gpt-4o-2024-08-06' model by OpenAI
         GPT_4o (NDLLMProvider): refers to 'gpt-4o' model by OpenAI
         GPT_4o_MINI_2024_07_18 (NDLLMProvider): refers to 'gpt-4o-mini-2024-07-18' model by OpenAI
         GPT_4o_MINI (NDLLMProvider): refers to 'gpt-4o-mini' model by OpenAI
@@ -84,6 +85,7 @@ class NDLLMProviders(Enum):
     GPT_4_TURBO_PREVIEW = ("openai", "gpt-4-turbo-preview")
     GPT_4_TURBO_2024_04_09 = ("openai", "gpt-4-turbo-2024-04-09")
     GPT_4o_2024_05_13 = ("openai", "gpt-4o-2024-05-13")
+    GPT_4o_2024_08_06 = ("openai", "gpt-4o-2024-08-06")
     GPT_4o = ("openai", "gpt-4o")
     GPT_4o_MINI_2024_07_18 = ("openai", "gpt-4o-mini-2024-07-18")
     GPT_4o_MINI = ("openai", "gpt-4o-mini")
