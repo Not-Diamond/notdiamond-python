@@ -33,7 +33,7 @@
 | tests/test\_documentation/test\_langchain.py             |        6 |        0 |        2 |        0 |    100% |           |
 | tests/test\_documentation/test\_openrouter.py            |       14 |        0 |        0 |        0 |    100% |           |
 | tests/test\_documentation/test\_personalization.py       |       10 |        0 |        0 |        0 |    100% |           |
-| tests/test\_documentation/test\_structured\_output.py    |       43 |        3 |        4 |        1 |     91% |55-56, 107 |
+| tests/test\_documentation/test\_structured\_output.py    |       43 |       19 |        4 |        0 |     55% |46-56, 62-69 |
 | tests/test\_llm\_calls/test\_anthropic.py                |       87 |        0 |        4 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_cohere.py                   |       37 |        0 |        2 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_google.py                   |      166 |      138 |        5 |        0 |     19% |12-24, 27-39, 42-53, 56-67, 70-82, 85-97, 100-114, 119-133, 136-149, 154-167, 170-184, 187-201, 206-220, 223-236, 241-254, 257-271, 276-290, 295-309, 312-325, 330-343, 346-360 |
@@ -44,7 +44,7 @@
 | tests/test\_llm\_calls/test\_togetherai.py               |       70 |        6 |        4 |        0 |     92% |     42-55 |
 | tests/test\_toolkit/test\_custom\_router.py              |       68 |        0 |       12 |        0 |    100% |           |
 | tests/test\_types.py                                     |       16 |        0 |        6 |        0 |    100% |           |
-|                                                **TOTAL** | **2456** |  **317** |  **622** |   **55** | **87%** |           |
+|                                                **TOTAL** | **2456** |  **333** |  **622** |   **54** | **86%** |           |
 
 
 ## Setup coverage badge
