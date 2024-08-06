@@ -62,6 +62,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond-llms-providers">notdiamond.llms.providers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-notdiamond.llms.request">notdiamond.llms.request</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#notdiamond.llms.request.amodel_select"><code class="docutils literal notranslate"><span class="pre">amodel_select()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notdiamond.llms.request.create_preference_id"><code class="docutils literal notranslate"><span class="pre">create_preference_id()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#notdiamond.llms.request.get_tools_in_openai_format"><code class="docutils literal notranslate"><span class="pre">get_tools_in_openai_format()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#notdiamond.llms.request.model_select"><code class="docutils literal notranslate"><span class="pre">model_select()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#notdiamond.llms.request.model_select_parse"><code class="docutils literal notranslate"><span class="pre">model_select_parse()</span></code></a></li>
@@ -1249,6 +1250,24 @@ to ‘NO-SESSION-ID’.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.llms.request.create_preference_id">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.llms.request.</span></span><span class="sig-name descname"><span class="pre">create_preference_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notdiamond_api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/notdiamond/llms/request.html#create_preference_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.llms.request.create_preference_id" title="Link to this definition"></a></dt>
+<dd><p>Create a preference id with an optional name. The preference name will appear in your
+dashboard on Not Diamond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>notdiamond_api_key</strong> (<em>str</em>)</p></li>
+<li><p><strong>name</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="notdiamond.llms.request.get_tools_in_openai_format">
 <span class="sig-prename descclassname"><span class="pre">notdiamond.llms.request.</span></span><span class="sig-name descname"><span class="pre">get_tools_in_openai_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tools</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/llms/request.html#get_tools_in_openai_format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.llms.request.get_tools_in_openai_format" title="Link to this definition"></a></dt>
 <dd><p>This function converts the tools list into the format that OpenAI expects.
@@ -1382,7 +1401,7 @@ router call your latency report refers to.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Aug 05, 2024.
+      <span class="lastupdated">Last updated on Aug 06, 2024.
       </span></p>
   </div>
 
