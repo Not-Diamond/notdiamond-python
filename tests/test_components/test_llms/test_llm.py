@@ -620,6 +620,21 @@ class Test_NDLLM:
                     hash_content=True,
                 )
 
+    def test_preference_id(self, ndtarget, NDLLM):
+        llm_configs = [
+            "openai/gpt-3.5-turbo",
+            "openai/gpt-4",
+            "anthropic/claude-2.1",
+            "google/gemini-pro",
+        ]
+        with patch.multiple(
+            "notdiamond.llms.client", NDApiKeyValidator=Mock(return_value=True)
+        ):
+            nd_llm = NDLLM(llm_configs=llm_configs)
+            preference_id = nd_llm.create_preference_id(name="test")
+            assert preference_id is not None
+            assert isinstance(preference_id, str)
+
 
 class Test_OpenAI_style_input:
     def test_openai_style_input_invoke(

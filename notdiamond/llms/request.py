@@ -67,11 +67,7 @@ def model_select_prepare(
     if preference_id is not None:
         payload["preference_id"] = preference_id
 
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {notdiamond_api_key}",
-        "User-Agent": f"Python-SDK/{settings.VERSION}",
-    }
+    headers = _default_headers(notdiamond_api_key)
 
     return url, payload, headers
 
@@ -282,11 +278,7 @@ def report_latency(
         "feedback": {"tokens_per_second": tokens_per_second},
     }
 
-    headers = {
-        "content-type": "application/json",
-        "Authorization": f"Bearer {notdiamond_api_key}",
-        "User-Agent": f"Python-SDK/{settings.VERSION}",
-    }
+    headers = _default_headers(notdiamond_api_key)
 
     try:
         response = requests.post(url, json=payload, headers=headers)
@@ -297,3 +289,29 @@ def report_latency(
         return 500
 
     return response.status_code
+
+def create_preference_id(notdiamond_api_key: str, name: Optional[str] = None) -> str:
+    """
+    Create a preference id with an optional name. The preference name will appear in your
+    dashboard on Not Diamond.
+    """
+    url = f"{settings.ND_BASE_URL}/v2/preferences/userPreferenceCreate"
+    headers = _default_headers(notdiamond_api_key)
+    res = requests.post(
+        url=url,
+        headers=headers,
+        json={"name": name}
+    )
+    if res.status_code == 200:
+        preference_id = res.json()["preference_id"]
+    else:
+        raise Exception(f"Error creating preference ID: {res.text}")
+
+    return preference_id
+
+def _default_headers(notdiamond_api_key: str) -> Dict[str, str]:
+    return {
+        "content-type": "application/json",
+        "Authorization": f"Bearer {notdiamond_api_key}",
+        "User-Agent": f"Python-SDK/{settings.VERSION}",
+    }

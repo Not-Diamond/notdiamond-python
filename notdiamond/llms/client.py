@@ -32,7 +32,7 @@ from notdiamond.exceptions import (
     MissingLLMConfigs,
 )
 from notdiamond.llms.config import LLMConfig
-from notdiamond.llms.request import amodel_select, model_select, report_latency
+from notdiamond.llms.request import amodel_select, model_select, report_latency, create_preference_id
 from notdiamond.metrics.metric import Metric
 from notdiamond.prompts import _curly_escape, inject_system_prompt
 from notdiamond.types import NDApiKeyValidator
@@ -130,6 +130,9 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         @property
         def completions(self):
             return self
+
+        def create_preference_id(self, name: Optional[str] = None) -> str:
+            return create_preference_id(self.api_key, name)
 
         async def amodel_select(
             self,
