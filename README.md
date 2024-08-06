@@ -19,7 +19,7 @@
 | notdiamond/prompts.py                                    |       18 |        2 |        6 |        2 |     83% |20-21, 24->26 |
 | notdiamond/settings.py                                   |       16 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/\_\_init\_\_.py                       |        2 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/custom\_router.py                     |      116 |        6 |       34 |        6 |     91% |35->37, 73, 198, 233, 249->244, 255-257 |
+| notdiamond/toolkit/custom\_router.py                     |      116 |        6 |       34 |        5 |     91% |35->37, 73, 198, 233, 255-257 |
 | notdiamond/types.py                                      |       28 |        0 |       16 |        0 |    100% |           |
 | tests/conftest.py                                        |       73 |        8 |       26 |        0 |     92% |55, 73, 134-149, 159 |
 | tests/helpers.py                                         |       22 |        0 |        8 |        2 |     93% |4->11, 17->24 |
@@ -44,7 +44,7 @@
 | tests/test\_llm\_calls/test\_togetherai.py               |       70 |        6 |        4 |        0 |     92% |     42-55 |
 | tests/test\_toolkit/test\_custom\_router.py              |       68 |        0 |       12 |        0 |    100% |           |
 | tests/test\_types.py                                     |       16 |        0 |        6 |        0 |    100% |           |
-|                                                **TOTAL** | **2456** |  **334** |  **622** |   **56** | **86%** |           |
+|                                                **TOTAL** | **2456** |  **334** |  **622** |   **55** | **86%** |           |
 
 
 ## Setup coverage badge
