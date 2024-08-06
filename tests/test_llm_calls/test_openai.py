@@ -8,10 +8,9 @@ test_providers = [
     provider for provider in NDLLMProviders if provider.provider == "openai"
 ]
 
-pytestmark = pytest.mark.parametrize("provider", test_providers)
-
 
 @pytest.mark.longrun
+@pytest.mark.parametrize("provider", test_providers)
 class Test_OpenAI:
     def test_streaming(self, prompt, provider):
         nd_llm = NotDiamond(
@@ -39,7 +38,6 @@ class Test_OpenAI:
             assert chunk.content != "a"
 
     def test_with_tool_calling(self, tools_fixture, provider):
-        provider = NDLLMProviders.GPT_3_5_TURBO
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(llm_configs=[provider])
         nd_llm = nd_llm.bind_tools(tools_fixture)
@@ -51,8 +49,7 @@ class Test_OpenAI:
         # assert len(result.tool_calls) == 1
         assert result.tool_calls[0]["name"] == "add_fct"
 
-    def test_with_openai_tool_calling(self, openai_tools_fixture):
-        provider = NDLLMProviders.GPT_3_5_TURBO
+    def test_with_openai_tool_calling(self, openai_tools_fixture, provider):
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(llm_configs=[provider])
         nd_llm = nd_llm.bind_tools(openai_tools_fixture)
