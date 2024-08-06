@@ -5,7 +5,7 @@ from notdiamond.llms.client import NotDiamond
 from notdiamond.llms.providers import NDLLMProviders
 
 test_providers = [
-    provider for provider in NDLLMProviders if provider[0] == "openai"
+    provider for provider in NDLLMProviders if provider.provider == "openai"
 ]
 
 pytestmark = pytest.mark.parametrize("provider", test_providers)
