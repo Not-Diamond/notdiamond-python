@@ -32,7 +32,12 @@ from notdiamond.exceptions import (
     MissingLLMConfigs,
 )
 from notdiamond.llms.config import LLMConfig
-from notdiamond.llms.request import amodel_select, model_select, report_latency, create_preference_id
+from notdiamond.llms.request import (
+    amodel_select,
+    create_preference_id,
+    model_select,
+    report_latency,
+)
 from notdiamond.metrics.metric import Metric
 from notdiamond.prompts import _curly_escape, inject_system_prompt
 from notdiamond.types import NDApiKeyValidator
@@ -1395,9 +1400,13 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             result = chain.invoke(input, **kwargs)
             end_time = time.time()
 
+            result_str = result
+            if not isinstance(result, str):
+                result_str = result.content
+
             tokens_completed = token_counter(
                 model=llm_config.model,
-                messages=[{"role": "assistant", "content": result.content}],
+                messages=[{"role": "assistant", "content": result_str}],
             )
             tokens_per_second = tokens_completed / (end_time - start_time)
 
