@@ -230,6 +230,10 @@
 <span class="sd">            LLMConfig: initialized object with correct provider and model</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">split_items</span> <span class="o">=</span> <span class="n">llm_provider</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_items</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Expected string of format &#39;provider/model&#39; but got </span><span class="si">{</span><span class="n">llm_provider</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
         <span class="n">provider</span> <span class="o">=</span> <span class="n">split_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">split_items</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span></div>
@@ -245,7 +249,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Aug 06, 2024.
+      <span class="lastupdated">Last updated on Aug 12, 2024.
       </span></p>
   </div>
 
