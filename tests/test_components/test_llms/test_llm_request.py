@@ -2,6 +2,7 @@ import pytest
 from langchain_core.messages import AIMessage
 
 from notdiamond import Metric, NotDiamond
+from notdiamond.llms.config import LLMConfig
 from notdiamond.llms.providers import NDLLMProviders
 
 
@@ -19,6 +20,48 @@ def test_llm_invoke_with_latency_tracking_success():
 
     assert session_id
     assert llm_result
+
+
+def test_custom_model_attributes():
+    metric = Metric("accuracy")
+    llm_configs = [
+        LLMConfig(
+            provider="openai",
+            model="gpt-4",
+            latency=10,
+            input_price=0.0,
+            output_price=0.0,
+        ),
+        LLMConfig(
+            provider="togetherai",
+            model="Meta-Llama-3.1-8B-Instruct-Turbo",
+            latency=0,
+            input_price=10.0,
+            output_price=10.0,
+        ),
+    ]
+
+    client = NotDiamond(llm_configs=llm_configs)
+
+    llm_result, session_id, _ = client.invoke(
+        messages=[{"role": "user", "content": "hello"}],
+        metric=metric,
+        tradeoff="cost",
+    )
+
+    assert session_id
+    assert llm_result.provider == "openai"
+    assert llm_result.model == "gpt-4"
+
+    llm_result, session_id, _ = client.invoke(
+        messages=[{"role": "user", "content": "hello"}],
+        metric=metric,
+        tradeoff="latency",
+    )
+
+    assert session_id
+    assert llm_result.provider == "togetherai"
+    assert llm_result.model == "Meta-Llama-3.1-8B-Instruct-Turbo"
 
 
 @pytest.mark.asyncio
