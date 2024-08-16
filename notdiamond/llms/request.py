@@ -25,6 +25,7 @@ def model_select_prepare(
     tradeoff: Optional[str] = None,
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
+    previous_session: Optional[str] = None,
 ):
     """
     This is the core method for the model_select endpoint.
@@ -41,6 +42,7 @@ def model_select_prepare(
                                             for the router to determine the best LLM for a given query.
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
+        previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
         async_mode (bool, optional): whether to run the request in async mode. Defaults to False.
 
     Returns:
@@ -66,6 +68,8 @@ def model_select_prepare(
         payload["tradeoff"] = tradeoff
     if preference_id is not None:
         payload["preference_id"] = preference_id
+    if previous_session is not None:
+        payload["previous_session"] = previous_session
 
     headers = _default_headers(notdiamond_api_key)
 
@@ -128,6 +132,7 @@ def model_select(
     tradeoff: Optional[str] = None,
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
+    previous_session: Optional[str] = None,
     timeout: Optional[int] = 5,
 ):
     """
@@ -145,6 +150,7 @@ def model_select(
                                             for the router to determine the best LLM for a given query.
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
+        previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
         timeout (int, optional): timeout for the request. Defaults to 5.
 
     Returns:
@@ -162,6 +168,7 @@ def model_select(
         tradeoff=tradeoff,
         preference_id=preference_id,
         tools=tools,
+        previous_session=previous_session,
     )
 
     try:
@@ -191,6 +198,7 @@ async def amodel_select(
     tradeoff: Optional[str] = None,
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
+    previous_session: Optional[str] = None,
     timeout: Optional[int] = 5,
 ):
     """
@@ -208,6 +216,7 @@ async def amodel_select(
                                             for the router to determine the best LLM for a given query.
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
+        previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
         timeout (int, optional): timeout for the request. Defaults to 5.
 
     Returns:
@@ -225,6 +234,7 @@ async def amodel_select(
         tradeoff=tradeoff,
         preference_id=preference_id,
         tools=tools,
+        previous_session=previous_session,
     )
 
     try:
@@ -290,24 +300,24 @@ def report_latency(
 
     return response.status_code
 
-def create_preference_id(notdiamond_api_key: str, name: Optional[str] = None) -> str:
+
+def create_preference_id(
+    notdiamond_api_key: str, name: Optional[str] = None
+) -> str:
     """
     Create a preference id with an optional name. The preference name will appear in your
     dashboard on Not Diamond.
     """
     url = f"{settings.ND_BASE_URL}/v2/preferences/userPreferenceCreate"
     headers = _default_headers(notdiamond_api_key)
-    res = requests.post(
-        url=url,
-        headers=headers,
-        json={"name": name}
-    )
+    res = requests.post(url=url, headers=headers, json={"name": name})
     if res.status_code == 200:
         preference_id = res.json()["preference_id"]
     else:
         raise Exception(f"Error creating preference ID: {res.text}")
 
     return preference_id
+
 
 def _default_headers(notdiamond_api_key: str) -> Dict[str, str]:
     return {

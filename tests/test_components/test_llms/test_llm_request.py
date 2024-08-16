@@ -64,6 +64,35 @@ def test_custom_model_attributes():
     assert llm_result.model == "Meta-Llama-3.1-8B-Instruct-Turbo"
 
 
+def test_session_linking():
+    metric = Metric("accuracy")
+    llm_configs = [
+        LLMConfig(
+            provider="openai",
+            model="gpt-3.5-turbo",
+        ),
+    ]
+
+    client = NotDiamond(llm_configs=llm_configs)
+
+    llm_result, session_id, _ = client.invoke(
+        messages=[{"role": "user", "content": "hello"}],
+        metric=metric,
+    )
+
+    assert session_id
+    assert llm_result
+
+    llm_result, new_session_id, _ = client.invoke(
+        messages=[{"role": "user", "content": "hello"}],
+        metric=metric,
+        previous_session=session_id,
+    )
+
+    assert new_session_id
+    assert llm_result
+
+
 @pytest.mark.asyncio
 async def test_async_llm_invoke_with_latency_tracking_success():
     metric = Metric("accuracy")
