@@ -11,7 +11,7 @@ from tqdm import tqdm
 from notdiamond.exceptions import ApiError
 from notdiamond.llms.client import NotDiamond
 from notdiamond.llms.config import LLMConfig
-from notdiamond.settings import ND_BASE_URL, NOTDIAMOND_API_KEY, VERSION
+from notdiamond.settings import NOTDIAMOND_API_KEY, NOTDIAMOND_API_URL, VERSION
 from notdiamond.types import NDApiKeyValidator
 
 
@@ -46,8 +46,9 @@ class CustomRouter:
         dataset_file: str,
         llm_configs: List[LLMConfig],
         preference_id: Optional[str],
+        nd_api_url: str,
     ) -> str:
-        url = f"{ND_BASE_URL}/v2/pzn/trainCustomRouter"
+        url = f"{nd_api_url}/v2/pzn/trainCustomRouter"
 
         files = {"dataset_file": open(dataset_file, "rb")}
 
@@ -123,6 +124,7 @@ class CustomRouter:
         response_column: str,
         score_column: str,
         preference_id: Optional[str] = None,
+        nd_api_url: Optional[str] = NOTDIAMOND_API_URL,
     ) -> str:
         """
         Method to train a custom router using provided dataset.
@@ -138,6 +140,7 @@ class CustomRouter:
                 to the score given to the response from the LLM.
             preference_id (Optional[str], optional): If specified, the custom router
                 associated with the preference_id will be updated with the provided dataset.
+            nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to prod.
 
         Raises:
             ApiError: When the NotDiamond API fails
@@ -157,7 +160,11 @@ class CustomRouter:
         with tempfile.NamedTemporaryFile(suffix=".csv") as joint_csv:
             joint_df.to_csv(joint_csv.name, index=False)
             preference_id = self._request_train_router(
-                prompt_column, joint_csv.name, llm_configs, preference_id
+                prompt_column,
+                joint_csv.name,
+                llm_configs,
+                preference_id,
+                nd_api_url,
             )
 
         return preference_id
