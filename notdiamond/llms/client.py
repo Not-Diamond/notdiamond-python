@@ -74,6 +74,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         preference_id: Optional[str]
         tools: Optional[Sequence[Union[Dict[str, Any], Callable]]]
         callbacks: Optional[List]
+        nd_api_url: Optional[str]
 
         class Config:
             arbitrary_types_allowed = True
@@ -515,6 +516,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         preference_id: Optional[str]
         tools: Optional[Sequence[Union[Dict[str, Any], Callable]]]
         callbacks: Optional[List]
+        nd_api_url: Optional[str]
 
         def __init__(
             self,
@@ -806,6 +808,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 timeout=timeout,
+                nd_api_url=self.nd_api_url,
             )
 
             is_default = False
@@ -1001,6 +1004,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 timeout=timeout,
+                nd_api_url=self.nd_api_url,
             )
 
             is_default = False
@@ -1187,6 +1191,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 timeout=timeout,
+                nd_api_url=self.nd_api_url,
             )
 
             if not best_llm:
@@ -1301,6 +1306,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 timeout=timeout,
+                nd_api_url=self.nd_api_url,
             )
 
             if not best_llm:
