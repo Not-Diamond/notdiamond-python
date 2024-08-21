@@ -91,6 +91,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             preference_id: Optional[str] = None,
             callbacks: Optional[List] = None,
             tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = None,
+            nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
             **kwargs,
         ):
             if api_key is None:
@@ -126,6 +127,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=preference_id,
                 tools=tools,
                 callbacks=callbacks,
+                nd_api_url=nd_api_url,
                 **kwargs,
             )
 
@@ -179,8 +181,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to Metric("accuracy").
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
                                 Default to 5 seconds.
+                nd_api_url (Optional[str]): The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
-
             Returns:
                 tuple[str, Optional[LLMConfig]]: returns the session_id and the chosen LLM
             """
@@ -530,6 +532,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             preference_id: Optional[str] = None,
             tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = None,
             callbacks: Optional[List] = None,
+            nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
             **kwargs,
         ) -> None:
             super().__init__(
@@ -543,6 +546,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=preference_id,
                 tools=tools,
                 callbacks=callbacks,
+                nd_api_url=nd_api_url,
                 **kwargs,
             )
 
@@ -616,6 +620,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                                 dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
                                 Default to 5 seconds.
+                nd_api_url (Optional[str]): The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
 
             Raises:
@@ -1641,7 +1646,7 @@ class NotDiamond(_NDClient):
     """Bind tools to the LLM object. The tools will be passed to the LLM object when invoking it."""
 
     nd_api_url: Optional[str]
-    """The URL of the NotDiamond API. Defaults to None."""
+    """The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL."""
 
     class Config:
         arbitrary_types_allowed = True
