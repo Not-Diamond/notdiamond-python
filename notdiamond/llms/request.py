@@ -164,6 +164,7 @@ def model_select(
         tradeoff=tradeoff,
         preference_id=preference_id,
         tools=tools,
+        nd_api_url=nd_api_url,
     )
 
     try:
