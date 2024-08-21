@@ -95,8 +95,9 @@
     <span class="n">llm_config</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span>
     <span class="n">feedback_payload</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
     <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">nd_api_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">ND_BASE_URL</span><span class="si">}</span><span class="s2">/v2/report/metrics/feedback&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nd_api_url</span><span class="si">}</span><span class="s2">/v2/report/metrics/feedback&quot;</span>
 
     <span class="n">payload</span><span class="p">:</span> <span class="n">FeedbackRequestPayload</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;session_id&quot;</span><span class="p">:</span> <span class="n">session_id</span><span class="p">,</span>
@@ -133,7 +134,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Aug 12, 2024.
+      <span class="lastupdated">Last updated on Aug 21, 2024.
       </span></p>
   </div>
 
