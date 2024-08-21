@@ -18,7 +18,9 @@ PPLX_API_KEY = os.getenv("PPLX_API_KEY", default="")
 REPLICATE_API_KEY = os.getenv("REPLICATE_API_KEY", default="")
 
 
-ND_BASE_URL = "https://not-diamond-server.onrender.com"
+NOTDIAMOND_API_URL = os.getenv(
+    "ND_BASE_URL", "https://not-diamond-server.onrender.com"
+)
 
 PROVIDERS = {
     "openai": {

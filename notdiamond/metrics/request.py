@@ -17,8 +17,9 @@ def feedback_request(
     llm_config: LLMConfig,
     feedback_payload: Dict[str, int],
     notdiamond_api_key: str,
+    nd_api_url: str = settings.NOTDIAMOND_API_URL,
 ) -> bool:
-    url = f"{settings.ND_BASE_URL}/v2/report/metrics/feedback"
+    url = f"{nd_api_url}/v2/report/metrics/feedback"
 
     payload: FeedbackRequestPayload = {
         "session_id": session_id,

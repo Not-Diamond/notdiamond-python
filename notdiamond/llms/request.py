@@ -25,6 +25,7 @@ def model_select_prepare(
     tradeoff: Optional[str] = None,
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
+    nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
 ):
     """
     This is the core method for the model_select endpoint.
@@ -42,12 +43,12 @@ def model_select_prepare(
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
         async_mode (bool, optional): whether to run the request in async mode. Defaults to False.
+        nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.
 
     Returns:
         tuple(url, payload, headers): returns data to be used for the API call of modelSelect
     """
-
-    url = f"{settings.ND_BASE_URL}/v2/modelRouter/modelSelect"
+    url = f"{nd_api_url}/v2/modelRouter/modelSelect"
     tools_dict = get_tools_in_openai_format(tools)
 
     payload: ModelSelectRequestPayload = {
@@ -129,6 +130,7 @@ def model_select(
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
     timeout: Optional[int] = 5,
+    nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
 ):
     """
     This endpoint receives the prompt and routing settings, and makes a call to the NotDiamond API.
@@ -146,7 +148,7 @@ def model_select(
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
         timeout (int, optional): timeout for the request. Defaults to 5.
-
+        nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.
     Returns:
         tuple(LLMConfig, string): returns a tuple of the chosen LLMConfig to call and a session ID string.
                                         In case of an error the LLM defaults to None and the session ID defaults
@@ -192,6 +194,7 @@ async def amodel_select(
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
     timeout: Optional[int] = 5,
+    nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
 ):
     """
     This endpoint receives the prompt and routing settings, and makes a call to the NotDiamond API.
@@ -209,7 +212,7 @@ async def amodel_select(
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
         timeout (int, optional): timeout for the request. Defaults to 5.
-
+        nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.
     Returns:
         tuple(LLMConfig, string): returns a tuple of the chosen LLMConfig to call and a session ID string.
                                         In case of an error the LLM defaults to None and the session ID defaults
@@ -250,6 +253,7 @@ def report_latency(
     llm_config: LLMConfig,
     tokens_per_second: float,
     notdiamond_api_key: str,
+    nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
 ):
     """
     This method makes an API call to the NotDiamond server to report the latency of an LLM call.
@@ -263,14 +267,14 @@ def report_latency(
         llm_provider (LLMConfig): specifying the LLM provider for which the latency is reported
         tokens_per_second (float): latency of the model call calculated based on time elapsed, input tokens, and output tokens
         notdiamond_api_key (str): NotDiamond API call used for authentication
-
+        nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.
     Returns:
         int: status code of the API call, 200 if it's success
 
     Raises:
         ApiError: if the API call to the NotDiamond backend fails, this error is raised
     """
-    url = f"{settings.ND_BASE_URL}/v2/report/metrics/latency"
+    url = f"{nd_api_url}/v2/report/metrics/latency"
 
     payload = {
         "session_id": session_id,
@@ -290,24 +294,26 @@ def report_latency(
 
     return response.status_code
 
-def create_preference_id(notdiamond_api_key: str, name: Optional[str] = None) -> str:
+
+def create_preference_id(
+    notdiamond_api_key: str,
+    name: Optional[str] = None,
+    nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
+) -> str:
     """
     Create a preference id with an optional name. The preference name will appear in your
     dashboard on Not Diamond.
     """
-    url = f"{settings.ND_BASE_URL}/v2/preferences/userPreferenceCreate"
+    url = f"{nd_api_url}/v2/preferences/userPreferenceCreate"
     headers = _default_headers(notdiamond_api_key)
-    res = requests.post(
-        url=url,
-        headers=headers,
-        json={"name": name}
-    )
+    res = requests.post(url=url, headers=headers, json={"name": name})
     if res.status_code == 200:
         preference_id = res.json()["preference_id"]
     else:
         raise Exception(f"Error creating preference ID: {res.text}")
 
     return preference_id
+
 
 def _default_headers(notdiamond_api_key: str) -> Dict[str, str]:
     return {
