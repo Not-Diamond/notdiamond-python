@@ -7,7 +7,7 @@ from notdiamond.metrics.metric import Metric
 
 @pytest.mark.longrun
 class Test_Perplexity_LLMs:
-    def test_llama_3_sonar_large_32k_online(self):
+    def test_llama_3_1_sonar_large_128k_online(self):
         provider = NDLLMProviders.LLAMA_3_1_SONAR_LARGE_128K_ONLINE
         provider.kwargs = {"max_tokens": 10}
         nd_llm = NotDiamond(

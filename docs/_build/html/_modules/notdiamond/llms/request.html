@@ -103,6 +103,7 @@
     <span class="n">tradeoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tools</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Callable</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is the core method for the model_select endpoint.</span>
@@ -120,12 +121,12 @@
 <span class="sd">        preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.</span>
 <span class="sd">                                                    Defaults to None.</span>
 <span class="sd">        async_mode (bool, optional): whether to run the request in async mode. Defaults to False.</span>
+<span class="sd">        nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        tuple(url, payload, headers): returns data to be used for the API call of modelSelect</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">ND_BASE_URL</span><span class="si">}</span><span class="s2">/v2/modelRouter/modelSelect&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nd_api_url</span><span class="si">}</span><span class="s2">/v2/modelRouter/modelSelect&quot;</span>
     <span class="n">tools_dict</span> <span class="o">=</span> <span class="n">get_tools_in_openai_format</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span>
 
     <span class="n">payload</span><span class="p">:</span> <span class="n">ModelSelectRequestPayload</span> <span class="o">=</span> <span class="p">{</span>
@@ -216,6 +217,7 @@
     <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tools</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Callable</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This endpoint receives the prompt and routing settings, and makes a call to the NotDiamond API.</span>
@@ -233,7 +235,7 @@
 <span class="sd">        preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.</span>
 <span class="sd">                                                    Defaults to None.</span>
 <span class="sd">        timeout (int, optional): timeout for the request. Defaults to 5.</span>
-
+<span class="sd">        nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        tuple(LLMConfig, string): returns a tuple of the chosen LLMConfig to call and a session ID string.</span>
 <span class="sd">                                        In case of an error the LLM defaults to None and the session ID defaults</span>
@@ -249,6 +251,7 @@
         <span class="n">tradeoff</span><span class="o">=</span><span class="n">tradeoff</span><span class="p">,</span>
         <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
         <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+        <span class="n">nd_api_url</span><span class="o">=</span><span class="n">nd_api_url</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -282,6 +285,7 @@
     <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tools</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Callable</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This endpoint receives the prompt and routing settings, and makes a call to the NotDiamond API.</span>
@@ -299,7 +303,7 @@
 <span class="sd">        preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.</span>
 <span class="sd">                                                    Defaults to None.</span>
 <span class="sd">        timeout (int, optional): timeout for the request. Defaults to 5.</span>
-
+<span class="sd">        nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        tuple(LLMConfig, string): returns a tuple of the chosen LLMConfig to call and a session ID string.</span>
 <span class="sd">                                        In case of an error the LLM defaults to None and the session ID defaults</span>
@@ -343,6 +347,7 @@
     <span class="n">llm_config</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span>
     <span class="n">tokens_per_second</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method makes an API call to the NotDiamond server to report the latency of an LLM call.</span>
@@ -356,14 +361,14 @@
 <span class="sd">        llm_provider (LLMConfig): specifying the LLM provider for which the latency is reported</span>
 <span class="sd">        tokens_per_second (float): latency of the model call calculated based on time elapsed, input tokens, and output tokens</span>
 <span class="sd">        notdiamond_api_key (str): NotDiamond API call used for authentication</span>
-
+<span class="sd">        nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        int: status code of the API call, 200 if it&#39;s success</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        ApiError: if the API call to the NotDiamond backend fails, this error is raised</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">ND_BASE_URL</span><span class="si">}</span><span class="s2">/v2/report/metrics/latency&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nd_api_url</span><span class="si">}</span><span class="s2">/v2/report/metrics/latency&quot;</span>
 
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;session_id&quot;</span><span class="p">:</span> <span class="n">session_id</span><span class="p">,</span>
@@ -384,26 +389,28 @@
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span></div>
 
 
+
 <div class="viewcode-block" id="create_preference_id">
 <a class="viewcode-back" href="../../../source/notdiamond.llms.html#notdiamond.llms.request.create_preference_id">[docs]</a>
-<span class="k">def</span> <span class="nf">create_preference_id</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">create_preference_id</span><span class="p">(</span>
+    <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a preference id with an optional name. The preference name will appear in your</span>
 <span class="sd">    dashboard on Not Diamond.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">ND_BASE_URL</span><span class="si">}</span><span class="s2">/v2/preferences/userPreferenceCreate&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nd_api_url</span><span class="si">}</span><span class="s2">/v2/preferences/userPreferenceCreate&quot;</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">_default_headers</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">)</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-        <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-        <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
-    <span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">})</span>
     <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
         <span class="n">preference_id</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;preference_id&quot;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error creating preference ID: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">preference_id</span></div>
+
 
 
 <span class="k">def</span> <span class="nf">_default_headers</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
@@ -422,7 +429,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Aug 12, 2024.
+      <span class="lastupdated">Last updated on Aug 21, 2024.
       </span></p>
   </div>
 
