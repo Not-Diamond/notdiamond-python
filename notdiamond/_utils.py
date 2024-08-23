@@ -88,3 +88,13 @@ def convert_tool_to_openai_function(tool):
             " either be in OpenAI function format or valid JSON schema with top-level"
             " 'title' and 'description' keys."
         )
+
+
+def _default_headers(
+    notdiamond_api_key: str, user_agent: str
+) -> Dict[str, str]:
+    return {
+        "content-type": "application/json",
+        "Authorization": f"Bearer {notdiamond_api_key}",
+        "User-Agent": user_agent,
+    }
