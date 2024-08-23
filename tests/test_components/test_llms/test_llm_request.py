@@ -43,25 +43,27 @@ def test_custom_model_attributes():
 
     client = NotDiamond(llm_configs=llm_configs)
 
-    llm_result, session_id, _ = client.invoke(
+    _, session_id, llm = client.invoke(
         messages=[{"role": "user", "content": "hello"}],
         metric=metric,
         tradeoff="cost",
+        latency_tracking=False,
     )
 
     assert session_id
-    assert llm_result.provider == "openai"
-    assert llm_result.model == "gpt-4"
+    assert llm.provider == "openai"
+    assert llm.model == "gpt-4"
 
-    llm_result, session_id, _ = client.invoke(
+    _, session_id, llm = client.invoke(
         messages=[{"role": "user", "content": "hello"}],
         metric=metric,
         tradeoff="latency",
+        latency_tracking=False,
     )
 
     assert session_id
-    assert llm_result.provider == "togetherai"
-    assert llm_result.model == "Meta-Llama-3.1-8B-Instruct-Turbo"
+    assert llm.provider == "togetherai"
+    assert llm.model == "Meta-Llama-3.1-8B-Instruct-Turbo"
 
 
 def test_session_linking():
