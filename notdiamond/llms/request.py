@@ -69,7 +69,7 @@ def model_select_prepare(
     if preference_id is not None:
         payload["preference_id"] = preference_id
 
-    headers = _default_headers(notdiamond_api_key, user_agent=_user_agent)
+    headers = _default_headers(notdiamond_api_key, _user_agent)
 
     return url, payload, headers
 
@@ -290,7 +290,7 @@ def report_latency(
         "feedback": {"tokens_per_second": tokens_per_second},
     }
 
-    headers = _default_headers(notdiamond_api_key, user_agent=_user_agent)
+    headers = _default_headers(notdiamond_api_key, _user_agent)
 
     try:
         response = requests.post(url, json=payload, headers=headers)
@@ -314,7 +314,7 @@ def create_preference_id(
     dashboard on Not Diamond.
     """
     url = f"{nd_api_url}/v2/preferences/userPreferenceCreate"
-    headers = _default_headers(notdiamond_api_key, user_agent=_user_agent)
+    headers = _default_headers(notdiamond_api_key, _user_agent)
     res = requests.post(url=url, headers=headers, json={"name": name})
     if res.status_code == 200:
         preference_id = res.json()["preference_id"]

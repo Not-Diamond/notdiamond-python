@@ -134,6 +134,9 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 **kwargs,
             )
             self.user_agent = user_agent
+            assert (
+                self.api_key is not None
+            ), "API key is not set. Please set a Not Diamond API key."
 
         @property
         def chat(self):
@@ -559,6 +562,9 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 **kwargs,
             )
             self.user_agent = user_agent
+            assert (
+                self.api_key is not None
+            ), "API key is not set. Please set a Not Diamond API key."
 
         def __repr__(self) -> str:
             class_name = self.__class__.__name__
@@ -1671,11 +1677,13 @@ class NotDiamond(_NDClient):
     def __init__(
         self,
         nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
-        user_agent: str | None = None,
+        user_agent: str | None = settings.DEFAULT_USER_AGENT,
         *args,
         **kwargs,
     ):
-        super().__init__(nd_api_url=nd_api_url, *args, **kwargs)
+        super().__init__(
+            nd_api_url=nd_api_url, user_agent=user_agent, *args, **kwargs
+        )
         self.nd_api_url = nd_api_url
 
 
