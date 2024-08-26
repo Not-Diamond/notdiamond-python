@@ -65,6 +65,10 @@ class LLMConfig:
             provider (str): The name of the LLM provider (e.g., "openai", "anthropic").
             model (str): The name of the LLM model to use (e.g., "gpt-3.5-turbo").
             system_prompt (Optional[str], optional): The system prompt to use for the provider. Defaults to None.
+            context_length (Optional[int], optional): Custom context window length for the provider/model.
+            input_price (Optional[float], optional): Custom input price (USD) per million tokens for provider/model.
+            output_price (Optional[float], optional): Custom output price (USD) per million tokens for provider/model.
+            latency (Optional[float], optional): Custom latency (time to first token) for provider/model.
             api_key (Optional[str], optional): The API key for accessing the LLM provider's services.
                                                 Defaults to None.
             **kwargs: Additional keyword arguments that might be necessary for specific providers or models.
