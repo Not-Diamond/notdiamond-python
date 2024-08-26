@@ -75,6 +75,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         tools: Optional[Sequence[Union[Dict[str, Any], Callable]]]
         callbacks: Optional[List]
         nd_api_url: Optional[str]
+        user_agent: str | None
 
         class Config:
             arbitrary_types_allowed = True
@@ -92,11 +93,15 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             callbacks: Optional[List] = None,
             tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = None,
             nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
+            user_agent: str | None = None,
             **kwargs,
         ):
             if api_key is None:
                 api_key = settings.NOTDIAMOND_API_KEY
             NDApiKeyValidator(api_key=api_key)
+
+            if user_agent is None:
+                user_agent = settings.DEFAULT_USER_AGENT
 
             if llm_configs is not None:
                 llm_configs = self._parse_llm_configs_data(llm_configs)
@@ -128,8 +133,13 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tools=tools,
                 callbacks=callbacks,
                 nd_api_url=nd_api_url,
+                user_agent=user_agent,
                 **kwargs,
             )
+            self.user_agent = user_agent
+            assert (
+                self.api_key is not None
+            ), "API key is not set. Please set a Not Diamond API key."
 
         @property
         def chat(self):
@@ -214,6 +224,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tools=self.tools,
                 timeout=timeout,
                 nd_api_url=self.nd_api_url,
+                _user_agent=self.user_agent,
             )
 
             if not best_llm:
@@ -296,6 +307,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tools=self.tools,
                 timeout=timeout,
                 nd_api_url=self.nd_api_url,
+                _user_agent=self.user_agent,
             )
 
             if not best_llm:
@@ -519,6 +531,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         tools: Optional[Sequence[Union[Dict[str, Any], Callable]]]
         callbacks: Optional[List]
         nd_api_url: Optional[str]
+        user_agent: str | None
 
         def __init__(
             self,
@@ -533,6 +546,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = None,
             callbacks: Optional[List] = None,
             nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
+            user_agent: str | None = None,
             **kwargs,
         ) -> None:
             super().__init__(
@@ -547,8 +561,16 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tools=tools,
                 callbacks=callbacks,
                 nd_api_url=nd_api_url,
+                user_agent=user_agent,
                 **kwargs,
             )
+            if user_agent is None:
+                user_agent = settings.DEFAULT_USER_AGENT
+
+            self.user_agent = user_agent
+            assert (
+                self.api_key is not None
+            ), "API key is not set. Please set a Not Diamond API key."
 
         def __repr__(self) -> str:
             class_name = self.__class__.__name__
@@ -832,6 +854,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             self.call_callbacks("on_model_select", best_llm, best_llm.model)
 
             llm = self._llm_from_config(best_llm, callbacks=self.callbacks)
+            print(best_llm)
+            print(llm)
 
             if self.tools:
                 llm = llm.bind_tools(self.tools)
@@ -846,6 +870,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             ]
             prompt_template = ChatPromptTemplate.from_messages(chain_messages)
             chain = prompt_template | llm
+            print(chain)
             accepted_errors = _get_accepted_invoke_errors(best_llm.provider)
 
             try:
@@ -1382,6 +1407,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tokens_per_second=tokens_per_second,
                 notdiamond_api_key=self.api_key,
                 nd_api_url=self.nd_api_url,
+                _user_agent=self.user_agent,
             )
             self.call_callbacks(
                 "on_latency_tracking",
@@ -1426,6 +1452,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tokens_per_second=tokens_per_second,
                 notdiamond_api_key=self.api_key,
                 nd_api_url=self.nd_api_url,
+                _user_agent=self.user_agent,
             )
             self.call_callbacks(
                 "on_latency_tracking",
@@ -1648,16 +1675,21 @@ class NotDiamond(_NDClient):
     nd_api_url: Optional[str]
     """The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL."""
 
+    user_agent: str | None
+
     class Config:
         arbitrary_types_allowed = True
 
     def __init__(
         self,
         nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
+        user_agent: str | None = settings.DEFAULT_USER_AGENT,
         *args,
         **kwargs,
     ):
-        super().__init__(*args, **kwargs)
+        super().__init__(
+            nd_api_url=nd_api_url, user_agent=user_agent, *args, **kwargs
+        )
         self.nd_api_url = nd_api_url
 
 

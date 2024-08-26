@@ -4,6 +4,7 @@ from typing import Dict
 import requests
 
 from notdiamond import settings
+from notdiamond._utils import _default_headers
 from notdiamond.exceptions import ApiError
 from notdiamond.llms.config import LLMConfig
 from notdiamond.types import FeedbackRequestPayload
@@ -18,6 +19,7 @@ def feedback_request(
     feedback_payload: Dict[str, int],
     notdiamond_api_key: str,
     nd_api_url: str = settings.NOTDIAMOND_API_URL,
+    _user_agent: str = settings.DEFAULT_USER_AGENT,
 ) -> bool:
     url = f"{nd_api_url}/v2/report/metrics/feedback"
 
@@ -27,11 +29,7 @@ def feedback_request(
         "feedback": feedback_payload,
     }
 
-    headers = {
-        "content-type": "application/json",
-        "Authorization": f"Bearer {notdiamond_api_key}",
-        "User-Agent": f"Python-SDK/{settings.VERSION}",
-    }
+    headers = _default_headers(notdiamond_api_key, _user_agent)
 
     try:
         response = requests.post(url, json=payload, headers=headers)
