@@ -28,9 +28,23 @@ def test_unsupported_model():
 
 
 def test_prepare_for_request():
-    llm_provider = LLMConfig(provider="openai", model="gpt-3.5-turbo")
+    llm_provider = LLMConfig(
+        provider="openai",
+        model="gpt-3.5-turbo",
+        context_length=1,
+        input_price=0.1,
+        output_price=0.4,
+        latency=100,
+    )
     request = llm_provider.prepare_for_request()
-    assert request == {"provider": "openai", "model": "gpt-3.5-turbo"}
+    assert request == {
+        "provider": llm_provider.provider,
+        "model": llm_provider.model,
+        "context_length": llm_provider.context_length,
+        "input_price": llm_provider.input_price,
+        "output_price": llm_provider.output_price,
+        "latency": llm_provider.latency,
+    }
 
 
 def test_existing_openrouter_model():

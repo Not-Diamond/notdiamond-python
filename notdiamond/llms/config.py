@@ -52,6 +52,10 @@ class LLMConfig:
         provider: str,
         model: str,
         system_prompt: Optional[str] = None,
+        context_length: Optional[int] = None,
+        input_price: Optional[float] = None,
+        output_price: Optional[float] = None,
+        latency: Optional[float] = None,
         api_key: Optional[str] = None,
         **kwargs,
     ):
@@ -61,6 +65,10 @@ class LLMConfig:
             provider (str): The name of the LLM provider (e.g., "openai", "anthropic").
             model (str): The name of the LLM model to use (e.g., "gpt-3.5-turbo").
             system_prompt (Optional[str], optional): The system prompt to use for the provider. Defaults to None.
+            context_length (Optional[int], optional): Custom context window length for the provider/model.
+            input_price (Optional[float], optional): Custom input price (USD) per million tokens for provider/model.
+            output_price (Optional[float], optional): Custom output price (USD) per million tokens for provider/model.
+            latency (Optional[float], optional): Custom latency (time to first token) for provider/model.
             api_key (Optional[str], optional): The API key for accessing the LLM provider's services.
                                                 Defaults to None.
             **kwargs: Additional keyword arguments that might be necessary for specific providers or models.
@@ -80,6 +88,12 @@ class LLMConfig:
         self.provider = provider
         self.model = model
         self.system_prompt = system_prompt
+
+        self.context_length = context_length
+        self.input_price = input_price
+        self.output_price = output_price
+        self.latency = latency
+
         self._openrouter_model = settings.PROVIDERS[provider][
             "openrouter_identifier"
         ].get(model, None)
@@ -119,7 +133,14 @@ class LLMConfig:
         Returns:
             dict
         """
-        return {"provider": self.provider, "model": self.model}
+        return {
+            "provider": self.provider,
+            "model": self.model,
+            "context_length": self.context_length,
+            "input_price": self.input_price,
+            "output_price": self.output_price,
+            "latency": self.latency,
+        }
 
     def set_api_key(self, api_key: str) -> "LLMConfig":
         self.api_key = api_key

@@ -164,6 +164,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tradeoff: Optional[str] = None,
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
+            previous_session: Optional[str] = None,
             timeout: int = 5,
             **kwargs,
         ) -> tuple[str, Optional[LLMConfig]]:
@@ -189,6 +190,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
+                previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
                                 Default to 5 seconds.
                 nd_api_url (Optional[str]): The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL.
@@ -222,6 +224,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tradeoff=self.tradeoff,
                 preference_id=self.preference_id,
                 tools=self.tools,
+                previous_session=previous_session,
                 timeout=timeout,
                 nd_api_url=self.nd_api_url,
                 _user_agent=self.user_agent,
@@ -248,6 +251,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tradeoff: Optional[str] = None,
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
+            previous_session: Optional[str] = None,
             timeout: int = 5,
             **kwargs,
         ) -> tuple[str, Optional[LLMConfig]]:
@@ -272,6 +276,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
+                previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
                                 Default to 5 seconds.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
@@ -305,6 +310,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tradeoff=self.tradeoff,
                 preference_id=self.preference_id,
                 tools=self.tools,
+                previous_session=previous_session,
                 timeout=timeout,
                 nd_api_url=self.nd_api_url,
                 _user_agent=self.user_agent,
@@ -614,6 +620,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tradeoff: Optional[str] = None,
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
+            previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
             **kwargs,
@@ -637,6 +644,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
+                previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
                                                                 response into the given model. In which case result will a
                                                                 dict.
@@ -666,6 +674,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tradeoff=tradeoff,
                 preference_id=preference_id,
                 metric=metric,
+                previous_session=previous_session,
                 response_model=response_model,
                 timeout=timeout,
                 **kwargs,
@@ -682,6 +691,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tradeoff: Optional[str] = None,
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
+            previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
             **kwargs,
@@ -705,6 +715,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
+                previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
                                                                 response into the given model. In which case result will a
                                                                 dict.
@@ -733,6 +744,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tradeoff=tradeoff,
                 preference_id=preference_id,
                 metric=metric,
+                previous_session=previous_session,
                 response_model=response_model,
                 timeout=timeout,
                 **kwargs,
@@ -750,6 +762,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tradeoff: Optional[str] = None,
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
+            previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
             input: Optional[Dict[str, Any]] = None,
@@ -778,6 +791,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
+                previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
                                                                 response into the given model. In which case result will a
                                                                 dict.
@@ -834,6 +848,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tradeoff=self.tradeoff,
                 preference_id=self.preference_id,
                 tools=self.tools,
+                previous_session=previous_session,
                 timeout=timeout,
                 nd_api_url=self.nd_api_url,
             )
@@ -955,6 +970,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tradeoff: Optional[str] = None,
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
+            previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
             input: Optional[Dict[str, Any]] = None,
@@ -980,6 +996,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
+                previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
                                                                 response into the given model. In which case result will a dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
@@ -1033,6 +1050,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tradeoff=self.tradeoff,
                 preference_id=self.preference_id,
                 tools=self.tools,
+                previous_session=previous_session,
                 timeout=timeout,
                 nd_api_url=self.nd_api_url,
             )
@@ -1153,6 +1171,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tradeoff: Optional[str] = None,
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
+            previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
             **kwargs,
@@ -1175,6 +1194,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
+                previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
                                                                 response into the given model. In which case result will a
                                                                 dict.
@@ -1220,6 +1240,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tradeoff=self.tradeoff,
                 preference_id=self.preference_id,
                 tools=self.tools,
+                previous_session=previous_session,
                 timeout=timeout,
                 nd_api_url=self.nd_api_url,
             )
@@ -1269,6 +1290,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tradeoff: Optional[str] = None,
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
+            previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
             timeout: int = 5,
             **kwargs,
@@ -1291,6 +1313,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to None.
                 metric (Metric, optional): Metric used by NotDiamond router to choose the best LLM.
                                                 Defaults to Metric("accuracy").
+                previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
                                                                 response into the given model. In which case result will a dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
@@ -1335,6 +1358,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 tradeoff=self.tradeoff,
                 preference_id=self.preference_id,
                 tools=self.tools,
+                previous_session=previous_session,
                 timeout=timeout,
                 nd_api_url=self.nd_api_url,
             )

@@ -2,6 +2,7 @@ import pytest
 from langchain_core.messages import AIMessage
 
 from notdiamond import Metric, NotDiamond
+from notdiamond.llms.config import LLMConfig
 from notdiamond.llms.providers import NDLLMProviders
 
 
@@ -18,6 +19,79 @@ def test_llm_invoke_with_latency_tracking_success():
     )
 
     assert session_id
+    assert llm_result
+
+
+def test_custom_model_attributes():
+    metric = Metric("accuracy")
+    llm_configs = [
+        LLMConfig(
+            provider="openai",
+            model="gpt-4",
+            latency=10,
+            input_price=0.0,
+            output_price=0.0,
+        ),
+        LLMConfig(
+            provider="togetherai",
+            model="Meta-Llama-3.1-8B-Instruct-Turbo",
+            latency=0,
+            input_price=10.0,
+            output_price=10.0,
+        ),
+    ]
+
+    client = NotDiamond(llm_configs=llm_configs)
+
+    _, session_id, llm = client.invoke(
+        messages=[{"role": "user", "content": "hello"}],
+        metric=metric,
+        tradeoff="cost",
+        latency_tracking=False,
+    )
+
+    assert session_id
+    assert llm.provider == "openai"
+    assert llm.model == "gpt-4"
+
+    _, session_id, llm = client.invoke(
+        messages=[{"role": "user", "content": "hello"}],
+        metric=metric,
+        tradeoff="latency",
+        latency_tracking=False,
+    )
+
+    assert session_id
+    assert llm.provider == "togetherai"
+    assert llm.model == "Meta-Llama-3.1-8B-Instruct-Turbo"
+
+
+def test_session_linking():
+    metric = Metric("accuracy")
+    llm_configs = [
+        LLMConfig(
+            provider="openai",
+            model="gpt-3.5-turbo",
+        ),
+    ]
+
+    client = NotDiamond(llm_configs=llm_configs)
+
+    llm_result, session_id, _ = client.invoke(
+        messages=[{"role": "user", "content": "hello"}],
+        metric=metric,
+    )
+
+    assert session_id
+    assert llm_result
+
+    llm_result, new_session_id, _ = client.invoke(
+        messages=[{"role": "user", "content": "hello"}],
+        metric=metric,
+        previous_session=session_id,
+    )
+
+    assert new_session_id
     assert llm_result
 
 

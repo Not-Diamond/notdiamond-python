@@ -25,6 +25,7 @@ def model_select_prepare(
     tradeoff: Optional[str] = None,
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
+    previous_session: Optional[str] = None,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
     _user_agent: str = settings.DEFAULT_USER_AGENT,
 ):
@@ -43,6 +44,7 @@ def model_select_prepare(
                                             for the router to determine the best LLM for a given query.
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
+        previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
         async_mode (bool, optional): whether to run the request in async mode. Defaults to False.
         nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.
 
@@ -68,6 +70,8 @@ def model_select_prepare(
         payload["tradeoff"] = tradeoff
     if preference_id is not None:
         payload["preference_id"] = preference_id
+    if previous_session is not None:
+        payload["previous_session"] = previous_session
 
     headers = _default_headers(notdiamond_api_key, _user_agent)
 
@@ -130,6 +134,7 @@ def model_select(
     tradeoff: Optional[str] = None,
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
+    previous_session: Optional[str] = None,
     timeout: Optional[int] = 5,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
     _user_agent: str = settings.DEFAULT_USER_AGENT,
@@ -149,6 +154,7 @@ def model_select(
                                             for the router to determine the best LLM for a given query.
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
+        previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
         timeout (int, optional): timeout for the request. Defaults to 5.
         nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.
     Returns:
@@ -166,6 +172,7 @@ def model_select(
         tradeoff=tradeoff,
         preference_id=preference_id,
         tools=tools,
+        previous_session=previous_session,
         nd_api_url=nd_api_url,
         _user_agent=_user_agent,
     )
@@ -197,6 +204,7 @@ async def amodel_select(
     tradeoff: Optional[str] = None,
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
+    previous_session: Optional[str] = None,
     timeout: Optional[int] = 5,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
     _user_agent: str = settings.DEFAULT_USER_AGENT,
@@ -216,6 +224,7 @@ async def amodel_select(
                                             for the router to determine the best LLM for a given query.
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
+        previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
         timeout (int, optional): timeout for the request. Defaults to 5.
         nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.
     Returns:
@@ -233,6 +242,7 @@ async def amodel_select(
         tradeoff=tradeoff,
         preference_id=preference_id,
         tools=tools,
+        previous_session=previous_session,
         nd_api_url=nd_api_url,
         _user_agent=_user_agent,
     )
