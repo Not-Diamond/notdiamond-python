@@ -6,7 +6,7 @@ import aiohttp
 import requests
 
 from notdiamond import settings
-from notdiamond._utils import convert_tool_to_openai_function
+from notdiamond._utils import _default_headers, convert_tool_to_openai_function
 from notdiamond.llms.config import LLMConfig
 from notdiamond.metrics.metric import Metric
 from notdiamond.types import ModelSelectRequestPayload
@@ -27,6 +27,7 @@ def model_select_prepare(
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
     previous_session: Optional[str] = None,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
+    _user_agent: str = settings.DEFAULT_USER_AGENT,
 ):
     """
     This is the core method for the model_select endpoint.
@@ -72,7 +73,7 @@ def model_select_prepare(
     if previous_session is not None:
         payload["previous_session"] = previous_session
 
-    headers = _default_headers(notdiamond_api_key)
+    headers = _default_headers(notdiamond_api_key, _user_agent)
 
     return url, payload, headers
 
@@ -136,6 +137,7 @@ def model_select(
     previous_session: Optional[str] = None,
     timeout: Optional[int] = 5,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
+    _user_agent: str = settings.DEFAULT_USER_AGENT,
 ):
     """
     This endpoint receives the prompt and routing settings, and makes a call to the NotDiamond API.
@@ -172,6 +174,7 @@ def model_select(
         tools=tools,
         previous_session=previous_session,
         nd_api_url=nd_api_url,
+        _user_agent=_user_agent,
     )
 
     try:
@@ -204,6 +207,7 @@ async def amodel_select(
     previous_session: Optional[str] = None,
     timeout: Optional[int] = 5,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
+    _user_agent: str = settings.DEFAULT_USER_AGENT,
 ):
     """
     This endpoint receives the prompt and routing settings, and makes a call to the NotDiamond API.
@@ -239,6 +243,8 @@ async def amodel_select(
         preference_id=preference_id,
         tools=tools,
         previous_session=previous_session,
+        nd_api_url=nd_api_url,
+        _user_agent=_user_agent,
     )
 
     try:
@@ -265,6 +271,7 @@ def report_latency(
     tokens_per_second: float,
     notdiamond_api_key: str,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
+    _user_agent: str = settings.DEFAULT_USER_AGENT,
 ):
     """
     This method makes an API call to the NotDiamond server to report the latency of an LLM call.
@@ -293,7 +300,7 @@ def report_latency(
         "feedback": {"tokens_per_second": tokens_per_second},
     }
 
-    headers = _default_headers(notdiamond_api_key)
+    headers = _default_headers(notdiamond_api_key, _user_agent)
 
     try:
         response = requests.post(url, json=payload, headers=headers)
@@ -310,13 +317,14 @@ def create_preference_id(
     notdiamond_api_key: str,
     name: Optional[str] = None,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
+    _user_agent: str = settings.DEFAULT_USER_AGENT,
 ) -> str:
     """
     Create a preference id with an optional name. The preference name will appear in your
     dashboard on Not Diamond.
     """
     url = f"{nd_api_url}/v2/preferences/userPreferenceCreate"
-    headers = _default_headers(notdiamond_api_key)
+    headers = _default_headers(notdiamond_api_key, _user_agent)
     res = requests.post(url=url, headers=headers, json={"name": name})
     if res.status_code == 200:
         preference_id = res.json()["preference_id"]
@@ -324,11 +332,3 @@ def create_preference_id(
         raise Exception(f"Error creating preference ID: {res.text}")
 
     return preference_id
-
-
-def _default_headers(notdiamond_api_key: str) -> Dict[str, str]:
-    return {
-        "content-type": "application/json",
-        "Authorization": f"Bearer {notdiamond_api_key}",
-        "User-Agent": f"Python-SDK/{settings.VERSION}",
-    }

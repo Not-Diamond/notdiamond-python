@@ -268,3 +268,5 @@ PROVIDERS = {
         },
     },
 }
+
+DEFAULT_USER_AGENT = f"Python-SDK/{VERSION}"

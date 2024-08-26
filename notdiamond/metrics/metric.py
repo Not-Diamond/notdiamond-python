@@ -20,6 +20,7 @@ class Metric:
         llm_config: LLMConfig,
         value: int,
         notdiamond_api_key: Optional[str] = None,
+        _user_agent: str = None,
     ):
         if notdiamond_api_key is None:
             notdiamond_api_key = settings.NOTDIAMOND_API_KEY
@@ -32,6 +33,7 @@ class Metric:
             llm_config=llm_config,
             feedback_payload=self.request_payload(value),
             notdiamond_api_key=notdiamond_api_key,
+            _user_agent=_user_agent,
         )
 
     def request_payload(self, value: int):

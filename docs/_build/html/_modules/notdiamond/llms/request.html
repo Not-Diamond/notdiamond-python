@@ -82,7 +82,7 @@
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="kn">from</span> <span class="nn">notdiamond</span> <span class="kn">import</span> <span class="n">settings</span>
-<span class="kn">from</span> <span class="nn">notdiamond._utils</span> <span class="kn">import</span> <span class="n">convert_tool_to_openai_function</span>
+<span class="kn">from</span> <span class="nn">notdiamond._utils</span> <span class="kn">import</span> <span class="n">_default_headers</span><span class="p">,</span> <span class="n">convert_tool_to_openai_function</span>
 <span class="kn">from</span> <span class="nn">notdiamond.llms.config</span> <span class="kn">import</span> <span class="n">LLMConfig</span>
 <span class="kn">from</span> <span class="nn">notdiamond.metrics.metric</span> <span class="kn">import</span> <span class="n">Metric</span>
 <span class="kn">from</span> <span class="nn">notdiamond.types</span> <span class="kn">import</span> <span class="n">ModelSelectRequestPayload</span>
@@ -104,6 +104,7 @@
     <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tools</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Callable</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
+    <span class="n">_user_agent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_USER_AGENT</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is the core method for the model_select endpoint.</span>
@@ -146,7 +147,7 @@
     <span class="k">if</span> <span class="n">preference_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;preference_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">preference_id</span>
 
-    <span class="n">headers</span> <span class="o">=</span> <span class="n">_default_headers</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">)</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">_default_headers</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">,</span> <span class="n">_user_agent</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">url</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span></div>
 
@@ -218,6 +219,7 @@
     <span class="n">tools</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Callable</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
+    <span class="n">_user_agent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_USER_AGENT</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This endpoint receives the prompt and routing settings, and makes a call to the NotDiamond API.</span>
@@ -252,6 +254,7 @@
         <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
         <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
         <span class="n">nd_api_url</span><span class="o">=</span><span class="n">nd_api_url</span><span class="p">,</span>
+        <span class="n">_user_agent</span><span class="o">=</span><span class="n">_user_agent</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -286,6 +289,7 @@
     <span class="n">tools</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Callable</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
+    <span class="n">_user_agent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_USER_AGENT</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This endpoint receives the prompt and routing settings, and makes a call to the NotDiamond API.</span>
@@ -319,6 +323,8 @@
         <span class="n">tradeoff</span><span class="o">=</span><span class="n">tradeoff</span><span class="p">,</span>
         <span class="n">preference_id</span><span class="o">=</span><span class="n">preference_id</span><span class="p">,</span>
         <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+        <span class="n">nd_api_url</span><span class="o">=</span><span class="n">nd_api_url</span><span class="p">,</span>
+        <span class="n">_user_agent</span><span class="o">=</span><span class="n">_user_agent</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -348,6 +354,7 @@
     <span class="n">tokens_per_second</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
+    <span class="n">_user_agent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_USER_AGENT</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method makes an API call to the NotDiamond server to report the latency of an LLM call.</span>
@@ -376,7 +383,7 @@
         <span class="s2">&quot;feedback&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;tokens_per_second&quot;</span><span class="p">:</span> <span class="n">tokens_per_second</span><span class="p">},</span>
     <span class="p">}</span>
 
-    <span class="n">headers</span> <span class="o">=</span> <span class="n">_default_headers</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">)</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">_default_headers</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">,</span> <span class="n">_user_agent</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
@@ -396,13 +403,14 @@
     <span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
+    <span class="n">_user_agent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_USER_AGENT</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a preference id with an optional name. The preference name will appear in your</span>
 <span class="sd">    dashboard on Not Diamond.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nd_api_url</span><span class="si">}</span><span class="s2">/v2/preferences/userPreferenceCreate&quot;</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="n">_default_headers</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">)</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">_default_headers</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">,</span> <span class="n">_user_agent</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">})</span>
     <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
         <span class="n">preference_id</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;preference_id&quot;</span><span class="p">]</span>
@@ -411,14 +419,6 @@
 
     <span class="k">return</span> <span class="n">preference_id</span></div>
 
-
-
-<span class="k">def</span> <span class="nf">_default_headers</span><span class="p">(</span><span class="n">notdiamond_api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">notdiamond_api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Python-SDK/</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-    <span class="p">}</span>
 </pre></div>
 
            </div>
@@ -429,7 +429,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Aug 21, 2024.
+      <span class="lastupdated">Last updated on Aug 26, 2024.
       </span></p>
   </div>
 
