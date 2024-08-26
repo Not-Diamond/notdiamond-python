@@ -162,10 +162,13 @@ class LLMConfig:
             LLMConfig: initialized object with correct provider and model
         """
         split_items = llm_provider.split("/")
-        if len(split_items) != 2:
+        if len(split_items) not in [2, 3]:
             raise ValueError(
-                f"Expected string of format 'provider/model' but got {llm_provider}"
+                f"Expected string of format 'provider/model' or 'prefix/provider/model' but got {llm_provider}"
             )
-        provider = split_items[0]
-        model = split_items[1]
+        elif len(split_items) == 3:
+            _, provider, model = split_items
+        else:
+            provider = split_items[0]
+            model = split_items[1]
         return cls(provider=provider, model=model)
