@@ -100,6 +100,9 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 api_key = settings.NOTDIAMOND_API_KEY
             NDApiKeyValidator(api_key=api_key)
 
+            if user_agent is None:
+                user_agent = settings.DEFAULT_USER_AGENT
+
             if llm_configs is not None:
                 llm_configs = self._parse_llm_configs_data(llm_configs)
 
@@ -561,6 +564,9 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 user_agent=user_agent,
                 **kwargs,
             )
+            if user_agent is None:
+                user_agent = settings.DEFAULT_USER_AGENT
+
             self.user_agent = user_agent
             assert (
                 self.api_key is not None
