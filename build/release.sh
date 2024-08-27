@@ -12,11 +12,11 @@ if [[ ! " ${VALID_VERSIONS[@]} " =~ " $1 " ]]; then
     exit 1
 fi
 
+TAG_NAME=$(poetry version -s)
 git checkout main && git pull
 poetry version $1
 git add pyproject.toml
 git commit -m "Bump version to $TAG_NAME"
 git push origin main
 
-TAG_NAME=$(poetry version -s)
 git tag $TAG_NAME && git push origin tag $TAG_NAME
