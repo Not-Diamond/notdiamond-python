@@ -869,8 +869,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             self.call_callbacks("on_model_select", best_llm, best_llm.model)
 
             llm = self._llm_from_config(best_llm, callbacks=self.callbacks)
-            print(best_llm)
-            print(llm)
 
             if self.tools:
                 llm = llm.bind_tools(self.tools)
@@ -885,7 +883,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             ]
             prompt_template = ChatPromptTemplate.from_messages(chain_messages)
             chain = prompt_template | llm
-            print(chain)
             accepted_errors = _get_accepted_invoke_errors(best_llm.provider)
 
             try:
