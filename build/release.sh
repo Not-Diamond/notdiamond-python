@@ -19,4 +19,4 @@ git add pyproject.toml
 git commit -m "Bump version to $TAG_NAME"
 git push origin main
 
-git tag v$TAG_NAME && git push origin tag v$TAG_NAME
+git tag $TAG_NAME && git push origin tag $TAG_NAME
