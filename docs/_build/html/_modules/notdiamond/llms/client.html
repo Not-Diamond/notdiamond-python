@@ -945,8 +945,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">call_callbacks</span><span class="p">(</span><span class="s2">&quot;on_model_select&quot;</span><span class="p">,</span> <span class="n">best_llm</span><span class="p">,</span> <span class="n">best_llm</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
 
             <span class="n">llm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_llm_from_config</span><span class="p">(</span><span class="n">best_llm</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">best_llm</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">llm</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tools</span><span class="p">:</span>
                 <span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">bind_tools</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tools</span><span class="p">)</span>
@@ -961,7 +959,6 @@
             <span class="p">]</span>
             <span class="n">prompt_template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span><span class="n">chain_messages</span><span class="p">)</span>
             <span class="n">chain</span> <span class="o">=</span> <span class="n">prompt_template</span> <span class="o">|</span> <span class="n">llm</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">chain</span><span class="p">)</span>
             <span class="n">accepted_errors</span> <span class="o">=</span> <span class="n">_get_accepted_invoke_errors</span><span class="p">(</span><span class="n">best_llm</span><span class="o">.</span><span class="n">provider</span><span class="p">)</span>
 
             <span class="k">try</span><span class="p">:</span>
@@ -1820,7 +1817,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Aug 27, 2024.
+      <span class="lastupdated">Last updated on Aug 28, 2024.
       </span></p>
   </div>
 
