@@ -1,6 +1,6 @@
 from typing import Any, Dict, List
 
-from pydantic import BaseModel, field_validator
+from pydantic.v1 import BaseModel, validator
 
 from notdiamond.exceptions import InvalidApiKey, MissingApiKey
 
@@ -8,14 +8,14 @@ from notdiamond.exceptions import InvalidApiKey, MissingApiKey
 class NDApiKeyValidator(BaseModel):
     api_key: str
 
-    @field_validator("api_key", mode="before")
+    @validator("api_key", pre=True)
     @classmethod
     def api_key_must_be_a_string(cls, v) -> str:
         if not isinstance(v, str):
             raise InvalidApiKey("ND API key should be a string")
         return v
 
-    @field_validator("api_key", mode="after")
+    @validator("api_key", pre=False)
     @classmethod
     def string_must_not_be_empty(cls, v):
         if len(v) == 0:
