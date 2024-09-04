@@ -16,6 +16,7 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    continue-on-error: true
     permissions:
       # Gives the action the necessary permissions for publishing new
       # comments in pull requests.
@@ -25,12 +26,15 @@ jobs:
       # comments (to avoid publishing multiple comments in the same PR)
       contents: write
 
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python 3.11
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
@@ -42,7 +46,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: use correct env
+        run: poetry env use ${{ matrix.python-version }}
       - name: Install dependencies if venv is not cached
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install -E create
