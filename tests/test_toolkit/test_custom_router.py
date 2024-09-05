@@ -26,6 +26,23 @@ class Test_CustomRouter:
         )
         assert isinstance(preference_id, str)
 
+    def test_custom_router_and_model(self, custom_router_and_model_dataset):
+        (
+            dataset,
+            prompt_column,
+            response_column,
+            score_column,
+        ) = custom_router_and_model_dataset
+        custom_router = CustomRouter()
+
+        preference_id = custom_router.fit(
+            dataset=dataset,
+            prompt_column=prompt_column,
+            response_column=response_column,
+            score_column=score_column,
+        )
+        assert isinstance(preference_id, str)
+
     def test_custom_router_score_column_error(self, custom_router_dataset):
         dataset, prompt_column, response_column, _ = custom_router_dataset
         score_column = " "

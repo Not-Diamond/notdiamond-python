@@ -80,7 +80,7 @@ class CustomRouter:
 
     def _prepare_joint_dataset(
         self,
-        dataset: Dict[str, pd.DataFrame],
+        dataset: Dict[str | LLMConfig, pd.DataFrame],
         prompt_column: str,
         response_column: str,
         score_column: str,
@@ -102,7 +102,7 @@ class CustomRouter:
                     f"Response column {response_column} not found in df."
                 )
             responses = responses.to_list()
-            joint_dataset[f"{provider}/response"] = responses
+            joint_dataset[f"{str(provider)}/response"] = responses
 
             scores = df.get(score_column, None)
             if scores is None:
@@ -110,7 +110,7 @@ class CustomRouter:
                     f"Score column {score_column} not found in df."
                 )
             scores = scores.to_list()
-            joint_dataset[f"{provider}/score"] = scores
+            joint_dataset[f"{str(provider)}/score"] = scores
 
         joint_df = pd.DataFrame(joint_dataset)
 
@@ -119,7 +119,7 @@ class CustomRouter:
 
     def fit(
         self,
-        dataset: Dict[str, pd.DataFrame],
+        dataset: Dict[str | LLMConfig, pd.DataFrame],
         prompt_column: str,
         response_column: str,
         score_column: str,
@@ -276,7 +276,7 @@ class CustomRouter:
 
     def eval(
         self,
-        dataset: Dict[str, pd.DataFrame],
+        dataset: Dict[str | LLMConfig, pd.DataFrame],
         prompt_column: str,
         response_column: str,
         score_column: str,

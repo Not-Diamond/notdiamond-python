@@ -13,6 +13,7 @@ from pydantic import BaseModel, Field
 
 from notdiamond.callbacks import NDLLMBaseCallbackHandler
 from notdiamond.llms.client import _NDClientTarget, _ndllm_factory
+from notdiamond.llms.config import LLMConfig
 from notdiamond.toolkit import CustomRouter
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "helpers"))
@@ -116,6 +117,42 @@ def custom_router_dataset(
     llm_configs = [
         "openai/gpt-3.5-turbo",
         "anthropic/claude-3-haiku-20240307",
+    ]
+
+    dataset = {}
+    for provider in llm_configs:
+        data = {
+            "query": inputs,
+            "response": inputs,
+            "score": [random.randrange(0, 10) for _ in inputs],
+        }
+        dataset[provider] = pd.DataFrame(data)
+    return dataset, "query", "response", "score"
+
+
+@pytest.fixture
+def custom_router_and_model_dataset(
+    url="https://github.com/google/BIG-bench/raw/main/bigbench/benchmark_tasks/implicatures/task.json",
+):
+    task = json.loads(requests.get(url).content)
+    inputs = []
+    for x in task["examples"][:15]:
+        inputs.append(x["input"].strip())
+
+    custom_model = LLMConfig(
+        provider="custom",
+        model="model",
+        is_custom=True,
+        context_length=100,
+        input_price=1,
+        output_price=2,
+        latency=0.1,
+    )
+
+    llm_configs = [
+        "openai/gpt-3.5-turbo",
+        "anthropic/claude-3-haiku-20240307",
+        custom_model,
     ]
 
     dataset = {}
