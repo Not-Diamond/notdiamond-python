@@ -40,6 +40,7 @@ def test_prepare_for_request():
     assert request == {
         "provider": llm_provider.provider,
         "model": llm_provider.model,
+        "is_custom": llm_provider.is_custom,
         "context_length": llm_provider.context_length,
         "input_price": llm_provider.input_price,
         "output_price": llm_provider.output_price,

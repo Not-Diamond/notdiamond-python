@@ -51,6 +51,7 @@ class LLMConfig:
         self,
         provider: str,
         model: str,
+        is_custom: bool = False,
         system_prompt: Optional[str] = None,
         context_length: Optional[int] = None,
         input_price: Optional[float] = None,
@@ -64,6 +65,7 @@ class LLMConfig:
         Args:
             provider (str): The name of the LLM provider (e.g., "openai", "anthropic").
             model (str): The name of the LLM model to use (e.g., "gpt-3.5-turbo").
+            is_custom (bool): Whether this is a custom model. Defaults to False.
             system_prompt (Optional[str], optional): The system prompt to use for the provider. Defaults to None.
             context_length (Optional[int], optional): Custom context window length for the provider/model.
             input_price (Optional[float], optional): Custom input price (USD) per million tokens for provider/model.
@@ -76,32 +78,38 @@ class LLMConfig:
         Raises:
             UnsupportedLLMProvider: If the `provider` or `model` specified is not supported.
         """
-        if provider not in POSSIBLE_PROVIDERS:
-            raise UnsupportedLLMProvider(
-                f"Given LLM provider {provider} is not in the list of supported providers."
-            )
-        if model not in POSSIBLE_MODELS:
-            raise UnsupportedLLMProvider(
-                f"Given LLM model {model} is not in the list of supported models."
+        if is_custom:
+            self._openrouter_model = None
+            self.api_key = api_key
+        else:
+            if provider not in POSSIBLE_PROVIDERS:
+                raise UnsupportedLLMProvider(
+                    f"Given LLM provider {provider} is not in the list of supported providers."
+                )
+            if model not in POSSIBLE_MODELS:
+                raise UnsupportedLLMProvider(
+                    f"Given LLM model {model} is not in the list of supported models."
+                )
+            self._openrouter_model = settings.PROVIDERS[provider][
+                "openrouter_identifier"
+            ].get(model, None)
+
+            self.api_key = (
+                api_key
+                if api_key is not None
+                else settings.PROVIDERS[provider]["api_key"]
             )
 
         self.provider = provider
         self.model = model
         self.system_prompt = system_prompt
 
+        self.is_custom = is_custom
         self.context_length = context_length
         self.input_price = input_price
         self.output_price = output_price
         self.latency = latency
 
-        self._openrouter_model = settings.PROVIDERS[provider][
-            "openrouter_identifier"
-        ].get(model, None)
-        self.api_key = (
-            api_key
-            if api_key is not None
-            else settings.PROVIDERS[provider]["api_key"]
-        )
         self.kwargs = kwargs
 
     def __str__(self) -> str:
@@ -116,6 +124,9 @@ class LLMConfig:
                 self.provider == other.provider and self.model == other.model
             )
         return False
+
+    def __hash__(self):
+        return hash(str(self))
 
     @property
     def openrouter_model(self):
@@ -136,6 +147,7 @@ class LLMConfig:
         return {
             "provider": self.provider,
             "model": self.model,
+            "is_custom": self.is_custom,
             "context_length": self.context_length,
             "input_price": self.input_price,
             "output_price": self.output_price,
