@@ -1,7 +1,7 @@
 import json
 import tempfile
 from collections import OrderedDict
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -80,7 +80,7 @@ class CustomRouter:
 
     def _prepare_joint_dataset(
         self,
-        dataset: Dict[str | LLMConfig, pd.DataFrame],
+        dataset: Dict[Union[str, LLMConfig], pd.DataFrame],
         prompt_column: str,
         response_column: str,
         score_column: str,
@@ -119,7 +119,7 @@ class CustomRouter:
 
     def fit(
         self,
-        dataset: Dict[str | LLMConfig, pd.DataFrame],
+        dataset: Dict[Union[str, LLMConfig], pd.DataFrame],
         prompt_column: str,
         response_column: str,
         score_column: str,
@@ -276,7 +276,7 @@ class CustomRouter:
 
     def eval(
         self,
-        dataset: Dict[str | LLMConfig, pd.DataFrame],
+        dataset: Dict[Union[str, LLMConfig], pd.DataFrame],
         prompt_column: str,
         response_column: str,
         score_column: str,
