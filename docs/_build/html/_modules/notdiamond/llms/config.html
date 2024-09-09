@@ -131,6 +131,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">is_custom</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">system_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">context_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">input_price</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -144,6 +145,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            provider (str): The name of the LLM provider (e.g., &quot;openai&quot;, &quot;anthropic&quot;).</span>
 <span class="sd">            model (str): The name of the LLM model to use (e.g., &quot;gpt-3.5-turbo&quot;).</span>
+<span class="sd">            is_custom (bool): Whether this is a custom model. Defaults to False.</span>
 <span class="sd">            system_prompt (Optional[str], optional): The system prompt to use for the provider. Defaults to None.</span>
 <span class="sd">            context_length (Optional[int], optional): Custom context window length for the provider/model.</span>
 <span class="sd">            input_price (Optional[float], optional): Custom input price (USD) per million tokens for provider/model.</span>
@@ -156,32 +158,38 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            UnsupportedLLMProvider: If the `provider` or `model` specified is not supported.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">provider</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">POSSIBLE_PROVIDERS</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">UnsupportedLLMProvider</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Given LLM provider </span><span class="si">{</span><span class="n">provider</span><span class="si">}</span><span class="s2"> is not in the list of supported providers.&quot;</span>
-            <span class="p">)</span>
-        <span class="k">if</span> <span class="n">model</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">POSSIBLE_MODELS</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">UnsupportedLLMProvider</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Given LLM model </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2"> is not in the list of supported models.&quot;</span>
+        <span class="k">if</span> <span class="n">is_custom</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_openrouter_model</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">provider</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">POSSIBLE_PROVIDERS</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">UnsupportedLLMProvider</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Given LLM provider </span><span class="si">{</span><span class="n">provider</span><span class="si">}</span><span class="s2"> is not in the list of supported providers.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">model</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">POSSIBLE_MODELS</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">UnsupportedLLMProvider</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Given LLM model </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2"> is not in the list of supported models.&quot;</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_openrouter_model</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span>
+                <span class="s2">&quot;openrouter_identifier&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">api_key</span>
+                <span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span><span class="s2">&quot;api_key&quot;</span><span class="p">]</span>
             <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">provider</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">system_prompt</span> <span class="o">=</span> <span class="n">system_prompt</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_custom</span> <span class="o">=</span> <span class="n">is_custom</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">context_length</span> <span class="o">=</span> <span class="n">context_length</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_price</span> <span class="o">=</span> <span class="n">input_price</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_price</span> <span class="o">=</span> <span class="n">output_price</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">latency</span> <span class="o">=</span> <span class="n">latency</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_openrouter_model</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span>
-            <span class="s2">&quot;openrouter_identifier&quot;</span>
-        <span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">api_key</span>
-            <span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="k">else</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span><span class="s2">&quot;api_key&quot;</span><span class="p">]</span>
-        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span></div>
 
 
@@ -197,6 +205,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">provider</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">provider</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">model</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">openrouter_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -219,6 +230,7 @@
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">provider</span><span class="p">,</span>
             <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+            <span class="s2">&quot;is_custom&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_custom</span><span class="p">,</span>
             <span class="s2">&quot;context_length&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_length</span><span class="p">,</span>
             <span class="s2">&quot;input_price&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_price</span><span class="p">,</span>
             <span class="s2">&quot;output_price&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_price</span><span class="p">,</span>
@@ -273,7 +285,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Sep 04, 2024.
+      <span class="lastupdated">Last updated on Sep 09, 2024.
       </span></p>
   </div>
 
