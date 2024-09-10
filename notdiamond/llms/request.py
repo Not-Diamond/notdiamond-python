@@ -178,6 +178,9 @@ def model_select(
     )
 
     try:
+        print(url)
+        print(payload)
+        print(headers)
         response = requests.post(
             url, data=json.dumps(payload), headers=headers, timeout=timeout
         )

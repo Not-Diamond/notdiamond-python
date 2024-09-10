@@ -4,30 +4,24 @@ capabilities defined in the API reference:
 
 https://platform.openai.com/docs/api-reference/introduction
 """
+
 import pytest
 
-from notdiamond.settings import OPENAI_API_KEY
+from notdiamond import LLMConfig
 from notdiamond.toolkit.openai import AsyncOpenAI, OpenAI
 
 
 def test_openai_init():
-    client = OpenAI(
-        api_key=OPENAI_API_KEY,
-        llm_configs=["openai/gpt-4o", "openai/gpt-4o-mini"],
-    )
+    client = OpenAI()
     assert client is not None
 
     client2 = OpenAI(
-        api_key=OPENAI_API_KEY,
         base_url="https://api.openai.com/v1",
-        llm_configs=["openai/gpt-4o", "openai/gpt-4o-mini"],
     )
     assert client2 is not None
 
     client3 = OpenAI(
-        api_key=OPENAI_API_KEY,
         base_url="https://api.openai.com/v1",
-        llm_configs=["openai/gpt-4o", "openai/gpt-4o-mini"],
         organization="nd-oai-organization",
         project="nd-oai-project",
     )
@@ -39,43 +33,33 @@ def test_openai_create():
         "openai/gpt-4o-2024-05-13",
         "openai/gpt-4o-mini-2024-07-18",
     ]
-    client = OpenAI(
-        api_key=OPENAI_API_KEY,
-        llm_configs=nd_llm_configs,
-    )
+    client = OpenAI()
 
-    response = client.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "user",
-                "content": "Hello, world! Does this route to gpt-3.5-turbo?",
-            }
-        ],
-    )
-    assert response is not None
-    assert len(response.choices[0].message.content) > 0
-    # Ensure provided model is ignored for LLM configs instead
-    assert response.model in [
-        provider.split("/")[-1] for provider in nd_llm_configs
-    ]
-
-    # Ensure no model will still route to the chosen LLM
-    no_model_response = client.create(
-        messages=[
-            {"role": "user", "content": "Hello, world! What about no model?"}
-        ],
-    )
-    assert no_model_response is not None
-    assert len(no_model_response.choices[0].message.content) > 0
-    # Ensure provided model is ignored for LLM configs instead
-    assert no_model_response.model in [
-        provider.split("/")[-1] for provider in nd_llm_configs
-    ]
+    for model_kwarg in [
+        nd_llm_configs,
+        ",".join(nd_llm_configs),
+        [LLMConfig.from_string(m) for m in nd_llm_configs],
+    ]:
+        response = client.create(
+            model=model_kwarg,
+            messages=[
+                {
+                    "role": "user",
+                    "content": "Hello, world! Does this route to gpt-3.5-turbo?",
+                }
+            ],
+        )
+        assert response is not None, f"Failed with model_kwarg={model_kwarg}"
+        assert (
+            len(response.choices[0].message.content) > 0
+        ), f"Failed with model_kwarg={model_kwarg}"
+        assert response.model in [
+            provider.split("/")[-1] for provider in nd_llm_configs
+        ], f"Failed with model_kwarg={model_kwarg}"
 
 
 def test_openai_create_default_models():
-    all_oai_model_response = OpenAI(api_key=OPENAI_API_KEY).create(
+    all_oai_model_response = OpenAI().create(
         messages=[
             {
                 "role": "user",
@@ -88,9 +72,7 @@ def test_openai_create_default_models():
 
 
 def test_openai_chat_completions_create():
-    all_oai_model_response = OpenAI(
-        api_key=OPENAI_API_KEY
-    ).chat.completions.create(
+    all_oai_model_response = OpenAI().chat.completions.create(
         messages=[
             {
                 "role": "user",
@@ -103,9 +85,7 @@ def test_openai_chat_completions_create():
 
 
 def test_openai_chat_completions_create_stream():
-    model_response_stream = OpenAI(
-        api_key=OPENAI_API_KEY
-    ).chat.completions.create(
+    model_response_stream = OpenAI().chat.completions.create(
         messages=[
             {
                 "role": "user",
@@ -125,23 +105,16 @@ def test_openai_chat_completions_create_stream():
 
 @pytest.mark.asyncio
 async def test_async_openai_init():
-    client = AsyncOpenAI(
-        api_key=OPENAI_API_KEY,
-        llm_configs=["openai/gpt-4o", "openai/gpt-4o-mini"],
-    )
+    client = AsyncOpenAI()
     assert client is not None
 
     client2 = AsyncOpenAI(
-        api_key=OPENAI_API_KEY,
         base_url="https://api.openai.com/v1",
-        llm_configs=["openai/gpt-4o", "openai/gpt-4o-mini"],
     )
     assert client2 is not None
 
     client3 = AsyncOpenAI(
-        api_key=OPENAI_API_KEY,
         base_url="https://api.openai.com/v1",
-        llm_configs=["openai/gpt-4o", "openai/gpt-4o-mini"],
         organization="nd-oai-organization",
         project="nd-oai-project",
     )
@@ -154,44 +127,34 @@ async def test_async_openai_create():
         "openai/gpt-4o-2024-05-13",
         "openai/gpt-4o-mini-2024-07-18",
     ]
-    client = AsyncOpenAI(
-        api_key=OPENAI_API_KEY,
-        llm_configs=nd_llm_configs,
-    )
+    client = AsyncOpenAI()
 
-    response = await client.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "user",
-                "content": "Hello, world! Does this route to gpt-3.5-turbo?",
-            }
-        ],
-    )
-    assert response is not None
-    assert len(response.choices[0].message.content) > 0
-    # Ensure provided model is ignored for LLM configs instead
-    assert response.model in [
-        provider.split("/")[-1] for provider in nd_llm_configs
-    ]
-
-    # Ensure no model will still route to the chosen LLM
-    no_model_response = await client.create(
-        messages=[
-            {"role": "user", "content": "Hello, world! What about no model?"}
-        ],
-    )
-    assert no_model_response is not None
-    assert len(no_model_response.choices[0].message.content) > 0
-    # Ensure provided model is ignored for LLM configs instead
-    assert no_model_response.model in [
-        provider.split("/")[-1] for provider in nd_llm_configs
-    ]
+    for model_kwarg in [
+        nd_llm_configs,
+        ",".join(nd_llm_configs),
+        [LLMConfig.from_string(m) for m in nd_llm_configs],
+    ]:
+        response = await client.create(
+            model=model_kwarg,
+            messages=[
+                {
+                    "role": "user",
+                    "content": "Hello, world! Does this route to gpt-3.5-turbo?",
+                }
+            ],
+        )
+        assert response is not None, f"Failed with model_kwarg={model_kwarg}"
+        assert (
+            len(response.choices[0].message.content) > 0
+        ), f"Failed with model_kwarg={model_kwarg}"
+        assert response.model in [
+            provider.split("/")[-1] for provider in nd_llm_configs
+        ], f"Failed with model_kwarg={model_kwarg}"
 
 
 @pytest.mark.asyncio
 async def test_async_openai_create_default_models():
-    async_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+    async_client = AsyncOpenAI()
     all_oai_model_response = await async_client.create(
         messages=[
             {
@@ -206,7 +169,7 @@ async def test_async_openai_create_default_models():
 
 @pytest.mark.asyncio
 async def test_async_openai_chat_completions_create():
-    async_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+    async_client = AsyncOpenAI()
     all_oai_model_response = await async_client.chat.completions.create(
         messages=[
             {
@@ -221,7 +184,7 @@ async def test_async_openai_chat_completions_create():
 
 @pytest.mark.asyncio
 async def test_async_openai_chat_completions_create_stream():
-    async_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+    async_client = AsyncOpenAI()
     model_response_stream = await async_client.chat.completions.create(
         messages=[
             {
@@ -229,6 +192,7 @@ async def test_async_openai_chat_completions_create_stream():
                 "content": "Hello, world! Does this async chat.completions.create call work with streaming?",
             }
         ],
+        model=["openai/gpt-4o-mini", "openai/gpt-4o"],
         stream=True,
     )
 
