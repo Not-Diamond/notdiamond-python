@@ -106,8 +106,36 @@ class AsyncOpenAI:
     def __init__(self, *args, **kwargs):
         from openai import AsyncOpenAI as AsyncOpenAIClient
 
-        self._oai_client = AsyncOpenAIClient(*args, **kwargs)
-        self._nd_client = NotDiamond(*args, **kwargs)
+        nd_params = [
+            "llm_configs",
+            "default",
+            "max_model_depth",
+            "latency_tracking",
+            "hash_content",
+            "tradeoff",
+            "preference_id",
+            "tools",
+            "callbacks",
+            "nd_api_url",
+            "user_agent",
+        ]
+
+        nd_kwargs = {k: v for k, v in kwargs.items() if k in nd_params}
+
+        if "llm_configs" not in nd_kwargs:
+            LOGGER.info(
+                "No LLM configs provided. Not Diamond will route to all OpenAI models."
+            )
+            nd_kwargs["llm_configs"] = [
+                str(p) for p in NDLLMProviders if p.provider == "openai"
+            ]
+        self._nd_client = NotDiamond(
+            api_key=NOTDIAMOND_API_KEY, *args, **nd_kwargs
+        )
+
+        # Create a OpenAI client with a dummy model - will ignore this during routing
+        oai_kwargs = {k: v for k, v in kwargs.items() if k not in nd_params}
+        self._oai_client = AsyncOpenAIClient(*args, **oai_kwargs)
 
     def __getattr__(self, name):
         return getattr(self._oai_client, name)
@@ -118,17 +146,20 @@ class AsyncOpenAI:
     def __dir__(self):
         return dir(self._oai_client)
 
-    def chat(self, *args, **kwargs):
-        return self._oai_client.chat(*args, **kwargs)
+    @property
+    def chat(self):
+        class ChatCompletions:
+            def __init__(self, parent):
+                self.parent = parent
 
-    def completions(self, *args, **kwargs):
-        """
-        Wrapper around the OpenAI completions API. Patch in this class's create method
-        to ensure routing.
-        """
-        completions = self._oai_client.chat.completions(*args, **kwargs)
-        setattr(completions, "create", self.create)
-        return completions
+            @property
+            def completions(self):
+                return self
+
+            def create(self, *args, **kwargs):
+                return self.parent.create(*args, **kwargs)
+
+        return ChatCompletions(self)
 
     async def create(self, *args, **kwargs):
         """
