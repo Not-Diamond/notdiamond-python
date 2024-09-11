@@ -194,7 +194,9 @@ class AsyncOpenAI:
         session_id, best_llm = await self._nd_client.amodel_select(
             *args, model=llm_configs, **kwargs
         )
-        LOGGER.info(f"Routed prompt to {best_llm} for session ID {session_id}")
+        LOGGER.debug(
+            f"Routed prompt to {best_llm} for session ID {session_id}"
+        )
         return await self._oai_client.chat.completions.create(
             *args, model=str(best_llm.model), **kwargs
         )
