@@ -171,6 +171,7 @@ from litellm.utils import (
     read_config_args,
 )
 
+from . import notdiamond_key, provider_list
 from .litellm_notdiamond import completion as notdiamond_completion
 
 openai_chat_completions = OpenAIChatCompletion()
@@ -197,9 +198,6 @@ vertex_partner_models_chat_completion = VertexAIPartnerModels()
 vertex_text_to_speech = VertexTextToSpeechAPI()
 watsonxai = IBMWatsonXAI()
 sagemaker_llm = SagemakerLLM()
-
-litellm.provider_list.append("notdiamond")
-litellm.notdiamond_key = None
 
 
 class LiteLLM:
@@ -306,11 +304,7 @@ def get_api_key(llm_provider: str, dynamic_api_key: Optional[str]):
         )
     # notdiamond
     elif llm_provider == "notdiamond":
-        api_key = (
-            api_key
-            or litellm.notdiamond_key
-            or get_secret("NOTDIAMOND_API_KEY")
-        )
+        api_key = api_key or notdiamond_key or get_secret("NOTDIAMOND_API_KEY")
     # nlp_cloud
     elif llm_provider == "nlp_cloud":
         api_key = (
@@ -374,7 +368,7 @@ def get_llm_provider(
             dynamic_api_key = get_secret(api_key)
         # check if llm provider part of model name
         if (
-            model.split("/", 1)[0] in litellm.provider_list
+            model.split("/", 1)[0] in provider_list
             and model.split("/", 1)[0] not in litellm.model_list
             and len(model.split("/"))
             > 1  # handle edge case where user passes in `litellm --model mistral` https://github.com/BerriAI/litellm/issues/1351
@@ -495,7 +489,7 @@ def get_llm_provider(
                     )
                 )
             return model, custom_llm_provider, dynamic_api_key, api_base
-        elif model.split("/", 1)[0] in litellm.provider_list:
+        elif model.split("/", 1)[0] in provider_list:
             custom_llm_provider = model.split("/", 1)[0]
             model = model.split("/", 1)[1]
             if api_base is not None and not isinstance(api_base, str):
@@ -1565,7 +1559,7 @@ def completion(
         elif custom_llm_provider == "notdiamond":
             notdiamond_key = (
                 api_key
-                or litellm.notdiamond_key
+                or notdiamond_key
                 or get_secret("NOTDIAMOND_API_KEY")
                 or litellm.api_key
             )
@@ -3538,7 +3532,7 @@ def batch_completion(
     completions = []
     model = model
     custom_llm_provider = None
-    if model.split("/", 1)[0] in litellm.provider_list:
+    if model.split("/", 1)[0] in provider_list:
         custom_llm_provider = model.split("/", 1)[0]
         model = model.split("/", 1)[1]
     if custom_llm_provider == "vllm":
@@ -5694,7 +5688,7 @@ def speech(
     if response is None:
         raise Exception(
             "Unable to map the custom llm provider={} to a known provider={}.".format(
-                custom_llm_provider, litellm.provider_list
+                custom_llm_provider, provider_list
             )
         )
     return response
