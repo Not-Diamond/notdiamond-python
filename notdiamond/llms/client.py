@@ -121,6 +121,12 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                         "Invalid tradeoff. Accepted values: cost, latency."
                     )
 
+            if tradeoff is not None:
+                raise DeprecationWarning(
+                    "The tradeoff constructor parameter is deprecated and will be removed in a "
+                    "future version. Please specify the tradeoff when using model_select or invocation methods."
+                )
+
             super().__init__(
                 api_key=api_key,
                 llm_configs=llm_configs,
@@ -572,6 +578,12 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             )
             if user_agent is None:
                 user_agent = settings.DEFAULT_USER_AGENT
+
+            if tradeoff is not None:
+                raise DeprecationWarning(
+                    "The tradeoff constructor parameter is deprecated and will be removed in a "
+                    "future version. Please specify the tradeoff when using model_select or invocation methods."
+                )
 
             self.user_agent = user_agent
             assert (
@@ -1679,6 +1691,9 @@ class NotDiamond(_NDClient):
 
     tradeoff: Optional[str]
     """
+    [DEPRECATED] The tradeoff constructor parameter is deprecated and will be removed in a future version.
+    Please specify the tradeoff when using model_select or invocation methods.
+
     Define tradeoff between "cost" and "latency" for the router to determine the best LLM for a given query.
     If None is specified, then the router will not consider either cost or latency.
 
@@ -1712,6 +1727,12 @@ class NotDiamond(_NDClient):
             nd_api_url=nd_api_url, user_agent=user_agent, *args, **kwargs
         )
         self.nd_api_url = nd_api_url
+
+        if kwargs.get("tradeoff") is not None:
+            raise DeprecationWarning(
+                "The tradeoff constructor parameter is deprecated and will be removed in a "
+                "future version. Please specify the tradeoff when using model_select or invocation methods."
+            )
 
 
 def _get_accepted_invoke_errors(provider: str) -> Tuple:
