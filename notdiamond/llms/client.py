@@ -3,6 +3,7 @@
 import inspect
 import logging
 import time
+import warnings
 from enum import Enum
 from typing import (
     Any,
@@ -122,9 +123,11 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     )
 
             if tradeoff is not None:
-                raise DeprecationWarning(
+                warnings.warn(
                     "The tradeoff constructor parameter is deprecated and will be removed in a "
-                    "future version. Please specify the tradeoff when using model_select or invocation methods."
+                    "future version. Please specify the tradeoff when using model_select or invocation methods.",
+                    DeprecationWarning,
+                    stacklevel=2,
                 )
 
             super().__init__(
@@ -580,9 +583,11 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 user_agent = settings.DEFAULT_USER_AGENT
 
             if tradeoff is not None:
-                raise DeprecationWarning(
+                warnings.warn(
                     "The tradeoff constructor parameter is deprecated and will be removed in a "
-                    "future version. Please specify the tradeoff when using model_select or invocation methods."
+                    "future version. Please specify the tradeoff when using model_select or invocation methods.",
+                    DeprecationWarning,
+                    stacklevel=2,
                 )
 
             self.user_agent = user_agent
@@ -1729,9 +1734,11 @@ class NotDiamond(_NDClient):
         self.nd_api_url = nd_api_url
 
         if kwargs.get("tradeoff") is not None:
-            raise DeprecationWarning(
+            warnings.warn(
                 "The tradeoff constructor parameter is deprecated and will be removed in a "
-                "future version. Please specify the tradeoff when using model_select or invocation methods."
+                "future version. Please specify the tradeoff when using model_select or invocation methods.",
+                DeprecationWarning,
+                stacklevel=2,
             )
 
 
