@@ -3,6 +3,7 @@
 import inspect
 import logging
 import time
+import warnings
 from enum import Enum
 from typing import (
     Any,
@@ -120,6 +121,14 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     raise ValueError(
                         "Invalid tradeoff. Accepted values: cost, latency."
                     )
+
+            if tradeoff is not None:
+                warnings.warn(
+                    "The tradeoff constructor parameter is deprecated and will be removed in a "
+                    "future version. Please specify the tradeoff when using model_select or invocation methods.",
+                    DeprecationWarning,
+                    stacklevel=2,
+                )
 
             super().__init__(
                 api_key=api_key,
@@ -572,6 +581,14 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             )
             if user_agent is None:
                 user_agent = settings.DEFAULT_USER_AGENT
+
+            if tradeoff is not None:
+                warnings.warn(
+                    "The tradeoff constructor parameter is deprecated and will be removed in a "
+                    "future version. Please specify the tradeoff when using model_select or invocation methods.",
+                    DeprecationWarning,
+                    stacklevel=2,
+                )
 
             self.user_agent = user_agent
             assert (
@@ -1679,6 +1696,9 @@ class NotDiamond(_NDClient):
 
     tradeoff: Optional[str]
     """
+    [DEPRECATED] The tradeoff constructor parameter is deprecated and will be removed in a future version.
+    Please specify the tradeoff when using model_select or invocation methods.
+
     Define tradeoff between "cost" and "latency" for the router to determine the best LLM for a given query.
     If None is specified, then the router will not consider either cost or latency.
 
@@ -1712,6 +1732,14 @@ class NotDiamond(_NDClient):
             nd_api_url=nd_api_url, user_agent=user_agent, *args, **kwargs
         )
         self.nd_api_url = nd_api_url
+
+        if kwargs.get("tradeoff") is not None:
+            warnings.warn(
+                "The tradeoff constructor parameter is deprecated and will be removed in a "
+                "future version. Please specify the tradeoff when using model_select or invocation methods.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
 
 
 def _get_accepted_invoke_errors(provider: str) -> Tuple:
