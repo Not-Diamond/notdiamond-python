@@ -218,7 +218,9 @@ If the value is larger than the llm_configs list length, we reset the value to l
 <dl class="py attribute">
 <dt class="sig sig-object py" id="notdiamond.llms.client.NotDiamond.tradeoff">
 <span class="sig-name descname"><span class="pre">tradeoff</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#notdiamond.llms.client.NotDiamond.tradeoff" title="Link to this definition"></a></dt>
-<dd><p>Define tradeoff between “cost” and “latency” for the router to determine the best LLM for a given query.
+<dd><p>[DEPRECATED] The tradeoff constructor parameter is deprecated and will be removed in a future version.
+Please specify the tradeoff when using model_select or invocation methods.</p>
+<p>Define tradeoff between “cost” and “latency” for the router to determine the best LLM for a given query.
 If None is specified, then the router will not consider either cost or latency.</p>
 <p>The supported values: “cost”, “latency”</p>
 <p>Defaults to None.</p>
@@ -1453,7 +1455,7 @@ router call your latency report refers to.</p></li>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Sep 11, 2024.
+      <span class="lastupdated">Last updated on Sep 20, 2024.
       </span></p>
   </div>
 

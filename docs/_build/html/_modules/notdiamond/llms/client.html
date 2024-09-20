@@ -79,6 +79,7 @@
 <span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Any</span><span class="p">,</span>
@@ -196,6 +197,14 @@
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                         <span class="s2">&quot;Invalid tradeoff. Accepted values: cost, latency.&quot;</span>
                     <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">tradeoff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;The tradeoff constructor parameter is deprecated and will be removed in a &quot;</span>
+                    <span class="s2">&quot;future version. Please specify the tradeoff when using model_select or invocation methods.&quot;</span><span class="p">,</span>
+                    <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                    <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="p">)</span>
 
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
                 <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
@@ -648,6 +657,14 @@
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">user_agent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">user_agent</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_USER_AGENT</span>
+
+            <span class="k">if</span> <span class="n">tradeoff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;The tradeoff constructor parameter is deprecated and will be removed in a &quot;</span>
+                    <span class="s2">&quot;future version. Please specify the tradeoff when using model_select or invocation methods.&quot;</span><span class="p">,</span>
+                    <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                    <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">user_agent</span> <span class="o">=</span> <span class="n">user_agent</span>
             <span class="k">assert</span> <span class="p">(</span>
@@ -1757,6 +1774,9 @@
 
     <span class="n">tradeoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    [DEPRECATED] The tradeoff constructor parameter is deprecated and will be removed in a future version.</span>
+<span class="sd">    Please specify the tradeoff when using model_select or invocation methods.</span>
+
 <span class="sd">    Define tradeoff between &quot;cost&quot; and &quot;latency&quot; for the router to determine the best LLM for a given query.</span>
 <span class="sd">    If None is specified, then the router will not consider either cost or latency.</span>
 
@@ -1792,7 +1812,15 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">nd_api_url</span><span class="o">=</span><span class="n">nd_api_url</span><span class="p">,</span> <span class="n">user_agent</span><span class="o">=</span><span class="n">user_agent</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nd_api_url</span> <span class="o">=</span> <span class="n">nd_api_url</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nd_api_url</span> <span class="o">=</span> <span class="n">nd_api_url</span>
+
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tradeoff&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The tradeoff constructor parameter is deprecated and will be removed in a &quot;</span>
+                <span class="s2">&quot;future version. Please specify the tradeoff when using model_select or invocation methods.&quot;</span><span class="p">,</span>
+                <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span></div>
 
 
 
@@ -1817,7 +1845,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Sep 11, 2024.
+      <span class="lastupdated">Last updated on Sep 20, 2024.
       </span></p>
   </div>
 
