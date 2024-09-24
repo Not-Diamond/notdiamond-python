@@ -23,10 +23,10 @@ class NDLLMProviders(Enum):
         GPT_4o_MINI_2024_07_18 (NDLLMProvider): refers to 'gpt-4o-mini-2024-07-18' model by OpenAI
         GPT_4o_MINI (NDLLMProvider): refers to 'gpt-4o-mini' model by OpenAI
         GPT_4_0125_PREVIEW (NDLLMProvider): refers to 'gpt-4-0125-preview' model by OpenAI
-        o1_PREVIEW (NDLLMProvider): refers to 'o1-preview' model by OpenAI
-        o1_PREVIEW_2024_09_12 (NDLLMProvider): refers to 'o1-preview-2024-09-12' model by OpenAI
-        o1_MINI (NDLLMProvider): refers to 'o1-mini' model by OpenAI
-        o1_MINI_2024_09_12 (NDLLMProvider): refers to 'o1-mini-2024-09-12' model by OpenAI
+        O1_PREVIEW (NDLLMProvider): refers to 'o1-preview' model by OpenAI
+        O1_PREVIEW_2024_09_12 (NDLLMProvider): refers to 'o1-preview-2024-09-12' model by OpenAI
+        O1_MINI (NDLLMProvider): refers to 'o1-mini' model by OpenAI
+        O1_MINI_2024_09_12 (NDLLMProvider): refers to 'o1-mini-2024-09-12' model by OpenAI
 
         CLAUDE_2_1 (NDLLMProvider): refers to 'claude-2.1' model by Anthropic
         CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to 'claude-3-opus-20240229' model by Anthropic
@@ -89,10 +89,10 @@ class NDLLMProviders(Enum):
     GPT_4o_MINI_2024_07_18 = ("openai", "gpt-4o-mini-2024-07-18")
     GPT_4o_MINI = ("openai", "gpt-4o-mini")
     GPT_4_0125_PREVIEW = ("openai", "gpt-4-0125-preview")
-    o1_PREVIEW = ("openai", "o1-preview")
-    o1_PREVIEW_2024_09_12 = ("openai", "o1-preview-2024-09-12")
-    o1_MINI = ("openai", "o1-mini")
-    o1_MINI_2024_09_12 = ("openai", "o1-mini-2024-09-12")
+    O1_PREVIEW = ("openai", "o1-preview")
+    O1_PREVIEW_2024_09_12 = ("openai", "o1-preview-2024-09-12")
+    O1_MINI = ("openai", "o1-mini")
+    O1_MINI_2024_09_12 = ("openai", "o1-mini-2024-09-12")
 
     CLAUDE_2_1 = ("anthropic", "claude-2.1")
     CLAUDE_3_OPUS_20240229 = ("anthropic", "claude-3-opus-20240229")
