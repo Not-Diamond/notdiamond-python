@@ -19,7 +19,7 @@ REPLICATE_API_KEY = os.getenv("REPLICATE_API_KEY", default="")
 
 
 NOTDIAMOND_API_URL = os.getenv(
-    "NOTDIAMOND_API_URL", "https://not-diamond-server.onrender.com"
+    "NOTDIAMOND_API_URL", "https://api.notdiamond.ai"
 )
 
 PROVIDERS = {
@@ -39,6 +39,10 @@ PROVIDERS = {
             "gpt-4-turbo-preview",
             "gpt-4-0125-preview",
             "gpt-4-1106-preview",
+            "o1-preview",
+            "o1-preview-2024-09-12",
+            "o1-mini",
+            "o1-mini-2024-09-12",
         ],
         "api_key": OPENAI_API_KEY,
         "support_tools": [
@@ -56,6 +60,10 @@ PROVIDERS = {
             "gpt-4-turbo-preview",
             "gpt-4-0125-preview",
             "gpt-4-1106-preview",
+            "o1-preview",
+            "o1-preview-2024-09-12",
+            "o1-mini",
+            "o1-mini-2024-09-12",
         ],
         "support_response_model": [
             "gpt-3.5-turbo",
@@ -72,6 +80,10 @@ PROVIDERS = {
             "gpt-4-turbo-preview",
             "gpt-4-0125-preview",
             "gpt-4-1106-preview",
+            "o1-preview",
+            "o1-preview-2024-09-12",
+            "o1-mini",
+            "o1-mini-2024-09-12",
         ],
         "openrouter_identifier": {
             "gpt-3.5-turbo": "openai/gpt-3.5-turbo",
@@ -84,6 +96,10 @@ PROVIDERS = {
             "gpt-4o-mini-2024-07-18": "openai/gpt-4o-mini-2024-07-18",
             "gpt-4-turbo-preview": "openai/gpt-4-turbo-preview",
             "gpt-4-1106-preview": "openai/gpt-4-1106-preview",
+            "o1-preview": "openai/o1-preview",
+            "o1-preview-2024-09-12": "openai/o1-preview-2024-09-12",
+            "o1-mini": "openai/o1-mini",
+            "o1-mini-2024-09-12": "openai/o1-mini-2024-09-12",
         },
     },
     "anthropic": {
@@ -197,7 +213,6 @@ PROVIDERS = {
     },
     "togetherai": {
         "models": [
-            "Phind-CodeLlama-34B-v2",
             "Mistral-7B-Instruct-v0.2",
             "Mixtral-8x7B-Instruct-v0.1",
             "Mixtral-8x22B-Instruct-v0.1",
@@ -210,7 +225,6 @@ PROVIDERS = {
         ],
         "api_key": TOGETHER_API_KEY,
         "model_prefix": {
-            "Phind-CodeLlama-34B-v2": "Phind",
             "Mistral-7B-Instruct-v0.2": "mistralai",
             "Mixtral-8x7B-Instruct-v0.1": "mistralai",
             "Mixtral-8x22B-Instruct-v0.1": "mistralai",
@@ -222,7 +236,6 @@ PROVIDERS = {
             "Meta-Llama-3.1-405B-Instruct-Turbo": "meta-llama",
         },
         "openrouter_identifier": {
-            "Phind-CodeLlama-34B-v2": "phind/phind-codellama-34b",
             "Llama-3-70b-chat-hf": "meta-llama/llama-3-70b-instruct",
             "Llama-3-8b-chat-hf": "meta-llama/llama-3-8b-instruct",
             "Qwen2-72B-Instruct": "qwen/qwen-2-72b-instruct",
