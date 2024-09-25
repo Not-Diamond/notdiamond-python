@@ -8,6 +8,7 @@ import requests
 from notdiamond import settings
 from notdiamond._utils import _default_headers, convert_tool_to_openai_function
 from notdiamond.llms.config import LLMConfig
+from notdiamond.llms.providers import NDLLMProviders
 from notdiamond.metrics.metric import Metric
 from notdiamond.types import ModelSelectRequestPayload
 
@@ -52,6 +53,31 @@ def model_select_prepare(
         tuple(url, payload, headers): returns data to be used for the API call of modelSelect
     """
     url = f"{nd_api_url}/v2/modelRouter/modelSelect"
+
+    o1_models = [
+        o1_model in llm_configs
+        for o1_model in [
+            NDLLMProviders.O1_MINI,
+            NDLLMProviders.O1_MINI_2024_09_12,
+            NDLLMProviders.O1_PREVIEW,
+            NDLLMProviders.O1_PREVIEW_2024_09_12,
+        ]
+    ]
+    has_system_prompt = any([msg["role"] == "system" for msg in messages])
+    if len(o1_models) > 0:
+        if tools is not None or has_system_prompt:
+            LOGGER.warning(
+                f"OpenAI O1 models do not support tools or system prompts. Ignoring requested LLMs: {o1_models}"
+            )
+            for o1_model in o1_models:
+                llm_configs = [
+                    config for config in llm_configs if config != o1_model
+                ]
+            if len(llm_configs) == 0:
+                raise ValueError(
+                    "No LLMs available after removing unsupported LLMs."
+                )
+
     tools_dict = get_tools_in_openai_format(tools)
 
     payload: ModelSelectRequestPayload = {
