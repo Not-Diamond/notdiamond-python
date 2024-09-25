@@ -93,7 +93,6 @@ class NotDiamondRunnable(Runnable[LanguageModelInput, str]):
 
     def _model_select(self, input: LanguageModelInput) -> str:
         messages = _convert_input_to_message_dicts(input)
-        print(self.nd_kwargs)
         _, provider = self.client.chat.completions.model_select(
             messages=messages, **self.nd_kwargs
         )
