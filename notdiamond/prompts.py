@@ -1,6 +1,9 @@
-import re
 import logging
+import re
 from typing import Dict, List
+
+from notdiamond.llms.config import LLMConfig
+from notdiamond.llms.providers import NDLLMProviders
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -32,3 +35,30 @@ def _curly_escape(text: str) -> str:
     This function will not escape double curly braces or non-alphabetic characters.
     """
     return re.sub(r"(?<!{){([a-zA-Z])}(?!})", r"{{\1}}", text)
+
+
+def _is_o1_model(llm: LLMConfig):
+    if llm in (
+        NDLLMProviders.O1_PREVIEW,
+        NDLLMProviders.O1_PREVIEW_2024_09_12,
+        NDLLMProviders.O1_MINI,
+        NDLLMProviders.O1_MINI_2024_09_12,
+    ):
+        return True
+    return False
+
+
+def o1_system_prompt_translate(
+    messages: List[Dict[str, str]], llm: LLMConfig
+) -> List[Dict[str, str]]:
+    if _is_o1_model(llm):
+        translated_messages = []
+        for msg in messages:
+            if msg["role"] == "system":
+                translated_messages.append(
+                    {"role": "user", "content": msg["content"]}
+                )
+            else:
+                translated_messages.append(msg)
+        return translated_messages
+    return messages

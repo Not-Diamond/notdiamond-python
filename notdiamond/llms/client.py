@@ -40,7 +40,12 @@ from notdiamond.llms.request import (
     report_latency,
 )
 from notdiamond.metrics.metric import Metric
-from notdiamond.prompts import _curly_escape, inject_system_prompt
+from notdiamond.prompts import (
+    _curly_escape,
+    _is_o1_model,
+    inject_system_prompt,
+    o1_system_prompt_translate,
+)
 from notdiamond.types import NDApiKeyValidator
 
 LOGGER = logging.getLogger(__name__)
@@ -883,11 +888,13 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     messages, best_llm.system_prompt
                 )
 
+            messages = o1_system_prompt_translate(messages, best_llm)
+
             self.call_callbacks("on_model_select", best_llm, best_llm.model)
 
             llm = self._llm_from_config(best_llm, callbacks=self.callbacks)
 
-            if self.tools:
+            if self.tools and not _is_o1_model(best_llm):
                 llm = llm.bind_tools(self.tools)
 
             if response_model is not None:
@@ -1082,11 +1089,13 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     messages, best_llm.system_prompt
                 )
 
+            messages = o1_system_prompt_translate(messages, best_llm)
+
             self.call_callbacks("on_model_select", best_llm, best_llm.model)
 
             llm = self._llm_from_config(best_llm, callbacks=self.callbacks)
 
-            if self.tools:
+            if self.tools and not _is_o1_model(best_llm):
                 llm = llm.bind_tools(self.tools)
 
             if response_model is not None:
@@ -1515,6 +1524,9 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     "ChatOpenAI",
                     provider.provider,
                 )
+                if _is_o1_model(provider):
+                    passed_kwargs["temperature"] = 1.0
+
                 return ChatOpenAI(
                     openai_api_key=provider.api_key,
                     model_name=provider.model,

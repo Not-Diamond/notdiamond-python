@@ -74,3 +74,19 @@ class Test_OpenAI:
         assert isinstance(result, response_model)
         assert result.setup
         assert result.punchline
+
+
+def test_o1_with_system_prompt():
+    provider = NDLLMProviders.O1_MINI
+    nd_llm = NotDiamond(
+        llm_configs=[provider], latency_tracking=False, hash_content=True
+    )
+    result, session_id, _ = nd_llm.invoke(
+        [
+            {"role": "system", "content": "You are a funny AI"},
+            {"role": "user", "content": "Tell me a joke"},
+        ],
+    )
+
+    assert session_id != "NO-SESSION-ID"
+    assert len(result.content) > 0
