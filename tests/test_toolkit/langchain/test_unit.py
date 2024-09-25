@@ -44,47 +44,61 @@ def nd_client(llm_configs: List[Any]) -> Any:
 
 @pytest.fixture
 def not_diamond_runnable(nd_client: Any) -> NotDiamondRunnable:
-    return NotDiamondRunnable(nd_client=nd_client)
+    return NotDiamondRunnable(
+        nd_client=nd_client, nd_kwargs={"tradeoff": "cost"}
+    )
 
 
 @pytest.fixture
 def not_diamond_routed_runnable(nd_client: Any) -> NotDiamondRoutedRunnable:
-    routed_runnable = NotDiamondRoutedRunnable(nd_client=nd_client)
+    routed_runnable = NotDiamondRoutedRunnable(
+        nd_client=nd_client, nd_kwargs={"tradeoff": "cost"}
+    )
     routed_runnable._configurable_model = MagicMock(spec=_ConfigurableModel)
     return routed_runnable
 
 
 class TestNotDiamondRunnable:
     def test_model_select(
-        self, not_diamond_runnable: NotDiamondRunnable, llm_configs: List
+        self,
+        not_diamond_runnable: NotDiamondRunnable,
+        llm_configs: List,
+        nd_client,
     ) -> None:
-        actual_select = not_diamond_runnable._model_select("Hello, world!")
+        prompt = "Hello, world!"
+        actual_select = not_diamond_runnable._model_select(prompt)
         assert str(actual_select) in [
             _nd_provider_to_langchain_provider(str(config))
             for config in llm_configs
         ]
+        assert nd_client.model_select.called_with(prompt, tradeoff="cost")
 
     @pytest.mark.asyncio
     async def test_amodel_select(
-        self, not_diamond_runnable: NotDiamondRunnable, llm_configs: List
+        self,
+        not_diamond_runnable: NotDiamondRunnable,
+        llm_configs: List,
+        nd_client,
     ) -> None:
-        actual_select = await not_diamond_runnable._amodel_select(
-            "Hello, world!"
-        )
+        prompt = "Hello, world!"
+        actual_select = await not_diamond_runnable._amodel_select(prompt)
         assert str(actual_select) in [
             _nd_provider_to_langchain_provider(str(config))
             for config in llm_configs
         ]
+        assert nd_client.amodel_select.called_with(prompt, tradeoff="cost")
 
 
 class TestNotDiamondRoutedRunnable:
     def test_invoke(
-        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable
+        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable, nd_client
     ) -> None:
-        not_diamond_routed_runnable.invoke("Hello, world!")
+        prompt = "Hello, world!"
+        not_diamond_routed_runnable.invoke(prompt)
         assert (
             not_diamond_routed_runnable._configurable_model.invoke.called  # type: ignore[attr-defined]
         ), f"{not_diamond_routed_runnable._configurable_model}"
+        assert nd_client.model_select.called_with(prompt, tradeoff="cost")
 
         # Check the call list
         call_list = (
@@ -95,23 +109,25 @@ class TestNotDiamondRoutedRunnable:
         assert args[0] == "Hello, world!"
 
     def test_stream(
-        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable
+        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable, nd_client
     ) -> None:
-        for result in not_diamond_routed_runnable.stream("Hello, world!"):
+        prompt = "Hello, world!"
+        for result in not_diamond_routed_runnable.stream(prompt):
             assert result is not None
         assert (
             not_diamond_routed_runnable._configurable_model.stream.called  # type: ignore[attr-defined]
         ), f"{not_diamond_routed_runnable._configurable_model}"
+        assert nd_client.model_select.called_with(prompt, tradeoff="cost")
 
     def test_batch(
-        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable
+        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable, nd_client
     ) -> None:
-        not_diamond_routed_runnable.batch(
-            ["Hello, world!", "How are you today?"]
-        )
+        prompts = ["Hello, world!", "How are you today?"]
+        not_diamond_routed_runnable.batch(prompts)
         assert (
             not_diamond_routed_runnable._configurable_model.batch.called  # type: ignore[attr-defined]
         ), f"{not_diamond_routed_runnable._configurable_model}"
+        assert nd_client.model_select.called_with(prompts, tradeoff="cost")
 
         # Check the call list
         call_list = (
@@ -119,16 +135,18 @@ class TestNotDiamondRoutedRunnable:
         )
         assert len(call_list) == 1
         args, kwargs = call_list[0]
-        assert args[0] == ["Hello, world!", "How are you today?"]
+        assert args[0] == prompts
 
     @pytest.mark.asyncio
     async def test_ainvoke(
-        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable
+        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable, nd_client
     ) -> None:
-        await not_diamond_routed_runnable.ainvoke("Hello, world!")
+        prompt = "Hello, world!"
+        await not_diamond_routed_runnable.ainvoke(prompt)
         assert (
             not_diamond_routed_runnable._configurable_model.ainvoke.called  # type: ignore[attr-defined]
         ), f"{not_diamond_routed_runnable._configurable_model}"
+        assert nd_client.amodel_select.called_with(prompt, tradeoff="cost")
 
         # Check the call list
         call_list = (
@@ -140,26 +158,26 @@ class TestNotDiamondRoutedRunnable:
 
     @pytest.mark.asyncio
     async def test_astream(
-        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable
+        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable, nd_client
     ) -> None:
-        async for result in not_diamond_routed_runnable.astream(
-            "Hello, world!"
-        ):
+        prompt = "Hello, world!"
+        async for result in not_diamond_routed_runnable.astream(prompt):
             assert result is not None
         assert (
             not_diamond_routed_runnable._configurable_model.astream.called  # type: ignore[attr-defined]
         ), f"{not_diamond_routed_runnable._configurable_model}"
+        assert nd_client.amodel_select.called_with(prompt, tradeoff="cost")
 
     @pytest.mark.asyncio
     async def test_abatch(
-        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable
+        self, not_diamond_routed_runnable: NotDiamondRoutedRunnable, nd_client
     ) -> None:
-        await not_diamond_routed_runnable.abatch(
-            ["Hello, world!", "How are you today?"]
-        )
+        prompts = ["Hello, world!", "How are you today?"]
+        await not_diamond_routed_runnable.abatch(prompts)
         assert (
             not_diamond_routed_runnable._configurable_model.abatch.called  # type: ignore[attr-defined]
         ), f"{not_diamond_routed_runnable._configurable_model}"
+        assert nd_client.amodel_select.called_with(prompts, tradeoff="cost")
 
         # Check the call list
         call_list = (
@@ -167,7 +185,7 @@ class TestNotDiamondRoutedRunnable:
         )
         assert len(call_list) == 1
         args, kwargs = call_list[0]
-        assert args[0] == ["Hello, world!", "How are you today?"]
+        assert args[0] == prompts
 
     def test_invokable_mock(self) -> None:
         target_model = "openai/gpt-4o"
@@ -184,15 +202,19 @@ class TestNotDiamondRoutedRunnable:
 
         mock_client = MagicMock(spec=LLM)
 
+        test_prompt = "Test prompt"
         with patch(
             "notdiamond.toolkit.langchain.init_chat_model", autospec=True
         ) as mock_method:
             mock_method.return_value = mock_client
-            runnable = NotDiamondRoutedRunnable(nd_client=nd_client)
-            runnable.invoke("Test prompt")
+            runnable = NotDiamondRoutedRunnable(
+                nd_client=nd_client, nd_kwargs={"tradeoff": "cost"}
+            )
+            runnable.invoke(test_prompt)
             assert (
                 mock_client.invoke.called  # type: ignore[attr-defined]
             ), f"{mock_client}"
+        assert nd_client.model_select.called_with(test_prompt, tradeoff="cost")
 
         mock_client.reset_mock()
 
@@ -203,10 +225,11 @@ class TestNotDiamondRoutedRunnable:
             runnable = NotDiamondRoutedRunnable(
                 nd_api_key="sk-...", nd_llm_configs=[target_model]
             )
-            runnable.invoke("Test prompt")
+            runnable.invoke(test_prompt)
             assert (
                 mock_client.invoke.called  # type: ignore[attr-defined]
             ), f"{mock_client}"
+        assert nd_client.model_select.called_with(test_prompt, tradeoff="cost")
 
     def test_init_perplexity(self) -> None:
         target_model = "perplexity/llama-3.1-sonar-large-128k-online"
