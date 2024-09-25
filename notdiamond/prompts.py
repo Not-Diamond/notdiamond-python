@@ -3,7 +3,7 @@ import re
 from typing import Dict, List
 
 from notdiamond.llms.config import LLMConfig
-from notdiamond.llms.providers import NDLLMProviders
+from notdiamond.llms.providers import is_o1_model
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -37,21 +37,10 @@ def _curly_escape(text: str) -> str:
     return re.sub(r"(?<!{){([a-zA-Z])}(?!})", r"{{\1}}", text)
 
 
-def _is_o1_model(llm: LLMConfig):
-    if llm in (
-        NDLLMProviders.O1_PREVIEW,
-        NDLLMProviders.O1_PREVIEW_2024_09_12,
-        NDLLMProviders.O1_MINI,
-        NDLLMProviders.O1_MINI_2024_09_12,
-    ):
-        return True
-    return False
-
-
 def o1_system_prompt_translate(
     messages: List[Dict[str, str]], llm: LLMConfig
 ) -> List[Dict[str, str]]:
-    if _is_o1_model(llm):
+    if is_o1_model(llm):
         translated_messages = []
         for msg in messages:
             if msg["role"] == "system":

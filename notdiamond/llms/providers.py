@@ -175,3 +175,12 @@ class NDLLMProviders(Enum):
 
     def __new__(cls, provider, model):
         return LLMConfig(provider=provider, model=model)
+
+
+def is_o1_model(llm: LLMConfig):
+    return llm in (
+        NDLLMProviders.O1_PREVIEW,
+        NDLLMProviders.O1_PREVIEW_2024_09_12,
+        NDLLMProviders.O1_MINI,
+        NDLLMProviders.O1_MINI_2024_09_12,
+    )
