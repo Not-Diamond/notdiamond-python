@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NotDiamond package &mdash; NotDiamond 0.3.13</title>
+  <title>NotDiamond package &mdash; NotDiamond 0.3.15</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -15,7 +15,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=230319ed"></script>
+        <script src="../_static/documentation_options.js?v=a2d2fe34"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -36,7 +36,7 @@
             NotDiamond
           </a>
               <div class="version">
-                0.3.13
+                0.3.15
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -100,6 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-notdiamond.prompts">notdiamond.prompts</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.prompts._curly_escape"><code class="docutils literal notranslate"><span class="pre">_curly_escape()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.prompts.inject_system_prompt"><code class="docutils literal notranslate"><span class="pre">inject_system_prompt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.prompts.o1_system_prompt_translate"><code class="docutils literal notranslate"><span class="pre">o1_system_prompt_translate()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -481,6 +482,22 @@ This function will not escape double curly braces or non-alphabetic characters.<
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.prompts.o1_system_prompt_translate">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.prompts.</span></span><span class="sig-name descname"><span class="pre">o1_system_prompt_translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><span class="pre">LLMConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/notdiamond/prompts.html#o1_system_prompt_translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.prompts.o1_system_prompt_translate" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>messages</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>)</p></li>
+<li><p><strong>llm</strong> (<a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><em>LLMConfig</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>List</em>[<em>Dict</em>[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -496,7 +513,7 @@ This function will not escape double curly braces or non-alphabetic characters.<
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Sep 11, 2024.
+      <span class="lastupdated">Last updated on Sep 25, 2024.
       </span></p>
   </div>
 

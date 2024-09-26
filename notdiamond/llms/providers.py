@@ -23,6 +23,10 @@ class NDLLMProviders(Enum):
         GPT_4o_MINI_2024_07_18 (NDLLMProvider): refers to 'gpt-4o-mini-2024-07-18' model by OpenAI
         GPT_4o_MINI (NDLLMProvider): refers to 'gpt-4o-mini' model by OpenAI
         GPT_4_0125_PREVIEW (NDLLMProvider): refers to 'gpt-4-0125-preview' model by OpenAI
+        O1_PREVIEW (NDLLMProvider): refers to 'o1-preview' model by OpenAI
+        O1_PREVIEW_2024_09_12 (NDLLMProvider): refers to 'o1-preview-2024-09-12' model by OpenAI
+        O1_MINI (NDLLMProvider): refers to 'o1-mini' model by OpenAI
+        O1_MINI_2024_09_12 (NDLLMProvider): refers to 'o1-mini-2024-09-12' model by OpenAI
 
         CLAUDE_2_1 (NDLLMProvider): refers to 'claude-2.1' model by Anthropic
         CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to 'claude-3-opus-20240229' model by Anthropic
@@ -48,7 +52,6 @@ class NDLLMProviders(Enum):
         OPEN_MIXTRAL_8X7B (NDLLMProvider): refers to 'open-mixtral-8x7b' model by Mistral AI
         OPEN_MIXTRAL_8X22B (NDLLMProvider): refers to 'open-mixtral-8x22b' model by Mistral AI
 
-        TOGETHER_PHIND_CODELLAMA_34B_V2 (NDLLMProvider): refers to 'Phind-CodeLlama-34B-v2' model served via TogetherAI
         TOGETHER_MISTRAL_7B_INSTRUCT_V0_2 (NDLLMProvider): refers to 'Mistral-7B-Instruct-v0.2' model served via TogetherAI
         TOGETHER_MIXTRAL_8X7B_INSTRUCT_V0_1 (NDLLMProvider): refers to 'Mixtral-8x7B-Instruct-v0.1' model served via TogetherAI
         TOGETHER_MIXTRAL_8X22B_INSTRUCT_V0_1 (NDLLMProvider): refers to 'Mixtral-8x22B-Instruct-v0.1' model served via TogetherAI
@@ -86,6 +89,10 @@ class NDLLMProviders(Enum):
     GPT_4o_MINI_2024_07_18 = ("openai", "gpt-4o-mini-2024-07-18")
     GPT_4o_MINI = ("openai", "gpt-4o-mini")
     GPT_4_0125_PREVIEW = ("openai", "gpt-4-0125-preview")
+    O1_PREVIEW = ("openai", "o1-preview")
+    O1_PREVIEW_2024_09_12 = ("openai", "o1-preview-2024-09-12")
+    O1_MINI = ("openai", "o1-mini")
+    O1_MINI_2024_09_12 = ("openai", "o1-mini-2024-09-12")
 
     CLAUDE_2_1 = ("anthropic", "claude-2.1")
     CLAUDE_3_OPUS_20240229 = ("anthropic", "claude-3-opus-20240229")
@@ -112,7 +119,6 @@ class NDLLMProviders(Enum):
     OPEN_MIXTRAL_8X7B = ("mistral", "open-mixtral-8x7b")
     OPEN_MIXTRAL_8X22B = ("mistral", "open-mixtral-8x22b")
 
-    TOGETHER_PHIND_CODELLAMA_34B_V2 = ("togetherai", "Phind-CodeLlama-34B-v2")
     TOGETHER_MISTRAL_7B_INSTRUCT_V0_2 = (
         "togetherai",
         "Mistral-7B-Instruct-v0.2",
@@ -169,3 +175,12 @@ class NDLLMProviders(Enum):
 
     def __new__(cls, provider, model):
         return LLMConfig(provider=provider, model=model)
+
+
+def is_o1_model(llm: LLMConfig):
+    return llm in (
+        NDLLMProviders.O1_PREVIEW,
+        NDLLMProviders.O1_PREVIEW_2024_09_12,
+        NDLLMProviders.O1_MINI,
+        NDLLMProviders.O1_MINI_2024_09_12,
+    )

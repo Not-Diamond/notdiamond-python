@@ -3,6 +3,7 @@
 import inspect
 import logging
 import time
+import warnings
 from enum import Enum
 from typing import (
     Any,
@@ -32,6 +33,7 @@ from notdiamond.exceptions import (
     MissingLLMConfigs,
 )
 from notdiamond.llms.config import LLMConfig
+from notdiamond.llms.providers import is_o1_model
 from notdiamond.llms.request import (
     amodel_select,
     create_preference_id,
@@ -39,7 +41,11 @@ from notdiamond.llms.request import (
     report_latency,
 )
 from notdiamond.metrics.metric import Metric
-from notdiamond.prompts import _curly_escape, inject_system_prompt
+from notdiamond.prompts import (
+    _curly_escape,
+    inject_system_prompt,
+    o1_system_prompt_translate,
+)
 from notdiamond.types import NDApiKeyValidator
 
 LOGGER = logging.getLogger(__name__)
@@ -120,6 +126,14 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     raise ValueError(
                         "Invalid tradeoff. Accepted values: cost, latency."
                     )
+
+            if tradeoff is not None:
+                warnings.warn(
+                    "The tradeoff constructor parameter is deprecated and will be removed in a "
+                    "future version. Please specify the tradeoff when using model_select or invocation methods.",
+                    DeprecationWarning,
+                    stacklevel=2,
+                )
 
             super().__init__(
                 api_key=api_key,
@@ -573,6 +587,14 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             if user_agent is None:
                 user_agent = settings.DEFAULT_USER_AGENT
 
+            if tradeoff is not None:
+                warnings.warn(
+                    "The tradeoff constructor parameter is deprecated and will be removed in a "
+                    "future version. Please specify the tradeoff when using model_select or invocation methods.",
+                    DeprecationWarning,
+                    stacklevel=2,
+                )
+
             self.user_agent = user_agent
             assert (
                 self.api_key is not None
@@ -866,11 +888,13 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     messages, best_llm.system_prompt
                 )
 
+            messages = o1_system_prompt_translate(messages, best_llm)
+
             self.call_callbacks("on_model_select", best_llm, best_llm.model)
 
             llm = self._llm_from_config(best_llm, callbacks=self.callbacks)
 
-            if self.tools:
+            if self.tools and not is_o1_model(best_llm):
                 llm = llm.bind_tools(self.tools)
 
             if response_model is not None:
@@ -1065,11 +1089,13 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     messages, best_llm.system_prompt
                 )
 
+            messages = o1_system_prompt_translate(messages, best_llm)
+
             self.call_callbacks("on_model_select", best_llm, best_llm.model)
 
             llm = self._llm_from_config(best_llm, callbacks=self.callbacks)
 
-            if self.tools:
+            if self.tools and not is_o1_model(best_llm):
                 llm = llm.bind_tools(self.tools)
 
             if response_model is not None:
@@ -1498,6 +1524,9 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     "ChatOpenAI",
                     provider.provider,
                 )
+                if is_o1_model(provider):
+                    passed_kwargs["temperature"] = 1.0
+
                 return ChatOpenAI(
                     openai_api_key=provider.api_key,
                     model_name=provider.model,
@@ -1679,6 +1708,9 @@ class NotDiamond(_NDClient):
 
     tradeoff: Optional[str]
     """
+    [DEPRECATED] The tradeoff constructor parameter is deprecated and will be removed in a future version.
+    Please specify the tradeoff when using model_select or invocation methods.
+
     Define tradeoff between "cost" and "latency" for the router to determine the best LLM for a given query.
     If None is specified, then the router will not consider either cost or latency.
 
@@ -1712,6 +1744,14 @@ class NotDiamond(_NDClient):
             nd_api_url=nd_api_url, user_agent=user_agent, *args, **kwargs
         )
         self.nd_api_url = nd_api_url
+
+        if kwargs.get("tradeoff") is not None:
+            warnings.warn(
+                "The tradeoff constructor parameter is deprecated and will be removed in a "
+                "future version. Please specify the tradeoff when using model_select or invocation methods.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
 
 
 def _get_accepted_invoke_errors(provider: str) -> Tuple:
