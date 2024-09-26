@@ -46,10 +46,12 @@ ND_MODEL_LIST = [
     {"provider": "google", "model": "gemini-1.5-pro-latest"},
     {"provider": "google", "model": "gemini-1.5-flash-latest"},
     {"provider": "google", "model": "gemini-1.0-pro-latest"},
+    #
     # {"provider": "replicate", "model": "mistral-7b-instruct-v0.2"}, removed due to replicate side error
     # {"provider": "replicate", "model": "mixtral-8x7b-instruct-v0.1"}, removed due to replicate side error
     # {"provider": "replicate", "model": "meta-llama-3-70b-instruct"}, removed due to replicate side error
     # {"provider": "replicate", "model": "meta-llama-3.1-405b-instruct"}, removed due to replicate side error
+    #
     {"provider": "replicate", "model": "meta-llama-3-8b-instruct"},
     {"provider": "togetherai", "model": "Mistral-7B-Instruct-v0.2"},
     {"provider": "togetherai", "model": "Mixtral-8x7B-Instruct-v0.1"},

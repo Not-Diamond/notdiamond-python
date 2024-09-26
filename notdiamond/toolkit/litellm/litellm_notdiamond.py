@@ -26,6 +26,10 @@ ND2LITELLM = {
     "openai/gpt-4-1106-preview": "gpt-4-1106-preview",
     "openai/gpt-4o-mini": "gpt-4o-mini",
     "openai/gpt-4o-mini-2024-07-18": "gpt-4o-mini-2024-07-18",
+    "openai/o1-preview-2024-09-12": "o1-preview-2024-09-12",
+    "openai/o1-preview": "o1-preview",
+    "openai/o1-mini-2024-09-12": "o1-mini-2024-09-12",
+    "openai/o1-mini": "o1-mini",
     # anthropic
     "anthropic/claude-2.1": "claude-2.1",
     "anthropic/claude-3-opus-20240229": "claude-3-opus-20240229",
@@ -76,7 +80,7 @@ class NotDiamondError(Exception):
         self,
         status_code,
         message,
-        url="https://not-diamond-server.onrender.com/v2/optimizer/modelSelect",
+        url="https://api.notdiamond.ai",
     ):
         self.status_code = status_code
         self.message = message
