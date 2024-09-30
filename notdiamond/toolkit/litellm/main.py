@@ -14,18 +14,12 @@ import litellm
 import openai
 import tiktoken
 from litellm import (  # type: ignore
-    Logging,
     client,
     exception_type,
     get_litellm_params,
     get_optional_params,
 )
 from litellm._logging import verbose_logger
-from litellm.caching import disable_cache, enable_cache, update_cache
-from litellm.integrations.custom_logger import CustomLogger
-from litellm.litellm_core_utils.litellm_logging import (
-    Logging as LiteLLMLoggingObj,
-)
 from litellm.llms import (
     aleph_alpha,
     baseten,
@@ -43,33 +37,10 @@ from litellm.llms import (
     vllm,
 )
 from litellm.llms.AI21 import completion as ai21
-from litellm.llms.anthropic.chat import AnthropicChatCompletion
-from litellm.llms.anthropic.completion import AnthropicTextCompletion
-from litellm.llms.azure_text import AzureTextCompletion
-from litellm.llms.AzureOpenAI.audio_transcriptions import (
-    AzureAudioTranscription,
-)
-from litellm.llms.AzureOpenAI.azure import (
-    AzureChatCompletion,
-    _check_dynamic_azure_params,
-)
-from litellm.llms.bedrock import (
-    image_generation as bedrock_image_generation,  # type: ignore
-)
-from litellm.llms.bedrock.chat import BedrockConverseLLM, BedrockLLM
-from litellm.llms.bedrock.embed.embedding import BedrockEmbedding
+from litellm.llms.AzureOpenAI.azure import _check_dynamic_azure_params
 from litellm.llms.cohere import chat as cohere_chat
 from litellm.llms.cohere import completion as cohere_completion  # type: ignore
-from litellm.llms.cohere import embed as cohere_embed
 from litellm.llms.custom_llm import CustomLLM, custom_chat_llm_router
-from litellm.llms.databricks.chat import DatabricksChatCompletion
-from litellm.llms.huggingface_restapi import Huggingface
-from litellm.llms.OpenAI.audio_transcriptions import OpenAIAudioTranscription
-from litellm.llms.OpenAI.openai import (
-    OpenAIChatCompletion,
-    OpenAITextCompletion,
-)
-from litellm.llms.predibase import PredibaseChatCompletion
 from litellm.llms.prompt_templates.factory import (
     custom_prompt,
     function_call_prompt,
@@ -77,133 +48,27 @@ from litellm.llms.prompt_templates.factory import (
     prompt_factory,
     stringify_json_tool_call_content,
 )
-from litellm.llms.sagemaker.sagemaker import SagemakerLLM
-from litellm.llms.text_completion_codestral import CodestralTextCompletion
-from litellm.llms.triton import TritonChatCompletion
 from litellm.llms.vertex_ai_and_google_ai_studio import (
     vertex_ai_anthropic,
     vertex_ai_non_gemini,
 )
-from litellm.llms.vertex_ai_and_google_ai_studio.gemini.vertex_and_google_ai_studio_gemini import (
-    VertexLLM,
-)
-from litellm.llms.vertex_ai_and_google_ai_studio.gemini_embeddings.batch_embed_content_handler import (
-    GoogleBatchEmbeddings,
-)
-from litellm.llms.vertex_ai_and_google_ai_studio.image_generation.image_generation_handler import (
-    VertexImageGeneration,
-)
-from litellm.llms.vertex_ai_and_google_ai_studio.multimodal_embeddings.embedding_handler import (
-    VertexMultimodalEmbedding,
-)
-from litellm.llms.vertex_ai_and_google_ai_studio.text_to_speech.text_to_speech_handler import (
-    VertexTextToSpeechAPI,
-)
-from litellm.llms.vertex_ai_and_google_ai_studio.vertex_ai_partner_models.main import (
-    VertexAIPartnerModels,
-)
-from litellm.llms.vertex_ai_and_google_ai_studio.vertex_embeddings import (
-    embedding_handler as vertex_ai_embedding_handler,
-)
-from litellm.llms.watsonx import IBMWatsonXAI
-from litellm.types.llms.openai import HttpxBinaryResponseContent
-from litellm.types.utils import (
-    AdapterCompletionStreamWrapper,
-    ChatCompletionMessageToolCall,
-    FileTypes,
-    HiddenParams,
-    all_litellm_params,
-)
+from litellm.main import *
+from litellm.types.router import LiteLLM_Params
+from litellm.types.utils import all_litellm_params
 from litellm.utils import (
     CustomStreamWrapper,
-    Usage,
-    async_mock_completion_streaming_obj,
+    ModelResponse,
+    TextCompletionResponse,
     completion_with_fallbacks,
-    convert_to_model_response_object,
-    create_pretrained_tokenizer,
-    create_tokenizer,
-    get_optional_params_embeddings,
-    get_optional_params_image_gen,
-    get_optional_params_transcription,
     get_secret,
-    mock_completion_streaming_obj,
-    read_config_args,
     supports_httpx_timeout,
-    token_counter,
 )
 from pydantic import BaseModel
-
-encoding = tiktoken.get_encoding("cl100k_base")
-from litellm.main import (
-    AsyncCompletions,
-    Chat,
-    Completions,
-    LiteLLM,
-    _async_streaming,
-    aadapter_completion,
-    adapter_completion,
-    aembedding,
-    ahealth_check,
-    aimage_generation,
-    amoderation,
-    aspeech,
-    atext_completion,
-    atranscription,
-    batch_completion_models,
-    config_completion,
-    embedding,
-    image_generation,
-    moderation,
-    print_verbose,
-    speech,
-    stream_chunk_builder,
-    stream_chunk_builder_text_completion,
-    text_completion,
-    transcription,
-)
-from litellm.types.router import LiteLLM_Params
-from litellm.utils import (
-    Choices,
-    CustomStreamWrapper,
-    EmbeddingResponse,
-    ImageResponse,
-    Message,
-    ModelResponse,
-    TextChoices,
-    TextCompletionResponse,
-    TextCompletionStreamWrapper,
-    TranscriptionResponse,
-    get_secret,
-    read_config_args,
-)
 
 from . import notdiamond_key, provider_list
 from .litellm_notdiamond import completion as notdiamond_completion
 
-openai_chat_completions = OpenAIChatCompletion()
-openai_text_completions = OpenAITextCompletion()
-openai_audio_transcriptions = OpenAIAudioTranscription()
-databricks_chat_completions = DatabricksChatCompletion()
-anthropic_chat_completions = AnthropicChatCompletion()
-anthropic_text_completions = AnthropicTextCompletion()
-azure_chat_completions = AzureChatCompletion()
-azure_text_completions = AzureTextCompletion()
-azure_audio_transcriptions = AzureAudioTranscription()
-huggingface = Huggingface()
-predibase_chat_completions = PredibaseChatCompletion()
-codestral_text_completions = CodestralTextCompletion()
-triton_chat_completions = TritonChatCompletion()
-bedrock_chat_completion = BedrockLLM()
-bedrock_converse_chat_completion = BedrockConverseLLM()
-bedrock_embedding = BedrockEmbedding()
-vertex_chat_completion = VertexLLM()
-vertex_multimodal_embedding = VertexMultimodalEmbedding()
-vertex_image_generation = VertexImageGeneration()
-google_batch_embeddings = GoogleBatchEmbeddings()
-vertex_partner_models_chat_completion = VertexAIPartnerModels()
-vertex_text_to_speech = VertexTextToSpeechAPI()
-watsonxai = IBMWatsonXAI()
-sagemaker_llm = SagemakerLLM()
+encoding = tiktoken.get_encoding("cl100k_base")
 
 
 def get_api_key(llm_provider: str, dynamic_api_key: Optional[str]):
