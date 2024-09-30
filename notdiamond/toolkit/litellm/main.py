@@ -2,33 +2,13 @@
 
 import asyncio
 import contextvars
-import datetime
 import inspect
-import json
 import os
-import random
-import sys
-import threading
 import time
-import traceback
-import uuid
-from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from functools import partial
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    List,
-    Literal,
-    Mapping,
-    Optional,
-    Tuple,
-    Type,
-    Union,
-)
+from typing import List, Optional, Tuple, Type, Union
 
-import dotenv
 import httpx
 import litellm
 import openai
@@ -152,7 +132,6 @@ from litellm.utils import (
     token_counter,
 )
 from pydantic import BaseModel
-from typing_extensions import overload
 
 encoding = tiktoken.get_encoding("cl100k_base")
 from litellm.main import (
