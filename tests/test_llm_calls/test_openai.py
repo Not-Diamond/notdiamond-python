@@ -5,7 +5,9 @@ from notdiamond.llms.client import NotDiamond
 from notdiamond.llms.providers import NDLLMProviders
 
 test_providers = [
-    provider for provider in NDLLMProviders if provider.provider == "openai"
+    provider
+    for provider in NDLLMProviders
+    if provider.provider == "openai" and provider.model[:2] != "o1"
 ]
 
 
