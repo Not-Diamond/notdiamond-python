@@ -135,8 +135,11 @@
         <span class="n">system_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">context_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">input_price</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">custom_input_price</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">output_price</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">custom_output_price</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">latency</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">custom_latency</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
@@ -148,9 +151,11 @@
 <span class="sd">            is_custom (bool): Whether this is a custom model. Defaults to False.</span>
 <span class="sd">            system_prompt (Optional[str], optional): The system prompt to use for the provider. Defaults to None.</span>
 <span class="sd">            context_length (Optional[int], optional): Custom context window length for the provider/model.</span>
-<span class="sd">            input_price (Optional[float], optional): Custom input price (USD) per million tokens for provider/model.</span>
-<span class="sd">            output_price (Optional[float], optional): Custom output price (USD) per million tokens for provider/model.</span>
-<span class="sd">            latency (Optional[float], optional): Custom latency (time to first token) for provider/model.</span>
+<span class="sd">            custom_input_price (Optional[float], optional): Custom input price (USD) per million tokens for this</span>
+<span class="sd">                provider/model; will default to public input price if available.</span>
+<span class="sd">            custom_output_price (Optional[float], optional): Custom output price (USD) per million tokens for this</span>
+<span class="sd">                provider/model; will default to public output price if available.</span>
+<span class="sd">            custom_latency (Optional[float], optional): Custom latency (time to first token) for provider/model.</span>
 <span class="sd">            api_key (Optional[str], optional): The API key for accessing the LLM provider&#39;s services.</span>
 <span class="sd">                                                Defaults to None.</span>
 <span class="sd">            **kwargs: Additional keyword arguments that might be necessary for specific providers or models.</span>
@@ -186,9 +191,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">is_custom</span> <span class="o">=</span> <span class="n">is_custom</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">context_length</span> <span class="o">=</span> <span class="n">context_length</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">input_price</span> <span class="o">=</span> <span class="n">input_price</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">output_price</span> <span class="o">=</span> <span class="n">output_price</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">latency</span> <span class="o">=</span> <span class="n">latency</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_price</span> <span class="o">=</span> <span class="n">custom_input_price</span> <span class="ow">or</span> <span class="n">input_price</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_price</span> <span class="o">=</span> <span class="n">custom_output_price</span> <span class="ow">or</span> <span class="n">output_price</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latency</span> <span class="o">=</span> <span class="n">custom_latency</span> <span class="ow">or</span> <span class="n">latency</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span></div>
 
@@ -285,7 +290,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Oct 04, 2024.
+      <span class="lastupdated">Last updated on Oct 08, 2024.
       </span></p>
   </div>
 
