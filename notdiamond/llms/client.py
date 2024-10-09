@@ -81,7 +81,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         tools: Optional[Sequence[Union[Dict[str, Any], Callable]]]
         callbacks: Optional[List]
         nd_api_url: Optional[str]
-        user_agent: str | None
+        user_agent: Union[str, None]
 
         class Config:
             arbitrary_types_allowed = True
@@ -99,7 +99,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             callbacks: Optional[List] = None,
             tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = None,
             nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
-            user_agent: str | None = None,
+            user_agent: Union[str, None] = None,
             **kwargs,
         ):
             if api_key is None:
@@ -551,7 +551,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         tools: Optional[Sequence[Union[Dict[str, Any], Callable]]]
         callbacks: Optional[List]
         nd_api_url: Optional[str]
-        user_agent: str | None
+        user_agent: Union[str, None]
 
         def __init__(
             self,
@@ -566,7 +566,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = None,
             callbacks: Optional[List] = None,
             nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
-            user_agent: str | None = None,
+            user_agent: Union[str, None] = None,
             **kwargs,
         ) -> None:
             super().__init__(
@@ -1728,7 +1728,7 @@ class NotDiamond(_NDClient):
     nd_api_url: Optional[str]
     """The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL."""
 
-    user_agent: str | None
+    user_agent: Union[str, None]
 
     class Config:
         arbitrary_types_allowed = True
@@ -1736,7 +1736,7 @@ class NotDiamond(_NDClient):
     def __init__(
         self,
         nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
-        user_agent: str | None = settings.DEFAULT_USER_AGENT,
+        user_agent: Union[str, None] = settings.DEFAULT_USER_AGENT,
         *args,
         **kwargs,
     ):
