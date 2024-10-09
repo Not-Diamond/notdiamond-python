@@ -1,0 +1,146 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "mistral", "model": "open-mistral-nemo", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": true, "tools": [{"type": "function",
+      "function": {"name": "add_fct", "description": "Add two numbers", "parameters":
+      {"type": "object", "properties": {"a": {"type": "integer", "description": "The
+      first number"}, "b": {"type": "integer", "description": "The second number"}},
+      "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '606'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"mistral","model":"open-mistral-nemo"}],"session_id":"0c6ca572-26aa-499c-8c69-bff3dd388c0a"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d28c7df2e1e8df1-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 16:00:10 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 4aaf60a9-1c9b-4d69
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "model":
+      "open-mistral-nemo", "temperature": 0.7, "max_tokens": 200, "top_p": 1, "safe_prompt":
+      false, "tools": [{"type": "function", "function": {"name": "add_fct", "description":
+      "Add two numbers", "parameters": {"type": "object", "properties": {"a": {"type":
+      "integer", "description": "The first number"}, "b": {"type": "integer", "description":
+      "The second number"}}, "required": ["a", "b"]}}}], "stream": false}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '482'
+      content-type:
+      - application/json
+      host:
+      - api.mistral.ai
+      user-agent:
+      - python-httpx/0.27.2
+    method: POST
+    uri: https://api.mistral.ai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA0yQy2rDMBBFfyXctVJqO45t7QrZ9BuaYPSYJGr1cCWZthj/e1FoQnfDhXvmzCww
+        GhyyGtquVVLu+36nm16SktRqaoZGdUNHYAjynVQGh7qK/KSCmyxlEzwYVCSRSYNXXd0PdbWvKgYX
+        NFlwhIn81pmUo7BbTy6UwjUYRQn8bYHxmr7BnxkcpSQuBL4gBkvgECmZlIXPpRN8Jl8EwJBDsKMS
+        1v4xyg1fn4fX5vDTvIDhPHt1k+MLvHA3ltbjWRWSiJfZkc8JHMsR4gi+adjmCFmmdsW6nlaGs/Em
+        XcdIIhXQ/50MNlymGGQC97O164lhvrtPMbgpjzl8kE/gQ190s7CPpKp35Zz7Ax95vV/XXwAAAP//
+        AwAT5WO9kAEAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d28c7e75f81a68c-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 16:00:12 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      ratelimitbysize-limit:
+      - '2000000'
+      ratelimitbysize-query-cost:
+      - '208'
+      ratelimitbysize-remaining:
+      - '1999584'
+      ratelimitbysize-reset:
+      - '49'
+      x-api-key:
+      - REDACTED
+      x-envoy-upstream-service-time:
+      - '563'
+      x-kong-proxy-latency:
+      - '1'
+      x-kong-request-id:
+      - 1888590b01e4450d89e8bd0218254823
+      x-kong-upstream-latency:
+      - '564'
+      x-ratelimitbysize-limit-minute:
+      - '2000000'
+      x-ratelimitbysize-limit-month:
+      - '10000000000'
+      x-ratelimitbysize-remaining-minute:
+      - '1999584'
+      x-ratelimitbysize-remaining-month:
+      - '9999999584'
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+version: 1

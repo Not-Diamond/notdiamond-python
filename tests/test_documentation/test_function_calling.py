@@ -62,7 +62,7 @@ def test_function_calling():
 
 def test_function_calling_via_rest_api():
     modelselect_url = (
-        "https://not-diamond-server.onrender.com/v2/optimizer/hashModelSelect"
+        "https://staging-api.notdiamond.ai/v2/optimizer/hashModelSelect"
     )
 
     headers = {

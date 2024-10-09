@@ -1,0 +1,2751 @@
+interactions:
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "llm_providers":
+      [{"provider": "openai", "model": "gpt-4o"}], "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '173'
+      User-Agent:
+      - litellm/1.48.19
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o"}],"session_id":"d39646c6-0116-4354-b8fb-c1a4f1f51116"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d2adbb29e4a74ac-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 22:03:14 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 44f829d4-97a0-44dc
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "model":
+      "gpt-4o", "stream": true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '101'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=HMY6mtsdXG7lBEGtaJJx5LM37EcPVVG06POLeQLDXM8-1728943388-1.0.1.1-kjn1oKHGk8B0jnIJDvvd4cwwk8LduKNGsLNBm1NJ46Dua.KAfqAAkgW1W0p8cPbd9SbAu98Tu1UuGZ82oViBdA;
+        _cfuvid=pk76NfXyE3I4ppbQpAMDX8FRXVACN2Xb3SXq3xhf17I-1728943388206-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"role":"assistant","content":"","refusal":null},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"Hello"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"!"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        I''m"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        just"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        a"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        program"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":","},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        so"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        I"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        don''t"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        have"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        feelings"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":","},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        but"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        I''m"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        here"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        and"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        ready"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        to"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        help"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        you"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"."},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        How"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        can"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        I"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        assist"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        you"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"
+        today"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{"content":"?"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRiqnWHB7MStbKsQB4Svi9gDLH5","object":"chat.completion.chunk","created":1728943394,"model":"gpt-4o-2024-08-06","system_fingerprint":"fp_a20a4ee344","choices":[{"index":0,"delta":{},"logprobs":null,"finish_reason":"stop"}]}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d2adbb9ebffdb09-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Mon, 14 Oct 2024 22:03:15 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '126'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-api-key:
+      - REDACTED
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '30000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '29999978'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_28acdeb013c5db697681c52f34bc2570
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "llm_providers":
+      [{"provider": "perplexity", "model": "llama-3.1-sonar-large-128k-online"}],
+      "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '204'
+      User-Agent:
+      - litellm/1.48.19
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"perplexity","model":"llama-3.1-sonar-large-128k-online"}],"session_id":"0d37c3de-1c02-452b-8dda-2e8cd3e513a4"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d2adbb9be964c06-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 22:03:15 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - d44ae08f-02b3-4375
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": [{"type": "text", "text": "Hello,
+      how are you?"}]}], "max_tokens": 4096, "model": "claude-3-5-sonnet-20240620",
+      "stream": true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '169'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - litellm/1.48.19
+      x-api-key:
+      - REDACTED
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: 'event: message_start
+
+        data: {"type":"message_start","message":{"id":"msg_01NavMqP1n7v7Dg5SvWwdsbK","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[],"stop_reason":null,"stop_sequence":null,"usage":{"input_tokens":13,"output_tokens":1}}      }
+
+
+        event: content_block_start
+
+        data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}         }
+
+
+        event: ping
+
+        data: {"type": "ping"}
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Hello"}    }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"!
+        As"}             }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        an AI language"}               }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        model, I don''t"}   }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        have"}       }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        feelings,"}          }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        but I''m functioning"}         }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        well an"}   }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"d
+        ready to assist you."}   }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        How can"}         }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        I help you today?"}           }
+
+
+        event: content_block_stop
+
+        data: {"type":"content_block_stop","index":0       }
+
+
+        event: message_delta
+
+        data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null},"usage":{"output_tokens":35}    }
+
+
+        event: message_stop
+
+        data: {"type":"message_stop"  }
+
+
+        '
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d2adbba2c668dc0-MIA
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Mon, 14 Oct 2024 22:03:15 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2024-10-14T22:03:32Z'
+      anthropic-ratelimit-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-tokens-remaining:
+      - '396000'
+      anthropic-ratelimit-tokens-reset:
+      - '2024-10-14T22:03:15Z'
+      request-id:
+      - req_015VWhiE5wxEt5wpcmi7wohD
+      via:
+      - 1.1 google
+      x-api-key:
+      - REDACTED
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "model":
+      "gpt-4o-mini", "stream": true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '106'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"role":"assistant","content":"","refusal":null},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"Hello"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"!"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        I''m"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        just"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        a"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        program"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":","},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        but"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        I''m"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        here"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        and"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        ready"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        to"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        help"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        you"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"."},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        How"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        can"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        I"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        assist"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        you"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"
+        today"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{"content":"?"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AINRjWstHgrS6yoXrEr3E1utR5bYp","object":"chat.completion.chunk","created":1728943395,"model":"gpt-4o-mini-2024-07-18","system_fingerprint":"fp_e2bde53e6e","choices":[{"index":0,"delta":{},"logprobs":null,"finish_reason":"stop"}]}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d2adbc00b1c222d-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Mon, 14 Oct 2024 22:03:16 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=Fr.w3glxGbCGA3JeHn3jfYdge6CF5dVeBXiPhHlR0Sc-1728943396-1.0.1.1-CWm_VHFTaMGkgMyN.xIgw521BOJjdijSPqvOtlIkoAxzU0fRKfkWKnA9kejBcg8z.dt47iprWGnWL2ftL7MQ.Q;
+        path=/; expires=Mon, 14-Oct-24 22:33:16 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=mUF22j4DZgZJWQGFhlo9SQgSDkWOho.y3sr2dGUqUzc-1728943396073-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '161'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-api-key:
+      - REDACTED
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999978'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_0f355235aca0cccde17ba747a28202fb
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "model":
+      "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "stream": true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '139'
+      content-type:
+      - application/json
+      host:
+      - api.together.xyz
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.together.xyz/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"Hello","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":9906,"role":"assistant","content":"Hello","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":",","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":11,"role":"assistant","content":",","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        I","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":358,"role":"assistant","content":"
+        I","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"''m","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":2846,"role":"assistant","content":"''m","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        just","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":1120,"role":"assistant","content":"
+        just","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        a","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":264,"role":"assistant","content":"
+        a","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        computer","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":6500,"role":"assistant","content":"
+        computer","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        program","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":2068,"role":"assistant","content":"
+        program","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":",","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":11,"role":"assistant","content":",","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        so","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":779,"role":"assistant","content":"
+        so","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        I","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":358,"role":"assistant","content":"
+        I","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        don","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":1541,"role":"assistant","content":"
+        don","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"''t","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":956,"role":"assistant","content":"''t","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        have","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":617,"role":"assistant","content":"
+        have","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        feelings","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":16024,"role":"assistant","content":"
+        feelings","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":",","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":11,"role":"assistant","content":",","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        but","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":719,"role":"assistant","content":"
+        but","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        thanks","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":9523,"role":"assistant","content":"
+        thanks","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        for","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":369,"role":"assistant","content":"
+        for","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        asking","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":10371,"role":"assistant","content":"
+        asking","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":".","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":13,"role":"assistant","content":".","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        How","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":2650,"role":"assistant","content":"
+        How","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        can","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":649,"role":"assistant","content":"
+        can","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        I","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":358,"role":"assistant","content":"
+        I","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        assist","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":7945,"role":"assistant","content":"
+        assist","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        you","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":499,"role":"assistant","content":"
+        you","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"
+        today","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":3432,"role":"assistant","content":"
+        today","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"?","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":30,"role":"assistant","content":"?","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"8d2adbbf5ca3db09-MIA","object":"chat.completion.chunk","created":1728943395,"choices":[{"index":0,"text":"","logprobs":null,"finish_reason":"eos","seed":13638959672946737000,"delta":{"token_id":128009,"role":"assistant","content":"","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":{"prompt_tokens":42,"completion_tokens":29,"total_tokens":71}}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d2adbbf5ca3db09-MIA
+      Cache-Control:
+      - no-cache, no-transform
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream;charset=utf-8
+      Date:
+      - Mon, 14 Oct 2024 22:03:16 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      x-api-call-start:
+      - '2024-10-14T22:03:15.809Z'
+      x-api-key:
+      - REDACTED
+      x-api-received:
+      - '2024-10-14T22:03:15.802Z'
+      x-inference-version:
+      - v2
+      x-ratelimit:
+      - 'false'
+      x-ratelimit-limit:
+      - '10'
+      x-ratelimit-limit-tokens:
+      - '3000'
+      x-ratelimit-remaining:
+      - '19'
+      x-ratelimit-remaining-tokens:
+      - '3000'
+      x-ratelimit-reset:
+      - '2'
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, how are you?"}], "model":
+      "mistral-large-latest", "stream": true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '115'
+      content-type:
+      - application/json
+      host:
+      - api.mistral.ai
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.mistral.ai/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"Hello"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"!"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        I"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"''"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"m"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        functioning"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        well"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":","},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        thank"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        you"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        for"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        asking"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"."},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        I"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"''"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"m"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        here"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        to"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        help"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"."},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        How"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        about"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        you"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"?"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        How"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        are"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        you"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        doing"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        today"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"?"},"finish_reason":null}]}
+
+
+        data: {"id":"3ded2c09761f4839a2be96520bcaec8f","object":"chat.completion.chunk","created":1728943396,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":""},"finish_reason":"stop"}],"usage":{"prompt_tokens":9,"total_tokens":39,"completion_tokens":30}}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d2adbc039763712-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Mon, 14 Oct 2024 22:03:16 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      ratelimitbysize-limit:
+      - '2000000'
+      ratelimitbysize-query-cost:
+      - '32006'
+      ratelimitbysize-remaining:
+      - '1865520'
+      ratelimitbysize-reset:
+      - '45'
+      x-api-key:
+      - REDACTED
+      x-envoy-upstream-service-time:
+      - '314'
+      x-kong-proxy-latency:
+      - '0'
+      x-kong-request-id:
+      - cc59d457adff0a4cc32d7c4390e1417c
+      x-kong-upstream-latency:
+      - '316'
+      x-ratelimitbysize-limit-minute:
+      - '2000000'
+      x-ratelimitbysize-limit-month:
+      - '10000000000'
+      x-ratelimitbysize-remaining-minute:
+      - '1865520'
+      x-ratelimitbysize-remaining-month:
+      - '9998303083'
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "model":
+      "llama-3.1-sonar-large-128k-online", "stream": true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '128'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=RV1qBx888ALRQORLvPA5yWXvdvN5tKIvYNrJIqR7fIA-1728943393-1.0.1.1-onH40Cj_e4myp_uue.clGZwVrMZdQp0xbOeFaHfANjGlnANQdodlg.c1KQ5OKRFufeydCr6UZFg895l7RPRiKw
+      host:
+      - api.perplexity.ai
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.perplexity.ai/chat/completions
+  response:
+    body:
+      string: "data: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\":
+        \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943396, \"usage\":
+        {\"prompt_tokens\": 6, \"completion_tokens\": 1, \"total_tokens\": 7}, \"object\":
+        \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\": null,
+        \"message\": {\"role\": \"assistant\", \"content\": \"When\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \"When\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943396, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        3, \"total_tokens\": 9}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" greeting someone\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943396,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 5, \"total_tokens\":
+        11}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \", especially\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943396,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 7, \"total_tokens\":
+        13}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" in a\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943396,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 9, \"total_tokens\":
+        15}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" friendly or\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943396,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 11, \"total_tokens\":
+        17}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" educational context\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943396, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        13, \"total_tokens\": 19}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here\"}, \"delta\": {\"role\": \"assistant\", \"content\": \", here\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943396, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        15, \"total_tokens\": 21}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" are
+        some\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943396,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 17, \"total_tokens\":
+        23}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" common ways\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943396, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        19, \"total_tokens\": 25}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" to respond\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943396,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 21, \"total_tokens\":
+        27}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" to \\\"\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943396,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 23, \"total_tokens\":
+        29}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello,\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"Hello,\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943396,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 25, \"total_tokens\":
+        31}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" how are\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 27, \"total_tokens\":
+        33}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" you?\\\"\\n\\n\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943397, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        29, \"total_tokens\": 35}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"## Using\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943397, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        31, \"total_tokens\": 37}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" Songs
+        for\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 33, \"total_tokens\":
+        39}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\n\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" Kids\\n\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943397, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        35, \"total_tokens\": 41}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \"In educational\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 37, \"total_tokens\":
+        43}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs,\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"
+        songs,\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 39, \"total_tokens\":
+        45}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" the responses\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 41, \"total_tokens\":
+        47}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" are often\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 43, \"total_tokens\":
+        49}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" simple and\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 45, \"total_tokens\":
+        51}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" repetitive:\\n\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943397, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        47, \"total_tokens\": 53}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"- **\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 49, \"total_tokens\":
+        55}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Sing\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"The Sing\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943397, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        51, \"total_tokens\": 57}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Wal\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \"ing Wal\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 53, \"total_tokens\":
+        59}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**:\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"rus**:\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943397, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        55, \"total_tokens\": 61}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" \\\"Hello\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 57, \"total_tokens\":
+        63}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \", hello\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 59, \"total_tokens\":
+        65}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" How\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 61, \"total_tokens\":
+        67}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" are you\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 63, \"total_tokens\":
+        69}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \"? I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 65, \"total_tokens\":
+        71}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \"'m good\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 67, \"total_tokens\":
+        73}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \", I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 69, \"total_tokens\":
+        75}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \"'m great\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943397, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        71, \"total_tokens\": 77}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \". How\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 73, \"total_tokens\":
+        79}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" about you\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943397, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        77, \"total_tokens\": 83}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \"?\\\"\\n\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 79, \"total_tokens\":
+        85}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"-
+        **\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\":
+        \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397, \"usage\":
+        {\"prompt_tokens\": 6, \"completion_tokens\": 81, \"total_tokens\": 87}, \"object\":
+        \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\": null,
+        \"message\": {\"role\": \"assistant\", \"content\": \"When greeting someone,
+        especially in a friendly or educational context, here are some common ways
+        to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"Super Simple\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 83, \"total_tokens\":
+        89}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**:\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" Songs**:\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 85, \"total_tokens\":
+        91}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" \\\"Hello\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 87, \"total_tokens\":
+        93}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" Hello\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 89, \"total_tokens\":
+        95}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \", how\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 91, \"total_tokens\":
+        97}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" are you\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943397, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        93, \"total_tokens\": 99}, \"object\": \"chat.completion\", \"choices\": [{\"index\":
+        0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\", \"content\":
+        \"When greeting someone, especially in a friendly or educational context,
+        here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"? I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943397,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 95, \"total_tokens\":
+        101}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \"'m good\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943398, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        97, \"total_tokens\": 103}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 99, \"total_tokens\":
+        105}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"'m great\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943398, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        101, \"total_tokens\": 107}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 103, \"total_tokens\":
+        109}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"'m wonderful\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 105, \"total_tokens\":
+        111}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"!\\\" or\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 107, \"total_tokens\":
+        113}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" \\\"I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 109, \"total_tokens\":
+        115}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \"'m tired\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 111, \"total_tokens\":
+        117}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \". I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 113, \"total_tokens\":
+        119}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \"'m hungry\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 115, \"total_tokens\":
+        121}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \". I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 117, \"total_tokens\":
+        123}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \"'m not\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943398, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        119, \"total_tokens\": 125}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" so good\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 123, \"total_tokens\":
+        129}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \".\\\"\\n-\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943398, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        125, \"total_tokens\": 131}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" **The\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 127, \"total_tokens\":
+        133}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kib\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" Kib\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943398, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        129, \"total_tokens\": 135}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \"oomers\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 131, \"total_tokens\":
+        137}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"**: \\\"\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 133, \"total_tokens\":
+        139}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello,\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"Hello,\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 135, \"total_tokens\":
+        141}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello,\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" hello,\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 137, \"total_tokens\":
+        143}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" how are\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 139, \"total_tokens\":
+        145}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you?\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" you?\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 141, \"total_tokens\":
+        147}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello,\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" Hello,\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 143, \"total_tokens\":
+        149}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello,\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" hello,\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943398, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        145, \"total_tokens\": 151}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" how are\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 147, \"total_tokens\":
+        153}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" you?\\\"\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943398, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        149, \"total_tokens\": 155}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" followed by\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 151, \"total_tokens\":
+        157}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" various actions\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 153, \"total_tokens\":
+        159}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" like fist\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 155, \"total_tokens\":
+        161}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" bumping\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 157, \"total_tokens\":
+        163}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \", high\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 159, \"total_tokens\":
+        165}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \"-fiving\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943398, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        161, \"total_tokens\": 167}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \", or\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 163, \"total_tokens\":
+        169}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" hugging\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943398, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        167, \"total_tokens\": 173}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n##\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \".\\n\\n##\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943398,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 169, \"total_tokens\":
+        175}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"
+        General Responses\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 171, \"total_tokens\":
+        177}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"\\nIn\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 173, \"total_tokens\":
+        179}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" everyday conversations\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 175, \"total_tokens\":
+        181}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \", you\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 177, \"total_tokens\":
+        183}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" might respond\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        179, \"total_tokens\": 185}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" with:\\n\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 181, \"total_tokens\":
+        187}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"- \\\"\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        183, \"total_tokens\": 189}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \"I'm\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 185, \"total_tokens\":
+        191}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good,\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" good,\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        187, \"total_tokens\": 193}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" thank you\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        189, \"total_tokens\": 195}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \". How\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        191, \"total_tokens\": 197}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" about you\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        193, \"total_tokens\": 199}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n-\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"?\\\"\\n-\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        195, \"total_tokens\": 201}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"
+        \\\"I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 197, \"total_tokens\":
+        203}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \"'m great\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        199, \"total_tokens\": 205}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \", thanks\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 201, \"total_tokens\":
+        207}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \". How\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        203, \"total_tokens\": 209}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" are you\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 205, \"total_tokens\":
+        211}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n-\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"?\\\"\\n-\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        207, \"total_tokens\": 213}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" \\\"I\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        209, \"total_tokens\": 215}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \"'m doing\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        211, \"total_tokens\": 217}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing well,\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" well,\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        213, \"total_tokens\": 219}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing well,
+        thanks.\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" thanks.\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        215, \"total_tokens\": 221}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing well,
+        thanks. How about\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"
+        How about\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 217, \"total_tokens\":
+        223}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" you?\\\"\\n\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        219, \"total_tokens\": 225}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing well,
+        thanks. How about you?\\\"\\n- If\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \"- If\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 221, \"total_tokens\":
+        227}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" you're\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943399, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        223, \"total_tokens\": 229}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing well,
+        thanks. How about you?\\\"\\n- If you're not feeling\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" not feeling\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 225, \"total_tokens\":
+        231}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well,\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"
+        well,\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 227, \"total_tokens\":
+        233}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" you could\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 229, \"total_tokens\":
+        235}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say:\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" say:\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 231, \"total_tokens\":
+        237}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" \\\"I\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 233, \"total_tokens\":
+        239}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \"'m a\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 235, \"total_tokens\":
+        241}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" bit tired\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 237, \"total_tokens\":
+        243}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hung\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \"/hung\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943399,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 239, \"total_tokens\":
+        245}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hungry/not\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \"ry/not\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943400, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        241, \"total_tokens\": 247}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing well,
+        thanks. How about you?\\\"\\n- If you're not feeling well, you could say:
+        \\\"I'm a bit tired/hungry/not so good\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" so good\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943400,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 243, \"total_tokens\":
+        249}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hungry/not so good today,\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" today,\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943400, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        245, \"total_tokens\": 251}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing well,
+        thanks. How about you?\\\"\\n- If you're not feeling well, you could say:
+        \\\"I'm a bit tired/hungry/not so good today, but thanks\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" but thanks\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943400,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 247, \"total_tokens\":
+        253}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hungry/not so good today,
+        but thanks for asking\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" for asking\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943400,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 249, \"total_tokens\":
+        255}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hungry/not so good today,
+        but thanks for asking.\\\"\\n\\nThese\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \".\\\"\\n\\nThese\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943400,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 251, \"total_tokens\":
+        257}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hungry/not so good today,
+        but thanks for asking.\\\"\\n\\nThese responses help\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" responses help\"}}]}\r\n\r\ndata: {\"id\":
+        \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943400, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        253, \"total_tokens\": 259}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing well,
+        thanks. How about you?\\\"\\n- If you're not feeling well, you could say:
+        \\\"I'm a bit tired/hungry/not so good today, but thanks for asking.\\\"\\n\\nThese
+        responses help maintain a\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" maintain a\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943400,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 255, \"total_tokens\":
+        261}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hungry/not so good today,
+        but thanks for asking.\\\"\\n\\nThese responses help maintain a polite and\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" polite and\"}}]}\r\n\r\ndata:
+        {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\", \"model\": \"llama-3.1-sonar-large-128k-online\",
+        \"created\": 1728943400, \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\":
+        257, \"total_tokens\": 263}, \"object\": \"chat.completion\", \"choices\":
+        [{\"index\": 0, \"finish_reason\": null, \"message\": {\"role\": \"assistant\",
+        \"content\": \"When greeting someone, especially in a friendly or educational
+        context, here are some common ways to respond to \\\"Hello, how are you?\\\"\\n\\n##
+        Using Songs for Kids\\nIn educational songs, the responses are often simple
+        and repetitive:\\n- **The Singing Walrus**: \\\"Hello, hello How are you?
+        I'm good, I'm great. How about you?\\\"\\n- **Super Simple Songs**: \\\"Hello
+        Hello, how are you? I'm good I'm great I'm wonderful!\\\" or \\\"I'm tired.
+        I'm hungry. I'm not so good.\\\"\\n- **The Kiboomers**: \\\"Hello, hello,
+        how are you? Hello, hello, how are you?\\\" followed by various actions like
+        fist bumping, high-fiving, or hugging.\\n\\n## General Responses\\nIn everyday
+        conversations, you might respond with:\\n- \\\"I'm good, thank you. How about
+        you?\\\"\\n- \\\"I'm great, thanks. How are you?\\\"\\n- \\\"I'm doing well,
+        thanks. How about you?\\\"\\n- If you're not feeling well, you could say:
+        \\\"I'm a bit tired/hungry/not so good today, but thanks for asking.\\\"\\n\\nThese
+        responses help maintain a polite and friendly tone\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" friendly tone\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943400,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 259, \"total_tokens\":
+        265}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hungry/not so good today,
+        but thanks for asking.\\\"\\n\\nThese responses help maintain a polite and
+        friendly tone in your\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" in your\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943400,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 261, \"total_tokens\":
+        267}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hungry/not so good today,
+        but thanks for asking.\\\"\\n\\nThese responses help maintain a polite and
+        friendly tone in your interactions.\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" interactions.\"}}]}\r\n\r\ndata: {\"id\": \"fc64dbf9-8f32-4400-95b2-dcb9d677d9a6\",
+        \"model\": \"llama-3.1-sonar-large-128k-online\", \"created\": 1728943400,
+        \"usage\": {\"prompt_tokens\": 6, \"completion_tokens\": 261, \"total_tokens\":
+        267}, \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        \"stop\", \"message\": {\"role\": \"assistant\", \"content\": \"When greeting
+        someone, especially in a friendly or educational context, here are some common
+        ways to respond to \\\"Hello, how are you?\\\"\\n\\n## Using Songs for Kids\\nIn
+        educational songs, the responses are often simple and repetitive:\\n- **The
+        Singing Walrus**: \\\"Hello, hello How are you? I'm good, I'm great. How about
+        you?\\\"\\n- **Super Simple Songs**: \\\"Hello Hello, how are you? I'm good
+        I'm great I'm wonderful!\\\" or \\\"I'm tired. I'm hungry. I'm not so good.\\\"\\n-
+        **The Kiboomers**: \\\"Hello, hello, how are you? Hello, hello, how are you?\\\"
+        followed by various actions like fist bumping, high-fiving, or hugging.\\n\\n##
+        General Responses\\nIn everyday conversations, you might respond with:\\n-
+        \\\"I'm good, thank you. How about you?\\\"\\n- \\\"I'm great, thanks. How
+        are you?\\\"\\n- \\\"I'm doing well, thanks. How about you?\\\"\\n- If you're
+        not feeling well, you could say: \\\"I'm a bit tired/hungry/not so good today,
+        but thanks for asking.\\\"\\n\\nThese responses help maintain a polite and
+        friendly tone in your interactions.\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \"\"}}]}\r\n\r\n"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d2adbc06ae49ac0-MIA
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Mon, 14 Oct 2024 22:03:16 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      x-api-key:
+      - REDACTED
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+version: 1

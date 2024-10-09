@@ -66,7 +66,7 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           NOTDIAMOND_API_URL: ${{ secrets.NOTDIAMOND_API_URL }}
         run: |
-          PYTEST_ADDOPTS="--color=yes" poetry run coverage run --branch -m pytest -v tests/
+          PYTEST_ADDOPTS="--color=yes" poetry run coverage run --branch -m pytest --block-network -v tests/
           poetry run coverage report -m
       - name: coverage badge + comment
         uses: py-cov-action/python-coverage-comment-action@v3
@@ -74,7 +74,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           # If the coverage percentage is above or equal to this value, the badge will be green.
           MINIMUM_GREEN: 80
-          # Same with orange. Below is red.
           MINIMUM_ORANGE: 50
           COVERAGE_PATH: ./
       - name: Store Pull Request comment to be posted

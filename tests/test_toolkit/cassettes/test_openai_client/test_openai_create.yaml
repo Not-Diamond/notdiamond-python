@@ -1,0 +1,600 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this route
+      to gpt-3.5-turbo?"}], "llm_providers": [{"provider": "openai", "model": "gpt-4o-2024-05-13",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4o-mini-2024-07-18",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '501'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"727ed944-4f62-4007-bb09-095253793902"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d10896b8c8325af-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:23:14 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 92ecfeda-c4ba-4bfd
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this route
+      to gpt-3.5-turbo?"}], "model": "gpt-4o-mini-2024-07-18"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '129'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2xRwW6bQBC98xXTveQCESHEpr5UqJVqH6oc26aq0LKMYZtlBu2OlVqR/70CHNtV
+        fNnDe/vevHnzGgEo26gVKNNpMf3gknL9BZck5WMqi1J//Vb4vCm+d5+fnuvsh4pHBdd/0Mib6tZw
+        PzgUyzTTxqMWHF3vllmxWCzvPz5MRM8NulHWDpLknPSWbJKlWZ6ky+SuOKo7tgaDWsGvCADgdXrH
+        nNTgX7WCNH5DegxBt6hWp08AyrMbEaVDsEE0iYrPpGESpCn6Gp3jD/ATQwx73t14BEuCXhux1MKL
+        lQ40QbmBKTbUOmADTPA4IJWbmwCCpiN23FoMt7DmFzCaYAPz5NEUhBu9/3SZwON2F/TYAu2cO+KH
+        00qO28FzHY78Cd9asqGrPOrANMYPwoOa2EME8HuqbvdfG2rw3A9SCT8jjYZZPtup88GukMKi3RnP
+        i/iKW9WgaOvCRfXKaNNhc1am0cVq72des5jXs9S+c4mOTirsg2BfbS216Adv52NuhwqzusGHe1yg
+        ig7RPwAAAP//AwAH+p1D2gIAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d108971ecdbb3bf-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:23:15 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=MdO5Q1BzdB5fHz0SoKI8QRRz0_sejcnhxFwY.pTjDm8-1728667395-1.0.1.1-uEI28Xia7hrV3p_zkWz_frU3AGuZsF.WblvAkThu435_HEFwrGZBzjKHcdPQtAgktTiNVAsaiCXXCm.ZBZHIVw;
+        path=/; expires=Fri, 11-Oct-24 17:53:15 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=0C.nfcmB_B_QV5oOiCUDnfLPN2pTKUuWw5aVDzxhHb4-1728667395445-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '490'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-api-key:
+      - REDACTED
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999971'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_135b520471ed202ccb0e0f8c70aea02a
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this route
+      to gpt-3.5-turbo?"}], "llm_providers": [{"provider": "openai", "model": "gpt-4o-2024-05-13",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4o-mini-2024-07-18",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '501'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"a45e8154-0c18-414c-8099-81c109a40a15"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d108975df23a536-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:23:16 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 5fa84765-74ad-4527
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this route
+      to gpt-3.5-turbo?"}], "model": "gpt-4o-mini-2024-07-18"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '129'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=MdO5Q1BzdB5fHz0SoKI8QRRz0_sejcnhxFwY.pTjDm8-1728667395-1.0.1.1-uEI28Xia7hrV3p_zkWz_frU3AGuZsF.WblvAkThu435_HEFwrGZBzjKHcdPQtAgktTiNVAsaiCXXCm.ZBZHIVw;
+        _cfuvid=0C.nfcmB_B_QV5oOiCUDnfLPN2pTKUuWw5aVDzxhHb4-1728667395445-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2xRQW7bMBC86xUbXnqRAlt2LNe3BCmSAGlTIC2KpigEmlpJbCguQ67auIH/XkiW
+        LRfJhYeZneHs7EsEIHQhViBULVk1ziTn15e4fPg6va/vLxbVh8vs9uPT7cXfh6vm7tM3EXcKWv9C
+        xXvVqaLGGWRNdkcrj5Kxc51m6XKxyGbvFz3RUIGmk1WOkzkljbY6SSfpPJlkyXQ5qGvSCoNYwY8I
+        AOClf7uctsBnsYJJvEcaDEFWKFaHIQDhyXSIkCHowNKyiEdSkWW0ffRrNIZO4Du1ID2Car1Hy2YD
+        2jJ6qVjbCv5orkFCHxzWMmABZOHOoT2/eRfg6vOXZA7Sq1ozKm49nsJNCRtqoZa/EYJDpUut4KnF
+        0BUUgDxYxAL28RTGUCIaKD0iMIEMjyfHkT2WbZBdbbY1ZsC3hw4MVc7TOgz8AS+11aHOPcpAtts3
+        MDnRs9sI4GffdftffcJ5ahznTI9oO8N0vrMT44VHcjYbSCaWZsTPsvgNt7xAltqEo1sJJVWNxaic
+        REervf7zLYvdetpWr1yiwUmETWBs8lLbCr3zenf90uWYrgs8m+ECRbSN/gEAAP//AwCNvZanCwMA
+        AA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d10897b5adfb3bf-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:23:17 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '841'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-api-key:
+      - REDACTED
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999971'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_35b292b9aa7057e2c08f582077a2a6b5
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this route
+      to gpt-3.5-turbo?"}], "llm_providers": [{"provider": "openai", "model": "gpt-4o-2024-05-13",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4o-mini-2024-07-18",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '501'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"ca61bfe6-e707-4a53-b978-6a878763b922"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d1089816930b3e5-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:23:18 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - ed1a80b1-766c-4c27
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this route
+      to gpt-3.5-turbo?"}], "model": "gpt-4o-mini-2024-07-18"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '129'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=MdO5Q1BzdB5fHz0SoKI8QRRz0_sejcnhxFwY.pTjDm8-1728667395-1.0.1.1-uEI28Xia7hrV3p_zkWz_frU3AGuZsF.WblvAkThu435_HEFwrGZBzjKHcdPQtAgktTiNVAsaiCXXCm.ZBZHIVw;
+        _cfuvid=0C.nfcmB_B_QV5oOiCUDnfLPN2pTKUuWw5aVDzxhHb4-1728667395445-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2yRQW+bQBCF7/yK6Z6NZWOCXV+iVFVjHyqlUdVLVaFlGWCbZWe7O7SxIv/3CoyN
+        o+TC4T3et/NmXiIAoUuxBaEayap1Jr7bfca7bzv9tPm63FePf0zz4/Gh+FLfh0/PqZj1CSp+o+Jz
+        aq6odQZZkz3ZyqNk7KnLdbLJsvXq42YwWirR9LHacZxS3Gqr42SRpPFiHS83Y7ohrTCILfyMAABe
+        hm8/py3xWWxhMTsrLYYgaxTby08AwpPpFSFD0IGlZTGbTEWW0Q6j79AY+gB7kC0UMmAJZIEbhPuH
+        73EK0qtGMyruPM6g6Bj2oKQF5+mvLhG0rci3sm8N0pZwfk4hBN1qIz0wDazV/Cbmzhc0hx39GyB7
+        aNA4OFAHTKU83F7P6LHqguz3ZDtjRv14KW2odp6KMPoXvdJWhyb3KAPZvmBgcmJwjxHAr2G53at9
+        CeepdZwzPaHtgUl6wonppJO5ykaTiaWZ9Gw8yGtaXiJLbcLVcYSSqsFySi6iq2pv33wPcaqnbf2G
+        Eo0kEQ6Bsc0rbWv0zuvTuSuXY1KUeLPCDEV0jP4DAAD//wMAv6pdMvwCAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d1089871b80b3bf-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:23:19 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '920'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-api-key:
+      - REDACTED
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999970'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_0bc88da0df18f0634aae685c090817a2
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this route
+      to gpt-3.5-turbo?"}], "llm_providers": [{"provider": "openai", "model": "gpt-4o-2024-05-13",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4o-mini-2024-07-18",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '501'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"57b0bd34-6586-40f0-8f84-a78f3d4a5094"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d28cfdd5cc0498e-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 16:05:38 GMT
+      Server:
+      - cloudflare
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 0a78b94b-0a77-4330
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this route
+      to gpt-3.5-turbo?"}], "llm_providers": [{"provider": "openai", "model": "gpt-4o-2024-05-13",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4o-mini-2024-07-18",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '501'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"4665e1eb-b0e2-4824-b77c-4338e7c03e50"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d28cfe3ecb2a542-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 16:05:39 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - e21bfdb8-1a46-421e
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,136 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "togetherai", "model": "Meta-Llama-3.1-8B-Instruct-Turbo", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '328'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"togetherai","model":"Meta-Llama-3.1-8B-Instruct-Turbo"}],"session_id":"ed8d686e-521f-4792-99b5-d385ce857694"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d120102fce67458-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 21:39:39 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 9ee1ea09-a01b-4b48
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo", "max_tokens":
+      10, "prompt": "Human: How much is 3 + 5?"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '113'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.32.3
+    method: POST
+    uri: https://api.together.ai/v1/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"8d120109693c7419-MIA\",\n  \"object\": \"text.completion\",\n
+        \ \"created\": 1728682779,\n  \"model\": \"meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo\",\n
+        \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"text\": \" \\nComputer:
+        8. \\nHuman: How\",\n      \"finish_reason\": \"length\",\n      \"seed\":
+        6087787907302711000,\n      \"logprobs\": null,\n      \"index\": 0\n    }\n
+        \ ],\n  \"usage\": {\n    \"prompt_tokens\": 12,\n    \"completion_tokens\":
+        10,\n    \"total_tokens\": 22\n  }\n}"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d120109693c7419-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 11 Oct 2024 21:39:39 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-allow-origin:
+      - '*'
+      etag:
+      - W/"1be-fSzGxlWktE2K83PqqB73OECkHww"
+      x-api-call-end:
+      - '2024-10-11T21:39:39.637Z'
+      x-api-call-start:
+      - '2024-10-11T21:39:39.367Z'
+      x-api-key:
+      - REDACTED
+      x-api-received:
+      - '2024-10-11T21:39:39.360Z'
+      x-inference-version:
+      - v2
+      x-ratelimit:
+      - 'false'
+      x-ratelimit-limit:
+      - '75'
+      x-ratelimit-limit-tokens:
+      - '16666'
+      x-ratelimit-remaining:
+      - '148'
+      x-ratelimit-remaining-tokens:
+      - '16666'
+      x-ratelimit-reset:
+      - '0'
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+version: 1

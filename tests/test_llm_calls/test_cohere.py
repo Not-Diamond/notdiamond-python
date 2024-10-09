@@ -4,6 +4,7 @@ from notdiamond.llms.client import NotDiamond
 from notdiamond.llms.providers import NDLLMProviders
 
 
+@pytest.mark.vcr
 @pytest.mark.longrun
 class Test_Cohere:
     def test_cohere_command_r_plus_with_tool_calling(self, tools_fixture):

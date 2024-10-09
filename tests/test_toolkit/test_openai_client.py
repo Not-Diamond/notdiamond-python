@@ -11,6 +11,7 @@ from notdiamond import LLMConfig
 from notdiamond.toolkit.openai import AsyncOpenAI, OpenAI
 
 
+@pytest.mark.vcr
 def test_openai_init():
     client = OpenAI()
     assert client is not None
@@ -28,6 +29,7 @@ def test_openai_init():
     assert client3 is not None
 
 
+@pytest.mark.vcr
 def test_openai_create():
     nd_llm_configs = [
         "openai/gpt-4o-2024-05-13",
@@ -58,6 +60,7 @@ def test_openai_create():
         ], f"Failed with model_kwarg={model_kwarg}"
 
 
+@pytest.mark.vcr
 def test_openai_create_default_models():
     all_oai_model_response = OpenAI().create(
         messages=[
@@ -71,6 +74,7 @@ def test_openai_create_default_models():
     assert len(all_oai_model_response.choices[0].message.content) > 0
 
 
+@pytest.mark.vcr
 def test_openai_chat_completions_create():
     all_oai_model_response = OpenAI().chat.completions.create(
         messages=[
@@ -84,6 +88,7 @@ def test_openai_chat_completions_create():
     assert len(all_oai_model_response.choices[0].message.content) > 0
 
 
+@pytest.mark.vcr
 def test_openai_chat_completions_create_stream():
     model_response_stream = OpenAI().chat.completions.create(
         messages=[
@@ -104,6 +109,7 @@ def test_openai_chat_completions_create_stream():
 
 
 @pytest.mark.asyncio
+@pytest.mark.vcr
 async def test_async_openai_init():
     client = AsyncOpenAI()
     assert client is not None
@@ -122,6 +128,7 @@ async def test_async_openai_init():
 
 
 @pytest.mark.asyncio
+@pytest.mark.vcr
 async def test_async_openai_create():
     nd_llm_configs = [
         "openai/gpt-4o-2024-05-13",
@@ -153,6 +160,7 @@ async def test_async_openai_create():
 
 
 @pytest.mark.asyncio
+@pytest.mark.vcr
 async def test_async_openai_create_default_models():
     async_client = AsyncOpenAI()
     all_oai_model_response = await async_client.create(
@@ -168,6 +176,7 @@ async def test_async_openai_create_default_models():
 
 
 @pytest.mark.asyncio
+@pytest.mark.vcr
 async def test_async_openai_chat_completions_create():
     async_client = AsyncOpenAI()
     all_oai_model_response = await async_client.chat.completions.create(
@@ -183,6 +192,7 @@ async def test_async_openai_chat_completions_create():
 
 
 @pytest.mark.asyncio
+@pytest.mark.vcr
 async def test_async_openai_chat_completions_create_stream():
     async_client = AsyncOpenAI()
     model_response_stream = await async_client.chat.completions.create(

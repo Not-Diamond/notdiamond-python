@@ -1,0 +1,145 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "mistral", "model": "open-mistral-nemo", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": true, "tools": [{"type": "function",
+      "function": {"name": "add_fct", "description": "Adds a and b.", "parameters":
+      {"type": "object", "properties": {"a": {"type": "integer"}, "b": {"type": "integer"}},
+      "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '533'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"mistral","model":"open-mistral-nemo"}],"session_id":"9805b129-c1d5-41ff-890a-9c71edbce681"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d28c7d1ddeb8dc6-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 16:00:08 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 3c64cf4e-1cd4-4b72
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "model":
+      "open-mistral-nemo", "temperature": 0.7, "max_tokens": 200, "top_p": 1, "safe_prompt":
+      false, "tools": [{"type": "function", "function": {"name": "add_fct", "description":
+      "Adds a and b.", "parameters": {"type": "object", "properties": {"a": {"type":
+      "integer"}, "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "stream":
+      false}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '409'
+      content-type:
+      - application/json
+      host:
+      - api.mistral.ai
+      user-agent:
+      - python-httpx/0.27.2
+    method: POST
+    uri: https://api.mistral.ai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA0yQQW7CMBBFr4L+2lRJCCF42wt0wa6gyLEn4GJ7othRK0W5e2VUUHejL/03b2aB
+        NZDY78x+qEw9HHqq+2PTtoPq+6Fu67ppm0MFAe6/SCdI6JtKb5r96ChZDhDQE6lEBrI8VO2xKpvi
+        KODZkIMEjxS23sY0KbcN5DkXbmw1RcjPBTYY+oEsBDzFqK4EuWBiR5BQMdqYVEi5wyFRyAIQSMyu
+        08q5P0a+4dt/nO7vhT1BYJiDfsjJBUH5B8uYbtCZpKbr7CmkCInlDHWG3OzE5ow+T/sV63pZBQYb
+        bLx1E6mYQf93Cji+jhP3ETLMzq0XgfnpPk7sx9QlvlOIkG2ddZNyr6Qsi3zO84GvvGrW9RcAAP//
+        AwA59hNHkAEAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d28c7d81b529aec-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 16:00:09 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      ratelimitbysize-limit:
+      - '2000000'
+      ratelimitbysize-query-cost:
+      - '208'
+      ratelimitbysize-remaining:
+      - '1999792'
+      ratelimitbysize-reset:
+      - '51'
+      x-api-key:
+      - REDACTED
+      x-envoy-upstream-service-time:
+      - '604'
+      x-kong-proxy-latency:
+      - '1'
+      x-kong-request-id:
+      - 8bdbde1b8340090a150e82750674b42e
+      x-kong-upstream-latency:
+      - '604'
+      x-ratelimitbysize-limit-minute:
+      - '2000000'
+      x-ratelimitbysize-limit-month:
+      - '10000000000'
+      x-ratelimitbysize-remaining-minute:
+      - '1999792'
+      x-ratelimitbysize-remaining-month:
+      - '9999999792'
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+version: 1
