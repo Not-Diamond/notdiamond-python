@@ -180,6 +180,7 @@ PROVIDERS = {
             "open-mistral-7b",
             "open-mixtral-8x7b",
             "open-mixtral-8x22b",
+            "open-mistral-nemo",
             "codestral-latest",
         ],
         "api_key": MISTRAL_API_KEY,
@@ -189,6 +190,7 @@ PROVIDERS = {
             "mistral-large-2407",
             "mistral-small-latest",
             "open-mixtral-8x22b",
+            "open-mistral-nemo",
         ],
         "support_response_model": [
             "mistral-large-latest",
@@ -199,6 +201,7 @@ PROVIDERS = {
             "open-mistral-7b",
             "open-mixtral-8x7b",
             "open-mixtral-8x22b",
+            "open-mistral-nemo",
             "codestral-latest",
         ],
         "openrouter_identifier": {
@@ -209,6 +212,7 @@ PROVIDERS = {
             "open-mistral-7b": "mistralai/mistral-7b-instruct",
             "open-mixtral-8x7b": "mistralai/mixtral-8x7b",
             "open-mixtral-8x22b": "mistralai/mixtral-8x22b-instruct",
+            "open-mistral-nemo": "mistralai/mistral-nemo",
         },
     },
     "togetherai": {

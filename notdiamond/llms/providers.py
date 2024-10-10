@@ -51,6 +51,7 @@ class NDLLMProviders(Enum):
         OPEN_MISTRAL_7B (NDLLMProvider): refers to 'open-mistral-7b' model by Mistral AI
         OPEN_MIXTRAL_8X7B (NDLLMProvider): refers to 'open-mixtral-8x7b' model by Mistral AI
         OPEN_MIXTRAL_8X22B (NDLLMProvider): refers to 'open-mixtral-8x22b' model by Mistral AI
+        OPEN_MISTRAL_NEMO (NDLLMProvider): refers to 'open-mistral-nemo' model by Mistral AI
 
         TOGETHER_MISTRAL_7B_INSTRUCT_V0_2 (NDLLMProvider): refers to 'Mistral-7B-Instruct-v0.2' model served via TogetherAI
         TOGETHER_MIXTRAL_8X7B_INSTRUCT_V0_1 (NDLLMProvider): refers to 'Mixtral-8x7B-Instruct-v0.1' model served via TogetherAI
@@ -118,6 +119,7 @@ class NDLLMProviders(Enum):
     OPEN_MISTRAL_7B = ("mistral", "open-mistral-7b")
     OPEN_MIXTRAL_8X7B = ("mistral", "open-mixtral-8x7b")
     OPEN_MIXTRAL_8X22B = ("mistral", "open-mixtral-8x22b")
+    OPEN_MISTRAL_NEMO = ("mistral", "open-mistral-nemo")
 
     TOGETHER_MISTRAL_7B_INSTRUCT_V0_2 = (
         "togetherai",
