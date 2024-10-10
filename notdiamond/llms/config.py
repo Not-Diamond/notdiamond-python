@@ -55,8 +55,11 @@ class LLMConfig:
         system_prompt: Optional[str] = None,
         context_length: Optional[int] = None,
         input_price: Optional[float] = None,
+        custom_input_price: Optional[float] = None,
         output_price: Optional[float] = None,
+        custom_output_price: Optional[float] = None,
         latency: Optional[float] = None,
+        custom_latency: Optional[float] = None,
         api_key: Optional[str] = None,
         **kwargs,
     ):
@@ -68,9 +71,11 @@ class LLMConfig:
             is_custom (bool): Whether this is a custom model. Defaults to False.
             system_prompt (Optional[str], optional): The system prompt to use for the provider. Defaults to None.
             context_length (Optional[int], optional): Custom context window length for the provider/model.
-            input_price (Optional[float], optional): Custom input price (USD) per million tokens for provider/model.
-            output_price (Optional[float], optional): Custom output price (USD) per million tokens for provider/model.
-            latency (Optional[float], optional): Custom latency (time to first token) for provider/model.
+            custom_input_price (Optional[float], optional): Custom input price (USD) per million tokens for this
+                provider/model; will default to public input price if available.
+            custom_output_price (Optional[float], optional): Custom output price (USD) per million tokens for this
+                provider/model; will default to public output price if available.
+            custom_latency (Optional[float], optional): Custom latency (time to first token) for provider/model.
             api_key (Optional[str], optional): The API key for accessing the LLM provider's services.
                                                 Defaults to None.
             **kwargs: Additional keyword arguments that might be necessary for specific providers or models.
@@ -106,9 +111,9 @@ class LLMConfig:
 
         self.is_custom = is_custom
         self.context_length = context_length
-        self.input_price = input_price
-        self.output_price = output_price
-        self.latency = latency
+        self.input_price = custom_input_price or input_price
+        self.output_price = custom_output_price or output_price
+        self.latency = custom_latency or latency
 
         self.kwargs = kwargs
 
