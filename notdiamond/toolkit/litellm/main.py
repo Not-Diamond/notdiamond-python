@@ -303,7 +303,14 @@ def get_llm_provider(
                     or get_secret("FRIENDLI_TOKEN")
                 )
             elif custom_llm_provider == "notdiamond":
-                api_base = "https://api.notdiamond.ai/v2/optimizer/modelSelect"
+                api_base = "/".join(
+                    [
+                        get_secret(
+                            "NOTDIAMOND_API_URL", "https://api.notdiamond.ai"
+                        ),
+                        "v2/optimizer/modelSelect",
+                    ]
+                )
                 dynamic_api_key = get_secret("NOTDIAMOND_API_KEY") or None
             if api_base is not None and not isinstance(api_base, str):
                 raise Exception(
