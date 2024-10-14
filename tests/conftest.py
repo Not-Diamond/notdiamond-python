@@ -225,6 +225,6 @@ def vcr_config():
         "allowed_hosts": ["testserver", "127.0.0.1"],
         "before_record_response": _redact_xtoken_response,
         "before_record_request": _before_record_request,
-        # "record_mode": "none",
+        "record_mode": "none",
         "ignore_localhost": True,
     }
