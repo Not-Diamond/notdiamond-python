@@ -1,0 +1,164 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Tell me a joke"}], "llm_providers":
+      [{"provider": "openai", "model": "gpt-4-0125-preview", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '305'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-0125-preview"}],"session_id":"7781c242-e5f0-4711-a697-ef5dbc5b0080"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d3338337ebe336e-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:24:29 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 395c41fe-f72d-429c
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "The output should be formatted as a JSON instance
+      that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
+      {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
+      \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
+      object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted instance of the schema.
+      The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere
+      is the output schema:\n```\n{\"properties\": {\"setup\": {\"description\": \"question
+      to set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
+      {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
+      \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
+      me a joke", "role": "user"}], "model": "gpt-4-0125-preview", "max_tokens": 200,
+      "n": 1, "stream": false, "temperature": 0.7}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '940'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2yRzW7bMBCE73qKxV5ysQPZbhpElyI9FOi1CJACVWEx1EpkTC0JcuXUNfzuhWT5
+        J0gvOszwG+3O7jMAtDUWgNoo0V1w88fvm29hl/i++duws0p+Pt396Foj269vzzgbCP/ySlpO1K32
+        XXAk1vPR1pGU0JC6uF8+5KtF/vlhNDpfkxuwNsj80zxfLO/mIdLW0ttEGm81JSzgVwYAsB+/w4xc
+        0x8sIJ+dlI5SUi1hcX4EgNG7QUGVkk2iWHB2MbVnIR7HrqrqNXkueV8yQImJpA8lFlDis9lB7flG
+        IG3IkXhO0NjWCJDSBrwYil9KnB3B0LM2zjId4SdDJ9qoLYEYgraXdFtiyYeSq6q6nihS0yc1NMK9
+        c5N+OK/ofBuif0mTf9YbyzaZdSSVPA/rJPEBR/eQAfweq+zftYMh+i7IWvyGeAhc5lOVeLnexV2t
+        JlO8KHdFnY13eeuaRFmXro6BWmlD9QXNs6vlPv70fxHHBS23H1KyKQnTLgl168ZySzFEO553LPOQ
+        /QMAAP//AwDBKrop3QIAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d3338382edf748a-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:24:31 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=P4jznpSU7bI6.KO5AMYFEkAI.q8aFN3L_z76xUsOhrs-1729031071-1.0.1.1-saC7NjT2aXoHybrpMqqBagmsnFYQIm_ZrG9xg7FBkfmPpEgF0M1Qqkx0ERUGwnkClLS7BsUuBFzMRjTC2I518w;
+        path=/; expires=Tue, 15-Oct-24 22:54:31 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=m4hcot3MyzFFQWHwVbOt1ihmwWu1ZEME3AilAGHIi3o-1729031071004-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '1436'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '2000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '1999620'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 11ms
+      x-request-id:
+      - req_b3b399b9fe66c31174ab488ba82855ad
+    status:
+      code: 200
+      message: OK
+version: 1

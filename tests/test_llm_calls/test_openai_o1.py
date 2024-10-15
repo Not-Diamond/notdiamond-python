@@ -10,6 +10,7 @@ test_providers = [
 ]
 
 
+@pytest.mark.vcr
 @pytest.mark.longrun
 @pytest.mark.parametrize("provider", test_providers)
 def test_o1_with_system_prompt(provider):

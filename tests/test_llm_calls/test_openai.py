@@ -11,6 +11,7 @@ test_providers = [
 ]
 
 
+@pytest.mark.vcr
 @pytest.mark.longrun
 @pytest.mark.parametrize("provider", test_providers)
 class Test_OpenAI:
