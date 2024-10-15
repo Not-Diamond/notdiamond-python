@@ -75,10 +75,7 @@ from litellm.llms.prompt_templates.factory import (
     prompt_factory,
     stringify_json_tool_call_content,
 )
-from litellm.llms.vertex_ai_and_google_ai_studio import (
-    vertex_ai_anthropic,
-    vertex_ai_non_gemini,
-)
+from litellm.llms.vertex_ai_and_google_ai_studio import vertex_ai_non_gemini
 from litellm.main import *
 from litellm.types.router import LiteLLM_Params
 from litellm.types.utils import all_litellm_params
