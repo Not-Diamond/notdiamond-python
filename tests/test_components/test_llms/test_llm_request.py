@@ -6,6 +6,7 @@ from notdiamond.llms.config import LLMConfig
 from notdiamond.llms.providers import NDLLMProviders
 
 
+@pytest.mark.vcr
 def test_llm_invoke_with_latency_tracking_success():
     metric = Metric("accuracy")
     openai = NDLLMProviders.GPT_3_5_TURBO
