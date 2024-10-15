@@ -1,9 +1,10 @@
 interactions:
 - request:
-    body: '{"messages": [{"role": "user", "content": "Prompt: Tell me a joke."}],
-      "llm_providers": [{"provider": "openai", "model": "gpt-3.5-turbo", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": false}'
+    body: '{"messages": [{"role": "user", "content": "Tell me a joke about LaTeX like
+      \\mathbb{x}"}], "llm_providers": [{"provider": "openai", "model": "gpt-3.5-turbo",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
     headers:
       Accept:
       - '*/*'
@@ -12,7 +13,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '310'
+      - '330'
       User-Agent:
       - Python-SDK/0.3.20
       content-type:
@@ -21,12 +22,12 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"e487801d-0879-4dc4-a3cc-1eab1f105464"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"ad3fc641-28a4-4229-9c2b-144f7e8f6855"}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 8d335a24bf54da0b-MIA
+      - 8d335935a93a2227-MIA
       Connection:
       - keep-alive
       Content-Encoding:
@@ -34,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:47:39 GMT
+      - Tue, 15 Oct 2024 22:47:01 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -44,15 +45,16 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400
       rndr-id:
-      - 97b8748e-2311-4d05
+      - 921b03ef-4d09-4fd0
       x-render-origin-server:
       - uvicorn
     status:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "Prompt: Tell me a joke.", "role": "user"}],
-      "model": "gpt-3.5-turbo", "n": 1, "stream": false, "temperature": 0.7}'
+    body: '{"messages": [{"content": "Tell me a joke about LaTeX like \\mathbb{x}",
+      "role": "user"}], "model": "gpt-3.5-turbo", "n": 1, "stream": false, "temperature":
+      0.7}'
     headers:
       accept:
       - application/json
@@ -61,7 +63,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '141'
+      - '161'
       content-type:
       - application/json
       host:
@@ -89,18 +91,19 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA2yRT28TMRDF7/spBp+TajdpKc0FtRyqIqQKcQBBUeTYk11Tr8fyzDaEKt8d2VmS
-        oPbiw3t+v/n3XAEoZ9UClOm0mD766fXdo7nFqPm+/tR8/3zz7tsfbz5sr5++XH10apITtPqFRv6l
-        zgz10aM4CnvbJNSCmdpczq7q+ez8bV2Mniz6HGujTOdnF1MZ0oqmdTO7GJMdOYOsFvCjAgB4Lm/u
-        MVj8rRZQOEXpkVm3qBaHTwAqkc+K0syORQdRk6NpKAiG0vbXbgvWWZAOgY1OaBJtYOMC6AB6o5N9
-        /xAewg0aPTBCh7DRDDRIhloXWnABOsewdujtm9MqCdcD6zxlGLwf9d2hbU9tTLTi0T/oaxccd8uE
-        minkFlkoquLuKoCfZT3DfxOrmKiPshR6xJCBzfkep44HOTEvR1NItD/q82byCm1pUbTzfLJeZbTp
-        0B6TdXUy2suaryH247nQvqBUI0nxlgX75dqFFlNMrhysrHJX/QUAAP//AwB6Su3WrwIAAA==
+        H4sIAAAAAAAAA2xRwY7TMBC95ysGX7i0qzbJCtoLQlpWrIQ4gUBCqJrYk8Rbx2PZE9iq6r+jpNmm
+        aPfiw3t+b+a9OWYAyhq1BaVbFN0Ft/z4sK/ou9Gbu/Dp/RqLuvx83+zLe/5q/hRqMSi4eiQtz6ob
+        zV1wJJb9mdaRUGhwXb/LN6siL/N8JDo25AZZE2RZ3NwupY8VL1fr/HZStmw1JbWFXxkAwHF8hx29
+        oSe1hdXiGekoJWxIbS+fAFRkNyAKU7JJ0ItazKRmL+THtX+0BzDWgLQEX/Ab/QTDuu/ICzQMwgMR
+        MRw+wIOA5t4Z/1agRW8cATo3CjuUtqqOTyewKfWUwAr8xQQ1auubN9ejI9V9wiG6752b8NMli+Mm
+        RK7SxF/w2nqb2l0kTOyHvZNwUCN7ygB+j531/9WgQuQuyE54T34wXG/Odmq+0kzm5UQKC7oZL4vF
+        K247Q4LWpavOlUbdkpmVq+wq2suZr1mc41nfvHDJJieVDkmo29XWNxRDtOMVxypP2T8AAAD//wMA
+        rlZUM8QCAAA=
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8d335a2aeb876dda-MIA
+      - 8d33593b2f7c21e2-MIA
       Connection:
       - keep-alive
       Content-Encoding:
@@ -108,14 +111,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:47:40 GMT
+      - Tue, 15 Oct 2024 22:47:02 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=3E8hqA4QIn0F5.Sj9hVcHmAyQOiumO0hWUzk0tvk9wk-1729032460-1.0.1.1-8Pe9O.8J_Pqr5PXUX4hVnrAkR9A6X.n3qY0BpiGCo35pcNE3QIgQFS2TbivfYBrPdR733SlgtGweawGaF6AX1Q;
-        path=/; expires=Tue, 15-Oct-24 23:17:40 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=rSyV_DvqoPrH1RLmfKOgRuYryS4LZ.QaC.ugBPiurcg-1729032422-1.0.1.1-Tns9AgRTrg8wgB9rMS_b7WUsD9lSoqcKCMJXBm7htd8CJKWDyKF3fuX..p_cEgCpfZb_eE_Bj0fMX6DQOrfJHQ;
+        path=/; expires=Tue, 15-Oct-24 23:17:02 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=bfOxuLesqAQMw6oUnpHmRCnUhvsVZayIh3TU2X8AbCU-1729032460529-0.0.1.1-604800000;
+      - _cfuvid=GGRslbk_w9026LiU66nxllAFJ2Pgyj.khbu2oNmRUDY-1729032422436-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -128,7 +131,7 @@ interactions:
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '469'
+      - '658'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -140,21 +143,21 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '49999977'
+      - '49999971'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_34d7d2939abf63d365634d69a1e71d9f
+      - req_0c29c4b854cfd037c631632c0de22256
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "e487801d-0879-4dc4-a3cc-1eab1f105464", "provider": {"provider":
+    body: '{"session_id": "ad3fc641-28a4-4229-9c2b-144f7e8f6855", "provider": {"provider":
       "openai", "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null,
       "input_price": null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
-      35.83143616137073}}'
+      35.91185283653908}}'
     headers:
       Accept:
       - '*/*'
@@ -172,19 +175,19 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"Session e487801d-0879-4dc4-a3cc-1eab1f105464 does not belong
+      string: '{"detail":"Session ad3fc641-28a4-4229-9c2b-144f7e8f6855 does not belong
         to user 70dc4e5f-ab5b-4e78-a1a1-8820d27a99e1."}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 8d335a2f093e749f-MIA
+      - 8d3359408a02747d-MIA
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:47:41 GMT
+      - Tue, 15 Oct 2024 22:47:02 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -194,7 +197,7 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400
       rndr-id:
-      - 3a1df78c-d042-48e9
+      - 2005de1d-bf21-4bde
       x-render-origin-server:
       - uvicorn
     status:

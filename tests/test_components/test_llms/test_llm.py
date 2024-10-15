@@ -35,6 +35,7 @@ except (ModuleNotFoundError, ImportError) as ierr:
 pytestmark = pytest.mark.parametrize("ndtarget, NDLLM", test_params)
 
 
+@pytest.mark.vcr
 class Test_NDLLM:
     def test_with_string_llm_configs(self, ndtarget, NDLLM):
         llm_configs = [
@@ -636,6 +637,7 @@ class Test_NDLLM:
             assert isinstance(preference_id, str)
 
 
+@pytest.mark.vcr
 class Test_OpenAI_style_input:
     def test_openai_style_input_invoke(
         self, openai_style_messages, ndtarget, NDLLM

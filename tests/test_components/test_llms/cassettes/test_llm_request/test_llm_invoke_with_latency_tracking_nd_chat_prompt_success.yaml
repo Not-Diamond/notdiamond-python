@@ -1,9 +1,12 @@
 interactions:
 - request:
-    body: '{"messages": [{"role": "user", "content": "Prompt: Tell me a joke."}],
-      "llm_providers": [{"provider": "openai", "model": "gpt-3.5-turbo", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": false}'
+    body: '{"messages": [{"role": "system", "content": "You are a helpful AI bot.
+      Your name is Bob."}, {"role": "user", "content": "Hello, how are you doing?"},
+      {"role": "assistant", "content": "I''m doing well, thanks!"}, {"role": "user",
+      "content": "What is your name?"}], "llm_providers": [{"provider": "openai",
+      "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
+      1, "hash_content": true}'
     headers:
       Accept:
       - '*/*'
@@ -12,7 +15,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '310'
+      - '501'
       User-Agent:
       - Python-SDK/0.3.20
       content-type:
@@ -21,12 +24,12 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"e487801d-0879-4dc4-a3cc-1eab1f105464"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"874684b9-7385-4592-af05-330e82870276"}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 8d335a24bf54da0b-MIA
+      - 8d335af27f7c2588-MIA
       Connection:
       - keep-alive
       Content-Encoding:
@@ -34,7 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:47:39 GMT
+      - Tue, 15 Oct 2024 22:48:12 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -44,15 +47,18 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400
       rndr-id:
-      - 97b8748e-2311-4d05
+      - 8405b61a-71b3-4ff0
       x-render-origin-server:
       - uvicorn
     status:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "Prompt: Tell me a joke.", "role": "user"}],
-      "model": "gpt-3.5-turbo", "n": 1, "stream": false, "temperature": 0.7}'
+    body: '{"messages": [{"content": "You are a helpful AI bot. Your name is Bob.",
+      "role": "system"}, {"content": "Hello, how are you doing?", "role": "user"},
+      {"content": "I''m doing well, thanks!", "role": "assistant"}, {"content": "What
+      is your name?", "role": "user"}], "model": "gpt-3.5-turbo", "n": 1, "stream":
+      false, "temperature": 0.7}'
     headers:
       accept:
       - application/json
@@ -61,7 +67,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '141'
+      - '333'
       content-type:
       - application/json
       host:
@@ -89,18 +95,18 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA2yRT28TMRDF7/spBp+TajdpKc0FtRyqIqQKcQBBUeTYk11Tr8fyzDaEKt8d2VmS
-        oPbiw3t+v/n3XAEoZ9UClOm0mD766fXdo7nFqPm+/tR8/3zz7tsfbz5sr5++XH10apITtPqFRv6l
-        zgz10aM4CnvbJNSCmdpczq7q+ez8bV2Mniz6HGujTOdnF1MZ0oqmdTO7GJMdOYOsFvCjAgB4Lm/u
-        MVj8rRZQOEXpkVm3qBaHTwAqkc+K0syORQdRk6NpKAiG0vbXbgvWWZAOgY1OaBJtYOMC6AB6o5N9
-        /xAewg0aPTBCh7DRDDRIhloXWnABOsewdujtm9MqCdcD6zxlGLwf9d2hbU9tTLTi0T/oaxccd8uE
-        minkFlkoquLuKoCfZT3DfxOrmKiPshR6xJCBzfkep44HOTEvR1NItD/q82byCm1pUbTzfLJeZbTp
-        0B6TdXUy2suaryH247nQvqBUI0nxlgX75dqFFlNMrhysrHJX/QUAAP//AwB6Su3WrwIAAA==
+        H4sIAAAAAAAAA2yRQU8CMRCF7/srJj0DWRbRwMWowYjGEI2JB2NItzsshbazaWejQPjvZpeFxeil
+        h/f6vs6b7iIAoTMxBqGWkpUtTPdmulYWh+n79u1+O5us7vjRxrPp04RfX6aiUyUoXaHiY6qnyBYG
+        WZM72MqjZKyo/atkFA+Si1FSG5YyNFUsL7g76A27XPqUunE/GTbJJWmFQYzhIwIA2NVnNaPL8FuM
+        Ie4cFYshyBzF+HQJQHgylSJkCDqwdCw6ranIMbp67OcNOGkRdIBbSnvwQF+gpIMpHJKwoRKYMrm5
+        Pid4XJRBVg1caUyj708jGcoLT2lo/JO+0E6H5dyjDOSq5wNTIWp3HwF81tXLX21E4ckWPGdao6uA
+        w6a5aJfdmv2kMZlYmla/POq/aPMMWWoTzlYnlFRLzNpkHJ1V+/vmf4hDPe3yP5SoIYmwCYx2vtAu
+        R194XX9Gvcp99AMAAP//AwB8faNxiwIAAA==
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8d335a2aeb876dda-MIA
+      - 8d335af82eee743e-MIA
       Connection:
       - keep-alive
       Content-Encoding:
@@ -108,14 +114,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:47:40 GMT
+      - Tue, 15 Oct 2024 22:48:13 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=3E8hqA4QIn0F5.Sj9hVcHmAyQOiumO0hWUzk0tvk9wk-1729032460-1.0.1.1-8Pe9O.8J_Pqr5PXUX4hVnrAkR9A6X.n3qY0BpiGCo35pcNE3QIgQFS2TbivfYBrPdR733SlgtGweawGaF6AX1Q;
-        path=/; expires=Tue, 15-Oct-24 23:17:40 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=.eSt6jmNYaWcEor8CWHI.zOKsy067gqx83.VYRhzIGM-1729032493-1.0.1.1-u9kMAOKANeIJNaCiA7wCssHpp9YoV15p02skiEqVY.LE1IDW4E5YQzp_hG0BrSa.CEwKw25vjMPbMhhuluAy6A;
+        path=/; expires=Tue, 15-Oct-24 23:18:13 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=bfOxuLesqAQMw6oUnpHmRCnUhvsVZayIh3TU2X8AbCU-1729032460529-0.0.1.1-604800000;
+      - _cfuvid=wovquGKCfyX20wBxGe3uZKK8J_6FVaq5NnKJBjedgMg-1729032493280-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -128,7 +134,7 @@ interactions:
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '469'
+      - '358'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -140,21 +146,21 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '49999977'
+      - '49999951'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_34d7d2939abf63d365634d69a1e71d9f
+      - req_bb976cac6ded6215b21d30578e22f31f
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "e487801d-0879-4dc4-a3cc-1eab1f105464", "provider": {"provider":
+    body: '{"session_id": "874684b9-7385-4592-af05-330e82870276", "provider": {"provider":
       "openai", "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null,
       "input_price": null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
-      35.83143616137073}}'
+      34.183846572898034}}'
     headers:
       Accept:
       - '*/*'
@@ -163,7 +169,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '274'
+      - '275'
       User-Agent:
       - Python-SDK/0.3.20
       content-type:
@@ -172,19 +178,19 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"Session e487801d-0879-4dc4-a3cc-1eab1f105464 does not belong
+      string: '{"detail":"Session 874684b9-7385-4592-af05-330e82870276 does not belong
         to user 70dc4e5f-ab5b-4e78-a1a1-8820d27a99e1."}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 8d335a2f093e749f-MIA
+      - 8d335afbad78741c-MIA
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:47:41 GMT
+      - Tue, 15 Oct 2024 22:48:13 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -194,7 +200,7 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400
       rndr-id:
-      - 3a1df78c-d042-48e9
+      - 822a506d-93dd-4cd2
       x-render-origin-server:
       - uvicorn
     status:

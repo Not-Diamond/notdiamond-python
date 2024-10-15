@@ -23,6 +23,7 @@ def test_llm_invoke_with_latency_tracking_success():
     assert llm_result
 
 
+@pytest.mark.vcr
 def test_custom_model_attributes():
     metric = Metric("accuracy")
     llm_configs = [
@@ -67,6 +68,7 @@ def test_custom_model_attributes():
     assert llm.model == "Meta-Llama-3.1-8B-Instruct-Turbo"
 
 
+@pytest.mark.vcr
 def test_session_linking():
     metric = Metric("accuracy")
     llm_configs = [
@@ -96,6 +98,7 @@ def test_session_linking():
     assert llm_result
 
 
+@pytest.mark.vcr
 @pytest.mark.asyncio
 async def test_async_llm_invoke_with_latency_tracking_success():
     metric = Metric("accuracy")
@@ -113,6 +116,7 @@ async def test_async_llm_invoke_with_latency_tracking_success():
     assert llm_result
 
 
+@pytest.mark.vcr
 def test_llm_invoke_with_latency_tracking_nd_chat_prompt_success():
     metric = Metric("accuracy")
     messages = [

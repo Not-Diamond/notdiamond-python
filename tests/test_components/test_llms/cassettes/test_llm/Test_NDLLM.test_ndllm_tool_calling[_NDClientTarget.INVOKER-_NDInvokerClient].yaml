@@ -1,9 +1,12 @@
 interactions:
 - request:
-    body: '{"messages": [{"role": "user", "content": "Prompt: Tell me a joke."}],
-      "llm_providers": [{"provider": "openai", "model": "gpt-3.5-turbo", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": false}'
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "openai", "model": "gpt-4-turbo", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": false, "tools": [{"type":
+      "function", "function": {"name": "add_fct", "description": "Adds a and b.",
+      "parameters": {"type": "object", "properties": {"a": {"type": "integer"}, "b":
+      {"type": "integer"}}, "required": ["a", "b"]}}}]}'
     headers:
       Accept:
       - '*/*'
@@ -12,7 +15,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '310'
+      - '527'
       User-Agent:
       - Python-SDK/0.3.20
       content-type:
@@ -21,12 +24,12 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"e487801d-0879-4dc4-a3cc-1eab1f105464"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-turbo"}],"session_id":"20cb0177-d0a3-4a9e-87c7-9bb393d72f2d"}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 8d335a24bf54da0b-MIA
+      - 8d3358f37fb78dea-MIA
       Connection:
       - keep-alive
       Content-Encoding:
@@ -34,7 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:47:39 GMT
+      - Tue, 15 Oct 2024 22:46:50 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -44,15 +47,18 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400
       rndr-id:
-      - 97b8748e-2311-4d05
+      - 9bdcf0b0-7bfa-4097
       x-render-origin-server:
       - uvicorn
     status:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "Prompt: Tell me a joke.", "role": "user"}],
-      "model": "gpt-3.5-turbo", "n": 1, "stream": false, "temperature": 0.7}'
+    body: '{"messages": [{"content": "How much is 3 + 5?", "role": "user"}], "model":
+      "gpt-4-turbo", "n": 1, "stream": false, "temperature": 0.7, "tools": [{"type":
+      "function", "function": {"name": "add_fct", "description": "Adds a and b.",
+      "parameters": {"type": "object", "properties": {"a": {"type": "integer"}, "b":
+      {"type": "integer"}}, "required": ["a", "b"]}}}]}'
     headers:
       accept:
       - application/json
@@ -61,7 +67,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '141'
+      - '358'
       content-type:
       - application/json
       host:
@@ -89,18 +95,19 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA2yRT28TMRDF7/spBp+TajdpKc0FtRyqIqQKcQBBUeTYk11Tr8fyzDaEKt8d2VmS
-        oPbiw3t+v/n3XAEoZ9UClOm0mD766fXdo7nFqPm+/tR8/3zz7tsfbz5sr5++XH10apITtPqFRv6l
-        zgz10aM4CnvbJNSCmdpczq7q+ez8bV2Mniz6HGujTOdnF1MZ0oqmdTO7GJMdOYOsFvCjAgB4Lm/u
-        MVj8rRZQOEXpkVm3qBaHTwAqkc+K0syORQdRk6NpKAiG0vbXbgvWWZAOgY1OaBJtYOMC6AB6o5N9
-        /xAewg0aPTBCh7DRDDRIhloXWnABOsewdujtm9MqCdcD6zxlGLwf9d2hbU9tTLTi0T/oaxccd8uE
-        minkFlkoquLuKoCfZT3DfxOrmKiPshR6xJCBzfkep44HOTEvR1NItD/q82byCm1pUbTzfLJeZbTp
-        0B6TdXUy2suaryH247nQvqBUI0nxlgX75dqFFlNMrhysrHJX/QUAAP//AwB6Su3WrwIAAA==
+        H4sIAAAAAAAAA2xSy46bMBTd8xXWXUNFeEwCu2lUVVNV1Uw7VRdNhYwx4MYv2UZqFOXfKx4BJhMW
+        yLrH55x7j+/ZQwhYBTkC0mJHhObB49OxfG0/tp+T72JPvn2Kfj192b/EuNu+njT4PUOVfylxV9YH
+        ooTm1DElR5gYih3tVTfbKAvjKNlsBkCoivKe1mgXJIHrTKmCKIySIEyCMJvYrWKEWsjRbw8hhM7D
+        v+9TVvQf5Cj0rxVBrcUNhXy+hBAYxfsKYGuZdVg68BeQKOmo7FuXHecrwCnFC4I5X4zH77w6L2Fh
+        zovHn1WsyNeXh+e0Sp7JLju6vfixC1d+o/RJDw3VnSRzSCt8ruc3ZgiBxGIcpqqKmrgbKkKATdMJ
+        Kl3fNpwPgA+Qx/4BygPk6QXeXL94985/VikYWncW8ymeqX6Z8+aq0UaV9iY+qJlkti0MxXYYY52m
+        d3UbfKB782CgjRLaFU4dqexl0+0oCstOLeAmm0CnHOZLffvg31ErKuowG95zXiGCSUurhRl6qwHf
+        e96TGIdksnmn4k1KYE/WUVHUTDbUaMOGfYNaF7s426Y4TFIM3sX7DwAA//8DAB8MxCZ9AwAA
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8d335a2aeb876dda-MIA
+      - 8d3358f8ddd480ca-MIA
       Connection:
       - keep-alive
       Content-Encoding:
@@ -108,14 +115,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:47:40 GMT
+      - Tue, 15 Oct 2024 22:46:51 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=3E8hqA4QIn0F5.Sj9hVcHmAyQOiumO0hWUzk0tvk9wk-1729032460-1.0.1.1-8Pe9O.8J_Pqr5PXUX4hVnrAkR9A6X.n3qY0BpiGCo35pcNE3QIgQFS2TbivfYBrPdR733SlgtGweawGaF6AX1Q;
-        path=/; expires=Tue, 15-Oct-24 23:17:40 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=hljj6pxtY5VJ0Le_933s5Vi1dYEWdEOSj_5.yzLcoUY-1729032411-1.0.1.1-f751iRQLqr.29x32sokyMj0D9zofkhK21_5TwBwl0ISykI_fh6fwUleqZ7QLrf6KvLly_vx4zKNcinwCsC9KKg;
+        path=/; expires=Tue, 15-Oct-24 23:16:51 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=bfOxuLesqAQMw6oUnpHmRCnUhvsVZayIh3TU2X8AbCU-1729032460529-0.0.1.1-604800000;
+      - _cfuvid=RdlaTJqikewlMzrdGiL9IN221AZtISJeLUzF4q9siLo-1729032411815-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -128,7 +135,7 @@ interactions:
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '469'
+      - '715'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -136,25 +143,25 @@ interactions:
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
-      - '50000000'
+      - '2000000'
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '49999977'
+      - '1999977'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_34d7d2939abf63d365634d69a1e71d9f
+      - req_2ead38c1d0dbeb47d276c8410a2ab1ea
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "e487801d-0879-4dc4-a3cc-1eab1f105464", "provider": {"provider":
-      "openai", "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null,
+    body: '{"session_id": "20cb0177-d0a3-4a9e-87c7-9bb393d72f2d", "provider": {"provider":
+      "openai", "model": "gpt-4-turbo", "is_custom": false, "context_length": null,
       "input_price": null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
-      35.83143616137073}}'
+      7.747671882248567}}'
     headers:
       Accept:
       - '*/*'
@@ -163,7 +170,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '274'
+      - '272'
       User-Agent:
       - Python-SDK/0.3.20
       content-type:
@@ -172,19 +179,19 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"Session e487801d-0879-4dc4-a3cc-1eab1f105464 does not belong
+      string: '{"detail":"Session 20cb0177-d0a3-4a9e-87c7-9bb393d72f2d does not belong
         to user 70dc4e5f-ab5b-4e78-a1a1-8820d27a99e1."}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 8d335a2f093e749f-MIA
+      - 8d3358fe5a155f1f-MIA
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:47:41 GMT
+      - Tue, 15 Oct 2024 22:46:52 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -194,7 +201,7 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400
       rndr-id:
-      - 3a1df78c-d042-48e9
+      - 901f1d73-af3e-4659
       x-render-origin-server:
       - uvicorn
     status:
