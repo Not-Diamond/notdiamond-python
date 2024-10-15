@@ -45,7 +45,7 @@ ND_MODEL_LIST = [
     {"provider": "cohere", "model": "command-r-plus"},
     # {"provider": "google", "model": "gemini-pro"},
     # {"provider": "google", "model": "gemini-1.5-pro-latest"},
-    {"provider": "google", "model": "gemini-1.5-flash-latest"},
+    # {"provider": "google", "model": "gemini-1.5-flash-latest"},
     # {"provider": "google", "model": "gemini-1.0-pro-latest"},
     #
     # {"provider": "replicate", "model": "mistral-7b-instruct-v0.2"}, removed due to replicate side error
@@ -88,7 +88,7 @@ ND_TOOLS_MODEL_LIST = [
     # {"provider": "cohere", "model": "command-r"},
     {"provider": "cohere", "model": "command-r-plus"},
     # {"provider": "google", "model": "gemini-pro"},
-    {"provider": "google", "model": "gemini-1.5-pro-latest"},
+    # {"provider": "google", "model": "gemini-1.5-pro-latest"},
     # {"provider": "google", "model": "gemini-1.5-flash-latest"},
     # {"provider": "google", "model": "gemini-1.0-pro-latest"},
 ]
