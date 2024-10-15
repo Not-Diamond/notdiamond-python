@@ -64,7 +64,7 @@ jobs:
           REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
           PPLX_API_KEY: ${{ secrets.PPLX_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          NOTDIAMOND_API_URL: ${{ secrets.NOTDIAMOND_API_URL }}
+          NOTDIAMOND_API_URL: ${{ vars.NOTDIAMOND_API_URL }}
         run: |
           PYTEST_ADDOPTS="--color=yes" poetry run coverage run --branch -m pytest --block-network -v tests/
           poetry run coverage report -m
