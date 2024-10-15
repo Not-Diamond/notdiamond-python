@@ -8,6 +8,7 @@ from notdiamond.llms.config import LLMConfig
 from notdiamond.toolkit import CustomRouter
 
 
+# no cassettes here as json deserialization doesn't play well with gzip file upload
 class Test_CustomRouter:
     def test_custom_router(self, custom_router_dataset):
         (
