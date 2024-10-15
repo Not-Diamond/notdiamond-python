@@ -28,6 +28,7 @@ def nd_routed_runnable() -> NotDiamondRoutedRunnable:
     return NotDiamondRoutedRunnable(nd_client=nd_client)
 
 
+@pytest.mark.vcr
 def test_notdiamond_routed_runnable(
     nd_routed_runnable: NotDiamondRoutedRunnable,
 ) -> None:
@@ -36,6 +37,7 @@ def test_notdiamond_routed_runnable(
     assert "gpt" in result.response_metadata["model_name"]
 
 
+@pytest.mark.vcr
 def test_notdiamond_routed_runnable_chain(
     nd_routed_runnable: NotDiamondRoutedRunnable,
 ) -> None:
@@ -125,6 +127,7 @@ def test_notdiamond_routed_runnable_chain(
         ("cohere/command-r", "langchain_cohere.ChatCohere"),
     ],
 )
+@pytest.mark.vcr
 def test_invokable(target_model: str, patch_class: str) -> None:
     nd_client = MagicMock(
         spec=NotDiamond,
