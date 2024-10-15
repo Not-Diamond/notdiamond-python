@@ -1,9 +1,11 @@
+import pytest
 from openai import OpenAI
 
 from notdiamond import settings
 from notdiamond.llms.client import NotDiamond
 
 
+@pytest.mark.vcr
 def test_fallback_model():
     llm_configs = [
         "openai/gpt-3.5-turbo",
@@ -23,6 +25,7 @@ def test_fallback_model():
     )
 
 
+@pytest.mark.vcr
 def test_set_max_model_depth():
     llm_configs = [
         "openai/gpt-3.5-turbo",
@@ -42,6 +45,7 @@ def test_set_max_model_depth():
     )
 
 
+@pytest.mark.vcr
 def test_custom_logic():
     # Define the string that will be routed to the best LLM
     prompt = "You are a world class software developer. Write a merge sort in Python."

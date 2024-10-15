@@ -1,6 +1,7 @@
 import json
 import os
 
+import pytest
 import requests
 from dotenv import load_dotenv
 
@@ -9,6 +10,7 @@ from notdiamond.llms.client import NotDiamond
 load_dotenv(os.getcwd() + "/.env")
 
 
+@pytest.mark.vcr
 def test_openrouter_integration():
     openrouter_api_key = os.getenv("OPENROUTER_API_KEY", default="")
     messages = [

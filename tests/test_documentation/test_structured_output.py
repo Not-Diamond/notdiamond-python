@@ -1,11 +1,13 @@
 from json import JSONDecoder
 
+import pytest
 from langchain_core.exceptions import OutputParserException
 from pydantic import BaseModel, Field
 
 from notdiamond.llms.client import NotDiamond
 
 
+@pytest.mark.vcr
 def test_structured_output():
     class LanguageChoice(BaseModel):
         language: str = Field(
@@ -71,6 +73,7 @@ def test_structured_output():
     print(result)
 
 
+@pytest.mark.vcr
 def test_structured_output_streaming():
     class LanguageChoice(BaseModel):
         language: str = Field(

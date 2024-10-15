@@ -1,0 +1,218 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "system", "content": "You are a world class software
+      developer."}, {"role": "user", "content": "What language would you suggest for
+      developing a web application?"}], "llm_providers": [{"provider": "openai", "model":
+      "gpt-3.5-turbo", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
+      "gpt-4", "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4-1106-preview",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4-turbo-preview",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "anthropic", "model": "claude-3-opus-20240229",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 5, "hash_content":
+      false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1059'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"5e215b37-6a38-4fb0-8c76-ca79452a45eb"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d336aafde437476-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:58:57 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 44322161-6994-4c99
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"max_tokens": 1024, "messages": [{"role": "user", "content": "What language
+      would you suggest for developing a web application?"}], "model": "claude-3-opus-20240229",
+      "system": "The output should be formatted as a JSON instance that conforms to
+      the JSON schema below.\n\nAs an example, for the schema {\"properties\": {\"foo\":
+      {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\": \"array\",
+      \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe object {\"foo\":
+      [\"bar\", \"baz\"]} is a well-formatted instance of the schema. The object {\"properties\":
+      {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere is the output
+      schema:\n```\n{\"properties\": {\"language\": {\"description\": \"The programming
+      language of choice.\", \"title\": \"Language\", \"type\": \"string\"}, \"reason\":
+      {\"description\": \"The reason to pick the programming language.\", \"title\":
+      \"Reason\", \"type\": \"string\"}}, \"required\": [\"language\", \"reason\"]}\n```\nYou
+      are a world class software developer."}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '1034'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - Anthropic/Python 0.36.0
+      x-api-key:
+      - REDACTED
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 0.36.0
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1xTTW/bMAz9KwQvuzhBk60Y6tswYB89dMCKbYd5SGmZttXIkidSSYMg/32Q3a5p
+        T4LIx+f3nugj2gZLHKTbXKx+Wrq0jfnI2+H9w6778fnT1a/VDRaoh5EzikWoYywwBpcLJGJFySsW
+        OISGHZZoHKWGF28XYUyyWF+s312s11dYoAle2SuWv49PhMoPeXQ6SvzCkcEKDAeQ1HUsaoOHNkQg
+        GGPoIg2D9R048l2ijqfWnmugcXTW0ARveMcujAN7LcB60J4h8t/EotzA9e23mzw2kJaVr/zd3d29
+        BF/5Y+UBKnyirrCECq9pR7cm2lErLGZAZMr4V+2smmDHUUit42eF2pOCIQ81QxJuIHiog/aTrDYG
+        rwv2DZBvoCaznS6hfW1KlvBVoaf8kT51DGyCHER5yOA20sD7ELcy8ThbR4qWBZzdMnxnMlrAB98l
+        R7GYIDeh4eW9zOpaMtZZJWWINNpZTAx1Ep10nAW6hJeWswkT4pnf0E7FPFfHsBeOBbCn2uV3s145
+        klG7m8KIc6Elw5PBNwLkJMDeNuwO/+PKfMJxx3EhtmHYW+2fHCzhV749qyrgENIceLKugTY5txAl
+        s32RJyTJggjycfZeBex7a3oQO4zOtjnEM/tzMtwkwwLTNj8oyN6q6TNb3sZHNEdZVlj507RhePpT
+        oGgYN/P2YInsm42m6PGxIXlDvWEsfXKuwDT9Z+URrR+TbjRs2QuW6/VlgSHpeW11uTqd/gEAAP//
+        AwB8gSxVxwMAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d336ab59f8f31f0-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:59:05 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2024-10-15T22:59:32Z'
+      anthropic-ratelimit-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-tokens-reset:
+      - '2024-10-15T22:59:05Z'
+      request-id:
+      - req_012aH27jxDEzWhQj5JgrHT7M
+      via:
+      - 1.1 google
+      x-cloud-trace-context:
+      - ead93602da565efec60ffb599d618f4f
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"session_id": "5e215b37-6a38-4fb0-8c76-ca79452a45eb", "provider": {"provider":
+      "anthropic", "model": "claude-3-opus-20240229", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}, "feedback":
+      {"tokens_per_second": 18.7990062676051}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '285'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
+  response:
+    body:
+      string: '{"detail":"Session 5e215b37-6a38-4fb0-8c76-ca79452a45eb does not belong
+        to user 70dc4e5f-ab5b-4e78-a1a1-8820d27a99e1."}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d336ae538f22594-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:59:05 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 0a5fd66b-ee40-4730
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 401
+      message: Unauthorized
+version: 1

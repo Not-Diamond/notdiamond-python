@@ -1,3 +1,4 @@
+import pytest
 import requests
 from langchain_core.tools import tool
 
@@ -5,6 +6,7 @@ from notdiamond import settings
 from notdiamond.llms.client import NotDiamond
 
 
+@pytest.mark.vcr
 def test_function_calling():
     # Defining our tools
     @tool
@@ -60,6 +62,7 @@ def test_function_calling():
     )  # The output of the selected function
 
 
+@pytest.mark.vcr
 def test_function_calling_via_rest_api():
     modelselect_url = (
         "https://staging-api.notdiamond.ai/v2/optimizer/hashModelSelect"
