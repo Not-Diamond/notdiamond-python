@@ -196,8 +196,12 @@ def nd_router_cls():
 
 
 def _redact_xtoken_response(response: Any) -> Any:
-    response["headers"]["x-token"] = ["REDACTED"]
-    response["headers"]["x-api-key"] = ["REDACTED"]
+    for key in ["x-token", "x-api-key"]:
+        if (
+            key in response["headers"]
+            and response["headers"][key] != "REDACTED"
+        ):
+            response["headers"][key] = ["REDACTED"]
     return response
 
 
@@ -210,10 +214,10 @@ def _before_record_request(request: Any) -> Any:
     if request.body is not None:
         body = json.loads(request.body)
         for key in ["api_key", "x-api-key"]:
-            if key in body:
+            if key in body and body[key] != "REDACTED":
                 body[key] = "REDACTED"
                 request.body = json.dumps(body)
-            elif key in request.headers:
+            elif key in request.headers and request.headers[key] != "REDACTED":
                 request.headers[key] = "REDACTED"
     return request
 
