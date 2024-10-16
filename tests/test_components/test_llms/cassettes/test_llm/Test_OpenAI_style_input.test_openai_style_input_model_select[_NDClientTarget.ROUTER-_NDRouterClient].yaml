@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, what''s your name?"},
+      {"role": "assistant", "content": "My name is Isaac Asimov"}, {"role": "user",
+      "content": "And what do you do?"}], "llm_providers": [{"provider": "openai",
+      "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
+      1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '423'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"0956a3d4-8b19-4397-b9f0-a48d59ce8c81"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d335a389eb43711-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:47:42 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 65482d21-8aeb-4370
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+version: 1

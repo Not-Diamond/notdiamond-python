@@ -1,0 +1,217 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-3-5-sonnet-20240620", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
+      [{"type": "function", "function": {"name": "add_fct", "description": "Add two
+      numbers", "parameters": {"type": "object", "properties": {"a": {"type": "integer",
+      "description": "The first number"}, "b": {"type": "integer", "description":
+      "The second number"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '617'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-sonnet-20240620"}],"session_id":"2c6ec1a1-9ff6-4831-9ab8-31f1339db25e"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d107e8498a331ce-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:15:48 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - ae49c76b-d70f-41ce
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"max_tokens": 200, "messages": [{"role": "user", "content": "How much
+      is 3 + 5?"}], "model": "claude-3-5-sonnet-20240620", "tools": [{"name": "add_fct",
+      "description": "Add two numbers", "input_schema": {"type": "object", "properties":
+      {"a": {"type": "integer", "description": "The first number"}, "b": {"type":
+      "integer", "description": "The second number"}}, "required": ["a", "b"]}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '388'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - Anthropic/Python 0.36.0
+      x-api-key:
+      - REDACTED
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 0.36.0
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1RRwWrcQAz9FaFLD51dvHZ3IXNLCLSlLYSQw6ZNMeOx1jYZjzaWpm528b8Xeylp
+        T0LSe3rS0xm7Gi320pTZ5mYvn7anu6su1c3zaT/cx5H8PRrU1yPNKBJxDaHBgcNccCKdqIuKBnuu
+        KaBFH1yqaVWstivhGElXeZZ/yHZ5hgY9R6WoaH+c/w5V+j3Tl2DxgcFFGWmAV04DvCQS7TiCqzgp
+        tDxCn3wLBbyHLXRi4DN4FyEJgbYET+jqujx4fUI4pOgXrrZO3wm4X64LrgoEytDTGh7aTt5QLgQe
+        Bfql7eoadGSIqa9oEFBuSFsa1vCVdMbMgp3OUO+CT8HpZQFJPRx42X6Nk3m7kjmUSWbvFsPnPJXZ
+        Zv9x96UqqDndfr9uHvPiW3V3+5ijwej6xeHLOTMtHpOiPaNDWxis0G6n6adBUT6WAznh+L/O0hB6
+        SRQ9oY0pBINpeaA9X8aVys8UBW1xlRvkpP/WNvlumv4AAAD//wMA3hMR6iACAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d107e8abaf83365-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:15:50 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2024-10-11T17:16:32Z'
+      anthropic-ratelimit-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-tokens-reset:
+      - '2024-10-11T17:15:50Z'
+      request-id:
+      - req_014EYFUp1wddshLJZ17LYLPf
+      via:
+      - 1.1 google
+      x-api-key:
+      - REDACTED
+      x-cloud-trace-context:
+      - 44e1a8adca5461ba1fc02824bcce3844
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-3-5-sonnet-20240620", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
+      [{"type": "function", "function": {"name": "add_fct", "description": "Add two
+      numbers", "parameters": {"type": "object", "properties": {"a": {"type": "integer",
+      "description": "The first number"}, "b": {"type": "integer", "description":
+      "The second number"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '617'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-sonnet-20240620"}],"session_id":"a7816878-2080-412a-a03f-be4ef44edec1"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d28c7498bde7438-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 15:59:47 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 71591b78-3539-4461
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+version: 1

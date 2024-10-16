@@ -1,0 +1,157 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "system", "content": "You are a funny AI"}, {"role":
+      "user", "content": "Tell me a joke"}], "llm_providers": [{"provider": "openai",
+      "model": "o1-preview", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
+      1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '350'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"o1-preview"}],"session_id":"1b0b6e5c-21eb-4230-b30b-0d74a016cdcc"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d334648ce4a4986-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:34:06 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 4ecf629a-269d-40a3
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "You are a funny AI", "role": "user"}, {"content":
+      "Tell me a joke", "role": "user"}], "model": "o1-preview", "n": 1, "stream":
+      false, "temperature": 1.0}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '180'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2xRwW7TQBC9+ysme0GyYmSbtKl9QbRSCUgIBIciUWQt67G9zXp3tTtuCFV+gC/g
+        xi/yCWidNDGilznMm/fmvZmHCIDJmpXARMdJ9FYlr96sPxTy+urz2bJY2cvr1Y/3/N3VRy7t67cd
+        mweG+XaHgh5Zz4XprUKSRu9h4ZATBtVsmRfpi+x8sRyB3tSoAs1kiXV4L3GT5Gm+SNIiyfIDuTNS
+        oGclfIkAAB7GGmzqGr+zEtL5Y6dH73mLrDwOATBnVOgw7r30xDWx+QkURhPq0fmnwSFQJ3U7gxU6
+        fOaBw51ZIzTGwdYM5a2+1XF8021hwz1QhxCCDoQOhFH1yzgOE5co+OARJIHChkCSh/hG6tpsfAzG
+        op7Bn9+/fobZlbFhJydo+T2GJcBBdINYK5xNfTpsBs/DqfSg1KG/OwZvpJa+qxxyb3QI48lYNqK7
+        CODreMjhn9sw60xvqSKzRh2umxd7OXb63gnM0mV+gMkQVxMkS7P5E4pVjcSl8pNnMMFFh/WJm0aT
+        GP/vfUpiH1HqduotXxyjjmLMbz1hXzVSt+isk/sPN7ZaFM3ZRXpeXDQs2kV/AQAA//8DAJ6BljXu
+        AgAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d33464f4d9b1273-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:34:23 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=Ybh79OzUZVSWui2lOgbaK8y4bNPUowWIUipNZelEwcc-1729031663-1.0.1.1-xDQp_nnvCJFd_SzGBmbUg7h4C.O3x4FT7gFzlqH0R0C0Ne1zPsUO3OPnURDoXMA20PhKUc.0pA83bUk6Z1F8Ig;
+        path=/; expires=Tue, 15-Oct-24 23:04:23 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=fMCKjsY8MJgSUCx_9huUCbwWC2S_sdoGM9XWIit09Sg-1729031663862-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '17053'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '30000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '29999973'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_48167d13b82daee8dad270933aea874a
+    status:
+      code: 200
+      message: OK
+version: 1

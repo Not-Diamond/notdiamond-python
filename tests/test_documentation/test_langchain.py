@@ -1,6 +1,9 @@
+import pytest
+
 from notdiamond.llms.client import NotDiamond
 
 
+@pytest.mark.vcr
 def test_streaming():
     messages = [
         {

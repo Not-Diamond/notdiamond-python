@@ -1,0 +1,162 @@
+interactions:
+- request:
+    body: '{"messages": "You are a world class software developer. Write a merge sort
+      in Python.", "llm_providers": [{"provider": "openai", "model": "gpt-3.5-turbo",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '327'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"detail":[{"type":"list_type","loc":["body","messages"],"msg":"Input
+        should be a valid list","input":"You are a world class software developer.
+        Write a merge sort in Python."}]}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d33693f9baada7f-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:57:57 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 6d0a8610-9f37-4683
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 422
+      message: Unprocessable Entity
+- request:
+    body: '{"messages": [{"role": "user", "content": "You are a world class software
+      developer. Write a merge sort in Python."}], "model": "gpt-3.5-turbo"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '144'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA3xUTW/bRhS861dM2IuF0oo+6tomrENRpEgOCQwkQYFKgrQiH8mVl7vE7mMkOfB/
+        D5akRMopwgMBzryZ98Hd930ABDIJIgRxLjguSnX914en4p3MPn7Ovj7/d/P4aA789+Hf5/efpvfP
+        4yD0CrPdUcwn1Sg2RamIpdENHVsSTN51cju9H89m49u7mihMQsrLspKvZ6Oba67s1lyPJ9ObVpkb
+        GZMLIiwGAPC9fvsadUKHIMI4PCEFOScyCqJzEBBYozwSCOekY6E5CDsyNppJ12V/riy9wXuyBOkg
+        NKTvoCDNwrcBk4JzQkE2IzhjGUJlxkrOC0iNxyPnRkdLvdSbzaasv5Y6obRRrL3iSlg7jJbap5Yp
+        FOkawcMckxb2jyWurIawtsGadyETzDvN27eYNoSilDH34YuokMmqQa3M8hNcyCRa9b1aSa8yjwwv
+        lT22hoZ9h7bGOqYWhzgF9bq+YKKT0lXK+y/akiTm2GGOcd9/n0tFkHioO66rg9AJdi1yYXmeZ8oL
+        ucJDk3CxW/X4LvVIlCXp5KoNH17GSPw+x6TDSDn6pc0p1yuf3Suf/uhqOR24qyI6yS/J1vvMXsy+
+        CfXz/g3vDsKfVlT+/C+1sNYPeHYXYnob4o9ZiFmI+xB30xCT8Wqp/W+lZN0EvjqhS11aqfmqixnW
+        h9qn+pJLh9gkhIRSqcnVl2LTOWyQVjqub8w+l3EOS3FlnfxG6oitJfHkkJi9rnVSlxVDSceQmg1c
+        IZQiC1dtPehQaZbKhx4hbHPtKBnhyzlnL510qBwlYIPYFFupCbw3raaz3Ir4CWwy4pysv7m+kNhY
+        SzHD2ITsCP9ILZQ6hn4NUH+0v94CDi73re0l5xBwjbBrctRfPZbSygm/+nSlVIu/nHeZMllpzda1
+        /BlPpZYuX1sSzmi/txybMqjZlwGwqndmdbEGg9KaouQ1myfS3nA6beyCbkv3yD/vWpYNC9Uj7ttN
+        e+m3ToiFVK63dYNYxDklnXQ86DX3c9b/s2galDr7yWXQOgXu6JiKdSp1RrY+sqdhvgx+AAAA//8D
+        AARNUYLGBgAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d3369412cec7464-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:58:01 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=wjKvZCbt0cQCRVMeXOtpI4IJPrJGgreTkE4D19DnOcw-1729033081-1.0.1.1-f.EBoJaXqJQolneB9HxaPUvJbBGLjvli.jdUyz9O2J7broXOAwmqNqjx0uI3QXHj4zjtX37elTthwSpCdpWT4w;
+        path=/; expires=Tue, 15-Oct-24 23:28:01 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=UUCC8tDP2g8V9NFSi8FebqIrWQQoXZjKAkxfYuSAM9I-1729033081144-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '3091'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '50000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '49999965'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_f52ccd48c38af1feed9a7071465ff916
+    status:
+      code: 200
+      message: OK
+version: 1

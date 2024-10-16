@@ -15,6 +15,7 @@ def start_prompt():
     ]
 
 
+@pytest.mark.vcr
 def test_main_example():
     model_list = [
         "openai/gpt-3.5-turbo",
@@ -45,6 +46,7 @@ def test_main_example():
     print("LLM output: ", result.content)  # The LLM response
 
 
+@pytest.mark.vcr
 def test_pass_array_of_messages(start_prompt):
     # Define the available LLMs you'd like to route between
     llm_configs = [
@@ -73,6 +75,7 @@ def test_pass_array_of_messages(start_prompt):
     print("LLM output: ", result.content)  # The LLM response
 
 
+@pytest.mark.vcr
 def test_programatic_define_llm_configs(start_prompt):
     # Define the available LLMs you'd like to route between
     llm_configs = [
@@ -106,6 +109,7 @@ def test_programatic_define_llm_configs(start_prompt):
     print("LLM output: ", result.content)  # The LLM response
 
 
+@pytest.mark.vcr
 def test_model_select(start_prompt):
     # Define the available LLMs you'd like to route between
     llm_configs = [

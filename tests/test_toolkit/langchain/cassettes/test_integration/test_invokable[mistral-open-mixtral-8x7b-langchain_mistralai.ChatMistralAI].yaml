@@ -1,0 +1,51 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Test prompt"}], "llm_providers":
+      [{"provider": "mistral", "model": "open-mixtral-8x7b", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '303'
+      User-Agent:
+      - langchain-community/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"detail":"Could not find valid API key"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d3376c298050979-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 23:07:11 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 7de94e2c-5f47-4877
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 401
+      message: Unauthorized
+version: 1

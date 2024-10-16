@@ -4,6 +4,7 @@ from notdiamond.llms.client import NotDiamond
 from notdiamond.llms.providers import NDLLMProviders
 
 
+@pytest.mark.vcr
 @pytest.mark.longrun
 class Test_Mistral:
     def test_mistral_large_with_tool_calling(self, tools_fixture):

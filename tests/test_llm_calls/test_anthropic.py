@@ -6,6 +6,7 @@ from notdiamond.llms.providers import NDLLMProviders
 
 
 @pytest.mark.longrun
+@pytest.mark.vcr
 class Test_Anthropic_LLMs:
     def test_claude_21_with_streaming(self, prompt):
         provider = NDLLMProviders.CLAUDE_2_1

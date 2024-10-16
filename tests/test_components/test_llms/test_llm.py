@@ -36,6 +36,7 @@ pytestmark = pytest.mark.parametrize("ndtarget, NDLLM", test_params)
 
 
 class Test_NDLLM:
+    @pytest.mark.vcr
     def test_with_string_llm_configs(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -52,6 +53,7 @@ class Test_NDLLM:
             assert nd_llm.llm_configs[0].model == "gpt-3.5-turbo"
             assert nd_llm.latency_tracking is True
 
+    @pytest.mark.vcr
     def test_with_llm_provider_enums(self, ndtarget, NDLLM):
         llm_configs = [
             NDLLMProviders.GPT_3_5_TURBO,
@@ -69,6 +71,7 @@ class Test_NDLLM:
             assert nd_llm.llm_configs[0].model == "gpt-3.5-turbo"
             assert nd_llm.latency_tracking is True
 
+    @pytest.mark.vcr
     def test_with_no_default_llm_provider(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -87,6 +90,7 @@ class Test_NDLLM:
             assert nd_llm.latency_tracking is True
             assert nd_llm.default == 0
 
+    @pytest.mark.vcr
     def test_default_llm_provider_set_by_index(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -106,6 +110,7 @@ class Test_NDLLM:
             assert nd_llm.default_llm.provider == "anthropic"
             assert nd_llm.default_llm.model == "claude-2.1"
 
+    @pytest.mark.vcr
     def test_default_llm_provider_set_by_string(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -125,6 +130,7 @@ class Test_NDLLM:
             assert nd_llm.default_llm.provider == "openai"
             assert nd_llm.default_llm.model == "gpt-4"
 
+    @pytest.mark.vcr
     def test_invalid_default_llm_provider_set_by_string(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -144,6 +150,7 @@ class Test_NDLLM:
             assert nd_llm.default_llm.provider == "openai"
             assert nd_llm.default_llm.model == "gpt-3.5-turbo"
 
+    @pytest.mark.vcr
     def test_invalid_default_llm_provider_set_index(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -163,6 +170,7 @@ class Test_NDLLM:
             assert nd_llm.default_llm.provider == "openai"
             assert nd_llm.default_llm.model == "gpt-3.5-turbo"
 
+    @pytest.mark.vcr
     def test_no_max_model_depth(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -177,6 +185,7 @@ class Test_NDLLM:
             nd_llm = NDLLM(llm_configs=llm_configs)
             assert nd_llm.max_model_depth == len(llm_configs)
 
+    @pytest.mark.vcr
     def test_with_correct_max_model_depth(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -191,6 +200,7 @@ class Test_NDLLM:
             nd_llm = NDLLM(llm_configs=llm_configs, max_model_depth=2)
             assert nd_llm.max_model_depth == 2
 
+    @pytest.mark.vcr
     def test_with_max_model_depth_too_big(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -205,6 +215,7 @@ class Test_NDLLM:
             nd_llm = NDLLM(llm_configs=llm_configs, max_model_depth=7)
             assert nd_llm.max_model_depth == len(llm_configs)
 
+    @pytest.mark.vcr
     def test_model_select_with_strings(self, prompt, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -219,6 +230,7 @@ class Test_NDLLM:
         assert provider is not None
 
     @pytest.mark.skip("Expected to fail with session id")
+    @pytest.mark.vcr
     def test_model_select_with_messages_and_model_and_params(
         self, openai_style_messages, ndtarget, NDLLM
     ):
@@ -240,6 +252,7 @@ class Test_NDLLM:
         assert provider is not None
 
     @pytest.mark.asyncio
+    @pytest.mark.vcr
     async def test_async_model_select_with_strings(
         self, prompt, ndtarget, NDLLM
     ):
@@ -259,6 +272,7 @@ class Test_NDLLM:
         SKIP_TOOL_TESTS,
         reason="Skipping tool tests since langchain_core is not installed.",
     )
+    @pytest.mark.vcr
     def test_ndllm_tool_calling(self, ndtarget, NDLLM):
         from langchain_core.tools import tool
 
@@ -296,6 +310,7 @@ class Test_NDLLM:
         SKIP_TOOL_TESTS,
         reason="Skipping tool tests since langchain_core is not installed.",
     )
+    @pytest.mark.vcr
     async def test_ndllm_async_tool_calling(self, ndtarget, NDLLM):
         from langchain_core.tools import tool
 
@@ -334,6 +349,7 @@ class Test_NDLLM:
         SKIP_TOOL_TESTS,
         reason="Skipping tool tests since langchain_core is not installed.",
     )
+    @pytest.mark.vcr
     def test_ndllm_tool_calling_stream(self, ndtarget, NDLLM):
         from langchain_core.tools import tool
 
@@ -377,6 +393,7 @@ class Test_NDLLM:
         SKIP_TOOL_TESTS,
         reason="Skipping tool tests since langchain_core is not installed.",
     )
+    @pytest.mark.vcr
     async def test_ndllm_tool_calling_astream(self, ndtarget, NDLLM):
         from langchain_core.tools import tool
 
@@ -420,6 +437,7 @@ class Test_NDLLM:
         SKIP_TOOL_TESTS,
         reason="Skipping tool tests since langchain_core is not installed.",
     )
+    @pytest.mark.vcr
     def test_ndllm_tool_calling_unsupported_model(self, ndtarget, NDLLM):
         from langchain_core.tools import tool
 
@@ -440,6 +458,7 @@ class Test_NDLLM:
         with pytest.raises(ApiError):
             nd_llm = nd_llm.bind_tools(tools)
 
+    @pytest.mark.vcr
     def test_ndllm_invoke_response_model(
         self, response_model, ndtarget, NDLLM
     ):
@@ -463,6 +482,7 @@ class Test_NDLLM:
         assert result.setup
         assert result.punchline
 
+    @pytest.mark.vcr
     def test_ndllm_invoke_with_curly_braces(self, ndtarget, NDLLM):
         llm_configs = ["openai/gpt-3.5-turbo"]
         messages = [
@@ -484,6 +504,7 @@ class Test_NDLLM:
         assert result.content, f"Expected content but got {result}"
 
     @pytest.mark.asyncio
+    @pytest.mark.vcr
     async def test_ndllm_ainvoke_response_model(
         self, response_model, ndtarget, NDLLM
     ):
@@ -507,6 +528,7 @@ class Test_NDLLM:
         assert result.setup
         assert result.punchline
 
+    @pytest.mark.vcr
     def test_ndllm_stream_response_model(
         self, response_model, ndtarget, NDLLM
     ):
@@ -530,6 +552,7 @@ class Test_NDLLM:
         assert last_chunk.punchline
 
     @pytest.mark.asyncio
+    @pytest.mark.vcr
     async def test_ndllm_astream_response_model(
         self, response_model, ndtarget, NDLLM
     ):
@@ -555,6 +578,7 @@ class Test_NDLLM:
         assert last_chunk.setup
         assert last_chunk.punchline
 
+    @pytest.mark.vcr
     def test_ndllm_openai_interface(
         self, openai_style_messages, ndtarget, NDLLM
     ):
@@ -585,6 +609,7 @@ class Test_NDLLM:
         assert session_id != "NO-SESSION-ID"
         assert str(result) in llm_configs
 
+    # no cassettes here as async openai interface can lead to nested event loop errors
     @pytest.mark.asyncio
     async def test_ndllm_async_openai_interface(
         self, openai_style_messages, ndtarget, NDLLM
@@ -610,6 +635,7 @@ class Test_NDLLM:
         assert session_id != "NO-SESSION-ID"
         assert len(result.content) > 0
 
+    @pytest.mark.vcr
     def test_create_unavailable_error(self, ndtarget, NDLLM):
         if ndtarget == _NDClientTarget.ROUTER:
             with pytest.raises(CreateUnavailableError):
@@ -620,6 +646,7 @@ class Test_NDLLM:
                     hash_content=True,
                 )
 
+    @pytest.mark.vcr
     def test_preference_id(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
@@ -636,6 +663,7 @@ class Test_NDLLM:
             assert isinstance(preference_id, str)
 
 
+@pytest.mark.vcr
 class Test_OpenAI_style_input:
     def test_openai_style_input_invoke(
         self, openai_style_messages, ndtarget, NDLLM

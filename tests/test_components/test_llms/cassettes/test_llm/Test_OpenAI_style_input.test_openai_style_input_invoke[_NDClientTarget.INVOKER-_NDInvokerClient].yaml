@@ -1,0 +1,157 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, what''s your name?"},
+      {"role": "assistant", "content": "My name is Isaac Asimov"}, {"role": "user",
+      "content": "And what do you do?"}], "llm_providers": [{"provider": "openai",
+      "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
+      1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '423'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"278c3519-302e-4aa5-9b98-21e05dd387b0"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d335a062d880321-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:47:34 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - b8a980d9-6af4-4d8c
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, what''s your name?", "role": "user"},
+      {"content": "My name is Isaac Asimov", "role": "assistant"}, {"content": "And
+      what do you do?", "role": "user"}], "model": "gpt-3.5-turbo", "max_tokens":
+      10, "n": 1, "stream": false, "temperature": 0.7}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '273'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2xRPW/CMBTc8yuePAPiK0Jka6cigdSpS1VFxn4kBscvsl8QFeK/Vw6BgOji4c53
+        vjufEwBhtMhAqFKyqmo7fFsd1PtysreldXv1uT4uPkz55TebVK9PYhAVtN2j4ptqpKiqLbIhd6WV
+        R8kYXSeL6XI8m87TtCUq0mijrKh5OBulQ278lobjyTTtlCUZhUFk8J0AAJzbM2Z0Gk8ig/HghlQY
+        gixQZPdLAMKTjYiQIZjA0rEY9KQix+ja2CuQFUg4Gs+NtHC/DhqDKRxqYILa09FoBON25CsZ+w0e
+        /TzumiBjH9dY2+GXe0BLRe1pGzr+ju+MM6HMPcpALoax6AouRctfEoCfdormqZ2oPVU150wHdNFy
+        ll4NRT9+T066mQQTS9vj85voyS3XyNLY8DClUFKVqHvlOHko9/rmfxbXgsYVLy5J5yTCb2Cs8p1x
+        Bfram/Zz2jEvyR8AAAD//wMA0BDqqJsCAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d335a0c085adad9-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:47:35 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=GPvOEFXWBFMCzWh_UXtNrEez6R.oEr7P5xpthAAgWYM-1729032455-1.0.1.1-TQk1iXa0jHkwBvhK4JdOL8F1uyUF2O.rg999Qr6kW8UARZfZDDrw7MtycsmRgijqusnEycRekJFeyMiRU.o7Ew;
+        path=/; expires=Tue, 15-Oct-24 23:17:35 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=oKL9R73xAh67Kf1n7s_gGn2Ep5oAklaeU.HZhqCO8vg-1729032455414-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '263'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '50000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '49999970'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_aacb71fa999909f97e7187d2f19dd4ec
+    status:
+      code: 200
+      message: OK
+version: 1

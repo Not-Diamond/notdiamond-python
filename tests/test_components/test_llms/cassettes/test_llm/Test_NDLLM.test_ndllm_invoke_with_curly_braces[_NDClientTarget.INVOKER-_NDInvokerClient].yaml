@@ -1,0 +1,206 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Tell me a joke about LaTeX like
+      \\mathbb{x}"}], "llm_providers": [{"provider": "openai", "model": "gpt-3.5-turbo",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '330'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"ad3fc641-28a4-4229-9c2b-144f7e8f6855"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d335935a93a2227-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:47:01 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 921b03ef-4d09-4fd0
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Tell me a joke about LaTeX like \\mathbb{x}",
+      "role": "user"}], "model": "gpt-3.5-turbo", "n": 1, "stream": false, "temperature":
+      0.7}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '161'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2xRwY7TMBC95ysGX7i0qzbJCtoLQlpWrIQ4gUBCqJrYk8Rbx2PZE9iq6r+jpNmm
+        aPfiw3t+b+a9OWYAyhq1BaVbFN0Ft/z4sK/ou9Gbu/Dp/RqLuvx83+zLe/5q/hRqMSi4eiQtz6ob
+        zV1wJJb9mdaRUGhwXb/LN6siL/N8JDo25AZZE2RZ3NwupY8VL1fr/HZStmw1JbWFXxkAwHF8hx29
+        oSe1hdXiGekoJWxIbS+fAFRkNyAKU7JJ0ItazKRmL+THtX+0BzDWgLQEX/Ab/QTDuu/ICzQMwgMR
+        MRw+wIOA5t4Z/1agRW8cATo3CjuUtqqOTyewKfWUwAr8xQQ1auubN9ejI9V9wiG6752b8NMli+Mm
+        RK7SxF/w2nqb2l0kTOyHvZNwUCN7ygB+j531/9WgQuQuyE54T34wXG/Odmq+0kzm5UQKC7oZL4vF
+        K247Q4LWpavOlUbdkpmVq+wq2suZr1mc41nfvHDJJieVDkmo29XWNxRDtOMVxypP2T8AAAD//wMA
+        rlZUM8QCAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d33593b2f7c21e2-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:47:02 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=rSyV_DvqoPrH1RLmfKOgRuYryS4LZ.QaC.ugBPiurcg-1729032422-1.0.1.1-Tns9AgRTrg8wgB9rMS_b7WUsD9lSoqcKCMJXBm7htd8CJKWDyKF3fuX..p_cEgCpfZb_eE_Bj0fMX6DQOrfJHQ;
+        path=/; expires=Tue, 15-Oct-24 23:17:02 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=GGRslbk_w9026LiU66nxllAFJ2Pgyj.khbu2oNmRUDY-1729032422436-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '658'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '50000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '49999971'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_0c29c4b854cfd037c631632c0de22256
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"session_id": "ad3fc641-28a4-4229-9c2b-144f7e8f6855", "provider": {"provider":
+      "openai", "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null,
+      "input_price": null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
+      35.91185283653908}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '274'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
+  response:
+    body:
+      string: '{"detail":"Session ad3fc641-28a4-4229-9c2b-144f7e8f6855 does not belong
+        to user 70dc4e5f-ab5b-4e78-a1a1-8820d27a99e1."}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d3359408a02747d-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:47:02 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 2005de1d-bf21-4bde
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 401
+      message: Unauthorized
+version: 1

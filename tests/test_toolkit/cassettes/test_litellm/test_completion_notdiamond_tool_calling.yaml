@@ -1,0 +1,708 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "openai", "model": "gpt-4o"}], "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '388'
+      User-Agent:
+      - litellm/1.48.19
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o"}],"session_id":"56fa8f1e-9ee5-422f-b34f-409b68c999b1"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d332fd81cf4a680-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:18:47 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 3f55b7c7-de25-4f8a
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "model":
+      "gpt-4o", "tools": [{"type": "function", "function": {"name": "add", "description":
+      "Adds a and b.", "parameters": {"type": "object", "properties": {"a": {"type":
+      "integer"}, "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '300'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=SmL8sp.v477kWQOYpbT06d0scAKw3uK9LySoqqKCN_g-1729030690-1.0.1.1-JRDorXFzjv2muIj7HXGlxr6Jg63Qejdz8a9p7zdPrE04SKsxZhtbEIKut1p.RZEEubPb4EcwrdxlzzAunKkg7g;
+        _cfuvid=s8yrLjpyLIQ4MmtBAA4sFcTpsCOarsRPpQIjYC6asOY-1729030690194-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2xSy27bMBC86yuIPVuFLD/k6mYEOSRxizZAjRZ1IVDUSmJMkQRJtQkM/3uhhyXZ
+        iQ4CscOZ2R3uySMEeAYxAVZSxyot/O3Dcfu4/16t7rO78uf+6+v9j83u7wKf13eYw6xhqPQFmbuw
+        PjFVaYGOK9nBzCB12KjOo/BzsAiiMGqBSmUoGlqhnb9UfhiESz/Y+MG6J5aKM7QQk98eIYSc2n/T
+        oszwFWISzC6VCq2lBUI8XCIEjBJNBai13DoqHcxGkCnpUDZdy1qICeCUEgmjQozG3XeanMecqBDJ
+        7nF73Je1/vdr/rx7Yi/imzNfjimd+HXSb7ptKK8lG/KZ4EM9vjEjBCStumGy7IZGCFBT1BVK17QM
+        pwPQA8Th7ADpAeLVGa6un72Pzn8mCRjMa0tFH01fPw9ZC1Voo1J7Ex3kXHJbJgapbUeYJuld3Fof
+        qK8eC7RRlXaJU0eUjexq0YnCuEojOI960ClHxViP+m24VksydJS3bzmsD6OsxGxkBt5kwPeeH0l0
+        Q3JZvFPxeiWwb9ZhleRcFmi04e2uQa6Tdbre0E0YLFPwzt5/AAAA//8DAOMBL2F0AwAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d332fdd099c4c15-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:18:48 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '880'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '30000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '29999979'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_35048a891a731729db953baa09eb3958
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "openai", "model": "gpt-4o-mini"}], "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '393'
+      User-Agent:
+      - litellm/1.48.19
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini"}],"session_id":"41672d64-e7fc-4079-9b78-aec4d05c90c8"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d332fe37a77a543-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:18:49 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - d4796e4a-b9b8-44ef
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "model":
+      "gpt-4o-mini", "tools": [{"type": "function", "function": {"name": "add", "description":
+      "Adds a and b.", "parameters": {"type": "object", "properties": {"a": {"type":
+      "integer"}, "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '305'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=SmL8sp.v477kWQOYpbT06d0scAKw3uK9LySoqqKCN_g-1729030690-1.0.1.1-JRDorXFzjv2muIj7HXGlxr6Jg63Qejdz8a9p7zdPrE04SKsxZhtbEIKut1p.RZEEubPb4EcwrdxlzzAunKkg7g;
+        _cfuvid=s8yrLjpyLIQ4MmtBAA4sFcTpsCOarsRPpQIjYC6asOY-1729030690194-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2xS246bMBB95yuseQ4VIRca3iKtWnXbqqr2pd2mQsYM4I1vtY3UNMq/V1wCJLs8
+        IGuOzzkzx3MOCAFeQEqA1dQzaUS4/3Tcf7FLo7ff90/H5sn8eMjF8efLLi4eP8KiZej8BZm/st4x
+        LY1Az7XqYWaRemxVl0m8i1ZREu86QOoCRUurjA/XOpRc8TCO4nUYJeHy/cCuNWfoICW/AkIIOXf/
+        tk9V4F9ISbS4ViQ6RyuEdLxECFgt2gpQ57jzVHlYTCDTyqNqW1eNEDPAay0yRoWYjPvvPDtPYVEh
+        slrL57WMHh++fj760+5Drf78+7ZNyplfL30yXUNlo9gY0gwf6+mdGSGgqOyHKYo7GiFAbdVIVL5t
+        Gc4HoAdI48UB8gOkmwvcXL8Eb51/zxKwWDaOiiGaoX4Zsxa6Mlbn7i46KLnirs4sUteNME8yuLp1
+        PtDcPBYYq6XxmddHVK3sZtWLwrRPE7hMBtBrT8VUT4ZtuFXLCvSUd285rg+jrMZiYkbBbMDXnm9J
+        9ENyVb1SCQYlcCfnUWYlVxVaY3m3a1CaDOO8wM0KtwjBJfgPAAD//wMA1R2unnkDAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d332fe87bbd4c15-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:18:49 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '659'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999979'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_dae514682f482be53a18961197592793
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "anthropic", "model": "claude-3-5-sonnet-20240620"}], "max_model_depth": 1,
+      "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '411'
+      User-Agent:
+      - litellm/1.48.19
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-sonnet-20240620"}],"session_id":"6fea0218-951f-4e85-8b96-070fba2b81af"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d332fedaab8742a-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:18:50 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 2dd97554-ebab-47d9
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": [{"type": "text", "text": "what
+      is 2 + 5?"}]}], "tools": [{"name": "add", "description": "Adds a and b.", "input_schema":
+      {"type": "object", "properties": {"a": {"type": "integer"}, "b": {"type": "integer"}},
+      "required": ["a", "b"]}}], "max_tokens": 4096, "model": "claude-3-5-sonnet-20240620"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-beta:
+      - tools-2024-05-16
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '336'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - litellm/1.48.19
+      x-api-key:
+      - REDACTED
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1RQXW/aUAz9K5Zf+tBLFQIMet+2oUndeBhqpWpap8gkBqLdXEPsO0pR/nuVVNPW
+        J8v2+bDPBesKPTa6K7Lx9OVl/X3xcb14XC7y6aeV3B8mJOjQzgfuUaxKO0aHrYR+QKq1GkVDh41U
+        HNBjGShVPJqMZiOVGNlGeZZPsw95hg5LicbR0P+8/BU1fu7pQ/H4IEBRT9zCWVILx8RqtUSgjSSD
+        054McriGGdTq4A5KipCUwfYMT0hV9YSwTbEcOLYnu1KgP1QH2gQGE2j4BlZs0DCUFMoUyHgAwlYG
+        zxvs3L/bREKRtP94iKnvU5GNc7v99vBlPkk/vi6P958X4zY15xwdRmqGXKqqp8RDMvQXJPS5ww36
+        Wdf9cqgmh6JlUonvPYaF8jFxLBl9TCE4TEPk/vImV5j85qjoJ/OpQ0n2/2yczbruFQAA//8DALb7
+        YM3SAQAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d332ff36f7767d5-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:18:53 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2024-10-15T22:19:32Z'
+      anthropic-ratelimit-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-tokens-reset:
+      - '2024-10-15T22:18:53Z'
+      request-id:
+      - req_01SDzyxqDbbzH5M9rmHi543C
+      via:
+      - 1.1 google
+      x-cloud-trace-context:
+      - 71eb5ccb8c897c2abc994c30a4196aee
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "mistral", "model": "mistral-large-latest"}], "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '403'
+      User-Agent:
+      - litellm/1.48.19
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"mistral","model":"mistral-large-latest"}],"session_id":"6788a290-a55e-4ad4-b0f5-5f58e1a6978b"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d3330050d34dae5-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:18:54 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 5c7bb2a9-cecc-44ac
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "model":
+      "mistral-large-latest", "tools": [{"type": "function", "function": {"name":
+      "add", "description": "Adds a and b.", "parameters": {"type": "object", "properties":
+      {"a": {"type": "integer"}, "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '314'
+      content-type:
+      - application/json
+      host:
+      - api.mistral.ai
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.mistral.ai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA0yQzW7CMBCEXwXN2VRJSCDxuRLHPkBByHY2YOqfyDZS28jvXhkB6m00qxl9swv0
+        CI5moqFTk5IDyXaoumGQsu93dd03st3KGgxeXkklcKiLSG/K29lQ0t6BQQUSiUbwetcM1ababVoG
+        60cy4LA6piDM2ohwprURiWIqmYvXiiL45wLtRvoGrxgsxSjOBL4geEPgEDHqmIS7Z7xL5AoDGJL3
+        5qSEMY+OMmPvf/cf72ZL5f4zl/x0c+qB+ZJ8gRP23j6OYBDhfLPkUgTHcoA4gK8atjpAFtVl5HzM
+        DJN2Ol5OgUQsJf8J8pHh9iSfg7dzOiX/RS6C93WBTcK8nLrqypjnB19+0+b8BwAA//8DAFKRiNaR
+        AQAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d33300a1994b3d4-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:18:55 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      ratelimitbysize-limit:
+      - '2000000'
+      ratelimitbysize-query-cost:
+      - '32007'
+      ratelimitbysize-remaining:
+      - '1903991'
+      ratelimitbysize-reset:
+      - '6'
+      x-envoy-upstream-service-time:
+      - '944'
+      x-kong-proxy-latency:
+      - '2'
+      x-kong-request-id:
+      - 9e8fbe6acbabe45de8ca9c7f803ddf03
+      x-kong-upstream-latency:
+      - '945'
+      x-ratelimitbysize-limit-minute:
+      - '2000000'
+      x-ratelimitbysize-limit-month:
+      - '10000000000'
+      x-ratelimitbysize-remaining-minute:
+      - '1903991'
+      x-ratelimitbysize-remaining-month:
+      - '9998207074'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "cohere", "model": "command-r-plus"}], "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '396'
+      User-Agent:
+      - litellm/1.48.19
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"cohere","model":"command-r-plus"}],"session_id":"5e19bfa7-ae6b-43ff-a7a7-eb8929d926ff"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d33301318937473-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:18:56 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - c3f31e7e-995d-412f
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model": "command-r-plus", "chat_history": [], "tools": [{"name": "add",
+      "description": "Adds a and b.", "parameter_definitions": {"a": {"description":
+      "", "type": "integer", "required": true}, "b": {"description": "", "type": "integer",
+      "required": true}}}], "message": "what is 2 + 5?"}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '289'
+      Request-Source:
+      - unspecified:litellm
+      User-Agent:
+      - python-requests/2.32.3
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://api.cohere.ai/v1/chat
+  response:
+    body:
+      string: '{"response_id":"4c3be303-8bfe-49fd-a733-f6c383ade2ca","text":"I will
+        use the add tool to calculate the answer to this question.","generation_id":"8ba7e07c-cd57-456b-a5c2-2b09ab13f161","chat_history":[{"role":"USER","message":"what
+        is 2 + 5?"},{"role":"CHATBOT","message":"I will use the add tool to calculate
+        the answer to this question.","tool_calls":[{"name":"add","parameters":{"a":2,"b":5}}]}],"finish_reason":"COMPLETE","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":16,"output_tokens":24},"tokens":{"input_tokens":901,"output_tokens":60}},"tool_calls":[{"name":"add","parameters":{"a":2,"b":5}}]}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Content-Length:
+      - '624'
+      Via:
+      - 1.1 google
+      access-control-expose-headers:
+      - X-Debug-Trace-ID
+      cache-control:
+      - no-cache, no-store, no-transform, must-revalidate, private, max-age=0
+      content-type:
+      - application/json
+      date:
+      - Tue, 15 Oct 2024 22:19:03 GMT
+      expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      num_chars:
+      - '4310'
+      num_tokens:
+      - '40'
+      pragma:
+      - no-cache
+      server:
+      - envoy
+      vary:
+      - Origin
+      x-accel-expires:
+      - '0'
+      x-debug-trace-id:
+      - ba88eb9c6484ef9bf428c5ed1a54be12
+      x-envoy-upstream-service-time:
+      - '6392'
+    status:
+      code: 200
+      message: OK
+version: 1

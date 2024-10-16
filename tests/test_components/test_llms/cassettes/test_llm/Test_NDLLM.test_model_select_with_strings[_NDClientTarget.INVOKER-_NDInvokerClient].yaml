@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Write me a song about goldfish
+      on the moon"}], "llm_providers": [{"provider": "openai", "model": "gpt-3.5-turbo",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}, {"provider": "anthropic", "model": "claude-2.1", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}, {"provider": "google", "model": "gemini-pro", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 4, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '779'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4"}],"session_id":"5a3e1b26-a0e6-475c-b77c-f0856bc191f1"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d3358e208f0daed-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:46:48 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 9d794402-8a2d-4be8
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+version: 1

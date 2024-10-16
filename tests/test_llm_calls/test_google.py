@@ -5,6 +5,7 @@ from notdiamond.llms.providers import NDLLMProviders
 from notdiamond.metrics.metric import Metric
 
 
+@pytest.mark.vcr
 @pytest.mark.longrun
 @pytest.mark.skip(reason="Skipping due to API issues")
 class Test_Google_LLMs:

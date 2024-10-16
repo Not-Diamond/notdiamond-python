@@ -4,6 +4,7 @@ from notdiamond.llms.client import _NDClientTarget, _ndllm_factory
 from notdiamond.llms.providers import NDLLMProviders
 
 
+@pytest.mark.vcr
 @pytest.mark.parametrize(
     "nd_llm_cls",
     [
@@ -29,6 +30,7 @@ def test_model_select_callback(llm_base_callback_handler, nd_llm_cls):
     assert llm_base_callback_handler.on_model_select_called
 
 
+@pytest.mark.vcr
 def test_latency_tracking_callback(llm_base_callback_handler, nd_invoker_cls):
     """
     This tests that latency tracking is enabled and the on_latency_tracking method is called.
@@ -47,6 +49,7 @@ def test_latency_tracking_callback(llm_base_callback_handler, nd_invoker_cls):
     assert llm_base_callback_handler.on_latency_tracking_called
 
 
+@pytest.mark.vcr
 def test_llm_start_callback(llm_base_callback_handler, nd_invoker_cls):
     """
     This tests that callback handler is passed along correctly to

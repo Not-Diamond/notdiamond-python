@@ -1,0 +1,178 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Write me a song about goldfish
+      on the moon"}], "llm_providers": [{"provider": "openai", "model": "gpt-4-0613",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '325'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-0613"}],"session_id":"753d1dd5-91f7-491a-8828-b7d1fa8c708e"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d333535cb3e9abf-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:22:27 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - e926720d-17a8-4d9c
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Write me a song about goldfish on the moon",
+      "role": "user"}], "model": "gpt-4-0613", "n": 1, "stop": ["a"], "stream": true,
+      "temperature": 0.7}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '171'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"chatcmpl-AIkDrABLWjloP8Nu0MGzesiX1x7UM","object":"chat.completion.chunk","created":1729030947,"model":"gpt-4-0613","system_fingerprint":null,"choices":[{"index":0,"delta":{"role":"assistant","content":"","refusal":null},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkDrABLWjloP8Nu0MGzesiX1x7UM","object":"chat.completion.chunk","created":1729030947,"model":"gpt-4-0613","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"("},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkDrABLWjloP8Nu0MGzesiX1x7UM","object":"chat.completion.chunk","created":1729030947,"model":"gpt-4-0613","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"Verse"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkDrABLWjloP8Nu0MGzesiX1x7UM","object":"chat.completion.chunk","created":1729030947,"model":"gpt-4-0613","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        "},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkDrABLWjloP8Nu0MGzesiX1x7UM","object":"chat.completion.chunk","created":1729030947,"model":"gpt-4-0613","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"1"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkDrABLWjloP8Nu0MGzesiX1x7UM","object":"chat.completion.chunk","created":1729030947,"model":"gpt-4-0613","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":")\n"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkDrABLWjloP8Nu0MGzesiX1x7UM","object":"chat.completion.chunk","created":1729030947,"model":"gpt-4-0613","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"In"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkDrABLWjloP8Nu0MGzesiX1x7UM","object":"chat.completion.chunk","created":1729030947,"model":"gpt-4-0613","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        "},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkDrABLWjloP8Nu0MGzesiX1x7UM","object":"chat.completion.chunk","created":1729030947,"model":"gpt-4-0613","system_fingerprint":null,"choices":[{"index":0,"delta":{},"logprobs":null,"finish_reason":"stop"}]}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d33353c6e0e74c2-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Tue, 15 Oct 2024 22:22:27 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=_Ns6T7Mi1G.ahlPocFp4c.Jc3qTzpLfU_TSm2Toehcw-1729030947-1.0.1.1-_6Luc2CHpMxRmwCP_W4XOGw5icf5dvE0L4MNPQg9QMAqw8a3Nyu4aGiJaxhpl5QoDoOO7wQm287K.8G_0_hwIA;
+        path=/; expires=Tue, 15-Oct-24 22:52:27 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=zBh_Pby5HL5.LQsh_pnPIwdwfd78EniHTxAKu6WE0.s-1729030947590-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '212'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '1000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '999972'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 1ms
+      x-request-id:
+      - req_2b4645414f91bfc55cf7901880a045f2
+    status:
+      code: 200
+      message: OK
+version: 1

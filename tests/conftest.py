@@ -8,7 +8,6 @@ from typing import Any, Dict, List
 
 import pandas as pd
 import pytest
-import requests
 from pydantic import BaseModel, Field
 
 from notdiamond.callbacks import NDLLMBaseCallbackHandler
@@ -106,12 +105,15 @@ def response_model():
 
 
 @pytest.fixture
-def custom_router_dataset(
-    url="https://github.com/google/BIG-bench/raw/main/bigbench/benchmark_tasks/implicatures/task.json",
-):
-    task = json.loads(requests.get(url).content)
+def custom_router_task(path="tests/static/bbh_implicatures.json"):
+    with open(path) as f:
+        return json.load(f)
+
+
+@pytest.fixture
+def custom_router_dataset(custom_router_task):
     inputs = []
-    for x in task["examples"][:15]:
+    for x in custom_router_task["examples"][:15]:
         inputs.append(x["input"].strip())
 
     llm_configs = [
@@ -131,12 +133,9 @@ def custom_router_dataset(
 
 
 @pytest.fixture
-def custom_router_and_model_dataset(
-    url="https://github.com/google/BIG-bench/raw/main/bigbench/benchmark_tasks/implicatures/task.json",
-):
-    task = json.loads(requests.get(url).content)
+def custom_router_and_model_dataset(custom_router_task):
     inputs = []
-    for x in task["examples"][:15]:
+    for x in custom_router_task["examples"][:15]:
         inputs.append(x["input"].strip())
 
     custom_model = LLMConfig(
@@ -194,3 +193,43 @@ def nd_invoker_cls():
 @pytest.fixture
 def nd_router_cls():
     return _ndllm_factory(_NDClientTarget.ROUTER)
+
+
+def _redact_xtoken_response(response: Any) -> Any:
+    for key in ["x-token", "x-api-key"]:
+        if (
+            key in response["headers"]
+            and response["headers"][key] != "REDACTED"
+        ):
+            response["headers"][key] = ["REDACTED"]
+    return response
+
+
+def _before_record_request(request: Any) -> Any:
+    # fastapi example client
+    if "testserver" in request.uri:
+        print(f"Ignoring request URI: {request.uri}")
+        return None
+    # posthog keys
+    if request.body is not None:
+        body = json.loads(request.body)
+        for key in ["api_key", "x-api-key"]:
+            if key in body and body[key] != "REDACTED":
+                body[key] = "REDACTED"
+                request.body = json.dumps(body)
+            elif key in request.headers and request.headers[key] != "REDACTED":
+                request.headers[key] = "REDACTED"
+    return request
+
+
+@pytest.fixture(scope="module")
+def vcr_config():
+    return {
+        "filter_headers": ["authorization", "x-token"],
+        "allowed_hosts": ["testserver", "127.0.0.1"],
+        "before_record_response": _redact_xtoken_response,
+        "before_record_request": _before_record_request,
+        "record_mode": "none",
+        "ignore_localhost": True,
+        "decode_compressed_response": True,
+    }

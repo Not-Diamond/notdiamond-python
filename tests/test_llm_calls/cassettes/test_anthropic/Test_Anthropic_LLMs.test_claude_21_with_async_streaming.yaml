@@ -1,0 +1,224 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Write me a song about goldfish
+      on the moon"}], "llm_providers": [{"provider": "anthropic", "model": "claude-2.1",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      true}'
+    headers:
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-2.1"}],"session_id":"e0a326e8-dd62-4943-ace2-09f4533d65ae"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d107d821d9f8da3-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:15:06 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 8225de35-db53-4549
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"max_tokens": 10, "messages": [{"role": "user", "content": "Write me a
+      song about goldfish on the moon"}], "model": "claude-2.1", "stream": true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '146'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - AsyncAnthropic/Python 0.36.0
+      x-api-key:
+      - REDACTED
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 0.36.0
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: 'event: message_start
+
+        data: {"type":"message_start","message":{"id":"msg_014tv6d2VfsN2Mu6hQPUucDA","type":"message","role":"assistant","model":"claude-2.1","content":[],"stop_reason":null,"stop_sequence":null,"usage":{"input_tokens":19,"output_tokens":1}}              }
+
+
+        event: content_block_start
+
+        data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}
+        }
+
+
+        event: ping
+
+        data: {"type": "ping"}
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Unfortunately"}}
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        I"}      }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        don"}               }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"''t"}   }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        have"}         }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        enough"}}
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        context"}           }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        or"} }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        creative"}        }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        ability"}    }
+
+
+        event: content_block_stop
+
+        data: {"type":"content_block_stop","index":0}
+
+
+        event: message_delta
+
+        data: {"type":"message_delta","delta":{"stop_reason":"max_tokens","stop_sequence":null},"usage":{"output_tokens":10}           }
+
+
+        event: message_stop
+
+        data: {"type":"message_stop"          }
+
+
+        '
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d107d880e990a3e-MIA
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Fri, 11 Oct 2024 17:15:07 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-ratelimit-requests-limit:
+      - '2000'
+      anthropic-ratelimit-requests-remaining:
+      - '1999'
+      anthropic-ratelimit-requests-reset:
+      - '2024-10-11T17:15:32Z'
+      anthropic-ratelimit-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-tokens-reset:
+      - '2024-10-11T17:15:06Z'
+      request-id:
+      - req_01J9vDjvHPeMetDtjzZwRrpf
+      via:
+      - 1.1 google
+      x-api-key:
+      - REDACTED
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+version: 1

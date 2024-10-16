@@ -1,7 +1,10 @@
+import pytest
+
 from notdiamond.llms.client import NotDiamond
 from notdiamond.metrics.metric import Metric
 
 
+@pytest.mark.vcr
 def test_personalization():
     prompt = [
         {

@@ -1,0 +1,196 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, what''s your name?"},
+      {"role": "assistant", "content": "My name is Isaac Asimov"}, {"role": "user",
+      "content": "And what do you do?"}], "llm_providers": [{"provider": "openai",
+      "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
+      1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '423'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"3b6a2ae6-0e50-4277-bffa-c2622549f9a0"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d335a185e522888-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:47:37 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 898c7ee0-6182-4135
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, what''s your name?", "role": "user"},
+      {"content": "My name is Isaac Asimov", "role": "assistant"}, {"content": "And
+      what do you do?", "role": "user"}], "model": "gpt-3.5-turbo", "max_tokens":
+      10, "n": 1, "stream": true, "temperature": 0.7}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '272'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"role":"assistant","content":"","refusal":null},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"I"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        am"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        a"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        language"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        model"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        AI"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        designed"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        to"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        assist"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{"content":"
+        and"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-AIkcEvQjLv7IEk1RQyCwiJrzOiG02","object":"chat.completion.chunk","created":1729032458,"model":"gpt-3.5-turbo-0125","system_fingerprint":null,"choices":[{"index":0,"delta":{},"logprobs":null,"finish_reason":"length"}]}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d335a1e0a3cb3b6-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Tue, 15 Oct 2024 22:47:38 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=Jagp99g5kZa2rtISABjDxIuTYGU5SuBCufr8RA4Yh4E-1729032458-1.0.1.1-3nxBPMXfo.j7GHtIjIkreb_xZEnkJ10f7XXiVjZ.KxoxueKmlt9aVbXocrej_sfK7FQ21kAw7InzRaJRD4MtsQ;
+        path=/; expires=Tue, 15-Oct-24 23:17:38 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=ds1vFCDJcgOKtflSgL0aR4wmFE393dVLPQgEg5GKAhw-1729032458214-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '204'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '50000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '49999969'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_1db5227ab6551ebc2e21312dc2ab8f63
+    status:
+      code: 200
+      message: OK
+version: 1

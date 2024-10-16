@@ -1,0 +1,214 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-3-5-sonnet-20240620", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
+      [{"type": "function", "function": {"name": "add_fct", "description": "Adds a
+      and b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '544'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-sonnet-20240620"}],"session_id":"44c3e97a-e850-4a09-a0a4-f2e9cff54d34"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d107e711b672878-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:15:44 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 2de67bec-5a94-440f
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"max_tokens": 200, "messages": [{"role": "user", "content": "How much
+      is 3 + 5?"}], "model": "claude-3-5-sonnet-20240620", "tools": [{"name": "add_fct",
+      "description": "Adds a and b.", "input_schema": {"type": "object", "properties":
+      {"a": {"type": "integer"}, "b": {"type": "integer"}}, "required": ["a", "b"]}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '315'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - Anthropic/Python 0.36.0
+      x-api-key:
+      - REDACTED
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 0.36.0
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1RQXUsDQQz8KyGvbuX6pe2++YUoIoqiiMixt5drD/c2tclaS7n/LndF1KeQZCaT
+        mR3WJVpsZJFnw/uXm/nLHT+dzU/4pGDlJBcPt2hQtyvqUCTiFoQG1xy6gROpRV1UNNhwSQEt+uBS
+        SYPxYDoQjpF0MMpGk+xolKFBz1EpKtrX3c9Rpa+O3heLjwwuyobWsOW0ho9EojVHcAUnhSVvoEl+
+        CWM4gCnUYuAKvIuQhECXBK4s6x5fpej3xE9XB1cEAmVo6BBuSKEh8C74FJx2PKdQca94iK35/Yw5
+        5Ek6v31IXZ/ybHh0frkZns6O77c8m58W1eS6WpbPaDC6pk+lLPPKd6bquEqKdocO7dhggXbatm8G
+        RXmVr8kJx/86/ULoI1H0hDamEAymPnS725/Lld8pCtrx8cwgJ/07G2bTtv0GAAD//wMAovrylNQB
+        AAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d107e768949db11-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Oct 2024 17:15:47 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2024-10-11T17:16:32Z'
+      anthropic-ratelimit-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-tokens-reset:
+      - '2024-10-11T17:15:47Z'
+      request-id:
+      - req_01DynQayqU9DjkudFWFhbBE8
+      via:
+      - 1.1 google
+      x-api-key:
+      - REDACTED
+      x-cloud-trace-context:
+      - ce7c5c8dfd02fec2e2cad2fb3e4ef830
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-3-5-sonnet-20240620", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
+      [{"type": "function", "function": {"name": "add_fct", "description": "Adds a
+      and b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '544'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-sonnet-20240620"}],"session_id":"afb27aff-3727-45ef-ad37-3d8db2dc0c91"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d28c74268560a3e-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Oct 2024 15:59:46 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - f787bf5b-16af-430d
+      x-api-key:
+      - REDACTED
+      x-render-origin-server:
+      - uvicorn
+      x-token:
+      - REDACTED
+    status:
+      code: 200
+      message: OK
+version: 1

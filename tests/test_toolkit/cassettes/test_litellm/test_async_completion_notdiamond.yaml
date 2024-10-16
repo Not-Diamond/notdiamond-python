@@ -1,0 +1,667 @@
+interactions:
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "llm_providers":
+      [{"provider": "openai", "model": "gpt-4o-mini"}], "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '178'
+      User-Agent:
+      - litellm/1.48.19
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini"}],"session_id":"36fb5e5e-7a6f-46d2-9583-186b852f91e5"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d333040986d746e-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:19:04 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - fcf02a4c-d0fd-4b26
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model": "command-r-plus", "chat_history": [], "message": "Hello, how
+      are you?"}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '81'
+      Request-Source:
+      - unspecified:litellm
+      User-Agent:
+      - python-requests/2.32.3
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://api.cohere.ai/v1/chat
+  response:
+    body:
+      string: '{"response_id":"14166daa-5d7c-4e4e-8d13-97cdb0186960","text":"Hello!
+        As an AI language model, I don''t have feelings or emotions, but I''m always
+        ready to assist you. How can I help you today?","generation_id":"099555cf-46f1-4930-8622-cfc5029c35c4","chat_history":[{"role":"USER","message":"Hello,
+        how are you?"},{"role":"CHATBOT","message":"Hello! As an AI language model,
+        I don''t have feelings or emotions, but I''m always ready to assist you. How
+        can I help you today?"}],"finish_reason":"COMPLETE","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":6,"output_tokens":32},"tokens":{"input_tokens":204,"output_tokens":32}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Content-Length:
+      - '640'
+      Via:
+      - 1.1 google
+      access-control-expose-headers:
+      - X-Debug-Trace-ID
+      cache-control:
+      - no-cache, no-store, no-transform, must-revalidate, private, max-age=0
+      content-type:
+      - application/json
+      date:
+      - Tue, 15 Oct 2024 22:19:04 GMT
+      expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      num_chars:
+      - '1205'
+      num_tokens:
+      - '38'
+      pragma:
+      - no-cache
+      server:
+      - envoy
+      vary:
+      - Origin
+      x-accel-expires:
+      - '0'
+      x-debug-trace-id:
+      - fe55698340aed8da25466b0769e2ffb5
+      x-envoy-upstream-service-time:
+      - '599'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "model":
+      "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '85'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2yRQW/iMBCF7/kVs770EqoUIqBcVr2Rraja20qrFZo4Q+LW8Vj2BBZV/PdVAgWq
+        9pLD+/xe5s28JwDKVGoBSjcouvV29FC8PWCxihp/UfFcPuHqRd8vXyar34/bZ5X2Di5fScuH61Zz
+        6y2JYXfEOhAK9al3s/F9NslmeT6Aliuyva32Msp5NM7G+Sibj7Lpydiw0RTVAv4kAADvw7cf0VX0
+        Ty0gSz+UlmLEmtTi/AhABba9ojBGEwWdqPQCNTshN0y9JGv5BxQ3Lbx2UQChr9AJBfCB64BtCpGh
+        gIrdjUCDW4INkTWujimUnQzWhgIBugoCYbUHYWjIethzBzsjDewaFNpSGBRHVN3Ckneg0UEBxxEH
+        JFzh/uf1qIE2XcR+U66z9qQfzt0t1z5wGU/8rG+MM7FZB8LIru8Zhb0a6CEB+DvsuPu0NuUDt17W
+        wm/k+sC7yTFOXY56gZP8BIUF7UXPZ+k3aeuKBI2NVzdSGnVD1cWZJVfVvv7zu4hjPePqLynJKUnF
+        fRRq1xvjago+mOPVN349LadznI+zvFTJIfkPAAD//wMA9ya/WP4CAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d333047ad098bff-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:19:05 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=4AyWoULEYQzD4AV_W5Yxc_PRMFeo5dkhyiBopByjatI-1729030745-1.0.1.1-d66Sx6_5Cii_U1p1zRUvvzlAAeZHUooLlqQT7gyp2iS7._QgaHmBXb53lGHR208BPkwrEvUzsXZLDnwIFCdj5g;
+        path=/; expires=Tue, 15-Oct-24 22:49:05 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=52YAFPXD.M5_EeuuQsRNUX9a4_yRpMY4aUZUSZQqHPo-1729030745163-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '796'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '30000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '29999978'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_d73b0e738e4d93f871cf03ae82d48333
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, how are you?"}], "model":
+      "mistral-large-latest"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '99'
+      content-type:
+      - application/json
+      host:
+      - api.mistral.ai
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.mistral.ai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAzyQwW7CMBBEf8XdSy8GJYDqxBeu9BuqChlnQ1w23sjeiCKUf69MBccZzYze7h1C
+        BxaqFk3zYVpvvNvVjWubvt80pu5PJ2PaGkEDn37QC1jwg5O153EilMARNPiETrADW5tNW20rs9tp
+        GLlDAgtjyJIcrcilM67ICWYpnYGDxwz26w4hdvgLttIwYs7ujGDvkJgQLLicQxYXHx2OgrEwHJCI
+        39Tn+6j6OfrCEeJZXZFIKxlcvKgbz+tHYMCESlgNSNNaHfiq3IlnKYH9v0xYhOq4bAh37rYHDcJM
+        R++IMtg4Ey0a+hBDHo4JXeYIFrLwBMu3hvlJPSUeJzkKXzBmsG2ZEUcvY2vKGc/fvexNsyx/AAAA
+        //8DAHiARWuLAQAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d3330476867335b-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:19:05 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      ratelimitbysize-limit:
+      - '2000000'
+      ratelimitbysize-query-cost:
+      - '32006'
+      ratelimitbysize-remaining:
+      - '1878932'
+      ratelimitbysize-reset:
+      - '56'
+      x-envoy-upstream-service-time:
+      - '765'
+      x-kong-proxy-latency:
+      - '1'
+      x-kong-request-id:
+      - 89bc021b2cc0b93b9cebb36f3b25e637
+      x-kong-upstream-latency:
+      - '766'
+      x-ratelimitbysize-limit-minute:
+      - '2000000'
+      x-ratelimitbysize-limit-month:
+      - '10000000000'
+      x-ratelimitbysize-remaining-minute:
+      - '1878932'
+      x-ratelimitbysize-remaining-month:
+      - '9998175068'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": [{"type": "text", "text": "Hello,
+      how are you?"}]}], "max_tokens": 4096, "model": "claude-3-5-sonnet-20240620"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '153'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - litellm/1.48.19
+      x-api-key:
+      - REDACTED
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA0yQwUrDQBCGX2WcSy8bSVP1sBcpijYVhOJNkbBmp2nodiZmZ62x9N0lVcHTwDf/
+        /zHMAVuPFnexqfLpTd0U29t2S6vn5d3Dann/+JToCw3q0NGYohhdQ2iwlzACF2Mb1bGiwZ14Cmix
+        Di55ymbZZRaFmTQr8uIivypyNFgLK7GifTn8SZU+x/ppWFxQCHIG8wiOYV5CcNwk1xCc9AZK8MIT
+        hY37IFgThZabaOAtKZSTHawT19oKt9zAnkIAxx56cn4AFfg5FwZJ57CQPdSOoYQNhW5koOLdcI3H
+        V4NRpat6clEYLRL7SlPP+LuI9J6Ia0LLKQSD6fQVe8CWu6SVypY4op3ODErS/2h2eTx+AwAA//8D
+        ABDibd5zAQAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d333046ee794c21-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:19:05 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2024-10-15T22:19:32Z'
+      anthropic-ratelimit-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-tokens-reset:
+      - '2024-10-15T22:19:05Z'
+      request-id:
+      - req_01D9SkMpoHhdx12Wm9uw1MVH
+      via:
+      - 1.1 google
+      x-cloud-trace-context:
+      - ab634d62b311b178256c050fed5a6963
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "model":
+      "gpt-4o-mini"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '90'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2xRPW/bMBTc9SteuWSRAtlW69ZLYCQFok7dOhSFQZNPEm2KjyCf0gqB/3tB+TNI
+        Fg13vNPdvdcMQBgtViBUJ1n13hbrer+W46Nev/x8qnf77e5X1/wYq0F9H+lR5ElB2x0qPqvuFfXe
+        IhtyR1oFlIzJdbacfysX5bKqJqInjTbJWs9FRUVvnCnm5bwqymUx+3pSd2QURrGC3xkAwOv0TTmd
+        xn9iBWV+RnqMUbYoVpdHACKQTYiQMZrI0rHIr6Qix+im6M9oLX2C+q6H3RAZJKQeA2MAH6gNss8h
+        EtSgyd0xdPIFoUG0xrUxh+3Ak7TDgCCdhoBSj8AEHVoPIw338Ex/QUkHNRyzJBSYtBwfbjMFbIYo
+        0y5usPaEHy4lLbU+0Dae+AveGGditwkoI7lUKDJ5MbGHDODPNObwZh/hA/WeN0x7dMlwtjjaiesJ
+        r+TiNLRgYmmveHUWvXHbaGRpbLw5hlBSdaivyjK7qfb+nx9ZHOsZ175zyU5OIo6Rsd80xrUYfDDH
+        8zZ+g/Otxs8L/IIiO2T/AQAA//8DAKlHvrzsAgAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d333047595a7456-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:19:05 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=c6BXoOcxAiznmtGmCQdXNypcGMQrms_VphwNbZYb_Js-1729030745-1.0.1.1-t022RW3Gr2yzM6rbOxmmxicXAy75SAVbNUpuZWTAPluyBimeOSwXKTC9u3geQTO9lIaGH.hbFMUjfhCtgzGLQw;
+        path=/; expires=Tue, 15-Oct-24 22:49:05 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=.dIZeDmnQ6TlWNE8x0pr5JtGmuaW30XQ3upHGdDUOQo-1729030745522-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '1212'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999978'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_8e79b22cac453e6227b3da096536cc3f
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "model":
+      "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '123'
+      content-type:
+      - application/json
+      host:
+      - api.together.xyz
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.together.xyz/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1RSy27bMBC8+ysGuuRipXQsx49L0Z5qoLn1VgTGmlpLjCmuykdTIci/F5RcO70Q
+        i5ndmX3wbQYUpi52KDb1crlU1fpRL7aVXqjyaf+lmGdeji+sY87RLcV7LV1vORpxE609U+SssVg/
+        bNVSrVdqJDqp2eayjiOV1lJHn55y+D2H5fJ+Ua7V13LvQvRJx/JH8keZNHsvXZ8tfz5PHq0YzSED
+        MwB4G1+gOBlnQnvwTEFc9mIJo8TIBp76UkqpxWq7faw21WarKqXUNcdK03s5Zm2XrL3ixtX8p9jh
+        ltlxCNRwsbvaA4UXm5GCQjAhkotX99y2uMhuXN3+rsNLChEES65J1DDGBc0RBHvU4u4iWvrN4E7y
+        dgPE48RsjWsCrDkz2tSRC6hljmOKyJqn5HTONq5B76VnbweQq+GZ6gFR0LLt8WpiC3IDfiUOV/VI
+        4RwwSEJHw2h+j2/yCk0Oe0wjjXSUmobPH0eLIvagydrxKM8X4n32753ulv5b2OWshyhndrmuepgU
+        i9uf+kCuLmSUSPaGb9azbPH+FwAA//8DADaQFai8AgAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d3330476c194c10-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 15 Oct 2024 22:19:11 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      etag:
+      - W/"2bc-yJuhKnFdHKaw5ZpL/uX5mugvzeI"
+      x-api-call-end:
+      - '2024-10-15T22:19:11.248Z'
+      x-api-call-start:
+      - '2024-10-15T22:19:10.362Z'
+      x-api-received:
+      - '2024-10-15T22:19:10.356Z'
+      x-inference-version:
+      - v2
+      x-ratelimit:
+      - 'false'
+      x-ratelimit-limit:
+      - '10'
+      x-ratelimit-limit-tokens:
+      - '3000'
+      x-ratelimit-remaining:
+      - '19'
+      x-ratelimit-remaining-tokens:
+      - '3000'
+      x-ratelimit-reset:
+      - '2'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Hello, how are you?", "role": "user"}], "model":
+      "llama-3.1-sonar-large-128k-online"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '112'
+      content-type:
+      - application/json
+      host:
+      - api.perplexity.ai
+      user-agent:
+      - AsyncOpenAI/Python 1.51.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.perplexity.ai/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6xVTW/kNgz9KxztYS72YL6aTdLDAkUPu2hvCdBDXWw4Nm1pI4uGKMcxgvz3QrIz
+        mWTaRVv0ZJof8tPjI/2kTKWuQdH+Yr+ny12+rnfrfH9x2OV4sVvn2+pyc9jtcV+uNyoD1XJFNhZY
+        iy3mu9UmF3boc4u+oXyzvbzP2VnjKGaXnjBQ/MDm4/ZqvVt//GGTgeoFG1LX8KQ6z20Xvga+Jyfq
+        Gi5iEbedpWDYvfp3lzESOKA9cV5tnzNQfPhGZYiYSo1h9VqeEGg2JcXs35+UcRU9qmtYZ6Bq44zo
+        r55Q2MViCdylG5Ic4Xm20VAoYiSgC+lIdoFc+uCtJui0RyEo1GeyljPQPAB6gpH7T4UCI4BQctuy
+        g8YTBeMaqLl3FRgHQg/k0UKpja08uaWAsGsE0FVAVV9ivAhaaDGQN2glA8JSw2CCBrGm0cGOUJm6
+        Jk8uQBiMhPPyhtHKCj6TpwQOoaYB6BEjV3JduMJ9+AA3EVs6+SeyFgv3xUHQx7vBDbumUHAY32dm
+        Kc2O3pQCnjrCkDzHC0c8KPeAB+6nUEdeON53IGvzAxnXZNOJnqRjJyQgfakBI7y7u7vCzQT/Fc/f
+        jX0BbKE2jn6EZDZRlefub72Ev4u9uJctPJAfE2gIXOG4iNylHN27xo9zQTCeqv8UWLbgOIAwNMzV
+        9JHVzEDqUhTdL+bA3JKXwr15XSb5xIbxAD8z/EZwg+NES6Gg5rKPxLI7kcyAo0DgqVmTujho8tkL
+        /1AbCXDo2y41SZtG57V5mF76pklG7HCFrjSuedcv/Z1+/fsYD1AxDASC45TyKfJy2v/C/Uqh6Lfr
+        zdUJ9v8v51bj0R3RzWCSq0yQklmdNu2m78jDjYnzluZI3k/XolBT8+J4nWW/mbBIh0zBSHscuGCC
+        eaBs6nCcOHYJ2+uoQU1k387SYn7CK+cnZMMkxqjCxWzGKZjtgV1Fvu7t4kj/4t3zbA6Xs8pXkz3J
+        f3Wm+Ve132oSetmInqAiMY2jOBVwICDX4KQ+Qhmjs2ZrecjO9l/NPoJwzXHTZhCi1CNVQVM7b6aX
+        hTVv0MfOk8icY3yiMEZXKv54KrIB/9F/Qj0///H8JwAAAP//AwCQXTOaawcAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d333047be478d9c-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:19:11 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=kNT4kUmkU8rCQ_c4qAdHX_pmuF6UJbKC5lcgf4qnsjE-1729030751-1.0.1.1-Xn3zvgOMqQXa09QVPCo.cISCcfvmk5heXRQuToSULgKAGPBcCXChCKB4QEqvm0maOLfIHnomUelb7YujbuvcKg;
+        path=/; expires=Tue, 15-Oct-24 22:49:11 GMT; domain=.perplexity.ai; HttpOnly;
+        Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1

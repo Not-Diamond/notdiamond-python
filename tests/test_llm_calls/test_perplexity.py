@@ -5,6 +5,7 @@ from notdiamond.llms.providers import NDLLMProviders
 from notdiamond.metrics.metric import Metric
 
 
+@pytest.mark.vcr
 @pytest.mark.longrun
 class Test_Perplexity_LLMs:
     def test_llama_3_1_sonar_large_128k_online(self):

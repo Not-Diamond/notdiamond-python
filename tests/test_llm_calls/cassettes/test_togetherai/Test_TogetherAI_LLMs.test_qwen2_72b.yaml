@@ -1,0 +1,128 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "togetherai", "model": "Qwen2-72B-Instruct", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '314'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"togetherai","model":"Qwen2-72B-Instruct"}],"session_id":"539a24de-d151-4e8f-be1f-5866fdcd4c7a"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8d336b402d168daf-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Oct 2024 22:59:20 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 57e4f50f-1f78-4002
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model": "Qwen/Qwen2-72B-Instruct", "max_tokens": 10, "prompt": "Human:
+      How much is 3 + 5?"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '93'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.32.3
+    method: POST
+    uri: https://api.together.ai/v1/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"8d336b454de50321-MIA\",\n  \"object\": \"text.completion\",\n
+        \ \"created\": 1729033160,\n  \"model\": \"Qwen/Qwen2-72B-Instruct\",\n  \"prompt\":
+        [],\n  \"choices\": [\n    {\n      \"text\": \" Please provide the answer
+        in numerical format.\\n\\nAssistant:\",\n      \"finish_reason\": \"length\",\n
+        \     \"seed\": 4693059977308463000,\n      \"logprobs\": null,\n      \"index\":
+        0\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 11,\n    \"completion_tokens\":
+        10,\n    \"total_tokens\": 21\n  }\n}"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8d336b454de50321-MIA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 15 Oct 2024 22:59:21 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-allow-origin:
+      - '*'
+      etag:
+      - W/"1cb-JfANgjc5B3UKBhDvC8+pV33EFGM"
+      x-api-call-end:
+      - '2024-10-15T22:59:21.682Z'
+      x-api-call-start:
+      - '2024-10-15T22:59:20.778Z'
+      x-api-received:
+      - '2024-10-15T22:59:20.773Z'
+      x-inference-version:
+      - v2
+      x-ratelimit:
+      - 'false'
+      x-ratelimit-limit:
+      - '10'
+      x-ratelimit-limit-tokens:
+      - '3000'
+      x-ratelimit-remaining:
+      - '18'
+      x-ratelimit-remaining-tokens:
+      - '3000'
+      x-ratelimit-reset:
+      - '1'
+    status:
+      code: 200
+      message: OK
+version: 1
