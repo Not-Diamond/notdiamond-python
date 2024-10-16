@@ -171,7 +171,7 @@ def test_completion_notdiamond_tool_calling():
         pytest.fail(f"Error occurred: {e}")
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr(allow_playback_repeats=True)
 def test_async_completion_notdiamond():
     import asyncio
 
@@ -197,7 +197,7 @@ def test_async_completion_notdiamond():
     asyncio.run(run_concurrent_tests())
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr(allow_playback_repeats=True)
 def test_async_completion_notdiamond_stream():
     import asyncio
 
