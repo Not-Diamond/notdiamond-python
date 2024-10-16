@@ -231,4 +231,5 @@ def vcr_config():
         "before_record_request": _before_record_request,
         "record_mode": "none",
         "ignore_localhost": True,
+        "decode_compressed_response": True,
     }
