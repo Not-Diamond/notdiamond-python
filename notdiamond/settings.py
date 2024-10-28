@@ -108,7 +108,11 @@ PROVIDERS = {
             "claude-3-opus-20240229",
             "claude-3-sonnet-20240229",
             "claude-3-haiku-20240307",
+            "claude-3-5-haiku-20241022",
             "claude-3-5-sonnet-20240620",
+            "claude-3-5-sonnet-20241022",
+            "claude-3-5-sonnet-latest",
+            "claude-3-5-haiku-latest",
         ],
         "api_key": ANTHROPIC_API_KEY,
         "support_tools": [
@@ -116,6 +120,10 @@ PROVIDERS = {
             "claude-3-sonnet-20240229",
             "claude-3-haiku-20240307",
             "claude-3-5-sonnet-20240620",
+            "claude-3-5-sonnet-20241022",
+            "claude-3-5-haiku-20241022",
+            "claude-3-5-sonnet-latest",
+            "claude-3-5-haiku-latest",
         ],
         "support_response_model": [
             "claude-2.1",
@@ -126,7 +134,10 @@ PROVIDERS = {
             "claude-3-opus-20240229": "anthropic/claude-3-opus",
             "claude-3-sonnet-20240229": "anthropic/claude-3-sonnet",
             "claude-3-haiku-20240307": "anthropic/claude-3-haiku",
-            "claude-3-5-sonnet-20240620": "anthropic/claude-3.5-sonnet",
+            "claude-3-5-sonnet-20240620": "anthropic/claude-3.5-sonnet-20240620",
+            "claude-3-5-sonnet-latest": "anthropic/claude-3.5-sonnet",
+            # [a9] not supported as of 2024-10-28
+            # "claude-3-5-haiku-20241022": "anthropic/claude-3.5-haiku",
         },
     },
     "google": {
