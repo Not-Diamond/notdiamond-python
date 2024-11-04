@@ -29,7 +29,7 @@ class NDLLMProviders(Enum):
         O1_MINI_2024_09_12 (NDLLMProvider): refers to 'o1-mini-2024-09-12' model by OpenAI
 
         CLAUDE_2_1 (NDLLMProvider): refers to 'claude-2.1' model by Anthropic
-        CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to 'claude-3-opue-20240229' model by Anthropic
+        CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to 'claude-3-opus-20240229' model by Anthropic
         CLAUDE_3_SONNET_20240229 (NDLLMProvider): refers to 'claude-3-sonnet-20240229' model by Anthropic
         CLAUDE_3_5_SONNET_20240620 (NDLLMProvider): refers to 'claude-3-5-sonnet-20240620' model by Anthropic
         CLAUDE_3_5_HAIKU_20241022 (NDLLMProvider): refers to 'claude-3-5-haiku-20241022' model by Anthropic
