@@ -1,0 +1,139 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-3-5-sonnet-20241022", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
+      [{"type": "function", "function": {"name": "add_fct", "description": "Adds a
+      and b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '544'
+      User-Agent:
+      - Python-SDK/0.3.20
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"detail":"requestID=24b10f1e-fb6f-4a16, Provider anthropic/claude-3-5-sonnet-20241022
+        not recognized."}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8dd6228bb93d0975-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 04 Nov 2024 16:56:01 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 24b10f1e-fb6f-4a16
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: '{"max_tokens": 200, "messages": [{"role": "user", "content": "How much
+      is 3 + 5?"}], "model": "claude-3-5-sonnet-20241022", "tools": [{"name": "add_fct",
+      "description": "Adds a and b.", "input_schema": {"type": "object", "properties":
+      {"a": {"type": "integer"}, "b": {"type": "integer"}}, "required": ["a", "b"]}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '315'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - Anthropic/Python 0.36.0
+      x-api-key:
+      - REDACTED
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 0.36.0
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: '{"id":"msg_01CewPT9QeJEqPPSpq2tALqX","type":"message","role":"assistant","model":"claude-3-5-sonnet-20241022","content":[{"type":"text","text":"I
+        can help you add those numbers using the add_fct function."},{"type":"tool_use","id":"toolu_0139sg3GQKuBmQvVYbXZZifY","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":397,"output_tokens":88}}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8dd622910fbe227d-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 04 Nov 2024 16:56:03 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2024-11-04T16:56:32Z'
+      anthropic-ratelimit-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-tokens-reset:
+      - '2024-11-04T16:56:03Z'
+      content-length:
+      - '399'
+      request-id:
+      - req_01U6gNP6u5v4KW1YdJpGDmfR
+      via:
+      - 1.1 google
+    status:
+      code: 200
+      message: OK
+version: 1
