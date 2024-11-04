@@ -188,6 +188,7 @@ class Test_Anthropic_LLMs:
         assert len(result.tool_calls) == 1
         assert result.tool_calls[0]["name"] == "add_fct"
 
+    @pytest.mark.skip(reason="Not supported yet by Anthropic")
     def test_claude_3_5_haiku_with_tool_calling(self, tools_fixture):
         provider = NDLLMProviders.CLAUDE_3_5_HAIKU_20241022
         provider.kwargs = {"max_tokens": 200}
@@ -202,6 +203,7 @@ class Test_Anthropic_LLMs:
         assert len(result.tool_calls) == 1
         assert result.tool_calls[0]["name"] == "add_fct"
 
+    @pytest.mark.skip(reason="Not supported yet by Anthropic")
     def test_claude_3_5_haiku_with_openai_tool_calling(
         self, openai_tools_fixture
     ):
