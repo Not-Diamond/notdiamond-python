@@ -61,6 +61,10 @@ ND2LITELLM = {
     "anthropic/claude-3-opus-20240229": "claude-3-opus-20240229",
     "anthropic/claude-3-sonnet-20240229": "claude-3-sonnet-20240229",
     "anthropic/claude-3-5-sonnet-20240620": "claude-3-5-sonnet-20240620",
+    "anthropic/claude-3-5-sonnet-20241022": "claude-3-5-sonnet-20241022",
+    "anthropic/claude-3-5-sonnet-latest": "claude-3-5-sonnet-20241022",
+    # "anthropic/claude-3-5-haiku-20241022": "claude-3-5-haiku-20241022",
+    # "anthropic/claude-3-5-haiku-latest": "claude-3-5-haiku-20241022",
     "anthropic/claude-3-haiku-20240307": "claude-3-haiku-20240307",
     # mistral
     "mistral/mistral-large-latest": "mistral/mistral-large-latest",

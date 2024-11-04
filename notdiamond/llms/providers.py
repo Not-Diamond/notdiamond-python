@@ -99,6 +99,10 @@ class NDLLMProviders(Enum):
     CLAUDE_3_OPUS_20240229 = ("anthropic", "claude-3-opus-20240229")
     CLAUDE_3_SONNET_20240229 = ("anthropic", "claude-3-sonnet-20240229")
     CLAUDE_3_5_SONNET_20240620 = ("anthropic", "claude-3-5-sonnet-20240620")
+    CLAUDE_3_5_SONNET_20241022 = ("anthropic", "claude-3-5-sonnet-20241022")
+    CLAUDE_3_5_SONNET_LATEST = ("anthropic", "claude-3-5-sonnet-latest")
+    # CLAUDE_3_5_HAIKU_20241022 = ("anthropic", "claude-3-5-haiku-20241022")
+    # CLAUDE_3_5_HAIKU_LATEST = ("anthropic", "claude-3-5-haiku-latest")
     CLAUDE_3_HAIKU_20240307 = ("anthropic", "claude-3-haiku-20240307")
 
     GEMINI_PRO = ("google", "gemini-pro")
