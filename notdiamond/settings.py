@@ -43,6 +43,7 @@ PROVIDERS = {
             "o1-preview-2024-09-12",
             "o1-mini",
             "o1-mini-2024-09-12",
+            "chatgpt-4o-latest",
         ],
         "api_key": OPENAI_API_KEY,
         "support_tools": [
@@ -60,10 +61,7 @@ PROVIDERS = {
             "gpt-4-turbo-preview",
             "gpt-4-0125-preview",
             "gpt-4-1106-preview",
-            "o1-preview",
-            "o1-preview-2024-09-12",
-            "o1-mini",
-            "o1-mini-2024-09-12",
+            "chatgpt-4o-latest",
         ],
         "support_response_model": [
             "gpt-3.5-turbo",
@@ -84,6 +82,7 @@ PROVIDERS = {
             "o1-preview-2024-09-12",
             "o1-mini",
             "o1-mini-2024-09-12",
+            "chatgpt-4o-latest",
         ],
         "openrouter_identifier": {
             "gpt-3.5-turbo": "openai/gpt-3.5-turbo",
@@ -100,6 +99,7 @@ PROVIDERS = {
             "o1-preview-2024-09-12": "openai/o1-preview-2024-09-12",
             "o1-mini": "openai/o1-mini",
             "o1-mini-2024-09-12": "openai/o1-mini-2024-09-12",
+            "chatgpt-4o-latest": "openai/chatgpt-4o-latest",
         },
     },
     "anthropic": {
