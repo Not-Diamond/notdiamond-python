@@ -1,0 +1,154 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "openai", "model": "chatgpt-4o-latest", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": false, "tools": [{"type":
+      "function", "function": {"name": "add_fct", "description": "Adds a and b.",
+      "parameters": {"type": "object", "properties": {"a": {"type": "integer"}, "b":
+      {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '533'
+      User-Agent:
+      - Python-SDK/0.3.24
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"detail":"requestID=94470d8d-a261-4182, Provider openai/chatgpt-4o-latest
+        not recognized."}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 8e27d361fec34232-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 14 Nov 2024 14:52:30 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      rndr-id:
+      - 94470d8d-a261-4182
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: '{"messages": [{"content": "How much is 3 + 5?", "role": "user"}], "model":
+      "chatgpt-4o-latest", "max_tokens": 200, "n": 1, "stream": false, "temperature":
+      0.7, "tools": [{"type": "function", "function": {"name": "add_fct", "description":
+      "Adds a and b.", "parameters": {"type": "object", "properties": {"a": {"type":
+      "integer"}, "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '383'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.51.2
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.51.2
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.7
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"error\": {\n    \"message\": \"tools is not supported in this
+        model. For a list of supported models, refer to https://platform.openai.com/docs/guides/function-calling/supported-models.\",\n
+        \   \"type\": \"invalid_request_error\",\n    \"param\": null,\n    \"code\":
+        null\n  }\n}"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8e27d363bf380f6b-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 14 Nov 2024 14:52:30 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=3DFGVJYNYuU8eE.aESna5WSsDDXX24HlIG6bjfsAWyc-1731595950-1.0.1.1-IcVht.GK1Kbre9VwAyKq5.bihIa9vMr54mlv9aGBcNMIvYaowvhTtVEMsoHT_nePwmefh..mZ8ErEyiyIEC6aA;
+        path=/; expires=Thu, 14-Nov-24 15:22:30 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=nwK.9zuGxpwGj31vRtah9fapXqh5xBYgNpjuDkO7x8Q-1731595950758-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '265'
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '40'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '200'
+      x-ratelimit-limit-tokens:
+      - '500000'
+      x-ratelimit-remaining-requests:
+      - '199'
+      x-ratelimit-remaining-tokens:
+      - '499794'
+      x-ratelimit-reset-requests:
+      - 300ms
+      x-ratelimit-reset-tokens:
+      - 24ms
+      x-request-id:
+      - req_97fabc05afd9c0a2616151ebd1277397
+    status:
+      code: 404
+      message: Not Found
+version: 1
