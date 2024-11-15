@@ -95,6 +95,7 @@ class NDLLMProviders(Enum):
     O1_PREVIEW_2024_09_12 = ("openai", "o1-preview-2024-09-12")
     O1_MINI = ("openai", "o1-mini")
     O1_MINI_2024_09_12 = ("openai", "o1-mini-2024-09-12")
+    CHATGPT_4o_LATEST = ("openai", "chatgpt-4o-latest")
 
     CLAUDE_2_1 = ("anthropic", "claude-2.1")
     CLAUDE_3_OPUS_20240229 = ("anthropic", "claude-3-opus-20240229")

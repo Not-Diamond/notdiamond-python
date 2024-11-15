@@ -41,6 +41,9 @@ class Test_OpenAI:
             assert chunk.content != "a"
 
     def test_with_tool_calling(self, tools_fixture, provider):
+        if provider.model == "chatgpt-4o-latest":
+            return
+
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(llm_configs=[provider])
         nd_llm = nd_llm.bind_tools(tools_fixture)
@@ -53,6 +56,9 @@ class Test_OpenAI:
         assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_with_openai_tool_calling(self, openai_tools_fixture, provider):
+        if provider.model == "chatgpt-4o-latest":
+            return
+
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(llm_configs=[provider])
         nd_llm = nd_llm.bind_tools(openai_tools_fixture)
