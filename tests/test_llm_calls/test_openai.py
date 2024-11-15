@@ -42,33 +42,33 @@ class Test_OpenAI:
 
     def test_with_tool_calling(self, tools_fixture, provider):
         if provider.model == "chatgpt-4o-latest":
-            pass
-        else:
-            provider.kwargs = {"max_tokens": 200}
-            nd_llm = NotDiamond(llm_configs=[provider])
-            nd_llm = nd_llm.bind_tools(tools_fixture)
-            result, session_id, _ = nd_llm.invoke(
-                [{"role": "user", "content": "How much is 3 + 5?"}]
-            )
+            return
 
-            # t7: commenting this out bc gpt-3.5-turbo doesn't reliably call tools
-            # assert len(result.tool_calls) == 1
-            assert result.tool_calls[0]["name"] == "add_fct"
+        provider.kwargs = {"max_tokens": 200}
+        nd_llm = NotDiamond(llm_configs=[provider])
+        nd_llm = nd_llm.bind_tools(tools_fixture)
+        result, session_id, _ = nd_llm.invoke(
+            [{"role": "user", "content": "How much is 3 + 5?"}]
+        )
+
+        # t7: commenting this out bc gpt-3.5-turbo doesn't reliably call tools
+        # assert len(result.tool_calls) == 1
+        assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_with_openai_tool_calling(self, openai_tools_fixture, provider):
         if provider.model == "chatgpt-4o-latest":
-            pass
-        else:
-            provider.kwargs = {"max_tokens": 200}
-            nd_llm = NotDiamond(llm_configs=[provider])
-            nd_llm = nd_llm.bind_tools(openai_tools_fixture)
-            result, session_id, _ = nd_llm.invoke(
-                [{"role": "user", "content": "How much is 3 + 5?"}]
-            )
+            return
 
-            # t7: commenting this out bc gpt-3.5-turbo doesn't reliably call tools
-            # assert len(result.tool_calls) == 1
-            assert result.tool_calls[0]["name"] == "add_fct"
+        provider.kwargs = {"max_tokens": 200}
+        nd_llm = NotDiamond(llm_configs=[provider])
+        nd_llm = nd_llm.bind_tools(openai_tools_fixture)
+        result, session_id, _ = nd_llm.invoke(
+            [{"role": "user", "content": "How much is 3 + 5?"}]
+        )
+
+        # t7: commenting this out bc gpt-3.5-turbo doesn't reliably call tools
+        # assert len(result.tool_calls) == 1
+        assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_response_model(self, response_model, provider):
         provider.kwargs = {"max_tokens": 200}
