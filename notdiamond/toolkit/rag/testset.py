@@ -28,7 +28,7 @@ class TestDataGenerator(TestsetGenerator):
         knowledge_graph: KnowledgeGraph = KnowledgeGraph(),
         persona_list: Optional[List[Persona]] = None,
     ):
-        self._generator = TestsetGenerator(
+        super().__init__(
             llm=llm,
             embedding_model=embedding_model,
             knowledge_graph=knowledge_graph,
@@ -55,7 +55,7 @@ class TestDataGenerator(TestsetGenerator):
         ), "Documents must be a list of langchain or llama-index documents."
 
         if isinstance(documents[0], LCDocument):
-            dataset = self._generator.generate_with_langchain_docs(
+            dataset = self.generate_with_langchain_docs(
                 documents=documents,
                 testset_size=testset_size,
                 transforms=transforms,
@@ -70,7 +70,7 @@ class TestDataGenerator(TestsetGenerator):
             return dataset.to_pandas()
 
         elif isinstance(documents[0], LlamaIndexDocument):
-            dataset = self._generator.generate_with_llamaindex_docs(
+            dataset = self.generate_with_llamaindex_docs(
                 documents=documents,
                 testset_size=testset_size,
                 transforms=transforms,
