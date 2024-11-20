@@ -260,7 +260,7 @@ class EmbeddingConfig:
             model not in POSSIBLE_EMBEDDING_MODELS
             and provider != "huggingface"
         ):
-            raise UnsupportedLLMProvider(
+            raise UnsupportedEmbeddingProvider(
                 f"Given embedding model {model} is not in the list of supported models."
             )
 
