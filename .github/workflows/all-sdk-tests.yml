@@ -51,7 +51,7 @@ jobs:
         run: poetry env use ${{ matrix.python-version }}
       - name: Install dependencies if venv is not cached
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install -E create
+        run: poetry install -E "create rag openai" --with test && python -m nltk.downloader all
       - name: Test with pytest
         env:
           NOTDIAMOND_API_KEY: ${{ secrets.NOTDIAMOND_API_KEY }}
