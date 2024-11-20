@@ -6,11 +6,8 @@ from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.retrievers import VectorIndexRetriever
 from llama_index.llms.openai import OpenAI
 
-from notdiamond.toolkit.rag.evaluation import (
-    evaluate,
-    get_eval_dataset,
-    parameter_optimizer,
-)
+from notdiamond.toolkit.rag.evaluation import auto_optimize, evaluate
+from notdiamond.toolkit.rag.evaluation_dataset import RAGEvaluationDataset
 from notdiamond.toolkit.rag.llms import get_embedding, get_llm
 from notdiamond.toolkit.rag.metrics import (
     FactualCorrectness,
@@ -48,6 +45,9 @@ class ExampleNDRagWorkflow(BaseNDRagWorkflow):
         ),
         "temperature": (Annotated[float, FloatValueRange(0.0, 1.0, 0.1)], 0.9),
     }
+
+    def __init__(self, evaluation_dataset: RAGEvaluationDataset, **kwargs):
+        super().__init__(evaluation_dataset, **kwargs)
 
     def job_name(self):
         return "my-awesome-workflow"
@@ -88,13 +88,13 @@ class ExampleNDRagWorkflow(BaseNDRagWorkflow):
             SemanticSimilarity(embeddings=evaluator_embeddings),
         ]
         # todo [a9]
-        results = evaluate(dataset=get_eval_dataset(), metrics=metrics)
+        results = evaluate(dataset=self.evaluation_dataset, metrics=metrics)
         return (
             results["openai/gpt-4o"].iloc[:, "faithfulness"].mean()
         )  # returns the average faithfulness score
 
 
 def test_example_workflow():
-    roys_workflow = ExampleNDRagWorkflow()
-    results = parameter_optimizer(roys_workflow, n_iter=10)
+    example_workflow = ExampleNDRagWorkflow()
+    results = auto_optimize(example_workflow, n_iter=10)
     assert results["best_params"] is not None
