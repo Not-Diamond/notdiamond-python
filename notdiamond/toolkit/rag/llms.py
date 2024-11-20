@@ -14,6 +14,13 @@ from ...llms.config import EmbeddingConfig, LLMConfig
 
 
 def get_llm(llm_config_or_str: Union[LLMConfig, str]) -> LangchainLLMWrapper:
+    """
+    Build the LLM object compatible with evaluation metrics.
+
+    Parameters:
+        llm_config_or_str (Union[LLMConfig, str]): a LLMConfig object or a model string
+            that specifies the LLM to construct.
+    """
     if isinstance(llm_config_or_str, str):
         llm_config = LLMConfig.from_string(llm_config_or_str)
     else:
@@ -26,6 +33,13 @@ def get_llm(llm_config_or_str: Union[LLMConfig, str]) -> LangchainLLMWrapper:
 def get_embedding(
     embedding_model_config_or_str: Union[EmbeddingConfig, str]
 ) -> Union[LangchainEmbeddingsWrapper, HuggingfaceEmbeddings]:
+    """
+    Build the embedding model object compatible with evaluation metrics.
+
+    Parameters:
+        embedding_model_config_or_str (Union[EmbeddingConfig, str]): an EmbeddingConfig object
+            or an embedding model string that specifies the embedding model to construct.
+    """
     if isinstance(embedding_model_config_or_str, str):
         embedding_config = EmbeddingConfig.from_string(
             embedding_model_config_or_str

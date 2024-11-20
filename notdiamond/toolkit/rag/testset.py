@@ -32,6 +32,18 @@ class TestDataGenerator(TestsetGenerator):
         knowledge_graph: KnowledgeGraph = KnowledgeGraph(),
         persona_list: Optional[List[Persona]] = None,
     ):
+        """
+        RAG Test data generator class.
+        Generates test cases from documents for evaluating RAG workflows.
+
+        Parameters:
+            llm (BaseRagasLLM): An LLM object inherited from BaseRagasLLM. Obtain this
+                via the get_llm tool.
+            embedding_model (BaseRagasEmbeddings): An embedding model object inherited
+                from BaseRagasEmbeddings. Obtain this via the get_embedding tool.
+            knowledge_graph (KnowledgeGraph): The knowledge graph to use for the generation
+                process. Default empty.
+        """
         super().__init__(
             llm=llm,
             embedding_model=embedding_model,
@@ -54,6 +66,39 @@ class TestDataGenerator(TestsetGenerator):
         with_debugging_logs: bool = False,
         raise_exceptions: bool = True,
     ) -> pd.DataFrame:
+        """
+        Generates an evaluation dataset based on given Langchain or Llama Index documents and parameters.
+
+        Parameters:
+            documents : Sequence[LCDocument]
+                A sequence of Langchain documents to use as source material
+            testset_size : int
+                The number of test samples to generate
+            transforms : Optional[Transforms], optional
+                Custom transforms to apply to the documents, by default None
+            transforms_llm : Optional[BaseRagasLLM], optional
+                LLM to use for transforms if different from instance LLM, by default None
+            transforms_embedding_model : Optional[BaseRagasEmbeddings], optional
+                Embedding model to use for transforms if different from instance model, by default None
+            query_distribution : Optional[QueryDistribution], optional
+                Distribution of query types to generate, by default None
+            run_config : Optional[RunConfig], optional
+                Configuration for the generation run, by default None
+            callbacks : Optional[Callbacks], optional
+                Callbacks to use during generation, by default None
+            with_debugging_logs : bool, optional
+                Whether to include debug logs, by default False
+            raise_exceptions : bool, optional
+                Whether to raise exceptions during generation, by default True
+
+        Returns:
+            Testset
+                The generated evaluation dataset
+
+        Raises:
+            ValueError
+                If no LLM or embedding model is provided either during initialization or as arguments
+        """
         assert isinstance(
             documents, list
         ), "Documents must be a list of langchain or llama-index documents."
