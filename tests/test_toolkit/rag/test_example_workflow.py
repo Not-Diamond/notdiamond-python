@@ -6,7 +6,11 @@ from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.retrievers import VectorIndexRetriever
 from llama_index.llms.openai import OpenAI
 
-from notdiamond.toolkit.rag.evaluation import evaluate
+from notdiamond.toolkit.rag.evaluation import (
+    evaluate,
+    get_eval_dataset,
+    parameter_optimizer,
+)
 from notdiamond.toolkit.rag.llms import get_embedding, get_llm
 from notdiamond.toolkit.rag.metrics import (
     FactualCorrectness,
@@ -19,13 +23,10 @@ from notdiamond.toolkit.rag.parameters import (
     FloatValueRange,
     IntValueRange,
 )
-from notdiamond.toolkit.rag.workflow import (
-    BaseNDRagWorkflow,
-    parameter_optimizer,
-)
+from notdiamond.toolkit.rag.workflow import BaseNDRagWorkflow
 
 
-class RoysNDRagWorkflow(BaseNDRagWorkflow):
+class ExampleNDRagWorkflow(BaseNDRagWorkflow):
     parameter_specs = {
         "chunk_size": (Annotated[int, IntValueRange(1000, 2500, 500)], 1000),
         "chunk_overlap": (Annotated[int, IntValueRange(50, 200, 25)], 100),
@@ -49,11 +50,9 @@ class RoysNDRagWorkflow(BaseNDRagWorkflow):
     }
 
     def job_name(self):
-        return "roys-awesome-workflow"
+        return "my-awesome-workflow"
 
     def rag_workflow(self, documents: Any):
-        # this is the rag workflow itself
-        # [a9] user should define this
         self.index = VectorStoreIndex.from_documents(
             documents,
             transformations=[
@@ -80,10 +79,7 @@ class RoysNDRagWorkflow(BaseNDRagWorkflow):
         return self.query_engine.query(query)
 
     def objective(self):
-        # [a9] users can define this - maybe we simplify further
-        evaluator_llm = get_llm(
-            "openai/gpt-4o"
-        )  # can also set API key in env var
+        evaluator_llm = get_llm("openai/gpt-4o")
         evaluator_embeddings = get_embedding("openai/text-embedding-3-large")
         metrics = [
             LLMContextRecall(llm=evaluator_llm),
@@ -91,13 +87,14 @@ class RoysNDRagWorkflow(BaseNDRagWorkflow):
             Faithfulness(llm=evaluator_llm),
             SemanticSimilarity(embeddings=evaluator_embeddings),
         ]
-        results = evaluate(dataset=self._get_eval_dataset(), metrics=metrics)
+        # todo [a9]
+        results = evaluate(dataset=get_eval_dataset(), metrics=metrics)
         return (
             results["openai/gpt-4o"].iloc[:, "faithfulness"].mean()
         )  # returns the average faithfulness score
 
 
 def test_example_workflow():
-    roys_workflow = RoysNDRagWorkflow()
+    roys_workflow = ExampleNDRagWorkflow()
     results = parameter_optimizer(roys_workflow, n_iter=10)
     assert results["best_params"] is not None

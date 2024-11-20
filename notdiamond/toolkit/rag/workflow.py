@@ -4,6 +4,10 @@ from typing import Any, ClassVar, Dict, List, Type
 
 @dataclass
 class IntValueRange:
+    """
+    A range of int values for an auto-evaluated RAG pipeline. Useful for, eg. RAG context chunk size.
+    """
+
     lo: int
     hi: int
     step: int
@@ -11,6 +15,10 @@ class IntValueRange:
 
 @dataclass
 class FloatValueRange:
+    """
+    A range of float values for an auto-evaluated RAG pipeline. Useful for, eg. LLM temperature.
+    """
+
     lo: float
     hi: float
     step: float
@@ -18,10 +26,44 @@ class FloatValueRange:
 
 @dataclass
 class CategoricalValueOptions:
+    """
+    A list of categorical values for an auto-evaluated RAG pipeline. Useful for, eg. embedding algorithms.
+    """
+
     values: List[str]
 
 
 class BaseNDRagWorkflow:
+    """
+    A base interface for a RAG workflow to be auto-evaluated by Not Diamond.
+
+    Subclasses should define parameter_specs to type parameters they need to optimize,
+    by using type annotations with the above dataclasses. For example:
+
+        class ExampleNDRagWorkflow(BaseNDRagWorkflow):
+                parameter_specs = {
+                        "chunk_size": (Annotated[int, IntValueRange(1000, 2500, 500)], 1000),
+                        "chunk_overlap": (Annotated[int, IntValueRange(50, 200, 25)], 100),
+                        "top_k": (Annotated[int, IntValueRange(1, 20, 1)], 5),
+                        "algo": (
+                                Annotated[
+                                        str,
+                                        CategoricalValueOptions(
+                                                [
+                                                        "BM25",
+                                                        "openai_small",
+                                                        "openai_large",
+                                                        "cohere_eng",
+                                                        "cohere_multi",
+                                                ]
+                                        ),
+                                ],
+                                "BM25",
+                        ),
+                        "temperature": (Annotated[float, FloatValueRange(0.0, 1.0, 0.1)], 0.9),
+                }
+    """
+
     parameter_specs: ClassVar[Dict[str, tuple[Type, Any]]] = {}
 
     def __init__(self, **kwargs):
@@ -49,10 +91,13 @@ class BaseNDRagWorkflow:
         return None
 
     def rag_workflow(self):
+        """
+        Users can define their RAG workflow components here by attaching them to `self`. This method will initiate those
+        components at init-time, and they will be available in other methods.
+        """
         raise NotImplementedError()
 
     def objective(self):
-        # todo [t7 + a9] should we move this out of hyperopt.py / optuna.py
         raise NotImplementedError()
 
     def job_name(self):
