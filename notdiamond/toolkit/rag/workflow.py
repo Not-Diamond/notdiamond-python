@@ -90,12 +90,6 @@ class BaseNDRagWorkflow:
     def get_parameter_type(self, param_name: str) -> Type:
         return self._param_types.get(param_name)
 
-    def get_parameter_constraint(self, param_name: str) -> Any:
-        param_type = self._param_types.get(param_name)
-        if hasattr(param_type, "__metadata__"):
-            return param_type.__metadata__[0]
-        return None
-
     def rag_workflow(self):
         """
         Users can define their RAG workflow components here by attaching them to `self`. This method will initiate those
@@ -129,7 +123,9 @@ class BaseNDRagWorkflow:
                 )
             setattr(self, param_name, param_value)
 
-        return self.objective()
+        result = self.objective()
+        self._reset_param_values()
+        return result
 
     def _get_default_param_values(self):
         return {
