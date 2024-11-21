@@ -139,7 +139,7 @@ def _generate_rag_eval_dataset(
 
     eval_samples = []
     for sample in tqdm(dataset):
-        response = llm.generate(
+        response = llm.generate_text(
             StringPromptValue(text=sample.generation_prompt),
             temperature=temperature,
         )
@@ -147,7 +147,7 @@ def _generate_rag_eval_dataset(
             user_input=sample.user_input,
             retrieved_contexts=sample.retrieved_contexts,
             reference_contexts=sample.reference_contexts,
-            response=response.content,
+            response=response.generations[0][0].text,
             multi_responses=sample.multi_responses,
             reference=sample.reference,
             rubrics=sample.rubrics,
