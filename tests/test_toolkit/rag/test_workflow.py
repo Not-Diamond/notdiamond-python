@@ -1,6 +1,5 @@
 from typing import Annotated
 
-import pandas as pd
 import pytest
 
 from notdiamond.toolkit.rag.workflow import BaseNDRagWorkflow, IntValueRange
@@ -12,8 +11,8 @@ class TestNDRagWorkflow(BaseNDRagWorkflow):
     }
 
 
-def test_set_param_values():
-    workflow = TestNDRagWorkflow(pd.DataFrame())
+def test_set_param_values(dataset):
+    workflow = TestNDRagWorkflow(dataset)
     workflow._set_param_values({"chunk_size": 1500})
     assert workflow.chunk_size == 1500
 

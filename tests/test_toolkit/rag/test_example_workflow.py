@@ -15,12 +15,12 @@ from notdiamond.toolkit.rag.metrics import (
     LLMContextRecall,
     SemanticSimilarity,
 )
-from notdiamond.toolkit.rag.parameters import (
+from notdiamond.toolkit.rag.workflow import (
+    BaseNDRagWorkflow,
     CategoricalValueOptions,
     FloatValueRange,
     IntValueRange,
 )
-from notdiamond.toolkit.rag.workflow import BaseNDRagWorkflow
 
 
 class ExampleNDRagWorkflow(BaseNDRagWorkflow):
@@ -87,14 +87,11 @@ class ExampleNDRagWorkflow(BaseNDRagWorkflow):
             Faithfulness(llm=evaluator_llm),
             SemanticSimilarity(embeddings=evaluator_embeddings),
         ]
-        # todo [a9]
         results = evaluate(dataset=self.evaluation_dataset, metrics=metrics)
-        return (
-            results["openai/gpt-4o"].iloc[:, "faithfulness"].mean()
-        )  # returns the average faithfulness score
+        return results["openai/gpt-4o"]["faithfulness"].mean()
 
 
-def test_example_workflow():
-    example_workflow = ExampleNDRagWorkflow()
-    results = auto_optimize(example_workflow, n_iter=10)
+def test_example_workflow(dataset):
+    example_workflow = ExampleNDRagWorkflow(dataset)
+    results = auto_optimize(example_workflow, n_trials=10)
     assert results["best_params"] is not None

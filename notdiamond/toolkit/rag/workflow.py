@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, ClassVar, Dict, List, Type, Union
+from typing import Any, ClassVar, Dict, List, Type, Union, get_args
 
 import optuna
 
@@ -35,6 +35,9 @@ class CategoricalValueOptions:
     """
 
     values: List[str]
+
+
+_ALLOWED_TYPES = [IntValueRange, FloatValueRange, CategoricalValueOptions]
 
 
 class BaseNDRagWorkflow:
@@ -83,7 +86,9 @@ class BaseNDRagWorkflow:
         ) in self.parameter_specs.items():
             value = kwargs.get(param_name, default_value)
             setattr(self, param_name, value)
-            self._param_types[param_name] = param_type
+            type_args = get_args(param_type)
+            range_type = type_args[1] if len(type_args) > 1 else None
+            self._param_types[param_name] = range_type
 
         self.evaluation_dataset = evaluation_dataset
 
@@ -103,23 +108,28 @@ class BaseNDRagWorkflow:
     def _outer_objective(self, trial: optuna.Trial):
         for param_name in self.parameter_specs.keys():
             param_type = self.get_parameter_type(param_name)
-            if param_type == IntValueRange:
+            print(param_type)
+            if isinstance(param_type, IntValueRange):
                 param_value = trial.suggest_int(
                     param_name,
                     param_type.lo,
                     param_type.hi,
                     step=param_type.step,
                 )
-            elif param_type == FloatValueRange:
+            elif isinstance(param_type, FloatValueRange):
                 param_value = trial.suggest_float(
                     param_name,
                     param_type.lo,
                     param_type.hi,
                     step=param_type.step,
                 )
-            elif param_type == CategoricalValueOptions:
+            elif isinstance(param_type, CategoricalValueOptions):
                 param_value = trial.suggest_categorical(
                     param_name, param_type.values
+                )
+            else:
+                raise ValueError(
+                    f"Expected parameter type in {_ALLOWED_TYPES} but received unknown parameter type: {param_type}"
                 )
             setattr(self, param_name, param_value)
 
