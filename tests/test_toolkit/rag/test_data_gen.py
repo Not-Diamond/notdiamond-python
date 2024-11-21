@@ -56,7 +56,7 @@ def test_get_embedding_by_config():
 def test_dataset_generator_langchain_docs(
     test_data_langchain_docs, generator_llm, generator_embedding
 ):
-    nltk.download("all")
+    nltk.download("'punkt_tab'")
     generator = TestDataGenerator(
         llm=generator_llm, embedding_model=generator_embedding
     )
