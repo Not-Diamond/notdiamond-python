@@ -1,7 +1,6 @@
 from typing import Annotated, Any, List
 
-import pytest
-from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
+from llama_index.core import VectorStoreIndex
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.response_synthesizers import get_response_synthesizer
@@ -90,23 +89,16 @@ class ExampleNDRagWorkflow(BaseNDRagWorkflow):
         return results["openai/gpt-4o"]["faithfulness"].mean()
 
 
-@pytest.fixture
-def documents():
-    loader = SimpleDirectoryReader(
-        input_files=[
-            "tests/static/airbnb_tos.md",
-        ]
+def test_example_workflow(dataset, llamaindex_documents):
+    example_workflow = ExampleNDRagWorkflow(
+        dataset, llamaindex_documents, objective_maximize=True
     )
-    docs = loader.load_data()
-    return docs
-
-
-def test_example_workflow(dataset, documents):
-    example_workflow = ExampleNDRagWorkflow(dataset, documents)
     results = auto_optimize(example_workflow, n_trials=1)
     assert results["best_params"] is not None
 
 
-def test_workflow_attrs_init(dataset, documents):
-    example_workflow = ExampleNDRagWorkflow(dataset, documents)
+def test_workflow_attrs_init(dataset, llamaindex_documents):
+    example_workflow = ExampleNDRagWorkflow(
+        dataset, llamaindex_documents, objective_maximize=True
+    )
     assert hasattr(example_workflow, "index")

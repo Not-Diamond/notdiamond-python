@@ -64,10 +64,8 @@ def get_eval_dataset(
     return eval_dataset
 
 
-def auto_optimize(
-    workflow: BaseNDRagWorkflow, n_trials: int, maximize: bool = True
-):
-    direction = "maximize" if maximize else "minimize"
+def auto_optimize(workflow: BaseNDRagWorkflow, n_trials: int):
+    direction = "maximize" if workflow.objective_maximize else "minimize"
     study = optuna.create_study(
         study_name=workflow.job_name, direction=direction
     )

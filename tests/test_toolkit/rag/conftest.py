@@ -1,5 +1,6 @@
 import pandas as pd
 import pytest
+from llama_index.core import SimpleDirectoryReader
 
 from notdiamond.llms.config import EmbeddingConfig, LLMConfig
 from notdiamond.toolkit.rag.evaluation_dataset import (
@@ -95,3 +96,14 @@ def pandas_dataset(
     }
     df = pd.DataFrame(data=data)
     return df
+
+
+@pytest.fixture
+def llamaindex_documents():
+    loader = SimpleDirectoryReader(
+        input_files=[
+            "tests/static/airbnb_tos.md",
+        ]
+    )
+    docs = loader.load_data()
+    return docs
