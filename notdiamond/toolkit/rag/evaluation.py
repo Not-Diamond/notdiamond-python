@@ -25,7 +25,12 @@ from notdiamond.toolkit.rag.llms import get_llm
 from notdiamond.toolkit.rag.workflow import BaseNDRagWorkflow
 
 
-def get_eval_dataset(test_queries: pd.DataFrame, workflow: BaseNDRagWorkflow):
+def get_eval_dataset(
+    test_queries: pd.DataFrame,
+    workflow: BaseNDRagWorkflow,
+    generation_prompt: str = None,
+    generator_llm: Union[LLMConfig, str] = None,
+):
     """
     Create a dataset of RAGSample objects to evaluate the performance of a RAG workflow.
 
@@ -40,8 +45,8 @@ def get_eval_dataset(test_queries: pd.DataFrame, workflow: BaseNDRagWorkflow):
     for _, row in test_queries.iterrows():
         query = row["user_input"]
         reference = row["reference"]
-        generation_prompt = row.get("generation_prompt")
-        generator_llm = row.get("generator_llm")
+        generation_prompt = generation_prompt or row.get("generation_prompt")
+        generator_llm = generator_llm or row.get("generator_llm")
 
         retrieved_contexts = workflow.get_retrieved_context(query)
         response = workflow.get_response(query)
