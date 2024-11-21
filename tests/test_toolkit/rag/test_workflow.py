@@ -18,3 +18,16 @@ def test_set_param_values(dataset):
 
     with pytest.raises(ValueError):
         workflow._set_param_values({"nonexistent_param": 1500})
+
+    with pytest.raises(ValueError):
+        workflow._set_param_values({"chunk_size": "not an int"})
+
+
+def test_set_bad_param_values(dataset):
+    class BadNDRagWorkflow(BaseNDRagWorkflow):
+        parameter_specs = {"chunk_size": (int, 1000)}
+
+    workflow = BadNDRagWorkflow(dataset)
+    # should fail bc we need ranges
+    with pytest.raises(ValueError):
+        workflow._set_param_values({"chunk_size": 1000})

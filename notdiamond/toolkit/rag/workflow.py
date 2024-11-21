@@ -15,6 +15,7 @@ class IntValueRange:
     lo: int
     hi: int
     step: int
+    _base_type: Type = int
 
 
 @dataclass
@@ -26,6 +27,7 @@ class FloatValueRange:
     lo: float
     hi: float
     step: float
+    _base_type: Type = float
 
 
 @dataclass
@@ -35,6 +37,7 @@ class CategoricalValueOptions:
     """
 
     values: List[str]
+    _base_type: Type = str
 
 
 _ALLOWED_TYPES = [IntValueRange, FloatValueRange, CategoricalValueOptions]
@@ -93,7 +96,12 @@ class BaseNDRagWorkflow:
         self.evaluation_dataset = evaluation_dataset
 
     def get_parameter_type(self, param_name: str) -> Type:
-        return self._param_types.get(param_name)
+        param_type = self._param_types.get(param_name)
+        if param_type is None:
+            raise ValueError(
+                f"Parameter {param_name} not found in parameter_specs"
+            )
+        return param_type
 
     def rag_workflow(self):
         """
@@ -148,9 +156,14 @@ class BaseNDRagWorkflow:
     ):
         for param_name in self.parameter_specs.keys():
             param_value = param_values.get(param_name)
+            param_type = self.get_parameter_type(param_name)
             if param_value is None:
                 raise ValueError(
                     f"Best value for {param_name} not found. This should not happen."
+                )
+            elif not isinstance(param_value, param_type._base_type):
+                raise ValueError(
+                    f"Expected parameter type {param_type._base_type} but received {type(param_value)}"
                 )
             setattr(self, param_name, param_value)
 
