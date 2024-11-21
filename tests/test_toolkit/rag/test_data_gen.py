@@ -10,6 +10,8 @@ from notdiamond.toolkit.rag.document_loaders import DirectoryLoader
 from notdiamond.toolkit.rag.llms import get_embedding, get_llm
 from notdiamond.toolkit.rag.testset import TestDataGenerator
 
+nltk.download("'punkt_tab'")
+
 
 @pytest.fixture
 def test_data_langchain_docs():
@@ -56,7 +58,6 @@ def test_get_embedding_by_config():
 def test_dataset_generator_langchain_docs(
     test_data_langchain_docs, generator_llm, generator_embedding
 ):
-    nltk.download("'punkt_tab'")
     generator = TestDataGenerator(
         llm=generator_llm, embedding_model=generator_embedding
     )
