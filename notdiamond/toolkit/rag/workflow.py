@@ -76,7 +76,12 @@ class BaseNDRagWorkflow:
 
     parameter_specs: ClassVar[Dict[str, tuple[Type, Any]]] = {}
 
-    def __init__(self, evaluation_dataset: RAGEvaluationDataset, **kwargs):
+    def __init__(
+        self,
+        evaluation_dataset: RAGEvaluationDataset,
+        documents: Any,
+        **kwargs,
+    ):
         if not self.parameter_specs:
             raise NotImplementedError(
                 f"Class {self.__class__.__name__} must define parameter_specs"
@@ -87,13 +92,22 @@ class BaseNDRagWorkflow:
             param_type,
             default_value,
         ) in self.parameter_specs.items():
-            value = kwargs.get(param_name, default_value)
-            setattr(self, param_name, value)
             type_args = get_args(param_type)
             range_type = type_args[1] if len(type_args) > 1 else None
+            if range_type is None:
+                raise ValueError(
+                    f"Expected parameter type in {_ALLOWED_TYPES} but received {param_type}"
+                )
             self._param_types[param_name] = range_type
+            if not isinstance(default_value, range_type._base_type):
+                raise ValueError(
+                    f"Expected default value type {range_type._base_type} but received {type(default_value)}"
+                )
+            setattr(self, param_name, default_value)
 
         self.evaluation_dataset = evaluation_dataset
+        self.documents = documents
+        self.rag_workflow(documents)
 
     def get_parameter_type(self, param_name: str) -> Type:
         param_type = self._param_types.get(param_name)
@@ -103,10 +117,10 @@ class BaseNDRagWorkflow:
             )
         return param_type
 
-    def rag_workflow(self):
+    def rag_workflow(self, documents: Any):
         """
-        Users can define their RAG workflow components here by attaching them to `self`. This method will initiate those
-        components at init-time, and they will be available in other methods.
+        Users can define their RAG workflow components here by setting instance attrs. This method will set those
+        components at init-time, and they will be available when retrieving context or generating responses.
         """
         raise NotImplementedError()
 

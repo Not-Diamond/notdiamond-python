@@ -1,13 +1,14 @@
 from typing import Annotated, Any, List
 
-from llama_index.core import VectorStoreIndex
+import pytest
+from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core.response_synthesizers import get_response_synthesizer
 from llama_index.core.retrievers import VectorIndexRetriever
 from llama_index.llms.openai import OpenAI
 
 from notdiamond.toolkit.rag.evaluation import auto_optimize, evaluate
-from notdiamond.toolkit.rag.evaluation_dataset import RAGEvaluationDataset
 from notdiamond.toolkit.rag.llms import get_embedding, get_llm
 from notdiamond.toolkit.rag.metrics import (
     FactualCorrectness,
@@ -46,9 +47,6 @@ class ExampleNDRagWorkflow(BaseNDRagWorkflow):
         "temperature": (Annotated[float, FloatValueRange(0.0, 1.0, 0.1)], 0.9),
     }
 
-    def __init__(self, evaluation_dataset: RAGEvaluationDataset, **kwargs):
-        super().__init__(evaluation_dataset, **kwargs)
-
     def job_name(self):
         return "my-awesome-workflow"
 
@@ -68,8 +66,9 @@ class ExampleNDRagWorkflow(BaseNDRagWorkflow):
             similarity_top_k=self.top_k,
         )
 
+        response_synthesizer = get_response_synthesizer(llm=OpenAI("gpt-4o"))
         self.query_engine = RetrieverQueryEngine(
-            retriever=self.retriever, llm=OpenAI("gpt-4o")
+            retriever=self.retriever, response_synthesizer=response_synthesizer
         )
 
     def get_retrieved_context(self, query: str) -> List[str]:
@@ -91,7 +90,23 @@ class ExampleNDRagWorkflow(BaseNDRagWorkflow):
         return results["openai/gpt-4o"]["faithfulness"].mean()
 
 
-def test_example_workflow(dataset):
-    example_workflow = ExampleNDRagWorkflow(dataset)
-    results = auto_optimize(example_workflow, n_trials=10)
+@pytest.fixture
+def documents():
+    loader = SimpleDirectoryReader(
+        input_files=[
+            "tests/static/airbnb_tos.md",
+        ]
+    )
+    docs = loader.load_data()
+    return docs
+
+
+def test_example_workflow(dataset, documents):
+    example_workflow = ExampleNDRagWorkflow(dataset, documents)
+    results = auto_optimize(example_workflow, n_trials=1)
     assert results["best_params"] is not None
+
+
+def test_workflow_attrs_init(dataset, documents):
+    example_workflow = ExampleNDRagWorkflow(dataset, documents)
+    assert hasattr(example_workflow, "index")
