@@ -1,4 +1,3 @@
-import nltk
 import pandas as pd
 import pytest
 from llama_index.core import SimpleDirectoryReader
@@ -9,8 +8,6 @@ from notdiamond.llms.config import EmbeddingConfig, LLMConfig
 from notdiamond.toolkit.rag.document_loaders import DirectoryLoader
 from notdiamond.toolkit.rag.llms import get_embedding, get_llm
 from notdiamond.toolkit.rag.testset import TestDataGenerator
-
-nltk.download("'punkt_tab'")
 
 
 @pytest.fixture
