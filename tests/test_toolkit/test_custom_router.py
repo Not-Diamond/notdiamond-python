@@ -148,9 +148,13 @@ class Test_CustomRouter:
             assert eval_results_df.shape[0] == 15
             assert "notdiamond/score" in eval_results_df.columns
             assert "notdiamond/response" in eval_results_df.columns
+            assert "notdiamond/cost" in eval_results_df.columns
+            assert "notdiamond/latency" in eval_results_df.columns
             for provider in dataset.keys():
                 assert f"{provider}/score" in eval_results_df.columns
                 assert f"{provider}/response" in eval_results_df.columns
+                assert f"{provider}/cost" in eval_results_df.columns
+                assert f"{provider}/latency" in eval_results_df.columns
 
             assert "Best Average Provider" in eval_stats_df.columns
             assert len(eval_stats_df["Best Average Provider"]) == 1
@@ -164,8 +168,19 @@ class Test_CustomRouter:
                 eval_stats_df["Best Provider Average Score"][0], float
             )
 
+            assert "Best Provider Average Cost" in eval_stats_df.columns
+            assert "Best Provider Average Latency" in eval_stats_df.columns
+
             assert "Not Diamond Average Score" in eval_stats_df.columns
             assert len(eval_stats_df["Not Diamond Average Score"]) == 1
             assert isinstance(
                 eval_stats_df["Not Diamond Average Score"][0], float
             )
+
+            assert "Not Diamond Average Cost" in eval_stats_df.columns
+            assert "Not Diamond Average Latency" in eval_stats_df.columns
+
+            for provider in dataset.keys():
+                assert f"{provider}/avg_score" in eval_stats_df.columns
+                assert f"{provider}/avg_cost" in eval_stats_df.columns
+                assert f"{provider}/avg_latency" in eval_stats_df.columns

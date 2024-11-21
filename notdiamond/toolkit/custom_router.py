@@ -1,11 +1,13 @@
 import json
 import tempfile
+import time
 from collections import OrderedDict
 from typing import Dict, List, Optional, Tuple, Union
 
 import numpy as np
 import pandas as pd
 import requests
+from litellm import token_counter
 from tqdm import tqdm
 
 from notdiamond.exceptions import ApiError
@@ -169,6 +171,32 @@ class CustomRouter:
 
         return preference_id
 
+    def _get_latency(self, llm_config: LLMConfig, prompt: str) -> float:
+        llm = NotDiamond._llm_from_config(llm_config)
+        start_time = time.time()
+        _ = llm.invoke([("human", prompt)])
+        end_time = time.time()
+        return (end_time - start_time) * 1000  # ms
+
+    def _get_cost(
+        self, llm_config: LLMConfig, prompt: str, response: str
+    ) -> float:
+        n_input_tokens = token_counter(model="gpt-4o", text=prompt)
+        n_output_tokens = token_counter(model="gpt-4o", text=response)
+        input_price = (
+            llm_config.default_input_price
+            if llm_config.input_price is None
+            else llm_config.input_price
+        )
+        output_price = (
+            llm_config.default_output_price
+            if llm_config.output_price is None
+            else llm_config.output_price
+        )
+        return (
+            n_input_tokens * input_price + n_output_tokens * output_price
+        ) / 1e6
+
     def _eval_custom_router(
         self,
         client: NotDiamond,
@@ -180,6 +208,8 @@ class CustomRouter:
         eval_results[prompt_column] = []
         eval_results["session_id"] = []
         eval_results["notdiamond/score"] = []
+        eval_results["notdiamond/cost"] = []
+        eval_results["notdiamond/latency"] = []
         eval_results["notdiamond/response"] = []
         eval_results["notdiamond/recommended_provider"] = []
 
@@ -193,6 +223,14 @@ class CustomRouter:
                 f"{provider.provider}/{provider.model}/response"
             )
             eval_results[provider_response_column] = []
+
+            provider_cost_column = f"{provider.provider}/{provider.model}/cost"
+            eval_results[provider_cost_column] = []
+
+            provider_latency_column = (
+                f"{provider.provider}/{provider.model}/latency"
+            )
+            eval_results[provider_latency_column] = []
 
         for _, row in tqdm(joint_df.iterrows(), total=len(joint_df)):
             prompt = row[prompt_column]
@@ -222,6 +260,18 @@ class CustomRouter:
                     f"{provider.provider}/{provider.model}/response"
                 ].append(provider_response)
 
+                provider_cost = self._get_cost(
+                    provider, prompt, provider_response
+                )
+                eval_results[
+                    f"{provider.provider}/{provider.model}/cost"
+                ].append(provider_cost)
+
+                provider_latency = self._get_latency(provider, prompt)
+                eval_results[
+                    f"{provider.provider}/{provider.model}/latency"
+                ].append(provider_latency)
+
                 if (
                     not provider_matched
                     and provider.provider == nd_provider.provider
@@ -229,6 +279,8 @@ class CustomRouter:
                 ):
                     provider_matched = True
                     eval_results["notdiamond/score"].append(provider_score)
+                    eval_results["notdiamond/cost"].append(provider_cost)
+                    eval_results["notdiamond/latency"].append(provider_latency)
                     eval_results["notdiamond/response"].append(
                         provider_response
                     )
@@ -246,32 +298,80 @@ class CustomRouter:
 
         eval_results_df = pd.DataFrame(eval_results)
 
+        eval_stats = OrderedDict()
         best_average_provider = None
         best_average_score = -(2 * int(self.maximize) - 1) * np.inf
+
+        nd_average_score = eval_results_df["notdiamond/score"].mean()
+        eval_stats["Not Diamond Average Score"] = [nd_average_score]
+
+        nd_average_cost = eval_results_df["notdiamond/cost"].mean()
+        eval_stats["Not Diamond Average Cost"] = [nd_average_cost]
+
+        nd_average_latency = eval_results_df["notdiamond/latency"].mean()
+        eval_stats["Not Diamond Average Latency"] = [nd_average_latency]
+
         for provider in llm_configs:
             provider_avg_score = eval_results_df[
                 f"{provider.provider}/{provider.model}/score"
             ].mean()
+            eval_stats[f"{provider.provider}/{provider.model}/avg_score"] = [
+                provider_avg_score
+            ]
+
+            provider_avg_cost = eval_results_df[
+                f"{provider.provider}/{provider.model}/cost"
+            ].mean()
+            eval_stats[f"{provider.provider}/{provider.model}/avg_cost"] = [
+                provider_avg_cost
+            ]
+
+            provider_avg_latency = eval_results_df[
+                f"{provider.provider}/{provider.model}/latency"
+            ].mean()
+            eval_stats[f"{provider.provider}/{provider.model}/avg_latency"] = [
+                provider_avg_latency
+            ]
+
             if self.maximize:
                 if provider_avg_score > best_average_score:
                     best_average_score = provider_avg_score
+                    best_average_cost = provider_avg_cost
+                    best_average_latency = provider_avg_latency
                     best_average_provider = (
                         f"{provider.provider}/{provider.model}"
                     )
             else:
                 if provider_avg_score < best_average_score:
                     best_average_score = provider_avg_score
+                    best_average_cost = provider_avg_cost
+                    best_average_latency = provider_avg_latency
                     best_average_provider = (
                         f"{provider.provider}/{provider.model}"
                     )
 
-        nd_average_score = eval_results_df["notdiamond/score"].mean()
-
-        eval_stats = OrderedDict()
         eval_stats["Best Average Provider"] = [best_average_provider]
         eval_stats["Best Provider Average Score"] = [best_average_score]
-        eval_stats["Not Diamond Average Score"] = [nd_average_score]
-        eval_stats_df = pd.DataFrame(eval_stats)
+        eval_stats["Best Provider Average Cost"] = [best_average_cost]
+        eval_stats["Best Provider Average Latency"] = [best_average_latency]
+
+        first_columns = [
+            "Best Average Provider",
+            "Best Provider Average Score",
+            "Best Provider Average Cost",
+            "Best Provider Average Latency",
+            "Not Diamond Average Score",
+            "Not Diamond Average Cost",
+            "Not Diamond Average Latency",
+        ]
+        column_order = first_columns + [
+            col for col in eval_stats.keys() if col not in first_columns
+        ]
+        ordered_eval_stats = OrderedDict()
+        for col in column_order:
+            ordered_eval_stats[col] = eval_stats[col]
+
+        eval_stats_df = pd.DataFrame(ordered_eval_stats)
         return eval_results_df, eval_stats_df
 
     def eval(
