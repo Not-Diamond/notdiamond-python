@@ -111,6 +111,7 @@ def test_dataset_format(dataset):
     assert isinstance(dataset[0], RAGSample)
 
 
+@pytest.mark.vcr
 def test_evaluate(dataset, gpt_4o, sonnet_3_5, openai_embedding):
     evaluator_llm = get_llm(gpt_4o)
     evaluator_embedding = get_embedding(openai_embedding)
