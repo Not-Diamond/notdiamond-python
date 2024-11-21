@@ -1,3 +1,4 @@
+import nltk
 import pandas as pd
 import pytest
 from llama_index.core import SimpleDirectoryReader
@@ -55,6 +56,7 @@ def test_get_embedding_by_config():
 def test_dataset_generator_langchain_docs(
     test_data_langchain_docs, generator_llm, generator_embedding
 ):
+    nltk.download("all")
     generator = TestDataGenerator(
         llm=generator_llm, embedding_model=generator_embedding
     )
