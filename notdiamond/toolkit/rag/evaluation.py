@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple, Union
 
 import optuna
 import pandas as pd
@@ -99,8 +99,10 @@ def _evaluate_dataset(
     generator_llm: LLMConfig,
     dataset: EvaluationDataset,
     metrics: Optional[Sequence[Metric]] = None,
-    llm: Optional[BaseRagasLLM | LangchainLLM] = None,
-    embeddings: Optional[BaseRagasEmbeddings | LangchainEmbeddings] = None,
+    llm: Optional[Union[BaseRagasLLM, LangchainLLM]] = None,
+    embeddings: Optional[
+        Union[BaseRagasEmbeddings, LangchainEmbeddings]
+    ] = None,
     callbacks: Callbacks = None,
     in_ci: bool = False,
     run_config: RunConfig = RunConfig(),
@@ -162,8 +164,10 @@ def _generate_rag_eval_dataset(
 def evaluate(
     dataset: RAGEvaluationDataset,
     metrics: Optional[Sequence[Metric]] = None,
-    llm: Optional[BaseRagasLLM | LangchainLLM] = None,
-    embeddings: Optional[BaseRagasEmbeddings | LangchainEmbeddings] = None,
+    llm: Optional[Union[BaseRagasLLM, LangchainLLM]] = None,
+    embeddings: Optional[
+        Union[BaseRagasEmbeddings, LangchainEmbeddings]
+    ] = None,
     callbacks: Callbacks = None,
     in_ci: bool = False,
     run_config: RunConfig = RunConfig(),
