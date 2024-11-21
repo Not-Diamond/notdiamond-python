@@ -24,7 +24,7 @@ langchain-mistralai = { version = "^0.1.10", optional = true }
 langchain-together = { version = "^0.1.4", optional = true }
 langchain-cohere = { version = "^0.1.9", optional = true }
 requests = ">=2.31"
-optuna = "^4.1.0"
+optuna = { version = "^4.1.0", optional = true}
 ragas = {extras = ["all"], version = "^0.2.6", optional = true}
 unstructured = {extras = ["local-inference"], version = "^0.16.5", optional = true}
 
@@ -70,7 +70,8 @@ openai = [
 ]
 rag = [
     "ragas",
-    "unstructured"
+    "unstructured",
+    "optuna"
 ]
 
 [build-system]
