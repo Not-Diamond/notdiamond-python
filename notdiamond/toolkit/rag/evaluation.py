@@ -27,7 +27,7 @@ from notdiamond.toolkit.rag.workflow import BaseNDRagWorkflow
 
 def get_eval_dataset(test_queries: pd.DataFrame, workflow: BaseNDRagWorkflow):
     """
-    Create a dataset of SingleTurnSample objects to evaluate the performance of a RAG workflow.
+    Create a dataset of RAGSample objects to evaluate the performance of a RAG workflow.
 
     Args:
         test_queries: A pandas DataFrame with schema implied by the method below.
@@ -38,7 +38,7 @@ def get_eval_dataset(test_queries: pd.DataFrame, workflow: BaseNDRagWorkflow):
     """
     samples = []
     for _, row in test_queries.iterrows():
-        query = row["query"]
+        query = row["user_input"]
         reference = row["reference"]
         generation_prompt = row.get("generation_prompt")
         generator_llm = row.get("generator_llm")
@@ -46,7 +46,7 @@ def get_eval_dataset(test_queries: pd.DataFrame, workflow: BaseNDRagWorkflow):
         retrieved_contexts = workflow.get_retrieved_context(query)
         response = workflow.get_response(query)
 
-        sample = SingleTurnSample(
+        sample = RAGSample(
             user_input=query,
             retrieved_contexts=retrieved_contexts,
             response=response,
@@ -55,7 +55,7 @@ def get_eval_dataset(test_queries: pd.DataFrame, workflow: BaseNDRagWorkflow):
             generator_llm=generator_llm,
         )
         samples.append(sample)
-    eval_dataset = EvaluationDataset(samples)
+    eval_dataset = RAGEvaluationDataset(samples)
     return eval_dataset
 
 
