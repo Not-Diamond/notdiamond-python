@@ -299,7 +299,7 @@ class EmbeddingConfig:
     def from_string(cls, llm_provider: str):
         """
         We allow our users to specify LLM providers for NotDiamond in the string format 'provider_name/model_name',
-        as example 'openai/gpt-3.5-turbo'. Underlying our workflows we want to ensure we use LLMConfig as
+        for example 'openai/gpt-3.5-turbo'. Our workflows expect LLMConfig as
         the base type, so this class method converts a string specification of an LLM provider into an
         LLMConfig object.
 
