@@ -295,4 +295,31 @@ PROVIDERS = {
     },
 }
 
+
+EMBEDDING_PROVIDERS = {
+    "openai": {
+        "models": [
+            "text-embedding-3-large",
+            "text-embedding-3-small",
+            "text-embedding-ada-002",
+        ],
+        "api_key": OPENAI_API_KEY,
+    },
+    "cohere": {
+        "models": [
+            "embed-english-v3.0",
+            "embed-english-light-v3.0",
+            "embed-multilingual-v3.0",
+            "embed-multilingual-light-v3.0",
+        ],
+        "api_key": COHERE_API_KEY,
+    },
+    "mistral": {
+        "models": [
+            "mistral-embed",
+        ],
+        "api_key": MISTRAL_API_KEY,
+    },
+}
+
 DEFAULT_USER_AGENT = f"Python-SDK/{VERSION}"

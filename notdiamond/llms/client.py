@@ -1513,7 +1513,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         @staticmethod
         def _llm_from_config(
             provider: LLMConfig,
-            callbacks: Optional[List],
+            callbacks: Optional[List] = None,
         ) -> Any:
             default_kwargs = {"max_retries": 5, "timeout": 120}
             passed_kwargs = {**default_kwargs, **provider.kwargs}
