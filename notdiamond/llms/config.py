@@ -221,7 +221,7 @@ class EmbeddingConfig:
 
     Attributes:
         provider (str): The name of the LLM provider (e.g., "openai", "anthropic"). Must be one of the
-                        predefined providers in `POSSIBLE_PROVIDERS`.
+                        predefined providers in `POSSIBLE_EMBEDDING_PROVIDERS`.
         model (str): The name of the LLM model to use (e.g., "gpt-3.5-turbo").
                         Must be one of the predefined models in `POSSIBLE_MODELS`.
         api_key (Optional[str], optional): The API key for accessing the LLM provider's services.
