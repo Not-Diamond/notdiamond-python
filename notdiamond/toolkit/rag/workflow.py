@@ -33,9 +33,7 @@ class FloatValueRange:
     step: float
 
     def __contains__(self, value: float) -> bool:
-        return (
-            self.lo <= value <= self.hi and (value - self.lo) % self.step == 0
-        )
+        return self.lo <= value <= self.hi
 
 
 @dataclass
