@@ -773,7 +773,7 @@ def completion(
         model (str): The name of the language model to use for text completion. see all supported LLMs: https://docs.litellm.ai/docs/providers/
         messages (List): A list of message objects representing the conversation context (default is an empty list).
 
-        OPTIONAL PARAMS
+    OPTIONAL PARAMS
         functions (List, optional): A list of functions to apply to the conversation messages (default is an empty list).
         function_call (str, optional): The name of the function to call within the conversation (default is an empty string).
         temperature (float, optional): The temperature parameter for controlling the randomness of the output (default is 1.0).
@@ -796,10 +796,11 @@ def completion(
         model_list (list, optional): List of api base, version, keys
         extra_headers (dict, optional): Additional headers to include in the request.
 
-        LITELLM Specific Params
+    LITELLM Specific Params
         mock_response (str, optional): If provided, return a mock completion response for testing or debugging purposes (default is None).
         custom_llm_provider (str, optional): Used for Non-OpenAI LLMs, Example usage for bedrock, set model="amazon.titan-tg1-large" and custom_llm_provider="bedrock"
         max_retries (int, optional): The number of retries to attempt (default is 0).
+
     Returns:
         ModelResponse: A response object containing the generated completion and associated metadata.
 
