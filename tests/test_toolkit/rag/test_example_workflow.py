@@ -70,6 +70,9 @@ class ExampleNDRagWorkflow(BaseNDRagWorkflow):
             retriever=self.retriever, response_synthesizer=response_synthesizer
         )
 
+        print(f"Dummy access for temperature: {self.temperature}")
+        print(f"Dummy access for algo: {self.algo}")
+
     def get_retrieved_context(self, query: str) -> List[str]:
         return self.retriever.retrieve(query)
 
