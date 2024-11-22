@@ -17,6 +17,7 @@ def test_dataset_from_pandas(pandas_dataset):
 def test_dataset_format(dataset):
     assert len(dataset) == 2
     assert isinstance(dataset[0], RAGSample)
+    assert isinstance(dataset[1], RAGSample)
 
 
 @pytest.mark.vcr
