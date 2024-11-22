@@ -133,7 +133,7 @@ class TestDataGenerator(TestsetGenerator):
             )
             return dataset.to_pandas()
 
-        raise Exception(f"Document type {type(documents[0])} not supported.")
+        raise ValueError("Documents must be a list of langchain or llama-index documents.")
 
     def generate_with_llamaindex_docs(
         self,
