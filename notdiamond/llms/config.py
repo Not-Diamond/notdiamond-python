@@ -217,7 +217,7 @@ class EmbeddingConfig:
     All supported providers and models can be found in our docs.
 
     If the API key is not specified, the Config will try to read the key from an .env file before failing.
-    As example for OpenAI it will look for OPENAI_API_KEY.
+    For example, the Config will look for `OPENAI_API_KEY` to authenticate any OpenAI provider.
 
     Attributes:
         provider (str): The name of the LLM provider (e.g., "openai", "anthropic"). Must be one of the
