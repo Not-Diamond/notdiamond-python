@@ -211,21 +211,21 @@ class EmbeddingConfig:
     A NotDiamond embedding provider config (or EmbeddingConfig) is represented by a combination of provider and model.
     Provider refers to the company of the foundational model, such as openai, anthropic, google.
     The model represents the model name as defined by the owner company, such as text-embedding-3-large
-    Beside this you can also specify the API key for each provider, specify extra arguments
+    Beside this you can also specify the API key for each provider or extra arguments
     that are also supported by Langchain.
 
     All supported providers and models can be found in our docs.
 
-    If the API key it's not specified, it will try to pick it up from an .env file before failing.
-    As example for OpenAI it will look for OPENAI_API_KEY.
+    If the API key is not specified, the Config will try to read the key from an .env file before failing.
+    For example, the Config will look for `OPENAI_API_KEY` to authenticate any OpenAI provider.
 
     Attributes:
         provider (str): The name of the LLM provider (e.g., "openai", "anthropic"). Must be one of the
-                        predefined providers in `POSSIBLE_PROVIDERS`.
+                        predefined providers in `POSSIBLE_EMBEDDING_PROVIDERS`.
         model (str): The name of the LLM model to use (e.g., "gpt-3.5-turbo").
                         Must be one of the predefined models in `POSSIBLE_MODELS`.
         api_key (Optional[str], optional): The API key for accessing the LLM provider's services.
-                                            Defaults to None, in which case it tries to fetch from the settings.
+                                            Defaults to None, in which case it tries to fetch from the environment.
         **kwargs: Additional keyword arguments that might be necessary for specific providers or models.
 
     Raises:
@@ -299,7 +299,7 @@ class EmbeddingConfig:
     def from_string(cls, llm_provider: str):
         """
         We allow our users to specify LLM providers for NotDiamond in the string format 'provider_name/model_name',
-        as example 'openai/gpt-3.5-turbo'. Underlying our workflows we want to ensure we use LLMConfig as
+        for example 'openai/gpt-3.5-turbo'. Our workflows expect LLMConfig as
         the base type, so this class method converts a string specification of an LLM provider into an
         LLMConfig object.
 

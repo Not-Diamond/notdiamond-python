@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 from typing import List, Optional, Sequence, Union
 
@@ -133,7 +132,7 @@ class TestDataGenerator(TestsetGenerator):
             )
             return dataset.to_pandas()
 
-        raise Exception(f"Document type {type(documents[0])} not supported.")
+        raise ValueError("Documents must be a list of langchain or llama-index documents.")
 
     def generate_with_llamaindex_docs(
         self,
@@ -158,7 +157,7 @@ class TestDataGenerator(TestsetGenerator):
         if not self.llm and not transforms_llm:
             raise ValueError(
                 "An llm client was not provided."
-                " Provide an LLM on TestsetGenerator instantiation or as an argument for transforms_llm parameter."
+                " Provide an LLM on init or as an argument to this method."
                 " Alternatively you can provide your own transforms through the `transforms` parameter."
             )
         if not self.embedding_model and not transforms_embedding_model:
