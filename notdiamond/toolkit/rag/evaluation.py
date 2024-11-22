@@ -1,3 +1,4 @@
+import logging
 from typing import Dict, List, Optional, Sequence, Tuple, Union
 
 import optuna
@@ -24,6 +25,11 @@ from notdiamond.toolkit.rag.evaluation_dataset import (
 from notdiamond.toolkit.rag.llms import get_llm
 from notdiamond.toolkit.rag.workflow import BaseNDRagWorkflow
 
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.INFO)
+
+_DEFAULT_GENERATION_TEMPERATURE = 0.7
+
 
 def get_eval_dataset(
     test_queries: pd.DataFrame,
@@ -46,7 +52,17 @@ def get_eval_dataset(
         query = row["user_input"]
         reference = row["reference"]
         generation_prompt = generation_prompt or row.get("generation_prompt")
+        if generation_prompt is None:
+            raise ValueError(
+                "Provided test queries DataFrame does not include"
+                " 'generation_prompt' and 'generation_prompt' is not provided."
+            )
         generator_llm = generator_llm or row.get("generator_llm")
+        if generator_llm is None:
+            raise ValueError(
+                "Provided test queries DataFrame does not include"
+                " 'generator_llm' and 'generator_llm' is not provided."
+            )
 
         retrieved_contexts = workflow.get_retrieved_context(query)
         response = workflow.get_response(query)
@@ -115,7 +131,7 @@ def _evaluate_dataset(
     show_progress: bool = True,
     batch_size: Optional[int] = None,
 ) -> pd.DataFrame:
-    print(f"Evaluating generations from {str(generator_llm)}")
+    LOGGER.info(f"Evaluating generations from {str(generator_llm)}")
 
     result = ragas_evaluate(
         dataset,
@@ -135,12 +151,14 @@ def _evaluate_dataset(
 
 
 def _generate_rag_eval_dataset(
-    generator_llm: LLMConfig, dataset: RAGEvaluationDataset
+    generator_llm: LLMConfig,
+    dataset: RAGEvaluationDataset,
+    temperature: float = _DEFAULT_GENERATION_TEMPERATURE,
 ) -> RAGEvaluationDataset:
-    print(f"Generating responses from {str(generator_llm)}")
+    LOGGER.info(f"Generating responses from {str(generator_llm)}")
 
     llm = get_llm(generator_llm)
-    temperature = generator_llm.kwargs.get("temperature", 0.7)
+    temperature = generator_llm.kwargs.get("temperature", temperature)
 
     eval_samples = []
     for sample in tqdm(dataset):
