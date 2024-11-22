@@ -225,7 +225,7 @@ class EmbeddingConfig:
         model (str): The name of the LLM model to use (e.g., "gpt-3.5-turbo").
                         Must be one of the predefined models in `POSSIBLE_MODELS`.
         api_key (Optional[str], optional): The API key for accessing the LLM provider's services.
-                                            Defaults to None, in which case it tries to fetch from the settings.
+                                            Defaults to None, in which case it tries to fetch from the environment.
         **kwargs: Additional keyword arguments that might be necessary for specific providers or models.
 
     Raises:
