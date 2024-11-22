@@ -216,7 +216,7 @@ class EmbeddingConfig:
 
     All supported providers and models can be found in our docs.
 
-    If the API key it's not specified, it will try to pick it up from an .env file before failing.
+    If the API key is not specified, the Config will try to read the key from an .env file before failing.
     As example for OpenAI it will look for OPENAI_API_KEY.
 
     Attributes:
