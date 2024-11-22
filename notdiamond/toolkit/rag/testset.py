@@ -158,7 +158,7 @@ class TestDataGenerator(TestsetGenerator):
         if not self.llm and not transforms_llm:
             raise ValueError(
                 "An llm client was not provided."
-                " Provide an LLM on TestsetGenerator instantiation or as an argument for transforms_llm parameter."
+                " Provide an LLM on init or as an argument to this method."
                 " Alternatively you can provide your own transforms through the `transforms` parameter."
             )
         if not self.embedding_model and not transforms_embedding_model:
