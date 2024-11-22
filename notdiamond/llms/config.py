@@ -211,7 +211,7 @@ class EmbeddingConfig:
     A NotDiamond embedding provider config (or EmbeddingConfig) is represented by a combination of provider and model.
     Provider refers to the company of the foundational model, such as openai, anthropic, google.
     The model represents the model name as defined by the owner company, such as text-embedding-3-large
-    Beside this you can also specify the API key for each provider, specify extra arguments
+    Beside this you can also specify the API key for each provider or extra arguments
     that are also supported by Langchain.
 
     All supported providers and models can be found in our docs.
