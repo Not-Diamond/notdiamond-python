@@ -7,28 +7,28 @@
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
-
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-
+  
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../../../_static/documentation_options.js?v=30ad20df"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
-    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
 
-
-
+          
+          
           <a href="../../../index.html" class="icon icon-home">
             NotDiamond
           </a>
@@ -72,7 +72,7 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-
+             
   <h1>Source code for notdiamond.llms.config</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
@@ -181,6 +181,8 @@
         <span class="k">if</span> <span class="n">is_custom</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_openrouter_model</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_input_price</span> <span class="o">=</span> <span class="n">custom_input_price</span> <span class="ow">or</span> <span class="n">input_price</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_output_price</span> <span class="o">=</span> <span class="n">custom_output_price</span> <span class="ow">or</span> <span class="n">output_price</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">provider</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">POSSIBLE_PROVIDERS</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">UnsupportedLLMProvider</span><span class="p">(</span>
@@ -199,6 +201,13 @@
                 <span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="k">else</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span><span class="s2">&quot;api_key&quot;</span><span class="p">]</span>
             <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_input_price</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span><span class="s2">&quot;price&quot;</span><span class="p">][</span>
+                <span class="n">model</span>
+            <span class="p">][</span><span class="s2">&quot;input&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_output_price</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span><span class="s2">&quot;price&quot;</span><span class="p">][</span>
+                <span class="n">model</span>
+            <span class="p">][</span><span class="s2">&quot;output&quot;</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">provider</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
@@ -433,14 +442,14 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Nov 22, 2024.
+      <span class="lastupdated">Last updated on Nov 23, 2024.
       </span></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
-
+   
 
 </footer>
         </div>
@@ -451,7 +460,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
+  </script> 
 
 </body>
 </html>
