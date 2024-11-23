@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>notdiamond.toolkit.langchain &mdash; NotDiamond 0.3.25</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=30ad20df"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../../../search.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="../../../index.html" class="icon icon-home">
+            NotDiamond
+          </a>
+              <div class="version">
+                0.3.25
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intro.html">Getting started with Not Diamond</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/notdiamond.html">NotDiamond package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NotDiamond</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">notdiamond.toolkit.langchain</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <h1>Source code for notdiamond.toolkit.langchain</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">metadata</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Any</span><span class="p">,</span>
+    <span class="n">AsyncIterator</span><span class="p">,</span>
+    <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">Iterator</span><span class="p">,</span>
+    <span class="n">List</span><span class="p">,</span>
+    <span class="n">Optional</span><span class="p">,</span>
+    <span class="n">Sequence</span><span class="p">,</span>
+    <span class="n">Union</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">langchain.chat_models.base</span> <span class="kn">import</span> <span class="n">init_chat_model</span>
+<span class="kn">from</span> <span class="nn">langchain_community.adapters.openai</span> <span class="kn">import</span> <span class="n">convert_message_to_dict</span>
+<span class="kn">from</span> <span class="nn">langchain_core.language_models</span> <span class="kn">import</span> <span class="n">LanguageModelInput</span>
+<span class="kn">from</span> <span class="nn">langchain_core.messages.utils</span> <span class="kn">import</span> <span class="n">convert_to_messages</span>
+<span class="kn">from</span> <span class="nn">langchain_core.prompt_values</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ChatPromptValue</span><span class="p">,</span>
+    <span class="n">PromptValue</span><span class="p">,</span>
+    <span class="n">StringPromptValue</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">langchain_core.runnables</span> <span class="kn">import</span> <span class="n">Runnable</span><span class="p">,</span> <span class="n">RunnableConfig</span>
+
+<span class="kn">import</span> <span class="nn">notdiamond</span> <span class="k">as</span> <span class="nn">nd</span>
+
+<span class="n">_LANGCHAIN_PROVIDERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;openai&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;anthropic&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;google&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mistral&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;togetherai&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cohere&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="NotDiamondRunnable">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRunnable">[docs]</a>
+<span class="k">class</span> <span class="nc">NotDiamondRunnable</span><span class="p">(</span><span class="n">Runnable</span><span class="p">[</span><span class="n">LanguageModelInput</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See Runnable docs for details</span>
+<span class="sd">    https://python.langchain.com/v0.1/docs/expression_language/interface/</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">llm_configs</span><span class="p">:</span> <span class="n">List</span>
+    <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NOTDIAMOND_API_KEY&quot;</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Any</span>
+
+<div class="viewcode-block" id="NotDiamondRunnable.__init__">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRunnable.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">nd_llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">nd_api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">nd_client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">nd_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Params:</span>
+<span class="sd">            nd_llm_configs: List of LLM configs to use.</span>
+<span class="sd">            nd_api_key: Not Diamond API key.</span>
+<span class="sd">            nd_client: Not Diamond client.</span>
+<span class="sd">            nd_kwargs: Keyword arguments to pass directly to model_select.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nd_client</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">nd_api_key</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">nd_llm_configs</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Must provide either client or api_key and llm_configs to &quot;</span>
+                    <span class="s2">&quot;instantiate NotDiamondRunnable.&quot;</span>
+                <span class="p">)</span>
+            <span class="n">nd_client</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">NotDiamond</span><span class="p">(</span>
+                <span class="n">llm_configs</span><span class="o">=</span><span class="n">nd_llm_configs</span><span class="p">,</span>
+                <span class="n">api_key</span><span class="o">=</span><span class="n">nd_api_key</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">nd_client</span><span class="o">.</span><span class="n">llm_configs</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">llm_config</span> <span class="ow">in</span> <span class="n">nd_client</span><span class="o">.</span><span class="n">llm_configs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">llm_config</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">llm_config</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">LLMConfig</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">llm_config</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">llm_config</span><span class="o">.</span><span class="n">provider</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_LANGCHAIN_PROVIDERS</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Requested provider in </span><span class="si">{</span><span class="n">llm_config</span><span class="si">}</span><span class="s2"> supported by Not Diamond &quot;</span>
+                        <span class="s2">&quot;but not langchain.chat_models.base.init_chat_model. Please &quot;</span>
+                        <span class="s2">&quot;remove it from your llm_configs.&quot;</span>
+                    <span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">nd_client</span><span class="o">.</span><span class="n">user_agent</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;langchain-community/</span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="s1">&#39;notdiamond&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">nd_client</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">nd_client</span><span class="o">.</span><span class="n">api_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llm_configs</span> <span class="o">=</span> <span class="n">nd_client</span><span class="o">.</span><span class="n">llm_configs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nd_kwargs</span> <span class="o">=</span> <span class="n">nd_kwargs</span> <span class="ow">or</span> <span class="nb">dict</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_model_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="n">_convert_input_to_message_dicts</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">provider</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">model_select</span><span class="p">(</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">nd_kwargs</span>
+        <span class="p">)</span>
+        <span class="n">provider_str</span> <span class="o">=</span> <span class="n">_nd_provider_to_langchain_provider</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">provider</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">provider_str</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_amodel_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="n">_convert_input_to_message_dicts</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">provider</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">amodel_select</span><span class="p">(</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">nd_kwargs</span>
+        <span class="p">)</span>
+        <span class="n">provider_str</span> <span class="o">=</span> <span class="n">_nd_provider_to_langchain_provider</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">provider</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">provider_str</span>
+
+<div class="viewcode-block" id="NotDiamondRunnable.stream">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRunnable.stream">[docs]</a>
+    <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRunnable.invoke">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRunnable.invoke">[docs]</a>
+    <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRunnable.batch">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRunnable.batch">[docs]</a>
+    <span class="k">def</span> <span class="nf">batch</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LanguageModelInput</span><span class="p">],</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRunnable.astream">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRunnable.astream">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">astream</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">yield</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_amodel_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRunnable.ainvoke">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRunnable.ainvoke">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">ainvoke</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_amodel_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRunnable.abatch">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRunnable.abatch">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">abatch</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LanguageModelInput</span><span class="p">],</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_amodel_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NotDiamondRoutedRunnable">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRoutedRunnable">[docs]</a>
+<span class="k">class</span> <span class="nc">NotDiamondRoutedRunnable</span><span class="p">(</span><span class="n">Runnable</span><span class="p">[</span><span class="n">LanguageModelInput</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
+<div class="viewcode-block" id="NotDiamondRoutedRunnable.__init__">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRoutedRunnable.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">configurable_fields</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">nd_llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">nd_api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">nd_client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">nd_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Params:</span>
+<span class="sd">            nd_llm_configs: List of LLM configs to use.</span>
+<span class="sd">            nd_api_key: Not Diamond API key.</span>
+<span class="sd">            nd_client: Not Diamond client.</span>
+<span class="sd">            nd_kwargs: Keyword arguments to pass directly to model_select.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_nd_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">kw</span><span class="p">:</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">kw</span><span class="p">]</span> <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">kw</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;nd_&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">nd_kwargs</span><span class="p">:</span>
+            <span class="n">_nd_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">nd_kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ndrunnable</span> <span class="o">=</span> <span class="n">NotDiamondRunnable</span><span class="p">(</span>
+            <span class="n">nd_api_key</span><span class="o">=</span><span class="n">nd_api_key</span><span class="p">,</span>
+            <span class="n">nd_llm_configs</span><span class="o">=</span><span class="n">nd_llm_configs</span><span class="p">,</span>
+            <span class="n">nd_client</span><span class="o">=</span><span class="n">nd_client</span><span class="p">,</span>
+            <span class="n">nd_kwargs</span><span class="o">=</span><span class="n">_nd_kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">_routed_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="s2">&quot;model_provider&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">configurable_fields</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">configurable_fields</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configurable_fields</span> <span class="o">=</span> <span class="n">_routed_fields</span> <span class="o">+</span> <span class="n">configurable_fields</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configurable_model</span> <span class="o">=</span> <span class="n">init_chat_model</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="n">configurable_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_configurable_fields</span><span class="p">,</span>
+            <span class="n">config_prefix</span><span class="o">=</span><span class="s2">&quot;nd&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="p">{</span><span class="n">kw</span><span class="p">:</span> <span class="n">kwv</span> <span class="k">for</span> <span class="n">kw</span><span class="p">,</span> <span class="n">kwv</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">kw</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_nd_kwargs</span><span class="p">},</span>  <span class="c1"># type: ignore[arg-type]</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRoutedRunnable.stream">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRoutedRunnable.stream">[docs]</a>
+    <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="n">provider_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ndrunnable</span><span class="o">.</span><span class="n">_model_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="n">_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_model_config</span><span class="p">(</span><span class="n">provider_str</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configurable_model</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">_config</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRoutedRunnable.invoke">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRoutedRunnable.invoke">[docs]</a>
+    <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="n">provider_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ndrunnable</span><span class="o">.</span><span class="n">_model_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="n">_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_model_config</span><span class="p">(</span><span class="n">provider_str</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configurable_model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">_config</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRoutedRunnable.batch">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRoutedRunnable.batch">[docs]</a>
+    <span class="k">def</span> <span class="nf">batch</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LanguageModelInput</span><span class="p">],</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">config</span> <span class="ow">or</span> <span class="p">{}</span>
+
+        <span class="n">provider_strs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ndrunnable</span><span class="o">.</span><span class="n">_model_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">_configs</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_build_model_config</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">provider_strs</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_configs</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_build_model_config</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ps</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">provider_strs</span><span class="p">)</span>
+            <span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configurable_model</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">_configs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRoutedRunnable.astream">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRoutedRunnable.astream">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">astream</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="n">provider_str</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ndrunnable</span><span class="o">.</span><span class="n">_amodel_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="n">_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_model_config</span><span class="p">(</span><span class="n">provider_str</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configurable_model</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span>
+            <span class="nb">input</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">_config</span>
+        <span class="p">):</span>
+            <span class="k">yield</span> <span class="n">chunk</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRoutedRunnable.ainvoke">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRoutedRunnable.ainvoke">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">ainvoke</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="n">provider_str</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ndrunnable</span><span class="o">.</span><span class="n">_amodel_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="n">_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_model_config</span><span class="p">(</span><span class="n">provider_str</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configurable_model</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">_config</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRoutedRunnable.abatch">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRoutedRunnable.abatch">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">abatch</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LanguageModelInput</span><span class="p">],</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">config</span> <span class="ow">or</span> <span class="p">{}</span>
+
+        <span class="n">provider_strs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ndrunnable</span><span class="o">.</span><span class="n">_amodel_select</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">_configs</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_build_model_config</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">provider_strs</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_configs</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_build_model_config</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ps</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">provider_strs</span><span class="p">)</span>
+            <span class="p">]</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configurable_model</span><span class="o">.</span><span class="n">abatch</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">_configs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NotDiamondRoutedRunnable._build_model_config">
+<a class="viewcode-back" href="../../../source/notdiamond.toolkit.html#notdiamond.toolkit.langchain.NotDiamondRoutedRunnable._build_model_config">[docs]</a>
+    <span class="k">def</span> <span class="nf">_build_model_config</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">provider_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RunnableConfig</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Provider string should take the form &#39;{model}/{model_provider}&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">config</span> <span class="ow">or</span> <span class="n">RunnableConfig</span><span class="p">()</span>
+
+        <span class="n">model_provider</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">provider_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="n">_config</span> <span class="o">=</span> <span class="n">RunnableConfig</span><span class="p">(</span>
+            <span class="n">configurable</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;nd_model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+                <span class="s2">&quot;nd_model_provider&quot;</span><span class="p">:</span> <span class="n">model_provider</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">_config</span><span class="p">[</span><span class="s2">&quot;configurable&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;nd_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="k">return</span> <span class="n">_config</span></div>
+</div>
+
+
+
+<span class="k">def</span> <span class="nf">_convert_input_to_message_dicts</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">:</span> <span class="n">LanguageModelInput</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">PromptValue</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">input</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">StringPromptValue</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="nb">input</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">ChatPromptValue</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="n">convert_to_messages</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Invalid input type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="si">}</span><span class="s2">. &quot;</span>
+            <span class="s2">&quot;Must be a PromptValue, str, or list of BaseMessages.&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">convert_message_to_dict</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">to_messages</span><span class="p">()</span>
+    <span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_nd_provider_to_langchain_provider</span><span class="p">(</span><span class="n">llm_config_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">provider</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">llm_config_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+    <span class="n">provider</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">provider</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;google&quot;</span><span class="p">,</span> <span class="s2">&quot;google_genai&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="s2">&quot;mistralai&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;togetherai&quot;</span><span class="p">,</span> <span class="s2">&quot;together&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, NotDiamond.
+      <span class="lastupdated">Last updated on Nov 22, 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>

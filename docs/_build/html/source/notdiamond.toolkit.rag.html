@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>notdiamond.toolkit.rag &mdash; NotDiamond 0.3.25</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=30ad20df"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="notdiamond.toolkit.litellm" href="notdiamond.toolkit.litellm.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="../index.html" class="icon icon-home">
+            NotDiamond
+          </a>
+              <div class="version">
+                0.3.25
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Getting started with Not Diamond</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="notdiamond.html">NotDiamond package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.llms.html">notdiamond.llms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.metrics.html">notdiamond.metrics</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="notdiamond.toolkit.html">notdiamond.toolkit</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.litellm.html">notdiamond.toolkit.litellm</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">notdiamond.toolkit.rag</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-notdiamond.toolkit.rag.document_loaders">notdiamond.toolkit.rag.document_loaders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-notdiamond.toolkit.rag.evaluation_dataset">notdiamond.toolkit.rag.evaluation_dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-notdiamond.toolkit.rag.evaluation">notdiamond.toolkit.rag.evaluation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-notdiamond.toolkit.rag.llms">notdiamond.toolkit.rag.llms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-notdiamond.toolkit.rag.metrics">notdiamond.toolkit.rag.metrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-notdiamond.toolkit.rag.testset">notdiamond.toolkit.rag.testset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-notdiamond.toolkit.rag.workflow">notdiamond.toolkit.rag.workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond-toolkit-custom-router">notdiamond.toolkit.custom_router</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.html#module-notdiamond.toolkit.langchain">notdiamond.toolkit.langchain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.html#module-notdiamond.toolkit.openai">notdiamond.toolkit.openai</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.callbacks">notdiamond.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.exceptions">notdiamond.exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.settings">notdiamond.settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.types">notdiamond.types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.prompts">notdiamond.prompts</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NotDiamond</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="notdiamond.html">NotDiamond package</a></li>
+          <li class="breadcrumb-item"><a href="notdiamond.toolkit.html">notdiamond.toolkit</a></li>
+      <li class="breadcrumb-item active">notdiamond.toolkit.rag</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <section id="notdiamond-toolkit-rag">
+<h1>notdiamond.toolkit.rag<a class="headerlink" href="#notdiamond-toolkit-rag" title="Link to this heading"></a></h1>
+<section id="module-notdiamond.toolkit.rag.document_loaders">
+<span id="notdiamond-toolkit-rag-document-loaders"></span><h2>notdiamond.toolkit.rag.document_loaders<a class="headerlink" href="#module-notdiamond.toolkit.rag.document_loaders" title="Link to this heading"></a></h2>
+</section>
+<section id="module-notdiamond.toolkit.rag.evaluation_dataset">
+<span id="notdiamond-toolkit-rag-evaluation-dataset"></span><h2>notdiamond.toolkit.rag.evaluation_dataset<a class="headerlink" href="#module-notdiamond.toolkit.rag.evaluation_dataset" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.evaluation_dataset.</span></span><span class="sig-name descname"><span class="pre">RAGEvaluationDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">t.List</span><span class="p"><span class="pre">[</span></span><span class="pre">Sample</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/evaluation_dataset.html#RAGEvaluationDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset" title="Link to this definition"></a></dt>
+<dd><p>Represents a dataset of RAG evaluation samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>samples</strong> (<em>List</em><em>[</em><em>Sample</em><em>]</em>)</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.samples">
+<span class="sig-name descname"><span class="pre">samples</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.samples" title="Link to this definition"></a></dt>
+<dd><p>A list of evaluation samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[BaseSample]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.validate_samples">
+<span class="sig-name descname"><span class="pre">validate_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.validate_samples" title="Link to this definition"></a></dt>
+<dd><p>Validates that all samples are of the same type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.get_sample_type">
+<span class="sig-name descname"><span class="pre">get_sample_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.get_sample_type" title="Link to this definition"></a></dt>
+<dd><p>Returns the type of the samples in the dataset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_hf_dataset">
+<span class="sig-name descname"><span class="pre">to_hf_dataset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_hf_dataset" title="Link to this definition"></a></dt>
+<dd><p>Converts the dataset to a Hugging Face Dataset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_pandas">
+<span class="sig-name descname"><span class="pre">to_pandas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_pandas" title="Link to this definition"></a></dt>
+<dd><p>Converts the dataset to a pandas DataFrame.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.features">
+<span class="sig-name descname"><span class="pre">features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.features" title="Link to this definition"></a></dt>
+<dd><p>Returns the features of the samples.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.from_list">
+<span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/evaluation_dataset.html#RAGEvaluationDataset.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.from_list" title="Link to this definition"></a></dt>
+<dd><p>Creates an EvaluationDataset from a list of dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>List</em><em>[</em><em>Dict</em><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.from_dict">
+<span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.from_dict" title="Link to this definition"></a></dt>
+<dd><p>Creates an EvaluationDataset from a dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_csv">
+<span class="sig-name descname"><span class="pre">to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_csv" title="Link to this definition"></a></dt>
+<dd><p>Converts the dataset to a CSV file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_jsonl">
+<span class="sig-name descname"><span class="pre">to_jsonl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_jsonl" title="Link to this definition"></a></dt>
+<dd><p>Converts the dataset to a JSONL file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.from_jsonl">
+<span class="sig-name descname"><span class="pre">from_jsonl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.from_jsonl" title="Link to this definition"></a></dt>
+<dd><p>Creates an EvaluationDataset from a JSONL file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/evaluation_dataset.html#RAGEvaluationDataset.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Creates an RagasDataset from a list of dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>List</em><em>[</em><em>Dict</em><em>]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.is_multi_turn">
+<span class="sig-name descname"><span class="pre">is_multi_turn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/evaluation_dataset.html#RAGEvaluationDataset.is_multi_turn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.is_multi_turn" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_list">
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/evaluation_dataset.html#RAGEvaluationDataset.to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_list" title="Link to this definition"></a></dt>
+<dd><p>Converts the samples to a list of dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[<em>Dict</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.evaluation_dataset.</span></span><span class="sig-name descname"><span class="pre">RAGSample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retrieved_contexts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_contexts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_responses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rubrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generator_llm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/evaluation_dataset.html#RAGSample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample" title="Link to this definition"></a></dt>
+<dd><p>Represents RAG evaluation samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_input</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>retrieved_contexts</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>reference_contexts</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>response</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>multi_responses</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>reference</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>rubrics</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>generation_prompt</strong> (<em>str</em>)</p></li>
+<li><p><strong>generator_llm</strong> (<em>str</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.user_input">
+<span class="sig-name descname"><span class="pre">user_input</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.user_input" title="Link to this definition"></a></dt>
+<dd><p>The input query from the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.retrieved_contexts">
+<span class="sig-name descname"><span class="pre">retrieved_contexts</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.retrieved_contexts" title="Link to this definition"></a></dt>
+<dd><p>List of contexts retrieved for the query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[List[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.reference_contexts">
+<span class="sig-name descname"><span class="pre">reference_contexts</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.reference_contexts" title="Link to this definition"></a></dt>
+<dd><p>List of reference contexts for the query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[List[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.response">
+<span class="sig-name descname"><span class="pre">response</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.response" title="Link to this definition"></a></dt>
+<dd><p>The generated response for the query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.generation_prompt">
+<span class="sig-name descname"><span class="pre">generation_prompt</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.generation_prompt" title="Link to this definition"></a></dt>
+<dd><p>The input prompt to the generator LLM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.generator_llm">
+<span class="sig-name descname"><span class="pre">generator_llm</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.generator_llm" title="Link to this definition"></a></dt>
+<dd><p>The LLM used to generate the response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.multi_responses">
+<span class="sig-name descname"><span class="pre">multi_responses</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.multi_responses" title="Link to this definition"></a></dt>
+<dd><p>List of multiple responses generated for the query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[List[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.reference">
+<span class="sig-name descname"><span class="pre">reference</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.reference" title="Link to this definition"></a></dt>
+<dd><p>The reference answer for the query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.rubric">
+<span class="sig-name descname"><span class="pre">rubric</span></span><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.rubric" title="Link to this definition"></a></dt>
+<dd><p>Evaluation rubric for the sample.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[Dict[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">generation_prompt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">generator_llm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation_dataset.RAGSample.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'generation_prompt':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'generator_llm':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'multi_responses':</span> <span class="pre">FieldInfo(annotation=Union[List[str],</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'reference':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'reference_contexts':</span> <span class="pre">FieldInfo(annotation=Union[List[str],</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'response':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'retrieved_contexts':</span> <span class="pre">FieldInfo(annotation=Union[List[str],</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'rubrics':</span> <span class="pre">FieldInfo(annotation=Union[Dict[str,</span> <span class="pre">str],</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'user_input':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None)}</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGSample.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-notdiamond.toolkit.rag.evaluation">
+<span id="notdiamond-toolkit-rag-evaluation"></span><h2>notdiamond.toolkit.rag.evaluation<a class="headerlink" href="#module-notdiamond.toolkit.rag.evaluation" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation.auto_optimize">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.evaluation.</span></span><span class="sig-name descname"><span class="pre">auto_optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow" title="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow"><span class="pre">BaseNDRagWorkflow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_trials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/evaluation.html#auto_optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation.auto_optimize" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workflow</strong> (<a class="reference internal" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow" title="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow"><em>BaseNDRagWorkflow</em></a>)</p></li>
+<li><p><strong>n_trials</strong> (<em>int</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation.evaluate">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.evaluation.</span></span><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dataset:</span> <span class="pre">~notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset,</span> <span class="pre">metrics:</span> <span class="pre">~typing.Sequence[~ragas.metrics.base.Metric]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">llm:</span> <span class="pre">~ragas.llms.base.BaseRagasLLM</span> <span class="pre">|</span> <span class="pre">~langchain_core.language_models.base.BaseLanguageModel</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">embeddings:</span> <span class="pre">~ragas.embeddings.base.BaseRagasEmbeddings</span> <span class="pre">|</span> <span class="pre">~langchain_core.embeddings.embeddings.Embeddings</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">callbacks:</span> <span class="pre">~typing.List[~langchain_core.callbacks.base.BaseCallbackHandler]</span> <span class="pre">|</span> <span class="pre">~langchain_core.callbacks.base.BaseCallbackManager</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">in_ci:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">run_config:</span> <span class="pre">~ragas.run_config.RunConfig</span> <span class="pre">=</span> <span class="pre">RunConfig(timeout=180,</span> <span class="pre">max_retries=10,</span> <span class="pre">max_wait=60,</span> <span class="pre">max_workers=16,</span> <span class="pre">exception_types=(&lt;class</span> <span class="pre">'Exception'&gt;,),</span> <span class="pre">log_tenacity=False,</span> <span class="pre">seed=42),</span> <span class="pre">token_usage_parser:</span> <span class="pre">~typing.Callable[[~langchain_core.outputs.llm_result.LLMResult</span> <span class="pre">|</span> <span class="pre">~langchain_core.outputs.chat_result.ChatResult],</span> <span class="pre">TokenUsage]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">raise_exceptions:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">column_map:</span> <span class="pre">~typing.Dict[str,</span> <span class="pre">str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">show_progress:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">batch_size:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">generator_llms:</span> <span class="pre">~typing.List[~notdiamond.llms.config.LLMConfig]</span> <span class="pre">=</span> <span class="pre">[]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/evaluation.html#evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation.evaluate" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset" title="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset"><em>RAGEvaluationDataset</em></a>)</p></li>
+<li><p><strong>metrics</strong> (<em>Sequence</em><em>[</em><em>Metric</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>llm</strong> (<em>BaseRagasLLM</em><em> | </em><em>BaseLanguageModel</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>embeddings</strong> (<em>BaseRagasEmbeddings</em><em> | </em><em>Embeddings</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>callbacks</strong> (<em>List</em><em>[</em><em>BaseCallbackHandler</em><em>] </em><em>| </em><em>BaseCallbackManager</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>in_ci</strong> (<em>bool</em>)</p></li>
+<li><p><strong>run_config</strong> (<em>RunConfig</em>)</p></li>
+<li><p><strong>token_usage_parser</strong> (<em>Callable</em><em>[</em><em>[</em><em>LLMResult</em><em> | </em><em>ChatResult</em><em>]</em><em>, </em><em>TokenUsage</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>raise_exceptions</strong> (<em>bool</em>)</p></li>
+<li><p><strong>column_map</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>show_progress</strong> (<em>bool</em>)</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>generator_llms</strong> (<em>List</em><em>[</em><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><em>LLMConfig</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Dict</em>[str, <em>DataFrame</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.evaluation.get_eval_dataset">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.evaluation.</span></span><span class="sig-name descname"><span class="pre">get_eval_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workflow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow" title="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow"><span class="pre">BaseNDRagWorkflow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generator_llm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><span class="pre">LLMConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/evaluation.html#get_eval_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.evaluation.get_eval_dataset" title="Link to this definition"></a></dt>
+<dd><p>Create a dataset of RAGSample objects to evaluate the performance of a RAG workflow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_queries</strong> (<em>DataFrame</em>) – A pandas DataFrame with schema implied by the method below.</p></li>
+<li><p><strong>workflow</strong> (<a class="reference internal" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow" title="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow"><em>BaseNDRagWorkflow</em></a>) – BaseNDRagWorkflow subclass created by the user.</p></li>
+<li><p><strong>generation_prompt</strong> (<em>str</em>)</p></li>
+<li><p><strong>generator_llm</strong> (<a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><em>LLMConfig</em></a><em> | </em><em>str</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Schema for test_queries can be found below
+<a class="reference external" href="https://docs.ragas.io/en/stable/references/evaluation_schema/#ragas.dataset_schema.SingleTurnSample">https://docs.ragas.io/en/stable/references/evaluation_schema/#ragas.dataset_schema.SingleTurnSample</a></p>
+</dd></dl>
+
+</section>
+<section id="module-notdiamond.toolkit.rag.llms">
+<span id="notdiamond-toolkit-rag-llms"></span><h2>notdiamond.toolkit.rag.llms<a class="headerlink" href="#module-notdiamond.toolkit.rag.llms" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.llms.get_embedding">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.llms.</span></span><span class="sig-name descname"><span class="pre">get_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_model_config_or_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.EmbeddingConfig" title="notdiamond.llms.config.EmbeddingConfig"><span class="pre">EmbeddingConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LangchainEmbeddingsWrapper</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">HuggingfaceEmbeddings</span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/llms.html#get_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.llms.get_embedding" title="Link to this definition"></a></dt>
+<dd><p>Build the embedding model object compatible with evaluation metrics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>embedding_model_config_or_str</strong> (<em>Union</em><em>[</em><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.EmbeddingConfig" title="notdiamond.llms.config.EmbeddingConfig"><em>EmbeddingConfig</em></a><em>, </em><em>str</em><em>]</em>) – an EmbeddingConfig object
+or an embedding model string that specifies the embedding model to construct.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>LangchainEmbeddingsWrapper</em> | <em>HuggingfaceEmbeddings</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.llms.get_llm">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.llms.</span></span><span class="sig-name descname"><span class="pre">get_llm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">llm_config_or_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><span class="pre">LLMConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LangchainLLMWrapper</span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/llms.html#get_llm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.llms.get_llm" title="Link to this definition"></a></dt>
+<dd><p>Build the LLM object compatible with evaluation metrics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>llm_config_or_str</strong> (<em>Union</em><em>[</em><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig" title="notdiamond.llms.config.LLMConfig"><em>LLMConfig</em></a><em>, </em><em>str</em><em>]</em>) – a LLMConfig object or a model string
+that specifies the LLM to construct.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>LangchainLLMWrapper</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-notdiamond.toolkit.rag.metrics">
+<span id="notdiamond-toolkit-rag-metrics"></span><h2>notdiamond.toolkit.rag.metrics<a class="headerlink" href="#module-notdiamond.toolkit.rag.metrics" title="Link to this heading"></a></h2>
+</section>
+<section id="module-notdiamond.toolkit.rag.testset">
+<span id="notdiamond-toolkit-rag-testset"></span><h2>notdiamond.toolkit.rag.testset<a class="headerlink" href="#module-notdiamond.toolkit.rag.testset" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.testset.TestDataGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.testset.</span></span><span class="sig-name descname"><span class="pre">TestDataGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">llm:</span> <span class="pre">~ragas.llms.base.BaseRagasLLM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_model:</span> <span class="pre">~ragas.embeddings.base.BaseRagasEmbeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge_graph:</span> <span class="pre">~ragas.testset.graph.KnowledgeGraph</span> <span class="pre">=</span> <span class="pre">KnowledgeGraph(nodes:</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relationships:</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persona_list:</span> <span class="pre">~typing.List[~ragas.testset.persona.Persona]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/testset.html#TestDataGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.testset.TestDataGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestsetGenerator</span></code></p>
+<p>RAG Test data generator class.
+Generates test cases from documents for evaluating RAG workflows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>llm</strong> (<em>BaseRagasLLM</em>) – An LLM object inherited from BaseRagasLLM. Obtain this
+via the get_llm tool.</p></li>
+<li><p><strong>embedding_model</strong> (<em>BaseRagasEmbeddings</em>) – An embedding model object inherited
+from BaseRagasEmbeddings. Obtain this via the get_embedding tool.</p></li>
+<li><p><strong>knowledge_graph</strong> (<em>KnowledgeGraph</em>) – The knowledge graph to use for the generation
+process. Default empty.</p></li>
+<li><p><strong>persona_list</strong> (<em>List</em><em>[</em><em>Persona</em><em>] </em><em>| </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.testset.TestDataGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">llm:</span> <span class="pre">~ragas.llms.base.BaseRagasLLM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_model:</span> <span class="pre">~ragas.embeddings.base.BaseRagasEmbeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge_graph:</span> <span class="pre">~ragas.testset.graph.KnowledgeGraph</span> <span class="pre">=</span> <span class="pre">KnowledgeGraph(nodes:</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relationships:</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persona_list:</span> <span class="pre">~typing.List[~ragas.testset.persona.Persona]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/testset.html#TestDataGenerator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.testset.TestDataGenerator.__init__" title="Link to this definition"></a></dt>
+<dd><p>RAG Test data generator class.
+Generates test cases from documents for evaluating RAG workflows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>llm</strong> (<em>BaseRagasLLM</em>) – An LLM object inherited from BaseRagasLLM. Obtain this
+via the get_llm tool.</p></li>
+<li><p><strong>embedding_model</strong> (<em>BaseRagasEmbeddings</em>) – An embedding model object inherited
+from BaseRagasEmbeddings. Obtain this via the get_embedding tool.</p></li>
+<li><p><strong>knowledge_graph</strong> (<em>KnowledgeGraph</em>) – The knowledge graph to use for the generation
+process. Default empty.</p></li>
+<li><p><strong>persona_list</strong> (<em>List</em><em>[</em><em>Persona</em><em>] </em><em>| </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.testset.TestDataGenerator.generate_from_docs">
+<span class="sig-name descname"><span class="pre">generate_from_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Document</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Document</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testset_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseGraphTransformation</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Parallel</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">BaseGraphTransformation</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms_llm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseRagasLLM</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">BaseLLM</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms_embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseRagasEmbeddings</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">BaseEmbedding</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query_distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseSynthesizer</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RunConfig</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseCallbackHandler</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">BaseCallbackManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_debugging_logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exceptions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/testset.html#TestDataGenerator.generate_from_docs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.testset.TestDataGenerator.generate_from_docs" title="Link to this definition"></a></dt>
+<dd><p>Generates an evaluation dataset based on given Langchain or Llama Index documents and parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>documents</strong> (<em>Sequence</em><em>[</em><em>Document</em><em>] </em><em>| </em><em>Sequence</em><em>[</em><em>Document</em><em>]</em>) – Sequence[LCDocument]
+A sequence of Langchain documents to use as source material</p></li>
+<li><p><strong>testset_size</strong> (<em>int</em>) – int
+The number of test samples to generate</p></li>
+<li><p><strong>transforms</strong> (<em>List</em><em>[</em><em>BaseGraphTransformation</em><em>] </em><em>| </em><em>Parallel</em><em> | </em><em>BaseGraphTransformation</em><em> | </em><em>None</em>) – Optional[Transforms], optional
+Custom transforms to apply to the documents, by default None</p></li>
+<li><p><strong>transforms_llm</strong> (<em>BaseRagasLLM</em><em> | </em><em>BaseLLM</em><em> | </em><em>None</em>) – Optional[BaseRagasLLM], optional
+LLM to use for transforms if different from instance LLM, by default None</p></li>
+<li><p><strong>transforms_embedding_model</strong> (<em>BaseRagasEmbeddings</em><em> | </em><em>BaseEmbedding</em><em> | </em><em>None</em>) – Optional[BaseRagasEmbeddings], optional
+Embedding model to use for transforms if different from instance model, by default None</p></li>
+<li><p><strong>query_distribution</strong> (<em>List</em><em>[</em><em>Tuple</em><em>[</em><em>BaseSynthesizer</em><em>, </em><em>float</em><em>]</em><em>] </em><em>| </em><em>None</em>) – Optional[QueryDistribution], optional
+Distribution of query types to generate, by default None</p></li>
+<li><p><strong>run_config</strong> (<em>RunConfig</em><em> | </em><em>None</em>) – Optional[RunConfig], optional
+Configuration for the generation run, by default None</p></li>
+<li><p><strong>callbacks</strong> (<em>List</em><em>[</em><em>BaseCallbackHandler</em><em>] </em><em>| </em><em>BaseCallbackManager</em><em> | </em><em>None</em>) – Optional[Callbacks], optional
+Callbacks to use during generation, by default None</p></li>
+<li><p><strong>with_debugging_logs</strong> (<em>bool</em>) – bool, optional
+Whether to include debug logs, by default False</p></li>
+<li><p><strong>raise_exceptions</strong> (<em>bool</em>) – bool, optional
+Whether to raise exceptions during generation, by default True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Testset</dt><dd><p>The generated evaluation dataset</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If no LLM or embedding model is provided either during initialization or as arguments</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>DataFrame</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.testset.TestDataGenerator.generate_with_llamaindex_docs">
+<span class="sig-name descname"><span class="pre">generate_with_llamaindex_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Document</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testset_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseGraphTransformation</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Parallel</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">BaseGraphTransformation</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms_llm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseLLM</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms_embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseEmbedding</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query_distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseSynthesizer</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RunConfig</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseCallbackHandler</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">BaseCallbackManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_debugging_logs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exceptions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/testset.html#TestDataGenerator.generate_with_llamaindex_docs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.testset.TestDataGenerator.generate_with_llamaindex_docs" title="Link to this definition"></a></dt>
+<dd><p>Generates an evaluation dataset based on given scenarios and parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>documents</strong> (<em>Sequence</em><em>[</em><em>Document</em><em>]</em>)</p></li>
+<li><p><strong>testset_size</strong> (<em>int</em>)</p></li>
+<li><p><strong>transforms</strong> (<em>List</em><em>[</em><em>BaseGraphTransformation</em><em>] </em><em>| </em><em>Parallel</em><em> | </em><em>BaseGraphTransformation</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>transforms_llm</strong> (<em>BaseLLM</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>transforms_embedding_model</strong> (<em>BaseEmbedding</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>query_distribution</strong> (<em>List</em><em>[</em><em>Tuple</em><em>[</em><em>BaseSynthesizer</em><em>, </em><em>float</em><em>]</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>run_config</strong> (<em>RunConfig</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>callbacks</strong> (<em>List</em><em>[</em><em>BaseCallbackHandler</em><em>] </em><em>| </em><em>BaseCallbackManager</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>raise_exceptions</strong> (<em>bool</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-notdiamond.toolkit.rag.workflow">
+<span id="notdiamond-toolkit-rag-workflow"></span><h2>notdiamond.toolkit.rag.workflow<a class="headerlink" href="#module-notdiamond.toolkit.rag.workflow" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.workflow.</span></span><span class="sig-name descname"><span class="pre">BaseNDRagWorkflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaluation_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset" title="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset"><span class="pre">RAGEvaluationDataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_maximize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#BaseNDRagWorkflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A base interface for a RAG workflow to be auto-evaluated by Not Diamond.</p>
+<p>Subclasses should define parameter_specs to type parameters they need to optimize,
+by using type annotations with the above dataclasses. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleNDRagWorkflow</span><span class="p">(</span><span class="n">BaseNDRagWorkflow</span><span class="p">):</span>
+    <span class="n">parameter_specs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;chunk_size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">IntValueRange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)],</span> <span class="mi">1000</span><span class="p">),</span>
+                        <span class="s2">&quot;chunk_overlap&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">IntValueRange</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">25</span><span class="p">)],</span> <span class="mi">100</span><span class="p">),</span>
+                        <span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">IntValueRange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="mi">5</span><span class="p">),</span>
+                        <span class="s2">&quot;algo&quot;</span><span class="p">:</span> <span class="p">(</span>
+                                <span class="n">Annotated</span><span class="p">[</span>
+                                        <span class="nb">str</span><span class="p">,</span>
+                                        <span class="n">CategoricalValueOptions</span><span class="p">(</span>
+                                                <span class="p">[</span>
+                                                        <span class="s2">&quot;BM25&quot;</span><span class="p">,</span>
+                                                        <span class="s2">&quot;openai_small&quot;</span><span class="p">,</span>
+                                                        <span class="s2">&quot;openai_large&quot;</span><span class="p">,</span>
+                                                        <span class="s2">&quot;cohere_eng&quot;</span><span class="p">,</span>
+                                                        <span class="s2">&quot;cohere_multi&quot;</span><span class="p">,</span>
+                                                <span class="p">]</span>
+                <span class="p">),</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;BM25&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">FloatValueRange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)],</span> <span class="mf">0.9</span><span class="p">),</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>evaluation_dataset</strong> (<a class="reference internal" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset" title="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset"><em>RAGEvaluationDataset</em></a>) – A dataset of RAG evaluation samples.</p></li>
+<li><p><strong>documents</strong> (<em>Any</em>) – The documents to use for RAG.</p></li>
+<li><p><strong>objective_maximize</strong> (<em>bool</em>) – Whether to maximize or minimize the objective defined below.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaluation_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset" title="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset"><span class="pre">RAGEvaluationDataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_maximize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#BaseNDRagWorkflow.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>evaluation_dataset</strong> (<a class="reference internal" href="#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset" title="notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset"><em>RAGEvaluationDataset</em></a>) – A dataset of RAG evaluation samples.</p></li>
+<li><p><strong>documents</strong> (<em>Any</em>) – The documents to use for RAG.</p></li>
+<li><p><strong>objective_maximize</strong> (<em>bool</em>) – Whether to maximize or minimize the objective defined below.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.get_parameter_range">
+<span class="sig-name descname"><span class="pre">get_parameter_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Type</span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#BaseNDRagWorkflow.get_parameter_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.get_parameter_range" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>param_name</strong> (<em>str</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Type</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.get_parameter_type">
+<span class="sig-name descname"><span class="pre">get_parameter_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Type</span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#BaseNDRagWorkflow.get_parameter_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.get_parameter_type" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>param_name</strong> (<em>str</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Type</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.get_response">
+<span class="sig-name descname"><span class="pre">get_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#BaseNDRagWorkflow.get_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.get_response" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query</strong> (<em>str</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.get_retrieved_context">
+<span class="sig-name descname"><span class="pre">get_retrieved_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#BaseNDRagWorkflow.get_retrieved_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.get_retrieved_context" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query</strong> (<em>str</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>List</em>[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.job_name">
+<span class="sig-name descname"><span class="pre">job_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#BaseNDRagWorkflow.job_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.job_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.objective">
+<span class="sig-name descname"><span class="pre">objective</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#BaseNDRagWorkflow.objective"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.objective" title="Link to this definition"></a></dt>
+<dd><p>Define the objective function for your RAG workflow. The workflow’s hyperparameters will be optimized
+according to values of this objective.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.rag_workflow">
+<span class="sig-name descname"><span class="pre">rag_workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#BaseNDRagWorkflow.rag_workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.rag_workflow" title="Link to this definition"></a></dt>
+<dd><p>Define RAG workflow components here by setting instance attrs on <cite>self</cite>. Those attributes will be set
+at init-time and available when retrieving context or generating responses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>documents</strong> (<em>Any</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.parameter_specs">
+<span class="sig-name descname"><span class="pre">parameter_specs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow.parameter_specs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.CategoricalValueOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.workflow.</span></span><span class="sig-name descname"><span class="pre">CategoricalValueOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#CategoricalValueOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.CategoricalValueOptions" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A list of categorical values for an auto-evaluated RAG pipeline. Useful for, eg. embedding algorithms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>)</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.CategoricalValueOptions.values">
+<span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.CategoricalValueOptions.values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.FloatValueRange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.workflow.</span></span><span class="sig-name descname"><span class="pre">FloatValueRange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#FloatValueRange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.FloatValueRange" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A range of float values for an auto-evaluated RAG pipeline. Useful for, eg. LLM temperature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lo</strong> (<em>float</em>)</p></li>
+<li><p><strong>hi</strong> (<em>float</em>)</p></li>
+<li><p><strong>step</strong> (<em>float</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.FloatValueRange.hi">
+<span class="sig-name descname"><span class="pre">hi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.FloatValueRange.hi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.FloatValueRange.lo">
+<span class="sig-name descname"><span class="pre">lo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.FloatValueRange.lo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.FloatValueRange.step">
+<span class="sig-name descname"><span class="pre">step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.FloatValueRange.step" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.IntValueRange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.rag.workflow.</span></span><span class="sig-name descname"><span class="pre">IntValueRange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/rag/workflow.html#IntValueRange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.IntValueRange" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A range of int values for an auto-evaluated RAG pipeline. Useful for, eg. RAG context chunk size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lo</strong> (<em>int</em>)</p></li>
+<li><p><strong>hi</strong> (<em>int</em>)</p></li>
+<li><p><strong>step</strong> (<em>int</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.IntValueRange.hi">
+<span class="sig-name descname"><span class="pre">hi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.IntValueRange.hi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.IntValueRange.lo">
+<span class="sig-name descname"><span class="pre">lo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.IntValueRange.lo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notdiamond.toolkit.rag.workflow.IntValueRange.step">
+<span class="sig-name descname"><span class="pre">step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#notdiamond.toolkit.rag.workflow.IntValueRange.step" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="notdiamond.toolkit.litellm.html" class="btn btn-neutral float-left" title="notdiamond.toolkit.litellm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, NotDiamond.
+      <span class="lastupdated">Last updated on Nov 22, 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>

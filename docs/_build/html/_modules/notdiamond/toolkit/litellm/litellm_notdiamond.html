@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>notdiamond.toolkit.litellm.litellm_notdiamond &mdash; NotDiamond 0.3.25</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=30ad20df"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../../../../search.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="../../../../index.html" class="icon icon-home">
+            NotDiamond
+          </a>
+              <div class="version">
+                0.3.25
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../source/intro.html">Getting started with Not Diamond</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../source/notdiamond.html">NotDiamond package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NotDiamond</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">notdiamond.toolkit.litellm.litellm_notdiamond</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <h1>Source code for notdiamond.toolkit.litellm.litellm_notdiamond</h1><div class="highlight"><pre>
+<span></span><span class="c1"># flake8: noqa</span>
+
+<span class="c1"># This file is a modified version of the original module provided by BerriAI.</span>
+<span class="c1"># We have modified the file to add support for Not Diamond, and include the following</span>
+<span class="c1"># license to comply with their license requirements:</span>
+
+<span class="c1"># MIT License</span>
+
+<span class="c1"># Copyright (c) 2023 Berri AI</span>
+
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+
+<span class="c1"># The above copyright notice and this permission notice shall be included in all</span>
+<span class="c1"># copies or substantial portions of the Software.</span>
+
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+
+<span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">httpx</span>
+<span class="kn">import</span> <span class="nn">litellm</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">litellm._version</span> <span class="kn">import</span> <span class="n">version</span>
+<span class="kn">from</span> <span class="nn">litellm.utils</span> <span class="kn">import</span> <span class="n">ModelResponse</span>
+
+<span class="c1"># dict to map notdiamond providers and models to litellm providers and models</span>
+<span class="n">ND2LITELLM</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># openai</span>
+    <span class="s2">&quot;openai/gpt-3.5-turbo&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-3.5-turbo-0125&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-3.5-turbo-0125&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-3.5-turbo-0125&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4-0613&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4-0613&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4o&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4o-2024-05-13&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4o-2024-05-13&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4-turbo&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4-turbo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4-turbo-2024-04-09&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4-turbo-2024-04-09&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4-turbo-preview&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4-turbo-preview&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4-0125-preview&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4-0125-preview&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4-1106-preview&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4-1106-preview&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4-1106-preview&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4-1106-preview&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4o-mini&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/gpt-4o-mini-2024-07-18&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt-4o-mini-2024-07-18&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/o1-preview-2024-09-12&quot;</span><span class="p">:</span> <span class="s2">&quot;o1-preview-2024-09-12&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/o1-preview&quot;</span><span class="p">:</span> <span class="s2">&quot;o1-preview&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/o1-mini-2024-09-12&quot;</span><span class="p">:</span> <span class="s2">&quot;o1-mini-2024-09-12&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;openai/o1-mini&quot;</span><span class="p">:</span> <span class="s2">&quot;o1-mini&quot;</span><span class="p">,</span>
+    <span class="c1"># anthropic</span>
+    <span class="s2">&quot;anthropic/claude-2.1&quot;</span><span class="p">:</span> <span class="s2">&quot;claude-2.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;anthropic/claude-3-opus-20240229&quot;</span><span class="p">:</span> <span class="s2">&quot;claude-3-opus-20240229&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;anthropic/claude-3-sonnet-20240229&quot;</span><span class="p">:</span> <span class="s2">&quot;claude-3-sonnet-20240229&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;anthropic/claude-3-5-sonnet-20240620&quot;</span><span class="p">:</span> <span class="s2">&quot;claude-3-5-sonnet-20240620&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;anthropic/claude-3-5-sonnet-20241022&quot;</span><span class="p">:</span> <span class="s2">&quot;claude-3-5-sonnet-20241022&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;anthropic/claude-3-5-sonnet-latest&quot;</span><span class="p">:</span> <span class="s2">&quot;claude-3-5-sonnet-20241022&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;anthropic/claude-3-5-haiku-20241022&quot;</span><span class="p">:</span> <span class="s2">&quot;claude-3-5-haiku-20241022&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;anthropic/claude-3-haiku-20240307&quot;</span><span class="p">:</span> <span class="s2">&quot;claude-3-haiku-20240307&quot;</span><span class="p">,</span>
+    <span class="c1"># mistral</span>
+    <span class="s2">&quot;mistral/mistral-large-latest&quot;</span><span class="p">:</span> <span class="s2">&quot;mistral/mistral-large-latest&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mistral/mistral-medium-latest&quot;</span><span class="p">:</span> <span class="s2">&quot;mistral/mistral-medium-latest&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mistral/mistral-small-latest&quot;</span><span class="p">:</span> <span class="s2">&quot;mistral/mistral-small-latest&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mistral/codestral-latest&quot;</span><span class="p">:</span> <span class="s2">&quot;mistral/codestral-latest&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mistral/open-mistral-7b&quot;</span><span class="p">:</span> <span class="s2">&quot;mistral/open-mistral-7b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mistral/open-mixtral-8x7b&quot;</span><span class="p">:</span> <span class="s2">&quot;mistral/open-mixtral-8x7b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mistral/open-mixtral-8x22b&quot;</span><span class="p">:</span> <span class="s2">&quot;mistral/open-mixtral-8x22b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mistral/mistral-large-2407&quot;</span><span class="p">:</span> <span class="s2">&quot;mistral/mistral-large-2407&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mistral/mistral-large-2402&quot;</span><span class="p">:</span> <span class="s2">&quot;mistral/mistral-large-2402&quot;</span><span class="p">,</span>
+    <span class="c1"># perplexity</span>
+    <span class="s2">&quot;perplexity/llama-3.1-sonar-large-128k-online&quot;</span><span class="p">:</span> <span class="s2">&quot;perplexity/llama-3.1-sonar-large-128k-online&quot;</span><span class="p">,</span>
+    <span class="c1"># cohere</span>
+    <span class="s2">&quot;cohere/command-r&quot;</span><span class="p">:</span> <span class="s2">&quot;cohere_chat/command-r&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cohere/command-r-plus&quot;</span><span class="p">:</span> <span class="s2">&quot;cohere_chat/command-r-plus&quot;</span><span class="p">,</span>
+    <span class="c1"># google</span>
+    <span class="s2">&quot;google/gemini-pro&quot;</span><span class="p">:</span> <span class="s2">&quot;gemini/gemini-pro&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;google/gemini-1.5-pro-latest&quot;</span><span class="p">:</span> <span class="s2">&quot;gemini/gemini-1.5-pro-latest&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;google/gemini-1.5-flash-latest&quot;</span><span class="p">:</span> <span class="s2">&quot;gemini/gemini-1.5-flash-latest&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;google/gemini-1.0-pro-latest&quot;</span><span class="p">:</span> <span class="s2">&quot;gemini/gemini-pro&quot;</span><span class="p">,</span>
+    <span class="c1"># replicate</span>
+    <span class="s2">&quot;replicate/mistral-7b-instruct-v0.2&quot;</span><span class="p">:</span> <span class="s2">&quot;replicate/mistralai/mistral-7b-instruct-v0.2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;replicate/mixtral-8x7b-instruct-v0.1&quot;</span><span class="p">:</span> <span class="s2">&quot;replicate/mistralai/mixtral-8x7b-instruct-v0.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;replicate/meta-llama-3-70b-instruct&quot;</span><span class="p">:</span> <span class="s2">&quot;replicate/meta/meta-llama-3-70b-instruct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;replicate/meta-llama-3-8b-instruct&quot;</span><span class="p">:</span> <span class="s2">&quot;replicate/meta/meta-llama-3-8b-instruct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;replicate/meta-llama-3.1-405b-instruct&quot;</span><span class="p">:</span> <span class="s2">&quot;replicate/meta/meta-llama-3.1-405b-instruct&quot;</span><span class="p">,</span>
+    <span class="c1"># togetherai</span>
+    <span class="s2">&quot;togetherai/Mistral-7B-Instruct-v0.2&quot;</span><span class="p">:</span> <span class="s2">&quot;together_ai/mistralai/Mistral-7B-Instruct-v0.2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;togetherai/Mixtral-8x7B-Instruct-v0.1&quot;</span><span class="p">:</span> <span class="s2">&quot;together_ai/mistralai/Mixtral-8x7B-Instruct-v0.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;togetherai/Mixtral-8x22B-Instruct-v0.1&quot;</span><span class="p">:</span> <span class="s2">&quot;together_ai/mistralai/Mixtral-8x22B-Instruct-v0.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;togetherai/Llama-3-70b-chat-hf&quot;</span><span class="p">:</span> <span class="s2">&quot;together_ai/meta-llama/Llama-3-70b-chat-hf&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;togetherai/Llama-3-8b-chat-hf&quot;</span><span class="p">:</span> <span class="s2">&quot;together_ai/meta-llama/Llama-3-8b-chat-hf&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;togetherai/Qwen2-72B-Instruct&quot;</span><span class="p">:</span> <span class="s2">&quot;together_ai/Qwen/Qwen2-72B-Instruct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;togetherai/Meta-Llama-3.1-8B-Instruct-Turbo&quot;</span><span class="p">:</span> <span class="s2">&quot;together_ai/meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;togetherai/Meta-Llama-3.1-70B-Instruct-Turbo&quot;</span><span class="p">:</span> <span class="s2">&quot;together_ai/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;togetherai/Meta-Llama-3.1-405B-Instruct-Turbo&quot;</span><span class="p">:</span> <span class="s2">&quot;together_ai/meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="NotDiamondError">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.litellm_notdiamond.NotDiamondError">[docs]</a>
+<span class="k">class</span> <span class="nc">NotDiamondError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">status_code</span><span class="p">,</span>
+        <span class="n">message</span><span class="p">,</span>
+        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://api.notdiamond.ai&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="n">status_code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">status_code</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">message</span>
+        <span class="p">)</span>  <span class="c1"># Call the base class constructor with the parameters it needs</span></div>
+
+
+
+<div class="viewcode-block" id="NotDiamondConfig">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.litellm_notdiamond.NotDiamondConfig">[docs]</a>
+<span class="k">class</span> <span class="nc">NotDiamondConfig</span><span class="p">:</span>
+    <span class="n">llm_providers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
+    <span class="n">tools</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">max_model_depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="c1"># tradeoff params: &quot;cost&quot;/&quot;latency&quot;</span>
+    <span class="n">tradeoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">hash_content</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">llm_providers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
+        <span class="n">tools</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">tradeoff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">preference_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">hash_content</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">locals_</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">locals_</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="s2">&quot;self&quot;</span> <span class="ow">and</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="NotDiamondConfig.get_config">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.litellm_notdiamond.NotDiamondConfig.get_config">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">v</span><span class="p">,</span>
+                <span class="p">(</span>
+                    <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">,</span>
+                    <span class="n">types</span><span class="o">.</span><span class="n">BuiltinFunctionType</span><span class="p">,</span>
+                    <span class="nb">classmethod</span><span class="p">,</span>
+                    <span class="nb">staticmethod</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+            <span class="ow">and</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">or</span> <span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;llm_providers&quot;</span>
+        <span class="p">}</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="validate_environment">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.litellm_notdiamond.validate_environment">[docs]</a>
+<span class="k">def</span> <span class="nf">validate_environment</span><span class="p">(</span><span class="n">api_key</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Missing NOTDIAMOND_API_KEY in env - A call is being made to Not Diamond but no key is set either in the environment variables or via params&quot;</span>
+        <span class="p">)</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer &quot;</span> <span class="o">+</span> <span class="n">api_key</span><span class="p">,</span>
+        <span class="s2">&quot;accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;litellm/</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">headers</span></div>
+
+
+
+<div class="viewcode-block" id="get_litellm_model">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.litellm_notdiamond.get_litellm_model">[docs]</a>
+<span class="k">def</span> <span class="nf">get_litellm_model</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">nd_provider</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;providers&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;provider&quot;</span><span class="p">]</span>
+    <span class="n">nd_model</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;providers&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;model&quot;</span><span class="p">]</span>
+    <span class="n">nd_provider_model</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nd_provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">nd_model</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">litellm_model</span> <span class="o">=</span> <span class="n">ND2LITELLM</span><span class="p">[</span><span class="n">nd_provider_model</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">litellm_model</span></div>
+
+
+
+<div class="viewcode-block" id="update_litellm_params">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.litellm_notdiamond.update_litellm_params">[docs]</a>
+<span class="k">def</span> <span class="nf">update_litellm_params</span><span class="p">(</span><span class="n">litellm_params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a new litellm_params dict with non-default litellm_params from the original call, custom_llm_provider and api_base</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_litellm_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">litellm_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># all litellm_params have defaults of None or False, except force_timeout</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="s2">&quot;force_timeout&quot;</span> <span class="ow">and</span> <span class="n">v</span> <span class="o">!=</span> <span class="mi">600</span><span class="p">)</span> <span class="ow">or</span> <span class="n">v</span><span class="p">:</span>
+            <span class="n">new_litellm_params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">if</span> <span class="s2">&quot;custom_llm_provider&quot;</span> <span class="ow">in</span> <span class="n">new_litellm_params</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">new_litellm_params</span><span class="p">[</span><span class="s2">&quot;custom_llm_provider&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;api_base&quot;</span> <span class="ow">in</span> <span class="n">new_litellm_params</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">new_litellm_params</span><span class="p">[</span><span class="s2">&quot;api_base&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;api_key&quot;</span> <span class="ow">in</span> <span class="n">new_litellm_params</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">new_litellm_params</span><span class="p">[</span><span class="s2">&quot;api_key&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">new_litellm_params</span></div>
+
+
+
+<div class="viewcode-block" id="completion">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.litellm_notdiamond.completion">[docs]</a>
+<span class="k">def</span> <span class="nf">completion</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+    <span class="n">api_base</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">model_response</span><span class="p">:</span> <span class="n">ModelResponse</span><span class="p">,</span>
+    <span class="n">print_verbose</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="p">,</span>
+    <span class="n">logging_obj</span><span class="p">,</span>
+    <span class="n">optional_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">litellm_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">logger_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">validate_environment</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
+    <span class="n">completion_url</span> <span class="o">=</span> <span class="n">api_base</span>
+
+    <span class="c1">## Load Config</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">NotDiamondConfig</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">optional_params</span><span class="p">:</span>
+            <span class="n">optional_params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+
+    <span class="c1"># separate ND optional params from litellm optional params</span>
+    <span class="n">nd_params</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;llm_providers&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tools&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;max_model_depth&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tradeoff&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;preference_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hash_content&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">selected_model_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">optional_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">nd_params</span><span class="p">:</span>
+            <span class="n">selected_model_params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">if</span> <span class="s2">&quot;tools&quot;</span> <span class="ow">in</span> <span class="n">optional_params</span><span class="p">:</span>
+        <span class="n">selected_model_params</span><span class="p">[</span><span class="s2">&quot;tools&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">optional_params</span><span class="p">[</span><span class="s2">&quot;tools&quot;</span><span class="p">]</span>
+    <span class="c1"># remove any optional params that are not in the ND params</span>
+    <span class="n">optional_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">optional_params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">nd_params</span>
+    <span class="p">}</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">messages</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">optional_params</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">## LOGGING</span>
+    <span class="n">logging_obj</span><span class="o">.</span><span class="n">pre_call</span><span class="p">(</span>
+        <span class="nb">input</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+        <span class="n">additional_args</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;complete_input_dict&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="n">headers</span><span class="p">,</span>
+            <span class="s2">&quot;api_base&quot;</span><span class="p">:</span> <span class="n">completion_url</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="c1">## MODEL SELECTION CALL</span>
+    <span class="n">nd_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="n">api_base</span><span class="p">,</span>
+        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+        <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">print_verbose</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Raw response from Not Diamond: </span><span class="si">{</span><span class="n">nd_response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1">## RESPONSE OBJECT</span>
+    <span class="k">if</span> <span class="n">nd_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotDiamondError</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">nd_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">nd_response</span><span class="o">.</span><span class="n">text</span>
+        <span class="p">)</span>
+    <span class="n">nd_response</span> <span class="o">=</span> <span class="n">nd_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">litellm_model</span> <span class="o">=</span> <span class="n">get_litellm_model</span><span class="p">(</span><span class="n">nd_response</span><span class="p">)</span>
+
+    <span class="c1">## COMPLETION CALL</span>
+    <span class="n">litellm_params</span> <span class="o">=</span> <span class="n">update_litellm_params</span><span class="p">(</span><span class="n">litellm_params</span><span class="p">)</span>
+
+    <span class="n">is_async_call</span> <span class="o">=</span> <span class="n">litellm_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;acompletion&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_async_call</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">litellm</span><span class="o">.</span><span class="n">acompletion</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">litellm_model</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">selected_model_params</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">litellm_params</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">litellm</span><span class="o">.</span><span class="n">completion</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">litellm_model</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">selected_model_params</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">litellm_params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, NotDiamond.
+      <span class="lastupdated">Last updated on Nov 22, 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>

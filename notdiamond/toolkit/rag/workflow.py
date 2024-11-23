@@ -58,28 +58,31 @@ class BaseNDRagWorkflow:
     Subclasses should define parameter_specs to type parameters they need to optimize,
     by using type annotations with the above dataclasses. For example:
 
-    class ExampleNDRagWorkflow(BaseNDRagWorkflow):
-        parameter_specs = {
-            "chunk_size": (Annotated[int, IntValueRange(1000, 2500, 500)], 1000),
-            "chunk_overlap": (Annotated[int, IntValueRange(50, 200, 25)], 100),
-            "top_k": (Annotated[int, IntValueRange(1, 20, 1)], 5),
-            "algo": (
-                Annotated[
-                    str,
-                    CategoricalValueOptions(
-                        [
-                            "BM25",
-                            "openai_small",
-                            "openai_large",
-                            "cohere_eng",
-                            "cohere_multi",
-                        ]
-                    ),
-                ],
-                "BM25",
-            ),
-            "temperature": (Annotated[float, FloatValueRange(0.0, 1.0, 0.1)], 0.9),
-        }
+    .. code-block:: python
+
+        class ExampleNDRagWorkflow(BaseNDRagWorkflow):
+            parameter_specs = {
+                "chunk_size": (Annotated[int, IntValueRange(1000, 2500, 500)], 1000),
+                                "chunk_overlap": (Annotated[int, IntValueRange(50, 200, 25)], 100),
+                                "top_k": (Annotated[int, IntValueRange(1, 20, 1)], 5),
+                                "algo": (
+                                        Annotated[
+                                                str,
+                                                CategoricalValueOptions(
+                                                        [
+                                                                "BM25",
+                                                                "openai_small",
+                                                                "openai_large",
+                                                                "cohere_eng",
+                                                                "cohere_multi",
+                                                        ]
+                        ),
+                    ],
+                    "BM25",
+                ),
+                "temperature": (Annotated[float, FloatValueRange(0.0, 1.0, 0.1)], 0.9),
+            }
+
     """
 
     parameter_specs: ClassVar[Dict[str, tuple[Type, Any]]] = {}
