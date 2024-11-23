@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>notdiamond.toolkit.rag.evaluation_dataset &mdash; NotDiamond 0.3.25</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=30ad20df"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../../../../search.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="../../../../index.html" class="icon icon-home">
+            NotDiamond
+          </a>
+              <div class="version">
+                0.3.25
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../source/intro.html">Getting started with Not Diamond</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../source/notdiamond.html">NotDiamond package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NotDiamond</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">notdiamond.toolkit.rag.evaluation_dataset</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <h1>Source code for notdiamond.toolkit.rag.evaluation_dataset</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">overload</span>
+
+<span class="kn">from</span> <span class="nn">ragas</span> <span class="kn">import</span> <span class="n">MultiTurnSample</span><span class="p">,</span> <span class="n">SingleTurnSample</span>
+<span class="kn">from</span> <span class="nn">ragas.dataset_schema</span> <span class="kn">import</span> <span class="n">RagasDataset</span>
+
+
+<div class="viewcode-block" id="RAGSample">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation_dataset.RAGSample">[docs]</a>
+<span class="k">class</span> <span class="nc">RAGSample</span><span class="p">(</span><span class="n">SingleTurnSample</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents RAG evaluation samples.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        user_input (Optional[str]): The input query from the user.</span>
+<span class="sd">        retrieved_contexts (Optional[List[str]]): List of contexts retrieved for the query.</span>
+<span class="sd">        reference_contexts (Optional[List[str]]): List of reference contexts for the query.</span>
+<span class="sd">        response (Optional[str]): The generated response for the query.</span>
+<span class="sd">        generation_prompt (str): The input prompt to the generator LLM.</span>
+<span class="sd">        generator_llm (str): The LLM used to generate the response.</span>
+<span class="sd">        multi_responses (Optional[List[str]]): List of multiple responses generated for the query.</span>
+<span class="sd">        reference (Optional[str]): The reference answer for the query.</span>
+<span class="sd">        rubric (Optional[Dict[str, str]]): Evaluation rubric for the sample.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">generation_prompt</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">generator_llm</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+
+<div class="viewcode-block" id="RAGEvaluationDataset">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">RAGEvaluationDataset</span><span class="p">(</span><span class="n">RagasDataset</span><span class="p">[</span><span class="n">RAGSample</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a dataset of RAG evaluation samples.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        samples (List[BaseSample]): A list of evaluation samples.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        validate_samples(samples): Validates that all samples are of the same type.</span>
+<span class="sd">        get_sample_type(): Returns the type of the samples in the dataset.</span>
+<span class="sd">        to_hf_dataset(): Converts the dataset to a Hugging Face Dataset.</span>
+<span class="sd">        to_pandas(): Converts the dataset to a pandas DataFrame.</span>
+<span class="sd">        features(): Returns the features of the samples.</span>
+<span class="sd">        from_list(mapping): Creates an EvaluationDataset from a list of dictionaries.</span>
+<span class="sd">        from_dict(mapping): Creates an EvaluationDataset from a dictionary.</span>
+<span class="sd">        to_csv(path): Converts the dataset to a CSV file.</span>
+<span class="sd">        to_jsonl(path): Converts the dataset to a JSONL file.</span>
+<span class="sd">        from_jsonl(path): Creates an EvaluationDataset from a JSONL file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RAGSample</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;RAGEvaluationDataset&quot;</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">slice</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">RAGSample</span><span class="p">,</span> <span class="s2">&quot;RAGEvaluationDataset&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">samples</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Index must be int or slice&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RAGEvaluationDataset.is_multi_turn">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.is_multi_turn">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_multi_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="RAGEvaluationDataset.to_list">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.to_list">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">rows</span></div>
+
+
+<div class="viewcode-block" id="RAGEvaluationDataset.from_list">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset.from_list">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]):</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span>
+            <span class="s2">&quot;user_input&quot;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;user_input&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span>
+        <span class="p">):</span>
+            <span class="n">samples</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">MultiTurnSample</span><span class="p">(</span><span class="o">**</span><span class="n">sample</span><span class="p">)</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">samples</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">SingleTurnSample</span><span class="p">(</span><span class="o">**</span><span class="n">sample</span><span class="p">)</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">samples</span><span class="o">=</span><span class="n">samples</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;RAGEvaluationDataset(features=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">()</span><span class="si">}</span><span class="s2">, len=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, NotDiamond.
+      <span class="lastupdated">Last updated on Nov 22, 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>

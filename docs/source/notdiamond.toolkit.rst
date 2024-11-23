@@ -6,6 +6,7 @@ notdiamond.toolkit
    :maxdepth: 4
 
    notdiamond.toolkit.litellm
+   notdiamond.toolkit.rag
 
 notdiamond.toolkit.custom_router
 --------------------------------

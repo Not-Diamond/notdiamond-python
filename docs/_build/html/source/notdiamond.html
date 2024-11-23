@@ -63,6 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.exceptions.InvalidApiKey"><code class="docutils literal notranslate"><span class="pre">InvalidApiKey</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.exceptions.MissingApiKey"><code class="docutils literal notranslate"><span class="pre">MissingApiKey</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.exceptions.MissingLLMConfigs"><code class="docutils literal notranslate"><span class="pre">MissingLLMConfigs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.exceptions.UnsupportedEmbeddingProvider"><code class="docutils literal notranslate"><span class="pre">UnsupportedEmbeddingProvider</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.exceptions.UnsupportedLLMProvider"><code class="docutils literal notranslate"><span class="pre">UnsupportedLLMProvider</span></code></a></li>
 </ul>
 </li>
@@ -157,6 +158,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.llms.html#module-notdiamond.llms.config">notdiamond.llms.config</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.EmbeddingConfig"><code class="docutils literal notranslate"><span class="pre">EmbeddingConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.EmbeddingConfig.provider"><code class="docutils literal notranslate"><span class="pre">EmbeddingConfig.provider</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.EmbeddingConfig.model"><code class="docutils literal notranslate"><span class="pre">EmbeddingConfig.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.EmbeddingConfig.api_key"><code class="docutils literal notranslate"><span class="pre">EmbeddingConfig.api_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.EmbeddingConfig.__init__"><code class="docutils literal notranslate"><span class="pre">EmbeddingConfig.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.EmbeddingConfig.from_string"><code class="docutils literal notranslate"><span class="pre">EmbeddingConfig.from_string()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.EmbeddingConfig.set_api_key"><code class="docutils literal notranslate"><span class="pre">EmbeddingConfig.set_api_key()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig"><code class="docutils literal notranslate"><span class="pre">LLMConfig</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig.provider"><code class="docutils literal notranslate"><span class="pre">LLMConfig.provider</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="notdiamond.llms.html#notdiamond.llms.config.LLMConfig.model"><code class="docutils literal notranslate"><span class="pre">LLMConfig.model</span></code></a></li>
@@ -216,6 +226,38 @@
 <li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.main.completion"><code class="docutils literal notranslate"><span class="pre">completion()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.main.get_api_key"><code class="docutils literal notranslate"><span class="pre">get_api_key()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.litellm.html#notdiamond.toolkit.litellm.main.get_llm_provider"><code class="docutils literal notranslate"><span class="pre">get_llm_provider()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.toolkit.rag.html">notdiamond.toolkit.rag</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.rag.html#module-notdiamond.toolkit.rag.document_loaders">notdiamond.toolkit.rag.document_loaders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.rag.html#module-notdiamond.toolkit.rag.evaluation_dataset">notdiamond.toolkit.rag.evaluation_dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation_dataset.RAGEvaluationDataset"><code class="docutils literal notranslate"><span class="pre">RAGEvaluationDataset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation_dataset.RAGSample"><code class="docutils literal notranslate"><span class="pre">RAGSample</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.rag.html#module-notdiamond.toolkit.rag.evaluation">notdiamond.toolkit.rag.evaluation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation.auto_optimize"><code class="docutils literal notranslate"><span class="pre">auto_optimize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation.evaluate"><code class="docutils literal notranslate"><span class="pre">evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation.get_eval_dataset"><code class="docutils literal notranslate"><span class="pre">get_eval_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.rag.html#module-notdiamond.toolkit.rag.llms">notdiamond.toolkit.rag.llms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.llms.get_embedding"><code class="docutils literal notranslate"><span class="pre">get_embedding()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.llms.get_llm"><code class="docutils literal notranslate"><span class="pre">get_llm()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.rag.html#module-notdiamond.toolkit.rag.metrics">notdiamond.toolkit.rag.metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.rag.html#module-notdiamond.toolkit.rag.testset">notdiamond.toolkit.rag.testset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.testset.TestDataGenerator"><code class="docutils literal notranslate"><span class="pre">TestDataGenerator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.rag.html#module-notdiamond.toolkit.rag.workflow">notdiamond.toolkit.rag.workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.workflow.BaseNDRagWorkflow"><code class="docutils literal notranslate"><span class="pre">BaseNDRagWorkflow</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.workflow.CategoricalValueOptions"><code class="docutils literal notranslate"><span class="pre">CategoricalValueOptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.workflow.FloatValueRange"><code class="docutils literal notranslate"><span class="pre">FloatValueRange</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.workflow.IntValueRange"><code class="docutils literal notranslate"><span class="pre">IntValueRange</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -319,6 +361,13 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.exceptions.</span></span><span class="sig-name descname"><span class="pre">MissingLLMConfigs</span></span><a class="reference internal" href="../_modules/notdiamond/exceptions.html#MissingLLMConfigs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.exceptions.MissingLLMConfigs" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>The exception class for empty LLM provider configs array</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="notdiamond.exceptions.UnsupportedEmbeddingProvider">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.exceptions.</span></span><span class="sig-name descname"><span class="pre">UnsupportedEmbeddingProvider</span></span><a class="reference internal" href="../_modules/notdiamond/exceptions.html#UnsupportedEmbeddingProvider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.exceptions.UnsupportedEmbeddingProvider" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>The exception class for unsupported Embedding provider</p>
 </dd></dl>
 
 <dl class="py exception">
