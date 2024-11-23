@@ -86,6 +86,8 @@ class LLMConfig:
         if is_custom:
             self._openrouter_model = None
             self.api_key = api_key
+            self.default_input_price = custom_input_price or input_price
+            self.default_output_price = custom_output_price or output_price
         else:
             if provider not in POSSIBLE_PROVIDERS:
                 raise UnsupportedLLMProvider(
@@ -104,6 +106,13 @@ class LLMConfig:
                 if api_key is not None
                 else settings.PROVIDERS[provider]["api_key"]
             )
+
+            self.default_input_price = settings.PROVIDERS[provider]["price"][
+                model
+            ]["input"]
+            self.default_output_price = settings.PROVIDERS[provider]["price"][
+                model
+            ]["output"]
 
         self.provider = provider
         self.model = model
