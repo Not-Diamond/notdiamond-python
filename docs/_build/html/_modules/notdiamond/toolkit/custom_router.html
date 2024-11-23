@@ -76,12 +76,14 @@
   <h1>Source code for notdiamond.toolkit.custom_router</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">litellm</span> <span class="kn">import</span> <span class="n">token_counter</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">notdiamond.exceptions</span> <span class="kn">import</span> <span class="n">ApiError</span>
@@ -250,6 +252,32 @@
         <span class="k">return</span> <span class="n">preference_id</span></div>
 
 
+    <span class="k">def</span> <span class="nf">_get_latency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">llm_config</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">llm</span> <span class="o">=</span> <span class="n">NotDiamond</span><span class="o">.</span><span class="n">_llm_from_config</span><span class="p">(</span><span class="n">llm_config</span><span class="p">)</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">([(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)])</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># ms</span>
+
+    <span class="k">def</span> <span class="nf">_get_cost</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">llm_config</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">n_input_tokens</span> <span class="o">=</span> <span class="n">token_counter</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="n">n_output_tokens</span> <span class="o">=</span> <span class="n">token_counter</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+        <span class="n">input_price</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">llm_config</span><span class="o">.</span><span class="n">default_input_price</span>
+            <span class="k">if</span> <span class="n">llm_config</span><span class="o">.</span><span class="n">input_price</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">llm_config</span><span class="o">.</span><span class="n">input_price</span>
+        <span class="p">)</span>
+        <span class="n">output_price</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">llm_config</span><span class="o">.</span><span class="n">default_output_price</span>
+            <span class="k">if</span> <span class="n">llm_config</span><span class="o">.</span><span class="n">output_price</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">llm_config</span><span class="o">.</span><span class="n">output_price</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">n_input_tokens</span> <span class="o">*</span> <span class="n">input_price</span> <span class="o">+</span> <span class="n">n_output_tokens</span> <span class="o">*</span> <span class="n">output_price</span>
+        <span class="p">)</span> <span class="o">/</span> <span class="mf">1e6</span>
+
     <span class="k">def</span> <span class="nf">_eval_custom_router</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">client</span><span class="p">:</span> <span class="n">NotDiamond</span><span class="p">,</span>
@@ -261,6 +289,8 @@
         <span class="n">eval_results</span><span class="p">[</span><span class="n">prompt_column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;session_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/cost&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/latency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/response&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/recommended_provider&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -274,6 +304,14 @@
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/response&quot;</span>
             <span class="p">)</span>
             <span class="n">eval_results</span><span class="p">[</span><span class="n">provider_response_column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="n">provider_cost_column</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/cost&quot;</span>
+            <span class="n">eval_results</span><span class="p">[</span><span class="n">provider_cost_column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="n">provider_latency_column</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/latency&quot;</span>
+            <span class="p">)</span>
+            <span class="n">eval_results</span><span class="p">[</span><span class="n">provider_latency_column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">joint_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">joint_df</span><span class="p">)):</span>
             <span class="n">prompt</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">prompt_column</span><span class="p">]</span>
@@ -303,6 +341,18 @@
                     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/response&quot;</span>
                 <span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider_response</span><span class="p">)</span>
 
+                <span class="n">provider_cost</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cost</span><span class="p">(</span>
+                    <span class="n">provider</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">provider_response</span>
+                <span class="p">)</span>
+                <span class="n">eval_results</span><span class="p">[</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/cost&quot;</span>
+                <span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider_cost</span><span class="p">)</span>
+
+                <span class="n">provider_latency</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_latency</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
+                <span class="n">eval_results</span><span class="p">[</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/latency&quot;</span>
+                <span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider_latency</span><span class="p">)</span>
+
                 <span class="k">if</span> <span class="p">(</span>
                     <span class="ow">not</span> <span class="n">provider_matched</span>
                     <span class="ow">and</span> <span class="n">provider</span><span class="o">.</span><span class="n">provider</span> <span class="o">==</span> <span class="n">nd_provider</span><span class="o">.</span><span class="n">provider</span>
@@ -310,6 +360,8 @@
                 <span class="p">):</span>
                     <span class="n">provider_matched</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider_score</span><span class="p">)</span>
+                    <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/cost&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider_cost</span><span class="p">)</span>
+                    <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/latency&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider_latency</span><span class="p">)</span>
                     <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;notdiamond/response&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="n">provider_response</span>
                     <span class="p">)</span>
@@ -327,32 +379,80 @@
 
         <span class="n">eval_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">eval_results</span><span class="p">)</span>
 
+        <span class="n">eval_stats</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
         <span class="n">best_average_provider</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">best_average_score</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maximize</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+        <span class="n">nd_average_score</span> <span class="o">=</span> <span class="n">eval_results_df</span><span class="p">[</span><span class="s2">&quot;notdiamond/score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">eval_stats</span><span class="p">[</span><span class="s2">&quot;Not Diamond Average Score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">nd_average_score</span><span class="p">]</span>
+
+        <span class="n">nd_average_cost</span> <span class="o">=</span> <span class="n">eval_results_df</span><span class="p">[</span><span class="s2">&quot;notdiamond/cost&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">eval_stats</span><span class="p">[</span><span class="s2">&quot;Not Diamond Average Cost&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">nd_average_cost</span><span class="p">]</span>
+
+        <span class="n">nd_average_latency</span> <span class="o">=</span> <span class="n">eval_results_df</span><span class="p">[</span><span class="s2">&quot;notdiamond/latency&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">eval_stats</span><span class="p">[</span><span class="s2">&quot;Not Diamond Average Latency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">nd_average_latency</span><span class="p">]</span>
+
         <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">llm_configs</span><span class="p">:</span>
             <span class="n">provider_avg_score</span> <span class="o">=</span> <span class="n">eval_results_df</span><span class="p">[</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/score&quot;</span>
             <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">eval_stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/avg_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">provider_avg_score</span>
+            <span class="p">]</span>
+
+            <span class="n">provider_avg_cost</span> <span class="o">=</span> <span class="n">eval_results_df</span><span class="p">[</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/cost&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">eval_stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/avg_cost&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">provider_avg_cost</span>
+            <span class="p">]</span>
+
+            <span class="n">provider_avg_latency</span> <span class="o">=</span> <span class="n">eval_results_df</span><span class="p">[</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/latency&quot;</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">eval_stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">/avg_latency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">provider_avg_latency</span>
+            <span class="p">]</span>
+
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximize</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">provider_avg_score</span> <span class="o">&gt;</span> <span class="n">best_average_score</span><span class="p">:</span>
                     <span class="n">best_average_score</span> <span class="o">=</span> <span class="n">provider_avg_score</span>
+                    <span class="n">best_average_cost</span> <span class="o">=</span> <span class="n">provider_avg_cost</span>
+                    <span class="n">best_average_latency</span> <span class="o">=</span> <span class="n">provider_avg_latency</span>
                     <span class="n">best_average_provider</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">provider_avg_score</span> <span class="o">&lt;</span> <span class="n">best_average_score</span><span class="p">:</span>
                     <span class="n">best_average_score</span> <span class="o">=</span> <span class="n">provider_avg_score</span>
+                    <span class="n">best_average_cost</span> <span class="o">=</span> <span class="n">provider_avg_cost</span>
+                    <span class="n">best_average_latency</span> <span class="o">=</span> <span class="n">provider_avg_latency</span>
                     <span class="n">best_average_provider</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
 
-        <span class="n">nd_average_score</span> <span class="o">=</span> <span class="n">eval_results_df</span><span class="p">[</span><span class="s2">&quot;notdiamond/score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-
-        <span class="n">eval_stats</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
         <span class="n">eval_stats</span><span class="p">[</span><span class="s2">&quot;Best Average Provider&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">best_average_provider</span><span class="p">]</span>
         <span class="n">eval_stats</span><span class="p">[</span><span class="s2">&quot;Best Provider Average Score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">best_average_score</span><span class="p">]</span>
-        <span class="n">eval_stats</span><span class="p">[</span><span class="s2">&quot;Not Diamond Average Score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">nd_average_score</span><span class="p">]</span>
-        <span class="n">eval_stats_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">eval_stats</span><span class="p">)</span>
+        <span class="n">eval_stats</span><span class="p">[</span><span class="s2">&quot;Best Provider Average Cost&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">best_average_cost</span><span class="p">]</span>
+        <span class="n">eval_stats</span><span class="p">[</span><span class="s2">&quot;Best Provider Average Latency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">best_average_latency</span><span class="p">]</span>
+
+        <span class="n">first_columns</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;Best Average Provider&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Best Provider Average Score&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Best Provider Average Cost&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Best Provider Average Latency&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Not Diamond Average Score&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Not Diamond Average Cost&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Not Diamond Average Latency&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">column_order</span> <span class="o">=</span> <span class="n">first_columns</span> <span class="o">+</span> <span class="p">[</span>
+            <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">eval_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">first_columns</span>
+        <span class="p">]</span>
+        <span class="n">ordered_eval_stats</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">column_order</span><span class="p">:</span>
+            <span class="n">ordered_eval_stats</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval_stats</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+
+        <span class="n">eval_stats_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ordered_eval_stats</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">eval_results_df</span><span class="p">,</span> <span class="n">eval_stats_df</span>
 
 <div class="viewcode-block" id="CustomRouter.eval">
@@ -422,7 +522,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Nov 19, 2024.
+      <span class="lastupdated">Last updated on Nov 23, 2024.
       </span></p>
   </div>
 
