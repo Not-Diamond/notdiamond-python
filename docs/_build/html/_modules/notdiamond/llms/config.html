@@ -166,6 +166,8 @@
         <span class="k">if</span> <span class="n">is_custom</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_openrouter_model</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_input_price</span> <span class="o">=</span> <span class="n">custom_input_price</span> <span class="ow">or</span> <span class="n">input_price</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_output_price</span> <span class="o">=</span> <span class="n">custom_output_price</span> <span class="ow">or</span> <span class="n">output_price</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">provider</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">POSSIBLE_PROVIDERS</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">UnsupportedLLMProvider</span><span class="p">(</span>
@@ -184,6 +186,13 @@
                 <span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="k">else</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span><span class="s2">&quot;api_key&quot;</span><span class="p">]</span>
             <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_input_price</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span><span class="s2">&quot;price&quot;</span><span class="p">][</span>
+                <span class="n">model</span>
+            <span class="p">][</span><span class="s2">&quot;input&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_output_price</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROVIDERS</span><span class="p">[</span><span class="n">provider</span><span class="p">][</span><span class="s2">&quot;price&quot;</span><span class="p">][</span>
+                <span class="n">model</span>
+            <span class="p">][</span><span class="s2">&quot;output&quot;</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">provider</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
@@ -290,7 +299,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Nov 19, 2024.
+      <span class="lastupdated">Last updated on Nov 23, 2024.
       </span></p>
   </div>
 
