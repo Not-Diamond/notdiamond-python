@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>notdiamond.toolkit.rag.testset &mdash; NotDiamond 0.3.25</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=30ad20df"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../../../../search.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="../../../../index.html" class="icon icon-home">
+            NotDiamond
+          </a>
+              <div class="version">
+                0.3.25
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../source/intro.html">Getting started with Not Diamond</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../source/notdiamond.html">NotDiamond package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NotDiamond</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">notdiamond.toolkit.rag.testset</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <h1>Source code for notdiamond.toolkit.rag.testset</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">langchain_core.callbacks</span> <span class="kn">import</span> <span class="n">Callbacks</span>
+<span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span> <span class="k">as</span> <span class="n">LCDocument</span>
+<span class="kn">from</span> <span class="nn">llama_index.core.base.embeddings.base</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BaseEmbedding</span> <span class="k">as</span> <span class="n">LlamaIndexEmbedding</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">llama_index.core.base.llms.base</span> <span class="kn">import</span> <span class="n">BaseLLM</span> <span class="k">as</span> <span class="n">LlamaIndexLLM</span>
+<span class="kn">from</span> <span class="nn">llama_index.core.schema</span> <span class="kn">import</span> <span class="n">Document</span> <span class="k">as</span> <span class="n">LlamaIndexDocument</span>
+<span class="kn">from</span> <span class="nn">ragas.embeddings</span> <span class="kn">import</span> <span class="n">BaseRagasEmbeddings</span><span class="p">,</span> <span class="n">LlamaIndexEmbeddingsWrapper</span>
+<span class="kn">from</span> <span class="nn">ragas.llms</span> <span class="kn">import</span> <span class="n">BaseRagasLLM</span><span class="p">,</span> <span class="n">LlamaIndexLLMWrapper</span>
+<span class="kn">from</span> <span class="nn">ragas.run_config</span> <span class="kn">import</span> <span class="n">RunConfig</span>
+<span class="kn">from</span> <span class="nn">ragas.testset</span> <span class="kn">import</span> <span class="n">TestsetGenerator</span>
+<span class="kn">from</span> <span class="nn">ragas.testset.graph</span> <span class="kn">import</span> <span class="n">KnowledgeGraph</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeType</span>
+<span class="kn">from</span> <span class="nn">ragas.testset.persona</span> <span class="kn">import</span> <span class="n">Persona</span>
+<span class="kn">from</span> <span class="nn">ragas.testset.synthesizers</span> <span class="kn">import</span> <span class="n">QueryDistribution</span>
+<span class="kn">from</span> <span class="nn">ragas.testset.transforms</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Transforms</span><span class="p">,</span>
+    <span class="n">apply_transforms</span><span class="p">,</span>
+    <span class="n">default_transforms</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="TestDataGenerator">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.testset.TestDataGenerator">[docs]</a>
+<span class="k">class</span> <span class="nc">TestDataGenerator</span><span class="p">(</span><span class="n">TestsetGenerator</span><span class="p">):</span>
+<div class="viewcode-block" id="TestDataGenerator.__init__">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.testset.TestDataGenerator.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">llm</span><span class="p">:</span> <span class="n">BaseRagasLLM</span><span class="p">,</span>
+        <span class="n">embedding_model</span><span class="p">:</span> <span class="n">BaseRagasEmbeddings</span><span class="p">,</span>
+        <span class="n">knowledge_graph</span><span class="p">:</span> <span class="n">KnowledgeGraph</span> <span class="o">=</span> <span class="n">KnowledgeGraph</span><span class="p">(),</span>
+        <span class="n">persona_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Persona</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        RAG Test data generator class.</span>
+<span class="sd">        Generates test cases from documents for evaluating RAG workflows.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            llm (BaseRagasLLM): An LLM object inherited from BaseRagasLLM. Obtain this</span>
+<span class="sd">                via the get_llm tool.</span>
+<span class="sd">            embedding_model (BaseRagasEmbeddings): An embedding model object inherited</span>
+<span class="sd">                from BaseRagasEmbeddings. Obtain this via the get_embedding tool.</span>
+<span class="sd">            knowledge_graph (KnowledgeGraph): The knowledge graph to use for the generation</span>
+<span class="sd">                process. Default empty.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+            <span class="n">embedding_model</span><span class="o">=</span><span class="n">embedding_model</span><span class="p">,</span>
+            <span class="n">knowledge_graph</span><span class="o">=</span><span class="n">knowledge_graph</span><span class="p">,</span>
+            <span class="n">persona_list</span><span class="o">=</span><span class="n">persona_list</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestDataGenerator.generate_from_docs">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.testset.TestDataGenerator.generate_from_docs">[docs]</a>
+    <span class="k">def</span> <span class="nf">generate_from_docs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">documents</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">LCDocument</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">LlamaIndexDocument</span><span class="p">]],</span>
+        <span class="n">testset_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Transforms</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">transforms_llm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">BaseRagasLLM</span><span class="p">,</span> <span class="n">LlamaIndexLLM</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">transforms_embedding_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+            <span class="n">Union</span><span class="p">[</span><span class="n">BaseRagasEmbeddings</span><span class="p">,</span> <span class="n">LlamaIndexEmbedding</span><span class="p">]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">query_distribution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QueryDistribution</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">run_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callbacks</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">with_debugging_logs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">raise_exceptions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates an evaluation dataset based on given Langchain or Llama Index documents and parameters.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            documents : Sequence[LCDocument]</span>
+<span class="sd">                A sequence of Langchain documents to use as source material</span>
+<span class="sd">            testset_size : int</span>
+<span class="sd">                The number of test samples to generate</span>
+<span class="sd">            transforms : Optional[Transforms], optional</span>
+<span class="sd">                Custom transforms to apply to the documents, by default None</span>
+<span class="sd">            transforms_llm : Optional[BaseRagasLLM], optional</span>
+<span class="sd">                LLM to use for transforms if different from instance LLM, by default None</span>
+<span class="sd">            transforms_embedding_model : Optional[BaseRagasEmbeddings], optional</span>
+<span class="sd">                Embedding model to use for transforms if different from instance model, by default None</span>
+<span class="sd">            query_distribution : Optional[QueryDistribution], optional</span>
+<span class="sd">                Distribution of query types to generate, by default None</span>
+<span class="sd">            run_config : Optional[RunConfig], optional</span>
+<span class="sd">                Configuration for the generation run, by default None</span>
+<span class="sd">            callbacks : Optional[Callbacks], optional</span>
+<span class="sd">                Callbacks to use during generation, by default None</span>
+<span class="sd">            with_debugging_logs : bool, optional</span>
+<span class="sd">                Whether to include debug logs, by default False</span>
+<span class="sd">            raise_exceptions : bool, optional</span>
+<span class="sd">                Whether to raise exceptions during generation, by default True</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Testset</span>
+<span class="sd">                The generated evaluation dataset</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError</span>
+<span class="sd">                If no LLM or embedding model is provided either during initialization or as arguments</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">documents</span><span class="p">,</span> <span class="nb">list</span>
+        <span class="p">),</span> <span class="s2">&quot;Documents must be a list of langchain or llama-index documents.&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">documents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">LCDocument</span><span class="p">):</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_with_langchain_docs</span><span class="p">(</span>
+                <span class="n">documents</span><span class="o">=</span><span class="n">documents</span><span class="p">,</span>
+                <span class="n">testset_size</span><span class="o">=</span><span class="n">testset_size</span><span class="p">,</span>
+                <span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span>
+                <span class="n">transforms_llm</span><span class="o">=</span><span class="n">transforms_llm</span><span class="p">,</span>
+                <span class="n">transforms_embedding_model</span><span class="o">=</span><span class="n">transforms_embedding_model</span><span class="p">,</span>
+                <span class="n">query_distribution</span><span class="o">=</span><span class="n">query_distribution</span><span class="p">,</span>
+                <span class="n">run_config</span><span class="o">=</span><span class="n">run_config</span><span class="p">,</span>
+                <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+                <span class="n">with_debugging_logs</span><span class="o">=</span><span class="n">with_debugging_logs</span><span class="p">,</span>
+                <span class="n">raise_exceptions</span><span class="o">=</span><span class="n">raise_exceptions</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">documents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">LlamaIndexDocument</span><span class="p">):</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_with_llamaindex_docs</span><span class="p">(</span>
+                <span class="n">documents</span><span class="o">=</span><span class="n">documents</span><span class="p">,</span>
+                <span class="n">testset_size</span><span class="o">=</span><span class="n">testset_size</span><span class="p">,</span>
+                <span class="n">transforms</span><span class="o">=</span><span class="n">transforms</span><span class="p">,</span>
+                <span class="n">transforms_llm</span><span class="o">=</span><span class="n">transforms_llm</span><span class="p">,</span>
+                <span class="n">transforms_embedding_model</span><span class="o">=</span><span class="n">transforms_embedding_model</span><span class="p">,</span>
+                <span class="n">query_distribution</span><span class="o">=</span><span class="n">query_distribution</span><span class="p">,</span>
+                <span class="n">run_config</span><span class="o">=</span><span class="n">run_config</span><span class="p">,</span>
+                <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+                <span class="n">with_debugging_logs</span><span class="o">=</span><span class="n">with_debugging_logs</span><span class="p">,</span>
+                <span class="n">raise_exceptions</span><span class="o">=</span><span class="n">raise_exceptions</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Documents must be a list of langchain or llama-index documents.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestDataGenerator.generate_with_llamaindex_docs">
+<a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.testset.TestDataGenerator.generate_with_llamaindex_docs">[docs]</a>
+    <span class="k">def</span> <span class="nf">generate_with_llamaindex_docs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">documents</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">LlamaIndexDocument</span><span class="p">],</span>
+        <span class="n">testset_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Transforms</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">transforms_llm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LlamaIndexLLM</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">transforms_embedding_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LlamaIndexEmbedding</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">query_distribution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QueryDistribution</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">run_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callbacks</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">with_debugging_logs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">raise_exceptions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates an evaluation dataset based on given scenarios and parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">run_config</span> <span class="o">=</span> <span class="n">run_config</span> <span class="ow">or</span> <span class="n">RunConfig</span><span class="p">()</span>
+
+        <span class="c1"># force the user to provide an llm and embedding client to prevent use of default LLMs</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">transforms_llm</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;An llm client was not provided.&quot;</span>
+                <span class="s2">&quot; Provide an LLM on init or as an argument to this method.&quot;</span>
+                <span class="s2">&quot; Alternatively you can provide your own transforms through the `transforms` parameter.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_model</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">transforms_embedding_model</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;An embedding client was not provided.&quot;</span>
+                <span class="s2">&quot; Provide an embedding through the transforms_embedding_model parameter.&quot;</span>
+                <span class="s2">&quot; Alternatively you can provide your own transforms through the `transforms` parameter.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">transforms</span><span class="p">:</span>
+            <span class="c1"># use TestsetGenerator&#39;s LLM and embedding model if no transforms_llm or transforms_embedding_model is provided</span>
+            <span class="k">if</span> <span class="n">transforms_llm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">llm_for_transforms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">llm_for_transforms</span> <span class="o">=</span> <span class="n">LlamaIndexLLMWrapper</span><span class="p">(</span><span class="n">transforms_llm</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">transforms_embedding_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">embedding_model_for_transforms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_model</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">embedding_model_for_transforms</span> <span class="o">=</span> <span class="n">LlamaIndexEmbeddingsWrapper</span><span class="p">(</span>
+                    <span class="n">transforms_embedding_model</span>
+                <span class="p">)</span>
+
+            <span class="c1"># create the transforms</span>
+            <span class="n">transforms</span> <span class="o">=</span> <span class="n">default_transforms</span><span class="p">(</span>
+                <span class="n">documents</span><span class="o">=</span><span class="p">[</span>
+                    <span class="n">LCDocument</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span>
+                <span class="p">],</span>
+                <span class="n">llm</span><span class="o">=</span><span class="n">llm_for_transforms</span><span class="p">,</span>
+                <span class="n">embedding_model</span><span class="o">=</span><span class="n">embedding_model_for_transforms</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1"># convert the documents to Ragas nodes</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">doc</span><span class="o">.</span><span class="n">text</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="n">NodeType</span><span class="o">.</span><span class="n">DOCUMENT</span><span class="p">,</span>
+                    <span class="n">properties</span><span class="o">=</span><span class="p">{</span>
+                        <span class="s2">&quot;page_content&quot;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+                        <span class="s2">&quot;document_metadata&quot;</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+                <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+        <span class="n">kg</span> <span class="o">=</span> <span class="n">KnowledgeGraph</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">nodes</span><span class="p">)</span>
+
+        <span class="c1"># apply transforms and update the knowledge graph</span>
+        <span class="n">apply_transforms</span><span class="p">(</span><span class="n">kg</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">run_config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">knowledge_graph</span> <span class="o">=</span> <span class="n">kg</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+            <span class="n">testset_size</span><span class="o">=</span><span class="n">testset_size</span><span class="p">,</span>
+            <span class="n">query_distribution</span><span class="o">=</span><span class="n">query_distribution</span><span class="p">,</span>
+            <span class="n">run_config</span><span class="o">=</span><span class="n">run_config</span><span class="p">,</span>
+            <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+            <span class="n">with_debugging_logs</span><span class="o">=</span><span class="n">with_debugging_logs</span><span class="p">,</span>
+            <span class="n">raise_exceptions</span><span class="o">=</span><span class="n">raise_exceptions</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, NotDiamond.
+      <span class="lastupdated">Last updated on Nov 22, 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>
