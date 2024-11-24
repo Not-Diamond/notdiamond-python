@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, ClassVar, Dict, List, Type, Union, get_args
+from typing import Any, ClassVar, Dict, List, Optional, Type, Union, get_args
 
 import optuna
 
@@ -89,9 +89,9 @@ class BaseNDRagWorkflow:
 
     def __init__(
         self,
-        evaluation_dataset: RAGEvaluationDataset,
         documents: Any,
-        objective_maximize: bool,
+        test_queries: Optional[List[str]] = None,
+        objective_maximize: bool = True,
         **kwargs,
     ):
         """
@@ -125,10 +125,10 @@ class BaseNDRagWorkflow:
                 )
             setattr(self, param_name, default_value)
 
-        self.evaluation_dataset = evaluation_dataset
         self.documents = documents
+        self.test_queries = test_queries
         self.objective_maximize = objective_maximize
-        self.rag_workflow(documents)
+        self.evaluation_dataset = self.rag_workflow(documents, test_queries)
 
     def get_parameter_type(self, param_name: str) -> Type:
         param_type = self._base_param_types.get(param_name)
@@ -146,7 +146,9 @@ class BaseNDRagWorkflow:
             )
         return param_range
 
-    def rag_workflow(self, documents: Any):
+    def rag_workflow(
+        self, documents: Any, test_queries: Optional[List[str]]
+    ) -> RAGEvaluationDataset:
         """
         Define RAG workflow components here by setting instance attrs on `self`. Those attributes will be set
         at init-time and available when retrieving context or generating responses.

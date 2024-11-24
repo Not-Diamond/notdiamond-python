@@ -107,3 +107,8 @@ def llamaindex_documents():
     )
     docs = loader.load_data()
     return docs
+
+
+@pytest.fixture
+def test_queries():
+    return ["summarize airbnb's ToS", "What are the cancellation policies?"]
