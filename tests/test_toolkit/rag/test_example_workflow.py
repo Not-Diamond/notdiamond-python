@@ -14,8 +14,8 @@ from notdiamond.toolkit.rag.evaluation_dataset import (
 )
 from notdiamond.toolkit.rag.llms import get_embedding, get_llm
 from notdiamond.toolkit.rag.metrics import (
+    ContextPrecisionWithoutReference,
     Faithfulness,
-    LLMContextPrecisionWithoutReference,
     SemanticSimilarity,
 )
 from notdiamond.toolkit.rag.workflow import (
@@ -117,7 +117,7 @@ class ExampleNDRagWorkflow(BaseNDRagWorkflow):
         evaluator_llm = get_llm("openai/gpt-4o")
         evaluator_embeddings = get_embedding("openai/text-embedding-3-large")
         metrics = [
-            LLMContextPrecisionWithoutReference(llm=evaluator_llm),
+            ContextPrecisionWithoutReference(llm=evaluator_llm),
             Faithfulness(llm=evaluator_llm),
             SemanticSimilarity(embeddings=evaluator_embeddings),
         ]
