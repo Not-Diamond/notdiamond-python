@@ -9,7 +9,11 @@ from ragas.metrics import (  # noqa
     Faithfulness,
     FaithfulnesswithHHEM,
     InstanceRubrics,
-    LLMContextPrecisionWithoutReference,
+)
+from ragas.metrics import (  # noqa
+    LLMContextPrecisionWithoutReference as ContextPrecisionWithoutReference,
+)
+from ragas.metrics import (  # noqa
     LLMContextPrecisionWithReference,
     LLMContextRecall,
     NoiseSensitivity,
