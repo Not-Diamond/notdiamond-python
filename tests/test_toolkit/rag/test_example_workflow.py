@@ -137,4 +137,5 @@ def test_workflow_attrs_init(llamaindex_documents, test_queries):
     example_workflow = ExampleNDRagWorkflow(
         llamaindex_documents, test_queries, objective_maximize=True
     )
-    assert hasattr(example_workflow, "index")
+    assert hasattr(example_workflow, "test_queries")
+    assert hasattr(example_workflow, "documents")

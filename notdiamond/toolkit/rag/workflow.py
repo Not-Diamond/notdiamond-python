@@ -128,7 +128,6 @@ class BaseNDRagWorkflow:
         self.documents = documents
         self.test_queries = test_queries
         self.objective_maximize = objective_maximize
-        self.evaluation_dataset = self.rag_workflow(documents, test_queries)
 
     def get_parameter_type(self, param_name: str) -> Type:
         param_type = self._base_param_types.get(param_name)
@@ -189,6 +188,9 @@ class BaseNDRagWorkflow:
                 )
             setattr(self, param_name, param_value)
 
+        self.evaluation_dataset = self.rag_workflow(
+            self.documents, self.test_queries
+        )
         result = self.objective()
         self._reset_param_values()
         return result
