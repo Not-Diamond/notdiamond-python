@@ -90,7 +90,7 @@ class BaseNDRagWorkflow:
     def __init__(
         self,
         documents: Any,
-        test_queries: Optional[List[str]] = None,
+        test_queries: Optional[Any] = None,
         objective_maximize: bool = True,
         **kwargs,
     ):
