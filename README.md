@@ -19,7 +19,7 @@
 | notdiamond/prompts.py                                        |       29 |        2 |       12 |        2 |     90% |23-24, 27->29 |
 | notdiamond/settings.py                                       |       18 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/\_\_init\_\_.py                           |        2 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/custom\_router.py                         |      162 |        8 |       34 |        6 |     92% |37->39, 76, 243, 292, 337->314, 345-349 |
+| notdiamond/toolkit/custom\_router.py                         |      162 |        8 |       34 |        5 |     92% |37->39, 76, 243, 292, 345-349 |
 | notdiamond/toolkit/langchain.py                              |      118 |       14 |       30 |        8 |     85% |63, 71->82, 86-87, 116, 123, 131, 139, 147, 155, 189->191, 235, 253, 281, 313, 319 |
 | notdiamond/toolkit/litellm/\_\_init\_\_.py                   |       63 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/litellm/litellm\_notdiamond.py            |       81 |       11 |       30 |        6 |     81% |114-120, 143-146, 170, 199->201, 201->203, 203->205, 227->226, 276 |
@@ -68,7 +68,7 @@
 | tests/test\_toolkit/test\_litellm.py                         |       61 |       10 |        6 |        0 |     85% |113-114, 133-134, 170-171, 189-190, 216-217 |
 | tests/test\_toolkit/test\_openai\_client.py                  |       83 |        0 |       12 |        4 |     96% |104->108, 105->104, 210->214, 211->210 |
 | tests/test\_types.py                                         |       16 |        0 |        0 |        0 |    100% |           |
-|                                                    **TOTAL** | **4807** | **1083** | **1074** |  **149** | **72%** |           |
+|                                                    **TOTAL** | **4807** | **1083** | **1074** |  **148** | **72%** |           |
 
 
 ## Setup coverage badge
