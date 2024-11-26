@@ -203,15 +203,18 @@ class CustomRouter:
         llm_configs: List[LLMConfig],
         joint_df: pd.DataFrame,
         prompt_column: str,
+        include_latency: bool,
     ) -> Tuple[pd.DataFrame, pd.DataFrame]:
         eval_results = OrderedDict()
         eval_results[prompt_column] = []
         eval_results["session_id"] = []
         eval_results["notdiamond/score"] = []
         eval_results["notdiamond/cost"] = []
-        eval_results["notdiamond/latency"] = []
         eval_results["notdiamond/response"] = []
         eval_results["notdiamond/recommended_provider"] = []
+
+        if include_latency:
+            eval_results["notdiamond/latency"] = []
 
         for provider in llm_configs:
             provider_score_column = (
@@ -227,10 +230,11 @@ class CustomRouter:
             provider_cost_column = f"{provider.provider}/{provider.model}/cost"
             eval_results[provider_cost_column] = []
 
-            provider_latency_column = (
-                f"{provider.provider}/{provider.model}/latency"
-            )
-            eval_results[provider_latency_column] = []
+            if include_latency:
+                provider_latency_column = (
+                    f"{provider.provider}/{provider.model}/latency"
+                )
+                eval_results[provider_latency_column] = []
 
         for _, row in tqdm(joint_df.iterrows(), total=len(joint_df)):
             prompt = row[prompt_column]
@@ -267,10 +271,11 @@ class CustomRouter:
                     f"{provider.provider}/{provider.model}/cost"
                 ].append(provider_cost)
 
-                provider_latency = self._get_latency(provider, prompt)
-                eval_results[
-                    f"{provider.provider}/{provider.model}/latency"
-                ].append(provider_latency)
+                if include_latency:
+                    provider_latency = self._get_latency(provider, prompt)
+                    eval_results[
+                        f"{provider.provider}/{provider.model}/latency"
+                    ].append(provider_latency)
 
                 if (
                     not provider_matched
@@ -280,13 +285,16 @@ class CustomRouter:
                     provider_matched = True
                     eval_results["notdiamond/score"].append(provider_score)
                     eval_results["notdiamond/cost"].append(provider_cost)
-                    eval_results["notdiamond/latency"].append(provider_latency)
                     eval_results["notdiamond/response"].append(
                         provider_response
                     )
                     eval_results["notdiamond/recommended_provider"].append(
                         f"{nd_provider.provider}/{nd_provider.model}"
                     )
+                    if include_latency:
+                        eval_results["notdiamond/latency"].append(
+                            provider_latency
+                        )
 
             if not provider_matched:
                 raise ValueError(
@@ -308,8 +316,9 @@ class CustomRouter:
         nd_average_cost = eval_results_df["notdiamond/cost"].mean()
         eval_stats["Not Diamond Average Cost"] = [nd_average_cost]
 
-        nd_average_latency = eval_results_df["notdiamond/latency"].mean()
-        eval_stats["Not Diamond Average Latency"] = [nd_average_latency]
+        if include_latency:
+            nd_average_latency = eval_results_df["notdiamond/latency"].mean()
+            eval_stats["Not Diamond Average Latency"] = [nd_average_latency]
 
         for provider in llm_configs:
             provider_avg_score = eval_results_df[
@@ -326,44 +335,60 @@ class CustomRouter:
                 provider_avg_cost
             ]
 
-            provider_avg_latency = eval_results_df[
-                f"{provider.provider}/{provider.model}/latency"
-            ].mean()
-            eval_stats[f"{provider.provider}/{provider.model}/avg_latency"] = [
-                provider_avg_latency
-            ]
+            if include_latency:
+                provider_avg_latency = eval_results_df[
+                    f"{provider.provider}/{provider.model}/latency"
+                ].mean()
+                eval_stats[
+                    f"{provider.provider}/{provider.model}/avg_latency"
+                ] = [provider_avg_latency]
 
             if self.maximize:
                 if provider_avg_score > best_average_score:
                     best_average_score = provider_avg_score
                     best_average_cost = provider_avg_cost
-                    best_average_latency = provider_avg_latency
                     best_average_provider = (
                         f"{provider.provider}/{provider.model}"
                     )
+                    if include_latency:
+                        best_average_latency = provider_avg_latency
             else:
                 if provider_avg_score < best_average_score:
                     best_average_score = provider_avg_score
                     best_average_cost = provider_avg_cost
-                    best_average_latency = provider_avg_latency
                     best_average_provider = (
                         f"{provider.provider}/{provider.model}"
                     )
+                    if include_latency:
+                        best_average_latency = provider_avg_latency
 
         eval_stats["Best Average Provider"] = [best_average_provider]
         eval_stats["Best Provider Average Score"] = [best_average_score]
         eval_stats["Best Provider Average Cost"] = [best_average_cost]
-        eval_stats["Best Provider Average Latency"] = [best_average_latency]
 
-        first_columns = [
-            "Best Average Provider",
-            "Best Provider Average Score",
-            "Best Provider Average Cost",
-            "Best Provider Average Latency",
-            "Not Diamond Average Score",
-            "Not Diamond Average Cost",
-            "Not Diamond Average Latency",
-        ]
+        if include_latency:
+            eval_stats["Best Provider Average Latency"] = [
+                best_average_latency
+            ]
+
+            first_columns = [
+                "Best Average Provider",
+                "Best Provider Average Score",
+                "Best Provider Average Cost",
+                "Best Provider Average Latency",
+                "Not Diamond Average Score",
+                "Not Diamond Average Cost",
+                "Not Diamond Average Latency",
+            ]
+        else:
+            first_columns = [
+                "Best Average Provider",
+                "Best Provider Average Score",
+                "Best Provider Average Cost",
+                "Not Diamond Average Score",
+                "Not Diamond Average Cost",
+            ]
+
         column_order = first_columns + [
             col for col in eval_stats.keys() if col not in first_columns
         ]
@@ -381,6 +406,7 @@ class CustomRouter:
         response_column: str,
         score_column: str,
         preference_id: str,
+        include_latency: bool = False,
     ) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """
         Method to evaluate a custom router using provided dataset.
@@ -424,6 +450,6 @@ class CustomRouter:
         )
 
         eval_results_df, eval_stats_df = self._eval_custom_router(
-            client, llm_configs, joint_df, prompt_column
+            client, llm_configs, joint_df, prompt_column, include_latency
         )
         return eval_results_df, eval_stats_df

@@ -149,6 +149,99 @@ class Test_CustomRouter:
             assert "notdiamond/score" in eval_results_df.columns
             assert "notdiamond/response" in eval_results_df.columns
             assert "notdiamond/cost" in eval_results_df.columns
+            assert "notdiamond/latency" not in eval_results_df.columns
+            for provider in dataset.keys():
+                assert f"{provider}/score" in eval_results_df.columns
+                assert f"{provider}/response" in eval_results_df.columns
+                assert f"{provider}/cost" in eval_results_df.columns
+                assert f"{provider}/latency" not in eval_results_df.columns
+
+            assert "Best Average Provider" in eval_stats_df.columns
+            assert len(eval_stats_df["Best Average Provider"]) == 1
+            assert eval_stats_df["Best Average Provider"][0] in list(
+                dataset.keys()
+            )
+
+            assert "Best Provider Average Score" in eval_stats_df.columns
+            assert len(eval_stats_df["Best Provider Average Score"]) == 1
+            assert isinstance(
+                eval_stats_df["Best Provider Average Score"][0], float
+            )
+
+            assert "Best Provider Average Cost" in eval_stats_df.columns
+            assert len(eval_stats_df["Best Provider Average Cost"]) == 1
+            assert isinstance(
+                eval_stats_df["Best Provider Average Cost"][0], float
+            )
+
+            assert "Best Provider Average Latency" not in eval_stats_df.columns
+
+            assert "Not Diamond Average Score" in eval_stats_df.columns
+            assert len(eval_stats_df["Not Diamond Average Score"]) == 1
+            assert isinstance(
+                eval_stats_df["Not Diamond Average Score"][0], float
+            )
+
+            assert "Not Diamond Average Cost" in eval_stats_df.columns
+            assert len(eval_stats_df["Not Diamond Average Cost"]) == 1
+            assert isinstance(
+                eval_stats_df["Not Diamond Average Cost"][0], float
+            )
+
+            assert "Not Diamond Average Latency" not in eval_stats_df.columns
+
+            for provider in dataset.keys():
+                assert f"{provider}/avg_score" in eval_stats_df.columns
+                assert f"{provider}/avg_cost" in eval_stats_df.columns
+                assert f"{provider}/avg_latency" not in eval_stats_df.columns
+
+    def test_eval_custom_router_w_latency(self, custom_router_dataset, mocker):
+        mock_NDLLM = mocker.patch(
+            "notdiamond.toolkit.custom_router.NotDiamond",
+            autospec=True,
+        )
+        mock_NDLLM._parse_llm_configs_data.return_value = [
+            LLMConfig(provider="openai", model="gpt-3.5-turbo"),
+            LLMConfig(provider="anthropic", model="claude-3-haiku-20240307"),
+        ]
+
+        mock_chat = mocker.Mock()
+        mock_completions = mocker.Mock()
+        mock_model_select = mocker.Mock()
+
+        mock_instance = mock_NDLLM.return_value
+        mock_instance.chat = mock_chat
+        mock_chat.completions = mock_completions
+        mock_completions.model_select = mock_model_select
+        mock_model_select.return_value = (
+            str(uuid.uuid4()),
+            LLMConfig(provider="openai", model="gpt-3.5-turbo"),
+        )
+        (
+            dataset,
+            prompt_column,
+            response_column,
+            score_column,
+        ) = custom_router_dataset
+
+        with patch.multiple(
+            "notdiamond.llms.client", NDApiKeyValidator=Mock(return_value=True)
+        ):
+            custom_router = CustomRouter()
+
+            eval_results_df, eval_stats_df = custom_router.eval(
+                dataset=dataset,
+                prompt_column=prompt_column,
+                response_column=response_column,
+                score_column=score_column,
+                preference_id="abc",
+                include_latency=True,
+            )
+
+            assert eval_results_df.shape[0] == 15
+            assert "notdiamond/score" in eval_results_df.columns
+            assert "notdiamond/response" in eval_results_df.columns
+            assert "notdiamond/cost" in eval_results_df.columns
             assert "notdiamond/latency" in eval_results_df.columns
             for provider in dataset.keys():
                 assert f"{provider}/score" in eval_results_df.columns
