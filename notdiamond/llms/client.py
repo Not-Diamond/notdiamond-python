@@ -103,8 +103,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = None,
             nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
             user_agent: Union[str, None] = None,
-            max_retries: Optional[int] = None,
-            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = 3,
+            timeout: Optional[Union[float, int]] = 60.0,
             **kwargs,
         ):
             if api_key is None:
@@ -578,8 +578,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             callbacks: Optional[List] = None,
             nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
             user_agent: Union[str, None] = None,
-            timeout: Optional[Union[float, int]] = None,
-            max_retries: Optional[int] = None,
+            timeout: Optional[Union[float, int]] = 60.0,
+            max_retries: Optional[int] = 3,
             **kwargs,
         ) -> None:
             super().__init__(
