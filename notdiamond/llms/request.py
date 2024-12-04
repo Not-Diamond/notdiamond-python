@@ -135,7 +135,8 @@ def model_select(
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
     previous_session: Optional[str] = None,
-    timeout: Optional[int] = 5,
+    timeout: Optional[Union[float, int]] = 60,
+    max_retries: Optional[int] = 3,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
     _user_agent: str = settings.DEFAULT_USER_AGENT,
 ):
@@ -155,7 +156,9 @@ def model_select(
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
         previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
-        timeout (int, optional): timeout for the request. Defaults to 5.
+        timeout (int, optional): timeout for the request. Defaults to 60.
+        max_retries (int, optional): The maximum number of retries to make when calling the Not Diamond API.
+                                    Defaults to 3.
         nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.
     Returns:
         tuple(LLMConfig, string): returns a tuple of the chosen LLMConfig to call and a session ID string.
@@ -177,15 +180,21 @@ def model_select(
         _user_agent=_user_agent,
     )
 
-    try:
-        response = requests.post(
-            url, data=json.dumps(payload), headers=headers, timeout=timeout
-        )
-        response_code = response.status_code
-        response_json = response.json()
-    except Exception as e:
-        LOGGER.error(f"API error: {e}", exc_info=True)
-        return None, "NO-SESSION-ID"
+    for n_retry in range(1, max_retries + 1):
+        try:
+            response = requests.post(
+                url, data=json.dumps(payload), headers=headers, timeout=timeout
+            )
+            response_code = response.status_code
+            response_json = response.json()
+            break
+        except Exception as e:
+            LOGGER.error(
+                f"Retry {n_retry} of {max_retries}: API error: {e}",
+                exc_info=True,
+            )
+            if n_retry == max_retries:
+                return None, "NO-SESSION-ID"
 
     best_llm, session_id = model_select_parse(
         response_code, response_json, llm_configs
@@ -205,7 +214,8 @@ async def amodel_select(
     preference_id: Optional[str] = None,
     tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = [],
     previous_session: Optional[str] = None,
-    timeout: Optional[int] = 5,
+    timeout: Optional[Union[float, int]] = 60,
+    max_retries: Optional[int] = 3,
     nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
     _user_agent: str = settings.DEFAULT_USER_AGENT,
 ):
@@ -225,7 +235,8 @@ async def amodel_select(
         preference_id (Optional[str], optional): The ID of the router preference that was configured via the Dashboard.
                                                     Defaults to None.
         previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
-        timeout (int, optional): timeout for the request. Defaults to 5.
+        timeout (int, optional): timeout for the request. Defaults to 60.
+        max_retries (int, optional): The maximum number of retries to make when calling the Not Diamond API.
         nd_api_url (Optional[str], optional): The URL of the NotDiamond API. Defaults to None.
     Returns:
         tuple(LLMConfig, string): returns a tuple of the chosen LLMConfig to call and a session ID string.
@@ -247,16 +258,25 @@ async def amodel_select(
         _user_agent=_user_agent,
     )
 
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.post(
-                url, data=json.dumps(payload), headers=headers, timeout=timeout
-            ) as response:
-                response_code = response.status
-                response_json = await response.json()
-    except Exception as e:
-        LOGGER.error(f"API error: {e}", exc_info=True)
-        return None, "NO-SESSION-ID"
+    for n_retry in range(1, max_retries + 1):
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.post(
+                    url,
+                    data=json.dumps(payload),
+                    headers=headers,
+                    timeout=timeout,
+                ) as response:
+                    response_code = response.status
+                    response_json = await response.json()
+                    break
+        except Exception as e:
+            LOGGER.error(
+                f"Retry {n_retry} of {max_retries}: API error: {e}",
+                exc_info=True,
+            )
+            if n_retry == max_retries:
+                return None, "NO-SESSION-ID"
 
     best_llm, session_id = model_select_parse(
         response_code, response_json, llm_configs
