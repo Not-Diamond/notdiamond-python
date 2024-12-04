@@ -1,5 +1,6 @@
 """NotDiamond client class"""
 
+
 import inspect
 import logging
 import time
@@ -82,6 +83,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
         callbacks: Optional[List]
         nd_api_url: Optional[str]
         user_agent: Union[str, None]
+        max_retries: Optional[int]
+        timeout: Optional[Union[float, int]]
 
         class Config:
             arbitrary_types_allowed = True
@@ -100,6 +103,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             tools: Optional[Sequence[Union[Dict[str, Any], Callable]]] = None,
             nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
             user_agent: Union[str, None] = None,
+            max_retries: Optional[int] = None,
+            timeout: Optional[Union[float, int]] = None,
             **kwargs,
         ):
             if api_key is None:
@@ -148,6 +153,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 callbacks=callbacks,
                 nd_api_url=nd_api_url,
                 user_agent=user_agent,
+                max_retries=max_retries,
+                timeout=timeout,
                 **kwargs,
             )
             self.user_agent = user_agent
@@ -179,7 +186,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
             previous_session: Optional[str] = None,
-            timeout: int = 5,
+            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = None,
             **kwargs,
         ) -> tuple[str, Optional[LLMConfig]]:
             """
@@ -206,7 +214,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to Metric("accuracy").
                 previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
-                                Default to 5 seconds.
+                max_retries (int): The number of retries to attempt before giving up.
                 nd_api_url (Optional[str]): The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
             Returns:
@@ -239,7 +247,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 previous_session=previous_session,
-                timeout=timeout,
+                timeout=timeout or self.timeout,
+                max_retries=max_retries or self.max_retries,
                 nd_api_url=self.nd_api_url,
                 _user_agent=self.user_agent,
             )
@@ -266,7 +275,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             preference_id: Optional[str] = None,
             metric: Metric = Metric("accuracy"),
             previous_session: Optional[str] = None,
-            timeout: int = 5,
+            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = None,
             **kwargs,
         ) -> tuple[str, Optional[LLMConfig]]:
             """
@@ -292,7 +302,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                 Defaults to Metric("accuracy").
                 previous_session (Optional[str], optional): The session ID of a previous session, allow you to link requests.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
-                                Default to 5 seconds.
+                max_retries (int): The number of retries to attempt before giving up.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
 
             Returns:
@@ -325,7 +335,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 previous_session=previous_session,
-                timeout=timeout,
+                timeout=timeout or self.timeout,
+                max_retries=max_retries or self.max_retries,
                 nd_api_url=self.nd_api_url,
                 _user_agent=self.user_agent,
             )
@@ -567,6 +578,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             callbacks: Optional[List] = None,
             nd_api_url: Optional[str] = settings.NOTDIAMOND_API_URL,
             user_agent: Union[str, None] = None,
+            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = None,
             **kwargs,
         ) -> None:
             super().__init__(
@@ -582,6 +595,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 callbacks=callbacks,
                 nd_api_url=nd_api_url,
                 user_agent=user_agent,
+                timeout=timeout,
+                max_retries=max_retries,
                 **kwargs,
             )
             if user_agent is None:
@@ -644,7 +659,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             metric: Metric = Metric("accuracy"),
             previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
-            timeout: int = 5,
+            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = None,
             **kwargs,
         ) -> tuple[str, str, LLMConfig]:
             """
@@ -671,7 +687,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                                 response into the given model. In which case result will a
                                                                 dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
-                                Default to 5 seconds.
+                max_retries (int): The number of retries to attempt before giving up.
                 nd_api_url (Optional[str]): The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
 
@@ -699,6 +715,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 previous_session=previous_session,
                 response_model=response_model,
                 timeout=timeout,
+                max_retries=max_retries,
                 **kwargs,
             )
 
@@ -715,7 +732,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             metric: Metric = Metric("accuracy"),
             previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
-            timeout: int = 5,
+            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = None,
             **kwargs,
         ) -> tuple[str, str, LLMConfig]:
             """
@@ -742,7 +760,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                                 response into the given model. In which case result will a
                                                                 dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
-                                Default to 5 seconds.
+                max_retries (int): The number of retries to attempt before giving up.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
 
             Raises:
@@ -769,6 +787,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 previous_session=previous_session,
                 response_model=response_model,
                 timeout=timeout,
+                max_retries=max_retries,
                 **kwargs,
             )
             return result
@@ -786,7 +805,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             metric: Metric = Metric("accuracy"),
             previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
-            timeout: int = 5,
+            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = None,
             input: Optional[Dict[str, Any]] = None,
             **kwargs,
         ) -> tuple[str, str, LLMConfig]:
@@ -818,7 +838,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                                 response into the given model. In which case result will a
                                                                 dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
-                                Default to 5 seconds.
+                max_retries (int): The number of retries to attempt before giving up.
                 input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify
                                                             the values for those variables. Defaults to None, assuming no
                                                             variables.
@@ -871,7 +891,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 previous_session=previous_session,
-                timeout=timeout,
+                timeout=timeout or self.timeout,
+                max_retries=max_retries or self.max_retries,
                 nd_api_url=self.nd_api_url,
             )
 
@@ -993,7 +1014,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             metric: Metric = Metric("accuracy"),
             previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
-            timeout: int = 5,
+            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = None,
             input: Optional[Dict[str, Any]] = None,
             **kwargs,
         ) -> tuple[str, str, LLMConfig]:
@@ -1021,7 +1043,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
                                                                 response into the given model. In which case result will a dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
-                                Default to 5 seconds.
+                max_retries (int): The number of retries to attempt before giving up.
                 input (Optional[Dict[str, Any]], optional): If the prompt_template contains variables, use input to specify
                                                             the values for those variables. Defaults to None, assuming no
                                                             variables.
@@ -1072,7 +1094,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 previous_session=previous_session,
-                timeout=timeout,
+                timeout=timeout or self.timeout,
+                max_retries=max_retries or self.max_retries,
                 nd_api_url=self.nd_api_url,
             )
 
@@ -1196,7 +1219,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             metric: Metric = Metric("accuracy"),
             previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
-            timeout: int = 5,
+            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = None,
             **kwargs,
         ) -> Iterator[Union[BaseMessageChunk, BaseModel]]:
             """
@@ -1222,7 +1246,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                                                                 response into the given model. In which case result will a
                                                                 dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
-                                Default to 5 seconds.
+                max_retries (int): The number of retries to attempt before giving up.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
 
             Raises:
@@ -1264,7 +1288,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 previous_session=previous_session,
-                timeout=timeout,
+                timeout=timeout or self.timeout,
+                max_retries=max_retries or self.max_retries,
                 nd_api_url=self.nd_api_url,
             )
 
@@ -1315,7 +1340,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
             metric: Metric = Metric("accuracy"),
             previous_session: Optional[str] = None,
             response_model: Optional[Type[BaseModel]] = None,
-            timeout: int = 5,
+            timeout: Optional[Union[float, int]] = None,
+            max_retries: Optional[int] = None,
             **kwargs,
         ) -> AsyncIterator[Union[BaseMessageChunk, BaseModel]]:
             """
@@ -1340,7 +1366,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 response_model (Optional[Type[BaseModel]], optional): If present, will use JsonOutputParser to parse the
                                                                 response into the given model. In which case result will a dict.
                 timeout (int): The number of seconds to wait before terminating the API call to Not Diamond backend.
-                                Default to 5 seconds.
+                max_retries (int): The number of retries to attempt before giving up.
                 **kwargs: Any other arguments that are supported by Langchain's invoke method, will be passed through.
 
             Raises:
@@ -1382,7 +1408,8 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 preference_id=self.preference_id,
                 tools=self.tools,
                 previous_session=previous_session,
-                timeout=timeout,
+                timeout=timeout or self.timeout,
+                max_retries=max_retries or self.max_retries,
                 nd_api_url=self.nd_api_url,
             )
 
@@ -1729,6 +1756,12 @@ class NotDiamond(_NDClient):
     """The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL."""
 
     user_agent: Union[str, None]
+
+    max_retries: int
+    """The maximum number of retries to make when calling the Not Diamond API."""
+
+    timeout: float
+    """The timeout for the Not Diamond API call."""
 
     class Config:
         arbitrary_types_allowed = True
