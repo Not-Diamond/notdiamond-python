@@ -1,10 +1,15 @@
 """
 Tools for working directly with OpenAI's various models.
 """
+import asyncio
 import logging
-from typing import List, Union
+import random
+import time
+from functools import wraps
+from typing import Dict, List, Union
 
 from notdiamond import NotDiamond
+from notdiamond.llms.config import LLMConfig
 from notdiamond.llms.providers import NDLLMProviders
 from notdiamond.settings import NOTDIAMOND_API_KEY, OPENAI_API_KEY
 
@@ -151,3 +156,133 @@ class AsyncOpenAI(_OpenAIBase):
             f"Routed prompt to {best_llm} for session ID {session_id}"
         )
         return response
+
+
+class _CumulativeModelSelectionWeights:
+    def __init__(self, models: Dict[str | LLMConfig, float]):
+        sorted_models = sorted(models.items(), key=lambda x: x[1])
+        norm_sum = sum(weight for _, weight in sorted_models)
+        self._cumulative_weights = []
+        self._model_ordering = []
+        previous_weight = 0.0
+        for model, weight in sorted_models:
+            weight_bin = (previous_weight, previous_weight + weight / norm_sum)
+            self._cumulative_weights.append(weight_bin)
+            self._model_ordering.append(model)
+            previous_weight = weight_bin[1]
+
+    def __getitem__(self, weight: float) -> LLMConfig:
+        for bin_idx, weight_bin in enumerate(self._cumulative_weights):
+            if (
+                weight_bin[0] <= weight < weight_bin[1]
+                or weight == weight_bin[1] == 1.0
+            ):
+                return self._model_ordering[bin_idx]
+        raise KeyError(
+            f"No model found for weight {weight} (model weights: {list(zip(self._model_ordering, self._cumulative_weights))})"
+        )
+
+
+class OpenAIRetryWrapper(_OpenAIBase):
+    """
+    Wrapper class for OpenAI clients which adds retry and fallback logic.
+    """
+
+    def __init__(
+        self,
+        openai_client: OpenAI,
+        models: Union[Dict[str | LLMConfig, float], List[str | LLMConfig]],
+        max_retries: int,
+        timeout: float,
+        fallback: List[str | LLMConfig],
+        backoff: float = 2.0,
+    ):
+        self._openai_client = openai_client
+        self._models = models
+        self._max_retries = max_retries
+        self._timeout = timeout
+        self._backoff = backoff
+        self._fallback = fallback or []
+
+        if isinstance(self._models, dict):
+            self._model_weights = _CumulativeModelSelectionWeights(
+                self._models
+            )
+        else:
+            self._model_weights = _CumulativeModelSelectionWeights(
+                {m: 1.0 for m in self._models}
+            )
+
+    def _retry_decorator(self, func):
+        @wraps(func)
+        async def async_wrapper(*args, **kwargs):
+            current_delay = self._timeout
+            last_exception = None
+            target_model = kwargs.get("model", None)
+            if target_model == "notdiamond":
+                target_model = self._model_weights[random.random()]
+
+            for attempt in range(self._max_retries):
+                try:
+                    return await func(*args, **kwargs)
+                except self._retry_exceptions as e:
+                    last_exception = e
+                    LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
+
+                    if attempt == self._max_retries - 1:  # Last attempt
+                        if self._fallback:
+                            LOGGER.info("Attempting fallback models")
+                            kwargs["model"] = self._fallback
+                            try:
+                                return await func(*args, **kwargs)
+                            except Exception as fallback_e:
+                                LOGGER.error(
+                                    f"Fallback attempt failed: {str(fallback_e)}"
+                                )
+                                raise last_exception
+                        raise
+
+                    time.sleep(current_delay)
+                    current_delay *= self._backoff
+
+        @wraps(func)
+        def sync_wrapper(*args, **kwargs):
+            current_delay = self._timeout
+            last_exception = None
+            target_model = kwargs.get("model", None)
+            if target_model == "notdiamond":
+                target_model = self._model_weights[random.random()]
+
+            for attempt in range(self._max_retries):
+                try:
+                    return func(*args, **kwargs)
+                except self._retry_exceptions as e:
+                    last_exception = e
+                    LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
+
+                    if attempt == self._max_retries - 1:  # Last attempt
+                        if self._fallback:
+                            LOGGER.info("Attempting fallback models")
+                            kwargs["model"] = self._fallback
+                            try:
+                                return func(*args, **kwargs)
+                            except Exception as fallback_e:
+                                LOGGER.error(
+                                    f"Fallback attempt failed: {str(fallback_e)}"
+                                )
+                                raise last_exception
+                        raise
+
+                    time.sleep(current_delay)
+                    current_delay *= self._backoff
+
+        # Return appropriate wrapper based on the original function
+        if asyncio.iscoroutinefunction(func):
+            return async_wrapper
+        return sync_wrapper
+
+    def __getattr__(self, name):
+        attr = getattr(self._openai_client, name)
+        if callable(attr):
+            return self._retry_decorator(attr)
+        return attr
