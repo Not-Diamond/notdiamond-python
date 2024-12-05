@@ -8,6 +8,7 @@ from typing import Any, Dict, List, Optional, Union
 from anthropic import Anthropic, AsyncAnthropic
 from openai import AsyncOpenAI, OpenAI
 
+from notdiamond import NotDiamond
 from notdiamond.llms.config import LLMConfig
 
 LOGGER = logging.getLogger(__name__)
@@ -39,7 +40,7 @@ class _CumulativeModelSelectionWeights:
         )
 
 
-class BaseRetryWrapper:
+class _BaseRetryWrapper:
     """
     Wrapper class for OpenAI clients which adds retry and fallback logic.
     """
@@ -48,19 +49,54 @@ class BaseRetryWrapper:
         self,
         client: Any,
         models: Union[Dict[str | LLMConfig, float], List[str | LLMConfig]],
-        max_retries: int | Dict[str | LLMConfig, int],
-        timeout: float | Dict[str | LLMConfig, float],
-        fallback: List[str | LLMConfig],
-        model_messages: Dict[str | LLMConfig, List[Dict[str, Any]]],
+        max_retries: int | Dict[str | LLMConfig, int] = 1,
+        timeout: float | Dict[str | LLMConfig, float] = 60.0,
+        fallback: List[str | LLMConfig] = [],
+        model_messages: Dict[str | LLMConfig, List[Dict[str, Any]]] = {},
+        api_key: str | None = None,
         backoff: float = 2.0,
     ):
         self._client = client
-        self._models = models
+        self._models = [
+            m if isinstance(m, LLMConfig) else LLMConfig.from_string(m)
+            for m in models
+        ]
+
+        # map to model names to maximize compatibility with existing code bases
         self._max_retries = max_retries
+        if isinstance(self._max_retries, dict):
+            self._max_retries = {
+                m.model: self._max_retries.get(
+                    str(m), self._max_retries.get(str(m.model))
+                )
+                for m in self._models
+            }
+
         self._timeout = timeout
+        if isinstance(self._timeout, dict):
+            self._timeout = {
+                m.model: self._timeout.get(
+                    str(m), self._timeout.get(str(m.model))
+                )
+                for m in self._models
+            }
+
+        self._model_messages = model_messages
+        if isinstance(self._model_messages, dict):
+            self._model_messages = {
+                m.model: self._model_messages.get(
+                    str(m), self._model_messages.get(str(m.model))
+                )
+                for m in self._models
+            }
+
         self._backoff = backoff
         self._fallback = fallback or []
-        self._model_messages = model_messages
+        self._api_key = api_key
+
+        self._nd_client = None
+        if self._api_key:
+            self._nd_client = NotDiamond(api_key=self._api_key)
 
         if isinstance(self._models, dict):
             self._model_weights = _CumulativeModelSelectionWeights(
@@ -77,18 +113,20 @@ class BaseRetryWrapper:
             return self._model_weights[random.random()]
         return target_model
 
-    @property
-    def timeout(self, target_model: Optional[str | LLMConfig] = None) -> float:
+    def get_timeout(
+        self, target_model: Optional[str | LLMConfig] = None
+    ) -> float:
         if isinstance(self._timeout, dict):
             if not target_model:
                 raise ValueError(
                     "target_model must be provided if timeout is a dict"
                 )
-            return self._timeout[target_model]
+            return self._timeout.get(target_model) or self._timeout.get(
+                target_model.model
+            )
         return self._timeout
 
-    @property
-    def max_retries(
+    def get_max_retries(
         self, target_model: Optional[str | LLMConfig] = None
     ) -> int:
         if isinstance(self._max_retries, dict):
@@ -109,22 +147,27 @@ class BaseRetryWrapper:
         async def async_wrapper(*args, **kwargs):
             target_model = self._get_target_model(kwargs)
             kwargs["model"] = target_model
-            kwargs["timeout"] = self.timeout(target_model)
+            kwargs["timeout"] = self.get_timeout(target_model)
             kwargs["messages"] = self._get_model_messages(target_model)
 
             last_exception = None
             attempt = 0
-            while attempt < self.max_retries(target_model):
+            while attempt < self.get_max_retries(target_model):
                 try:
                     return await func(*args, **kwargs)
-                except self._retry_exceptions as e:
+                except Exception as e:
                     last_exception = e
                     LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
 
-                    if attempt == self.max_retries(target_model) - 1:
+                    if attempt == self.get_max_retries(target_model) - 1:
                         if self._fallback:
                             kwargs["model"] = self._fallback.pop(0)
-                            kwargs["timeout"] = self.timeout(kwargs["model"])
+                            kwargs["timeout"] = self.get_timeout(
+                                kwargs["model"]
+                            )
+                            kwargs["messages"] = self._get_model_messages(
+                                kwargs["model"]
+                            )
                             LOGGER.info(
                                 f"Attempting fallback model {kwargs['model']}"
                             )
@@ -140,22 +183,27 @@ class BaseRetryWrapper:
         def sync_wrapper(*args, **kwargs):
             target_model = self._get_target_model(kwargs)
             kwargs["model"] = target_model
-            kwargs["timeout"] = self.timeout(target_model)
+            kwargs["timeout"] = self.get_timeout(target_model)
             kwargs["messages"] = self._get_model_messages(target_model)
 
             last_exception = None
             attempt = 0
-            while attempt < self.max_retries(target_model):
+            while attempt < self.get_max_retries(target_model):
                 try:
                     return func(*args, **kwargs)
-                except self._retry_exceptions as e:
+                except Exception as e:
                     last_exception = e
                     LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
 
-                    if attempt == self.max_retries(target_model) - 1:
+                    if attempt == self.get_max_retries(target_model) - 1:
                         if self._fallback:
                             kwargs["model"] = self._fallback.pop(0)
-                            kwargs["timeout"] = self.timeout(kwargs["model"])
+                            kwargs["timeout"] = self.get_timeout(
+                                kwargs["model"]
+                            )
+                            kwargs["messages"] = self._get_model_messages(
+                                kwargs["model"]
+                            )
                             LOGGER.info(
                                 f"Attempting fallback model {kwargs['model']}"
                             )
@@ -175,8 +223,18 @@ class BaseRetryWrapper:
     def __getattr__(self, name):
         return getattr(self._client, name)
 
+    def _log_to_nd(self, *args, **kwargs):
+        if not self._api_key:
+            LOGGER.warning(
+                "No API key provided, skipping logging to Not Diamond."
+            )
 
-class RetryWrapper(BaseRetryWrapper):
+        LOGGER.info("Logging inference metadata to Not Diamond.")
+
+        # todo [a9] implement logging endpoint
+
+
+class RetryWrapper(_BaseRetryWrapper):
     @property
     def chat(self):
         if not isinstance(self._client, OpenAI):
@@ -191,9 +249,10 @@ class RetryWrapper(BaseRetryWrapper):
                 return self
 
             def create(self, *args, **kwargs):
-                return self._retry_decorator(
-                    self.parent.create(*args, **kwargs)
+                wrapped = self.parent._retry_decorator(
+                    self.parent._client.chat.completions.create
                 )
+                return wrapped(*args, **kwargs)
 
         return ChatCompletions(self)
 
@@ -207,14 +266,15 @@ class RetryWrapper(BaseRetryWrapper):
                 self.parent = parent
 
             def create(self, *args, **kwargs):
-                return self._retry_decorator(
-                    self.parent.create(*args, **kwargs)
+                wrapped = self.parent._retry_decorator(
+                    self.parent._client.messages.create
                 )
+                return wrapped(*args, **kwargs)
 
         return Messages(self)
 
 
-class AsyncRetryWrapper(BaseRetryWrapper):
+class AsyncRetryWrapper(_BaseRetryWrapper):
     @property
     def chat(self):
         if not isinstance(self._client, AsyncOpenAI):
@@ -229,9 +289,10 @@ class AsyncRetryWrapper(BaseRetryWrapper):
                 return self
 
             async def create(self, *args, **kwargs):
-                return await self._retry_decorator(
-                    self.parent.create(*args, **kwargs)
+                wrapped = self.parent._retry_decorator(
+                    self.parent._client.chat.completions.create
                 )
+                return await wrapped(*args, **kwargs)
 
         return ChatCompletions(self)
 
@@ -245,8 +306,9 @@ class AsyncRetryWrapper(BaseRetryWrapper):
                 self.parent = parent
 
             async def create(self, *args, **kwargs):
-                return await self._retry_decorator(
-                    self.parent.create(*args, **kwargs)
+                wrapped = self.parent._retry_decorator(
+                    self.parent._client.messages.create
                 )
+                return await wrapped(*args, **kwargs)
 
         return Messages(self)

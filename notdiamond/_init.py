@@ -56,12 +56,28 @@ def init(
     """
     api_key = api_key or os.getenv("NOTDIAMOND_API_KEY")
 
-    client_wrapper = RetryWrapper(
-        client=client,
-        models=models,
-        max_retries=max_retries,
-        timeout=timeout,
-        fallback=fallback,
-        model_messages=model_messages,
-    )
+    if not isinstance(client, List):
+        client_wrapper = RetryWrapper(
+            client=client,
+            models=models,
+            max_retries=max_retries,
+            timeout=timeout,
+            fallback=fallback,
+            model_messages=model_messages,
+            api_key=api_key,
+        )
+    else:
+        client_wrapper = [
+            RetryWrapper(
+                client=cc,
+                models=models,
+                max_retries=max_retries,
+                timeout=timeout,
+                fallback=fallback,
+                model_messages=model_messages,
+                api_key=api_key,
+            )
+            for cc in client
+        ]
+
     return client_wrapper

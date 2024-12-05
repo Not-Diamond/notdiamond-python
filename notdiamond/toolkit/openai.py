@@ -7,7 +7,7 @@ from typing import List, Union
 from notdiamond import NotDiamond
 from notdiamond.llms.providers import NDLLMProviders
 from notdiamond.settings import NOTDIAMOND_API_KEY, OPENAI_API_KEY
-from notdiamond.toolkit.retry import BaseRetryWrapper
+from notdiamond.toolkit.retry import _BaseRetryWrapper
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -154,7 +154,7 @@ class AsyncOpenAI(_OpenAIBase):
         return response
 
 
-class OpenAIRetryWrapper(BaseRetryWrapper, _OpenAIBase):
+class OpenAIRetryWrapper(_BaseRetryWrapper, _OpenAIBase):
     @property
     def chat(self):
         class ChatCompletions:
@@ -173,7 +173,7 @@ class OpenAIRetryWrapper(BaseRetryWrapper, _OpenAIBase):
         return ChatCompletions(self)
 
 
-class AsyncOpenAIRetryWrapper(BaseRetryWrapper, _OpenAIBase):
+class AsyncOpenAIRetryWrapper(_BaseRetryWrapper, _OpenAIBase):
     @property
     def chat(self):
         class ChatCompletions:
