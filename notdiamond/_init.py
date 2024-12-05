@@ -1,23 +1,40 @@
 from __future__ import annotations
 
-from typing import Dict, List, Union
+import os
+from typing import Dict, List, Union, overload
 
 from anthropic import Anthropic, AsyncAnthropic
 from openai import AsyncOpenAI, OpenAI
 
 from notdiamond.llms.config import LLMConfig
-from notdiamond.toolkit.openai import OpenAIRetryWrapper
+from notdiamond.toolkit.retry import RetryWrapper
+
+ClientType = Union[OpenAI, AsyncOpenAI, Anthropic, AsyncAnthropic]
+LLMType = Union[str, LLMConfig]
+
+
+@overload
+def init(
+    client: List[ClientType],
+    models: Union[Dict[LLMType, float], List[LLMType]],
+    max_retries: int | Dict[LLMType, int],
+    timeout: float | Dict[LLMType, float],
+    model_messages: Dict[LLMType, List[Dict[str, str]]],
+    api_key: str | None = None,
+    fallback: List[LLMType] = [],
+) -> RetryWrapper:
+    ...
 
 
 def init(
-    client: OpenAI | AsyncOpenAI | Anthropic | AsyncAnthropic,
-    models: Union[Dict[str | LLMConfig, float], List[str | LLMConfig]],
-    max_retries: int | Dict[str | LLMConfig, int],
-    timeout: float | Dict[str | LLMConfig, float],
-    model_messages: Dict[str | LLMConfig, List[Dict[str, str]]],
+    client: ClientType,
+    models: Union[Dict[LLMType, float], List[LLMType]],
+    max_retries: int | Dict[LLMType, int],
+    timeout: float | Dict[LLMType, float],
+    model_messages: Dict[LLMType, List[Dict[str, str]]],
     api_key: str | None = None,
-    fallback: List[str | LLMConfig] = [],
-):
+    fallback: List[LLMType] = [],
+) -> RetryWrapper:
     """
     Usage:
 
@@ -37,16 +54,9 @@ def init(
         )
     ```
     """
-    # openai_client = gc.get_objects(type_filter=OpenAI)
-    # if not openai_client:
-    #     openai_client = gc.get_objects(type_filter=AsyncOpenAI)
+    api_key = api_key or os.getenv("NOTDIAMOND_API_KEY")
 
-    # if not openai_client:
-    #     raise ValueError(
-    #         "No OpenAI or AsyncOpenAI client found. Is this correct?"
-    #     )
-
-    client_wrapper = OpenAIRetryWrapper(
+    client_wrapper = RetryWrapper(
         client=client,
         models=models,
         max_retries=max_retries,
