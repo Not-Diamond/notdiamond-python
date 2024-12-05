@@ -3,7 +3,7 @@ import logging
 import random
 import time
 from functools import wraps
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 from anthropic import Anthropic, AsyncAnthropic
 from openai import AsyncOpenAI, OpenAI
@@ -48,8 +48,8 @@ class BaseRetryWrapper:
         self,
         client: Any,
         models: Union[Dict[str | LLMConfig, float], List[str | LLMConfig]],
-        max_retries: int,
-        timeout: float,
+        max_retries: int | Dict[str | LLMConfig, int],
+        timeout: float | Dict[str | LLMConfig, float],
         fallback: List[str | LLMConfig],
         backoff: float = 2.0,
     ):
@@ -75,68 +75,88 @@ class BaseRetryWrapper:
             return self._model_weights[random.random()]
         return target_model
 
+    @property
+    def timeout(self, target_model: Optional[str | LLMConfig] = None) -> float:
+        if isinstance(self._timeout, dict):
+            if not target_model:
+                raise ValueError(
+                    "target_model must be provided if timeout is a dict"
+                )
+            return self._timeout[target_model]
+        return self._timeout
+
+    @property
+    def max_retries(
+        self, target_model: Optional[str | LLMConfig] = None
+    ) -> int:
+        if isinstance(self._max_retries, dict):
+            if not target_model:
+                raise ValueError(
+                    "target_model must be provided if max_retries is a dict"
+                )
+            return self._max_retries[target_model]
+        return self._max_retries
+
     def _retry_decorator(self, func):
         @wraps(func)
         async def async_wrapper(*args, **kwargs):
-            current_delay = self._timeout
-            last_exception = None
             target_model = self._get_target_model(kwargs)
             kwargs["model"] = target_model
+            kwargs["timeout"] = self.timeout(target_model)
 
+            last_exception = None
             attempt = 0
-            while attempt < self._max_retries:
+            while attempt < self.max_retries(target_model):
                 try:
                     return await func(*args, **kwargs)
                 except self._retry_exceptions as e:
                     last_exception = e
                     LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
 
-                    if attempt == self._max_retries - 1:
+                    if attempt == self.max_retries(target_model) - 1:
                         if self._fallback:
                             kwargs["model"] = self._fallback.pop(0)
+                            kwargs["timeout"] = self.timeout(kwargs["model"])
                             LOGGER.info(
                                 f"Attempting fallback model {kwargs['model']}"
                             )
                             attempt = 0
-                            current_delay = self._timeout
                             continue
 
                         raise last_exception
 
-                    time.sleep(current_delay)
-                    current_delay *= self._backoff
                     attempt += 1
+                    await asyncio.sleep(self._backoff**attempt)
 
         @wraps(func)
         def sync_wrapper(*args, **kwargs):
-            current_delay = self._timeout
-            last_exception = None
             target_model = self._get_target_model(kwargs)
             kwargs["model"] = target_model
+            kwargs["timeout"] = self.timeout(target_model)
 
+            last_exception = None
             attempt = 0
-            while attempt < self._max_retries:
+            while attempt < self.max_retries(target_model):
                 try:
                     return func(*args, **kwargs)
                 except self._retry_exceptions as e:
                     last_exception = e
                     LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
 
-                    if attempt == self._max_retries - 1:
+                    if attempt == self.max_retries(target_model) - 1:
                         if self._fallback:
                             kwargs["model"] = self._fallback.pop(0)
+                            kwargs["timeout"] = self.timeout(kwargs["model"])
                             LOGGER.info(
                                 f"Attempting fallback model {kwargs['model']}"
                             )
                             attempt = 0
-                            current_delay = self._timeout
                             continue
 
                         raise last_exception
 
-                    time.sleep(current_delay)
-                    current_delay *= self._backoff
                     attempt += 1
+                    time.sleep(self._backoff**attempt)
 
         # Return appropriate wrapper based on the original function
         if asyncio.iscoroutinefunction(func):

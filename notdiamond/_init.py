@@ -12,10 +12,8 @@ from notdiamond.toolkit.openai import OpenAIRetryWrapper
 def init(
     client: OpenAI | AsyncOpenAI | Anthropic | AsyncAnthropic,
     models: Union[Dict[str | LLMConfig, float], List[str | LLMConfig]],
-    # todo [a9]: accept dict of model -> max_retries
-    max_retries: int,
-    # todo [a9]: accept dict of model -> timeout
-    timeout: float,
+    max_retries: int | Dict[str | LLMConfig, int],
+    timeout: float | Dict[str | LLMConfig, float],
     model_messages: Dict[str | LLMConfig, List[Dict[str, str]]],
     api_key: str | None = None,
     fallback: List[str | LLMConfig] = [],
