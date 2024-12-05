@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Union
+from typing import Dict, List, Union
 
+from anthropic import Anthropic, AsyncAnthropic
 from openai import AsyncOpenAI, OpenAI
 
 from notdiamond.llms.config import LLMConfig
@@ -9,8 +10,7 @@ from notdiamond.toolkit.openai import OpenAIRetryWrapper
 
 
 def init(
-    # todo [a9]: update annotation for correct client types
-    client: OpenAI | AsyncOpenAI | Any,
+    client: OpenAI | AsyncOpenAI | Anthropic | AsyncAnthropic,
     models: Union[Dict[str | LLMConfig, float], List[str | LLMConfig]],
     # todo [a9]: accept dict of model -> max_retries
     max_retries: int,
