@@ -47,6 +47,11 @@ def init(
     #     )
 
     client_wrapper = OpenAIRetryWrapper(
-        client, models, max_retries, timeout, fallback
+        client=client,
+        models=models,
+        max_retries=max_retries,
+        timeout=timeout,
+        fallback=fallback,
+        model_messages=model_messages,
     )
     return client_wrapper

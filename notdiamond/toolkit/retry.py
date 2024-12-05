@@ -51,6 +51,7 @@ class BaseRetryWrapper:
         max_retries: int | Dict[str | LLMConfig, int],
         timeout: float | Dict[str | LLMConfig, float],
         fallback: List[str | LLMConfig],
+        model_messages: Dict[str | LLMConfig, List[Dict[str, Any]]],
         backoff: float = 2.0,
     ):
         self._client = client
@@ -59,6 +60,7 @@ class BaseRetryWrapper:
         self._timeout = timeout
         self._backoff = backoff
         self._fallback = fallback or []
+        self._model_messages = model_messages
 
         if isinstance(self._models, dict):
             self._model_weights = _CumulativeModelSelectionWeights(
@@ -97,12 +99,18 @@ class BaseRetryWrapper:
             return self._max_retries[target_model]
         return self._max_retries
 
+    def _get_model_messages(
+        self, target_model: str | LLMConfig
+    ) -> List[Dict[str, Any]]:
+        return self._model_messages[target_model]
+
     def _retry_decorator(self, func):
         @wraps(func)
         async def async_wrapper(*args, **kwargs):
             target_model = self._get_target_model(kwargs)
             kwargs["model"] = target_model
             kwargs["timeout"] = self.timeout(target_model)
+            kwargs["messages"] = self._get_model_messages(target_model)
 
             last_exception = None
             attempt = 0
@@ -133,6 +141,7 @@ class BaseRetryWrapper:
             target_model = self._get_target_model(kwargs)
             kwargs["model"] = target_model
             kwargs["timeout"] = self.timeout(target_model)
+            kwargs["messages"] = self._get_model_messages(target_model)
 
             last_exception = None
             attempt = 0
