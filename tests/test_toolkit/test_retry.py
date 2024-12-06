@@ -46,7 +46,7 @@ def api_key():
     ],
 )
 @pytest.mark.vcr
-def test_retry_wrapper(
+def test_retry_wrapper_create(
     client, models, max_retries, timeout, model_messages, api_key
 ):
     wrapper = RetryWrapper(
@@ -83,7 +83,7 @@ def test_retry_wrapper(
 )
 @pytest.mark.asyncio
 @pytest.mark.vcr
-async def test_retry_wrapper_async(
+async def test_retry_wrapper_async_create(
     client, models, max_retries, timeout, model_messages, api_key
 ):
     wrapper = AsyncRetryWrapper(
@@ -106,5 +106,98 @@ async def test_retry_wrapper_async(
         result = await wrapper.chat.completions.create(
             model="gpt-4o-mini",
             messages=model_messages["gpt-4o-mini"],
+        )
+    assert result
+
+
+@pytest.mark.parametrize(
+    "client",
+    [
+        pytest.param(OpenAI(), id="openai"),
+        pytest.param(Anthropic(), id="anthropic"),
+        # pytest.param(AzureOpenAI(), id='azure-openai'),
+    ],
+)
+@pytest.mark.vcr
+def test_retry_wrapper_stream(
+    client, models, max_retries, timeout, model_messages, api_key
+):
+    wrapper = RetryWrapper(
+        client=client,
+        models=models,
+        max_retries=max_retries,
+        timeout=timeout,
+        model_messages=model_messages,
+        api_key=api_key,
+    )
+    assert wrapper
+
+    if isinstance(client, Anthropic):
+        result = wrapper.messages.create(
+            model="claude-3-5-haiku-20241022",
+            messages=model_messages["claude-3-5-haiku-20241022"],
+            max_tokens=1024,
+            stream=True,
+        )
+        result_2 = wrapper.messages.stream(
+            model="claude-3-5-haiku-20241022",
+            messages=model_messages["claude-3-5-haiku-20241022"],
+            max_tokens=1024,
+        )
+        assert result_2
+    else:
+        result = wrapper.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=model_messages["gpt-4o-mini"],
+            stream=True,
+        )
+    assert result
+
+
+@pytest.mark.parametrize(
+    "client",
+    [
+        pytest.param(AsyncOpenAI(), id="async-openai"),
+        pytest.param(AsyncAnthropic(), id="async-anthropic"),
+        # pytest.param(AsyncAzureOpenAI(), id='async-azure-openai'),
+    ],
+)
+@pytest.mark.asyncio
+@pytest.mark.vcr
+async def test_retry_wrapper_async_stream(
+    client, models, max_retries, timeout, model_messages, api_key
+):
+    wrapper = AsyncRetryWrapper(
+        client=client,
+        models=models,
+        max_retries=max_retries,
+        timeout=timeout,
+        model_messages=model_messages,
+        api_key=api_key,
+    )
+    assert wrapper
+
+    if isinstance(client, AsyncAnthropic):
+        result = await wrapper.messages.create(
+            model="claude-3-5-haiku-20241022",
+            messages=model_messages["claude-3-5-haiku-20241022"],
+            max_tokens=1024,
+            stream=True,
+        )
+
+        result_2 = ""
+        async with wrapper.messages.stream(
+            model="claude-3-5-haiku-20241022",
+            messages=model_messages["claude-3-5-haiku-20241022"],
+            max_tokens=1024,
+        ) as stream:
+            async for chunk in stream.text_stream:
+                result_2 += chunk
+        assert result_2
+    else:
+        result = await wrapper.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=model_messages["gpt-4o-mini"],
+            stream=True,
         )
     assert result

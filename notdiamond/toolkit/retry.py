@@ -271,6 +271,12 @@ class RetryWrapper(_BaseRetryWrapper):
                 )
                 return wrapped(*args, **kwargs)
 
+            def stream(self, *args, **kwargs):
+                wrapped = self.parent._retry_decorator(
+                    self.parent._client.messages.stream
+                )
+                return wrapped(*args, **kwargs)
+
         return Messages(self)
 
 
@@ -310,5 +316,16 @@ class AsyncRetryWrapper(_BaseRetryWrapper):
                     self.parent._client.messages.create
                 )
                 return await wrapped(*args, **kwargs)
+
+            def stream(self, *args, **kwargs):
+                """
+                This Anthropic method is not async bc the underlying `stream` call returns
+                a non-async AsyncMessageStreamGenerator. See codebase for details:
+                https://github.com/anthropics/anthropic-sdk-python/blob/main/src/anthropic/resources/messages.py#L1864
+                """
+                wrapped = self.parent._retry_decorator(
+                    self.parent._client.messages.stream
+                )
+                return wrapped(*args, **kwargs)
 
         return Messages(self)
