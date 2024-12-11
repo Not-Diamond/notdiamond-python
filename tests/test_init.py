@@ -1,5 +1,4 @@
 import pytest
-from anthropic import Anthropic, AsyncAnthropic
 from openai import AsyncAzureOpenAI, AsyncOpenAI, AzureOpenAI, OpenAI
 
 from notdiamond import init
@@ -7,7 +6,12 @@ from notdiamond import init
 
 @pytest.fixture
 def models():
-    return ["openai/gpt-4o-mini", "anthropic/claude-3-5-haiku-20241022"]
+    return [
+        "openai/gpt-4o-mini",
+        "azure/gpt-4o-mini",
+        "openai/gpt-4o",
+        "azure/gpt-4o",
+    ]
 
 
 @pytest.fixture
@@ -34,25 +38,18 @@ def api_key():
 
 
 @pytest.mark.parametrize(
-    "client",
+    ("client", "model"),
     [
-        OpenAI(),
-        Anthropic(),
-        AzureOpenAI(),
-        AsyncAzureOpenAI(),
-        AsyncOpenAI(),
-        AsyncAnthropic(),
-        # [a9] need to set up bedrock to test these
-        # AnthropicBedrock(),
-        # AsyncAnthropicBedrock(),
+        (OpenAI(), "openai/gpt-4o-mini"),
+        (AzureOpenAI(), "azure/gpt-4o-mini"),
     ],
 )
 def test_init_call(
-    client, models, max_retries, timeout, model_messages, api_key
+    client, model, max_retries, timeout, model_messages, api_key
 ):
     result = init(
         client=client,
-        models=models,
+        models=model,
         max_retries=max_retries,
         timeout=timeout,
         model_messages=model_messages,
@@ -64,7 +61,34 @@ def test_init_call(
 
 def test_init_call_list(models, max_retries, timeout, model_messages, api_key):
     result = init(
-        client=[OpenAI(), Anthropic()],
+        client=[OpenAI(), AzureOpenAI()],
+        models=models,
+        max_retries=max_retries,
+        timeout=timeout,
+        model_messages=model_messages,
+        api_key=api_key,
+    )
+
+    assert result
+
+    async_result = init(
+        client=[AsyncOpenAI(), AsyncAzureOpenAI()],
+        models=models,
+        max_retries=max_retries,
+        timeout=timeout,
+        model_messages=model_messages,
+        api_key=api_key,
+    )
+
+    assert async_result
+
+
+def test_init_call_single_client_multi_models(
+    max_retries, timeout, model_messages, api_key
+):
+    models = ["openai/gpt-4o-mini", "openai/gpt-4o"]
+    result = init(
+        client=OpenAI(),
         models=models,
         max_retries=max_retries,
         timeout=timeout,

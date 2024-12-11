@@ -1,0 +1,81 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, how are you?"}], "model":
+      "gpt-4o-mini"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      api-key:
+      - 768db448e03a4c31986961b5cfebb9c1
+      connection:
+      - keep-alive
+      content-length:
+      - '90'
+      content-type:
+      - application/json
+      host:
+      - notdiamond-azure-openai.openai.azure.com
+      user-agent:
+      - AzureOpenAI/Python 1.55.0
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.55.0
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.10
+    method: POST
+    uri: https://notdiamond-azure-openai.openai.azure.com//openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-07-01-preview
+  response:
+    body:
+      string: '{"choices":[{"content_filter_results":{"hate":{"filtered":false,"severity":"safe"},"self_harm":{"filtered":false,"severity":"safe"},"sexual":{"filtered":false,"severity":"safe"},"violence":{"filtered":false,"severity":"safe"}},"finish_reason":"stop","index":0,"logprobs":null,"message":{"content":"Hello!
+        I''m just a program, but I''m here and ready to help you. How can I assist
+        you today?","role":"assistant"}}],"created":1733938371,"id":"chatcmpl-AdKrrhoPeSTHOUnoHIDRCf4ZLnqWZ","model":"gpt-4o-mini","object":"chat.completion","prompt_filter_results":[{"prompt_index":0,"content_filter_results":{"hate":{"filtered":false,"severity":"safe"},"self_harm":{"filtered":false,"severity":"safe"},"sexual":{"filtered":false,"severity":"safe"},"violence":{"filtered":false,"severity":"safe"}}}],"system_fingerprint":"fp_04751d0b65","usage":{"completion_tokens":23,"prompt_tokens":13,"total_tokens":36}}
+
+        '
+    headers:
+      Content-Length:
+      - '895'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 11 Dec 2024 17:32:51 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      apim-request-id:
+      - 837d8fc1-de2d-4939-9653-f680d8d8766e
+      azureml-model-session:
+      - d034-20241121000714
+      x-accel-buffering:
+      - 'no'
+      x-content-type-options:
+      - nosniff
+      x-envoy-upstream-service-time:
+      - '533'
+      x-ms-client-request-id:
+      - 837d8fc1-de2d-4939-9653-f680d8d8766e
+      x-ms-rai-invoked:
+      - 'true'
+      x-ms-region:
+      - East US
+      x-ratelimit-remaining-requests:
+      - '19984'
+      x-ratelimit-remaining-tokens:
+      - '1943859'
+      x-request-id:
+      - 340afc86-9e01-4658-97e5-da0dba78f2b3
+    status:
+      code: 200
+      message: OK
+version: 1

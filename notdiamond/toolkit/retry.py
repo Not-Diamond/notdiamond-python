@@ -5,8 +5,13 @@ import time
 from functools import wraps
 from typing import Any, Dict, List, Optional, Union
 
-from anthropic import Anthropic, AsyncAnthropic
-from openai import AsyncOpenAI, OpenAI
+from anthropic import (
+    Anthropic,
+    AnthropicBedrock,
+    AsyncAnthropic,
+    AsyncAnthropicBedrock,
+)
+from openai import AsyncAzureOpenAI, AsyncOpenAI, AzureOpenAI, OpenAI
 
 from notdiamond import NotDiamond
 from notdiamond.llms.config import LLMConfig
@@ -16,7 +21,7 @@ LOGGER.setLevel(logging.INFO)
 
 
 class _CumulativeModelSelectionWeights:
-    def __init__(self, models: Dict[str | LLMConfig, float]):
+    def __init__(self, models: Dict[str, float]):
         sorted_models = sorted(models.items(), key=lambda x: x[1])
         norm_sum = sum(weight for _, weight in sorted_models)
         self._cumulative_weights = []
@@ -28,15 +33,15 @@ class _CumulativeModelSelectionWeights:
             self._model_ordering.append(model)
             previous_weight = weight_bin[1]
 
-    def __getitem__(self, weight: float) -> LLMConfig:
+    def __getitem__(self, value: float) -> LLMConfig:
         for bin_idx, weight_bin in enumerate(self._cumulative_weights):
             if (
-                weight_bin[0] <= weight < weight_bin[1]
-                or weight == weight_bin[1] == 1.0
+                weight_bin[0] <= value < weight_bin[1]
+                or value == weight_bin[1] == 1.0
             ):
                 return self._model_ordering[bin_idx]
         raise KeyError(
-            f"No model found for weight {weight} (model weights: {list(zip(self._model_ordering, self._cumulative_weights))})"
+            f"No model found for draw {value} (model weights: {list(zip(self._model_ordering, self._cumulative_weights))})"
         )
 
 
@@ -48,172 +53,136 @@ class _BaseRetryWrapper:
     def __init__(
         self,
         client: Any,
-        models: Union[Dict[str | LLMConfig, float], List[str | LLMConfig]],
-        max_retries: int | Dict[str | LLMConfig, int] = 1,
-        timeout: float | Dict[str | LLMConfig, float] = 60.0,
-        fallback: List[str | LLMConfig] = [],
-        model_messages: Dict[str | LLMConfig, List[Dict[str, Any]]] = {},
+        models: Union[Dict[str, float], List[str]],
+        max_retries: int | Dict[str, int] = 1,
+        timeout: float | Dict[str, float] = 60.0,
+        model_messages: Dict[str, List[Dict[str, Any]]] = {},
         api_key: str | None = None,
         backoff: float = 2.0,
     ):
         self._client = client
-        self._models = [
-            m if isinstance(m, LLMConfig) else LLMConfig.from_string(m)
-            for m in models
-        ]
 
-        # map to model names to maximize compatibility with existing code bases
+        # strip provider from model name
+        if isinstance(models, list):
+            # models is a list - preserve order
+            self._models = [_m.split("/")[-1] for _m in models]
+        else:
+            # models is a load-balanced dict - order models by desc. weight
+            self._models = sorted(
+                [_m.split("/")[-1] for (_m, _w) in list(models.items())],
+                key=lambda x: x[1],
+                reverse=True,
+            )
+
         self._max_retries = max_retries
-        if isinstance(self._max_retries, dict):
-            self._max_retries = {
-                m.model: self._max_retries.get(
-                    str(m), self._max_retries.get(str(m.model))
-                )
-                for m in self._models
-            }
-
         self._timeout = timeout
-        if isinstance(self._timeout, dict):
-            self._timeout = {
-                m.model: self._timeout.get(
-                    str(m), self._timeout.get(str(m.model))
-                )
-                for m in self._models
-            }
-
         self._model_messages = model_messages
-        if isinstance(self._model_messages, dict):
-            self._model_messages = {
-                m.model: self._model_messages.get(
-                    str(m), self._model_messages.get(str(m.model))
-                )
-                for m in self._models
-            }
-
         self._backoff = backoff
-        self._fallback = fallback or []
-        self._api_key = api_key
 
+        self._api_key = api_key
         self._nd_client = None
         if self._api_key:
             self._nd_client = NotDiamond(api_key=self._api_key)
 
-        if isinstance(self._models, dict):
-            self._model_weights = _CumulativeModelSelectionWeights(
-                self._models
-            )
-        else:
-            self._model_weights = _CumulativeModelSelectionWeights(
-                {m: 1.0 for m in self._models}
-            )
+        # track manager to assist with model selection and load balancing when overriding
+        # create or stream calls
+        self.manager: Optional[RetryManager] = None
 
-    def _get_target_model(self, kwargs: Dict[str, Any]) -> str | LLMConfig:
-        target_model = kwargs.get("model", None)
-        if target_model == "notdiamond":
-            return self._model_weights[random.random()]
-        return target_model
-
-    def get_timeout(
-        self, target_model: Optional[str | LLMConfig] = None
-    ) -> float:
+    def get_timeout(self, target_model: Optional[str] = None) -> float:
+        out = self._timeout
         if isinstance(self._timeout, dict):
             if not target_model:
                 raise ValueError(
                     "target_model must be provided if timeout is a dict"
                 )
-            return self._timeout.get(target_model) or self._timeout.get(
-                target_model.model
-            )
-        return self._timeout
+            out = self._timeout.get(target_model)
+        return out
 
-    def get_max_retries(
-        self, target_model: Optional[str | LLMConfig] = None
-    ) -> int:
+    def get_max_retries(self, target_model: Optional[str] = None) -> int:
+        out = self._max_retries
         if isinstance(self._max_retries, dict):
             if not target_model:
                 raise ValueError(
                     "target_model must be provided if max_retries is a dict"
                 )
-            return self._max_retries[target_model]
-        return self._max_retries
+            out = self._max_retries.get(target_model)
+        return out
 
-    def _get_model_messages(
-        self, target_model: str | LLMConfig
-    ) -> List[Dict[str, Any]]:
-        return self._model_messages[target_model]
+    def _update_model_kwargs(
+        self, kwargs: Dict[str, Any], target_model: str
+    ) -> Dict[str, Any]:
+        kwargs["model"] = target_model
+        kwargs["timeout"] = self.get_timeout(target_model)
+        kwargs["messages"] = self._model_messages[target_model]
+        return kwargs
+
+    def _get_fallback_model(self, current_model: str) -> str:
+        """
+        After failing to invoke current_model, use the user's model fallback list to choose the
+        next invocation model.
+        """
+        model_idx = self._models.index(current_model)
+        if model_idx == len(self._models) - 1:
+            return
+        return self._models[model_idx + 1]
 
     def _retry_decorator(self, func):
         @wraps(func)
         async def async_wrapper(*args, **kwargs):
-            target_model = self._get_target_model(kwargs)
-            kwargs["model"] = target_model
-            kwargs["timeout"] = self.get_timeout(target_model)
-            kwargs["messages"] = self._get_model_messages(target_model)
+            target_model = kwargs["model"]
+            kwargs = self._update_model_kwargs(kwargs, target_model)
 
-            last_exception = None
             attempt = 0
             while attempt < self.get_max_retries(target_model):
                 try:
                     return await func(*args, **kwargs)
                 except Exception as e:
-                    last_exception = e
                     LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
 
                     if attempt == self.get_max_retries(target_model) - 1:
-                        if self._fallback:
-                            kwargs["model"] = self._fallback.pop(0)
-                            kwargs["timeout"] = self.get_timeout(
-                                kwargs["model"]
-                            )
-                            kwargs["messages"] = self._get_model_messages(
-                                kwargs["model"]
-                            )
-                            LOGGER.info(
-                                f"Attempting fallback model {kwargs['model']}"
-                            )
-                            attempt = 0
-                            continue
+                        # get a fallback or raise exception if none found
+                        target_model = self._get_fallback_model(target_model)
+                        if not target_model:
+                            raise e
+                        kwargs = self._update_model_kwargs(
+                            kwargs, target_model
+                        )
+                        LOGGER.info(
+                            f"Attempting fallback model {kwargs['model']}"
+                        )
+                        attempt = 0
+                        continue
 
-                        raise last_exception
-
-                    attempt += 1
-                    await asyncio.sleep(self._backoff**attempt)
+                attempt += 1
+                await asyncio.sleep(self._backoff**attempt)
 
         @wraps(func)
         def sync_wrapper(*args, **kwargs):
-            target_model = self._get_target_model(kwargs)
-            kwargs["model"] = target_model
-            kwargs["timeout"] = self.get_timeout(target_model)
-            kwargs["messages"] = self._get_model_messages(target_model)
+            target_model = kwargs["model"]
+            kwargs = self._update_model_kwargs(kwargs, target_model)
 
-            last_exception = None
             attempt = 0
             while attempt < self.get_max_retries(target_model):
                 try:
                     return func(*args, **kwargs)
                 except Exception as e:
-                    last_exception = e
                     LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
 
                     if attempt == self.get_max_retries(target_model) - 1:
-                        if self._fallback:
-                            kwargs["model"] = self._fallback.pop(0)
-                            kwargs["timeout"] = self.get_timeout(
-                                kwargs["model"]
-                            )
-                            kwargs["messages"] = self._get_model_messages(
-                                kwargs["model"]
-                            )
-                            LOGGER.info(
-                                f"Attempting fallback model {kwargs['model']}"
-                            )
-                            attempt = 0
-                            continue
+                        target_model = self._get_fallback_model(target_model)
+                        if not target_model:
+                            raise e
+                        kwargs = self._update_model_kwargs(
+                            kwargs, target_model
+                        )
+                        LOGGER.info(
+                            f"Attempting fallback model {kwargs['model']}"
+                        )
+                        attempt = 0
+                        continue
 
-                        raise last_exception
-
-                    attempt += 1
-                    time.sleep(self._backoff**attempt)
+                attempt += 1
+                time.sleep(self._backoff**attempt)
 
         # Return appropriate wrapper based on the original function
         if asyncio.iscoroutinefunction(func):
@@ -240,44 +209,29 @@ class RetryWrapper(_BaseRetryWrapper):
         if not isinstance(self._client, OpenAI):
             return getattr(self._client, "chat")
 
+        self._default_create = self._client.chat.completions.create
+
         class ChatCompletions:
-            def __init__(self, parent):
+            def __init__(self, parent: RetryWrapper, manager: RetryManager):
                 self.parent = parent
+                self.manager = manager
 
             @property
             def completions(self):
                 return self
 
             def create(self, *args, **kwargs):
-                wrapped = self.parent._retry_decorator(
-                    self.parent._client.chat.completions.create
+                target_model = self.manager.sample_or_get_model(
+                    random.random()
+                )
+                target_wrapper = self.manager.get_wrapper(target_model)
+                print(f"create: {target_wrapper._default_create}")
+                wrapped = target_wrapper._retry_decorator(
+                    self.parent._default_create
                 )
                 return wrapped(*args, **kwargs)
 
-        return ChatCompletions(self)
-
-    @property
-    def messages(self):
-        if not isinstance(self._client, Anthropic):
-            return getattr(self._client, "messages")
-
-        class Messages:
-            def __init__(self, parent):
-                self.parent = parent
-
-            def create(self, *args, **kwargs):
-                wrapped = self.parent._retry_decorator(
-                    self.parent._client.messages.create
-                )
-                return wrapped(*args, **kwargs)
-
-            def stream(self, *args, **kwargs):
-                wrapped = self.parent._retry_decorator(
-                    self.parent._client.messages.stream
-                )
-                return wrapped(*args, **kwargs)
-
-        return Messages(self)
+        return ChatCompletions(self, self.manager)
 
 
 class AsyncRetryWrapper(_BaseRetryWrapper):
@@ -286,46 +240,114 @@ class AsyncRetryWrapper(_BaseRetryWrapper):
         if not isinstance(self._client, AsyncOpenAI):
             return getattr(self._client, "chat")
 
-        class ChatCompletions:
-            def __init__(self, parent):
+        self._default_create = self._client.chat.completions.create
+
+        class AsyncCompletions:
+            def __init__(
+                self, parent: AsyncRetryWrapper, manager: RetryManager
+            ):
                 self.parent = parent
+                self.manager = manager
 
             @property
             def completions(self):
                 return self
 
             async def create(self, *args, **kwargs):
-                wrapped = self.parent._retry_decorator(
-                    self.parent._client.chat.completions.create
+                target_model = self.manager.sample_or_get_model(
+                    random.random()
+                )
+                target_wrapper = self.manager.get_wrapper(target_model)
+                wrapped = target_wrapper._retry_decorator(
+                    self.parent._default_create
                 )
                 return await wrapped(*args, **kwargs)
 
-        return ChatCompletions(self)
+        return AsyncCompletions(self, self.manager)
 
-    @property
-    def messages(self):
-        if not isinstance(self._client, AsyncAnthropic):
-            return getattr(self._client, "messages")
 
-        class Messages:
-            def __init__(self, parent):
-                self.parent = parent
+class RetryManager:
+    """
+    RetryManager handles model selection. If the user provides a load balancing dict,
+    it will use that to select a model for each invocation. Otherwise, it will use the
+    first model in the list.
+    """
 
-            async def create(self, *args, **kwargs):
-                wrapped = self.parent._retry_decorator(
-                    self.parent._client.messages.create
+    def __init__(
+        self,
+        models: Union[Dict[str, float], List[str]],
+        wrapped_clients: List[RetryWrapper],
+    ):
+        self._wrappers = wrapped_clients
+        self._models = models
+
+        self._model_weights = None
+        if isinstance(self._models, dict):
+            self._model_weights = _CumulativeModelSelectionWeights(
+                self._models
+            )
+
+        for wrapper in self._wrappers:
+            wrapper.manager = self
+            wrapper._client.chat = wrapper.chat
+
+        self._model_to_wrapper: Dict[str, RetryWrapper] = {}
+        for model in self._models:
+            self._model_to_wrapper[model] = self._get_model_wrapper(model)
+
+    def _get_model_wrapper(self, model: str) -> RetryWrapper:
+        target_wrapper = None
+        try:
+            if "bedrock" in model:
+                target_wrapper = [
+                    wrapper
+                    for wrapper in self._wrappers
+                    if isinstance(
+                        wrapper._client,
+                        (AnthropicBedrock, AsyncAnthropicBedrock),
+                    )
+                ][0]
+            elif "azure" in model:
+                target_wrapper = [
+                    wrapper
+                    for wrapper in self._wrappers
+                    if isinstance(
+                        wrapper._client, (AzureOpenAI, AsyncAzureOpenAI)
+                    )
+                ][0]
+            elif "anthropic" in model:
+                target_wrapper = [
+                    wrapper
+                    for wrapper in self._wrappers
+                    if isinstance(wrapper._client, (Anthropic, AsyncAnthropic))
+                ][0]
+            elif "openai" in model:
+                target_wrapper = [
+                    wrapper
+                    for wrapper in self._wrappers
+                    if isinstance(wrapper._client, (OpenAI, AsyncOpenAI))
+                ][0]
+            else:
+                raise ValueError(
+                    f"No wrapper found for model {model}. It may not currently be supported."
                 )
-                return await wrapped(*args, **kwargs)
+        except IndexError:
+            raise ValueError(
+                f"No wrapped client found for model {model} among {[w._client for w in self._wrappers]}."
+            )
 
-            def stream(self, *args, **kwargs):
-                """
-                This Anthropic method is not async bc the underlying `stream` call returns
-                a non-async AsyncMessageStreamGenerator. See codebase for details:
-                https://github.com/anthropics/anthropic-sdk-python/blob/main/src/anthropic/resources/messages.py#L1864
-                """
-                wrapped = self.parent._retry_decorator(
-                    self.parent._client.messages.stream
-                )
-                return wrapped(*args, **kwargs)
+        return target_wrapper
 
-        return Messages(self)
+    def sample_or_get_model(self, prob: float) -> str:
+        if self._model_weights:
+            return self._model_weights[prob]
+        return self._models[0]
+
+    def _select_target_model(self, kwargs: Dict[str, Any]) -> str:
+        target_model = kwargs.get("model", None)
+        if target_model == "notdiamond":
+            return self._model_weights[random.random()]
+        return target_model
+
+    def get_wrapper(self, model: str) -> Any:
+        return self._model_to_wrapper[model]

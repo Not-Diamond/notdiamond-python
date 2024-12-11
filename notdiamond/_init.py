@@ -7,7 +7,7 @@ from anthropic import Anthropic, AsyncAnthropic
 from openai import AsyncOpenAI, OpenAI
 
 from notdiamond.llms.config import LLMConfig
-from notdiamond.toolkit.retry import RetryWrapper
+from notdiamond.toolkit.retry import RetryManager, RetryWrapper
 
 ClientType = Union[OpenAI, AsyncOpenAI, Anthropic, AsyncAnthropic]
 LLMType = Union[str, LLMConfig]
@@ -28,12 +28,11 @@ def init(
 
 def init(
     client: ClientType,
-    models: Union[Dict[LLMType, float], List[LLMType]],
+    models: Union[Dict[LLMType, float], List[LLMType], LLMType],
     max_retries: int | Dict[LLMType, int],
     timeout: float | Dict[LLMType, float],
     model_messages: Dict[LLMType, List[Dict[str, str]]],
     api_key: str | None = None,
-    fallback: List[LLMType] = [],
 ) -> RetryWrapper:
     """
     Usage:
@@ -56,28 +55,32 @@ def init(
     """
     api_key = api_key or os.getenv("NOTDIAMOND_API_KEY")
 
+    if not isinstance(models, (Dict, List)):
+        models = [models]
+
     if not isinstance(client, List):
-        client_wrapper = RetryWrapper(
-            client=client,
-            models=models,
-            max_retries=max_retries,
-            timeout=timeout,
-            fallback=fallback,
-            model_messages=model_messages,
-            api_key=api_key,
-        )
+        client_wrappers = [
+            RetryWrapper(
+                client=client,
+                models=models,
+                max_retries=max_retries,
+                timeout=timeout,
+                model_messages=model_messages,
+                api_key=api_key,
+            )
+        ]
     else:
-        client_wrapper = [
+        client_wrappers = [
             RetryWrapper(
                 client=cc,
                 models=models,
                 max_retries=max_retries,
                 timeout=timeout,
-                fallback=fallback,
                 model_messages=model_messages,
                 api_key=api_key,
             )
             for cc in client
         ]
+    retry_manager = RetryManager(models, client_wrappers)
 
-    return client_wrapper
+    return retry_manager
