@@ -81,14 +81,11 @@ class _BaseRetryWrapper:
             self._models = [_m.split("/")[-1] for _m in models]
         else:
             # models is a load-balanced dict - order models by desc. weight
-            models = {
-                m: w for m, w in models.items() if self._model_client_match(m)
+            self._models = {
+                m.split("/")[-1]: w
+                for m, w in models.items()
+                if self._model_client_match(m)
             }
-            self._models = sorted(
-                [_m.split("/")[-1] for (_m, _w) in list(models.items())],
-                key=lambda x: x[1],
-                reverse=True,
-            )
 
         self._max_retries = (
             {m.split("/")[-1]: t for m, t in max_retries.items()}
@@ -202,11 +199,17 @@ class _BaseRetryWrapper:
                     if attempt == self.get_max_retries(target_model) - 1:
                         previous_model = target_model
                         failed_models.append(previous_model)
-                        target_model = self._get_fallback_model(
-                            previous_model, failed_models
-                        )
+
+                        # If we cannot fallback, raise the exception
+                        # If we need to load balance, let the manager handle it
+                        target_model = None
+                        if not isinstance(self._models, dict):
+                            target_model = self._get_fallback_model(
+                                previous_model, failed_models
+                            )
                         if not target_model:
                             raise _RetryWrapperException(failed_models, e)
+
                         kwargs = self._update_model_kwargs(
                             kwargs, target_model
                         )
@@ -235,11 +238,17 @@ class _BaseRetryWrapper:
                     if attempt == self.get_max_retries(target_model) - 1:
                         previous_model = target_model
                         failed_models.append(previous_model)
-                        target_model = self._get_fallback_model(
-                            previous_model, failed_models
-                        )
+
+                        # If we cannot fallback, raise the exception
+                        # If we need to load balance, let the manager handle it
+                        target_model = None
+                        if not isinstance(self._models, dict):
+                            target_model = self._get_fallback_model(
+                                previous_model, failed_models
+                            )
                         if not target_model:
                             raise _RetryWrapperException(failed_models, e)
+
                         kwargs = self._update_model_kwargs(
                             kwargs, target_model
                         )
@@ -253,7 +262,7 @@ class _BaseRetryWrapper:
                 time.sleep(self._backoff**attempt)
 
         # Return appropriate wrapper based on the original function
-        if asyncio.iscoroutinefunction(func):
+        if isinstance(self, AsyncRetryWrapper):
             return async_wrapper
         return sync_wrapper
 
@@ -394,7 +403,7 @@ class RetryManager:
     def __init__(
         self,
         models: Union[Dict[str, float], List[str]],
-        wrapped_clients: List[RetryWrapper],
+        wrapped_clients: List[RetryWrapper | AsyncRetryWrapper],
     ):
         self._wrappers = wrapped_clients
         self._models = models
@@ -409,11 +418,15 @@ class RetryManager:
             wrapper.manager = self
             wrapper._client.chat = wrapper.chat
 
-        self._model_to_wrapper: Dict[str, RetryWrapper] = {}
+        self._model_to_wrapper: Dict[
+            str, RetryWrapper | AsyncRetryWrapper
+        ] = {}
         for model in self._models:
             self._model_to_wrapper[model] = self._get_model_wrapper(model)
 
-    def _get_model_wrapper(self, model: str) -> RetryWrapper:
+    def _get_model_wrapper(
+        self, model: str
+    ) -> RetryWrapper | AsyncRetryWrapper:
         target_wrapper = None
         try:
             if "bedrock" in model:
@@ -448,9 +461,13 @@ class RetryManager:
 
     def get_next_model(self, failed_models: List[str]) -> str:
         if self._model_weights:
-            new_weights = {
-                m: w for m, w in self._models.items() if m not in failed_models
-            }
+            new_weights = _CumulativeModelSelectionWeights(
+                {
+                    m: w
+                    for m, w in self._models.items()
+                    if m not in failed_models
+                }
+            )
             return new_weights[random.random()]
         remaining_models = [m for m in self._models if m not in failed_models]
         if not remaining_models:
@@ -463,5 +480,5 @@ class RetryManager:
             return self._model_weights[random.random()]
         return target_model
 
-    def get_wrapper(self, model: str) -> Any:
+    def get_wrapper(self, model: str) -> RetryWrapper | AsyncRetryWrapper:
         return self._model_to_wrapper[model]

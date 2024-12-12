@@ -7,7 +7,11 @@ from anthropic import Anthropic, AsyncAnthropic
 from openai import AsyncOpenAI, OpenAI
 
 from notdiamond.llms.config import LLMConfig
-from notdiamond.toolkit.retry import RetryManager, RetryWrapper
+from notdiamond.toolkit.retry import (
+    AsyncRetryWrapper,
+    RetryManager,
+    RetryWrapper,
+)
 
 ClientType = Union[OpenAI, AsyncOpenAI, Anthropic, AsyncAnthropic]
 LLMType = Union[str, LLMConfig]
@@ -22,7 +26,8 @@ def init(
     model_messages: Dict[LLMType, List[Dict[str, str]]],
     api_key: str | None = None,
     fallback: List[LLMType] = [],
-) -> RetryWrapper:
+    async_mode: bool = False,
+) -> RetryManager:
     ...
 
 
@@ -33,7 +38,8 @@ def init(
     timeout: float | Dict[LLMType, float],
     model_messages: Dict[LLMType, List[Dict[str, str]]],
     api_key: str | None = None,
-) -> RetryWrapper:
+    async_mode: bool = False,
+) -> RetryManager:
     """
     Usage:
 
@@ -58,9 +64,14 @@ def init(
     if not isinstance(models, (Dict, List)):
         models = [models]
 
+    if async_mode:
+        wrapper_cls = AsyncRetryWrapper
+    else:
+        wrapper_cls = RetryWrapper
+
     if not isinstance(client, List):
         client_wrappers = [
-            RetryWrapper(
+            wrapper_cls(
                 client=client,
                 models=models,
                 max_retries=max_retries,
@@ -71,7 +82,7 @@ def init(
         ]
     else:
         client_wrappers = [
-            RetryWrapper(
+            wrapper_cls(
                 client=cc,
                 models=models,
                 max_retries=max_retries,
