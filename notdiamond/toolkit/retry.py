@@ -225,7 +225,6 @@ class RetryWrapper(_BaseRetryWrapper):
                     random.random()
                 )
                 target_wrapper = self.manager.get_wrapper(target_model)
-                print(f"create: {target_wrapper._default_create}")
                 wrapped = target_wrapper._retry_decorator(
                     self.parent._default_create
                 )
@@ -261,7 +260,8 @@ class AsyncRetryWrapper(_BaseRetryWrapper):
                 wrapped = target_wrapper._retry_decorator(
                     self.parent._default_create
                 )
-                return await wrapped(*args, **kwargs)
+                result = await wrapped(*args, **kwargs)
+                return result
 
         return AsyncCompletions(self, self.manager)
 
@@ -299,38 +299,23 @@ class RetryManager:
         target_wrapper = None
         try:
             if "bedrock" in model:
-                target_wrapper = [
-                    wrapper
-                    for wrapper in self._wrappers
-                    if isinstance(
-                        wrapper._client,
-                        (AnthropicBedrock, AsyncAnthropicBedrock),
-                    )
-                ][0]
+                instance_check = (AnthropicBedrock, AsyncAnthropicBedrock)
             elif "azure" in model:
-                target_wrapper = [
-                    wrapper
-                    for wrapper in self._wrappers
-                    if isinstance(
-                        wrapper._client, (AzureOpenAI, AsyncAzureOpenAI)
-                    )
-                ][0]
+                instance_check = (AzureOpenAI, AsyncAzureOpenAI)
             elif "anthropic" in model:
-                target_wrapper = [
-                    wrapper
-                    for wrapper in self._wrappers
-                    if isinstance(wrapper._client, (Anthropic, AsyncAnthropic))
-                ][0]
+                instance_check = (Anthropic, AsyncAnthropic)
             elif "openai" in model:
-                target_wrapper = [
-                    wrapper
-                    for wrapper in self._wrappers
-                    if isinstance(wrapper._client, (OpenAI, AsyncOpenAI))
-                ][0]
+                instance_check = (OpenAI, AsyncOpenAI)
             else:
                 raise ValueError(
                     f"No wrapper found for model {model}. It may not currently be supported."
                 )
+
+            target_wrapper = [
+                wrapper
+                for wrapper in self._wrappers
+                if isinstance(wrapper._client, instance_check)
+            ][0]
         except IndexError:
             raise ValueError(
                 f"No wrapped client found for model {model} among {[w._client for w in self._wrappers]}."
