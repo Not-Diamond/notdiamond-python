@@ -200,12 +200,13 @@ class _BaseRetryWrapper:
                     LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
 
                     if attempt == self.get_max_retries(target_model) - 1:
-                        # get a fallback or raise exception if none found
+                        previous_model = target_model
+                        failed_models.append(previous_model)
                         target_model = self._get_fallback_model(
-                            target_model, failed_models
+                            previous_model, failed_models
                         )
                         if not target_model:
-                            raise e
+                            raise _RetryWrapperException(failed_models, e)
                         kwargs = self._update_model_kwargs(
                             kwargs, target_model
                         )
@@ -256,6 +257,17 @@ class _BaseRetryWrapper:
             return async_wrapper
         return sync_wrapper
 
+    def _update_failed_models(
+        self,
+        target_model: str,
+        failed_models: List[str],
+        all_failed_models: List[str],
+    ) -> List[str]:
+        target_provider = target_model.split("/")[0]
+        all_failed_models.extend(
+            ["/".join([target_provider, m]) for m in failed_models]
+        )
+
     def __getattr__(self, name):
         return getattr(self._client, name)
 
@@ -304,7 +316,7 @@ class RetryWrapper(_BaseRetryWrapper):
                         return wrapped(*args, **kwargs)
                     except _RetryWrapperException as e:
                         LOGGER.exception(e)
-                        self._update_failed_models(
+                        self.parent._update_failed_models(
                             target_model, e.failed_models, all_failed_models
                         )
                         target_model = self.manager.get_next_model(
@@ -317,17 +329,6 @@ class RetryWrapper(_BaseRetryWrapper):
                         # update state on the target wrapper's ChatCompletions by accessing `chat` property
                         _ = target_wrapper._client.chat
                         _create_fn = target_wrapper._default_create
-
-            def _update_failed_models(
-                self,
-                target_model: str,
-                failed_models: List[str],
-                all_failed_models: List[str],
-            ) -> List[str]:
-                target_provider = target_model.split("/")[0]
-                all_failed_models.extend(
-                    ["/".join([target_provider, m]) for m in failed_models]
-                )
 
         return ChatCompletions(self, self.manager)
 
@@ -352,15 +353,33 @@ class AsyncRetryWrapper(_BaseRetryWrapper):
                 return self
 
             async def create(self, *args, **kwargs):
-                target_model = self.manager.sample_or_get_model(
-                    random.random()
-                )
-                target_wrapper = self.manager.get_wrapper(target_model)
-                wrapped = target_wrapper._retry_decorator(
-                    self.parent._default_create
-                )
-                result = await wrapped(*args, **kwargs)
-                return result
+                target_model = kwargs["model"]
+                target_model = f"{self.parent.get_provider()}/{target_model}"
+
+                all_failed_models = []
+                _create_fn = self.parent._default_create
+                while True:
+                    target_wrapper = self.manager.get_wrapper(target_model)
+                    wrapped = target_wrapper._retry_decorator(_create_fn)
+                    kwargs["model"] = target_model.split("/")[-1]
+
+                    try:
+                        return await wrapped(*args, **kwargs)
+                    except _RetryWrapperException as e:
+                        LOGGER.exception(e)
+                        self.parent._update_failed_models(
+                            target_model, e.failed_models, all_failed_models
+                        )
+                        target_model = self.manager.get_next_model(
+                            all_failed_models
+                        )
+                        if not target_model:
+                            raise e.failed_exception
+                        target_wrapper = self.manager.get_wrapper(target_model)
+
+                        # update state on the target wrapper's ChatCompletions by accessing `chat` property
+                        _ = target_wrapper._client.chat
+                        _create_fn = target_wrapper._default_create
 
         return AsyncCompletions(self, self.manager)
 
@@ -433,7 +452,10 @@ class RetryManager:
                 m: w for m, w in self._models.items() if m not in failed_models
             }
             return new_weights[random.random()]
-        return [m for m in self._models if m not in failed_models][0]
+        remaining_models = [m for m in self._models if m not in failed_models]
+        if not remaining_models:
+            return
+        return remaining_models[0]
 
     def _select_target_model(self, kwargs: Dict[str, Any]) -> str:
         target_model = kwargs.get("model", None)

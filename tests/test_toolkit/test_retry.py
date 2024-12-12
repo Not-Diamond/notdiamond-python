@@ -214,6 +214,7 @@ async def test_retry_wrapper_async_stream(
     assert result
 
 
+@pytest.mark.vcr
 def test_retries(timeout, model_messages, api_key):
     models = ["openai/gpt-4o-mini", "openai/gpt-4o"]
     patched_client = OpenAI(api_key="broken-api-key")
@@ -261,6 +262,8 @@ def test_retries(timeout, model_messages, api_key):
 
 
 @pytest.mark.asyncio
+@pytest.mark.vcr
+@pytest.mark.timeout(10)
 async def test_retries_async(timeout, model_messages, api_key):
     models = ["openai/gpt-4o-mini", "openai/gpt-4o"]
     patched_client = AsyncOpenAI(api_key="broken-api-key")
@@ -290,7 +293,6 @@ async def test_retries_async(timeout, model_messages, api_key):
                 model="gpt-4o-mini",
                 messages=model_messages["gpt-4o-mini"],
             )
-
         assert mock_create.call_count == 2
         mock_create.assert_has_calls(
             [
@@ -415,15 +417,18 @@ def test_multi_model_multi_provider_load_balance(
     )
     assert manager
 
+    azure_wrapper = manager.get_wrapper("azure/gpt-4o-mini")
+    openai_wrapper = manager.get_wrapper("openai/gpt-4o-mini")
+
     with patch.object(
-        oai_client.chat.completions,
-        "create",
-        wraps=oai_client.chat.completions.create,
-    ) as mock_openai, patch.object(
-        azure_client.chat.completions,
-        "create",
-        wraps=azure_client.chat.completions.create,
-    ) as mock_azure:
+        azure_wrapper,
+        "_default_create",
+        wraps=azure_wrapper._default_create,
+    ) as mock_azure, patch.object(
+        openai_wrapper,
+        "_default_create",
+        wraps=openai_wrapper._default_create,
+    ) as mock_openai:
         azure_client.chat.completions.create(
             model="gpt-4o-mini",
             messages=model_messages["gpt-4o-mini"],
