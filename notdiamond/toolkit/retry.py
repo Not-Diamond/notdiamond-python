@@ -74,9 +74,21 @@ class _BaseRetryWrapper:
                 reverse=True,
             )
 
-        self._max_retries = max_retries
-        self._timeout = timeout
-        self._model_messages = model_messages
+        self._max_retries = (
+            {m.split("/")[-1]: t for m, t in max_retries.items()}
+            if isinstance(max_retries, dict)
+            else max_retries
+        )
+        self._timeout = (
+            {m.split("/")[-1]: t for m, t in timeout.items()}
+            if isinstance(timeout, dict)
+            else timeout
+        )
+        self._model_messages = (
+            {m.split("/")[-1]: msgs for m, msgs in model_messages.items()}
+            if model_messages
+            else {}
+        )
         self._backoff = backoff
 
         self._api_key = api_key
