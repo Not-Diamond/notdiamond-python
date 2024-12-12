@@ -384,6 +384,11 @@ def test_multi_model_multi_provider(
 def test_multi_model_multi_provider_load_balance(
     models, max_retries, timeout, model_messages, api_key
 ):
+    """
+    Configure this test to ensure load balancing is working. In this setup, we should
+    only invoke `gpt-4o-mini` via the OpenAI client, no matter which client or model
+    is invoked by the user.
+    """
     oai_client = OpenAI()
     azure_client = AzureOpenAI()
     clients = [
@@ -415,40 +420,38 @@ def test_multi_model_multi_provider_load_balance(
         "create",
         wraps=azure_client.chat.completions.create,
     ) as mock_azure:
-        mock_openai.return_value = "mocked_openai_response"
-        mock_azure.return_value = "mocked_azure_response"
-
-        client = oai_client
-        result = client.chat.completions.create(
+        azure_client.chat.completions.create(
             model="gpt-4o-mini",
             messages=model_messages["gpt-4o-mini"],
         )
-        assert result == "mocked_openai_response"
-
         mock_openai.assert_called_once_with(
             model="gpt-4o-mini",
             messages=model_messages["gpt-4o-mini"],
         )
         mock_azure.assert_not_called()
 
-        azure_result = azure_client.chat.completions.create(
+        azure_client.chat.completions.create(
             model="gpt-4o-mini",
             messages=model_messages["gpt-4o-mini"],
         )
-        assert azure_result == "mocked_azure_response"
-        mock_azure.assert_called_once_with(
-            model="gpt-4o-mini",
-            messages=model_messages["gpt-4o-mini"],
-        )
+        mock_azure.assert_not_called()
+        mock_openai.call_count == 2
+        mock_openai.reset_mock()
 
-        azure_gpt4o_result = azure_client.chat.completions.create(
+        # Even if the user calls `gpt-4o` from any client here, we should still invoke `gpt-4o-mini`
+        azure_client.chat.completions.create(
             model="gpt-4o",
             messages=model_messages["gpt-4o"],
         )
-        assert azure_gpt4o_result == "mocked_azure_response"
-        mock_azure.assert_called_with(
+        oai_client.chat.completions.create(
             model="gpt-4o",
             messages=model_messages["gpt-4o"],
+        )
+        mock_azure.assert_not_called()
+        mock_openai.call_count == 2
+        mock_openai.assert_called_with(
+            model="gpt-4o-mini",
+            messages=model_messages["gpt-4o-mini"],
         )
         assert not any(
             call(model="gpt-4o", messages=model_messages["gpt-4o"]) == c
@@ -516,3 +519,15 @@ def test_multi_model_multi_provider_azure_error(model_messages, api_key):
             model="gpt-4o",
             messages=model_messages["gpt-4o"],
         )
+
+
+def test_multi_model_timeout_config():
+    assert False
+
+
+def test_multi_model_max_retries_config():
+    assert False
+
+
+def test_multi_model_model_messages_config():
+    assert False
