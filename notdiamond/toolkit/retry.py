@@ -20,6 +20,18 @@ LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
 
 
+class _RetryWrapperException(Exception):
+    failed_models: List[str]
+    failed_exception: Exception
+
+    def __init__(self, failed_models: List[str], failed_exception: Exception):
+        self.failed_models = failed_models
+        self.failed_exception = failed_exception
+        super().__init__(
+            f"Failed to invoke {failed_models}: {failed_exception}"
+        )
+
+
 class _CumulativeModelSelectionWeights:
     def __init__(self, models: Dict[str, float]):
         sorted_models = sorted(models.items(), key=lambda x: x[1])
@@ -64,10 +76,14 @@ class _BaseRetryWrapper:
 
         # strip provider from model name
         if isinstance(models, list):
+            models = [m for m in models if self._model_client_match(m)]
             # models is a list - preserve order
             self._models = [_m.split("/")[-1] for _m in models]
         else:
             # models is a load-balanced dict - order models by desc. weight
+            models = {
+                m: w for m, w in models.items() if self._model_client_match(m)
+            }
             self._models = sorted(
                 [_m.split("/")[-1] for (_m, _w) in list(models.items())],
                 key=lambda x: x[1],
@@ -100,6 +116,32 @@ class _BaseRetryWrapper:
         # create or stream calls
         self.manager: Optional[RetryManager] = None
 
+    def get_provider(self) -> str:
+        """
+        Platform child clients should always precede the model-building clients (eg. Azure before OpenAI)
+        since the former usually inherit from the latter clients.
+        """
+        if isinstance(self._client, (AsyncAzureOpenAI, AzureOpenAI)):
+            return "azure"
+        elif isinstance(self._client, (AsyncOpenAI, OpenAI)):
+            return "openai"
+        elif isinstance(
+            self._client, (AnthropicBedrock, AsyncAnthropicBedrock)
+        ):
+            return "bedrock"
+        elif isinstance(self._client, (Anthropic, AsyncAnthropic)):
+            return "anthropic"
+
+    def _model_client_match(self, target_model: str) -> bool:
+        if isinstance(self._client, (AsyncOpenAI, OpenAI)):
+            return target_model.split("/")[0] == "openai"
+        elif isinstance(self._client, (AsyncAzureOpenAI, AzureOpenAI)):
+            return target_model.split("/")[0] == "azure"
+        else:
+            raise ValueError(
+                f"No client match found for model {target_model}. Client type: {type(self._client)}"
+            )
+
     def get_timeout(self, target_model: Optional[str] = None) -> float:
         out = self._timeout
         if isinstance(self._timeout, dict):
@@ -128,15 +170,20 @@ class _BaseRetryWrapper:
         kwargs["messages"] = self._model_messages[target_model]
         return kwargs
 
-    def _get_fallback_model(self, current_model: str) -> str:
+    def _get_fallback_model(
+        self, current_model: str, failed_models: List[str] = None
+    ) -> str:
         """
         After failing to invoke current_model, use the user's model fallback list to choose the
         next invocation model.
         """
-        model_idx = self._models.index(current_model)
-        if model_idx == len(self._models) - 1:
+        models = self._models
+        if failed_models:
+            models = [m for m in models if m not in failed_models]
+
+        if not models:
             return
-        return self._models[model_idx + 1]
+        return models[0]
 
     def _retry_decorator(self, func):
         @wraps(func)
@@ -145,6 +192,7 @@ class _BaseRetryWrapper:
             kwargs = self._update_model_kwargs(kwargs, target_model)
 
             attempt = 0
+            failed_models = []
             while attempt < self.get_max_retries(target_model):
                 try:
                     return await func(*args, **kwargs)
@@ -153,7 +201,9 @@ class _BaseRetryWrapper:
 
                     if attempt == self.get_max_retries(target_model) - 1:
                         # get a fallback or raise exception if none found
-                        target_model = self._get_fallback_model(target_model)
+                        target_model = self._get_fallback_model(
+                            target_model, failed_models
+                        )
                         if not target_model:
                             raise e
                         kwargs = self._update_model_kwargs(
@@ -174,6 +224,7 @@ class _BaseRetryWrapper:
             kwargs = self._update_model_kwargs(kwargs, target_model)
 
             attempt = 0
+            failed_models = []
             while attempt < self.get_max_retries(target_model):
                 try:
                     return func(*args, **kwargs)
@@ -181,9 +232,13 @@ class _BaseRetryWrapper:
                     LOGGER.warning(f"Attempt {attempt + 1} failed: {str(e)}")
 
                     if attempt == self.get_max_retries(target_model) - 1:
-                        target_model = self._get_fallback_model(target_model)
+                        previous_model = target_model
+                        failed_models.append(previous_model)
+                        target_model = self._get_fallback_model(
+                            previous_model, failed_models
+                        )
                         if not target_model:
-                            raise e
+                            raise _RetryWrapperException(failed_models, e)
                         kwargs = self._update_model_kwargs(
                             kwargs, target_model
                         )
@@ -233,14 +288,46 @@ class RetryWrapper(_BaseRetryWrapper):
                 return self
 
             def create(self, *args, **kwargs):
-                target_model = self.manager.sample_or_get_model(
-                    random.random()
+                target_model = kwargs["model"]
+                target_model = f"{self.parent.get_provider()}/{target_model}"
+
+                all_failed_models = []
+                _create_fn = self.parent._default_create
+                while True:
+                    target_wrapper = self.manager.get_wrapper(target_model)
+                    # when this loop changes a client, this will override create with the _original_
+                    # client's method - needs to be new client
+                    wrapped = target_wrapper._retry_decorator(_create_fn)
+                    kwargs["model"] = target_model.split("/")[-1]
+
+                    try:
+                        return wrapped(*args, **kwargs)
+                    except _RetryWrapperException as e:
+                        LOGGER.exception(e)
+                        self._update_failed_models(
+                            target_model, e.failed_models, all_failed_models
+                        )
+                        target_model = self.manager.get_next_model(
+                            all_failed_models
+                        )
+                        if not target_model:
+                            raise e.failed_exception
+                        target_wrapper = self.manager.get_wrapper(target_model)
+
+                        # update state on the target wrapper's ChatCompletions by accessing `chat` property
+                        _ = target_wrapper._client.chat
+                        _create_fn = target_wrapper._default_create
+
+            def _update_failed_models(
+                self,
+                target_model: str,
+                failed_models: List[str],
+                all_failed_models: List[str],
+            ) -> List[str]:
+                target_provider = target_model.split("/")[0]
+                all_failed_models.extend(
+                    ["/".join([target_provider, m]) for m in failed_models]
                 )
-                target_wrapper = self.manager.get_wrapper(target_model)
-                wrapped = target_wrapper._retry_decorator(
-                    self.parent._default_create
-                )
-                return wrapped(*args, **kwargs)
 
         return ChatCompletions(self, self.manager)
 
@@ -339,6 +426,14 @@ class RetryManager:
         if self._model_weights:
             return self._model_weights[prob]
         return self._models[0]
+
+    def get_next_model(self, failed_models: List[str]) -> str:
+        if self._model_weights:
+            new_weights = {
+                m: w for m, w in self._models.items() if m not in failed_models
+            }
+            return new_weights[random.random()]
+        return [m for m in self._models if m not in failed_models][0]
 
     def _select_target_model(self, kwargs: Dict[str, Any]) -> str:
         target_model = kwargs.get("model", None)

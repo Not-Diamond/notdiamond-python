@@ -54,6 +54,10 @@ class BrokenAsyncClientException(Exception):
     pass
 
 
+class BrokenClientException(Exception):
+    pass
+
+
 @pytest.mark.parametrize(
     ("client", "models"),
     [
@@ -459,7 +463,7 @@ def test_multi_model_multi_provider_load_balance(
         )
 
 
-@pytest.mark.skip
+@pytest.mark.vcr
 def test_multi_model_multi_provider_azure_error(model_messages, api_key):
     """
     Configure this test so that AzureOpenAI fails on authentication. The RetryManager should ensure that
@@ -488,37 +492,43 @@ def test_multi_model_multi_provider_azure_error(model_messages, api_key):
     )
     assert manager
 
+    azure_wrapper = manager.get_wrapper("azure/gpt-4o-mini")
+    openai_wrapper = manager.get_wrapper("openai/gpt-4o-mini")
+
     with patch.object(
-        oai_client.chat.completions,
-        "create",
-        wraps=oai_client.chat.completions.create,
-    ) as mock_openai, patch.object(
-        azure_client.chat.completions,
-        "create",
-        wraps=azure_client.chat.completions.create,
-    ) as mock_azure:
-        mock_openai.return_value = "mocked_openai_response"
-
-        client = azure_client
-        result = client.chat.completions.create(
+        azure_wrapper,
+        "_default_create",
+        wraps=azure_wrapper._default_create,
+    ) as mock_azure, patch.object(
+        openai_wrapper,
+        "_default_create",
+        wraps=openai_wrapper._default_create,
+    ) as mock_openai:
+        _ = azure_client.chat.completions.create(
             model="gpt-4o-mini",
             messages=model_messages["gpt-4o-mini"],
         )
-        assert (
-            result == "mocked_openai_response"
-        ), f"Expected fallback invocation of OpenAI client, got {result}"
-
-        mock_azure.assert_called_once_with(
+        print(mock_azure.call_args_list)
+        print(mock_openai.call_args_list)
+        mock_azure.assert_has_calls(
+            [
+                call(
+                    model="gpt-4o",
+                    messages=model_messages["gpt-4o"],
+                    timeout=10.0,
+                ),
+                call(
+                    model="gpt-4o-mini",
+                    messages=model_messages["gpt-4o-mini"],
+                    timeout=10.0,
+                ),
+            ],
+            any_order=True,
+        )
+        mock_openai.assert_called_with(
             model="gpt-4o",
             messages=model_messages["gpt-4o"],
-        )
-        mock_azure.assert_called_once_with(
-            model="gpt-4o-mini",
-            messages=model_messages["gpt-4o-mini"],
-        )
-        mock_openai.assert_called_once_with(
-            model="gpt-4o",
-            messages=model_messages["gpt-4o"],
+            timeout=10.0,
         )
 
 
