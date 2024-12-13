@@ -509,12 +509,6 @@ async def test_async_multi_model_multi_provider_load_balance(
     azure_wrapper = manager.get_wrapper("azure/gpt-4o-mini")
     openai_wrapper = manager.get_wrapper("openai/gpt-4o-mini")
 
-    print(f"Wrappers: {azure_wrapper}, {openai_wrapper}")
-    print(f"Clients: {azure_wrapper._client}, {openai_wrapper._client}")
-    print(
-        f"Defaults: {azure_wrapper._default_create}, {openai_wrapper._default_create}"
-    )
-
     with patch.object(
         azure_wrapper,
         "_default_create",

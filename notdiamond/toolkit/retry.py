@@ -88,17 +88,29 @@ class _BaseRetryWrapper:
             }
 
         self._max_retries = (
-            {m.split("/")[-1]: t for m, t in max_retries.items()}
+            {
+                m.split("/")[-1]: t
+                for m, t in max_retries.items()
+                if self._model_client_match(m)
+            }
             if isinstance(max_retries, dict)
             else max_retries
         )
         self._timeout = (
-            {m.split("/")[-1]: t for m, t in timeout.items()}
+            {
+                m.split("/")[-1]: t
+                for m, t in timeout.items()
+                if self._model_client_match(m)
+            }
             if isinstance(timeout, dict)
             else timeout
         )
         self._model_messages = (
-            {m.split("/")[-1]: msgs for m, msgs in model_messages.items()}
+            {
+                m.split("/")[-1]: msgs
+                for m, msgs in model_messages.items()
+                if self._model_client_match(m)
+            }
             if model_messages
             else {}
         )
@@ -130,10 +142,10 @@ class _BaseRetryWrapper:
             return "anthropic"
 
     def _model_client_match(self, target_model: str) -> bool:
-        if isinstance(self._client, (AsyncOpenAI, OpenAI)):
-            return target_model.split("/")[0] == "openai"
-        elif isinstance(self._client, (AsyncAzureOpenAI, AzureOpenAI)):
+        if isinstance(self._client, (AsyncAzureOpenAI, AzureOpenAI)):
             return target_model.split("/")[0] == "azure"
+        elif isinstance(self._client, (AsyncOpenAI, OpenAI)):
+            return target_model.split("/")[0] == "openai"
         else:
             raise ValueError(
                 f"No client match found for model {target_model}. Client type: {type(self._client)}"
@@ -167,7 +179,11 @@ class _BaseRetryWrapper:
     ) -> Dict[str, Any]:
         kwargs["model"] = target_model
         kwargs["timeout"] = self.get_timeout(target_model)
-        kwargs["messages"] = self._model_messages[target_model] + user_messages
+        kwargs["messages"] = (
+            self._model_messages[target_model] + user_messages
+            if self._model_messages.get(target_model)
+            else user_messages
+        )
         return kwargs
 
     def _get_fallback_model(self, failed_models: List[str] = []) -> str:
@@ -207,7 +223,7 @@ class _BaseRetryWrapper:
                         target_model = None
                         if not isinstance(self._models, dict):
                             target_model = self._get_fallback_model(
-                                previous_model, failed_models
+                                failed_models
                             )
                         if not target_model:
                             raise _RetryWrapperException(failed_models, e)
@@ -249,7 +265,7 @@ class _BaseRetryWrapper:
                         target_model = None
                         if not isinstance(self._models, dict):
                             target_model = self._get_fallback_model(
-                                previous_model, failed_models
+                                failed_models
                             )
                         if not target_model:
                             raise _RetryWrapperException(failed_models, e)
