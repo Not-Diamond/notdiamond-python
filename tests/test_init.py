@@ -327,12 +327,12 @@ def test_init_multi_provider_multi_model_multi_config(api_key):
     ) as mock_openai:
         azure_client.chat.completions.create(
             model="gpt-4o-mini",
-            messages=[{"role": "user", "content": "Hello, how are you?"}],
+            messages=default_messages,
         )
 
         openai_client.chat.completions.create(
             model="gpt-4o-mini",
-            messages=[{"role": "user", "content": "Hello, how are you?"}],
+            messages=default_messages,
         )
 
         # 2 calls to OpenAI - one after Azure failure as fallback, second when invoked directly
@@ -401,12 +401,12 @@ async def test_async_init_multi_provider_multi_model_multi_config(api_key):
     ) as mock_openai:
         await azure_client.chat.completions.create(
             model="gpt-4o-mini",
-            messages=[{"role": "user", "content": "Hello, how are you?"}],
+            messages=default_messages,
         )
 
         await openai_client.chat.completions.create(
             model="gpt-4o-mini",
-            messages=[{"role": "user", "content": "Hello, how are you?"}],
+            messages=default_messages,
         )
 
         # 2 calls to OpenAI - one after Azure failure as fallback, second when invoked directly

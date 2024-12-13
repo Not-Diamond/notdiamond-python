@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 import os
-from typing import Dict, List
+from typing import Dict, List, Union
 
 from notdiamond.toolkit._retry import (
     AsyncRetryWrapper,
@@ -14,12 +12,12 @@ from notdiamond.toolkit._retry import (
 
 
 def init(
-    client: ClientType | List[ClientType],
+    client: Union[ClientType, List[ClientType]],
     models: ModelType,
-    max_retries: int | Dict[str, int],
-    timeout: float | Dict[str, float],
+    max_retries: Union[int, Dict[str, int]],
+    timeout: Union[float, Dict[str, float]],
     model_messages: Dict[str, OpenAIMessagesType],
-    api_key: str | None = None,
+    api_key: Union[str, None] = None,
     async_mode: bool = False,
 ) -> RetryManager:
     """Entrypoint for fallback and retry features without changing existing code.

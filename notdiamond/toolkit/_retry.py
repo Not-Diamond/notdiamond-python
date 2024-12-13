@@ -83,10 +83,10 @@ class _BaseRetryWrapper:
         self,
         client: ClientType,
         models: ModelType,
-        max_retries: int | Dict[str, int] = 1,
-        timeout: float | Dict[str, float] = 60.0,
+        max_retries: Union[int, Dict[str, int]] = 1,
+        timeout: Union[float, Dict[str, float]] = 60.0,
         model_messages: OpenAIMessagesType = {},
-        api_key: str | None = None,
+        api_key: Union[str, None] = None,
         backoff: float = 2.0,
     ):
         """

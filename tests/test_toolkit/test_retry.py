@@ -311,20 +311,15 @@ async def test_retries_async(timeout, model_messages, api_key):
         )
 
 
+@pytest.mark.vcr
 def test_multi_model_multi_provider(
-    max_retries, timeout, model_messages, api_key
+    models, max_retries, timeout, model_messages, api_key
 ):
     oai_client = OpenAI()
     azure_client = AzureOpenAI()
     clients = [
         oai_client,
         azure_client,
-    ]
-    models = [
-        "openai/gpt-4o-mini",
-        "azure/gpt-4o-mini",
-        "openai/gpt-4o",
-        "azure/gpt-4o",
     ]
 
     manager = init(
@@ -387,6 +382,7 @@ def test_multi_model_multi_provider(
         )
 
 
+@pytest.mark.vcr
 def test_multi_model_multi_provider_load_balance(
     timeout, model_messages, api_key
 ):
@@ -845,11 +841,13 @@ def test_multi_model_model_messages_config(timeout, api_key):
     oai_client = OpenAI()
     models = ["openai/gpt-4o-mini", "openai/gpt-4o"]
 
-    gpt4o_message = [{"role": "user", "content": "Is this 4o?"}]
-    gpt4o_mini_message = [{"role": "user", "content": "Is this 4o-mini?"}]
+    gpt4o_config_message = [{"role": "user", "content": "Is this 4o?"}]
+    gpt4o_mini_config_message = [
+        {"role": "user", "content": "Is this 4o-mini?"}
+    ]
     model_messages = {
-        "openai/gpt-4o-mini": gpt4o_mini_message,
-        "openai/gpt-4o": gpt4o_message,
+        "openai/gpt-4o-mini": gpt4o_mini_config_message,
+        "openai/gpt-4o": gpt4o_config_message,
     }
     wrapper = RetryWrapper(
         client=oai_client,
@@ -861,7 +859,7 @@ def test_multi_model_model_messages_config(timeout, api_key):
     )
     _ = RetryManager(models, [wrapper])
 
-    default_message = [{"role": "user", "content": "Hello, how are you??"}]
+    create_message = [{"role": "user", "content": "Hello, how are you??"}]
     with patch.object(
         wrapper,
         "_default_create",
@@ -869,22 +867,22 @@ def test_multi_model_model_messages_config(timeout, api_key):
     ) as mock_create:
         result = oai_client.chat.completions.create(
             model="gpt-4o-mini",
-            messages=default_message,
+            messages=create_message,
         )
         assert result
         mock_create.assert_called_with(
             model="gpt-4o-mini",
-            messages=gpt4o_mini_message + default_message,
+            messages=gpt4o_mini_config_message + create_message,
             timeout=20.0,
         )
         gpt4o_result = oai_client.chat.completions.create(
             model="gpt-4o",
-            messages=default_message,
+            messages=create_message,
         )
         assert gpt4o_result
         mock_create.assert_called_with(
             model="gpt-4o",
-            messages=gpt4o_message + default_message,
+            messages=gpt4o_config_message + create_message,
             timeout=20.0,
         )
 
@@ -896,11 +894,13 @@ async def test_async_multi_model_model_messages_config(timeout, api_key):
     oai_client = AsyncOpenAI()
     models = ["openai/gpt-4o-mini", "openai/gpt-4o"]
 
-    gpt4o_message = [{"role": "user", "content": "Is this 4o?"}]
-    gpt4o_mini_message = [{"role": "user", "content": "Is this 4o-mini?"}]
+    gpt4o_config_message = [{"role": "user", "content": "Is this 4o?"}]
+    gpt4o_mini_config_message = [
+        {"role": "user", "content": "Is this 4o-mini?"}
+    ]
     model_messages = {
-        "openai/gpt-4o-mini": gpt4o_mini_message,
-        "openai/gpt-4o": gpt4o_message,
+        "openai/gpt-4o-mini": gpt4o_mini_config_message,
+        "openai/gpt-4o": gpt4o_config_message,
     }
     wrapper = AsyncRetryWrapper(
         client=oai_client,
@@ -912,29 +912,29 @@ async def test_async_multi_model_model_messages_config(timeout, api_key):
     )
     _ = RetryManager(models, [wrapper])
 
-    default_message = [{"role": "user", "content": "Hello, how are you??"}]
+    create_message = [{"role": "user", "content": "Hello, how are you??"}]
     with patch.object(
         wrapper,
         "_default_create",
         wraps=wrapper._default_create,
     ) as mock_create:
         result = await oai_client.chat.completions.create(
-            model="gpt-4o-mini", messages=default_message
+            model="gpt-4o-mini", messages=create_message
         )
         assert result
         mock_create.assert_called_with(
             model="gpt-4o-mini",
-            messages=gpt4o_mini_message + default_message,
+            messages=gpt4o_mini_config_message + create_message,
             timeout=20.0,
         )
         gpt4o_result = await oai_client.chat.completions.create(
             model="gpt-4o",
-            messages=default_message,
+            messages=create_message,
         )
         assert gpt4o_result
         mock_create.assert_called_with(
             model="gpt-4o",
-            messages=gpt4o_message + default_message,
+            messages=gpt4o_config_message + create_message,
             timeout=20.0,
         )
 
