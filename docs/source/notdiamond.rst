@@ -49,3 +49,11 @@ notdiamond.prompts
    :members:
    :undoc-members:
    :show-inheritance:
+
+notdiamond.init
+---------------------------------------
+
+.. automodule:: notdiamond.init
+   :members:
+   :undoc-members:
+   :show-inheritance:

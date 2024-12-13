@@ -457,7 +457,7 @@ class RetryManager:
 
     def _get_model_wrapper(
         self, model: str
-    ) -> RetryWrapper | AsyncRetryWrapper:
+    ) -> Union[RetryWrapper, AsyncRetryWrapper]:
         target_wrapper = None
         try:
             if "azure" in model:

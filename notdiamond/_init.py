@@ -29,7 +29,7 @@ def init(
         (eg. azure/gpt-4o fails -> invoke openai/gpt-4o)
     - Load-balance between models and providers, if specified.
     - Pass timeout and retry configurations to each invoke, optionally configured per model.
-    - Pass model-specific messages on each retry (appended to the provided `messages` parameter)
+    - Pass model-specific messages on each retry (prepended to the provided `messages` parameter)
 
     Args:
         client (Union[ClientType, List[ClientType]]):
