@@ -70,7 +70,8 @@ def init(
         - {"openai/gpt-4o": 0.5, "azure/gpt-4o": 0.25, "openai/gpt-4o-mini": 0.25}, then "azure/gpt-4o" and
           "openai/gpt-4o-mini" can be invoked with 50% probability each.
 
-    Usage:
+    Usage
+    -----
 
     ```python
         # ...existing workflow code, including client initialization...
@@ -96,6 +97,8 @@ def init(
             messages=[{"role": "user", "content": "Hello!"}]
         )
     ```
+
+    Please refer to tests/test_init.py for more examples on how to use notdiamond.init.
     """
     api_key = api_key or os.getenv("NOTDIAMOND_API_KEY")
 

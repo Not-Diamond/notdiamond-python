@@ -1,3 +1,7 @@
+"""
+Private module for retry and fallback logic. Added to notdiamond.toolkit to avoid
+introducing library dependencies on OpenAI into the core SDK.
+"""
 import asyncio
 import logging
 import random

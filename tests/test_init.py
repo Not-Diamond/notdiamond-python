@@ -40,18 +40,18 @@ def api_key():
 
 
 @pytest.mark.parametrize(
-    ("client", "model"),
+    ("client", "models"),
     [
-        (OpenAI(), "openai/gpt-4o-mini"),
-        (AzureOpenAI(), "azure/gpt-4o-mini"),
+        (OpenAI(), ["openai/gpt-4o-mini"]),
+        (AzureOpenAI(), ["azure/gpt-4o-mini"]),
     ],
 )
 def test_init_call(
-    client, model, max_retries, timeout, model_messages, api_key
+    client, models, max_retries, timeout, model_messages, api_key
 ):
     result = init(
         client=client,
-        models=model,
+        models=models,
         max_retries=max_retries,
         timeout=timeout,
         model_messages=model_messages,
