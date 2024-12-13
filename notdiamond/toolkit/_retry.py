@@ -427,7 +427,7 @@ class RetryManager:
     def __init__(
         self,
         models: Union[Dict[str, float], List[str]],
-        wrapped_clients: List[RetryWrapper | AsyncRetryWrapper],
+        wrapped_clients: List[Union[RetryWrapper, AsyncRetryWrapper]],
     ):
         """
         Args:
@@ -512,7 +512,9 @@ class RetryManager:
             return self._model_weights[random.random()]
         return target_model
 
-    def get_wrapper(self, model: str) -> RetryWrapper | AsyncRetryWrapper:
+    def get_wrapper(
+        self, model: str
+    ) -> Union[RetryWrapper, AsyncRetryWrapper]:
         try:
             return self._model_to_wrapper[model]
         except KeyError:
