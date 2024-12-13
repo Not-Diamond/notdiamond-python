@@ -160,23 +160,22 @@ class _BaseRetryWrapper:
         return out
 
     def _update_model_kwargs(
-        self, kwargs: Dict[str, Any], target_model: str
+        self,
+        kwargs: Dict[str, Any],
+        target_model: str,
+        user_messages: Optional[List[Dict[str, Any]]] = [],
     ) -> Dict[str, Any]:
         kwargs["model"] = target_model
         kwargs["timeout"] = self.get_timeout(target_model)
-        kwargs["messages"] = self._model_messages[target_model]
+        kwargs["messages"] = self._model_messages[target_model] + user_messages
         return kwargs
 
-    def _get_fallback_model(
-        self, current_model: str, failed_models: List[str] = None
-    ) -> str:
+    def _get_fallback_model(self, failed_models: List[str] = []) -> str:
         """
         After failing to invoke current_model, use the user's model fallback list to choose the
         next invocation model.
         """
-        models = self._models
-        if failed_models:
-            models = [m for m in models if m not in failed_models]
+        models = [m for m in self._models if m not in failed_models]
 
         if not models:
             return
@@ -186,7 +185,10 @@ class _BaseRetryWrapper:
         @wraps(func)
         async def async_wrapper(*args, **kwargs):
             target_model = kwargs["model"]
-            kwargs = self._update_model_kwargs(kwargs, target_model)
+            base_messages = kwargs.get("messages", [])
+            kwargs = self._update_model_kwargs(
+                kwargs, target_model, user_messages=base_messages
+            )
 
             attempt = 0
             failed_models = []
@@ -211,7 +213,7 @@ class _BaseRetryWrapper:
                             raise _RetryWrapperException(failed_models, e)
 
                         kwargs = self._update_model_kwargs(
-                            kwargs, target_model
+                            kwargs, target_model, user_messages=base_messages
                         )
                         LOGGER.info(
                             f"Attempting fallback model {kwargs['model']}"
@@ -225,7 +227,10 @@ class _BaseRetryWrapper:
         @wraps(func)
         def sync_wrapper(*args, **kwargs):
             target_model = kwargs["model"]
-            kwargs = self._update_model_kwargs(kwargs, target_model)
+            base_messages = kwargs.get("messages", [])
+            kwargs = self._update_model_kwargs(
+                kwargs, target_model, user_messages=base_messages
+            )
 
             attempt = 0
             failed_models = []
@@ -250,7 +255,7 @@ class _BaseRetryWrapper:
                             raise _RetryWrapperException(failed_models, e)
 
                         kwargs = self._update_model_kwargs(
-                            kwargs, target_model
+                            kwargs, target_model, user_messages=base_messages
                         )
                         LOGGER.info(
                             f"Attempting fallback model {kwargs['model']}"
