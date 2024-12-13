@@ -7,7 +7,6 @@ from typing import List, Union
 from notdiamond import NotDiamond
 from notdiamond.llms.providers import NDLLMProviders
 from notdiamond.settings import NOTDIAMOND_API_KEY, OPENAI_API_KEY
-from notdiamond.toolkit.retry import _BaseRetryWrapper
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -152,41 +151,3 @@ class AsyncOpenAI(_OpenAIBase):
             f"Routed prompt to {best_llm} for session ID {session_id}"
         )
         return response
-
-
-class OpenAIRetryWrapper(_BaseRetryWrapper, _OpenAIBase):
-    @property
-    def chat(self):
-        class ChatCompletions:
-            def __init__(self, parent):
-                self.parent = parent
-
-            @property
-            def completions(self):
-                return self
-
-            def create(self, *args, **kwargs):
-                return self._retry_decorator(
-                    self.parent.create(*args, **kwargs)
-                )
-
-        return ChatCompletions(self)
-
-
-class AsyncOpenAIRetryWrapper(_BaseRetryWrapper, _OpenAIBase):
-    @property
-    def chat(self):
-        class ChatCompletions:
-            def __init__(self, parent):
-                self.parent = parent
-
-            @property
-            def completions(self):
-                return self
-
-            async def create(self, *args, **kwargs):
-                return await self._retry_decorator(
-                    self.parent.create(*args, **kwargs)
-                )
-
-        return ChatCompletions(self)

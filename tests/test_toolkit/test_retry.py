@@ -10,7 +10,7 @@ from openai import (
 )
 
 from notdiamond import init
-from notdiamond.toolkit.retry import (
+from notdiamond.toolkit._retry import (
     AsyncRetryWrapper,
     RetryManager,
     RetryWrapper,
@@ -574,9 +574,9 @@ def test_multi_model_multi_provider_azure_error(model_messages, api_key):
         azure_client,
     ]
     models = [
+        "openai/gpt-4o",
         "azure/gpt-4o",
         "azure/gpt-4o-mini",
-        "openai/gpt-4o",
         "openai/gpt-4o-mini",
     ]
 
@@ -606,21 +606,16 @@ def test_multi_model_multi_provider_azure_error(model_messages, api_key):
             model="gpt-4o-mini",
             messages=model_messages["gpt-4o-mini"],
         )
-        mock_azure.assert_has_calls(
-            [
-                call(
-                    model="gpt-4o",
-                    messages=model_messages["gpt-4o"],
-                    timeout=10.0,
-                ),
-                call(
-                    model="gpt-4o-mini",
-                    messages=model_messages["gpt-4o-mini"],
-                    timeout=10.0,
-                ),
-            ],
-            any_order=True,
+        mock_azure.assert_called_once_with(
+            model="gpt-4o-mini",
+            messages=model_messages["gpt-4o-mini"],
+            timeout=10.0,
         )
+        assert not any(
+            call(model="gpt-4o", messages=model_messages["gpt-4o"]) == c
+            for c in mock_azure.call_args_list
+        )
+
         mock_openai.assert_called_with(
             model="gpt-4o",
             messages=model_messages["gpt-4o"],
@@ -645,9 +640,9 @@ async def test_async_multi_model_multi_provider_azure_error(
         azure_client,
     ]
     models = [
+        "openai/gpt-4o",
         "azure/gpt-4o",
         "azure/gpt-4o-mini",
-        "openai/gpt-4o",
         "openai/gpt-4o-mini",
     ]
 
@@ -678,21 +673,16 @@ async def test_async_multi_model_multi_provider_azure_error(
             model="gpt-4o-mini",
             messages=model_messages["gpt-4o-mini"],
         )
-        mock_azure.assert_has_calls(
-            [
-                call(
-                    model="gpt-4o",
-                    messages=model_messages["gpt-4o"],
-                    timeout=10.0,
-                ),
-                call(
-                    model="gpt-4o-mini",
-                    messages=model_messages["gpt-4o-mini"],
-                    timeout=10.0,
-                ),
-            ],
-            any_order=True,
+        mock_azure.assert_called_once_with(
+            model="gpt-4o-mini",
+            messages=model_messages["gpt-4o-mini"],
+            timeout=10.0,
         )
+        assert not any(
+            call(model="gpt-4o", messages=model_messages["gpt-4o"]) == c
+            for c in mock_azure.call_args_list
+        )
+
         mock_openai.assert_called_with(
             model="gpt-4o",
             messages=model_messages["gpt-4o"],
@@ -947,3 +937,108 @@ async def test_async_multi_model_model_messages_config(timeout, api_key):
             messages=gpt4o_message + default_message,
             timeout=20.0,
         )
+
+
+def test_get_next_model_weighted(timeout, model_messages, api_key):
+    """Test get_next_model with weighted model configuration."""
+    oai_client = OpenAI()
+    azure_client = AzureOpenAI()
+    clients = [oai_client, azure_client]
+
+    models = {
+        "openai/gpt-4o-mini": 1.0,
+        "azure/gpt-4o-mini": 0.0,
+        "openai/gpt-4o": 0.0,
+    }
+
+    manager = init(
+        client=clients,
+        models=models,
+        max_retries=1,
+        timeout=timeout,
+        model_messages=model_messages,
+        api_key=api_key,
+    )
+
+    # With these weights, should always get openai/gpt-4o-mini
+    next_model = manager.get_next_model([])
+    assert next_model == "openai/gpt-4o-mini"
+
+    # After failing openai/gpt-4o-mini, should return None as other weights are 0
+    next_model = manager.get_next_model(["openai/gpt-4o-mini"])
+    assert next_model is None
+
+
+def test_get_next_model_ordered(timeout, model_messages, api_key):
+    """Test get_next_model with ordered model list."""
+    oai_client = OpenAI()
+    azure_client = AzureOpenAI()
+    clients = [oai_client, azure_client]
+
+    models = [
+        "openai/gpt-4o-mini",
+        "azure/gpt-4o-mini",
+        "openai/gpt-4o",
+    ]
+
+    manager = init(
+        client=clients,
+        models=models,
+        max_retries=1,
+        timeout=timeout,
+        model_messages=model_messages,
+        api_key=api_key,
+    )
+
+    # Should get first model
+    next_model = manager.get_next_model([])
+    assert next_model == "openai/gpt-4o-mini"
+
+    # Should get second model after first fails
+    next_model = manager.get_next_model(["openai/gpt-4o-mini"])
+    assert next_model == "azure/gpt-4o-mini"
+
+    # Should get third model after first two fail
+    next_model = manager.get_next_model(
+        ["openai/gpt-4o-mini", "azure/gpt-4o-mini"]
+    )
+    assert next_model == "openai/gpt-4o"
+
+    # Should return None when all models failed
+    next_model = manager.get_next_model(
+        ["openai/gpt-4o-mini", "azure/gpt-4o-mini", "openai/gpt-4o"]
+    )
+    assert next_model is None
+
+
+def test_get_wrapper(timeout, model_messages, api_key):
+    """Test get_wrapper returns correct wrapper for each model."""
+    oai_client = OpenAI()
+    azure_client = AzureOpenAI()
+    clients = [oai_client, azure_client]
+
+    models = [
+        "openai/gpt-4o-mini",
+        "azure/gpt-4o-mini",
+    ]
+
+    manager = init(
+        client=clients,
+        models=models,
+        max_retries=1,
+        timeout=timeout,
+        model_messages=model_messages,
+        api_key=api_key,
+    )
+
+    # Should get OpenAI wrapper for OpenAI model
+    openai_wrapper = manager.get_wrapper("openai/gpt-4o-mini")
+    assert isinstance(openai_wrapper._client, OpenAI)
+
+    # Should get Azure wrapper for Azure model
+    azure_wrapper = manager.get_wrapper("azure/gpt-4o-mini")
+    assert isinstance(azure_wrapper._client, AzureOpenAI)
+
+    # Should raise ValueError for unknown model
+    with pytest.raises(ValueError):
+        manager.get_wrapper("unknown/model")

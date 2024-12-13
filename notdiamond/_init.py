@@ -1,58 +1,96 @@
 from __future__ import annotations
 
 import os
-from typing import Dict, List, Union, overload
+from typing import Dict, List
 
-from anthropic import Anthropic, AsyncAnthropic
-from openai import AsyncOpenAI, OpenAI
-
-from notdiamond.llms.config import LLMConfig
-from notdiamond.toolkit.retry import (
+from notdiamond.toolkit._retry import (
     AsyncRetryWrapper,
+    ClientType,
+    ModelType,
+    OpenAIMessagesType,
     RetryManager,
     RetryWrapper,
 )
 
-ClientType = Union[OpenAI, AsyncOpenAI, Anthropic, AsyncAnthropic]
-LLMType = Union[str, LLMConfig]
-
-
-@overload
-def init(
-    client: List[ClientType],
-    models: Union[Dict[LLMType, float], List[LLMType]],
-    max_retries: int | Dict[LLMType, int],
-    timeout: float | Dict[LLMType, float],
-    model_messages: Dict[LLMType, List[Dict[str, str]]],
-    api_key: str | None = None,
-    fallback: List[LLMType] = [],
-    async_mode: bool = False,
-) -> RetryManager:
-    ...
-
 
 def init(
-    client: ClientType,
-    models: Union[Dict[LLMType, float], List[LLMType], LLMType],
-    max_retries: int | Dict[LLMType, int],
-    timeout: float | Dict[LLMType, float],
-    model_messages: Dict[LLMType, List[Dict[str, str]]],
+    client: ClientType | List[ClientType],
+    models: ModelType,
+    max_retries: int | Dict[str, int],
+    timeout: float | Dict[str, float],
+    model_messages: Dict[str, OpenAIMessagesType],
     api_key: str | None = None,
     async_mode: bool = False,
 ) -> RetryManager:
-    """
+    """Entrypoint for fallback and retry features without changing existing code.
+
+    Add this to existing codebase without other modifications to enable the following capabilities:
+
+    - Fallback to a different model if a model invocation fails.
+      - If configured, fallback to a different *provider* if a model invocation fails
+        (eg. azure/gpt-4o fails -> invoke openai/gpt-4o)
+    - Load-balance between models and providers, if specified.
+    - Pass timeout and retry configurations to each invoke, optionally configured per model.
+    - Pass model-specific messages on each retry (appended to the provided `messages` parameter)
+
+    Args:
+        client (Union[ClientType, List[ClientType]]):
+            Wrap these clients with retry / fallback logic.
+        models (Union[Dict[str, float], List[str]]):
+            Models to use of the format <provider>/<model>.
+            Supports two formats:
+                - List of models, eg. ["openai/gpt-4o", "azure/gpt-4o"]. Models will be prioritized as listed.
+                - Dict of models to weights for load balancing, eg. {"openai/gpt-4o": 0.9, "azure/gpt-4o": 0.1}.
+                  If a model invocation fails, the next model is selected by sampling using the *remaining* weights.
+        max_retries (Union[int, Dict[str, int]]):
+            Maximum number of retries. Can be configured globally or per model.
+        timeout (Union[float, Dict[str, float]]):
+            Timeout in seconds per model. Can be configured globally or per model.
+        model_messages (Dict[str, OpenAIMessagesType]):
+            Model-specific messages to prepend to `messages` on each invocation, formatted OpenAI-style. Can be
+            configured using any role which is valid as an initial message (eg. "system" or "user", but not "assistant").
+        api_key (Optional[str]):
+            Not Diamond API key for authentication. Unused for now - will offer logging and metrics in the future.
+        async_mode (bool):
+            Whether to manage clients as async.
+
+    Returns:
+        RetryManager: Manager object that handles retries and fallbacks. Not required for usage.
+
+    Model Fallback Prioritization
+    -----------------------------
+
+      - If models is a list, the fallback model is selected in order after removing the failed model.
+        eg. If "openai/gpt-4o" fails for the list:
+        - ["openai/gpt-4o", "azure/gpt-4o"], "azure/gpt-4o" will be tried next
+        - ["openai/gpt-4o-mini", "openai/gpt-4o", "azure/gpt-4o"], "openai/gpt-4o-mini" will be tried next.
+      - If models is a dict, the next model is selected by sampling using the *remaining* weights.
+        eg. If "openai/gpt-4o" fails for the dict:
+        - {"openai/gpt-4o": 0.9, "azure/gpt-4o": 0.1}, "azure/gpt-4o" will be invoked 100% of the time
+        - {"openai/gpt-4o": 0.5, "azure/gpt-4o": 0.25, "openai/gpt-4o-mini": 0.25}, then "azure/gpt-4o" and
+          "openai/gpt-4o-mini" can be invoked with 50% probability each.
+
     Usage:
 
     ```python
+        # ...existing workflow code, including client initialization...
         openai_client = OpenAI(...)
+        azure_client = AzureOpenAI(...)
+
+        # Add `notdiamond.init` to the workflow.
         notdiamond.init(
-            openai_client,
-            models={"gpt-3.5-turbo": 0.9, "claude-3-5-sonnet-20240620": 0.1},
-            max_retries=3,
-            timeout=10.0,
+            [openai_client, azure_client],
+            models={"openai/gpt-4o": 0.9, "azure/gpt-4o": 0.1},
+            max_retries={"openai/gpt-4o": 3, "azure/gpt-4o": 1},
+            timeout={"openai/gpt-4o": 10.0, "azure/gpt-4o": 5.0},
+            model_messages={
+                "openai/gpt-4o": [{"role": "user", "content": "Here is a prompt for OpenAI."}],
+                "azure/gpt-4o": [{"role": "user", "content": "Here is a prompt for Azure."}],
+            },
             api_key="sk-...",
-            fallback=["gpt-3.5-turbo", "claude-3-5-sonnet-20240620", "gpt-4o"],
         )
+
+        # ...continue existing workflow code...
         response = openai_client.chat.completions.create(
             model="notdiamond",
             messages=[{"role": "user", "content": "Hello!"}]
@@ -61,13 +99,16 @@ def init(
     """
     api_key = api_key or os.getenv("NOTDIAMOND_API_KEY")
 
-    if not isinstance(models, (Dict, List)):
-        models = [models]
-
     if async_mode:
         wrapper_cls = AsyncRetryWrapper
     else:
         wrapper_cls = RetryWrapper
+
+    for model in models:
+        if len(model.split("/")) != 2:
+            raise ValueError(
+                f"Model {model} must be in the format <provider>/<model>."
+            )
 
     if not isinstance(client, List):
         client_wrappers = [
