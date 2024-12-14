@@ -92,3 +92,5 @@ autosummary_generate = True
 
 html_copy_source = False
 html_show_sourcelink = False
+
+autodoc_mock_imports = ["notdiamond.toolkit._retry"]

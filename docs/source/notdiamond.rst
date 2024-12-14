@@ -53,4 +53,4 @@ notdiamond.prompts
 notdiamond.init
 ---------------------------------------
 
-.. automodule:: notdiamond.init
+.. autofunction:: notdiamond.init
