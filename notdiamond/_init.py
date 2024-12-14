@@ -20,7 +20,8 @@ def init(
     api_key: Union[str, None] = None,
     async_mode: bool = False,
 ) -> RetryManager:
-    """Entrypoint for fallback and retry features without changing existing code.
+    """
+    Entrypoint for fallback and retry features without changing existing code.
 
     Add this to existing codebase without other modifications to enable the following capabilities:
 
