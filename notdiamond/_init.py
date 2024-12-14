@@ -73,6 +73,7 @@ def init(
     Please refer to tests/test_init.py for more examples on how to use notdiamond.init.
 
     .. code-block:: python
+
         # ...existing workflow code, including client initialization...
         openai_client = OpenAI(...)
         azure_client = AzureOpenAI(...)
