@@ -618,6 +618,30 @@ eg. If “openai/gpt-4o” fails for the dict:</p>
 <section id="usage">
 <h3>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h3>
 <p>Please refer to tests/test_init.py for more examples on how to use notdiamond.init.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...existing workflow code, including client initialization...</span>
+<span class="n">openai_client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">azure_client</span> <span class="o">=</span> <span class="n">AzureOpenAI</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># Add `notdiamond.init` to the workflow.</span>
+<span class="n">notdiamond</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">openai_client</span><span class="p">,</span> <span class="n">azure_client</span><span class="p">],</span>
+    <span class="n">models</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;openai/gpt-4o&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span> <span class="s2">&quot;azure/gpt-4o&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
+    <span class="n">max_retries</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;openai/gpt-4o&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;azure/gpt-4o&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="n">timeout</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;openai/gpt-4o&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">&quot;azure/gpt-4o&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+    <span class="n">model_messages</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;openai/gpt-4o&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Here is a prompt for OpenAI.&quot;</span><span class="p">}],</span>
+        <span class="s2">&quot;azure/gpt-4o&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Here is a prompt for Azure.&quot;</span><span class="p">}],</span>
+    <span class="p">},</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;sk-...&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># ...continue existing workflow code...</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">openai_client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;notdiamond&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello!&quot;</span><span class="p">}]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
