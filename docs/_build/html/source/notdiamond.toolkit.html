@@ -63,6 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-notdiamond.toolkit.openai">notdiamond.toolkit.openai</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#notdiamond.toolkit.openai.AsyncOpenAI"><code class="docutils literal notranslate"><span class="pre">AsyncOpenAI</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#notdiamond.toolkit.openai.OpenAI"><code class="docutils literal notranslate"><span class="pre">OpenAI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notdiamond.toolkit.openai._OpenAIBase"><code class="docutils literal notranslate"><span class="pre">_OpenAIBase</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -72,6 +73,7 @@
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.settings">notdiamond.settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.types">notdiamond.types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.prompts">notdiamond.prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notdiamond.html#module-notdiamond.init">notdiamond.init</a></li>
 </ul>
 </li>
 </ul>
@@ -291,7 +293,7 @@ associated with the preference_id will be updated with the provided dataset.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="notdiamond.toolkit.openai.AsyncOpenAI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.openai.</span></span><span class="sig-name descname"><span class="pre">AsyncOpenAI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/openai.html#AsyncOpenAI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.openai.AsyncOpenAI" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#notdiamond.toolkit.openai._OpenAIBase" title="notdiamond.toolkit.openai._OpenAIBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">_OpenAIBase</span></code></a></p>
 <p>Encapsulating class for an openai.OpenAI client. This supports the same methods as
 the openai package, while also supporting routed prompts with calls to <cite>completion</cite>.</p>
 <dl class="py method">
@@ -306,17 +308,12 @@ specific LLM via Not Diamond.</p>
 </dl>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="notdiamond.toolkit.openai.AsyncOpenAI.chat">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chat</span></span><a class="headerlink" href="#notdiamond.toolkit.openai.AsyncOpenAI.chat" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="notdiamond.toolkit.openai.OpenAI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.openai.</span></span><span class="sig-name descname"><span class="pre">OpenAI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/openai.html#OpenAI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.openai.OpenAI" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#notdiamond.toolkit.openai._OpenAIBase" title="notdiamond.toolkit.openai._OpenAIBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">_OpenAIBase</span></code></a></p>
 <p>Encapsulating class for an openai.OpenAI client. This supports the same methods as
 the openai package, while also supporting routed prompts with calls to <cite>completion</cite>.</p>
 <dl class="py method">
@@ -331,9 +328,16 @@ specific LLM via Not Diamond.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="notdiamond.toolkit.openai._OpenAIBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notdiamond.toolkit.openai.</span></span><span class="sig-name descname"><span class="pre">_OpenAIBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oai_client_cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/notdiamond/toolkit/openai.html#_OpenAIBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.toolkit.openai._OpenAIBase" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class which wraps both an openai client and Not Diamond retry / fallback logic.</p>
 <dl class="py property">
-<dt class="sig sig-object py" id="notdiamond.toolkit.openai.OpenAI.chat">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chat</span></span><a class="headerlink" href="#notdiamond.toolkit.openai.OpenAI.chat" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="notdiamond.toolkit.openai._OpenAIBase.chat">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chat</span></span><a class="headerlink" href="#notdiamond.toolkit.openai._OpenAIBase.chat" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -353,7 +357,7 @@ specific LLM via Not Diamond.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Dec 13, 2024.
+      <span class="lastupdated">Last updated on Dec 14, 2024.
       </span></p>
   </div>
 

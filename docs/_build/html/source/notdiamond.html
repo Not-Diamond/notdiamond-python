@@ -98,6 +98,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.prompts.o1_system_prompt_translate"><code class="docutils literal notranslate"><span class="pre">o1_system_prompt_translate()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-notdiamond.init">notdiamond.init</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#model-fallback-prioritization">Model Fallback Prioritization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.init.__dir__"><code class="docutils literal notranslate"><span class="pre">__dir__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.init.__format__"><code class="docutils literal notranslate"><span class="pre">__format__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.init.__init_subclass__"><code class="docutils literal notranslate"><span class="pre">__init_subclass__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.init.__new__"><code class="docutils literal notranslate"><span class="pre">__new__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.init.__reduce__"><code class="docutils literal notranslate"><span class="pre">__reduce__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.init.__reduce_ex__"><code class="docutils literal notranslate"><span class="pre">__reduce_ex__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.init.__sizeof__"><code class="docutils literal notranslate"><span class="pre">__sizeof__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.init.__subclasshook__"><code class="docutils literal notranslate"><span class="pre">__subclasshook__()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -248,12 +261,14 @@
 <li class="toctree-l2"><a class="reference internal" href="notdiamond.toolkit.html#module-notdiamond.toolkit.openai">notdiamond.toolkit.openai</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.openai.AsyncOpenAI"><code class="docutils literal notranslate"><span class="pre">AsyncOpenAI</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.openai.AsyncOpenAI.create"><code class="docutils literal notranslate"><span class="pre">AsyncOpenAI.create()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.openai.AsyncOpenAI.chat"><code class="docutils literal notranslate"><span class="pre">AsyncOpenAI.chat</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.openai.OpenAI"><code class="docutils literal notranslate"><span class="pre">OpenAI</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.openai.OpenAI.create"><code class="docutils literal notranslate"><span class="pre">OpenAI.create()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.openai.OpenAI.chat"><code class="docutils literal notranslate"><span class="pre">OpenAI.chat</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.openai._OpenAIBase"><code class="docutils literal notranslate"><span class="pre">_OpenAIBase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notdiamond.toolkit.html#notdiamond.toolkit.openai._OpenAIBase.chat"><code class="docutils literal notranslate"><span class="pre">_OpenAIBase.chat</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -513,6 +528,188 @@ This function will not escape double curly braces or non-alphabetic characters.<
 </dd></dl>
 
 </section>
+<section id="module-notdiamond.init">
+<span id="notdiamond-init"></span><h2>notdiamond.init<a class="headerlink" href="#module-notdiamond.init" title="Link to this heading"></a></h2>
+<p>Entrypoint for fallback and retry features without changing existing code.</p>
+<p>Add this to existing codebase without other modifications to enable the following capabilities:</p>
+<ul>
+<li><p>Fallback to a different model if a model invocation fails.
+- If configured, fallback to a different <em>provider</em> if a model invocation fails</p>
+<blockquote>
+<div><p>(eg. azure/gpt-4o fails -&gt; invoke openai/gpt-4o)</p>
+</div></blockquote>
+</li>
+<li><p>Load-balance between models and providers, if specified.</p></li>
+<li><p>Pass timeout and retry configurations to each invoke, optionally configured per model.</p></li>
+<li><p>Pass model-specific messages on each retry (prepended to the provided <cite>messages</cite> parameter)</p></li>
+</ul>
+<dl class="field-list">
+<dt class="field-odd">param client<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Wrap these clients with retry / fallback logic.</p>
+</dd>
+<dt class="field-even">type client<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[ClientType, List[ClientType]]</p>
+</dd>
+<dt class="field-odd">param models<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Models to use of the format &lt;provider&gt;/&lt;model&gt;.
+Supports two formats:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>List of models, eg. [“openai/gpt-4o”, “azure/gpt-4o”]. Models will be prioritized as listed.</p></li>
+<li><p>Dict of models to weights for load balancing, eg. {“openai/gpt-4o”: 0.9, “azure/gpt-4o”: 0.1}.
+If a model invocation fails, the next model is selected by sampling using the <em>remaining</em> weights.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt class="field-even">type models<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[Dict[str, float], List[str]]</p>
+</dd>
+<dt class="field-odd">param max_retries<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum number of retries. Can be configured globally or per model.</p>
+</dd>
+<dt class="field-even">type max_retries<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[int, Dict[str, int]]</p>
+</dd>
+<dt class="field-odd">param timeout<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Timeout in seconds per model. Can be configured globally or per model.</p>
+</dd>
+<dt class="field-even">type timeout<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[float, Dict[str, float]]</p>
+</dd>
+<dt class="field-odd">param model_messages<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Model-specific messages to prepend to <cite>messages</cite> on each invocation, formatted OpenAI-style. Can be
+configured using any role which is valid as an initial message (eg. “system” or “user”, but not “assistant”).</p>
+</dd>
+<dt class="field-even">type model_messages<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, OpenAIMessagesType]</p>
+</dd>
+<dt class="field-odd">param api_key<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Not Diamond API key for authentication. Unused for now - will offer logging and metrics in the future.</p>
+</dd>
+<dt class="field-even">type api_key<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optional[str]</p>
+</dd>
+<dt class="field-odd">param async_mode<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether to manage clients as async.</p>
+</dd>
+<dt class="field-even">type async_mode<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Manager object that handles retries and fallbacks. Not required for usage.</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>RetryManager</p>
+</dd>
+</dl>
+<section id="model-fallback-prioritization">
+<h3>Model Fallback Prioritization<a class="headerlink" href="#model-fallback-prioritization" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>If models is a list, the fallback model is selected in order after removing the failed model.
+eg. If “openai/gpt-4o” fails for the list:
+- [“openai/gpt-4o”, “azure/gpt-4o”], “azure/gpt-4o” will be tried next
+- [“openai/gpt-4o-mini”, “openai/gpt-4o”, “azure/gpt-4o”], “openai/gpt-4o-mini” will be tried next.</p></li>
+<li><p>If models is a dict, the next model is selected by sampling using the <em>remaining</em> weights.
+eg. If “openai/gpt-4o” fails for the dict:
+- {“openai/gpt-4o”: 0.9, “azure/gpt-4o”: 0.1}, “azure/gpt-4o” will be invoked 100% of the time
+- {“openai/gpt-4o”: 0.5, “azure/gpt-4o”: 0.25, “openai/gpt-4o-mini”: 0.25}, then “azure/gpt-4o” and</p>
+<blockquote>
+<div><p>“openai/gpt-4o-mini” can be invoked with 50% probability each.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h3>
+<dl>
+<dt><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python</dt><dd><p># …existing workflow code, including client initialization…
+openai_client = OpenAI(…)
+azure_client = AzureOpenAI(…)</p>
+<p># Add <cite>notdiamond.init</cite> to the workflow.
+notdiamond.init(</p>
+<blockquote>
+<div><p>[openai_client, azure_client],
+models={“openai/gpt-4o”: 0.9, “azure/gpt-4o”: 0.1},
+max_retries={“openai/gpt-4o”: 3, “azure/gpt-4o”: 1},
+timeout={“openai/gpt-4o”: 10.0, “azure/gpt-4o”: 5.0},
+model_messages={</p>
+<blockquote>
+<div><p>“openai/gpt-4o”: [{“role”: “user”, “content”: “Here is a prompt for OpenAI.”}],
+“azure/gpt-4o”: [{“role”: “user”, “content”: “Here is a prompt for Azure.”}],</p>
+</div></blockquote>
+<p>},
+api_key=”sk-…”,</p>
+</div></blockquote>
+<p>)</p>
+<p># …continue existing workflow code…
+response = openai_client.chat.completions.create(</p>
+<blockquote>
+<div><p>model=”notdiamond”,
+messages=[{“role”: “user”, “content”: “Hello!”}]</p>
+</div></blockquote>
+<p>)</p>
+</dd>
+</dl>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>Please refer to tests/test_init.py for more examples on how to use notdiamond.init.</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.init.__dir__">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.init.</span></span><span class="sig-name descname"><span class="pre">__dir__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.init.__dir__" title="Link to this definition"></a></dt>
+<dd><p>Default dir() implementation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.init.__format__">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.init.</span></span><span class="sig-name descname"><span class="pre">__format__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_spec</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.init.__format__" title="Link to this definition"></a></dt>
+<dd><p>Default object formatter.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.init.__init_subclass__">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.init.</span></span><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.init.__init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>This method is called when a class is subclassed.</p>
+<p>The default implementation does nothing. It may be
+overridden to extend subclasses.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.init.__new__">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.init.</span></span><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.init.__new__" title="Link to this definition"></a></dt>
+<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.init.__reduce__">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.init.</span></span><span class="sig-name descname"><span class="pre">__reduce__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.init.__reduce__" title="Link to this definition"></a></dt>
+<dd><p>Helper for pickle.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.init.__reduce_ex__">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.init.</span></span><span class="sig-name descname"><span class="pre">__reduce_ex__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protocol</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.init.__reduce_ex__" title="Link to this definition"></a></dt>
+<dd><p>Helper for pickle.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.init.__sizeof__">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.init.</span></span><span class="sig-name descname"><span class="pre">__sizeof__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.init.__sizeof__" title="Link to this definition"></a></dt>
+<dd><p>Size of object in memory, in bytes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.init.__subclasshook__">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.init.</span></span><span class="sig-name descname"><span class="pre">__subclasshook__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notdiamond.init.__subclasshook__" title="Link to this definition"></a></dt>
+<dd><p>Abstract classes can override this to customize issubclass().</p>
+<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
+It should return True, False or NotImplemented.  If it returns
+NotImplemented, the normal algorithm is used.  Otherwise, it
+overrides the normal algorithm (and the outcome is cached).</p>
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -527,7 +724,7 @@ This function will not escape double curly braces or non-alphabetic characters.<
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Dec 13, 2024.
+      <span class="lastupdated">Last updated on Dec 14, 2024.
       </span></p>
   </div>
 
