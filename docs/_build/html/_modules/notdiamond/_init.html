@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>notdiamond._init &mdash; NotDiamond 0.3.32</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=a4665d1b"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NotDiamond
+          </a>
+              <div class="version">
+                0.3.32
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/intro.html">Getting started with Not Diamond</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/notdiamond.html">NotDiamond package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NotDiamond</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">notdiamond._init</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for notdiamond._init</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">notdiamond.toolkit._retry</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AsyncRetryWrapper</span><span class="p">,</span>
+    <span class="n">ClientType</span><span class="p">,</span>
+    <span class="n">ModelType</span><span class="p">,</span>
+    <span class="n">OpenAIMessagesType</span><span class="p">,</span>
+    <span class="n">RetryManager</span><span class="p">,</span>
+    <span class="n">RetryWrapper</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="init">
+<a class="viewcode-back" href="../../source/notdiamond.html#notdiamond.init">[docs]</a>
+<span class="k">def</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ClientType</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">ClientType</span><span class="p">]],</span>
+    <span class="n">models</span><span class="p">:</span> <span class="n">ModelType</span><span class="p">,</span>
+    <span class="n">max_retries</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+    <span class="n">model_messages</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">OpenAIMessagesType</span><span class="p">],</span>
+    <span class="n">api_key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">async_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RetryManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Entrypoint for fallback and retry features without changing existing code.</span>
+
+<span class="sd">    Add this to existing codebase without other modifications to enable the following capabilities:</span>
+
+<span class="sd">    - Fallback to a different model if a model invocation fails.</span>
+<span class="sd">    - If configured, fallback to a different *provider* if a model invocation fails</span>
+<span class="sd">      (eg. azure/gpt-4o fails -&gt; invoke openai/gpt-4o)</span>
+<span class="sd">    - Load-balance between models and providers, if specified.</span>
+<span class="sd">    - Pass timeout and retry configurations to each invoke, optionally configured per model.</span>
+<span class="sd">    - Pass model-specific messages on each retry (prepended to the provided `messages` parameter)</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        client (Union[ClientType, List[ClientType]]): Clients to apply retry/fallback logic to.</span>
+<span class="sd">        models (Union[Dict[str, float], List[str]]):</span>
+<span class="sd">            Models to use of the format &lt;provider&gt;/&lt;model&gt;.</span>
+<span class="sd">            Supports two formats:</span>
+<span class="sd">                - List of models, eg. [&quot;openai/gpt-4o&quot;, &quot;azure/gpt-4o&quot;]. Models will be prioritized as listed.</span>
+<span class="sd">                - Dict of models to weights for load balancing, eg. {&quot;openai/gpt-4o&quot;: 0.9, &quot;azure/gpt-4o&quot;: 0.1}.</span>
+<span class="sd">                  If a model invocation fails, the next model is selected by sampling using the *remaining* weights.</span>
+<span class="sd">        max_retries (Union[int, Dict[str, int]]):</span>
+<span class="sd">            Maximum number of retries. Can be configured globally or per model.</span>
+<span class="sd">        timeout (Union[float, Dict[str, float]]):</span>
+<span class="sd">            Timeout in seconds per model. Can be configured globally or per model.</span>
+<span class="sd">        model_messages (Dict[str, OpenAIMessagesType]):</span>
+<span class="sd">            Model-specific messages to prepend to `messages` on each invocation, formatted OpenAI-style. Can be</span>
+<span class="sd">            configured using any role which is valid as an initial message (eg. &quot;system&quot; or &quot;user&quot;, but not &quot;assistant&quot;).</span>
+<span class="sd">        api_key (Optional[str]):</span>
+<span class="sd">            Not Diamond API key for authentication. Unused for now - will offer logging and metrics in the future.</span>
+<span class="sd">        async_mode (bool):</span>
+<span class="sd">            Whether to manage clients as async.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        RetryManager: Manager object that handles retries and fallbacks. Not required for usage.</span>
+
+<span class="sd">    Model Fallback Prioritization</span>
+<span class="sd">    -----------------------------</span>
+
+<span class="sd">    - If models is a list, the fallback model is selected in order after removing the failed model.</span>
+<span class="sd">      eg. If &quot;openai/gpt-4o&quot; fails for the list:</span>
+<span class="sd">        - [&quot;openai/gpt-4o&quot;, &quot;azure/gpt-4o&quot;], &quot;azure/gpt-4o&quot; will be tried next</span>
+<span class="sd">        - [&quot;openai/gpt-4o-mini&quot;, &quot;openai/gpt-4o&quot;, &quot;azure/gpt-4o&quot;], &quot;openai/gpt-4o-mini&quot; will be tried next.</span>
+<span class="sd">    - If models is a dict, the next model is selected by sampling using the *remaining* weights.</span>
+<span class="sd">      eg. If &quot;openai/gpt-4o&quot; fails for the dict:</span>
+<span class="sd">        - {&quot;openai/gpt-4o&quot;: 0.9, &quot;azure/gpt-4o&quot;: 0.1}, &quot;azure/gpt-4o&quot; will be invoked 100% of the time</span>
+<span class="sd">        - {&quot;openai/gpt-4o&quot;: 0.5, &quot;azure/gpt-4o&quot;: 0.25, &quot;openai/gpt-4o-mini&quot;: 0.25}, then &quot;azure/gpt-4o&quot; and</span>
+<span class="sd">          &quot;openai/gpt-4o-mini&quot; can be invoked with 50% probability each.</span>
+
+<span class="sd">    Usage</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    Please refer to tests/test_init.py for more examples on how to use notdiamond.init.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        # ...existing workflow code, including client initialization...</span>
+<span class="sd">        openai_client = OpenAI(...)</span>
+<span class="sd">        azure_client = AzureOpenAI(...)</span>
+
+<span class="sd">        # Add `notdiamond.init` to the workflow.</span>
+<span class="sd">        notdiamond.init(</span>
+<span class="sd">            [openai_client, azure_client],</span>
+<span class="sd">            models={&quot;openai/gpt-4o&quot;: 0.9, &quot;azure/gpt-4o&quot;: 0.1},</span>
+<span class="sd">            max_retries={&quot;openai/gpt-4o&quot;: 3, &quot;azure/gpt-4o&quot;: 1},</span>
+<span class="sd">            timeout={&quot;openai/gpt-4o&quot;: 10.0, &quot;azure/gpt-4o&quot;: 5.0},</span>
+<span class="sd">            model_messages={</span>
+<span class="sd">                &quot;openai/gpt-4o&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Here is a prompt for OpenAI.&quot;}],</span>
+<span class="sd">                &quot;azure/gpt-4o&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Here is a prompt for Azure.&quot;}],</span>
+<span class="sd">            },</span>
+<span class="sd">            api_key=&quot;sk-...&quot;,</span>
+<span class="sd">        )</span>
+
+<span class="sd">        # ...continue existing workflow code...</span>
+<span class="sd">        response = openai_client.chat.completions.create(</span>
+<span class="sd">            model=&quot;notdiamond&quot;,</span>
+<span class="sd">            messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello!&quot;}]</span>
+<span class="sd">        )</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NOTDIAMOND_API_KEY&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">async_mode</span><span class="p">:</span>
+        <span class="n">wrapper_cls</span> <span class="o">=</span> <span class="n">AsyncRetryWrapper</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">wrapper_cls</span> <span class="o">=</span> <span class="n">RetryWrapper</span>
+
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Model </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2"> must be in the format &lt;provider&gt;/&lt;model&gt;.&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">List</span><span class="p">):</span>
+        <span class="n">client_wrappers</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">wrapper_cls</span><span class="p">(</span>
+                <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span>
+                <span class="n">models</span><span class="o">=</span><span class="n">models</span><span class="p">,</span>
+                <span class="n">max_retries</span><span class="o">=</span><span class="n">max_retries</span><span class="p">,</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+                <span class="n">model_messages</span><span class="o">=</span><span class="n">model_messages</span><span class="p">,</span>
+                <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">client_wrappers</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">wrapper_cls</span><span class="p">(</span>
+                <span class="n">client</span><span class="o">=</span><span class="n">cc</span><span class="p">,</span>
+                <span class="n">models</span><span class="o">=</span><span class="n">models</span><span class="p">,</span>
+                <span class="n">max_retries</span><span class="o">=</span><span class="n">max_retries</span><span class="p">,</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+                <span class="n">model_messages</span><span class="o">=</span><span class="n">model_messages</span><span class="p">,</span>
+                <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">cc</span> <span class="ow">in</span> <span class="n">client</span>
+        <span class="p">]</span>
+    <span class="n">retry_manager</span> <span class="o">=</span> <span class="n">RetryManager</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">client_wrappers</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">retry_manager</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, NotDiamond.
+      <span class="lastupdated">Last updated on Dec 14, 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

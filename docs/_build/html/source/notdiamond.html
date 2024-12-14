@@ -98,9 +98,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#notdiamond.prompts.o1_system_prompt_translate"><code class="docutils literal notranslate"><span class="pre">o1_system_prompt_translate()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-notdiamond.init">notdiamond.init</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#model-fallback-prioritization">Model Fallback Prioritization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notdiamond-init">notdiamond.init</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#notdiamond.init"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -520,9 +519,12 @@ This function will not escape double curly braces or non-alphabetic characters.<
 </dd></dl>
 
 </section>
-<section id="module-notdiamond.init">
-<span id="notdiamond-init"></span><h2>notdiamond.init<a class="headerlink" href="#module-notdiamond.init" title="Link to this heading"></a></h2>
-<p>Entrypoint for fallback and retry features without changing existing code.</p>
+<section id="notdiamond-init">
+<h2>notdiamond.init<a class="headerlink" href="#notdiamond-init" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="notdiamond.init">
+<span class="sig-prename descclassname"><span class="pre">notdiamond.</span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">notdiamond.toolkit._retry.ClientType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">notdiamond.toolkit._retry.ClientType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">notdiamond.toolkit._retry.ModelType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_retries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">notdiamond.toolkit._retry.OpenAIMessagesType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">async_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">notdiamond.toolkit._retry.RetryManager</span></span></span><a class="reference internal" href="../_modules/notdiamond/_init.html#init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#notdiamond.init" title="Link to this definition"></a></dt>
+<dd><p>Entrypoint for fallback and retry features without changing existing code.</p>
 <p>Add this to existing codebase without other modifications to enable the following capabilities:</p>
 <ul class="simple">
 <li><p>Fallback to a different model if a model invocation fails.</p></li>
@@ -532,63 +534,33 @@ This function will not escape double curly braces or non-alphabetic characters.<
 <li><p>Pass timeout and retry configurations to each invoke, optionally configured per model.</p></li>
 <li><p>Pass model-specific messages on each retry (prepended to the provided <cite>messages</cite> parameter)</p></li>
 </ul>
-<dl class="field-list">
-<dt class="field-odd">param client<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Clients to apply retry/fallback logic to.</p>
-</dd>
-<dt class="field-even">type client<span class="colon">:</span></dt>
-<dd class="field-even"><p>Union[ClientType, List[ClientType]]</p>
-</dd>
-<dt class="field-odd">param models<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Models to use of the format &lt;provider&gt;/&lt;model&gt;.
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client</strong> (<em>Union</em><em>[</em><em>ClientType</em><em>, </em><em>List</em><em>[</em><em>ClientType</em><em>]</em><em>]</em>) – Clients to apply retry/fallback logic to.</p></li>
+<li><p><strong>models</strong> (<em>Union</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em>]</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – <p>Models to use of the format &lt;provider&gt;/&lt;model&gt;.
 Supports two formats:</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>List of models, eg. [“openai/gpt-4o”, “azure/gpt-4o”]. Models will be prioritized as listed.</p></li>
 <li><p>Dict of models to weights for load balancing, eg. {“openai/gpt-4o”: 0.9, “azure/gpt-4o”: 0.1}.
 If a model invocation fails, the next model is selected by sampling using the <em>remaining</em> weights.</p></li>
 </ul>
 </div></blockquote>
+</p></li>
+<li><p><strong>max_retries</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em><em>]</em>) – Maximum number of retries. Can be configured globally or per model.</p></li>
+<li><p><strong>timeout</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em>]</em><em>]</em>) – Timeout in seconds per model. Can be configured globally or per model.</p></li>
+<li><p><strong>model_messages</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>OpenAIMessagesType</em><em>]</em>) – Model-specific messages to prepend to <cite>messages</cite> on each invocation, formatted OpenAI-style. Can be
+configured using any role which is valid as an initial message (eg. “system” or “user”, but not “assistant”).</p></li>
+<li><p><strong>api_key</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Not Diamond API key for authentication. Unused for now - will offer logging and metrics in the future.</p></li>
+<li><p><strong>async_mode</strong> (<em>bool</em>) – Whether to manage clients as async.</p></li>
+</ul>
 </dd>
-<dt class="field-even">type models<span class="colon">:</span></dt>
-<dd class="field-even"><p>Union[Dict[str, float], List[str]]</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Manager object that handles retries and fallbacks. Not required for usage.</p>
 </dd>
-<dt class="field-odd">param max_retries<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Maximum number of retries. Can be configured globally or per model.</p>
-</dd>
-<dt class="field-even">type max_retries<span class="colon">:</span></dt>
-<dd class="field-even"><p>Union[int, Dict[str, int]]</p>
-</dd>
-<dt class="field-odd">param timeout<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Timeout in seconds per model. Can be configured globally or per model.</p>
-</dd>
-<dt class="field-even">type timeout<span class="colon">:</span></dt>
-<dd class="field-even"><p>Union[float, Dict[str, float]]</p>
-</dd>
-<dt class="field-odd">param model_messages<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Model-specific messages to prepend to <cite>messages</cite> on each invocation, formatted OpenAI-style. Can be
-configured using any role which is valid as an initial message (eg. “system” or “user”, but not “assistant”).</p>
-</dd>
-<dt class="field-even">type model_messages<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dict[str, OpenAIMessagesType]</p>
-</dd>
-<dt class="field-odd">param api_key<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Not Diamond API key for authentication. Unused for now - will offer logging and metrics in the future.</p>
-</dd>
-<dt class="field-even">type api_key<span class="colon">:</span></dt>
-<dd class="field-even"><p>Optional[str]</p>
-</dd>
-<dt class="field-odd">param async_mode<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Whether to manage clients as async.</p>
-</dd>
-<dt class="field-even">type async_mode<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
-</dd>
-<dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Manager object that handles retries and fallbacks. Not required for usage.</p>
-</dd>
-<dt class="field-even">rtype<span class="colon">:</span></dt>
-<dd class="field-even"><p>RetryManager</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>RetryManager</p>
 </dd>
 </dl>
 <section id="model-fallback-prioritization">
@@ -643,6 +615,8 @@ eg. If “openai/gpt-4o” fails for the dict:</p>
 </pre></div>
 </div>
 </section>
+</dd></dl>
+
 </section>
 </section>
 
