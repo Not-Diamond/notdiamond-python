@@ -53,7 +53,4 @@ notdiamond.prompts
 notdiamond.init
 ---------------------------------------
 
-.. automodule:: notdiamond.init
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. automodule:: notdiamond._init
