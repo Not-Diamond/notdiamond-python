@@ -25,15 +25,14 @@ def init(
     Add this to existing codebase without other modifications to enable the following capabilities:
 
     - Fallback to a different model if a model invocation fails.
-      - If configured, fallback to a different *provider* if a model invocation fails
-        (eg. azure/gpt-4o fails -> invoke openai/gpt-4o)
+    - If configured, fallback to a different *provider* if a model invocation fails
+      (eg. azure/gpt-4o fails -> invoke openai/gpt-4o)
     - Load-balance between models and providers, if specified.
     - Pass timeout and retry configurations to each invoke, optionally configured per model.
     - Pass model-specific messages on each retry (prepended to the provided `messages` parameter)
 
-    Args:
-        client (Union[ClientType, List[ClientType]]):
-            Wrap these clients with retry / fallback logic.
+    Parameters:
+        client (Union[ClientType, List[ClientType]]): Clients to apply retry/fallback logic to.
         models (Union[Dict[str, float], List[str]]):
             Models to use of the format <provider>/<model>.
             Supports two formats:
@@ -58,12 +57,12 @@ def init(
     Model Fallback Prioritization
     -----------------------------
 
-      - If models is a list, the fallback model is selected in order after removing the failed model.
-        eg. If "openai/gpt-4o" fails for the list:
+    - If models is a list, the fallback model is selected in order after removing the failed model.
+      eg. If "openai/gpt-4o" fails for the list:
         - ["openai/gpt-4o", "azure/gpt-4o"], "azure/gpt-4o" will be tried next
         - ["openai/gpt-4o-mini", "openai/gpt-4o", "azure/gpt-4o"], "openai/gpt-4o-mini" will be tried next.
-      - If models is a dict, the next model is selected by sampling using the *remaining* weights.
-        eg. If "openai/gpt-4o" fails for the dict:
+    - If models is a dict, the next model is selected by sampling using the *remaining* weights.
+      eg. If "openai/gpt-4o" fails for the dict:
         - {"openai/gpt-4o": 0.9, "azure/gpt-4o": 0.1}, "azure/gpt-4o" will be invoked 100% of the time
         - {"openai/gpt-4o": 0.5, "azure/gpt-4o": 0.25, "openai/gpt-4o-mini": 0.25}, then "azure/gpt-4o" and
           "openai/gpt-4o-mini" can be invoked with 50% probability each.
@@ -71,7 +70,7 @@ def init(
     Usage
     -----
 
-    ```python
+    .. code-block:: python
         # ...existing workflow code, including client initialization...
         openai_client = OpenAI(...)
         azure_client = AzureOpenAI(...)
@@ -94,7 +93,6 @@ def init(
             model="notdiamond",
             messages=[{"role": "user", "content": "Hello!"}]
         )
-    ```
 
     Please refer to tests/test_init.py for more examples on how to use notdiamond.init.
     """
