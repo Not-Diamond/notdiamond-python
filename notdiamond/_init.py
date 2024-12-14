@@ -70,6 +70,8 @@ def init(
     Usage
     -----
 
+    Please refer to tests/test_init.py for more examples on how to use notdiamond.init.
+
     .. code-block:: python
         # ...existing workflow code, including client initialization...
         openai_client = OpenAI(...)
@@ -94,7 +96,6 @@ def init(
             messages=[{"role": "user", "content": "Hello!"}]
         )
 
-    Please refer to tests/test_init.py for more examples on how to use notdiamond.init.
     """
     api_key = api_key or os.getenv("NOTDIAMOND_API_KEY")
 
