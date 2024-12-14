@@ -1,0 +1,185 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, how are you?"}, {"role":
+      "user", "content": "Hello, how are you?"}], "model": "gpt-4o-mini"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      api-key:
+      - 768db448e03a4c31986961b5cfebb9c1
+      connection:
+      - keep-alive
+      content-length:
+      - '142'
+      content-type:
+      - application/json
+      host:
+      - notdiamond-azure-openai.openai.azure.com
+      user-agent:
+      - AzureOpenAI/Python 1.55.1
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.55.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.10
+    method: POST
+    uri: https://notdiamond-azure-openai.openai.azure.com//openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-07-01-preview
+  response:
+    body:
+      string: '{"choices":[{"content_filter_results":{"hate":{"filtered":false,"severity":"safe"},"self_harm":{"filtered":false,"severity":"safe"},"sexual":{"filtered":false,"severity":"safe"},"violence":{"filtered":false,"severity":"safe"}},"finish_reason":"stop","index":0,"logprobs":null,"message":{"content":"I''m
+        just a computer program, but I''m here and ready to help you! How can I assist
+        you today?","role":"assistant"}}],"created":1734109549,"id":"chatcmpl-Ae3OniaJY1KRVvkNggogOFHruDnmK","model":"gpt-4o-mini","object":"chat.completion","prompt_filter_results":[{"prompt_index":0,"content_filter_results":{"hate":{"filtered":false,"severity":"safe"},"self_harm":{"filtered":false,"severity":"safe"},"sexual":{"filtered":false,"severity":"safe"},"violence":{"filtered":false,"severity":"safe"}}}],"system_fingerprint":"fp_04751d0b65","usage":{"completion_tokens":22,"prompt_tokens":23,"total_tokens":45}}
+
+        '
+    headers:
+      Content-Length:
+      - '897'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Dec 2024 17:05:49 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      apim-request-id:
+      - 151a39c1-131e-4e21-9ee5-3b6202e84241
+      azureml-model-session:
+      - d031-20241120201948
+      x-accel-buffering:
+      - 'no'
+      x-content-type-options:
+      - nosniff
+      x-envoy-upstream-service-time:
+      - '439'
+      x-ms-client-request-id:
+      - 151a39c1-131e-4e21-9ee5-3b6202e84241
+      x-ms-rai-invoked:
+      - 'true'
+      x-ms-region:
+      - East US
+      x-ratelimit-remaining-requests:
+      - '19986'
+      x-ratelimit-remaining-tokens:
+      - '1958553'
+      x-request-id:
+      - c3e1eab9-788a-4cc3-b861-912b4095d62e
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, how are you?"}, {"role":
+      "user", "content": "Hello, how are you?"}], "model": "gpt-4o-mini"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '142'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.55.1
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.55.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.10
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"chatcmpl-Ae3OoFuqciJ7olyKwZHzHF175JiRq\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1734109550,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"I'm just a computer program, so I don't
+        have feelings, but I'm here and ready to help you! How can I assist you today?\",\n
+        \       \"refusal\": null\n      },\n      \"logprobs\": null,\n      \"finish_reason\":
+        \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 23,\n    \"completion_tokens\":
+        28,\n    \"total_tokens\": 51,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"system_fingerprint\":
+        \"fp_6fc10e10eb\"\n}\n"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8f178a90fadad9dd-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Dec 2024 17:05:51 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=xbAz9QBQBaDzLxZ4iODl3fe673qoWc0WyOKGt0KXxPs-1734109551-1.0.1.1-bvaal6oB8j2SL_jPp6yo2rsYgnHnXeVqCaptZptK.FPewT0G_Itqd9XP_mngN2iXmWLzCdBk5KmNYBpZBY8WMA;
+        path=/; expires=Fri, 13-Dec-24 17:35:51 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=1mq4bocgSLTogdz70isEVYGbh4zuI2vlrl_NrHriItg-1734109551070-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '869'
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '679'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999971'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_b91a822452b76cf7d9a793dd8e16d0b0
+    status:
+      code: 200
+      message: OK
+version: 1

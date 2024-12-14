@@ -1,0 +1,167 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, how are you?"}], "model":
+      "gpt-4o-mini"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      api-key:
+      - broken-api-key
+      connection:
+      - keep-alive
+      content-length:
+      - '90'
+      content-type:
+      - application/json
+      host:
+      - notdiamond-azure-openai.openai.azure.com
+      user-agent:
+      - AzureOpenAI/Python 1.55.1
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.55.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.10
+    method: POST
+    uri: https://notdiamond-azure-openai.openai.azure.com//openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-07-01-preview
+  response:
+    body:
+      string: '{ "statusCode": 401, "message": "Unauthorized. Access token is missing,
+        invalid, audience is incorrect (https://cognitiveservices.azure.com), or have
+        expired." }'
+    headers:
+      Content-Length:
+      - '161'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Dec 2024 17:20:01 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      apim-request-id:
+      - 5074445e-05ec-40c3-a3b3-3f48be4f2a27
+      x-content-type-options:
+      - nosniff
+      x-ms-client-request-id:
+      - Not-Set
+    status:
+      code: 401
+      message: Unauthorized
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, how are you?"}], "model":
+      "gpt-4o"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '85'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.55.1
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.55.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.10
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"chatcmpl-Ae3cYWOBCpChWpQJ2mUeszGDDrfNX\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1734110402,\n  \"model\": \"gpt-4o-2024-08-06\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"Hello! I'm just a program, so I don't
+        have feelings, but I'm here and ready to help you. How can I assist you today?\",\n
+        \       \"refusal\": null\n      },\n      \"logprobs\": null,\n      \"finish_reason\":
+        \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 13,\n    \"completion_tokens\":
+        29,\n    \"total_tokens\": 42,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"system_fingerprint\":
+        \"fp_a79d8dac1f\"\n}\n"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8f179f607bac31d2-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Dec 2024 17:20:03 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=OT3gp5OOvmOG5f8mvjz5SDmGJp8eozevAbCg0maxjng-1734110403-1.0.1.1-BFPHLeuiZye8mKURcVYeWdEvuTna38TS6AzgYNFrYY1CbD9xrB4BibmVEAY7mjSVLc0lUKQJ6iBMhqpJy7FQCQ;
+        path=/; expires=Fri, 13-Dec-24 17:50:03 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=Tr.Yzn_ORjN1G9RGS7n05HVHycfgokcnxMJ9YDIU4SA-1734110403227-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '862'
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '506'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '30000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '29999978'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_53bb4eeea09226f2fc0e92eb6635722f
+    status:
+      code: 200
+      message: OK
+version: 1
