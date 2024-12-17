@@ -14,8 +14,8 @@ from notdiamond.toolkit._retry import (
 def init(
     client: Union[ClientType, List[ClientType]],
     models: ModelType,
-    max_retries: Union[int, Dict[str, int]] = None,
-    timeout: Union[float, Dict[str, float]] = None,
+    max_retries: Union[int, Dict[str, int]] = 1,
+    timeout: Union[float, Dict[str, float]] = 60.0,
     model_messages: Dict[str, OpenAIMessagesType] = None,
     api_key: Union[str, None] = None,
     async_mode: bool = False,

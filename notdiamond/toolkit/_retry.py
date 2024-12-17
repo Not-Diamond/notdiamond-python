@@ -255,9 +255,7 @@ class _BaseRetryWrapper:
 
                     if attempt == self.get_max_retries(target_model) - 1:
                         # throw exception - will invoke next model outside of wrapper
-                        raise _RetryWrapperException(
-                            [f"{self.get_provider()}/{target_model}"], e
-                        )
+                        raise _RetryWrapperException([target_model], e)
 
                 attempt += 1
                 await asyncio.sleep(self._backoff**attempt)
