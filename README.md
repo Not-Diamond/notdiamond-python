@@ -10,7 +10,7 @@
 | notdiamond/callbacks.py                                      |       19 |        4 |        0 |        0 |     79% |     16-22 |
 | notdiamond/exceptions.py                                     |        7 |        0 |        0 |        0 |    100% |           |
 | notdiamond/llms/\_\_init\_\_.py                              |        0 |        0 |        0 |        0 |    100% |           |
-| notdiamond/llms/client.py                                    |      525 |      104 |      206 |       26 |     79% |131, 223->226, 311->314, 389, 392-395, 405, 442->441, 452-453, 495->500, 501, 530-537, 619-621, 625, 645-647, 777-793, 880->883, 945-996, 1064-1065, 1083->1086, 1104-1108, 1111, 1148-1201, 1261-1262, 1303, 1381-1382, 1423, 1442->exit, 1459-1464, 1506-1511, 1574-1579, 1619->1621, 1645-1667, 1678, 1694, 1701, 1704, 1717, 1725, 1731, 1737, 1750, 1753, 1756, 1761, 1764, 1792-1797 |
+| notdiamond/llms/client.py                                    |      525 |       92 |      206 |       25 |     81% |131, 223->226, 311->314, 389, 392-395, 405, 442->441, 452-453, 495->500, 501, 530-537, 619-621, 625, 645-647, 777-793, 880->883, 945-996, 1064-1065, 1083->1086, 1104-1108, 1111, 1148-1201, 1261-1262, 1303, 1381-1382, 1423, 1459-1464, 1506-1511, 1574-1579, 1619->1621, 1645-1667, 1678, 1792-1797 |
 | notdiamond/llms/config.py                                    |       97 |       18 |       24 |        7 |     78% |108, 148, 155, 187-189, 207, 211, 264, 287, 290, 293-297, 300, 303-305, 323, 327 |
 | notdiamond/llms/providers.py                                 |       66 |        0 |        0 |        0 |    100% |           |
 | notdiamond/llms/request.py                                   |       87 |        4 |       22 |        3 |     94% |183->199, 261->281, 327-331, 352 |
@@ -20,27 +20,27 @@
 | notdiamond/prompts.py                                        |       29 |        2 |       12 |        2 |     90% |23-24, 27->29 |
 | notdiamond/settings.py                                       |       18 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/\_\_init\_\_.py                           |        2 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/\_retry.py                                |      233 |       23 |       60 |       10 |     87% |72, 159->164, 174->exit, 183, 194, 207, 234-238, 250->exit, 272->exit, 300, 303-309, 357, 399, 417, 468, 477-478, 510-513 |
+| notdiamond/toolkit/\_retry.py                                |      233 |       21 |       60 |       10 |     87% |72, 159->164, 174->exit, 183, 194, 207, 234-238, 250->exit, 272->exit, 300, 303-309, 417, 468, 477-478, 510-513 |
 | notdiamond/toolkit/custom\_router.py                         |      172 |        9 |       52 |        5 |     92% |37->39, 76, 247, 300, 356-363 |
-| notdiamond/toolkit/langchain.py                              |      118 |       13 |       30 |        8 |     86% |63, 71->82, 86-87, 116, 123, 131, 139, 147, 155, 189->191, 235, 250->exit, 281, 313, 319 |
+| notdiamond/toolkit/langchain.py                              |      118 |       14 |       30 |        8 |     85% |63, 71->82, 86-87, 116, 123, 131, 139, 147, 155, 189->191, 235, 253, 281, 313, 319 |
 | notdiamond/toolkit/litellm/\_\_init\_\_.py                   |       63 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/litellm/litellm\_notdiamond.py            |       81 |       11 |       30 |        6 |     81% |114-120, 143-146, 170, 199->201, 201->203, 203->205, 227->226, 276 |
-| notdiamond/toolkit/litellm/main.py                           |      785 |      600 |      452 |       54 |     20% |102, 105, 110, 113, 120, 125, 128, 137-148, 174-181, 188-190, 193, 196, 208-209, 212-213, 216-217, 219-220, 223-224, 227-228, 231-234, 237-238, 241-242, 245-248, 255-256, 259-272, 281-282, 284-285, 292-297, 302->312, 313, 321, 327-519, 642->646, 697-699, 703, 709-715, 905, 911, 913-918, 920, 928, 930-931, 943->954, 959, 960->964, 968, 985-986, 1009-1023, 1030, 1035->1038, 1071-1074, 1112, 1128-1197, 1249-3062 |
+| notdiamond/toolkit/litellm/main.py                           |      785 |      602 |      452 |       54 |     20% |102, 105, 110, 113, 120, 125, 128, 137-148, 174-181, 188-190, 193, 196, 208-209, 212-213, 216-217, 219-220, 223-224, 227-228, 231-234, 237-238, 241-242, 245-248, 255-256, 259-272, 281-282, 284-285, 292-297, 302->312, 313, 321, 327-519, 642->646, 697-699, 703, 709-715, 905, 911, 913-918, 920, 928, 930-931, 943->954, 959, 960->964, 968, 985-986, 1009-1023, 1030, 1035->1038, 1071-1074, 1112, 1128-1197, 1249-3062, 3066-3068 |
 | notdiamond/toolkit/openai.py                                 |       64 |        4 |        8 |        2 |     92% |56, 59, 62, 91->94, 95 |
 | notdiamond/toolkit/rag/\_\_init\_\_.py                       |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/rag/document\_loaders.py                  |        1 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/rag/evaluation.py                         |       87 |       16 |       16 |        0 |     79% |     50-80 |
+| notdiamond/toolkit/rag/evaluation.py                         |       87 |       18 |       16 |        0 |     77% |50-80, 89-90 |
 | notdiamond/toolkit/rag/evaluation\_dataset.py                |       35 |       10 |        6 |        2 |     66% |51, 55, 62-65, 68, 71-72, 81, 87 |
 | notdiamond/toolkit/rag/llms.py                               |       29 |        7 |       12 |        1 |     66% |     54-68 |
 | notdiamond/toolkit/rag/metrics.py                            |        3 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/rag/testset.py                            |       50 |        5 |       18 |        7 |     82% |135, 158, 164, 170->193, 175, 179, 195->194 |
-| notdiamond/toolkit/rag/workflow.py                           |       96 |       11 |       30 |        6 |     87% |104, 117, 123, 135, 143, 155, 162, 186, 232, 235, 238 |
+| notdiamond/toolkit/rag/testset.py                            |       50 |        9 |       18 |        7 |     76% |118, 133-135, 158, 164, 170->193, 175, 179, 195->194, 209-211 |
+| notdiamond/toolkit/rag/workflow.py                           |       96 |       13 |       30 |        6 |     85% |104, 117, 123, 135, 143, 155, 162, 186, 195-196, 232, 235, 238 |
 | notdiamond/types.py                                          |       28 |        0 |        4 |        0 |    100% |           |
 | tests/conftest.py                                            |      109 |       12 |       22 |        2 |     89% |55, 73, 170-185, 195, 211-212, 218-219 |
 | tests/helpers.py                                             |       22 |        0 |        8 |        2 |     93% |4->11, 17->24 |
 | tests/test\_components/test\_llms/test\_callbacks.py         |       19 |        0 |        0 |        0 |    100% |           |
 | tests/test\_components/test\_llms/test\_embedding\_config.py |       20 |        0 |        0 |        0 |    100% |           |
-| tests/test\_components/test\_llms/test\_llm.py               |      501 |       21 |       68 |        4 |     95% |28-32, 237-252, 287, 325, 364, 408, 425->432, 451, 572->578, 726->exit, 748->exit, 983-1002 |
+| tests/test\_components/test\_llms/test\_llm.py               |      501 |       24 |       68 |        2 |     95% |28-32, 237-252, 287, 325, 364, 408, 422, 451, 569, 726->exit, 745, 748->exit, 983-1002 |
 | tests/test\_components/test\_llms/test\_llm\_request.py      |       59 |        0 |        0 |        0 |    100% |           |
 | tests/test\_components/test\_llms/test\_provider.py          |       31 |        0 |        0 |        0 |    100% |           |
 | tests/test\_documentation/test\_fallback\_and\_custom.py     |       30 |        3 |        4 |        2 |     85% |73->exit, 74->exit, 86-88 |
@@ -61,18 +61,18 @@
 | tests/test\_llm\_calls/test\_replicate.py                    |       43 |       30 |        0 |        0 |     30% |13-24, 27-38, 41-54, 57-70, 73-86 |
 | tests/test\_llm\_calls/test\_togetherai.py                   |       72 |       12 |        0 |        0 |     83% |43-56, 60-73 |
 | tests/test\_toolkit/langchain/test\_integration.py           |       54 |        0 |        0 |        0 |    100% |           |
-| tests/test\_toolkit/langchain/test\_unit.py                  |      130 |        1 |        8 |        2 |     98% |142, 200->202 |
+| tests/test\_toolkit/langchain/test\_unit.py                  |      130 |        2 |        8 |        2 |     97% |  142, 201 |
 | tests/test\_toolkit/rag/conftest.py                          |       47 |        0 |        0 |        0 |    100% |           |
-| tests/test\_toolkit/rag/test\_data\_gen.py                   |       43 |        0 |        0 |        0 |    100% |           |
+| tests/test\_toolkit/rag/test\_data\_gen.py                   |       43 |        4 |        0 |        0 |     91% |64-65, 77-78 |
 | tests/test\_toolkit/rag/test\_evaluation.py                  |       24 |        0 |        0 |        0 |    100% |           |
-| tests/test\_toolkit/rag/test\_example\_workflow.py           |       53 |        1 |        2 |        0 |     98% |        53 |
+| tests/test\_toolkit/rag/test\_example\_workflow.py           |       53 |        3 |        2 |        0 |     95% |53, 125, 133 |
 | tests/test\_toolkit/rag/test\_workflow.py                    |       28 |        2 |        0 |        0 |     93% |    14, 40 |
 | tests/test\_toolkit/test\_custom\_router.py                  |      139 |        0 |        8 |        0 |    100% |           |
 | tests/test\_toolkit/test\_litellm.py                         |       61 |       10 |        6 |        0 |     85% |113-114, 133-134, 170-171, 189-190, 216-217 |
 | tests/test\_toolkit/test\_openai\_client.py                  |       83 |        0 |       12 |        4 |     96% |104->108, 105->104, 210->214, 211->210 |
 | tests/test\_toolkit/test\_retry.py                           |      312 |        0 |        0 |        0 |    100% |           |
 | tests/test\_types.py                                         |       16 |        0 |        0 |        0 |    100% |           |
-|                                                    **TOTAL** | **5553** | **1112** | **1166** |  **163** | **75%** |           |
+|                                                    **TOTAL** | **5553** | **1119** | **1166** |  **160** | **75%** |           |
 
 
 ## Setup coverage badge
