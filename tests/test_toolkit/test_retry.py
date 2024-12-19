@@ -728,6 +728,63 @@ def test_multi_model_timeout_config(model_messages, api_key):
         )
 
 
+@pytest.mark.vcr
+def test_multi_model_backoff_config(model_messages, api_key):
+    oai_client = OpenAI(api_key="broken-api-key")
+    models = ["openai/gpt-4o-mini", "openai/gpt-4o"]
+    backoff = {"openai/gpt-4o-mini": 1.0, "openai/gpt-4o": 2.0}
+
+    with patch.object(
+        oai_client.chat.completions,
+        "create",
+        wraps=oai_client.chat.completions.create,
+    ) as mock_create:
+        wrapper = RetryWrapper(
+            client=oai_client,
+            models=models,
+            max_retries=2,
+            timeout=60.0,
+            backoff=backoff,
+            model_messages=model_messages,
+            api_key=api_key,
+        )
+
+        with patch.object(
+            wrapper,
+            "get_backoff",
+            wraps=wrapper.get_backoff,
+        ) as mock_get_backoff:
+            _ = RetryManager(models, [wrapper])
+
+            with pytest.raises(AuthenticationError):
+                oai_client.chat.completions.create(
+                    model="gpt-4o-mini",
+                    messages=model_messages["gpt-4o-mini"],
+                )
+
+            mock_create.assert_has_calls(
+                [
+                    call(
+                        model="gpt-4o-mini",
+                        messages=model_messages["gpt-4o-mini"],
+                        timeout=60.0,
+                    ),
+                    call(
+                        model="gpt-4o",
+                        messages=model_messages["gpt-4o"],
+                        timeout=60.0,
+                    ),
+                ]
+            )
+            assert mock_get_backoff.call_count == 2
+            mock_get_backoff.assert_has_calls(
+                [
+                    call("gpt-4o-mini"),
+                    call("gpt-4o"),
+                ]
+            )
+
+
 @pytest.mark.asyncio
 @pytest.mark.vcr
 @pytest.mark.timeout(10)
