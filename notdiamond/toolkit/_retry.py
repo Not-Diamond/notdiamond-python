@@ -87,7 +87,7 @@ class _BaseRetryWrapper:
         timeout: Union[float, Dict[str, float]] = 60.0,
         model_messages: OpenAIMessagesType = {},
         api_key: Union[str, None] = None,
-        backoff: float = 2.0,
+        backoff: Union[float, Dict[str, float]] = 2.0,
     ):
         """
         Args:
@@ -103,8 +103,8 @@ class _BaseRetryWrapper:
                 The messages to send to each model. Prepended to any messages passed to the `create` method.
             api_key: str | None
                 Not Diamond API key to use for logging. Currently unused.
-            backoff: float
-                The backoff factor for the retry logic.
+            backoff: float | Dict[str, float]
+                Exponential backoff factor per each retry. Can be configured globally or per model.
         """
         self._client = client
 
@@ -152,7 +152,15 @@ class _BaseRetryWrapper:
             if model_messages
             else {}
         )
-        self._backoff = backoff
+        self._backoff = (
+            {
+                m.split("/")[-1]: b
+                for m, b in backoff.items()
+                if self._model_client_match(m)
+            }
+            if isinstance(backoff, dict)
+            else backoff
+        )
 
         self._api_key = api_key
         self._nd_client = None
@@ -210,6 +218,19 @@ class _BaseRetryWrapper:
             out = self._max_retries.get(target_model)
         return out
 
+    def get_backoff(self, target_model: Optional[str] = None) -> float:
+        """
+        Get the configured backoff (if per-model, for the target model).
+        """
+        out = self._backoff
+        if isinstance(self._backoff, dict):
+            if not target_model:
+                raise ValueError(
+                    "target_model must be provided if backoff is a dict"
+                )
+            out = self._backoff.get(target_model)
+        return out
+
     def _update_model_kwargs(
         self,
         kwargs: Dict[str, Any],
@@ -258,7 +279,7 @@ class _BaseRetryWrapper:
                         raise _RetryWrapperException([target_model], e)
 
                 attempt += 1
-                await asyncio.sleep(self._backoff**attempt)
+                await asyncio.sleep(self.get_backoff(target_model) ** attempt)
 
         @wraps(func)
         def sync_wrapper(*args, **kwargs):
@@ -279,7 +300,7 @@ class _BaseRetryWrapper:
                         raise _RetryWrapperException([target_model], e)
 
                 attempt += 1
-                time.sleep(self._backoff**attempt)
+                time.sleep(self.get_backoff(target_model) ** attempt)
 
         if isinstance(self, AsyncRetryWrapper):
             return async_wrapper

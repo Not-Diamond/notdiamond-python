@@ -19,6 +19,7 @@ def init(
     model_messages: Dict[str, OpenAIMessagesType] = None,
     api_key: Union[str, None] = None,
     async_mode: bool = False,
+    backoff: Union[float, Dict[str, float]] = 2.0,
 ) -> RetryManager:
     """
     Entrypoint for fallback and retry features without changing existing code.
@@ -51,6 +52,8 @@ def init(
             Not Diamond API key for authentication. Unused for now - will offer logging and metrics in the future.
         async_mode (bool):
             Whether to manage clients as async.
+        backoff (Union[float, Dict[str, float]]):
+            Backoff factor for exponential backoff per each retry. Can be configured globally or per model.
 
     Returns:
         RetryManager: Manager object that handles retries and fallbacks. Not required for usage.
@@ -90,6 +93,7 @@ def init(
                 "azure/gpt-4o": [{"role": "user", "content": "Here is a prompt for Azure."}],
             },
             api_key="sk-...",
+            backoff=2.0,
         )
 
         # ...continue existing workflow code...
@@ -121,6 +125,7 @@ def init(
                 timeout=timeout,
                 model_messages=model_messages,
                 api_key=api_key,
+                backoff=backoff,
             )
         ]
     else:
@@ -132,6 +137,7 @@ def init(
                 timeout=timeout,
                 model_messages=model_messages,
                 api_key=api_key,
+                backoff=backoff,
             )
             for cc in client
         ]
