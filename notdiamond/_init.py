@@ -53,7 +53,7 @@ def init(
         async_mode (bool):
             Whether to manage clients as async.
         backoff (Union[float, Dict[str, float]]):
-            Backoff factor for exponential backoff. Can be configured globally or per model.
+            Backoff factor for exponential backoff per each retry. Can be configured globally or per model.
 
     Returns:
         RetryManager: Manager object that handles retries and fallbacks. Not required for usage.

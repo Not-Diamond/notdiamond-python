@@ -104,7 +104,7 @@ class _BaseRetryWrapper:
             api_key: str | None
                 Not Diamond API key to use for logging. Currently unused.
             backoff: float | Dict[str, float]
-                The backoff factor for the retry logic. Configured globally or per-model.
+                Exponential backoff factor per each retry. Can be configured globally or per model.
         """
         self._client = client
 
