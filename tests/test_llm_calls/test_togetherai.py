@@ -20,7 +20,7 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0
 
     def test_mixtral_8x7b_instruct_v01(self):
         provider = NDLLMProviders.TOGETHER_MIXTRAL_8X7B_INSTRUCT_V0_1
@@ -34,7 +34,7 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0
 
     @pytest.mark.skip(
         "Currently failing with a 400 for 'max_new_tokens', an undocumented param"
@@ -53,7 +53,7 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0
 
     @pytest.mark.skip("Currently failing, need to debug test")
     def test_llama_3_70b_chat_hf(self):
@@ -70,7 +70,7 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0
 
     def test_llama_3_8b_chat_hf(self):
         provider = NDLLMProviders.TOGETHER_LLAMA_3_8B_CHAT_HF
@@ -86,7 +86,7 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0
 
     def test_qwen2_72b(self):
         provider = NDLLMProviders.TOGETHER_QWEN2_72B_INSTRUCT
@@ -102,7 +102,7 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0
 
     def test_llama_3_1_8b_instruct_turbo(self):
         provider = NDLLMProviders.TOGETHER_LLAMA_3_1_8B_INSTRUCT_TURBO
@@ -118,7 +118,7 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0
 
     def test_llama_3_1_70b_instruct_turbo(self):
         provider = NDLLMProviders.TOGETHER_LLAMA_3_1_70B_INSTRUCT_TURBO
@@ -134,7 +134,7 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0
 
     def test_llama_3_1_405b_instruct_turbo(self):
         provider = NDLLMProviders.TOGETHER_LLAMA_3_1_405B_INSTRUCT_TURBO
@@ -150,7 +150,7 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0
 
     def test_deepseek_r1(self):
         provider = NDLLMProviders.TOGETHER_DEEPSEEK_R1
@@ -165,4 +165,4 @@ class Test_TogetherAI_LLMs:
         )
 
         assert session_id != "NO-SESSION-ID"
-        assert len(result) > 0
+        assert len(result.content) > 0

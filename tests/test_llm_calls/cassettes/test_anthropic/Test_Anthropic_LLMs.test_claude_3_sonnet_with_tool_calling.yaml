@@ -32,8 +32,6 @@ interactions:
       - 8d107e4249058dde-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -46,6 +44,8 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '127'
       rndr-id:
       - c0cd9b93-a85d-4b84
       x-api-key:
@@ -101,13 +101,8 @@ interactions:
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA1RQQU7DQAz8ysqXXrZSSdpC9gYV4oS4ABeEom3WTUM3dqm90BLl7yipEHCyPPbM
-        eNxBE8BBK3U5u7jnLT7dHvPmk9pmXc83z18rugMLetrjsIUivkawcOA4AF6kEfWkYKHlgBEcVNGn
-        gNN8KkyEOs1m2XyWZQVYqJgUScG9dD+SiseBPBYHDzt/siaiTsQkQaNbNBMfQrmpdGKUORpl40Mw
-        ufEUzMJBb3+1mGOZZLhvDDX0aYj1dolFzel6mT0WmF/5i9XHzQ4skG/HFGeDgUb7pOA68OByC2tw
-        i75/tSDK+/KAXpj++4wDwfeEVCE4SjFaSOOTXHeWK5V3SAIum+cWOOlfrFj2/TcAAAD//wMA8gaJ
-        44MBAAA=
+      string: '{"id":"msg_01MoheUEx3iwnmibg4fVzCnG","type":"message","role":"assistant","model":"claude-3-sonnet-20240229","content":[{"type":"text","text":"Okay,
+        let''s use the ''add_fct'' tool to add 3 and 5:"},{"type":"tool_use","id":"toolu_01Mj7e9gouA62T9e38a1CvBk","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":243,"output_tokens":96}}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
@@ -115,8 +110,6 @@ interactions:
       - 8d107e48bf680975-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -139,6 +132,8 @@ interactions:
       - '400000'
       anthropic-ratelimit-tokens-reset:
       - '2024-10-11T17:15:39Z'
+      content-length:
+      - '387'
       request-id:
       - req_018ekeYjTC6564kFEmeb98nL
       via:
@@ -149,6 +144,60 @@ interactions:
       - b395ab582dc5e53e2b5957a6eaa82dc7
       x-token:
       - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-3-sonnet-20240229", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
+      [{"type": "function", "function": {"name": "add_fct", "description": "Adds a
+      and b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '542'
+      User-Agent:
+      - Python-SDK/0.3.25
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-sonnet-20240229"}],"session_id":"b53f59c9-fe33-4e61-97fc-d88d08881bbd"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 9094501ccb0e7c90-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 28 Jan 2025 22:10:31 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '127'
+      rndr-id:
+      - bc96e47c-b6c8-402b
+      x-render-origin-server:
+      - uvicorn
     status:
       code: 200
       message: OK

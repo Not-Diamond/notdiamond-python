@@ -29,20 +29,18 @@ interactions:
       - 8d336b576ddf4c1f-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
       - Tue, 15 Oct 2024 22:59:24 GMT
       Server:
       - cloudflare
-      Transfer-Encoding:
-      - chunked
       Vary:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '137'
       rndr-id:
       - 8be05d24-db1a-4fda
       x-render-origin-server:
@@ -84,8 +82,6 @@ interactions:
       - 8d336b5d89340985-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json; charset=utf-8
       Date:
@@ -100,6 +96,8 @@ interactions:
       - nosniff
       access-control-allow-origin:
       - '*'
+      content-length:
+      - '449'
       etag:
       - W/"1c1-qu58qSAiTbfJ2Np5hjOJiWMWh2c"
       x-api-call-end:
@@ -122,6 +120,109 @@ interactions:
       - '3000'
       x-ratelimit-reset:
       - '1'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "How much is 3 + 5?", "role": "user"}], "model":
+      "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "max_tokens": 10, "n": 1, "stream":
+      false, "temperature": 0.7}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '185'
+      content-type:
+      - application/json
+      host:
+      - api.together.ai
+      user-agent:
+      - OpenAI/Python 1.55.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.55.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.7
+    method: POST
+    uri: https://api.together.ai/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"9094508e2d5dc43b\",\n  \"object\": \"chat.completion\",\n
+        \ \"created\": 1738102249,\n  \"model\": \"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo\",\n
+        \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"finish_reason\": \"eos\",\n
+        \     \"seed\": 7356773379832192000,\n      \"logprobs\": null,\n      \"index\":
+        0,\n      \"message\": {\n        \"role\": \"assistant\",\n        \"content\":
+        \"3 + 5 = 8.\",\n        \"tool_calls\": []\n      }\n    }\n  ],\n  \"usage\":
+        {\n    \"prompt_tokens\": 44,\n    \"completion_tokens\": 9,\n    \"total_tokens\":
+        53\n  }\n}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 9094508e2d5dc43b-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 28 Jan 2025 22:10:49 GMT
+      ETag:
+      - W/"1fc-bc7uEJOCdszL1UidugAbdOLGWjo"
+      Retry-After:
+      - '2'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '508'
+      x-amzn-trace-id:
+      - d12a5342-9278-4d57-a728-1db0153e0ae8-noamzn
+      x-api-call-end:
+      - '2025-01-28T22:10:49.619Z'
+      x-api-call-start:
+      - '2025-01-28T22:10:49.419Z'
+      x-api-received:
+      - '2025-01-28T22:10:49.413Z'
+      x-inference-version:
+      - v2
+      x-ratelimit:
+      - 'false'
+      x-ratelimit-limit:
+      - '30'
+      x-ratelimit-limit-tokens:
+      - '16666'
+      x-ratelimit-remaining:
+      - '59'
+      x-ratelimit-remaining-tokens:
+      - '16666'
+      x-ratelimit-reset:
+      - '2'
     status:
       code: 200
       message: OK

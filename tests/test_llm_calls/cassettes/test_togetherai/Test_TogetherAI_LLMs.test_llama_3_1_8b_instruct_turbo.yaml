@@ -29,20 +29,18 @@ interactions:
       - 8d336b4d2ce7128b-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
       - Tue, 15 Oct 2024 22:59:22 GMT
       Server:
       - cloudflare
-      Transfer-Encoding:
-      - chunked
       Vary:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '136'
       rndr-id:
       - 0d819139-83af-463f
       x-render-origin-server:
@@ -84,8 +82,6 @@ interactions:
       - 8d336b54ae8fa545-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json; charset=utf-8
       Date:
@@ -100,6 +96,8 @@ interactions:
       - nosniff
       access-control-allow-origin:
       - '*'
+      content-length:
+      - '446'
       etag:
       - W/"1be-B7piUA5gn/71v1/wsiPxmjxVTec"
       x-api-call-end:
@@ -120,6 +118,109 @@ interactions:
       - '19'
       x-ratelimit-remaining-tokens:
       - '3000'
+      x-ratelimit-reset:
+      - '2'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "How much is 3 + 5?", "role": "user"}], "model":
+      "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo", "max_tokens": 10, "n": 1, "stream":
+      false, "temperature": 0.7}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '184'
+      content-type:
+      - application/json
+      host:
+      - api.together.ai
+      user-agent:
+      - OpenAI/Python 1.55.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.55.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.7
+    method: POST
+    uri: https://api.together.ai/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"9094508b1f764361\",\n  \"object\": \"chat.completion\",\n
+        \ \"created\": 1738102248,\n  \"model\": \"meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo\",\n
+        \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"finish_reason\": \"eos\",\n
+        \     \"seed\": 3547181344756513300,\n      \"logprobs\": null,\n      \"index\":
+        0,\n      \"message\": {\n        \"role\": \"assistant\",\n        \"content\":
+        \"3 + 5 = 8.\",\n        \"tool_calls\": []\n      }\n    }\n  ],\n  \"usage\":
+        {\n    \"prompt_tokens\": 44,\n    \"completion_tokens\": 9,\n    \"total_tokens\":
+        53\n  }\n}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 9094508b1f764361-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 28 Jan 2025 22:10:48 GMT
+      ETag:
+      - W/"1fb-qiEesJZqZuLyNM8tpLdLKpRJOmI"
+      Retry-After:
+      - '2'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '507'
+      x-amzn-trace-id:
+      - d49122e6-08b6-49c6-a068-96db109f05e2-noamzn
+      x-api-call-end:
+      - '2025-01-28T22:10:48.457Z'
+      x-api-call-start:
+      - '2025-01-28T22:10:48.391Z'
+      x-api-received:
+      - '2025-01-28T22:10:48.241Z'
+      x-inference-version:
+      - v2
+      x-ratelimit:
+      - 'false'
+      x-ratelimit-limit:
+      - '75'
+      x-ratelimit-limit-tokens:
+      - '16666'
+      x-ratelimit-remaining:
+      - '149'
+      x-ratelimit-remaining-tokens:
+      - '16666'
       x-ratelimit-reset:
       - '2'
     status:
