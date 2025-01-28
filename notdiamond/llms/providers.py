@@ -66,6 +66,8 @@ class NDLLMProviders(Enum):
             model served via TogetherAI
         TOGETHER_LLAMA_3_1_405B_INSTRUCT_TURBO (NDLLMProvider): refers to 'Meta-Llama-3.1-405B-Instruct-Turbo'
             model served via TogetherAI
+        TOGETHER_DEEPSEEK_R1 (NDLLMProvider): refers to 'DeepSeek-R1'
+            model served via TogetherAI
 
         REPLICATE_MISTRAL_7B_INSTRUCT_V0_2 (NDLLMProvider): refers to "mistral-7b-instruct-v0.2" model served via Replicate
         REPLICATE_MIXTRAL_8X7B_INSTRUCT_V0_1 (NDLLMProvider): refers to "mixtral-8x7b-instruct-v0.1" model served via Replicate
@@ -153,6 +155,7 @@ class NDLLMProviders(Enum):
         "togetherai",
         "Meta-Llama-3.1-405B-Instruct-Turbo",
     )
+    TOGETHER_DEEPSEEK_R1 = ("togetherai", "DeepSeek-R1")
 
     LLAMA_3_1_SONAR_LARGE_128K_ONLINE = (
         "perplexity",

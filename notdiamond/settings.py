@@ -287,6 +287,7 @@ PROVIDERS = {
             "Meta-Llama-3.1-8B-Instruct-Turbo",
             "Meta-Llama-3.1-70B-Instruct-Turbo",
             "Meta-Llama-3.1-405B-Instruct-Turbo",
+            "DeepSeek-R1",
         ],
         "api_key": TOGETHER_API_KEY,
         "model_prefix": {
@@ -299,6 +300,7 @@ PROVIDERS = {
             "Meta-Llama-3.1-8B-Instruct-Turbo": "meta-llama",
             "Meta-Llama-3.1-70B-Instruct-Turbo": "meta-llama",
             "Meta-Llama-3.1-405B-Instruct-Turbo": "meta-llama",
+            "DeepSeek-R1": "deepseek-ai",
         },
         "openrouter_identifier": {
             "Llama-3-70b-chat-hf": "meta-llama/llama-3-70b-instruct",
@@ -310,6 +312,7 @@ PROVIDERS = {
             "Meta-Llama-3.1-8B-Instruct-Turbo": "meta-llama/llama-3.1-8b-instruct",
             "Meta-Llama-3.1-70B-Instruct-Turbo": "meta-llama/llama-3.1-70b-instruct",
             "Meta-Llama-3.1-405B-Instruct-Turbo": "meta-llama/llama-3.1-405b-instruct",
+            "DeepSeek-R1": "deepseek/deepseek-r1",
         },
         "price": {
             "Mistral-7B-Instruct-v0.2": {"input": 0.2, "output": 0.2},
@@ -329,6 +332,10 @@ PROVIDERS = {
             "Meta-Llama-3.1-405B-Instruct-Turbo": {
                 "input": 5.0,
                 "output": 15.0,
+            },
+            "DeepSeek-R1": {
+                "input": 7.0,
+                "output": 7.0,
             },
         },
     },
