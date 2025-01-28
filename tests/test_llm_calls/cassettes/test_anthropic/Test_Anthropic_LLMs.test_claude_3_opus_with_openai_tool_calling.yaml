@@ -33,8 +33,6 @@ interactions:
       - 8d107dedc9c52576-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -47,6 +45,8 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '125'
       rndr-id:
       - 24094209-6003-4cbc
       x-api-key:
@@ -103,16 +103,14 @@ interactions:
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4xSwW4TQQz9FcsXQNqGJNuAuqqQOECFAkhAqyIRFDm7TnbIrB1mvEmrKP+OZtKW
-        VuLAZUZj+z0/j98eXYMVdnE1H47ev56+K8+ud1flr93bq+nyevR1a2Ms0G43nKo4RloxFhjUpwDF
-        6KKRGBbYacMeK6w99Q2flCe66ePJeDg+HY7HZ1hgrWIshtWP/T2h8U2C5qvCc2udrJ2s3szksmXo
-        I4dnEQL/7jkauAgUUxpMgZoGrGWQvltwiFACSQOTASQgNc18WRuYqk+wxgWuzd9CYM9bEoOlBrDW
-        xQIogjMwWnME2+kDIWXCRT6paWLq1g1mMpOPqlkFWVaQ5LnADWwoUMeWwIn+TkQ1E4LnToxXHF5U
-        cD8YbIJuXcPHMbbke4ZyJov/rZ0kKd+c1JyDuaylR7M+YHL9UdNCrf2X4AI+QEtbBvI+0zlZaujI
-        nAoIc26tUN+nn3xw2obEHYecyrtyKgP4rKDWprCqj0CB76gGMzl/+bBrPBR//aDq531MDsu2TO9+
-        PhxNr0Zro/rmU3kq7suEvl9M48UlFijUZR8e9SSYbHrDao+EVVngAqvJ4fCzwGi6mQemqPK0T07E
-        ZDGpGSvpvS+wzzav9ke6uemaJWL1qhwVqL09jo3OxofDHwAAAP//AwA/qgoyRgMAAA==
+      string: '{"id":"msg_01F7KE39WwU3jwAUKfW1Rvt2","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"<thinking>\nThe
+        user''s request is asking to add the numbers 3 and 5. The add_fct tool is
+        directly relevant for this, as it takes two numbers a and b and adds them.\n\nLooking
+        at the required parameters for add_fct:\na (integer): The user provided the
+        value 3\nb (integer): The user provided the value 5\n\nSince the user has
+        directly provided values for both required parameters, I have all the information
+        needed to call the add_fct tool to answer the question. No other tools are
+        needed.\n</thinking>"},{"type":"tool_use","id":"toolu_01KU1ktacxM34niQ5aXGKsGT","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":631,"output_tokens":192}}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
@@ -120,8 +118,6 @@ interactions:
       - 8d107df3ec505c79-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -144,6 +140,8 @@ interactions:
       - '400000'
       anthropic-ratelimit-tokens-reset:
       - '2024-10-11T17:15:33Z'
+      content-length:
+      - '838'
       request-id:
       - req_01CCb3ychVuAWQd7PVXe1uzn
       via:
@@ -154,6 +152,61 @@ interactions:
       - b2afab8b837df1b10fb4174b95d77b85
       x-token:
       - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-3-opus-20240229", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
+      [{"type": "function", "function": {"name": "add_fct", "description": "Add two
+      numbers", "parameters": {"type": "object", "properties": {"a": {"type": "integer",
+      "description": "The first number"}, "b": {"type": "integer", "description":
+      "The second number"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '613'
+      User-Agent:
+      - Python-SDK/0.3.25
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"bc7f2431-1db5-43cb-a714-25b86c189778"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 90945013ada8c47c-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 28 Jan 2025 22:10:29 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '125'
+      rndr-id:
+      - 5de8e9b3-0a48-4514
+      x-render-origin-server:
+      - uvicorn
     status:
       code: 200
       message: OK

@@ -1618,10 +1618,10 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
                 if model_prefix is not None:
                     model = f"{model_prefix}/{provider.model}"
-                Together = _module_check(
-                    "langchain_together", "Together", provider.provider
+                ChatTogether = _module_check(
+                    "langchain_together", "ChatTogether", provider.provider
                 )
-                return Together(
+                return ChatTogether(
                     together_api_key=provider.api_key,
                     model=model,
                     callbacks=callbacks,

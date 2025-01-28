@@ -24,8 +24,6 @@ interactions:
       - 8d108a0c28fe370e-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -38,6 +36,8 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '106'
       rndr-id:
       - 4025e60a-5eba-48d3
       x-api-key:
@@ -1606,6 +1606,52 @@ interactions:
       - req_b9b09dd3a4af873475d710cca95362ef
       x-token:
       - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this async
+      chat.completions.create call work with streaming?"}], "llm_providers": [{"provider":
+      "openai", "model": "gpt-4o-mini", "is_custom": false, "context_length": null,
+      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
+      "model": "gpt-4o", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
+      1, "hash_content": false}'
+    headers:
+      User-Agent:
+      - Python-SDK/0.3.25
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o"}],"session_id":"88627495-32a3-4254-94ab-52b04d55e0c0"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 9094545e3a0c41ef-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 28 Jan 2025 22:13:25 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '106'
+      rndr-id:
+      - 06bddbe1-7ce9-49a9
+      x-render-origin-server:
+      - uvicorn
     status:
       code: 200
       message: OK

@@ -32,8 +32,6 @@ interactions:
       - 8d107da87a45a51b-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -46,6 +44,8 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '125'
       rndr-id:
       - 883da015-886e-41a4
       x-api-key:
@@ -101,16 +101,12 @@ interactions:
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA3RSXY/TMBD8K6t9xS39oNcjuoMHkDgEle4EEhIERZtk25o669ZeN1RV/ztKIj76
-        wIstr2dnRrN7Rltjhk3cFJPpTXp6s3r4sKwWobydHejr7UqfSjSopz13KI6RNowGg3ddgWK0UUkU
-        DTa+ZocZVo5SzaP5yO9THM0msxeT2ewlGqy8KIti9u38m1D5Z9faXxne6dbKzsrmVS6fPZDElgPo
-        luGQOKr1Ajk++BaaVG3BRpjDM1i8ztH0IKrrYl0prJNUPdhGCOz4SKJjeK+gtOMI2nqworzhAHsK
-        1LByiEBAUkPZn4E1BYkdqw0QUzPOJZeP3nfmgPTK0yB+JJc4wtoPhgMfkg1cXykEhtoGrtSdYB/8
-        0dZcZ7kQ3MM8lxLuYdHpfLJSMZBz/2WhI1lHpWMDLUNF0tFVzDW0VrdQkXOd0X9DUe8dqIcND+6H
-        cMe53D3/kzpezN/JeO+KFLtZ9wvSvVMxmT4e353a1WO9PK3aZH9s/YK+LN+iQaGm34hBr2uTfVLM
-        zkiYzQ2WmC0ul+8Go/p9EZiil2ud/iPyIbFUjJkk5wymfuGy80BXqN+xRMxupkuDPv1SCbKYoZlp
-        bS0AAAD//wMAYIYOl9ACAAA=
+      string: '{"id":"msg_016uQCMHK7c5rb82qaZ8MtQb","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"<thinking>\nTo
+        answer the question \"How much is 3 + 5?\", the add_fct function is relevant.
+        It takes two integer parameters a and b and returns their sum.\n\nLooking
+        at the question, the values for the required parameters are directly provided:\na
+        = 3\nb = 5\n\nSince all required parameters are available, we can proceed
+        with calling the add_fct tool to get the answer.\n</thinking>"},{"type":"tool_use","id":"toolu_01PvGywMPd7yMwuijho5aW7D","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":617,"output_tokens":165}}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
@@ -118,8 +114,6 @@ interactions:
       - 8d107daf9f905c76-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -142,6 +136,8 @@ interactions:
       - '400000'
       anthropic-ratelimit-tokens-reset:
       - '2024-10-11T17:15:23Z'
+      content-length:
+      - '720'
       request-id:
       - req_01KvLmLetYzB6d5o4j1c1ege
       via:
@@ -152,6 +148,60 @@ interactions:
       - e139ef673f5e2d5c805eb56070b61086
       x-token:
       - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-3-opus-20240229", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
+      [{"type": "function", "function": {"name": "add_fct", "description": "Adds a
+      and b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '540'
+      User-Agent:
+      - Python-SDK/0.3.25
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"c325c3ce-d118-45df-941e-d1dd93d23cbf"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 9094500edfc48c15-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 28 Jan 2025 22:10:28 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '125'
+      rndr-id:
+      - 52f306a3-b8ad-4bfa
+      x-render-origin-server:
+      - uvicorn
     status:
       code: 200
       message: OK

@@ -29,8 +29,6 @@ interactions:
       - 8d107d8e2c29749c-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -43,6 +41,8 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '113'
       rndr-id:
       - ddd7ac86-3460-4318
       x-api-key:
@@ -105,14 +105,11 @@ interactions:
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA0yRT48TMQzFv4rxhctQtSshIBe0Kw78EyCQ4MCg1iTeTtqMPU2charqd0eZsqs9
-        WXr2y8/POWEM6HAs2/Vy9UZodZTv4xAOH26+Pn85fQnxbocd2nHiNsWl0Jaxw6ypCVRKLEZi2OGo
-        gRM69Ilq4GdXixV26FWMxdD9PN0/Yvy3jc/F4VvODLEAwU73DLeaRzLjANS0998+f4IoDeHnJtjA
-        UPzAI8FRK0xZ72Lg4HrpZbPZ7IpKL6deAHosbHXq0UGPPwYyCDp7PKUEBEG3MNI2+kjyuscOLqap
-        ih9SFL4YryHR70yeQitB86LHXs4zrDHfQRSfamgbQxk02yXIzIZD5WJRBUjmfkzpCFOVlq4leYAt
-        4CMbjAx70T8Qb9uiTwOkuOemmt4nBRK1gfOF8nCakcwPUbaP7vMEz786LKbTOjMVFXTIEtZWs+D/
-        RuFDZfGMTmpKHdb5e90Jo0zV1qZ7loLuavmiQ632WHu1PJ//AQAA//8DAOVhoJ49AgAA
+      string: '{"id":"msg_01Dna1ynVmhdqKBR58pPdivj","type":"message","role":"assistant","model":"claude-2.1","content":[{"type":"text","text":"Here
+        is a joke formatted as a JSON instance for the schema you provided:\n\n```json\n{\n  \"setup\":
+        \"What do you call a dog magician?\", \n  \"punchline\": \"A labracadabrador.\"\n}\n```\n\nI
+        included a short joke setup question and a silly pun as the punchline. Let
+        me know if you''d like me to provide another joke instance matching the schema!"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":207,"output_tokens":90}}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
@@ -120,8 +117,6 @@ interactions:
       - 8d107d93bca4b3df-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -144,6 +139,8 @@ interactions:
       - '400000'
       anthropic-ratelimit-tokens-reset:
       - '2024-10-11T17:15:11Z'
+      content-length:
+      - '573'
       request-id:
       - req_019Kk1U7XbyRVWtEJsTcjZzG
       via:
@@ -154,6 +151,57 @@ interactions:
       - cad0574a6f57d4d570cc8e6868e66f5a
       x-token:
       - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Tell me a joke"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-2.1", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '300'
+      User-Agent:
+      - Python-SDK/0.3.25
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-2.1"}],"session_id":"bf93755d-3710-4252-865f-51877f6eaa6c"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 9094500a78330cc0-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 28 Jan 2025 22:10:28 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '113'
+      rndr-id:
+      - e53dcaaf-9d41-49ff
+      x-render-origin-server:
+      - uvicorn
     status:
       code: 200
       message: OK

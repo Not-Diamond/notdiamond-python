@@ -28,20 +28,18 @@ interactions:
       - 8d3330767c1ea66f-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
       - Tue, 15 Oct 2024 22:19:12 GMT
       Server:
       - cloudflare
-      Transfer-Encoding:
-      - chunked
       Vary:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '106'
       rndr-id:
       - 88dc5aee-93bc-48b4
       x-render-origin-server:
@@ -78,8 +76,6 @@ interactions:
       - 8d33307e0ffe8759-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -92,6 +88,8 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '106'
       rndr-id:
       - aac567eb-c4f4-49fc
       x-render-origin-server:
@@ -2506,6 +2504,134 @@ interactions:
       - cloudflare
       Transfer-Encoding:
       - chunked
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model": "command-r-plus", "chat_history": [], "stream": true, "message":
+      "Hello, how are you?"}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '97'
+      Request-Source:
+      - unspecified:litellm
+      User-Agent:
+      - python-requests/2.32.3
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://api.cohere.ai/v1/chat
+  response:
+    body:
+      string: '{"is_finished":false,"event_type":"stream-start","generation_id":"fe389797-c4ad-4d73-ac4b-26cb844732cc"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"Hello"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"!"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" As"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" an"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" AI"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" language"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" model"}
+
+        {"is_finished":false,"event_type":"text-generation","text":","}
+
+        {"is_finished":false,"event_type":"text-generation","text":" I"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" don"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"''t"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" have"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" feelings"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" or"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" emotions"}
+
+        {"is_finished":false,"event_type":"text-generation","text":","}
+
+        {"is_finished":false,"event_type":"text-generation","text":" but"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" I"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"''m"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" always"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" ready"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" to"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" assist"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" you"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"."}
+
+        {"is_finished":false,"event_type":"text-generation","text":" How"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" can"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" I"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" help"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" you"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" today"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"?"}
+
+        {"is_finished":true,"event_type":"stream-end","response":{"response_id":"215d0f6e-83ca-4357-9e38-bf204cb2eb47","text":"Hello!
+        As an AI language model, I don''t have feelings or emotions, but I''m always
+        ready to assist you. How can I help you today?","generation_id":"fe389797-c4ad-4d73-ac4b-26cb844732cc","chat_history":[{"role":"USER","message":"Hello,
+        how are you?"},{"role":"CHATBOT","message":"Hello! As an AI language model,
+        I don''t have feelings or emotions, but I''m always ready to assist you. How
+        can I help you today?"}],"finish_reason":"COMPLETE","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":6,"output_tokens":32},"tokens":{"input_tokens":199,"output_tokens":32}}},"finish_reason":"COMPLETE"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 google
+      access-control-expose-headers:
+      - X-Debug-Trace-ID
+      cache-control:
+      - no-cache, no-store, no-transform, must-revalidate, private, max-age=0
+      content-type:
+      - application/stream+json
+      date:
+      - Tue, 28 Jan 2025 22:13:18 GMT
+      expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      pragma:
+      - no-cache
+      server:
+      - envoy
+      vary:
+      - Origin
+      x-accel-expires:
+      - '0'
+      x-debug-trace-id:
+      - d53094de5625d4e708e54003d411f3a0
+      x-envoy-upstream-service-time:
+      - '20'
     status:
       code: 200
       message: OK

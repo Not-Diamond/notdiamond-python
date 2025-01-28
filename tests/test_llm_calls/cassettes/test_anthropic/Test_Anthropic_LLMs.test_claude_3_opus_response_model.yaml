@@ -29,8 +29,6 @@ interactions:
       - 8d107e2ffe29334f-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -43,6 +41,8 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      content-length:
+      - '125'
       rndr-id:
       - 37967dd2-d3f8-45cf
       x-api-key:
@@ -105,12 +105,9 @@ interactions:
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA0yPQUvDQBSE/8o6Fy9baNL24F6EYhU8FD15MBLW5NEsTd6meW/FEPLfpa2Cp4GZ
-        +QZmQqjh0MmhXGbZfif7dfa8Cw9dnk6Punn6fH2BhY49nVsk4g8EiyG2Z8OLBFHPCosu1tTCoWp9
-        qmmxWsQ+ySJf5utlnt/BooqsxAr3Pv0NKn2f0Ys4TAUbU0BIU1/AmQJvzWjqyLdqpArEGkTF6JBE
-        jdfYyX0Be4X6xFXTBqYruKXKJyGjDY2m80cyqTf0RcOoTeDDTYGCZ8wfFqKxLwfyEhkOxHWpaWD8
-        BkKnRFwRHKe2tUiX/25C4D5pqfFILHB5trGISf97q/U8/wAAAP//AwAkcLWaXgEAAA==
+      string: '{"id":"msg_011NEsN41JEiDm2uqFt5GbQP","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"{\n  \"setup\":
+        \"Why don''t scientists trust atoms?\",\n  \"punchline\": \"Because they make
+        up everything!\"\n}"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":215,"output_tokens":34}}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
@@ -118,8 +115,6 @@ interactions:
       - 8d107e35ede7495a-MIA
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -142,6 +137,8 @@ interactions:
       - '400000'
       anthropic-ratelimit-tokens-reset:
       - '2024-10-11T17:15:36Z'
+      content-length:
+      - '350'
       request-id:
       - req_01U6dNWPmANmHSAuNh2X12V7
       via:
@@ -152,6 +149,57 @@ interactions:
       - 0c3ec287ddd14e169ecaf5d54ddf1279
       x-token:
       - REDACTED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Tell me a joke"}], "llm_providers":
+      [{"provider": "anthropic", "model": "claude-3-opus-20240229", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '312'
+      User-Agent:
+      - Python-SDK/0.3.25
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"549641c4-56c4-448e-b0de-bf79cacf1dde"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 90945017c8eb8c78-EWR
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 28 Jan 2025 22:10:30 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      content-length:
+      - '125'
+      rndr-id:
+      - dba98507-7f46-43f6
+      x-render-origin-server:
+      - uvicorn
     status:
       code: 200
       message: OK
