@@ -76,7 +76,7 @@ class NDLLMProviders(Enum):
         REPLICATE_META_LLAMA_3_1_405B_INSTRUCT (NDLLMProvider): refers to "meta-llama-3.1-405b-instruct"
             model served via Replicate
 
-        LLAMA_3_1_SONAR_LARGE_128K_ONLINE (NDLLMProvider): refers to "llama-3.1-sonar-large-128k-online" model by Perplexity
+        SONAR (NDLLMProvider): refers to "sonar" model by Perplexity
     """
 
     GPT_3_5_TURBO = ("openai", "gpt-3.5-turbo")
@@ -157,9 +157,9 @@ class NDLLMProviders(Enum):
     )
     TOGETHER_DEEPSEEK_R1 = ("togetherai", "DeepSeek-R1")
 
-    LLAMA_3_1_SONAR_LARGE_128K_ONLINE = (
+    SONAR = (
         "perplexity",
-        "llama-3.1-sonar-large-128k-online",
+        "sonar",
     )
 
     REPLICATE_MISTRAL_7B_INSTRUCT_V0_2 = (

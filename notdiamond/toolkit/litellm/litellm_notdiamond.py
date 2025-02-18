@@ -76,7 +76,7 @@ ND2LITELLM = {
     "mistral/mistral-large-2407": "mistral/mistral-large-2407",
     "mistral/mistral-large-2402": "mistral/mistral-large-2402",
     # perplexity
-    "perplexity/llama-3.1-sonar-large-128k-online": "perplexity/llama-3.1-sonar-large-128k-online",
+    "perplexity/sonar": "perplexity/sonar",
     # cohere
     "cohere/command-r": "cohere_chat/command-r",
     "cohere/command-r-plus": "cohere_chat/command-r-plus",
