@@ -40,7 +40,7 @@ ND_MODEL_LIST = [
     # {"provider": "mistral", "model": "open-mixtral-8x22b"},
     # {"provider": "mistral", "model": "mistral-large-2407"},
     # {"provider": "mistral", "model": "mistral-large-2402"},
-    {"provider": "perplexity", "model": "llama-3.1-sonar-large-128k-online"},
+    {"provider": "perplexity", "model": "sonar"},
     # {"provider": "cohere", "model": "command-r"},
     {"provider": "cohere", "model": "command-r-plus"},
     # {"provider": "google", "model": "gemini-pro"},

@@ -165,7 +165,7 @@ def test_invokable(target_model: str, patch_class: str) -> None:
 
 
 def test_init_perplexity() -> None:
-    target_model = "perplexity/llama-3.1-sonar-large-128k-online"
+    target_model = "perplexity/sonar"
     nd_client = MagicMock(
         spec=NotDiamond,
         llm_configs=[target_model],

@@ -276,7 +276,7 @@ class TestNotDiamondRoutedRunnable:
             ), f"{mock_client}"
 
     def test_init_perplexity(self) -> None:
-        target_model = "perplexity/llama-3.1-sonar-large-128k-online"
+        target_model = "perplexity/sonar"
         nd_client = MagicMock(
             spec=NotDiamond,
             llm_configs=[target_model],
