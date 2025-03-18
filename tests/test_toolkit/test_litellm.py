@@ -109,6 +109,8 @@ def test_completion_notdiamond():
                 model="notdiamond/notdiamond",
                 messages=messages,
                 llm_providers=[model],
+                num_retries=3,
+                timeout=30,
             )
     except Exception as e:
         pytest.fail(f"Error occurred: {e}")
@@ -129,6 +131,8 @@ def test_completion_notdiamond_stream():
                 messages=messages,
                 llm_providers=[model],
                 stream=True,
+                num_retries=3,
+                timeout=30,
             )
     except Exception as e:
         pytest.fail(f"Error occurred: {e}")
@@ -166,6 +170,8 @@ def test_completion_notdiamond_tool_calling():
                 messages=messages,
                 llm_providers=[model],
                 tools=tools,
+                num_retries=3,
+                timeout=30,
             )
     except Exception as e:
         pytest.fail(f"Error occurred: {e}")

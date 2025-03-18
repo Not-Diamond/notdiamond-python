@@ -152,6 +152,9 @@ class Test_TogetherAI_LLMs:
         assert session_id != "NO-SESSION-ID"
         assert len(result.content) > 0
 
+    @pytest.mark.skip(
+        "Temporarily skipped due to TogetherAI 503 Service Unavailable errors"
+    )
     def test_deepseek_r1(self):
         provider = NDLLMProviders.TOGETHER_DEEPSEEK_R1
         nd_llm = NotDiamond(
