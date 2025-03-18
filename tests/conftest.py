@@ -226,8 +226,10 @@ def _before_record_request(request: Any) -> Any:
 def vcr_config():
     return {
         "filter_headers": ["authorization", "x-token"],
+        "allowed_hosts": ["testserver", "127.0.0.1"],
         "before_record_response": _redact_xtoken_response,
         "before_record_request": _before_record_request,
-        "record_mode": "once",
+        "ignore_localhost": True,
+        "record_mode": "none",
         "decode_compressed_response": True,
     }
