@@ -1,4 +1,3 @@
-
 from typing import List, Optional, Sequence, Union
 
 import pandas as pd
@@ -132,7 +131,9 @@ class TestDataGenerator(TestsetGenerator):
             )
             return dataset.to_pandas()
 
-        raise ValueError("Documents must be a list of langchain or llama-index documents.")
+        raise ValueError(
+            "Documents must be a list of langchain or llama-index documents."
+        )
 
     def generate_with_llamaindex_docs(
         self,
