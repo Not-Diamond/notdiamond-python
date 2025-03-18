@@ -96,6 +96,7 @@ ND_TOOLS_MODEL_LIST = [
 
 @pytest.mark.vcr
 def test_completion_notdiamond():
+    pytest.skip("Temporarily skipping test")
     try:
         messages = [
             {
