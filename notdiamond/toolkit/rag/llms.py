@@ -1,4 +1,3 @@
-
 from typing import Union
 
 from langchain_cohere import CohereEmbeddings

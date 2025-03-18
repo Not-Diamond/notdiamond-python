@@ -1,0 +1,2434 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hey"}], "llm_providers": [{"provider":
+      "openai", "model": "gpt-4o"}], "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '157'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o"}],"session_id":"71216103-c074-4d1a-919b-c0332fe3454e"}'
+    headers:
+      CF-RAY:
+      - 9223e60649695bad-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:09 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '106'
+      rndr-id:
+      - bb648987-0c82-4d1b
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"user","content":"Hey"}],"model":"gpt-4o","stream":true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '77'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=ePs0eXFEFUVveq97EJwuGc5Gbm5_owT4XnIMwd2Ruzs-1742292162-1.0.1.1-YmLVgfcVTBXBQ1A_fA_ak65XGRsk7iP1tyM2_3EukaDocuI4odTEvIZsbidiFOKwwNUT.IUkswA7xONZfqjKe3kIkjMIhoufxFA6ZB3rGXA;
+        _cfuvid=KTjWeubK5vkiifI0BoS_AjrfwMQtpwDFL1xham7cV9w-1742292162082-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.66.3
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.66.3
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-read-timeout:
+      - '600.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"role":"assistant","content":"","refusal":null},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"content":"Hello"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"content":"!"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"content":"
+        How"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"content":"
+        can"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"content":"
+        I"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"content":"
+        assist"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"content":"
+        you"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"content":"
+        today"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{"content":"?"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4sFWjssGgIGTdCX9Zgp2JDT4wl","object":"chat.completion.chunk","created":1742292190,"model":"gpt-4o-2024-08-06","service_tier":"default","system_fingerprint":"fp_90d33c15d4","choices":[{"index":0,"delta":{},"logprobs":null,"finish_reason":"stop"}]}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      CF-RAY:
+      - 9223e60bcfe58ee7-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Tue, 18 Mar 2025 10:03:10 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '156'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '50000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '49999'
+      x-ratelimit-remaining-tokens:
+      - '149999981'
+      x-ratelimit-reset-requests:
+      - 1ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_0d8ec715f461304fc3c64833b774d147
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hey"}], "llm_providers": [{"provider":
+      "openai", "model": "gpt-4o-mini"}], "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '162'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini"}],"session_id":"e7f7478e-d61f-4789-8de8-a388087e993b"}'
+    headers:
+      CF-RAY:
+      - 9223e60f2aab5b9c-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:11 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '111'
+      rndr-id:
+      - 0e99b00e-0c9a-4fcf
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"user","content":"Hey"}],"model":"gpt-4o-mini","stream":true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '82'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=ePs0eXFEFUVveq97EJwuGc5Gbm5_owT4XnIMwd2Ruzs-1742292162-1.0.1.1-YmLVgfcVTBXBQ1A_fA_ak65XGRsk7iP1tyM2_3EukaDocuI4odTEvIZsbidiFOKwwNUT.IUkswA7xONZfqjKe3kIkjMIhoufxFA6ZB3rGXA;
+        _cfuvid=KTjWeubK5vkiifI0BoS_AjrfwMQtpwDFL1xham7cV9w-1742292162082-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.66.3
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.66.3
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-read-timeout:
+      - '600.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"role":"assistant","content":"","refusal":null},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"content":"Hello"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"content":"!"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"content":"
+        How"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"content":"
+        can"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"content":"
+        I"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"content":"
+        assist"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"content":"
+        you"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"content":"
+        today"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{"content":"?"},"logprobs":null,"finish_reason":null}]}
+
+
+        data: {"id":"chatcmpl-BCO4tWUV4dBFk4S3Hw24Kci7QSMsB","object":"chat.completion.chunk","created":1742292191,"model":"gpt-4o-mini-2024-07-18","service_tier":"default","system_fingerprint":"fp_06737a9306","choices":[{"index":0,"delta":{},"logprobs":null,"finish_reason":"stop"}]}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      CF-RAY:
+      - 9223e6132a808ee7-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Tue, 18 Mar 2025 10:03:11 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '284'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999982'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_59a07f5561a2a151272c3fa13ff087fa
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hey"}], "llm_providers": [{"provider":
+      "anthropic", "model": "claude-3-5-sonnet-20240620"}], "max_model_depth": 1,
+      "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '180'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-sonnet-20240620"}],"session_id":"985956fb-0480-4655-9518-182ff7ee96ee"}'
+    headers:
+      CF-RAY:
+      - 9223e618de5b5b42-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:12 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '129'
+      rndr-id:
+      - e770d893-4685-47ba
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": [{"type": "text", "text": "Hey"}]}],
+      "max_tokens": 4096, "model": "claude-3-5-sonnet-20240620", "stream": true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '153'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - litellm/1.49.0
+      x-api-key:
+      - REDACTED
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: 'event: message_start
+
+        data: {"type":"message_start","message":{"id":"msg_012ppBQzZ1JPY8uFLmB6ck6u","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[],"stop_reason":null,"stop_sequence":null,"usage":{"input_tokens":8,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":5}}              }
+
+
+        event: content_block_start
+
+        data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}              }
+
+
+        event: ping
+
+        data: {"type": "ping"}
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Hello!
+        How can I"}     }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
+        assist you today?"}             }
+
+
+        event: content_block_stop
+
+        data: {"type":"content_block_stop","index":0     }
+
+
+        event: message_delta
+
+        data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null},"usage":{"output_tokens":12}   }
+
+
+        event: message_stop
+
+        data: {"type":"message_stop"            }
+
+
+        '
+    headers:
+      CF-RAY:
+      - 9223e61d199bbabc-VIE
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Tue, 18 Mar 2025 10:03:17 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-organization-id:
+      - a2610b2c-742e-455d-9552-6abe105b2a44
+      anthropic-ratelimit-input-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2025-03-18T10:03:12Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '80000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '77000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2025-03-18T10:03:14Z'
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2025-03-18T10:03:12Z'
+      anthropic-ratelimit-tokens-limit:
+      - '480000'
+      anthropic-ratelimit-tokens-remaining:
+      - '477000'
+      anthropic-ratelimit-tokens-reset:
+      - '2025-03-18T10:03:12Z'
+      cf-cache-status:
+      - DYNAMIC
+      request-id:
+      - req_01Nc2FbL7qAgNA5T8PoUZ1vy
+      via:
+      - 1.1 google
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hey"}], "llm_providers": [{"provider":
+      "mistral", "model": "mistral-large-latest"}], "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '172'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"mistral","model":"mistral-large-latest"}],"session_id":"9643f083-a06f-4509-ae83-a2bd5983031a"}'
+    headers:
+      CF-RAY:
+      - 9223e63ae9e2c30f-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:18 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '121'
+      rndr-id:
+      - 7892779f-c231-4458
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"user","content":"Hey"}],"model":"mistral-large-latest","stream":true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '91'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=F6rQN7Lxx5S4DWZWYP.i72JJqjo1DyUnE3nMy7yhYpg-1742292176-1.0.1.1-fOBIbYafJ3G0xVeOy3stIQRgAkH9N33d.9CxTEd2t6pKn_ZBtfIJfPrb3Z.9FB1hQh5x4C4alYisva5l5koYSz2byuuvzexHo6kmnh8JTas
+      host:
+      - api.mistral.ai
+      user-agent:
+      - OpenAI/Python 1.66.3
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.66.3
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-read-timeout:
+      - '600.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.mistral.ai/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"Hello"},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"!"},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        How"},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        can"},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        I"},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        assist"},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        you"},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"
+        today"},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":"?"},"finish_reason":null}]}
+
+
+        data: {"id":"916f599306ad4d7a918166d6986948f4","object":"chat.completion.chunk","created":1742292198,"model":"mistral-large-latest","choices":[{"index":0,"delta":{"content":""},"finish_reason":"stop"}],"usage":{"prompt_tokens":4,"total_tokens":13,"completion_tokens":9}}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      CF-RAY:
+      - 9223e63f9dcc8ee4-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Tue, 18 Mar 2025 10:03:18 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      ratelimitbysize-limit:
+      - '2000000'
+      ratelimitbysize-query-cost:
+      - '32001'
+      ratelimitbysize-remaining:
+      - '1945795'
+      ratelimitbysize-reset:
+      - '42'
+      x-envoy-upstream-service-time:
+      - '124'
+      x-kong-proxy-latency:
+      - '0'
+      x-kong-request-id:
+      - 05376a26ae860b64ce68ac59fd017700
+      x-kong-upstream-latency:
+      - '125'
+      x-ratelimitbysize-limit-minute:
+      - '2000000'
+      x-ratelimitbysize-limit-month:
+      - '10000000000'
+      x-ratelimitbysize-remaining-minute:
+      - '1945795'
+      x-ratelimitbysize-remaining-month:
+      - '9999935998'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hey"}], "llm_providers": [{"provider":
+      "perplexity", "model": "sonar"}], "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '160'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"perplexity","model":"sonar"}],"session_id":"d6c5e2b6-62a3-42d9-ae6d-a666126da4f9"}'
+    headers:
+      CF-RAY:
+      - 9223e6463dc3d0fb-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:19 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '109'
+      rndr-id:
+      - 68469e58-45da-4811
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"user","content":"Hey"}],"model":"sonar","stream":true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '76'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=NmDzbehgxTORPiLNROTZ1_BsPt26w6SSDBFpCO3_6k4-1742292185-1.0.1.1-SHyHD_xHO1B9k7AROHwdzcIRP2TvKnF1QrEv6sGfcLCPyVnOJifo5XlrKfi7ZQe1uhTKVuuD33gjO94lEd6vwkF5Id06Rx6kH4YeF8WG8no
+      host:
+      - api.perplexity.ai
+      user-agent:
+      - OpenAI/Python 1.66.3
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.66.3
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-read-timeout:
+      - '600.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.perplexity.ai/chat/completions
+  response:
+    body:
+      string: "data: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\":
+        \"sonar\", \"created\": 1742292201, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\":
+        1, \"total_tokens\": 2}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \"The\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292201, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 3, \"total_tokens\": 4}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" term \\\"\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292201, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 5, \"total_tokens\":
+        6}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \"Hey\\\"\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292201, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 7, \"total_tokens\":
+        8}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" can refer\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292201, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 9, \"total_tokens\":
+        10}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" to different\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292202, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 11, \"total_tokens\": 12}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" things depending\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292202, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 13, \"total_tokens\": 14}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" on the\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292202, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 15, \"total_tokens\": 16}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" context:\\n\\n\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292202, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 17, \"total_tokens\":
+        18}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1.\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \"1.\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292202, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 19, \"total_tokens\": 20}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Inter\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" **Inter\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292202, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 21, \"total_tokens\":
+        22}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \"jection**:\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292202, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 23, \"total_tokens\":
+        24}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" \\\"Hey\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292202, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 25, \"total_tokens\":
+        26}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"\\\"
+        is\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\":
+        \"sonar\", \"created\": 1742292202, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\":
+        27, \"total_tokens\": 28}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" an informal\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292202, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 29, \"total_tokens\": 30}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" greeting or\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292202, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 31, \"total_tokens\": 32}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" exclamation\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292202, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 33, \"total_tokens\": 34}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" used to\"}}]}\r\n\r\ndata: {\"id\":
+        \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 35, \"total_tokens\":
+        36}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" get someone\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 37, \"total_tokens\":
+        38}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \"'s attention\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 39, \"total_tokens\":
+        40}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It\"}, \"delta\": {\"role\": \"assistant\", \"content\": \". It\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 41, \"total_tokens\":
+        42}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" can
+        express\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292203, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 43, \"total_tokens\": 44}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise,\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" surprise,\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292203, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 45, \"total_tokens\": 46}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" be a\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292203, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 47, \"total_tokens\": 48}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest,\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" protest,\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292203, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 49, \"total_tokens\": 50}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" or request\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292203, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 51, \"total_tokens\": 52}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition.\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" repetition.\"}}]}\r\n\r\ndata: {\"id\":
+        \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 53, \"total_tokens\":
+        54}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" It is\"}}]}\r\n\r\ndata: {\"id\":
+        \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 55, \"total_tokens\":
+        56}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" similar to\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 57, \"total_tokens\":
+        58}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" \\\"hi\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 59, \"total_tokens\":
+        60}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"\\\"
+        and\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292203, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 61, \"total_tokens\": 62}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" is widely\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292203, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 63, \"total_tokens\": 64}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" used in\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292203, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 65, \"total_tokens\": 66}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" English-speaking\"}}]}\r\n\r\ndata: {\"id\":
+        \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 71, \"total_tokens\":
+        72}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" cultures[3][4].\\n\\n\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 73, \"total_tokens\":
+        74}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \"2.\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 75, \"total_tokens\":
+        76}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" **HEY\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292203, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 77, \"total_tokens\":
+        78}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" Email Service\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292204, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 79, \"total_tokens\": 80}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HE\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"**: HE\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292204, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 81, \"total_tokens\": 82}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"Y is\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292204, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 83, \"total_tokens\": 84}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" a premium\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292204, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 85, \"total_tokens\": 86}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" email service\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292204, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 87, \"total_tokens\": 88}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" launched by\"}}]}\r\n\r\ndata: {\"id\":
+        \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292204, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 89, \"total_tokens\":
+        90}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" 37\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292204, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 91, \"total_tokens\": 92}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"signals in\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292204, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 93, \"total_tokens\":
+        94}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June \"}, \"delta\": {\"role\": \"assistant\", \"content\": \" June \"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292204, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 95, \"total_tokens\":
+        96}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"2020\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292204, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 97, \"total_tokens\":
+        98}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\",
+        \"https://dictionary.cambridge.org/us/dictionary/english/hey\", \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It\"}, \"delta\": {\"role\": \"assistant\", \"content\": \".
+        It\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\":
+        \"sonar\", \"created\": 1742292204, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\":
+        99, \"total_tokens\": 100}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" aims to\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292204, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 101, \"total_tokens\": 102}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" modernize\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292204, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 103, \"total_tokens\": 104}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" email by\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292205, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 105, \"total_tokens\": 106}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" giving users\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292205, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 107, \"total_tokens\": 108}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" more control\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292205, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 109,
+        \"total_tokens\": 110}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" over who\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292205, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 111,
+        \"total_tokens\": 112}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" can
+        contact\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292205, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 113, \"total_tokens\": 114}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" them and\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292205, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 115, \"total_tokens\": 116}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" simplifying\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292206, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 117, \"total_tokens\": 118}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" the email\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292206, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 119, \"total_tokens\": 120}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience.\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" experience.\"}}]}\r\n\r\ndata: {\"id\":
+        \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292206, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 121,
+        \"total_tokens\": 122}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" Features include\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292206, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 123,
+        \"total_tokens\": 124}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"
+        screening emails\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292206, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 125, \"total_tokens\": 126}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" like phone\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292206, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 127, \"total_tokens\": 128}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls,\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" calls,\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292206, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 129, \"total_tokens\": 130}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" a focused\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292206, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 131, \"total_tokens\": 132}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Im\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" \\\"Im\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292206, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 133, \"total_tokens\": 134}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\"\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \"box\\\"\"}}]}\r\n\r\ndata: {\"id\":
+        \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292206, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 135,
+        \"total_tokens\": 136}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" for important\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292206, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 137,
+        \"total_tokens\": 138}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" emails,\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292206, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 139,
+        \"total_tokens\": 140}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" and tools\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292206, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 141,
+        \"total_tokens\": 142}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"
+        to track\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292206, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 143, \"total_tokens\": 144}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" email progress\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292206, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 145, \"total_tokens\": 146}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" and block\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292207, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 153, \"total_tokens\": 154}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" trackers[1][2][5].\\n\\n\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292207, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 155,
+        \"total_tokens\": 156}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3.\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \"3.\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292207, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 157,
+        \"total_tokens\": 158}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" **Other\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292207, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 159,
+        \"total_tokens\": 160}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**:\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" Uses**:\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292207, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 161,
+        \"total_tokens\": 162}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" \\\"Hey\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292207, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 163,
+        \"total_tokens\": 164}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"\\\" can\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292207, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 165, \"total_tokens\": 166}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" also appear\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292207, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 167, \"total_tokens\": 168}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" in various\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292207, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 169, \"total_tokens\": 170}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \" expressions and\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292207, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 171,
+        \"total_tokens\": 172}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" derived terms\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292207, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 173,
+        \"total_tokens\": 174}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" like \\\"\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292207, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 175,
+        \"total_tokens\": 176}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday\"}, \"delta\": {\"role\": \"assistant\", \"content\": \"heyday\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292207, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 177,
+        \"total_tokens\": 178}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \",\\\" \\\"\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292207, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 179, \"total_tokens\": 180}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \"hey ho\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292207, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 181, \"total_tokens\": 182}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho,\\\" and\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \",\\\" and\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292208, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 183, \"total_tokens\": 184}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho,\\\" and \\\"hey\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" \\\"hey\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292208, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 185, \"total_tokens\": 186}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho,\\\" and \\\"hey presto\"}, \"delta\": {\"role\":
+        \"assistant\", \"content\": \" presto\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292208, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 187, \"total_tokens\": 188}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho,\\\" and \\\"hey presto,\\\" which\"}, \"delta\":
+        {\"role\": \"assistant\", \"content\": \",\\\" which\"}}]}\r\n\r\ndata: {\"id\":
+        \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292208, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 189,
+        \"total_tokens\": 190}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho,\\\" and \\\"hey presto,\\\" which have different\"},
+        \"delta\": {\"role\": \"assistant\", \"content\": \" have different\"}}]}\r\n\r\ndata:
+        {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\", \"model\": \"sonar\", \"created\":
+        1742292208, \"usage\": {\"prompt_tokens\": 1, \"completion_tokens\": 191,
+        \"total_tokens\": 192}, \"citations\": [\"https://www.hey.com\", \"https://hey.com\",
+        \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho,\\\" and \\\"hey presto,\\\" which have different
+        meanings and\"}, \"delta\": {\"role\": \"assistant\", \"content\": \" meanings
+        and\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292208, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 193, \"total_tokens\": 194}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho,\\\" and \\\"hey presto,\\\" which have different
+        meanings and uses in\"}, \"delta\": {\"role\": \"assistant\", \"content\":
+        \" uses in\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292208, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 197, \"total_tokens\": 198}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        null, \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho,\\\" and \\\"hey presto,\\\" which have different
+        meanings and uses in language[3].\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \" language[3].\"}}]}\r\n\r\ndata: {\"id\": \"46d76fc3-c429-46fd-b33f-277421d6f16c\",
+        \"model\": \"sonar\", \"created\": 1742292208, \"usage\": {\"prompt_tokens\":
+        1, \"completion_tokens\": 198, \"total_tokens\": 199}, \"citations\": [\"https://www.hey.com\",
+        \"https://hey.com\", \"https://en.wiktionary.org/wiki/hey\", \"https://dictionary.cambridge.org/us/dictionary/english/hey\",
+        \"https://play.google.com/store/apps/details?id=com.basecamp.hey&hl=en_US\"],
+        \"object\": \"chat.completion\", \"choices\": [{\"index\": 0, \"finish_reason\":
+        \"stop\", \"message\": {\"role\": \"assistant\", \"content\": \"The term \\\"Hey\\\"
+        can refer to different things depending on the context:\\n\\n1. **Interjection**:
+        \\\"Hey\\\" is an informal greeting or exclamation used to get someone's attention.
+        It can express surprise, be a protest, or request repetition. It is similar
+        to \\\"hi\\\" and is widely used in English-speaking cultures[3][4].\\n\\n2.
+        **HEY Email Service**: HEY is a premium email service launched by 37signals
+        in June 2020. It aims to modernize email by giving users more control over
+        who can contact them and simplifying the email experience. Features include
+        screening emails like phone calls, a focused \\\"Imbox\\\" for important emails,
+        and tools to track email progress and block trackers[1][2][5].\\n\\n3. **Other
+        Uses**: \\\"Hey\\\" can also appear in various expressions and derived terms
+        like \\\"heyday,\\\" \\\"hey ho,\\\" and \\\"hey presto,\\\" which have different
+        meanings and uses in language[3].\"}, \"delta\": {\"role\": \"assistant\",
+        \"content\": \"\"}}]}\r\n\r\n"
+    headers:
+      CF-RAY:
+      - 9223e64a7dbbd0d4-SOF
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream; charset=utf-8
+      Date:
+      - Tue, 18 Mar 2025 10:03:21 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hey"}], "llm_providers": [{"provider":
+      "cohere", "model": "command-r-plus"}], "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '165'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"cohere","model":"command-r-plus"}],"session_id":"627e11f3-61e6-4b6d-9d68-92bab033051f"}'
+    headers:
+      CF-RAY:
+      - 9223e680bedb5bb4-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:29 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '114'
+      rndr-id:
+      - daa18f3b-c608-4613
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model": "command-r-plus", "chat_history": [], "stream": true, "message":
+      "Hey"}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '81'
+      Request-Source:
+      - unspecified:litellm
+      User-Agent:
+      - python-requests/2.32.3
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://api.cohere.ai/v1/chat
+  response:
+    body:
+      string: '{"is_finished":false,"event_type":"stream-start","generation_id":"5748acbf-8a83-460a-9573-b077462f1e3a"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"Hello"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"!"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" How"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" can"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" I"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" help"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" you"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" today"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"?"}
+
+        {"is_finished":true,"event_type":"stream-end","response":{"response_id":"6de712cf-a821-41bf-8061-838b3bebf42a","text":"Hello!
+        How can I help you today?","generation_id":"5748acbf-8a83-460a-9573-b077462f1e3a","chat_history":[{"role":"USER","message":"Hey"},{"role":"CHATBOT","message":"Hello!
+        How can I help you today?"}],"finish_reason":"COMPLETE","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":1,"output_tokens":9},"tokens":{"input_tokens":194,"output_tokens":9}}},"finish_reason":"COMPLETE"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 google
+      access-control-expose-headers:
+      - X-Debug-Trace-ID
+      cache-control:
+      - no-cache, no-store, no-transform, must-revalidate, private, max-age=0
+      content-type:
+      - application/stream+json
+      date:
+      - Tue, 18 Mar 2025 10:03:29 GMT
+      expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      pragma:
+      - no-cache
+      server:
+      - envoy
+      vary:
+      - Origin
+      x-accel-expires:
+      - '0'
+      x-debug-trace-id:
+      - 9c26d3b6a60c99ac3f60e7a7746c6283
+      x-envoy-upstream-service-time:
+      - '82'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "Hey"}], "llm_providers": [{"provider":
+      "togetherai", "model": "Meta-Llama-3.1-70B-Instruct-Turbo"}], "max_model_depth":
+      1, "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '188'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"togetherai","model":"Meta-Llama-3.1-70B-Instruct-Turbo"}],"session_id":"4ff54bba-31ec-4d9b-9f19-3f3d993a0b06"}'
+    headers:
+      CF-RAY:
+      - 9223e688cae86e9e-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:30 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '137'
+      rndr-id:
+      - 44be1800-6493-4cb6
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"user","content":"Hey"}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","stream":true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '115'
+      content-type:
+      - application/json
+      host:
+      - api.together.xyz
+      user-agent:
+      - OpenAI/Python 1.66.3
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.66.3
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-read-timeout:
+      - '600.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.together.xyz/v1/chat/completions
+  response:
+    body:
+      string: 'data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"How","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":4438,"role":"assistant","content":"How","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"''s","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":596,"role":"assistant","content":"''s","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        it","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":433,"role":"assistant","content":"
+        it","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        going","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":2133,"role":"assistant","content":"
+        going","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"?","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":30,"role":"assistant","content":"?","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        Is","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":2209,"role":"assistant","content":"
+        Is","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        there","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":1070,"role":"assistant","content":"
+        there","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        something","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":2555,"role":"assistant","content":"
+        something","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        I","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":358,"role":"assistant","content":"
+        I","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        can","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":649,"role":"assistant","content":"
+        can","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        help","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":1520,"role":"assistant","content":"
+        help","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        you","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":499,"role":"assistant","content":"
+        you","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        with","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":449,"role":"assistant","content":"
+        with","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        or","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":477,"role":"assistant","content":"
+        or","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        would","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":1053,"role":"assistant","content":"
+        would","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        you","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":499,"role":"assistant","content":"
+        you","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        like","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":1093,"role":"assistant","content":"
+        like","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        to","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":311,"role":"assistant","content":"
+        to","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"
+        chat","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":6369,"role":"assistant","content":"
+        chat","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"?","logprobs":null,"finish_reason":null,"seed":null,"delta":{"token_id":30,"role":"assistant","content":"?","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":null}
+
+
+        data: {"id":"nmVPzoM-4Yz4kd-9223e68d3f75d100","object":"chat.completion.chunk","created":1742292211,"choices":[{"index":0,"text":"","logprobs":null,"finish_reason":"stop","seed":986077017427850200,"delta":{"token_id":128009,"role":"assistant","content":"","tool_calls":null}}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","usage":{"prompt_tokens":36,"completion_tokens":21,"total_tokens":57}}
+
+
+        data: [DONE]
+
+
+        '
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 9223e68d3f75d100-SOF
+      Cache-Control:
+      - no-cache, no-transform
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/event-stream;charset=utf-8
+      Date:
+      - Tue, 18 Mar 2025 10:03:31 GMT
+      Retry-After:
+      - '2'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+      x-amzn-trace-id:
+      - edc65e44-201c-4056-b626-a54557710c4e-noamzn
+      x-api-call-start:
+      - '2025-03-18T10:03:31.196Z'
+      x-api-received:
+      - '2025-03-18T10:03:31.060Z'
+      x-inference-version:
+      - v2
+      x-ratelimit:
+      - 'false'
+      x-ratelimit-limit:
+      - '30'
+      x-ratelimit-limit-tokens:
+      - '3000'
+      x-ratelimit-remaining:
+      - '59'
+      x-ratelimit-remaining-tokens:
+      - '3000'
+      x-ratelimit-reset:
+      - '2'
+      x-request-id:
+      - nmVPzoM-4Yz4kd-9223e68d3f75d100
+    status:
+      code: 200
+      message: OK
+version: 1

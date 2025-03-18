@@ -1,0 +1,127 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "perplexity", "model": "sonar", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '301'
+      User-Agent:
+      - Python-SDK/0.3.38
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"perplexity","model":"sonar"}],"session_id":"d4f32732-57c2-4e52-b203-2df236cdf2db"}'
+    headers:
+      CF-RAY:
+      - 9223e899ded3c31a-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:04:55 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '109'
+      rndr-id:
+      - 30af7754-3987-48ed
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "model":
+      "sonar"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '83'
+      content-type:
+      - application/json
+      host:
+      - api.perplexity.ai
+      user-agent:
+      - OpenAI/Python 1.55.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.55.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.perplexity.ai/chat/completions
+  response:
+    body:
+      string: '{"id": "46c25eaa-74aa-47a8-bbf7-369b84579cab", "model": "sonar", "created":
+        1742292297, "usage": {"prompt_tokens": 9, "completion_tokens": 47, "total_tokens":
+        56}, "citations": ["https://mathblog.com/reference/algebra/calculator/percentage/3-5/",
+        "https://www.youtube.com/watch?v=dRN5GhpzjlU", "https://www.cuemath.com/questions/what-is-3-5-as-a-decimal/",
+        "https://socratic.org/questions/how-do-you-convert-3-5-into-a-percent-and-decimal",
+        "https://homework.study.com/explanation/how-do-you-write-3-5-as-a-percent.html"],
+        "object": "chat.completion", "choices": [{"index": 0, "finish_reason": "stop",
+        "message": {"role": "assistant", "content": "To find the sum of 3 and 5, you
+        simply add them together:\n\n\\[ 3 + 5 = 8 \\]\n\nSo, the result of \\( 3
+        + 5 \\) is **8**."}, "delta": {"role": "assistant", "content": ""}}]}'
+    headers:
+      CF-RAY:
+      - 9223e89e5cef5bab-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:04:57 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=AD6ZXdU24iXoMYe5uY5tRMzcNEj7FD_o02Dhd9FEZ24-1742292297-1.0.1.1-OYyKqu8VohWBrvfW1dTMCtvT8pqBInrGYYfdcWKt_R6OhESxmaxMOJkQitCSf0wmTYPL.OngICUsWIr.LXA_pmsRKc16KAynSittQ9giSDk;
+        path=/; expires=Tue, 18-Mar-25 10:34:57 GMT; domain=.perplexity.ai; HttpOnly;
+        Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '822'
+    status:
+      code: 200
+      message: OK
+version: 1

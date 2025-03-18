@@ -1,0 +1,726 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "openai", "model": "gpt-4o"}], "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '388'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o"}],"session_id":"6a20ea1f-129d-483c-80f8-9628ee3359b1"}'
+    headers:
+      CF-RAY:
+      - 9223e6924efe5a77-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:32 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '106'
+      rndr-id:
+      - a0c67410-6179-4d76
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"user","content":"what is 2 + 5?"}],"model":"gpt-4o","tools":[{"type":"function","function":{"name":"add","description":"Adds
+      a and b.","parameters":{"type":"object","properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"]}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '273'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=ePs0eXFEFUVveq97EJwuGc5Gbm5_owT4XnIMwd2Ruzs-1742292162-1.0.1.1-YmLVgfcVTBXBQ1A_fA_ak65XGRsk7iP1tyM2_3EukaDocuI4odTEvIZsbidiFOKwwNUT.IUkswA7xONZfqjKe3kIkjMIhoufxFA6ZB3rGXA;
+        _cfuvid=KTjWeubK5vkiifI0BoS_AjrfwMQtpwDFL1xham7cV9w-1742292162082-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.66.3
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.66.3
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-read-timeout:
+      - '600.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"chatcmpl-BCO5Eqm5nKHsJLmD3O0q1Yoxm29nH\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742292212,\n  \"model\": \"gpt-4o-2024-08-06\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": null,\n        \"tool_calls\": [\n          {\n
+        \           \"id\": \"call_qmJepBoCVWUBnH18fpjNqLc3\",\n            \"type\":
+        \"function\",\n            \"function\": {\n              \"name\": \"add\",\n
+        \             \"arguments\": \"{\\\"a\\\":2,\\\"b\\\":5}\"\n            }\n
+        \         }\n        ],\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"tool_calls\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 53,\n    \"completion_tokens\":
+        18,\n    \"total_tokens\": 71,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_f9f4fb6dbf\"\n}\n"
+    headers:
+      CF-RAY:
+      - 9223e69809a3d0f8-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:33 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '1068'
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '990'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '50000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '49999'
+      x-ratelimit-remaining-tokens:
+      - '149999979'
+      x-ratelimit-reset-requests:
+      - 1ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_aed686e951c5f6e165faa59da3442725
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "openai", "model": "gpt-4o-mini"}], "max_model_depth": 1, "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '393'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini"}],"session_id":"7ed23be7-a11e-41bd-8b4d-cb490879413e"}'
+    headers:
+      CF-RAY:
+      - 9223e6a02fc3d0e6-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:34 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '111'
+      rndr-id:
+      - 12443b5f-d8b1-4a4b
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"user","content":"what is 2 + 5?"}],"model":"gpt-4o-mini","tools":[{"type":"function","function":{"name":"add","description":"Adds
+      a and b.","parameters":{"type":"object","properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"]}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=ePs0eXFEFUVveq97EJwuGc5Gbm5_owT4XnIMwd2Ruzs-1742292162-1.0.1.1-YmLVgfcVTBXBQ1A_fA_ak65XGRsk7iP1tyM2_3EukaDocuI4odTEvIZsbidiFOKwwNUT.IUkswA7xONZfqjKe3kIkjMIhoufxFA6ZB3rGXA;
+        _cfuvid=KTjWeubK5vkiifI0BoS_AjrfwMQtpwDFL1xham7cV9w-1742292162082-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.66.3
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.66.3
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-read-timeout:
+      - '600.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"chatcmpl-BCO5GkZibloaQlIOB5E9R44vJozCV\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742292214,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": null,\n        \"tool_calls\": [\n          {\n
+        \           \"id\": \"call_NNgaiT0SBA5D7mNaVXO6IsJq\",\n            \"type\":
+        \"function\",\n            \"function\": {\n              \"name\": \"add\",\n
+        \             \"arguments\": \"{\\\"a\\\":2,\\\"b\\\":5}\"\n            }\n
+        \         }\n        ],\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"tool_calls\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 53,\n    \"completion_tokens\":
+        18,\n    \"total_tokens\": 71,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_06737a9306\"\n}\n"
+    headers:
+      CF-RAY:
+      - 9223e6a45d86d0f8-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:34 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '1073'
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '297'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999978'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_39528eeb87ac0a74241c3d391e8df052
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "anthropic", "model": "claude-3-5-sonnet-20240620"}], "max_model_depth": 1,
+      "hash_content": false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '411'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-sonnet-20240620"}],"session_id":"674a3ece-d16f-43ea-b66b-99e87f320ea7"}'
+    headers:
+      CF-RAY:
+      - 9223e6a81bc2d0fb-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:35 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '129'
+      rndr-id:
+      - 453664df-f08a-41c4
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": [{"type": "text", "text": "what
+      is 2 + 5?"}]}], "tools": [{"name": "add", "description": "Adds a and b.", "input_schema":
+      {"type": "object", "properties": {"a": {"type": "integer"}, "b": {"type": "integer"}},
+      "required": ["a", "b"]}}], "max_tokens": 4096, "model": "claude-3-5-sonnet-20240620"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-beta:
+      - tools-2024-05-16
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '336'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - litellm/1.49.0
+      x-api-key:
+      - REDACTED
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: '{"id":"msg_01QUxu7AKxtbr3AzwbpAareU","type":"message","role":"assistant","model":"claude-3-5-sonnet-20240620","content":[{"type":"text","text":"To
+        answer your question about what 2 + 5 is, I can use the \"add\" function that''s
+        available to me. This function takes two integer parameters, \"a\" and \"b\",
+        and adds them together. Let me use this function to calculate the result for
+        you."},{"type":"tool_use","id":"toolu_01F8oguW459BuVYPRUQutrn8","name":"add","input":{"a":2,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":374,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":129}}'
+    headers:
+      CF-RAY:
+      - 9223e6acaffed103-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:41 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-organization-id:
+      - a2610b2c-742e-455d-9552-6abe105b2a44
+      anthropic-ratelimit-input-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2025-03-18T10:03:40Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '80000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '80000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2025-03-18T10:03:41Z'
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2025-03-18T10:03:36Z'
+      anthropic-ratelimit-tokens-limit:
+      - '480000'
+      anthropic-ratelimit-tokens-remaining:
+      - '480000'
+      anthropic-ratelimit-tokens-reset:
+      - '2025-03-18T10:03:40Z'
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '638'
+      request-id:
+      - req_013LPiKG8yhbEQ7t7QEPEVeS
+      via:
+      - 1.1 google
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "mistral", "model": "mistral-large-latest"}], "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '403'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"mistral","model":"mistral-large-latest"}],"session_id":"eea9a5d7-549d-4824-b199-10ac4f512012"}'
+    headers:
+      CF-RAY:
+      - 9223e6d319aad100-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:42 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '121'
+      rndr-id:
+      - 07978bcb-863e-4949
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"user","content":"what is 2 + 5?"}],"model":"mistral-large-latest","tools":[{"type":"function","function":{"name":"add","description":"Adds
+      a and b.","parameters":{"type":"object","properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"]}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '287'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=F6rQN7Lxx5S4DWZWYP.i72JJqjo1DyUnE3nMy7yhYpg-1742292176-1.0.1.1-fOBIbYafJ3G0xVeOy3stIQRgAkH9N33d.9CxTEd2t6pKn_ZBtfIJfPrb3Z.9FB1hQh5x4C4alYisva5l5koYSz2byuuvzexHo6kmnh8JTas
+      host:
+      - api.mistral.ai
+      user-agent:
+      - OpenAI/Python 1.66.3
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.66.3
+      x-stainless-raw-response:
+      - 'true'
+      x-stainless-read-timeout:
+      - '600.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.mistral.ai/v1/chat/completions
+  response:
+    body:
+      string: '{"id":"ed59594d05fd4bbe8a39a0da3155707b","object":"chat.completion","created":1742292222,"model":"mistral-large-latest","choices":[{"index":0,"message":{"role":"assistant","tool_calls":null,"content":"The
+        sum of 2 and 5 is 7."},"finish_reason":"stop"}],"usage":{"prompt_tokens":81,"total_tokens":93,"completion_tokens":12}}'
+    headers:
+      CF-RAY:
+      - 9223e6d78d118ef6-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:43 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '323'
+      ratelimitbysize-limit:
+      - '2000000'
+      ratelimitbysize-query-cost:
+      - '32007'
+      ratelimitbysize-remaining:
+      - '1926809'
+      ratelimitbysize-reset:
+      - '18'
+      x-envoy-upstream-service-time:
+      - '377'
+      x-kong-proxy-latency:
+      - '1'
+      x-kong-request-id:
+      - ad45481de388677f27384014153b5441
+      x-kong-upstream-latency:
+      - '377'
+      x-ratelimitbysize-limit-minute:
+      - '2000000'
+      x-ratelimitbysize-limit-month:
+      - '10000000000'
+      x-ratelimitbysize-remaining-minute:
+      - '1926809'
+      x-ratelimitbysize-remaining-month:
+      - '9999903991'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "what is 2 + 5?"}], "tools":
+      [{"type": "function", "function": {"name": "add", "description": "Adds a and
+      b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
+      "b": {"type": "integer"}}, "required": ["a", "b"]}}}], "llm_providers": [{"provider":
+      "cohere", "model": "command-r-plus"}], "max_model_depth": 1, "hash_content":
+      false}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '396'
+      User-Agent:
+      - litellm/1.49.0
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/optimizer/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"cohere","model":"command-r-plus"}],"session_id":"fe4b4cfe-1983-4d56-be22-c88b06bd4601"}'
+    headers:
+      CF-RAY:
+      - 9223e6db9b35c242-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Mar 2025 10:03:43 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '114'
+      rndr-id:
+      - 4cb0bdc3-a7ff-4555
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model": "command-r-plus", "chat_history": [], "tools": [{"name": "add",
+      "description": "Adds a and b.", "parameter_definitions": {"a": {"description":
+      "", "type": "integer", "required": true}, "b": {"description": "", "type": "integer",
+      "required": true}}}], "message": "what is 2 + 5?"}'
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '289'
+      Request-Source:
+      - unspecified:litellm
+      User-Agent:
+      - python-requests/2.32.3
+      accept:
+      - application/json
+      content-type:
+      - application/json
+    method: POST
+    uri: https://api.cohere.ai/v1/chat
+  response:
+    body:
+      string: '{"response_id":"28389cc9-e253-45ae-8bd0-cf5c87f866e7","text":"I will
+        use the add tool to calculate the answer.","generation_id":"fa62906b-bb47-4827-bf64-506cd6c33c2f","chat_history":[{"role":"USER","message":"what
+        is 2 + 5?"},{"role":"CHATBOT","message":"I will use the add tool to calculate
+        the answer.","tool_calls":[{"name":"add","parameters":{"a":2,"b":5}}]}],"finish_reason":"COMPLETE","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":16,"output_tokens":21},"tokens":{"input_tokens":901,"output_tokens":57}},"tool_calls":[{"name":"add","parameters":{"a":2,"b":5}}]}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Content-Length:
+      - '590'
+      Via:
+      - 1.1 google
+      access-control-expose-headers:
+      - X-Debug-Trace-ID
+      cache-control:
+      - no-cache, no-store, no-transform, must-revalidate, private, max-age=0
+      content-type:
+      - application/json
+      date:
+      - Tue, 18 Mar 2025 10:03:45 GMT
+      expires:
+      - Thu, 01 Jan 1970 00:00:00 UTC
+      num_chars:
+      - '4306'
+      num_tokens:
+      - '37'
+      pragma:
+      - no-cache
+      server:
+      - envoy
+      vary:
+      - Origin
+      x-accel-expires:
+      - '0'
+      x-debug-trace-id:
+      - 0bd2abc76c5e61fe88dbef1ad48efdb7
+      x-envoy-upstream-service-time:
+      - '1037'
+    status:
+      code: 200
+      message: OK
+version: 1
