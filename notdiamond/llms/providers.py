@@ -123,8 +123,8 @@ class NDLLMProviders(Enum):
     GEMINI_15_PRO_LATEST = ("google", "gemini-1.5-pro-latest")
     GEMINI_15_PRO_EXP_0801 = ("google", "gemini-1.5-pro-exp-0801")
     GEMINI_15_FLASH_LATEST = ("google", "gemini-1.5-flash-latest")
-    # GEMINI_20_FLASH = ("google", "gemini-20-flash")
-    # GEMINI_20_FLASH_001 = ("google", "gemini-20-flash-001")
+    GEMINI_20_FLASH = ("google", "gemini-2.0-flash")
+    GEMINI_20_FLASH_001 = ("google", "gemini-2.0-flash-001")
 
     COMMAND_R = ("cohere", "command-r")
     COMMAND_R_PLUS = ("cohere", "command-r-plus")
