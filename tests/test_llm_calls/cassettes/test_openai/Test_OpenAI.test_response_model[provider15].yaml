@@ -1,0 +1,169 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Tell me a joke"}], "llm_providers":
+      [{"provider": "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '313'
+      User-Agent:
+      - Python-SDK/0.3.40
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"detail":"requestID=51a4d1b6-15b6-459b, Fuzzy hashing is not available
+        on the free tier. Please upgrade to use this feature."}'
+    headers:
+      CF-RAY:
+      - 923d41798a865ab6-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Mar 2025 11:54:39 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '127'
+      rndr-id:
+      - 51a4d1b6-15b6-459b
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 403
+      message: Forbidden
+- request:
+    body: '{"messages": [{"content": "The output should be formatted as a JSON instance
+      that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
+      {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
+      \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
+      object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted instance of the schema.
+      The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere
+      is the output schema:\n```\n{\"properties\": {\"setup\": {\"description\": \"question
+      to set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
+      {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
+      \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
+      me a joke", "role": "user"}], "model": "gpt-4.5-preview-2025-02-27", "max_tokens":
+      200, "n": 1, "stream": false, "temperature": 0.7}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '948'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.55.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.55.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"chatcmpl-BDVFPxidii2N0O8Td7v6Awnk7W4CA\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742558079,\n  \"model\": \"gpt-4.5-preview-2025-02-27\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"```json\\n{\\n  \\\"setup\\\": \\\"Why
+        did the scarecrow win an award?\\\",\\n  \\\"punchline\\\": \\\"Because he
+        was outstanding in his field!\\\"\\n}\\n```\",\n        \"refusal\": null,\n
+        \       \"annotations\": []\n      },\n      \"finish_reason\": \"stop\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
+        36,\n    \"total_tokens\": 236,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
+    headers:
+      CF-RAY:
+      - 923d417c6f5bd0d3-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Mar 2025 11:54:42 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=iDXP8F.9Lp6z4EgFWT4ALyODQ_Ib1R2P5Xu4ooc7NyM-1742558082-1.0.1.1-NSNS2isrOjNDZzQY3ckqLiS83Ol4lbBdtBj1PvCugYwC8f0gRG8QvKcXElbbxtQmYXHUo6R27zTguzEdaZr1RpkkdIv57OjG4YmVxZ9VMBA;
+        path=/; expires=Fri, 21-Mar-25 12:24:42 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=yWj28pC8qt9pLHQxqR9VjeZmKMffeYZ1L4pr8nhmowc-1742558082416-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '914'
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '2818'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '2000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '1999819'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 5ms
+      x-request-id:
+      - req_bf01fe5adbe63cb870a700b5bfba27bc
+    status:
+      code: 200
+      message: OK
+version: 1

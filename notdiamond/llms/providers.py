@@ -23,6 +23,8 @@ class NDLLMProviders(Enum):
         GPT_4o_MINI_2024_07_18 (NDLLMProvider): refers to 'gpt-4o-mini-2024-07-18' model by OpenAI
         GPT_4o_MINI (NDLLMProvider): refers to 'gpt-4o-mini' model by OpenAI
         GPT_4_0125_PREVIEW (NDLLMProvider): refers to 'gpt-4-0125-preview' model by OpenAI
+        GPT_4_5_PREVIEW (NDLLMProvider): refers to 'gpt-4.5-preview' model by OpenAI
+        GPT_4_5_PREVIEW_2025_02_27 (NDLLMProvider): refers to 'gpt-4.5-preview-2025-02-27' model by OpenAI
         O1_PREVIEW (NDLLMProvider): refers to 'o1-preview' model by OpenAI
         O1_PREVIEW_2024_09_12 (NDLLMProvider): refers to 'o1-preview-2024-09-12' model by OpenAI
         O1_MINI (NDLLMProvider): refers to 'o1-mini' model by OpenAI
@@ -32,6 +34,8 @@ class NDLLMProviders(Enum):
         CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to 'claude-3-opus-20240229' model by Anthropic
         CLAUDE_3_SONNET_20240229 (NDLLMProvider): refers to 'claude-3-sonnet-20240229' model by Anthropic
         CLAUDE_3_5_SONNET_20240620 (NDLLMProvider): refers to 'claude-3-5-sonnet-20240620' model by Anthropic
+        CLAUDE_3_7_SONNET_LATEST (NDLLMProvider): refers to 'claude-3-7-sonnet-latest' model by Anthropic
+        CLAUDE_3_7_SONNET_20250219 (NDLLMProvider): refers to 'claude-3-7-sonnet-20250219' model by Anthropic
         CLAUDE_3_5_HAIKU_20241022 (NDLLMProvider): refers to 'claude-3-5-haiku-20241022' model by Anthropic
         CLAUDE_3_HAIKU_20240307 (NDLLMProvider): refers to 'claude-3-haiku-20240307' model by Anthropic
 
@@ -40,6 +44,8 @@ class NDLLMProviders(Enum):
         GEMINI_15_PRO_LATEST (NDLLMProvider): refers to 'gemini-1.5-pro-latest' model by Google
         GEMINI_15_PRO_EXP_0801 (NDLLMProvider): refers to 'gemini-1.5-pro-exp-0801' model by Google
         GEMINI_15_FLASH_LATEST (NDLLMProvider): refers to 'gemini-1.5-flash-latest' model by Google
+        GEMINI_20_FLASH (NDLLMProvider): refers to 'gemini-20-flash' model by Google
+        GEMINI_20_FLASH_001 (NDLLMProvider): refers to 'gemini-20-flash-001' model by Google
 
         COMMAND_R (NDLLMProvider): refers to 'command-r' model by Cohere
         COMMAND_R_PLUS (NDLLMProvider): refers to 'command-r-plus' model by Cohere
@@ -93,6 +99,8 @@ class NDLLMProviders(Enum):
     GPT_4o_MINI_2024_07_18 = ("openai", "gpt-4o-mini-2024-07-18")
     GPT_4o_MINI = ("openai", "gpt-4o-mini")
     GPT_4_0125_PREVIEW = ("openai", "gpt-4-0125-preview")
+    GPT_4_5_PREVIEW = ("openai", "gpt-4.5-preview")
+    GPT_4_5_PREVIEW_2025_02_27 = ("openai", "gpt-4.5-preview-2025-02-27")
     O1_PREVIEW = ("openai", "o1-preview")
     O1_PREVIEW_2024_09_12 = ("openai", "o1-preview-2024-09-12")
     O1_MINI = ("openai", "o1-mini")
@@ -105,6 +113,8 @@ class NDLLMProviders(Enum):
     CLAUDE_3_5_SONNET_20240620 = ("anthropic", "claude-3-5-sonnet-20240620")
     CLAUDE_3_5_SONNET_20241022 = ("anthropic", "claude-3-5-sonnet-20241022")
     CLAUDE_3_5_SONNET_LATEST = ("anthropic", "claude-3-5-sonnet-latest")
+    CLAUDE_3_7_SONNET_LATEST = ("anthropic", "claude-3-7-sonnet-latest")
+    CLAUDE_3_7_SONNET_20250219 = ("anthropic", "claude-3-7-sonnet-20250219")
     CLAUDE_3_5_HAIKU_20241022 = ("anthropic", "claude-3-5-haiku-20241022")
     CLAUDE_3_HAIKU_20240307 = ("anthropic", "claude-3-haiku-20240307")
 
@@ -113,6 +123,8 @@ class NDLLMProviders(Enum):
     GEMINI_15_PRO_LATEST = ("google", "gemini-1.5-pro-latest")
     GEMINI_15_PRO_EXP_0801 = ("google", "gemini-1.5-pro-exp-0801")
     GEMINI_15_FLASH_LATEST = ("google", "gemini-1.5-flash-latest")
+    # GEMINI_20_FLASH = ("google", "gemini-20-flash")
+    # GEMINI_20_FLASH_001 = ("google", "gemini-20-flash-001")
 
     COMMAND_R = ("cohere", "command-r")
     COMMAND_R_PLUS = ("cohere", "command-r-plus")
