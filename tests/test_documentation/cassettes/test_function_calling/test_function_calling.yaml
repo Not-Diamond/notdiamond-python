@@ -18,43 +18,43 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '1122'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"6e37e872-ae46-44d7-8c1c-03d21bf3311e"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"45723507-6108-4672-af9d-f833da23de5c"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d3369560b664c09-MIA
+      CF-RAY:
+      - 92589508cec45b31-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:02 GMT
+      - Mon, 24 Mar 2025 19:30:17 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '125'
       rndr-id:
-      - d75224d8-bf25-4c24
+      - 4419ba8d-447e-4481
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
@@ -74,7 +74,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       anthropic-version:
       - '2023-06-01'
       connection:
@@ -86,76 +86,88 @@ interactions:
       host:
       - api.anthropic.com
       user-agent:
-      - Anthropic/Python 0.36.0
+      - Anthropic/Python 0.49.0
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 0.36.0
+      - 0.49.0
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
+      x-stainless-timeout:
+      - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA3SS227bMAyGX4XgtdIldpeD0Q5o0W5ose0mKQZ0HgLZZm0tMuXokC4L8u6D3DVN
-        BuxCEESJ/6ef5A5VhRm2rl4OR1+vHsaz+e3jzbr6ePX5y/XDuO7qbyjQbzuKr8g5WRMKtEbHgHRO
-        OS/Zo8DWVKQxw1LLUNEgHZguuEEyTM6HSTJDgaVhT+wx+757FfT0K6b2W4YXvlG8Ulx/yHlhoA3a
-        q05vIU2m02SSxjVJQXIF75M0maazGBgJuAPXmKArCI7AN/SW+RS49MrwGSwa6Q9HsLQOypID/2yg
-        k1a25Mk6AbKXLwQUxjdgnuC5UWXzql8QKPZUk3VnOS8aikQLjXTQWbNRFVW9Ioe2IOtAcfyOsrAO
-        5CI4y1nC5T+Gci7g8sRSztcRr41ZgVYrgo3UqjqwBTgDd9DIzYtdpjI2xm6PrIA3UEqt/1OPnC/e
-        HaqNe/HWEWP0MrjY434w4jksh6PJT5POfz9auZafbut5tT6/ae/vUSDLth+Nv4iYx13wmO1QYnbi
-        VGCB2bHP/f6HQOdNt7QkneFTfn/haB2IS8KMg9YCQz+A2e6FsvRmRewwm4zGAk3wx7HReLbf/wEA
-        AP//AwBHyNvs4AIAAA==
+      string: '{"id":"msg_019Kbcgtzq1XPz5jaXdcxMVh","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"<thinking>\nTo
+        multiply the numbers 3288273827373 and 523283927371, the multiply function
+        could be used. It takes two parameters - a and b, which are the two numbers
+        to multiply.\nThe user has directly provided the two numbers needed:\na =
+        3288273827373\nb = 523283927371\nSince all the required parameters are available,
+        we can proceed with calling the multiply function.\n</thinking>"},{"type":"tool_use","id":"toolu_01TskuFRXVo8UZSk18BH9jDN","name":"multiply","input":{"a":3288273827373,"b":523283927371}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":716,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":169}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d33695c097e74a8-MIA
+      - 9258950dbc23a39a-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:09 GMT
+      - Mon, 24 Mar 2025 19:30:24 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
       X-Robots-Tag:
       - none
+      anthropic-organization-id:
+      - a2610b2c-742e-455d-9552-6abe105b2a44
+      anthropic-ratelimit-input-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2025-03-24T19:30:18Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '80000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '80000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2025-03-24T19:30:24Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2024-10-15T22:58:32Z'
+      - '2025-03-24T19:30:17Z'
       anthropic-ratelimit-tokens-limit:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-remaining:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-reset:
-      - '2024-10-15T22:58:09Z'
+      - '2025-03-24T19:30:18Z'
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '805'
       request-id:
-      - req_01YJ3d5tSfhk1FXnm5fyxHVs
+      - req_017TvBrX34RKUpbYqb9ksCWW
       via:
       - 1.1 google
-      x-cloud-trace-context:
-      - fe65980996aa0370fb47ad65b7c4b817
     status:
       code: 200
       message: OK
@@ -169,9 +181,9 @@ interactions:
       Connection:
       - keep-alive
       X-Amzn-Trace-Id:
-      - 96eacbf2-13f3-43a3-ae18-34532b74bef6
+      - 00820def-1be4-402b-bcab-72821ea34e10
       user-agent:
-      - unknown/None; hf_hub/0.25.1; python/3.12.6
+      - unknown/None; hf_hub/0.29.3; python/3.12.3; torch/2.4.1
     method: HEAD
     uri: https://huggingface.co/claude-3-opus-20240229/resolve/main/tokenizer.json
   response:
@@ -181,87 +193,87 @@ interactions:
       Access-Control-Allow-Origin:
       - https://huggingface.co
       Access-Control-Expose-Headers:
-      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Refresh-Route,X-Xet-Cas-Url,X-Xet-Hash
       Connection:
       - keep-alive
       Content-Length:
-      - '20'
+      - '29'
       Content-Type:
       - text/plain; charset=utf-8
       Date:
-      - Tue, 15 Oct 2024 22:58:10 GMT
+      - Mon, 24 Mar 2025 19:30:24 GMT
       ETag:
-      - W/"14-ZYI5tVOD2gG7mWSpjynndpu9W6Y"
+      - W/"1d-DMkJvg8tpLoaQbsiq9Mz7l2CJyI"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Vary:
       - Origin
       Via:
-      - 1.1 9300b60c5107b2aad2c2e39c499e23be.cloudfront.net (CloudFront)
+      - 1.1 c6b94923ae2f2485371ece5884b8905e.cloudfront.net (CloudFront)
+      WWW-Authenticate:
+      - Bearer realm="Authentication required", charset="UTF-8"
       X-Amz-Cf-Id:
-      - uTkYF0xCkVqqeTia716rdiDRWD3ikTM3ldDWs_xG7c2evKkiBls9EA==
+      - S_jwfx4FDI-asxNs6oadwIVj-l1lRGFpEqDrE1xeWEJgBeRFgeMJ7w==
       X-Amz-Cf-Pop:
-      - MIA50-P2
+      - OTP50-P2
       X-Cache:
       - Error from cloudfront
-      X-Error-Code:
-      - RepoNotFound
       X-Error-Message:
-      - Repository not found
+      - Invalid username or password.
       X-Powered-By:
       - huggingface-moon
       X-Request-Id:
-      - Root=1-670ef382-17e5421242dc2b6e379b7166;96eacbf2-13f3-43a3-ae18-34532b74bef6
+      - Root=1-67e1b2d0-277ce3a32e31e67d60244719;00820def-1be4-402b-bcab-72821ea34e10
       cross-origin-opener-policy:
       - same-origin
     status:
-      code: 404
-      message: Not Found
+      code: 401
+      message: Unauthorized
 - request:
-    body: '{"session_id": "6e37e872-ae46-44d7-8c1c-03d21bf3311e", "provider": {"provider":
+    body: '{"session_id": "45723507-6108-4672-af9d-f833da23de5c", "provider": {"provider":
       "anthropic", "model": "claude-3-opus-20240229", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 12.490130418212733}}'
+      {"tokens_per_second": 15.43560256681115}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
-      - '287'
+      - '286'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"Session 6e37e872-ae46-44d7-8c1c-03d21bf3311e does not belong
-        to user 70dc4e5f-ab5b-4e78-a1a1-8820d27a99e1."}'
+      string: '{"detail":"requestID=fcaf9478-d183-4a29, Session 45723507-6108-4672-af9d-f833da23de5c
+        does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d33698d4b790a16-MIA
+      CF-RAY:
+      - 92589536bf3d5aa1-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:10 GMT
+      - Mon, 24 Mar 2025 19:30:24 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       rndr-id:
-      - 0623c51a-aa12-46c4
+      - fcaf9478-d183-4a29
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:

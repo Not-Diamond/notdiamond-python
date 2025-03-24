@@ -11,49 +11,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '529'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"cohere","model":"command-r-plus"}],"session_id":"489072e4-73a9-4627-9d92-d92dc21d257c"}'
+      string: '{"providers":[{"provider":"cohere","model":"command-r-plus"}],"session_id":"4b907c9f-bfe8-424b-b8b2-9b38aaf27771"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d107e9bcb08a52d-MIA
+      CF-RAY:
+      - 9258994aff50cb7b-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:15:51 GMT
+      - Mon, 24 Mar 2025 19:33:12 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '114'
       rndr-id:
-      - 9127cd23-f175-4efd
-      x-api-key:
-      - REDACTED
+      - a4e33c09-4c8b-4669
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -66,7 +62,7 @@ interactions:
       accept:
       - '*/*'
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -84,13 +80,13 @@ interactions:
       x-fern-sdk-name:
       - cohere
       x-fern-sdk-version:
-      - 5.10.0
+      - 5.14.0
     method: POST
     uri: https://api.cohere.com/v1/chat
   response:
     body:
-      string: '{"response_id":"9bb60799-cda7-40ae-963b-856eb8436b42","text":"I will
-        use the add_fct tool to calculate the answer.","generation_id":"60bd635d-19e7-4bf6-abd7-2184b6d01f27","chat_history":[{"role":"USER","message":"How
+      string: '{"response_id":"43da4a63-3f71-49d5-ae2e-f7279419fd81","text":"I will
+        use the add_fct tool to calculate the answer.","generation_id":"7bf2bc95-f5fa-4513-ab86-926065f15fad","chat_history":[{"role":"USER","message":"How
         much is 3 + 5?"},{"role":"CHATBOT","message":"I will use the add_fct tool
         to calculate the answer.","tool_calls":[{"name":"add_fct","parameters":{"a":3,"b":5}}]}],"finish_reason":"COMPLETE","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":20,"output_tokens":27},"tokens":{"input_tokens":905,"output_tokens":63}},"tool_calls":[{"name":"add_fct","parameters":{"a":3,"b":5}}]}'
     headers:
@@ -107,11 +103,11 @@ interactions:
       content-type:
       - application/json
       date:
-      - Fri, 11 Oct 2024 17:15:56 GMT
+      - Mon, 24 Mar 2025 19:33:13 GMT
       expires:
       - Thu, 01 Jan 1970 00:00:00 UTC
       num_chars:
-      - '4302'
+      - '4298'
       num_tokens:
       - '47'
       pragma:
@@ -122,72 +118,10 @@ interactions:
       - Origin
       x-accel-expires:
       - '0'
-      x-api-key:
-      - REDACTED
       x-debug-trace-id:
-      - c4e7ad459ed3bc064c326c6a41b5daa8
+      - 23a1ee2562562ad29b898ac65184b358
       x-envoy-upstream-service-time:
-      - '2439'
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
-      [{"provider": "cohere", "model": "command-r-plus", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}], "metric":
-      "accuracy", "max_model_depth": 1, "hash_content": true, "tools": [{"type": "function",
-      "function": {"name": "add_fct", "description": "Adds a and b.", "parameters":
-      {"type": "object", "properties": {"a": {"type": "integer"}, "b": {"type": "integer"}},
-      "required": ["a", "b"]}}}]}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '529'
-      User-Agent:
-      - Python-SDK/0.3.20
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"cohere","model":"command-r-plus"}],"session_id":"5670e61f-a25b-44de-b605-3650fc99ab2f"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d28c7512c71a680-MIA
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 14 Oct 2024 15:59:48 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      rndr-id:
-      - 6b0e65db-2f67-44e8
-      x-api-key:
-      - REDACTED
-      x-render-origin-server:
-      - uvicorn
-      x-token:
-      - REDACTED
+      - '1205'
     status:
       code: 200
       message: OK

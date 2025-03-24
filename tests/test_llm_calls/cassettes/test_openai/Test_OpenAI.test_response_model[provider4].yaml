@@ -8,43 +8,43 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '305'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"37eb98a5-8826-4fe8-880c-0e699930bf54"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"4fd46a9f-88a7-4371-91af-8f545dfac874"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d3337a18fc0dac9-MIA
+      CF-RAY:
+      - 9258a86e0dbb5b95-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:24:06 GMT
+      - Mon, 24 Mar 2025 19:43:32 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '118'
       rndr-id:
-      - d1a6dc2a-1fc5-480b
+      - 9db85b59-0050-4934
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
@@ -67,7 +67,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -77,57 +77,58 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.51.2
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA2xSwW7TQBC9+yuGvfSSILuNWvAFQaUKOAREJEBglGzXE3sTe3a7Mw6Novw7WsdN
-        UpXLHt6b93bmzewSAGVLlYMytRbT+mb8/tP6bvb49eruoS1vfYbfbh+mP3+9mW2nE/6uRlHh7ldo
-        5En12rjWNyjW0YE2AbVgdM1uLt+mV1k6ue6J1pXYRFnlZTwZZ1l6PfYBNxb/DsraWYOscvidAADs
-        +jf2SCU+qhzS0RPSIrOuUOXHIgAVXBMRpZktiyZRoxNpHAlS3/ZHDHjBoGHl1ghLF1otgiXoiH2e
-        fZmCpag3CFJrAeMoFjGIA6kRfHAbW2IJbGpsdV5QQYvFYsWOCtoVBFAoRul8oXIo1I96C6WjCwE2
-        FkksC4OEjgW0uJbfFWp0EPmOTN1YwoPwAxrdcWwCt9DqNULnATcYtlJbql4VqqB9//X5oAGXHesY
-        NHVNM+D7Y3KNq3xw9zzwR3xpyXI9D6jZUUyJxXnVs/sE4E+/oe5Z6MoH13qZi1sjRcPLdNiQOh3F
-        iZ3cDKQ40c2Z6kg885uXKNo2fLZjZbSpsTxJ0+RsuJef/s/iMKCl6oVLMjgp3rJgO19aqjD4YPur
-        6cPcJ/8AAAD//wMAqW3mWzQDAAA=
+      string: "{\n  \"id\": \"chatcmpl-BEhzoXSXNiZMefuLTj108rgWBG0l0\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742845412,\n  \"model\": \"gpt-4-1106-preview\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"Here's a JSON instance that conforms
+        to the provided schema:\\n\\n```json\\n{\\n  \\\"setup\\\": \\\"What do you
+        call fake spaghetti?\\\",\\n  \\\"punchline\\\": \\\"An impasta!\\\"\\n}\\n```\",\n
+        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"logprobs\":
+        null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        200,\n    \"completion_tokens\": 42,\n    \"total_tokens\": 242,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d3337a6995ada13-MIA
+      - 9258a872ea19d0e7-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:24:08 GMT
+      - Mon, 24 Mar 2025 19:43:34 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=rxUT4rvEeYp5_NyLeBRwXR6w7ZSfpKdR0ITpk5sVcLI-1729031048-1.0.1.1-ICovRhFcjdev7uNO8M.Pkd1UE4btfMKX78fGRX3wIeS6OMOsnKuTBbh3sotd9.HV45mycU8YNRDoYnimepx3Wg;
-        path=/; expires=Tue, 15-Oct-24 22:54:08 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=0S6_Ra9mXFQM.WMrFAVgWpYM7krMIQiddoNkZMqa6t0-1742845414-1.0.1.1-blG5c0UVkHIbtGhM.hvK5JnXy7YlzMTlqD0WXv7bJG4GpvKOTTFwu.TBICJFseG_unOEH4Hh0l9n8ltyd1leZ0youERHnhT2een44VuqUI0;
+        path=/; expires=Mon, 24-Mar-25 20:13:34 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=j.SfKilTF8dU_fR3PmXY0erZTuKXN7GFHSY9yGCEELQ-1729031048785-0.0.1.1-604800000;
+      - _cfuvid=nOlOQhX9X8SFuUIuHV.yQiBu1apGyFhrXWvFxHHFP2M-1742845414078-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -137,10 +138,14 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '962'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '2510'
+      - '1603'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -152,13 +157,13 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '1999619'
+      - '1999819'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
-      - 11ms
+      - 5ms
       x-request-id:
-      - req_73c051fc1a2de3b89ae9abbd2e16b755
+      - req_cabce45bced379a65429897be29838e9
     status:
       code: 200
       message: OK

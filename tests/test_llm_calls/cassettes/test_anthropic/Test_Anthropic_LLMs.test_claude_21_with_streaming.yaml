@@ -9,49 +9,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '328'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-2.1"}],"session_id":"850b6c60-e70e-4360-aed8-7d8e61949f76"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-2.1"}],"session_id":"31239727-7aa4-41d4-ab7a-399500ff6b60"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d107d751e5d74b2-MIA
+      CF-RAY:
+      - 9258979cce53d0d0-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:15:04 GMT
+      - Mon, 24 Mar 2025 19:32:03 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
       - '113'
       rndr-id:
-      - affb0832-db8e-4f2a
-      x-api-key:
-      - REDACTED
+      - 3f39db69-5fbb-4ffb
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -62,7 +58,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       anthropic-version:
       - '2023-06-01'
       connection:
@@ -74,37 +70,41 @@ interactions:
       host:
       - api.anthropic.com
       user-agent:
-      - Anthropic/Python 0.36.0
+      - Anthropic/Python 0.49.0
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 0.36.0
+      - 0.49.0
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
+      x-stainless-timeout:
+      - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
       string: 'event: message_start
 
-        data: {"type":"message_start","message":{"id":"msg_01VJLLEoyrE9JBwucRvXjj8h","type":"message","role":"assistant","model":"claude-2.1","content":[],"stop_reason":null,"stop_sequence":null,"usage":{"input_tokens":19,"output_tokens":1}}      }
+        data: {"type":"message_start","message":{"id":"msg_01JJteuk3U934FfK1KYQRxaa","type":"message","role":"assistant","model":"claude-2.1","content":[],"stop_reason":null,"stop_sequence":null,"usage":{"input_tokens":19,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":1}}              }
 
 
         event: content_block_start
 
-        data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}         }
+        data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}            }
 
 
         event: ping
@@ -114,84 +114,82 @@ interactions:
 
         event: content_block_delta
 
-        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Unfortunately"}             }
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Here"}
+        }
+
+
+        event: content_block_delta
+
+        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"''s"}       }
 
 
         event: content_block_delta
 
         data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
-        I"}           }
+        a"}             }
 
 
         event: content_block_delta
 
         data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
-        don"}            }
-
-
-        event: content_block_delta
-
-        data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"''t"}      }
+        silly"} }
 
 
         event: content_block_delta
 
         data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
-        have"}        }
+        little"}           }
 
 
         event: content_block_delta
 
         data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
-        enough"}        }
+        song"}    }
 
 
         event: content_block_delta
 
         data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
-        context"}       }
+        I"}}
 
 
         event: content_block_delta
 
         data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
-        or"} }
+        made"}         }
 
 
         event: content_block_delta
 
         data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
-        creative"}}
+        up"}            }
 
 
         event: content_block_delta
 
         data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"
-        ability"}            }
+        about"} }
 
 
         event: content_block_stop
 
-        data: {"type":"content_block_stop","index":0        }
+        data: {"type":"content_block_stop","index":0          }
 
 
         event: message_delta
 
-        data: {"type":"message_delta","delta":{"stop_reason":"max_tokens","stop_sequence":null},"usage":{"output_tokens":10}
-        }
+        data: {"type":"message_delta","delta":{"stop_reason":"max_tokens","stop_sequence":null},"usage":{"output_tokens":10}          }
 
 
         event: message_stop
 
-        data: {"type":"message_stop"       }
+        data: {"type":"message_stop"   }
 
 
         '
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d107d7bbdf1a53a-MIA
+      - 925897a16d2ec4ea-VIE
       Cache-Control:
       - no-cache
       Connection:
@@ -199,85 +197,45 @@ interactions:
       Content-Type:
       - text/event-stream; charset=utf-8
       Date:
-      - Fri, 11 Oct 2024 17:15:05 GMT
+      - Mon, 24 Mar 2025 19:32:03 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
       X-Robots-Tag:
       - none
+      anthropic-organization-id:
+      - a2610b2c-742e-455d-9552-6abe105b2a44
+      anthropic-ratelimit-input-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2025-03-24T19:32:03Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '80000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '80000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2025-03-24T19:32:03Z'
       anthropic-ratelimit-requests-limit:
       - '2000'
       anthropic-ratelimit-requests-remaining:
       - '1999'
       anthropic-ratelimit-requests-reset:
-      - '2024-10-11T17:15:32Z'
+      - '2025-03-24T19:32:03Z'
       anthropic-ratelimit-tokens-limit:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-remaining:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-reset:
-      - '2024-10-11T17:15:04Z'
+      - '2025-03-24T19:32:03Z'
+      cf-cache-status:
+      - DYNAMIC
       request-id:
-      - req_017icgGsMPH6Bkw6CTaS7GWW
+      - req_01JZhtR29Y2p1BPahDaHSCLV
       via:
       - 1.1 google
-      x-api-key:
-      - REDACTED
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "Write me a song about goldfish
-      on the moon"}], "llm_providers": [{"provider": "anthropic", "model": "claude-2.1",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
-      true}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '328'
-      User-Agent:
-      - Python-SDK/0.3.25
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-2.1"}],"session_id":"2506de1b-2762-4d6b-8839-13345e51852c"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 9094500189d00cc6-EWR
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 28 Jan 2025 22:10:26 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      content-length:
-      - '113'
-      rndr-id:
-      - 23de824d-210b-4702
-      x-render-origin-server:
-      - uvicorn
     status:
       code: 200
       message: OK

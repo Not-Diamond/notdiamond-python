@@ -21,43 +21,43 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '1357'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"736d0b36-db2c-4b36-8e0d-f2b9b910f0fa"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"3356ab52-5760-4af7-92ea-6d254afd5b71"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d3369d77ff13360-MIA
+      CF-RAY:
+      - 925895947c9bc2b9-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:22 GMT
+      - Mon, 24 Mar 2025 19:30:40 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '118'
       rndr-id:
-      - 68b2fd47-c423-404f
+      - 5c69b9d9-1b06-4e93
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
@@ -71,7 +71,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -81,66 +81,76 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.51.2
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4xV227jNhB991dMlYfGqOz1ZbOLCusCxbbdFnWB1gkKFLZhM+JIYkyRKknFcRf5
-        92IoWZLtbFo/CNbMnKO5kGc+9wACwYMIgjhjLs4LOfj+l13OceL++vPJTO9+TfCPucXbTylz/8hp
-        EBJC3z9g7I6oYazzQqITWlXu2CBzSKzj95NvR9PpeDT1jlxzlARLCzd4OxiPR+8GhcFHgfsamWkR
-        ow0iWPYAAD77J+WoOD4FEYzCoyVHa1mKQdQEAQRGS7IEzFphHVMuCFtnrJVD5dP+iMYxoeThK/gN
-        TYpgtXEgLDDg4lFwHDDFB7FWf5dogMlUG+GyHFzGXB1hwWUIQhWlA2YMO4BQToPba8iYfEQbQsyk
-        tCCcRZlAoo1HdAOY4mRTkFMStvFTNsjrsCHcZQhbH3Ld30JSqph6TemWFrlnJq9QaYd9uFIr9TMa
-        /JqqsoJGBP6Zo3LMM+ik+nJdvoLfDy7TKiLodrst/NtKcazjNhR3zYzpRytFPRUJSFTeAt/BuLbS
-        LxccZq3zzRuYAFzBT0Jxn2eGPkQn/q9vYAuew4xMyygXfE2wH6jlR1zVbawKsS1qUaNywSOP8gOZ
-        1P2gmprk2mLmfYq81cYd6RNhrCNQ8iJgcQGwGGvFa0SLuaqPlg/pDrQNETCDB5jBDmYwOsV+1MUB
-        OHMM6FBhXlRlW5gv1/7cLJbrNn6fCZoufPAdn/d9xEP9uuh35lJPbb4Ua/gAi+XD+sxJP+ribg0z
-        H3bpFvDNDMandpQWX2OiL126H15g2tW2k25kGO+o3yIBpprhw55ZkJi4L3fiLKdXKhP/K5eK/4ut
-        faXe/67VoCuNIg6yXMGPT8zf2pKELlopZgzMYDmehDAehzCehnATwrsQ3q9XqjBCuetV8Ek8ojoq
-        ko1WQUgv/TbgtjqLJxFnt7vvrz8lcZcJCzY2onDAMREKSU0aCdp2gP1tJY8FmkSbvFKzjrxoBUyd
-        COaWGbMdwl0leOT19hAOuqwU6+A19Pwze+GyjhIwW0HTks5EJZdNhnttdhbuD/W15pdCciHbtr7b
-        yOLM3+ozoW7uffdSwz2Ld+B0ii5DUyVh0JayXiu20/WQTlGckcMPBTno0usv0WJ36sPuAjOYlJbR
-        AlWllLX9udmIUqeF0fe29jf2RChhs41BZrWi7WedLgLvfe4BrP3mLU+WaVAYnRdu4/QOFRFObiq6
-        oN31rfNt43XaMdlx3NT7+pRvw9ExIW1ndwcxizPkLXTU6xR3+dWXKKoChUovWHo1U2AP1mG+SYRK
-        0fjeH5v53PsXAAD//wMA2hFowgwJAAA=
+      string: "{\n  \"id\": \"chatcmpl-BEhnMYfiWKRlatrny8FF1BYexllLw\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742844640,\n  \"model\": \"gpt-4-1106-preview\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"Certainly! Below is a Python implementation
+        of the merge sort algorithm:\\n\\n```python\\ndef merge_sort(arr):\\n    if
+        len(arr) > 1:\\n        mid = len(arr) // 2  # Find the midpoint of the array\\n
+        \       L = arr[:mid]  # Dividing the array elements into 2 halves\\n        R
+        = arr[mid:]\\n\\n        merge_sort(L)  # Sorting the first half\\n        merge_sort(R)
+        \ # Sorting the second half\\n\\n        # Merging the sorted halves\\n        i
+        = j = k = 0\\n\\n        # Copy data to temp arrays L[] and R[]\\n        while
+        i < len(L) and j < len(R):\\n            if L[i] < R[j]:\\n                arr[k]
+        = L[i]\\n                i += 1\\n            else:\\n                arr[k]
+        = R[j]\\n                j += 1\\n            k += 1\\n\\n        # Checking
+        if any element was left\\n        while i < len(L):\\n            arr[k] =
+        L[i]\\n            i += 1\\n            k += 1\\n\\n        while j < len(R):\\n
+        \           arr[k] = R[j]\\n            j += 1\\n            k += 1\\n\\n
+        \   return arr\\n\\n# Example usage:\\narr = [12, 11, 13, 5, 6, 7]\\nsorted_arr
+        = merge_sort(arr)\\nprint(\\\"Sorted array is:\\\", sorted_arr)\\n```\\n\\nThis
+        function recursively divides the input list into halves until the base case
+        (lists of length 1) is reached, then merges the sorted lists back together.
+        The `merge_sort` function is called on the left and right halves, and then
+        the `merge` process handles the recombination.\\n\\nYou can test the function
+        with the provided example or with your own list of numbers. Just call `merge_sort`
+        with your list, and it will return the sorted list.\",\n        \"refusal\":
+        null,\n        \"annotations\": []\n      },\n      \"logprobs\": null,\n
+        \     \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        25,\n    \"completion_tokens\": 389,\n    \"total_tokens\": 414,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d3369dcfc040318-MIA
+      - 92589599fd855a9b-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:31 GMT
+      - Mon, 24 Mar 2025 19:30:53 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=i1cYfezcZ1Mp_YBwXvKWekABoh20LqS9jMRS51deDrA-1729033111-1.0.1.1-iV8A96PXTvDZgcbd9GPPHEwPGqvnDHwU6xTqqACrqWtZaJAFUkq0pY2l8BH66cXBTDhM0U7mqsqmoaE4GBZ.Ng;
-        path=/; expires=Tue, 15-Oct-24 23:28:31 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=F6X85kbq25ncTwWgxYcndMP35D66Kvc2NvniiIiy4kQ-1742844653-1.0.1.1-GocKeLdhhGciZbF2XBr1pMsNbuHXeesACGwUtA3W5t6K9Hi_3Fqqd2y43VAH8ZUxyCn33MO4pqO7CA4xaB5WPs.hvSsDnn5UD_bIZgWoSqM;
+        path=/; expires=Mon, 24-Mar-25 20:00:53 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=4lVbjO6jtE.dnbCyEUT2EVl6mALdaHaovOPNxwJn5HQ-1729033111939-0.0.1.1-604800000;
+      - _cfuvid=NnfhGGQrYDL7pylKW3LgAiXOcM.U5X2Em8MAcqdeoc0-1742844653977-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -150,10 +160,14 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '2335'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '8968'
+      - '13507'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -165,61 +179,61 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '1999963'
+      - '1999979'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
-      - 1ms
+      - 0s
       x-request-id:
-      - req_5238d1645e8a7c642e15a448146170ac
+      - req_270d810e9a059c5a4f9fc1b7ca3d989e
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "736d0b36-db2c-4b36-8e0d-f2b9b910f0fa", "provider": {"provider":
+    body: '{"session_id": "3356ab52-5760-4af7-92ea-6d254afd5b71", "provider": {"provider":
       "openai", "model": "gpt-4-1106-preview", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 47.391714819124324}}'
+      {"tokens_per_second": 27.852296609401865}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '280'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"Session 736d0b36-db2c-4b36-8e0d-f2b9b910f0fa does not belong
-        to user 70dc4e5f-ab5b-4e78-a1a1-8820d27a99e1."}'
+      string: '{"detail":"requestID=78b5dd8c-9566-443b, Session 3356ab52-5760-4af7-92ea-6d254afd5b71
+        does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d336a15ff6231f0-MIA
+      CF-RAY:
+      - 925895f0282ed0fb-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:32 GMT
+      - Mon, 24 Mar 2025 19:30:54 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       rndr-id:
-      - e3299667-9804-42ec
+      - 78b5dd8c-9566-443b
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:

@@ -12,49 +12,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '607'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"mistral","model":"mistral-large-2407"}],"session_id":"6bfa4a3d-41a1-441f-a11b-d5253ad3a1a0"}'
+      string: '{"providers":[{"provider":"mistral","model":"mistral-large-2407"}],"session_id":"2f96655d-1e46-4520-9dfd-81c936f5401f"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d107f438bd29acf-MIA
+      CF-RAY:
+      - 925899ab1a718919-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:16:18 GMT
+      - Mon, 24 Mar 2025 19:33:27 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '119'
       rndr-id:
-      - d916d4a5-313d-423a
-      x-api-key:
-      - REDACTED
+      - 80820091-6d4d-4694
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -69,7 +65,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -84,121 +80,57 @@ interactions:
     uri: https://api.mistral.ai/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA0yQwWrDMBBEfyXMWSmRk8iOfiCX9l5ogllL60StLBlLgRbjfy8qSehtmGWGNzvD
-        WWjIpiGlum7bNZud7MxBUdNZWVOvqCIpIRC7TzYZGuZK+cXEYfScXQwQMBNTZgst66pRSh3qRmCI
-        lj00BpfyRH7tabrwutpt6pK4Rmc4QX/McMHyN/RGYOCU6MLQM6boGRqUkkuZQi6ZGDKHQgCBHKNv
-        DXl/7ygjrHx/2x9f+VjuP2PJ97dg7pBPqWcEGv7arW17U7pputwGDjlBYz6BTtCrrVid0BW1X7As
-        50Wgd8GlazsxpVL0n2I5C9we9OMUhzG3OX5xSNCHQwHO5J+OrFQZ9Pjh06/qZfkFAAD//wMAsuVf
-        05MBAAA=
+      string: '{"id":"cafe151b5a5048a885d3e4c80f73162b","object":"chat.completion","created":1742844807,"model":"mistral-large-2407","choices":[{"index":0,"message":{"role":"assistant","tool_calls":[{"id":"ZGL1PX6KX","function":{"name":"add_fct","arguments":"{\"a\":
+        3, \"b\": 5}"},"index":0}],"content":""},"finish_reason":"tool_calls"}],"usage":{"prompt_tokens":99,"total_tokens":126,"completion_tokens":27}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d107f495b36a575-MIA
+      - 925899afadbbdcbb-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:16:23 GMT
+      - Mon, 24 Mar 2025 19:33:28 GMT
       Server:
       - cloudflare
+      Set-Cookie:
+      - __cf_bm=sdSE8Y2h8NK3xahS.pk23rc7mTar_2lHUdEqW6NhxLQ-1742844808-1.0.1.1-cpK68ijjpQi3Vv1C5Tbm_WRsivOSmUj.9HGQTyCFiHzJh.N031axK97GrD7Gn5U6M0ytRCKRojZ1T_gumdUGYTiU8ydOMmjxG1wDxqyVJuY;
+        path=/; expires=Mon, 24-Mar-25 20:03:28 GMT; domain=.mistral.ai; HttpOnly;
+        Secure; SameSite=None
       Transfer-Encoding:
       - chunked
       access-control-allow-origin:
       - '*'
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '395'
       ratelimitbysize-limit:
-      - '20000000'
+      - '2000000'
       ratelimitbysize-query-cost:
       - '208'
       ratelimitbysize-remaining:
-      - '19998832'
+      - '1999792'
       ratelimitbysize-reset:
-      - '42'
-      x-api-key:
-      - REDACTED
+      - '33'
       x-envoy-upstream-service-time:
-      - '4234'
+      - '771'
       x-kong-proxy-latency:
-      - '3'
+      - '1'
       x-kong-request-id:
-      - 3519bb0fa9ffdc0e629c6d6d9e08f45b
+      - e5b0b35a2cd62f77045265707fede321
       x-kong-upstream-latency:
-      - '4235'
+      - '771'
       x-ratelimitbysize-limit-minute:
-      - '20000000'
+      - '2000000'
       x-ratelimitbysize-limit-month:
-      - '200000000000'
+      - '10000000000'
       x-ratelimitbysize-remaining-minute:
-      - '19998832'
+      - '1999792'
       x-ratelimitbysize-remaining-month:
-      - '199861761386'
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
-      [{"provider": "mistral", "model": "mistral-large-2407", "is_custom": false,
-      "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
-      [{"type": "function", "function": {"name": "add_fct", "description": "Add two
-      numbers", "parameters": {"type": "object", "properties": {"a": {"type": "integer",
-      "description": "The first number"}, "b": {"type": "integer", "description":
-      "The second number"}}, "required": ["a", "b"]}}}]}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '607'
-      User-Agent:
-      - Python-SDK/0.3.20
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"mistral","model":"mistral-large-2407"}],"session_id":"c3774c6a-7b0d-4c82-91cb-5353fcdf2a2f"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d28c78829dd5c7b-MIA
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 14 Oct 2024 15:59:56 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      rndr-id:
-      - 6d49dffc-e32e-4080
-      x-api-key:
-      - REDACTED
-      x-render-origin-server:
-      - uvicorn
-      x-token:
-      - REDACTED
+      - '9999741038'
     status:
       code: 200
       message: OK

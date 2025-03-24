@@ -21,43 +21,43 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '1357'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"c84c95a7-1557-43fc-a96c-9d6146a89a33"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"98da4ce0-efd9-49ff-ae2f-3725920bcae5"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d336a8c3cbea530-MIA
+      CF-RAY:
+      - 9258966a8c7fa0c4-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:51 GMT
+      - Mon, 24 Mar 2025 19:31:14 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '118'
       rndr-id:
-      - b67742f3-5a7a-482b
+      - d304b2d6-2e6a-46ea
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
@@ -71,7 +71,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
@@ -82,54 +82,31 @@ interactions:
     uri: https://openrouter.ai/api/v1/chat/completions
   response:
     body:
-      string: '{"error":{"message":"Missing Authentication header or invalid API key","code":401}}'
+      string: '{"error":{"message":"No auth credentials found","code":401}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
+      Access-Control-Allow-Origin:
+      - '*'
       CF-RAY:
-      - 8d336a924a407435-MIA
-      Cache-Control:
-      - public, max-age=0, must-revalidate
+      - 9258966fa9505bab-VIE
       Connection:
       - keep-alive
+      Content-Length:
+      - '60'
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:51 GMT
+      - Mon, 24 Mar 2025 19:31:14 GMT
       Server:
       - cloudflare
-      Transfer-Encoding:
-      - chunked
-      access-control-allow-credentials:
-      - 'true'
-      access-control-allow-headers:
-      - Authorization, User-Agent, X-Api-Key, X-CSRF-Token, X-Requested-With, Accept,
-        Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version,
-        HTTP-Referer, X-Windowai-Title, X-Openrouter-Title, X-Title, X-Stainless-Lang,
-        X-Stainless-Package-Version, X-Stainless-OS, X-Stainless-Arch, X-Stainless-Runtime,
-        X-Stainless-Runtime-Version, X-Stainless-Retry-Count, Protection-Key
-      access-control-allow-methods:
-      - GET,OPTIONS,PATCH,DELETE,POST,PUT
-      access-control-allow-origin:
-      - '*'
-      content-security-policy:
-      - 'default-src ''self''; script-src ''self'' ''unsafe-eval'' ''unsafe-inline''
-        https://clerk.openrouter.ai https://cunning-heron-18.clerk.accounts.dev https://challenges.cloudflare.com
-        https://checkout.stripe.com https://connect-js.stripe.com https://js.stripe.com
-        https://maps.googleapis.com https://www.googletagmanager.com https://*.ingest.sentry.io;
-        connect-src ''self'' https://clerk.openrouter.ai https://cunning-heron-18.clerk.accounts.dev
-        https://checkout.stripe.com https://api.stripe.com https://maps.googleapis.com
-        *.google-analytics.com https://www.googletagmanager.com https://raw.githubusercontent.com
-        wss://www.walletlink.org/rpc https://*.ingest.sentry.io; frame-src ''self''
-        https://challenges.cloudflare.com https://checkout.stripe.com https://connect-js.stripe.com
-        https://js.stripe.com https://hooks.stripe.com https://us5.datadoghq.com https://*.ingest.sentry.io;
-        img-src ''self'' data: blob: https://img.clerk.com https://*.stripe.com https://www.googletagmanager.com
-        https://t0.gstatic.com; worker-src ''self'' blob:; style-src ''self'' ''unsafe-inline''
-        sha256-0hAheEzaMe6uXIKV4EehS9pu1am1lj/KnnzrOYqckXk=; upgrade-insecure-requests'
-      strict-transport-security:
-      - max-age=63072000
-      x-vercel-id:
-      - iad1::bwtsv-1729033131924-44c3e53f9802
+      Vary:
+      - Accept-Encoding
+      x-clerk-auth-message:
+      - Invalid JWT form. A JWT consists of three parts separated by dots. (reason=token-invalid,
+        token-carrier=header)
+      x-clerk-auth-reason:
+      - token-invalid
+      x-clerk-auth-status:
+      - signed-out
     status:
       code: 401
       message: Unauthorized

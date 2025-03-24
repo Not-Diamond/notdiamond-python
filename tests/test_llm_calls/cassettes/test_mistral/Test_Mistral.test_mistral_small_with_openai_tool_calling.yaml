@@ -12,49 +12,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '609'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"mistral","model":"mistral-small-latest"}],"session_id":"c3e37d4c-bc49-418a-955f-e5dbd2ed2a87"}'
+      string: '{"providers":[{"provider":"mistral","model":"mistral-small-latest"}],"session_id":"71b6c75f-bacd-4fee-90be-cfc969a353af"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d107fe018e0a543-MIA
+      CF-RAY:
+      - 92589a1abe329aa0-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:16:43 GMT
+      - Mon, 24 Mar 2025 19:33:45 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '121'
       rndr-id:
-      - b5fc8b82-f437-45f3
-      x-api-key:
-      - REDACTED
+      - ad64c731-de13-4a9a
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -69,7 +65,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -84,121 +80,59 @@ interactions:
     uri: https://api.mistral.ai/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA0yQy2rDMBBFfyXctVIcJ7ETfUDpst100wQzksaJGj2MJUPB+N+LQhO6Gy7cM2dm
-        hjWQaJRSTJXaH2uzYz5QtW93B9rVR62qvjEQiOqbdYaEvlJ+0dEPjrONAQJ6ZMpsIDdtfWiatqq2
-        Aj4adpDwNuWR3Dp5cm7tKHPKpXONVnOC/Jphg+EfyErAc0p0YcgZY3QMCUrJpkzh3okhcygOEMgx
-        uk6Tc3+MckZ9+2yGt/fXDwj0U9B3PzkjkL+zjOl6XUg0XibPISdIzCfQCXK1FasTVJn2C5blvAj0
-        Nth07UamVED/dwq4eBnGqBJkmJxbzgLTw30Yox9yl+ONQ4I8HotuJvdMNnVTznn88JnX7bL8AgAA
-        //8DAInfeZ6TAQAA
+      string: '{"id":"a16ab241abfa4b9eadf14d52567e1f6d","object":"chat.completion","created":1742844825,"model":"mistral-small-latest","choices":[{"index":0,"message":{"role":"assistant","tool_calls":null,"content":"The
+        sum of 3 + 5 is 8.\n\nIf you need to add two other numbers, you can use the
+        `add_fct` function with the numbers you want to add. For example:\n\n```json\n{\n  \"name\":
+        \"add_fct\",\n  \"arguments\": {\n    \"a\": 3,\n    \"b\": 5\n  }\n}\n```"},"finish_reason":"stop"}],"usage":{"prompt_tokens":98,"total_tokens":176,"completion_tokens":78}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d107fe5bedb7456-MIA
+      - 92589a1f5e2d0c5b-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:16:44 GMT
+      - Mon, 24 Mar 2025 19:33:46 GMT
       Server:
       - cloudflare
+      Set-Cookie:
+      - __cf_bm=G._rT5XNAnOwnRJZX.Kgq6UdDkdBrm_QAqb5QYT6FCA-1742844826-1.0.1.1-dE128SQpKasoZTWQwgyKeE2KIpIN5RVpIjorhx0P1VGNVUHHliYb2b23Y4MJX9WVj1QxgjAGfbr9FC3hQo2Ut.GqCu4P.W5FQYFrV7ECiJ4;
+        path=/; expires=Mon, 24-Mar-25 20:03:46 GMT; domain=.mistral.ai; HttpOnly;
+        Secure; SameSite=None
       Transfer-Encoding:
       - chunked
       access-control-allow-origin:
       - '*'
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '547'
       ratelimitbysize-limit:
-      - '20000000'
+      - '2000000'
       ratelimitbysize-query-cost:
       - '208'
       ratelimitbysize-remaining:
-      - '19996992'
+      - '1998704'
       ratelimitbysize-reset:
-      - '17'
-      x-api-key:
-      - REDACTED
+      - '15'
       x-envoy-upstream-service-time:
-      - '657'
+      - '930'
       x-kong-proxy-latency:
-      - '0'
+      - '11'
       x-kong-request-id:
-      - 1929031d55f8f736ec2c89777437d511
+      - 0baa414b28225c09631f0b538e75cd3d
       x-kong-upstream-latency:
-      - '658'
+      - '930'
       x-ratelimitbysize-limit-minute:
-      - '20000000'
+      - '2000000'
       x-ratelimitbysize-limit-month:
-      - '200000000000'
+      - '10000000000'
       x-ratelimitbysize-remaining-minute:
-      - '19996992'
+      - '1998704'
       x-ratelimitbysize-remaining-month:
-      - '199861761426'
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
-      [{"provider": "mistral", "model": "mistral-small-latest", "is_custom": false,
-      "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
-      [{"type": "function", "function": {"name": "add_fct", "description": "Add two
-      numbers", "parameters": {"type": "object", "properties": {"a": {"type": "integer",
-      "description": "The first number"}, "b": {"type": "integer", "description":
-      "The second number"}}, "required": ["a", "b"]}}}]}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '609'
-      User-Agent:
-      - Python-SDK/0.3.20
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"mistral","model":"mistral-small-latest"}],"session_id":"135a3fe1-bbb1-4855-8e79-59a0dbc5a552"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d28c7aea9507481-MIA
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 14 Oct 2024 16:00:03 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      rndr-id:
-      - 55eed2c0-0f6f-4309
-      x-api-key:
-      - REDACTED
-      x-render-origin-server:
-      - uvicorn
-      x-token:
-      - REDACTED
+      - '9999739950'
     status:
       code: 200
       message: OK

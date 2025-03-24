@@ -28,36 +28,40 @@ interactions:
       "gpt-4o-mini", "is_custom": false, "context_length": null, "input_price": null,
       "output_price": null, "latency": null}, {"provider": "openai", "model": "gpt-4-0125-preview",
       "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "o1-preview", "is_custom":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4.5-preview", "is_custom":
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-preview-2024-09-12", "is_custom":
+      null}, {"provider": "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom":
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-mini", "is_custom": false, "context_length":
+      null}, {"provider": "openai", "model": "o1-preview", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-mini-2024-09-12", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}], "metric":
-      "accuracy", "max_model_depth": 1, "hash_content": false}'
+      "openai", "model": "o1-preview-2024-09-12", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
+      "openai", "model": "o1-mini", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
+      "o1-mini-2024-09-12", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
+      "chatgpt-4o-latest", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
+      1, "hash_content": false}'
     headers:
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-2024-08-06"}],"session_id":"8223bafd-7ab6-48e5-a519-298c571a685c"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4.5-preview"}],"session_id":"ef8076d3-d644-4aaf-8acb-f11baa184409"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d1089feee083346-MIA
+      CF-RAY:
+      - 9258ae7aee804884-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:23:38 GMT
+      - Mon, 24 Mar 2025 19:47:40 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -66,88 +70,102 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
-      - '117'
+      - '115'
       rndr-id:
-      - d8774d5a-f593-4dc2
-      x-api-key:
-      - REDACTED
+      - f1b77d4f-d58c-467c
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
 - request:
     body: '{"messages": [{"role": "user", "content": "Hello, world! Does this async
-      chat.completions.create call work?"}], "model": "gpt-4o-2024-08-06"}'
+      chat.completions.create call work?"}], "model": "gpt-4.5-preview"}'
     headers:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
-      - '141'
+      - '139'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - AsyncOpenAI/Python 1.51.2
+      - AsyncOpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - async:asyncio
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '600'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-AHDeUTEtBGOuZIbg8PbogumM7rnM6\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1728667418,\n  \"model\": \"gpt-4o-2024-08-06\",\n
+      string: "{\n  \"id\": \"chatcmpl-BEi3rDcxF37GSguPOH8GLTGyRtMJm\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742845663,\n  \"model\": \"gpt-4.5-preview-2025-02-27\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"Hello! It looks like you're trying
-        to use OpenAI's API for generating chat completions asynchronously. Could
-        you provide more details on what you're trying to achieve or any code snippets
-        you're working with? That way, I can better assist you in troubleshooting
-        or confirming if it should work as expected.\",\n        \"refusal\": null\n
-        \     },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n    }\n
-        \ ],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\":
-        58,\n    \"total_tokens\": 80,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
-        0\n    },\n    \"completion_tokens_details\": {\n      \"reasoning_tokens\":
-        0\n    }\n  },\n  \"system_fingerprint\": \"fp_a20a4ee344\"\n}\n"
+        \"assistant\",\n        \"content\": \"Hi! It seems you're asking about the
+        OpenAI Chat Completions API. Yes, you can make asynchronous API calls using
+        OpenAI's Python SDK.\\n\\nHere's an example of how you might do this with
+        OpenAI's Python SDK (v1.x and above):\\n\\n### Asynchronous example:\\n\\n```python\\nimport
+        openai\\nimport asyncio\\n\\n# Set the API key (make sure you have the key
+        configured)\\nopenai.api_key = \\\"YOUR_OPENAI_API_KEY\\\"\\n\\nasync def
+        main():\\n    response = await openai.AsyncOpenAI().chat.completions.create(\\n
+        \       model=\\\"gpt-3.5-turbo\\\",  # or your desired GPT model\\n        messages=[\\n
+        \           {\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"You are a
+        helpful assistant.\\\"},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\":
+        \\\"Hello, world! Does this async chat.completions.create call work?\\\"}\\n
+        \       ]\\n    )\\n\\n    message = response.choices[0].message.content\\n
+        \   print(f\\\"Assistant: {message}\\\")\\n\\nasyncio.run(main())\\n```\\n\\n###
+        Important Notes:\\n\\n- Make sure you're using version 1.x or above, which
+        introduced the async API (`openai.AsyncOpenAI()`).\\n- Don't forget to install
+        the latest OpenAI Python SDK version if you haven't already:\\n\\n```bash\\npip
+        install --upgrade openai\\n```\\n\\n### Conclusion:\\n\\nYes, the asynchronous
+        call with `AsyncOpenAI().chat.completions.create` does indeed work with the
+        SDK. Feel free to try the provided example to verify it.\",\n        \"refusal\":
+        null,\n        \"annotations\": []\n      },\n      \"finish_reason\": \"stop\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\":
+        311,\n    \"total_tokens\": 333,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d108a057d9a742d-MIA
+      - 9258ae810c1fdcbb-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:23:39 GMT
+      - Mon, 24 Mar 2025 19:48:24 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=2lanc6tOZO16TB6hRhGzkC8Rb.nbuDV0foM_Vgdavlo-1728667419-1.0.1.1-CQcA9MKNMe7mhPoCm6sJGMVKRksUR0dMsxFZ33Lf7XTKiNl6lYm9ggOmmeYP7yTUFIz3SlOL.j_7R.X9HvRdIQ;
-        path=/; expires=Fri, 11-Oct-24 17:53:39 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=gMuK5LSzptHKGP3RizGIANGVnZXWlnLTet9UXaqv_xo-1742845704-1.0.1.1-uPgt6i9MfBQFYR2TiXvultL_fDUcL8Us2GZ9fYrQ77qaKnIhgobOK20rBJldECuO49zED9pEQwtBmjGTB_my1xUbud8ck5w.5ITbt2tKuis;
+        path=/; expires=Mon, 24-Mar-25 20:18:24 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=VQBA780OdgWpZQgye3QISnBXOP1hLyBpIucpL6YOsuQ-1728667419485-0.0.1.1-604800000;
+      - _cfuvid=FihQ0_iN6tRZpU8XAl.I9cGjoOzdWFYyFtiPERh8PH0-1742845704939-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -157,112 +175,32 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
-      - '924'
+      - '2128'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '901'
+      - '41868'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
-      x-api-key:
-      - REDACTED
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
-      - '30000000'
+      - '2000000'
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '29999967'
+      - '1999981'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_5fe666be445721c049b2297d12c565ad
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this async
-      chat.completions.create call work?"}], "llm_providers": [{"provider": "openai",
-      "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-3.5-turbo-0125", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4", "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4-0613", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4-1106-preview", "is_custom": false,
-      "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4-turbo", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4-turbo-preview", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4-turbo-2024-04-09", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4o-2024-05-13", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4o-2024-08-06", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4o", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4o-mini-2024-07-18", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4o-mini", "is_custom": false, "context_length": null, "input_price": null,
-      "output_price": null, "latency": null}, {"provider": "openai", "model": "gpt-4-0125-preview",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "o1-preview", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-preview-2024-09-12", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-mini", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-mini-2024-09-12", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "chatgpt-4o-latest", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}], "metric":
-      "accuracy", "max_model_depth": 1, "hash_content": false}'
-    headers:
-      User-Agent:
-      - Python-SDK/0.3.25
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-2024-08-06"}],"session_id":"d4aa6cbd-4e72-40f0-b5d8-a2426687f6b3"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 909454585d344373-EWR
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 28 Jan 2025 22:13:24 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      content-length:
-      - '117'
-      rndr-id:
-      - 9ff942ec-7860-426c
-      x-render-origin-server:
-      - uvicorn
+      - req_672b778bfc8e619abe10bd2a2e8aa829
     status:
       code: 200
       message: OK

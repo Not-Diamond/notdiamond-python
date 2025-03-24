@@ -8,43 +8,43 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '293'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o"}],"session_id":"8fc41672-c370-4f41-8e42-a269cf838e49"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o"}],"session_id":"9fcd4471-220e-40dc-9f5e-1d8dc4c6a210"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d33380e2854a560-MIA
+      CF-RAY:
+      - 9258a8c94ccf254b-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:24:23 GMT
+      - Mon, 24 Mar 2025 19:43:46 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '106'
       rndr-id:
-      - f8bcea06-aaad-4852
+      - 8c35e347-22ce-493e
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
@@ -67,7 +67,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -77,56 +77,58 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.51.2
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA2yRT2/TQBDF7/4Uw1y4JJWbmEJzQRQJwYETgkrFKN6uJ/Y269nVzrg0RPnulfO/
-        Khcf5rfved6bdQaArsYZoG2N2i768advyy/LX1/v6vT9B/Nt+Df9efP58d3f3BdPdzgaFOH+gawe
-        VBc2dNGTusA7bBMZpcH18v3kOp9e5lfFFnShJj/ImqjjIown+aQY5x/G+dVe2AZnSXAGvzMAgPX2
-        O6zINT3hDPLRYdKRiGkIZ8dHAJiCHyZoRJyoYcXRCdrASrzduqqqBwlc8rpkgBKFtI8lzqDE23YF
-        deC3CmIdsTpRAU29KBgNnXwscbQTxZ5t6x3TTnhD1vRCoC2toDNLgj4CPVJaaeu4eVNiyZuSq6o6
-        XyrRohczdMK99/v55pjShyamcC97fpwvHDtp54mMBB4SiYaIW7rJAP5s2+xfFIQxhS7qXMOSeDCc
-        5Ps28XS/E50eoAY1/kx1BC/85jWpcV7O7oHW2JbqkzTPzsK9/un/LHYBHTevXLK9E8pKlLr5wnFD
-        KSa3u/Aizs0kNwXRtCgw22TPAAAA//8DAKnYZLXqAgAA
+      string: "{\n  \"id\": \"chatcmpl-BEi03HfaUdXc61gBxoI659DwfH74N\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742845427,\n  \"model\": \"gpt-4o-2024-08-06\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"```json\\n{\\n  \\\"setup\\\": \\\"Why
+        don't scientists trust atoms?\\\",\\n  \\\"punchline\\\": \\\"Because they
+        make up everything!\\\"\\n}\\n```\",\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
+        31,\n    \"total_tokens\": 231,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_6ec83003ad\"\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d333812ff0825a0-MIA
+      - 9258a8ce496bd0ca-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:24:24 GMT
+      - Mon, 24 Mar 2025 19:43:47 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=i36JzfzPrdKgJusboIDmcTX4xlgveDxKSS2PLU7jvKY-1729031064-1.0.1.1-fDzkMUU0VNShbvp8wkYMhWVZh0AVYGdOvQWllYJDGlrfx65cM0PQH5c1S3EZu.Fs.ijZ9nwyX7Y5YAii_FbbQg;
-        path=/; expires=Tue, 15-Oct-24 22:54:24 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=ta4MY515ohoQ7pnwfMBVN66xEI1suI.HEDKN_kPkF7A-1742845427-1.0.1.1-MHF4MRmD_liUV42HAKbVvqQt21A7nPuqkQrcmydkB9eZfbYFG9uhdZF2PxrRq8cdCXtHhsIt0B8tmOveldvieIYSVVE5xz5Co3OVZ8BaI7U;
+        path=/; expires=Mon, 24-Mar-25 20:13:47 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=t2OjxfnaV8wVHBVJXdIj6u0UKZmG5V53YSxmkAW9xxA-1729031064859-0.0.1.1-604800000;
+      - _cfuvid=hA34hVDxL8vrBZ5gRfEFqAQqub64_Qhlu7NyoPsztx0-1742845427859-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -136,28 +138,32 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '930'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '1222'
+      - '762'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
       x-ratelimit-limit-requests:
-      - '10000'
+      - '50000'
       x-ratelimit-limit-tokens:
-      - '30000000'
+      - '150000000'
       x-ratelimit-remaining-requests:
-      - '9999'
+      - '49999'
       x-ratelimit-remaining-tokens:
-      - '29999619'
+      - '149999818'
       x-ratelimit-reset-requests:
-      - 6ms
+      - 1ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_caac1acb5a3fc752b6dc429324f0b82e
+      - req_cfa6ee2f7bad9b3429857773f607f2fc
     status:
       code: 200
       message: OK
