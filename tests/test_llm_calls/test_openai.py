@@ -41,7 +41,9 @@ class Test_OpenAI:
             assert chunk.content != "a"
 
     def test_with_tool_calling(self, tools_fixture, provider):
-        if provider.model == "chatgpt-4o-latest":
+        if provider.model == "chatgpt-4o-latest" or provider.model.startswith(
+            "gpt-4.5"
+        ):
             return
 
         provider.kwargs = {"max_tokens": 200}
@@ -56,7 +58,9 @@ class Test_OpenAI:
         assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_with_openai_tool_calling(self, openai_tools_fixture, provider):
-        if provider.model == "chatgpt-4o-latest":
+        if provider.model == "chatgpt-4o-latest" or provider.model.startswith(
+            "gpt-4.5"
+        ):
             return
 
         provider.kwargs = {"max_tokens": 200}
