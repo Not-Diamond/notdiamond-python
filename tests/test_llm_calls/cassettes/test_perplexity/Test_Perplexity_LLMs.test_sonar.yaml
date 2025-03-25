@@ -8,29 +8,29 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '301'
       User-Agent:
-      - Python-SDK/0.3.38
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"perplexity","model":"sonar"}],"session_id":"d4f32732-57c2-4e52-b203-2df236cdf2db"}'
+      string: '{"providers":[{"provider":"perplexity","model":"sonar"}],"session_id":"7d62e5cd-3a59-4c92-89a6-f2306a9b9356"}'
     headers:
       CF-RAY:
-      - 9223e899ded3c31a-VIE
+      - 925d1360c8675b7f-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 18 Mar 2025 10:04:55 GMT
+      - Tue, 25 Mar 2025 08:35:35 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,7 +42,7 @@ interactions:
       content-length:
       - '109'
       rndr-id:
-      - 30af7754-3987-48ed
+      - 982dcb66-0e8a-459b
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -57,7 +57,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -67,7 +67,7 @@ interactions:
       host:
       - api.perplexity.ai
       user-agent:
-      - OpenAI/Python 1.55.1
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
       - x64
       x-stainless-async:
@@ -77,7 +77,9 @@ interactions:
       x-stainless-os:
       - Linux
       x-stainless-package-version:
-      - 1.55.1
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '600'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
@@ -88,30 +90,29 @@ interactions:
     uri: https://api.perplexity.ai/chat/completions
   response:
     body:
-      string: '{"id": "46c25eaa-74aa-47a8-bbf7-369b84579cab", "model": "sonar", "created":
-        1742292297, "usage": {"prompt_tokens": 9, "completion_tokens": 47, "total_tokens":
-        56}, "citations": ["https://mathblog.com/reference/algebra/calculator/percentage/3-5/",
-        "https://www.youtube.com/watch?v=dRN5GhpzjlU", "https://www.cuemath.com/questions/what-is-3-5-as-a-decimal/",
-        "https://socratic.org/questions/how-do-you-convert-3-5-into-a-percent-and-decimal",
-        "https://homework.study.com/explanation/how-do-you-write-3-5-as-a-percent.html"],
-        "object": "chat.completion", "choices": [{"index": 0, "finish_reason": "stop",
-        "message": {"role": "assistant", "content": "To find the sum of 3 and 5, you
-        simply add them together:\n\n\\[ 3 + 5 = 8 \\]\n\nSo, the result of \\( 3
-        + 5 \\) is **8**."}, "delta": {"role": "assistant", "content": ""}}]}'
+      string: '{"id": "558498a9-b30a-4718-8985-a5a8a12539af", "model": "sonar", "created":
+        1742891737, "usage": {"prompt_tokens": 9, "completion_tokens": 36, "total_tokens":
+        45}, "citations": ["https://www.youtube.com/watch?v=dRN5GhpzjlU", "https://www.cuemath.com/questions/what-is-3-5-as-a-decimal/",
+        "https://www.youtube.com/watch?v=lQD4Pm9YHkY", "https://socratic.org/questions/how-do-you-convert-3-5-into-a-percent-and-decimal",
+        "https://www.hackmath.net/en/calculator/fraction?input=3%2F5"], "object":
+        "chat.completion", "choices": [{"index": 0, "finish_reason": "stop", "message":
+        {"role": "assistant", "content": "The sum of **3** and **5** is **8**.\n\nIn
+        mathematical terms, this can be expressed as:\n\n\\[ 3 + 5 = 8 \\]"}, "delta":
+        {"role": "assistant", "content": ""}}]}'
     headers:
       CF-RAY:
-      - 9223e89e5cef5bab-VIE
+      - 925d1365a84020e6-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 18 Mar 2025 10:04:57 GMT
+      - Tue, 25 Mar 2025 08:35:37 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=AD6ZXdU24iXoMYe5uY5tRMzcNEj7FD_o02Dhd9FEZ24-1742292297-1.0.1.1-OYyKqu8VohWBrvfW1dTMCtvT8pqBInrGYYfdcWKt_R6OhESxmaxMOJkQitCSf0wmTYPL.OngICUsWIr.LXA_pmsRKc16KAynSittQ9giSDk;
-        path=/; expires=Tue, 18-Mar-25 10:34:57 GMT; domain=.perplexity.ai; HttpOnly;
+      - __cf_bm=VDJaF8DCa39Lf8MbAIRNcACfEJBDikebqwwsF_pDE_M-1742891737-1.0.1.1-m8zd5R5_qDryRtqdcIfkUrqiSMW.lpCDxatgM6hr4UJG9wstH2wtzN4nUb1kQicJlucugalbSPNcG0vul1KGFpjbmHrbaU3OQrUL1B.AG8M;
+        path=/; expires=Tue, 25-Mar-25 09:05:37 GMT; domain=.perplexity.ai; HttpOnly;
         Secure; SameSite=None
       Strict-Transport-Security:
       - max-age=15552000; includeSubDomains; preload
@@ -120,7 +121,7 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '822'
+      - '768'
     status:
       code: 200
       message: OK

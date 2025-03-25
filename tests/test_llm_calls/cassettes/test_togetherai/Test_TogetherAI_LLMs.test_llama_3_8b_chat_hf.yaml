@@ -8,118 +8,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '314'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"togetherai","model":"Llama-3-8b-chat-hf"}],"session_id":"18e5e7a4-d078-48e7-866c-57def463abe6"}'
+      string: '{"providers":[{"provider":"togetherai","model":"Llama-3-8b-chat-hf"}],"session_id":"39926045-69c4-4c1d-94d3-0dcf385f0389"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d336b37286121c7-MIA
+      CF-RAY:
+      - 925d1381bfb1c2a0-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:59:19 GMT
+      - Tue, 25 Mar 2025 08:35:41 GMT
       Server:
       - cloudflare
-      Vary:
-      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
       - '122'
       rndr-id:
-      - bbd83e93-eb4e-4769
+      - d62e6e24-c35f-46f4
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"model": "meta-llama/Llama-3-8b-chat-hf", "max_tokens": 10, "prompt":
-      "Human: How much is 3 + 5?"}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '99'
-      Content-Type:
-      - application/json
-      User-Agent:
-      - python-requests/2.32.3
-    method: POST
-    uri: https://api.together.ai/v1/completions
-  response:
-    body:
-      string: "{\n  \"id\": \"8d336b3d79d57bfa-MIA\",\n  \"object\": \"text.completion\",\n
-        \ \"created\": 1729033159,\n  \"model\": \"meta-llama/Llama-3-8b-chat-hf\",\n
-        \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"text\": \" \\nAI: The
-        answer is 8. \\n\",\n      \"finish_reason\": \"length\",\n      \"seed\":
-        15748091678259663000,\n      \"logprobs\": null,\n      \"index\": 0\n    }\n
-        \ ],\n  \"usage\": {\n    \"prompt_tokens\": 11,\n    \"completion_tokens\":
-        10,\n    \"total_tokens\": 21\n  }\n}"
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 8d336b3d79d57bfa-MIA
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json; charset=utf-8
-      Date:
-      - Tue, 15 Oct 2024 22:59:19 GMT
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=2592000; includeSubDomains
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      access-control-allow-origin:
-      - '*'
-      content-length:
-      - '431'
-      etag:
-      - W/"1af-95B0MumG3qXPWck3cGrst5s6aq4"
-      x-api-call-end:
-      - '2024-10-15T22:59:19.612Z'
-      x-api-call-start:
-      - '2024-10-15T22:59:19.349Z'
-      x-api-received:
-      - '2024-10-15T22:59:19.343Z'
-      x-inference-version:
-      - v2
-      x-ratelimit:
-      - 'false'
-      x-ratelimit-limit:
-      - '10'
-      x-ratelimit-limit-tokens:
-      - '3000'
-      x-ratelimit-remaining:
-      - '19'
-      x-ratelimit-remaining-tokens:
-      - '3000'
-      x-ratelimit-reset:
-      - '2'
     status:
       code: 200
       message: OK
@@ -131,7 +58,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -141,7 +68,7 @@ interactions:
       host:
       - api.together.ai
       user-agent:
-      - OpenAI/Python 1.55.1
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
       - x64
       x-stainless-async:
@@ -151,42 +78,42 @@ interactions:
       x-stainless-os:
       - Linux
       x-stainless-package-version:
-      - 1.55.1
+      - 1.68.2
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.11.7
+      - 3.12.3
     method: POST
     uri: https://api.together.ai/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"90945076ae8a32e8\",\n  \"object\": \"chat.completion\",\n
-        \ \"created\": 1738102245,\n  \"model\": \"meta-llama/Llama-3-8b-chat-hf\",\n
-        \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"finish_reason\": \"length\",\n
-        \     \"seed\": 4704724227900196000,\n      \"logprobs\": null,\n      \"index\":
+      string: "{\n  \"id\": \"nnQNkJz-4yUbBN-925d1387bb6b197e\",\n  \"object\": \"chat.completion\",\n
+        \ \"created\": 1742891741,\n  \"model\": \"meta-llama/Llama-3-8b-chat-hf\",\n
+        \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n
+        \     \"seed\": 12885042618619318000,\n      \"logprobs\": null,\n      \"index\":
         0,\n      \"message\": {\n        \"role\": \"assistant\",\n        \"content\":
-        \"The answer to 3 + 5 is \",\n        \"tool_calls\": []\n      }\n    }\n
-        \ ],\n  \"usage\": {\n    \"prompt_tokens\": 19,\n    \"completion_tokens\":
-        10,\n    \"total_tokens\": 29\n  }\n}"
+        \"The answer is: 8\",\n        \"tool_calls\": []\n      }\n    }\n  ],\n
+        \ \"usage\": {\n    \"prompt_tokens\": 19,\n    \"completion_tokens\": 7,\n
+        \   \"total_tokens\": 26\n  }\n}"
     headers:
       Access-Control-Allow-Origin:
       - '*'
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 90945076ae8a32e8-EWR
+      - 925d1387bb6b197e-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 28 Jan 2025 22:10:47 GMT
+      - Tue, 25 Mar 2025 08:35:41 GMT
       ETag:
-      - W/"1fe-fBsL12EbnGKzRUrhDqB9k+18Xk4"
+      - W/"204-uUAQLRgOjiHoZOEfwG0KkTAWjT8"
       Retry-After:
-      - '2'
+      - '0'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -200,29 +127,29 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400
       content-length:
-      - '510'
-      x-amzn-trace-id:
-      - 0cae60e0-4db3-460e-bb92-d9dc0b157b50-noamzn
+      - '516'
       x-api-call-end:
-      - '2025-01-28T22:10:47.099Z'
+      - '2025-03-25T08:35:41.619Z'
       x-api-call-start:
-      - '2025-01-28T22:10:45.098Z'
+      - '2025-03-25T08:35:41.502Z'
       x-api-received:
-      - '2025-01-28T22:10:45.092Z'
+      - '2025-03-25T08:35:41.495Z'
       x-inference-version:
       - v2
       x-ratelimit:
       - 'false'
       x-ratelimit-limit:
-      - '75'
+      - '10'
       x-ratelimit-limit-tokens:
-      - '16666'
+      - '3000'
       x-ratelimit-remaining:
-      - '149'
+      - '18'
       x-ratelimit-remaining-tokens:
-      - '16666'
+      - '2972'
       x-ratelimit-reset:
-      - '2'
+      - '0'
+      x-request-id:
+      - nnQNkJz-4yUbBN-925d1387bb6b197e
     status:
       code: 200
       message: OK

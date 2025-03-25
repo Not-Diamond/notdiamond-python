@@ -18,43 +18,43 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '1059'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"5e215b37-6a38-4fb0-8c76-ca79452a45eb"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"e45fff51-2655-4339-ab6d-1e83358de703"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d336aafde437476-MIA
+      CF-RAY:
+      - 925cfe325f113dbe-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:57 GMT
+      - Tue, 25 Mar 2025 08:21:08 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '125'
       rndr-id:
-      - 44322161-6994-4c99
+      - 93955f5b-362d-4df6
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
@@ -78,7 +78,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       anthropic-version:
       - '2023-06-01'
       connection:
@@ -90,126 +90,377 @@ interactions:
       host:
       - api.anthropic.com
       user-agent:
-      - Anthropic/Python 0.36.0
+      - Anthropic/Python 0.49.0
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 0.36.0
+      - 0.49.0
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
+      x-stainless-timeout:
+      - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA1xTTW/bMAz9KwQvuzhBk60Y6tswYB89dMCKbYd5SGmZttXIkidSSYMg/32Q3a5p
-        T4LIx+f3nugj2gZLHKTbXKx+Wrq0jfnI2+H9w6778fnT1a/VDRaoh5EzikWoYywwBpcLJGJFySsW
-        OISGHZZoHKWGF28XYUyyWF+s312s11dYoAle2SuWv49PhMoPeXQ6SvzCkcEKDAeQ1HUsaoOHNkQg
-        GGPoIg2D9R048l2ijqfWnmugcXTW0ARveMcujAN7LcB60J4h8t/EotzA9e23mzw2kJaVr/zd3d29
-        BF/5Y+UBKnyirrCECq9pR7cm2lErLGZAZMr4V+2smmDHUUit42eF2pOCIQ81QxJuIHiog/aTrDYG
-        rwv2DZBvoCaznS6hfW1KlvBVoaf8kT51DGyCHER5yOA20sD7ELcy8ThbR4qWBZzdMnxnMlrAB98l
-        R7GYIDeh4eW9zOpaMtZZJWWINNpZTAx1Ep10nAW6hJeWswkT4pnf0E7FPFfHsBeOBbCn2uV3s145
-        klG7m8KIc6Elw5PBNwLkJMDeNuwO/+PKfMJxx3EhtmHYW+2fHCzhV749qyrgENIceLKugTY5txAl
-        s32RJyTJggjycfZeBex7a3oQO4zOtjnEM/tzMtwkwwLTNj8oyN6q6TNb3sZHNEdZVlj507RhePpT
-        oGgYN/P2YInsm42m6PGxIXlDvWEsfXKuwDT9Z+URrR+TbjRs2QuW6/VlgSHpeW11uTqd/gEAAP//
-        AwB8gSxVxwMAAA==
+      string: '{"id":"msg_01YQX5CQxhfrypyCnZaNkG1w","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"Here
+        is my suggestion for a web application programming language:\n\n{\n  \"language\":
+        \"JavaScript\",\n  \"reason\": \"JavaScript is a versatile language that can
+        be used on both the front-end and back-end of web applications. It has a huge
+        ecosystem of frameworks and libraries like React, Angular, Node.js and Express
+        that enable rapid development of scalable, interactive web apps. JavaScript
+        is the lingua franca of the web and a critical skill for any web developer
+        to master.\"\n}"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":225,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":107}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d336ab59f8f31f0-MIA
+      - 925cfe38d98eb86d-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:59:05 GMT
+      - Tue, 25 Mar 2025 08:21:12 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
       X-Robots-Tag:
       - none
+      anthropic-organization-id:
+      - a2610b2c-742e-455d-9552-6abe105b2a44
+      anthropic-ratelimit-input-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2025-03-25T08:21:09Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '80000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '80000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2025-03-25T08:21:12Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2024-10-15T22:59:32Z'
+      - '2025-03-25T08:21:08Z'
       anthropic-ratelimit-tokens-limit:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-remaining:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-reset:
-      - '2024-10-15T22:59:05Z'
+      - '2025-03-25T08:21:09Z'
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '787'
       request-id:
-      - req_012aH27jxDEzWhQj5JgrHT7M
+      - req_01UFnNZAoyJ9MpcXKxXzhVCT
       via:
       - 1.1 google
-      x-cloud-trace-context:
-      - ead93602da565efec60ffb599d618f4f
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "5e215b37-6a38-4fb0-8c76-ca79452a45eb", "provider": {"provider":
+    body: '{"session_id": "e45fff51-2655-4339-ab6d-1e83358de703", "provider": {"provider":
       "anthropic", "model": "claude-3-opus-20240229", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 18.7990062676051}}'
+      {"tokens_per_second": 22.86174718831172}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
-      - '285'
+      - '286'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"Session 5e215b37-6a38-4fb0-8c76-ca79452a45eb does not belong
-        to user 70dc4e5f-ab5b-4e78-a1a1-8820d27a99e1."}'
+      string: '{"detail":"requestID=43d83326-20c0-4193, Session e45fff51-2655-4339-ab6d-1e83358de703
+        does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d336ae538f22594-MIA
+      CF-RAY:
+      - 925cfe54c8c1e9e2-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:59:05 GMT
+      - Tue, 25 Mar 2025 08:21:13 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       rndr-id:
-      - 0a5fd66b-ee40-4730
+      - 43d83326-20c0-4193
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 401
+      message: Unauthorized
+- request:
+    body: '{"messages": [{"role": "system", "content": "The output should be formatted
+      as a JSON instance that conforms to the JSON schema below.\n\nAs an example,
+      for the schema {{\"properties\": {{\"foo\": {{\"title\": \"Foo\", \"description\":
+      \"a list of strings\", \"type\": \"array\", \"items\": {{\"type\": \"string\"}}}}}},
+      \"required\": [\"foo\"]}}\nthe object {{\"foo\": [\"bar\", \"baz\"]}} is a well-formatted
+      instance of the schema. The object {{\"properties\": {{\"foo\": [\"bar\", \"baz\"]}}}}
+      is not well-formatted.\n\nHere is the output schema:\n```\n{{\"properties\":
+      {{\"language\": {{\"description\": \"The programming language of choice.\",
+      \"title\": \"Language\", \"type\": \"string\"}}, \"reason\": {{\"description\":
+      \"The reason to pick the programming language.\", \"title\": \"Reason\", \"type\":
+      \"string\"}}}}, \"required\": [\"language\", \"reason\"]}}\n```\nYou are a world
+      class software developer."}, {"role": "user", "content": "What language would
+      you suggest for developing a web application?"}], "llm_providers": [{"provider":
+      "openai", "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null,
+      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
+      "model": "gpt-4", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
+      "gpt-4-1106-preview", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
+      "gpt-4-turbo-preview", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "anthropic", "model":
+      "claude-3-opus-20240229", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
+      5, "hash_content": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1893'
+      User-Agent:
+      - Python-SDK/0.3.41
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"400423bf-470f-4d76-8af5-2da3275d0fb0"}'
+    headers:
+      CF-RAY:
+      - 925cfe577ca95ba6-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 25 Mar 2025 08:21:14 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '125'
+      rndr-id:
+      - 17035e2d-40d7-49d8
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"max_tokens": 1024, "messages": [{"role": "user", "content": "What language
+      would you suggest for developing a web application?"}], "model": "claude-3-opus-20240229",
+      "system": "The output should be formatted as a JSON instance that conforms to
+      the JSON schema below.\n\nAs an example, for the schema {\"properties\": {\"foo\":
+      {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\": \"array\",
+      \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe object {\"foo\":
+      [\"bar\", \"baz\"]} is a well-formatted instance of the schema. The object {\"properties\":
+      {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere is the output
+      schema:\n```\n{\"properties\": {\"language\": {\"description\": \"The programming
+      language of choice.\", \"title\": \"Language\", \"type\": \"string\"}, \"reason\":
+      {\"description\": \"The reason to pick the programming language.\", \"title\":
+      \"Reason\", \"type\": \"string\"}}, \"required\": [\"language\", \"reason\"]}\n```\nYou
+      are a world class software developer."}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate, zstd
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '1034'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - Anthropic/Python 0.49.0
+      x-api-key:
+      - REDACTED
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 0.49.0
+      x-stainless-read-timeout:
+      - '120.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+      x-stainless-timeout:
+      - NOT_GIVEN
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: '{"id":"msg_019AYYt7f7sCmYXooRL6bYTF","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"Here
+        is my recommendation for a programming language for web development, formatted
+        as a JSON instance that conforms to the provided schema:\n\n```json\n{\n  \"language\":
+        \"JavaScript\",\n  \"reason\": \"JavaScript is a versatile language that can
+        be used on both the frontend and backend of web applications. It has a huge
+        ecosystem of frameworks and libraries like React, Angular, Vue, and Node.js
+        that provide powerful tools for building modern, interactive web apps. JavaScript
+        is also the native language of web browsers, enabling dynamic user interfaces.
+        Its event-driven, non-blocking nature is well-suited for web development.\"\n}\n```"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":225,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":135}}'
+    headers:
+      CF-RAY:
+      - 925cfe5c5acfdfcc-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 25 Mar 2025 08:21:19 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-organization-id:
+      - a2610b2c-742e-455d-9552-6abe105b2a44
+      anthropic-ratelimit-input-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2025-03-25T08:21:14Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '80000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '80000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2025-03-25T08:21:19Z'
+      anthropic-ratelimit-requests-limit:
+      - '4000'
+      anthropic-ratelimit-requests-remaining:
+      - '3999'
+      anthropic-ratelimit-requests-reset:
+      - '2025-03-25T08:21:14Z'
+      anthropic-ratelimit-tokens-limit:
+      - '480000'
+      anthropic-ratelimit-tokens-remaining:
+      - '480000'
+      anthropic-ratelimit-tokens-reset:
+      - '2025-03-25T08:21:14Z'
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '944'
+      request-id:
+      - req_01F4iWVi5CVXmKT6pPDj6rj9
+      via:
+      - 1.1 google
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"session_id": "400423bf-470f-4d76-8af5-2da3275d0fb0", "provider": {"provider":
+      "anthropic", "model": "claude-3-opus-20240229", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}, "feedback":
+      {"tokens_per_second": 23.87048597230925}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '286'
+      User-Agent:
+      - Python-SDK/0.3.41
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
+  response:
+    body:
+      string: '{"detail":"requestID=025a237d-db02-4f27, Session 400423bf-470f-4d76-8af5-2da3275d0fb0
+        does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
+    headers:
+      CF-RAY:
+      - 925cfe7e1da62942-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 25 Mar 2025 08:21:20 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      rndr-id:
+      - 025a237d-db02-4f27
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:

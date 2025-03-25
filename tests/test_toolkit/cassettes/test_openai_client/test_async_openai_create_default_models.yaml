@@ -28,36 +28,40 @@ interactions:
       "gpt-4o-mini", "is_custom": false, "context_length": null, "input_price": null,
       "output_price": null, "latency": null}, {"provider": "openai", "model": "gpt-4-0125-preview",
       "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "o1-preview", "is_custom":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4.5-preview", "is_custom":
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-preview-2024-09-12", "is_custom":
+      null}, {"provider": "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom":
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-mini", "is_custom": false, "context_length":
+      null}, {"provider": "openai", "model": "o1-preview", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-mini-2024-09-12", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}], "metric":
-      "accuracy", "max_model_depth": 1, "hash_content": false}'
+      "openai", "model": "o1-preview-2024-09-12", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
+      "openai", "model": "o1-mini", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
+      "o1-mini-2024-09-12", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
+      "chatgpt-4o-latest", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
+      1, "hash_content": false}'
     headers:
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"86f8faf7-fa9d-4792-8156-65be45b18d24"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"a4d1621f-4e3f-430b-9c97-95a40fa6fc2a"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d1089f23e188dd6-MIA
+      CF-RAY:
+      - 925d18329e53d0ec-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:23:36 GMT
+      - Tue, 25 Mar 2025 08:38:53 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -66,16 +70,14 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
       - '122'
       rndr-id:
-      - dd17e681-004d-45ca
-      x-api-key:
-      - REDACTED
+      - af034f7d-e01b-4685
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -86,7 +88,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -96,56 +98,59 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - AsyncOpenAI/Python 1.51.2
+      - AsyncOpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - async:asyncio
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '600'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-AHDeSfs0ICkNDh9NesIrR3IV0hzoj\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1728667416,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
+      string: "{\n  \"id\": \"chatcmpl-BEu69vfoztFFqkdK2dux0I9srBvAf\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742891933,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": \"Hello! Yes, I can provide information
-        and answer questions about handling default models asynchronously. If you
-        have specific questions or scenarios in mind, feel free to share, and I\u2019ll
-        do my best to help!\",\n        \"refusal\": null\n      },\n      \"logprobs\":
+        and assist with topics related to asynchronous programming, including how
+        to handle models or operations asynchronously. If you have specific questions
+        or scenarios in mind, feel free to share, and I'll do my best to assist you!\",\n
+        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"logprobs\":
         null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
-        18,\n    \"completion_tokens\": 41,\n    \"total_tokens\": 59,\n    \"prompt_tokens_details\":
-        {\n      \"cached_tokens\": 0\n    },\n    \"completion_tokens_details\":
-        {\n      \"reasoning_tokens\": 0\n    }\n  },\n  \"system_fingerprint\": \"fp_e2bde53e6e\"\n}\n"
+        18,\n    \"completion_tokens\": 51,\n    \"total_tokens\": 69,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_b8bc95a0ac\"\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d1089f84a3ba4be-MIA
+      - 925d1838dd7a0c5f-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:23:37 GMT
+      - Tue, 25 Mar 2025 08:38:54 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=Aj9EiiEwlu5TxR9KZp.KsMClJWoBQdrqGrMmMrwz8U4-1728667417-1.0.1.1-rf7bh.g3kG0U_9RLszUEqrNzLsJd_hbs08rNK3oFxp62PhpKrlmf2k3eU9sS3efcHXPISgAl0_U9XID922mhlA;
-        path=/; expires=Fri, 11-Oct-24 17:53:37 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=c_u7vB_M2p1hmNL3n6YOTmS04lDmNhvNEBwWjcMoamc-1742891934-1.0.1.1-kKhB29f9rmc3klSffXzoazWG._FtuyeKaX9n8IpgY2ZwOoT79Sdb3mmj9bqiWiEPvpTho0sIxpR_dkzOhaa.g6eN5ae5FCGex9iNkunYQ8w;
+        path=/; expires=Tue, 25-Mar-25 09:08:54 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=7ne3yh8ZyUnmI3IObbXXfRSzttpGKSKaJM.hTOR3eaI-1728667417355-0.0.1.1-604800000;
+      - _cfuvid=KUXW1nMmELbJgoDiBbrrDw1QXMCWi6gv0sLMCGaMNUg-1742891934541-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -155,18 +160,18 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
-      - '831'
+      - '1073'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '902'
+      - '812'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
-      x-api-key:
-      - REDACTED
       x-ratelimit-limit-requests:
       - '30000'
       x-ratelimit-limit-tokens:
@@ -174,93 +179,13 @@ interactions:
       x-ratelimit-remaining-requests:
       - '29999'
       x-ratelimit-remaining-tokens:
-      - '149999968'
+      - '149999982'
       x-ratelimit-reset-requests:
       - 2ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_9b634a2d3093fcd4f4445d0c8229d39f
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "Hello, world! Do you handle
-      default models asynchronously?"}], "llm_providers": [{"provider": "openai",
-      "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-3.5-turbo-0125", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4", "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4-0613", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4-1106-preview", "is_custom": false,
-      "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4-turbo", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4-turbo-preview", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4-turbo-2024-04-09", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4o-2024-05-13", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4o-2024-08-06", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4o", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4o-mini-2024-07-18", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4o-mini", "is_custom": false, "context_length": null, "input_price": null,
-      "output_price": null, "latency": null}, {"provider": "openai", "model": "gpt-4-0125-preview",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "o1-preview", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-preview-2024-09-12", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-mini", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-mini-2024-09-12", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "chatgpt-4o-latest", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}], "metric":
-      "accuracy", "max_model_depth": 1, "hash_content": false}'
-    headers:
-      User-Agent:
-      - Python-SDK/0.3.25
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"41fa8cc3-ebf0-4b7e-beb4-b82fe3ce598e"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 909454528d0cf78f-EWR
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 28 Jan 2025 22:13:23 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      content-length:
-      - '122'
-      rndr-id:
-      - e9758192-8205-4ac8
-      x-render-origin-server:
-      - uvicorn
+      - req_b293502c708a7791a863defe10c9026d
     status:
       code: 200
       message: OK

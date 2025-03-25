@@ -8,49 +8,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '305'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"mistral","model":"open-mistral-nemo"}],"session_id":"c04bae88-8d54-48d5-aae9-90d0028e2c18"}'
+      string: '{"providers":[{"provider":"mistral","model":"open-mistral-nemo"}],"session_id":"ab297ad0-acdf-4f77-9e03-c8844a9fc525"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d28c7f0fd200996-MIA
+      CF-RAY:
+      - 925d0213a8676ea0-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Oct 2024 16:00:14 GMT
+      - Tue, 25 Mar 2025 08:23:47 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '118'
       rndr-id:
-      - 365dfd78-8e56-488e
-      x-api-key:
-      - REDACTED
+      - 6cc7fbc9-d17a-4bb2
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -72,7 +68,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -87,62 +83,58 @@ interactions:
     uri: https://api.mistral.ai/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAAzyQwW7bMBBEf4WdSy9KYFl2bfESJD/RQ1UYa3FtsSG5hHZV1DD874UOznUwbzAz
-        d8QAj7Y/b/YHok3oaHcIXd+F/rjrL5ewbXnfExrI+Q+PBo9xInsdJdfEFqWgwTgzGQf49rA99tv2
-        R7trkCVwgodULi85qs2UXgpnWYFJ4sgK/+uOWAL/g980yKxKV4a/Y5bE8CDVqEbFVkaKcVkL3Aco
-        21IHeDfg50TmgribLG6klBy5C32yKyIh8Zt7Ly7mSmr0OqBxA+pSxinFwk/+5oKU7+Z0jFwsqqmz
-        eVFzZJL1zX3wSIuys4lvLq/ZS3X8l+ebTbFcvw14oIGJpNNaQOHLktKjwSWWqNNpZlIp8FCTigZJ
-        rnWW89P3u8Hy3F1nydVOJp9cFL7tj2uwUfqStt1+/eL5/pfeHR6P/wAAAP//AwBWs4N1zQEAAA==
+      string: '{"id":"39f0f7fb47724203a85359639d2ad865","object":"chat.completion","created":1742891027,"model":"open-mistral-nemo","choices":[{"index":0,"message":{"role":"assistant","tool_calls":null,"content":"{\"setup\":
+        \"Why don''t scientists trust atoms?\", \"punchline\": \"Because they make
+        up everything!\"}"},"finish_reason":"stop"}],"usage":{"prompt_tokens":198,"total_tokens":222,"completion_tokens":24}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d28c7f929ca748b-MIA
+      - 925d0217fcded0f3-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Oct 2024 16:00:14 GMT
+      - Tue, 25 Mar 2025 08:23:47 GMT
       Server:
       - cloudflare
+      Set-Cookie:
+      - __cf_bm=mOPFiOfvjrsaMaPauyxzqAypFY7LoprkCR_Bl9Uextw-1742891027-1.0.1.1-netLJTw8gsKQ4.aQJGRGaLan41Bja2J0mlWhB9vuBjFp_Z1uDa.1UbGXVy5kmfNTv.0_dwsw6dgeAOXz8hYHOEja8AMh4tgOLMFufd7VoGI;
+        path=/; expires=Tue, 25-Mar-25 08:53:47 GMT; domain=.mistral.ai; HttpOnly;
+        Secure; SameSite=None
       Transfer-Encoding:
       - chunked
       access-control-allow-origin:
       - '*'
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '401'
       ratelimitbysize-limit:
       - '2000000'
       ratelimitbysize-query-cost:
       - '336'
       ratelimitbysize-remaining:
-      - '1999248'
+      - '1997200'
       ratelimitbysize-reset:
-      - '46'
-      x-api-key:
-      - REDACTED
+      - '13'
       x-envoy-upstream-service-time:
-      - '564'
+      - '473'
       x-kong-proxy-latency:
       - '0'
       x-kong-request-id:
-      - 240c9d14fcaa226823774c21adf02313
+      - 58cd0924173a051e1199e74d1b150567
       x-kong-upstream-latency:
-      - '565'
+      - '475'
       x-ratelimitbysize-limit-minute:
       - '2000000'
       x-ratelimitbysize-limit-month:
       - '10000000000'
       x-ratelimitbysize-remaining-minute:
-      - '1999248'
+      - '1997200'
       x-ratelimitbysize-remaining-month:
-      - '9999999248'
-      x-token:
-      - REDACTED
+      - '9999593690'
     status:
       code: 200
       message: OK

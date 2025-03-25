@@ -11,49 +11,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '533'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"mistral","model":"open-mistral-nemo"}],"session_id":"9805b129-c1d5-41ff-890a-9c71edbce681"}'
+      string: '{"providers":[{"provider":"mistral","model":"open-mistral-nemo"}],"session_id":"5af64739-bef1-498a-bb3e-9a603cd21d4a"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d28c7d1ddeb8dc6-MIA
+      CF-RAY:
+      - 925d0203ca372bd8-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Oct 2024 16:00:08 GMT
+      - Tue, 25 Mar 2025 08:23:44 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '118'
       rndr-id:
-      - 3c64cf4e-1cd4-4b72
-      x-api-key:
-      - REDACTED
+      - 0911b846-894c-4f50
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -68,7 +64,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -83,34 +79,33 @@ interactions:
     uri: https://api.mistral.ai/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA0yQQW7CMBBFr4L+2lRJCCF42wt0wa6gyLEn4GJ7othRK0W5e2VUUHejL/03b2aB
-        NZDY78x+qEw9HHqq+2PTtoPq+6Fu67ppm0MFAe6/SCdI6JtKb5r96ChZDhDQE6lEBrI8VO2xKpvi
-        KODZkIMEjxS23sY0KbcN5DkXbmw1RcjPBTYY+oEsBDzFqK4EuWBiR5BQMdqYVEi5wyFRyAIQSMyu
-        08q5P0a+4dt/nO7vhT1BYJiDfsjJBUH5B8uYbtCZpKbr7CmkCInlDHWG3OzE5ow+T/sV63pZBQYb
-        bLx1E6mYQf93Cji+jhP3ETLMzq0XgfnpPk7sx9QlvlOIkG2ddZNyr6Qsi3zO84GvvGrW9RcAAP//
-        AwA59hNHkAEAAA==
+      string: '{"id":"2cbb360568f34832b622c1cd8d3a9fab","object":"chat.completion","created":1742891024,"model":"open-mistral-nemo","choices":[{"index":0,"message":{"role":"assistant","tool_calls":[{"id":"ZE4GudZYJ","function":{"name":"add_fct","arguments":"{\"a\":
+        3, \"b\": 5}"},"index":0}],"content":""},"finish_reason":"tool_calls"}],"usage":{"prompt_tokens":84,"total_tokens":110,"completion_tokens":26}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d28c7d81b529aec-MIA
+      - 925d0208bf3b8ef6-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Oct 2024 16:00:09 GMT
+      - Tue, 25 Mar 2025 08:23:45 GMT
       Server:
       - cloudflare
+      Set-Cookie:
+      - __cf_bm=Iw4bjSjfly_REBYPAt45pggz9y4BDDCvToB9HJHyPdE-1742891025-1.0.1.1-.cqBK5XUdhGIMRzcMuY_zS_f8JZbbvBzV8YlUqErxKYu6mLiwD4V54D5wBbrqQLt4wuYgE01gpHvKC3heI2uERUy5ZG4wugA_c.zGytcQ5A;
+        path=/; expires=Tue, 25-Mar-25 08:53:45 GMT; domain=.mistral.ai; HttpOnly;
+        Secure; SameSite=None
       Transfer-Encoding:
       - chunked
       access-control-allow-origin:
       - '*'
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '394'
       ratelimitbysize-limit:
       - '2000000'
       ratelimitbysize-query-cost:
@@ -118,17 +113,15 @@ interactions:
       ratelimitbysize-remaining:
       - '1999792'
       ratelimitbysize-reset:
-      - '51'
-      x-api-key:
-      - REDACTED
+      - '16'
       x-envoy-upstream-service-time:
-      - '604'
+      - '349'
       x-kong-proxy-latency:
       - '1'
       x-kong-request-id:
-      - 8bdbde1b8340090a150e82750674b42e
+      - b11e8e275386ff41f835310afe81ca63
       x-kong-upstream-latency:
-      - '604'
+      - '350'
       x-ratelimitbysize-limit-minute:
       - '2000000'
       x-ratelimitbysize-limit-month:
@@ -137,8 +130,6 @@ interactions:
       - '1999792'
       x-ratelimitbysize-remaining-month:
       - '9999999792'
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK

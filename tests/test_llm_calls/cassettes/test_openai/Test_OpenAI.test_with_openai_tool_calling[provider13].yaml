@@ -12,43 +12,43 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '607'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4-0125-preview"}],"session_id":"061c88f0-1fe6-4b71-95c8-f21d9c61821d"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-0125-preview"}],"session_id":"0615704a-2e65-4783-890b-b5cf644931f1"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d3337616c7fa52d-MIA
+      CF-RAY:
+      - 925d10fddb9bd0e0-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:23:55 GMT
+      - Tue, 25 Mar 2025 08:33:58 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '118'
       rndr-id:
-      - 54a3f732-ef2b-4cf9
+      - 076241fa-4061-4585
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
@@ -65,7 +65,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -75,56 +75,60 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.51.2
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA2xSTU/rMBC851dYe05R2tJCc0MPISokjiC9VxS5ziZ1u7GN7fAoVf87ykeTUJpD
-        ZO14ZnbHewgYA5lCzEBsuBeFodHdcvewTK9nlL0+LkVGT5PZS/7++Lz9epa3EFYMvd6i8CfWldCF
-        IfRSqwYWFrnHSnV8M1lE03E0nddAoVOkipYbP7oeRePJbGQsfkj83zI3Wgp0ELN/AWOMHep/1aNK
-        8RNiFoWnSoHO8Rwh7i4xBlZTVQHunHSeKw9hDwqtPKqqbVUSDQCvNSWCE/XGzXcYnPugOFGyeym2
-        i/3934cdfU3u5vfi8+P96Y+kgV8jvTd1Q1mpRBfQAO/q8ZkZY6B40QyTpkkm/BmVMeA2LwtUvmob
-        DivgK4in4QrWK4hnR/hx/RhcOr8NUrCYlY5TG09bP3Z5k86N1Wt3Fh9kUkm3SSxyV48xTDM4udU+
-        UP54MDBWF8YnXu9QVbLzm0YU+n3qwfGiBb32nPr67Ty8oJak6Lms37NbIcHFBtOeGQWDAX97XpJo
-        hpQq/6UStErg9s5jkWRS5WiNld2+BcfgGwAA//8DAK8rSn5uAwAA
+      string: "{\n  \"id\": \"chatcmpl-BEu1ODuZ9ltuBqN14Ld7876quhUBb\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742891638,\n  \"model\": \"gpt-4-0125-preview\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": null,\n        \"tool_calls\": [\n          {\n
+        \           \"id\": \"call_0rtuZnvt8AHqWlceM33H5Jcc\",\n            \"type\":
+        \"function\",\n            \"function\": {\n              \"name\": \"add_fct\",\n
+        \             \"arguments\": \"{\\\"a\\\":3,\\\"b\\\":5}\"\n            }\n
+        \         }\n        ],\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"tool_calls\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 67,\n    \"completion_tokens\":
+        20,\n    \"total_tokens\": 87,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d333766cc01b3b9-MIA
+      - 925d1102ab67d0e3-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:23:56 GMT
+      - Tue, 25 Mar 2025 08:33:59 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=lN793e4Mf1WMi6_Jyrdy4M8a1G1I.M3h89GibfPBEWE-1729031036-1.0.1.1-5J9MQcimffdXnVItJPUnE3Hr1K1ffxKCMid33.cB6TYNnCzLlGNjuRZ1t7HudSLO7lH8vRKpVqxDbayfFPOg1Q;
-        path=/; expires=Tue, 15-Oct-24 22:53:56 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=VJqkVPG9UrQqzj.Nk_HrLjBuksfRw2AV7Z7oIrohtVI-1742891639-1.0.1.1-krvYbmxhLfN2rxsu5rvRhUabOEmaYwb7s8itozhXeg5cV5hBK1AdI6SehDWp6XR5q5XMCnjFZ8pgZP5uOJwfXqAb4j5uG8NZpubFc4GLwk0;
+        path=/; expires=Tue, 25-Mar-25 09:03:59 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=Ub5YPwLba2HbrkpWKMEPQ6UsfPfg76b9vv9LgHQ1uEQ-1729031036920-0.0.1.1-604800000;
+      - _cfuvid=4G26U6ZB5RVtt4gM.PFUdibTw3t3v4.nxtYB69EiNQs-1742891639664-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -134,10 +138,14 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '1062'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '884'
+      - '1259'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -149,61 +157,61 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '1999794'
+      - '1999993'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
-      - 6ms
+      - 0s
       x-request-id:
-      - req_8aeb77df36444464789c12a6303804d0
+      - req_11f3c31fa791d3ce6f9b0d08a04c473e
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "061c88f0-1fe6-4b71-95c8-f21d9c61821d", "provider": {"provider":
+    body: '{"session_id": "0615704a-2e65-4783-890b-b5cf644931f1", "provider": {"provider":
       "openai", "model": "gpt-4-0125-preview", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 6.393313355042051}}'
+      {"tokens_per_second": 4.36499397139871}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
-      - '279'
+      - '278'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"Session 061c88f0-1fe6-4b71-95c8-f21d9c61821d does not belong
-        to user 70dc4e5f-ab5b-4e78-a1a1-8820d27a99e1."}'
+      string: '{"detail":"requestID=1434a335-8ea2-4d3e, Session 0615704a-2e65-4783-890b-b5cf644931f1
+        does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d33376daa5ba69f-MIA
+      CF-RAY:
+      - 925d110c9cdb3cc0-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:23:57 GMT
+      - Tue, 25 Mar 2025 08:34:00 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       rndr-id:
-      - a5f48c45-544a-450a
+      - 1434a335-8ea2-4d3e
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:

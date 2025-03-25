@@ -6,7 +6,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -16,57 +16,57 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - AsyncOpenAI/Python 1.55.1
+      - AsyncOpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - async:asyncio
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.55.1
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '20.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.11.10
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-Ae3cM5ABv47xQrHQfqRXwGH00BE90\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1734110390,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
+      string: "{\n  \"id\": \"chatcmpl-BEu6TsFnB29YWpPXyYEyzDDh6so9r\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742891953,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": \"Hello! I'm just a program, so I don't
-        have feelings, but I'm here and ready to help you. How about you? How can
-        I assist you today?\",\n        \"refusal\": null\n      },\n      \"logprobs\":
+        have feelings, but I'm here and ready to help you. How can I assist you today?\",\n
+        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"logprobs\":
         null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
-        13,\n    \"completion_tokens\": 33,\n    \"total_tokens\": 46,\n    \"prompt_tokens_details\":
+        13,\n    \"completion_tokens\": 30,\n    \"total_tokens\": 43,\n    \"prompt_tokens_details\":
         {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
-        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"system_fingerprint\":
-        \"fp_39a40c96a0\"\n}\n"
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_b8bc95a0ac\"\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8f179f1278acdae5-MIA
+      - 925d18b20908cd3b-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Dec 2024 17:19:51 GMT
+      - Tue, 25 Mar 2025 08:39:14 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=JcGwqQMgo9suB4Nd091lYzKu3b2FzqThcy7RSCDhBZQ-1734110391-1.0.1.1-GJkATNMvt.a9.4VZ.xLIOzVh29TKSOg18CrK9amgDsFgkNUKrrGufBZaMRKKZEhWi1cpoPTYPxdh_lDSNRnBww;
-        path=/; expires=Fri, 13-Dec-24 17:49:51 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=OSmUXOuVVQoIwonalfzct1N_PkOIFBm6xJzis4S.5G8-1742891954-1.0.1.1-8EvVX4WVtWc7G39h2m_0Lba1D2ZUTaagMsSRcp1kAQSlR.B6TCWfRRWG4pd8mgfm6SEB73rix0OP8v.ZC8X1PhVfs4eiFT945AYdYzk8bxw;
+        path=/; expires=Tue, 25-Mar-25 09:09:14 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=Z_QTw6kqmNpXc.QXy7P9xrnsUAf_MGgmXTgIxxijWYc-1734110391072-0.0.1.1-604800000;
+      - _cfuvid=N.37YXTxQw8TKqbseVt3iu1w7RN3FIWG5AFFqpD0VOc-1742891954176-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -76,12 +76,14 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
-      - '882'
+      - '923'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '808'
+      - '1056'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -93,13 +95,13 @@ interactions:
       x-ratelimit-remaining-requests:
       - '29999'
       x-ratelimit-remaining-tokens:
-      - '149999978'
+      - '149999992'
       x-ratelimit-reset-requests:
       - 2ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_231a743db03afce4ecf7bf288bd9d605
+      - req_d16c5126978bd8da1299cb9336f8522e
     status:
       code: 200
       message: OK

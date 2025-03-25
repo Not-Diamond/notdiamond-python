@@ -11,49 +11,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '540'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"5481cd97-b7ae-4712-8ca8-2b74933fb2cc"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"05750945-9b11-4255-9488-d383e3ea00a0"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d107da87a45a51b-MIA
+      CF-RAY:
+      - 925cff98fd158eea-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:15:13 GMT
+      - Tue, 25 Mar 2025 08:22:05 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
       - '125'
       rndr-id:
-      - 883da015-886e-41a4
-      x-api-key:
-      - REDACTED
+      - 5a210957-8714-46c3
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -66,7 +62,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       anthropic-version:
       - '2023-06-01'
       connection:
@@ -78,130 +74,89 @@ interactions:
       host:
       - api.anthropic.com
       user-agent:
-      - Anthropic/Python 0.36.0
+      - Anthropic/Python 0.49.0
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 0.36.0
+      - 0.49.0
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
+      x-stainless-timeout:
+      - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"id":"msg_016uQCMHK7c5rb82qaZ8MtQb","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"<thinking>\nTo
-        answer the question \"How much is 3 + 5?\", the add_fct function is relevant.
-        It takes two integer parameters a and b and returns their sum.\n\nLooking
-        at the question, the values for the required parameters are directly provided:\na
-        = 3\nb = 5\n\nSince all required parameters are available, we can proceed
-        with calling the add_fct tool to get the answer.\n</thinking>"},{"type":"tool_use","id":"toolu_01PvGywMPd7yMwuijho5aW7D","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":617,"output_tokens":165}}'
+      string: '{"id":"msg_01XFYdUeG1L3cNfZ2uPCueqn","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"<thinking>The
+        relevant tool to answer the user''s question is the add_fct tool, which adds
+        two numbers together. The tool requires two parameters:\na: an integer representing
+        the first number to add\nb: an integer representing the second number to add\nThe
+        user''s question provides the specific values for a and b:\na = 3 \nb = 5\nSince
+        the user has directly provided the required parameters, we can proceed with
+        calling the add_fct tool to get the answer.</thinking>"},{"type":"tool_use","id":"toolu_01LEW9fMahSyqRxNzAqDi65J","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":617,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":177}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d107daf9f905c76-MIA
+      - 925cff9e0ae3bc1a-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:15:23 GMT
+      - Tue, 25 Mar 2025 08:22:15 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
       X-Robots-Tag:
       - none
+      anthropic-organization-id:
+      - a2610b2c-742e-455d-9552-6abe105b2a44
+      anthropic-ratelimit-input-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2025-03-25T08:22:08Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '80000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '80000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2025-03-25T08:22:15Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2024-10-11T17:15:32Z'
+      - '2025-03-25T08:22:05Z'
       anthropic-ratelimit-tokens-limit:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-remaining:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-reset:
-      - '2024-10-11T17:15:23Z'
+      - '2025-03-25T08:22:08Z'
+      cf-cache-status:
+      - DYNAMIC
       content-length:
-      - '720'
+      - '862'
       request-id:
-      - req_01KvLmLetYzB6d5o4j1c1ege
+      - req_01Bafgurd53n2dzY5gmgpeza
       via:
       - 1.1 google
-      x-api-key:
-      - REDACTED
-      x-cloud-trace-context:
-      - e139ef673f5e2d5c805eb56070b61086
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
-      [{"provider": "anthropic", "model": "claude-3-opus-20240229", "is_custom": false,
-      "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
-      [{"type": "function", "function": {"name": "add_fct", "description": "Adds a
-      and b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
-      "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '540'
-      User-Agent:
-      - Python-SDK/0.3.25
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"c325c3ce-d118-45df-941e-d1dd93d23cbf"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 9094500edfc48c15-EWR
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 28 Jan 2025 22:10:28 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      content-length:
-      - '125'
-      rndr-id:
-      - 52f306a3-b8ad-4bfa
-      x-render-origin-server:
-      - uvicorn
     status:
       code: 200
       message: OK

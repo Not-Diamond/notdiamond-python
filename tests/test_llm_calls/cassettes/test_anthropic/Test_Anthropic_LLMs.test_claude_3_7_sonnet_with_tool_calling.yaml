@@ -11,30 +11,29 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '542'
       User-Agent:
-      - Python-SDK/0.3.40
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"detail":"requestID=07059b1d-e494-4b44, Fuzzy hashing is not available
-        on the free tier. Please upgrade to use this feature."}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-7-sonnet-latest"}],"session_id":"fec3d045-7fd9-4232-bb1a-2ccb3d9510ea"}'
     headers:
       CF-RAY:
-      - 923d3dde5947c291-VIE
+      - 925d00baaf77d0f0-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Mar 2025 11:52:11 GMT
+      - Tue, 25 Mar 2025 08:22:51 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -46,14 +45,14 @@ interactions:
       content-length:
       - '127'
       rndr-id:
-      - 07059b1d-e494-4b44
+      - 0107cc8c-498d-43b6
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
 - request:
     body: '{"max_tokens": 200, "messages": [{"role": "user", "content": "How much
       is 3 + 5?"}], "model": "claude-3-7-sonnet-latest", "tools": [{"name": "add_fct",
@@ -63,7 +62,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       anthropic-version:
       - '2023-06-01'
       connection:
@@ -75,7 +74,7 @@ interactions:
       host:
       - api.anthropic.com
       user-agent:
-      - Anthropic/Python 0.39.0
+      - Anthropic/Python 0.49.0
       x-api-key:
       - REDACTED
       x-stainless-arch:
@@ -87,28 +86,32 @@ interactions:
       x-stainless-os:
       - Linux
       x-stainless-package-version:
-      - 0.39.0
+      - 0.49.0
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
       - 3.12.3
+      x-stainless-timeout:
+      - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"id":"msg_01512K3n4xZKb5XE4CKvpbA8","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"I
-        can calculate that for you using the addition function."},{"type":"tool_use","id":"toolu_01765yykg7k77HpywAKJYLPr","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":397,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":83}}'
+      string: '{"id":"msg_01CSXqFT6maijYHh5Xdv7BhZ","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"I
+        can calculate 3 + 5 for you using the addition function."},{"type":"tool_use","id":"toolu_01Lwb4WTF75htp9Z7H1DJCiK","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":397,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":89}}'
     headers:
       CF-RAY:
-      - 923d3de2fd29c289-VIE
+      - 925d00bf3bc09322-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Mar 2025 11:52:14 GMT
+      - Tue, 25 Mar 2025 08:22:54 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -122,31 +125,31 @@ interactions:
       anthropic-ratelimit-input-tokens-remaining:
       - '200000'
       anthropic-ratelimit-input-tokens-reset:
-      - '2025-03-21T11:52:13Z'
+      - '2025-03-25T08:22:52Z'
       anthropic-ratelimit-output-tokens-limit:
       - '80000'
       anthropic-ratelimit-output-tokens-remaining:
       - '80000'
       anthropic-ratelimit-output-tokens-reset:
-      - '2025-03-21T11:52:14Z'
+      - '2025-03-25T08:22:54Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2025-03-21T11:52:12Z'
+      - '2025-03-25T08:22:52Z'
       anthropic-ratelimit-tokens-limit:
       - '280000'
       anthropic-ratelimit-tokens-remaining:
       - '280000'
       anthropic-ratelimit-tokens-reset:
-      - '2025-03-21T11:52:13Z'
+      - '2025-03-25T08:22:52Z'
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '456'
+      - '457'
       request-id:
-      - req_01Gf3Q3MzEHBgVCVmcdtNHWV
+      - req_014AdL2LESwcSnxZXc4TMnAG
       via:
       - 1.1 google
     status:

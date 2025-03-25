@@ -9,48 +9,46 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '327'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"detail":[{"type":"list_type","loc":["body","messages"],"msg":"Input
-        should be a valid list","input":"You are a world class software developer.
-        Write a merge sort in Python."}]}'
+      string: '{"detail":"requestID=2a52f8d9-4a00-4045, Messages format invalid."}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d33693f9baada7f-MIA
+      CF-RAY:
+      - 925cfc7e4c94d0ec-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:57:57 GMT
+      - Tue, 25 Mar 2025 08:19:58 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       rndr-id:
-      - 6d0a8610-9f37-4683
+      - 2a52f8d9-4a00-4045
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
-      code: 422
-      message: Unprocessable Entity
+      code: 400
+      message: Bad Request
 - request:
     body: '{"messages": [{"role": "user", "content": "You are a world class software
       developer. Write a merge sort in Python."}], "model": "gpt-3.5-turbo"}'
@@ -58,7 +56,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -68,63 +66,70 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.51.2
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '600'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA3xUTW/bRhS861dM2IuF0oo+6tomrENRpEgOCQwkQYFKgrQiH8mVl7vE7mMkOfB/
-        D5akRMopwgMBzryZ98Hd930ABDIJIgRxLjguSnX914en4p3MPn7Ovj7/d/P4aA789+Hf5/efpvfP
-        4yD0CrPdUcwn1Sg2RamIpdENHVsSTN51cju9H89m49u7mihMQsrLspKvZ6Oba67s1lyPJ9ObVpkb
-        GZMLIiwGAPC9fvsadUKHIMI4PCEFOScyCqJzEBBYozwSCOekY6E5CDsyNppJ12V/riy9wXuyBOkg
-        NKTvoCDNwrcBk4JzQkE2IzhjGUJlxkrOC0iNxyPnRkdLvdSbzaasv5Y6obRRrL3iSlg7jJbap5Yp
-        FOkawcMckxb2jyWurIawtsGadyETzDvN27eYNoSilDH34YuokMmqQa3M8hNcyCRa9b1aSa8yjwwv
-        lT22hoZ9h7bGOqYWhzgF9bq+YKKT0lXK+y/akiTm2GGOcd9/n0tFkHioO66rg9AJdi1yYXmeZ8oL
-        ucJDk3CxW/X4LvVIlCXp5KoNH17GSPw+x6TDSDn6pc0p1yuf3Suf/uhqOR24qyI6yS/J1vvMXsy+
-        CfXz/g3vDsKfVlT+/C+1sNYPeHYXYnob4o9ZiFmI+xB30xCT8Wqp/W+lZN0EvjqhS11aqfmqixnW
-        h9qn+pJLh9gkhIRSqcnVl2LTOWyQVjqub8w+l3EOS3FlnfxG6oitJfHkkJi9rnVSlxVDSceQmg1c
-        IZQiC1dtPehQaZbKhx4hbHPtKBnhyzlnL510qBwlYIPYFFupCbw3raaz3Ir4CWwy4pysv7m+kNhY
-        SzHD2ITsCP9ILZQ6hn4NUH+0v94CDi73re0l5xBwjbBrctRfPZbSygm/+nSlVIu/nHeZMllpzda1
-        /BlPpZYuX1sSzmi/txybMqjZlwGwqndmdbEGg9KaouQ1myfS3nA6beyCbkv3yD/vWpYNC9Uj7ttN
-        e+m3ToiFVK63dYNYxDklnXQ86DX3c9b/s2galDr7yWXQOgXu6JiKdSp1RrY+sqdhvgx+AAAA//8D
-        AARNUYLGBgAA
+      string: "{\n  \"id\": \"chatcmpl-BEtnqQUemyAjI6LtIlcncVQkOpe7Z\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742890798,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"Sure! Here's a Python implementation
+        of the merge sort algorithm:\\n\\n```python\\ndef merge_sort(arr):\\n    if
+        len(arr) > 1:\\n        mid = len(arr) // 2\\n        left_half = arr[:mid]\\n
+        \       right_half = arr[mid:]\\n\\n        merge_sort(left_half)\\n        merge_sort(right_half)\\n\\n
+        \       i = j = k = 0\\n\\n        while i < len(left_half) and j < len(right_half):\\n
+        \           if left_half[i] < right_half[j]:\\n                arr[k] = left_half[i]\\n
+        \               i += 1\\n            else:\\n                arr[k] = right_half[j]\\n
+        \               j += 1\\n            k += 1\\n\\n        while i < len(left_half):\\n
+        \           arr[k] = left_half[i]\\n            i += 1\\n            k +=
+        1\\n\\n        while j < len(right_half):\\n            arr[k] = right_half[j]\\n
+        \           j += 1\\n            k += 1\\n\\n    return arr\\n\\n# Example
+        usage\\narr = [38, 27, 43, 3, 9, 82, 10]\\nsorted_arr = merge_sort(arr)\\nprint(sorted_arr)\\n```\\n\\nThis
+        implementation recursively divides the input array into two halves, sorts
+        each half, and then merges the two sorted halves back together. The time complexity
+        of the merge sort algorithm is O(n*log(n)).\",\n        \"refusal\": null,\n
+        \       \"annotations\": []\n      },\n      \"logprobs\": null,\n      \"finish_reason\":
+        \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\":
+        284,\n    \"total_tokens\": 306,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d3369412cec7464-MIA
+      - 925cfc813c2f8ee4-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:58:01 GMT
+      - Tue, 25 Mar 2025 08:20:00 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=wjKvZCbt0cQCRVMeXOtpI4IJPrJGgreTkE4D19DnOcw-1729033081-1.0.1.1-f.EBoJaXqJQolneB9HxaPUvJbBGLjvli.jdUyz9O2J7broXOAwmqNqjx0uI3QXHj4zjtX37elTthwSpCdpWT4w;
-        path=/; expires=Tue, 15-Oct-24 23:28:01 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=UEnUJt97I.W2M053iPJIuvRvZOcwuUWjzQW6qKNUmVc-1742890800-1.0.1.1-dW7G4PvCkye3q5wabFIynaD0ixsaI_OuDvTKpF0CudA4euSxw_d5ymUasIXCvhYtjLWseFyJ0zhp9o5UYh4JoWMWJG9pS7EIN.JG1Cy3Tb8;
+        path=/; expires=Tue, 25-Mar-25 08:50:00 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=UUCC8tDP2g8V9NFSi8FebqIrWQQoXZjKAkxfYuSAM9I-1729033081144-0.0.1.1-604800000;
+      - _cfuvid=G1lGnlWCgXi9GfSobTDl6zs5zw.iQ3T1anPBgHzIFec-1742890800832-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -134,10 +139,14 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '1932'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '3091'
+      - '2404'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -149,13 +158,13 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '49999965'
+      - '49999979'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_f52ccd48c38af1feed9a7071465ff916
+      - req_5edfccb03d05381141520087c2d01a20
     status:
       code: 200
       message: OK

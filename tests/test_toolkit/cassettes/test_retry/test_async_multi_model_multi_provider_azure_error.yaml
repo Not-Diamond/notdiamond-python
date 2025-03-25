@@ -6,7 +6,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       api-key:
       - broken-api-key
       connection:
@@ -18,48 +18,44 @@ interactions:
       host:
       - notdiamond-azure-openai.openai.azure.com
       user-agent:
-      - AsyncAzureOpenAI/Python 1.55.1
+      - AsyncAzureOpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - async:asyncio
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.55.1
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '10.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.11.10
+      - 3.12.3
     method: POST
-    uri: https://notdiamond-azure-openai.openai.azure.com//openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-07-01-preview
+    uri: https://notdiamond-azure-openai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-07-01-preview
   response:
     body:
-      string: '{ "statusCode": 401, "message": "Unauthorized. Access token is missing,
-        invalid, audience is incorrect (https://cognitiveservices.azure.com), or have
-        expired." }'
+      string: '{"error":{"code":"401","message":"Access denied due to invalid subscription
+        key or wrong API endpoint. Make sure to provide a valid key for an active
+        subscription and use a correct regional API endpoint for your resource."}}'
     headers:
       Content-Length:
-      - '161'
+      - '224'
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Dec 2024 17:20:02 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
+      - Tue, 25 Mar 2025 08:39:29 GMT
       apim-request-id:
-      - 6234d86b-e0ec-41f5-82de-52bee0aba8e5
-      x-content-type-options:
-      - nosniff
-      x-ms-client-request-id:
-      - Not-Set
+      - f245add2-7c0a-4876-915d-16a4b0d1b16f
     status:
       code: 401
-      message: Unauthorized
+      message: PermissionDenied
 - request:
     body: '{"messages": [{"role": "user", "content": "Hello, how are you?"}], "model":
       "gpt-4o"}'
@@ -67,7 +63,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -77,57 +73,58 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - AsyncOpenAI/Python 1.55.1
+      - AsyncOpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - async:asyncio
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.55.1
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '10.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.11.10
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-Ae3cZCDcKJEUwjA0LCUy2JXKZpE4J\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1734110403,\n  \"model\": \"gpt-4o-2024-08-06\",\n
+      string: "{\n  \"id\": \"chatcmpl-BEu6k5kU6m36g2wsLDbjDD7Ofv5M0\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742891970,\n  \"model\": \"gpt-4o-2024-08-06\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": \"Hello! I'm just a computer program,
         so I don't have feelings, but I'm here and ready to help you. How can I assist
-        you today?\",\n        \"refusal\": null\n      },\n      \"logprobs\": null,\n
-        \     \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
-        13,\n    \"completion_tokens\": 30,\n    \"total_tokens\": 43,\n    \"prompt_tokens_details\":
-        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        you today?\",\n        \"refusal\": null,\n        \"annotations\": []\n      },\n
+        \     \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n
+        \ \"usage\": {\n    \"prompt_tokens\": 13,\n    \"completion_tokens\": 31,\n
+        \   \"total_tokens\": 44,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
-        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"system_fingerprint\":
-        \"fp_a7d06e42a7\"\n}\n"
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_6ec83003ad\"\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8f179f65bc0cda01-MIA
+      - 925d191dac9ed0f4-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Dec 2024 17:20:04 GMT
+      - Tue, 25 Mar 2025 08:39:30 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=MmRr2VZsrf3L7fLH2Z_paISoAbxAbt1qCKvJkpGTcL4-1734110404-1.0.1.1-SqAyQfsaTOKiO32oheaFxwEtjw9xMalso7EU5eoX1.Yw58PARlhVCctDMP10ZX2bwGQujVTRI2DSX9XY3zdh9A;
-        path=/; expires=Fri, 13-Dec-24 17:50:04 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=g6L2EwdWHYf7BbpfjK9Mf_5UgtjWRagAcrqdCBMFrI4-1742891970-1.0.1.1-q1OQITk5NWnUYD.n_6cc1WijSeWmsAYhiuFt0G.t6xLCkExwgWN5KkVRezY5Lr3MT1NjcHU790O63T83uUeV353lseNoyFGmo4pqMbCUAaQ;
+        path=/; expires=Tue, 25-Mar-25 09:09:30 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=YDn5YW8qKszn9xoPObNgCm7BVDTCxZsaEf62JpBCHN4-1734110404294-0.0.1.1-604800000;
+      - _cfuvid=.82ZJFT6h5GJsQyLGDpCLjLyXM1A_kIsrX1tNfZ4ZY0-1742891970815-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -137,30 +134,32 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
-      - '871'
+      - '927'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '632'
+      - '485'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
       x-ratelimit-limit-requests:
-      - '10000'
+      - '50000'
       x-ratelimit-limit-tokens:
-      - '30000000'
+      - '150000000'
       x-ratelimit-remaining-requests:
-      - '9999'
+      - '49999'
       x-ratelimit-remaining-tokens:
-      - '29999978'
+      - '149999993'
       x-ratelimit-reset-requests:
-      - 6ms
+      - 1ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_83060a7bc2899c505261dbce4b1fd7b6
+      - req_c92d4f6149c409b6f3cbf36e764ff487
     status:
       code: 200
       message: OK

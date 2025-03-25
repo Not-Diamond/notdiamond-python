@@ -11,49 +11,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '541'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-haiku-20240307"}],"session_id":"d584faed-0cd1-4689-a1c9-3f825acf946e"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-haiku-20240307"}],"session_id":"8d6161af-89ea-44e3-839b-8ccc70a54c9b"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d107e65ae17a66e-MIA
+      CF-RAY:
+      - 925d003ae9923dbe-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:15:43 GMT
+      - Tue, 25 Mar 2025 08:22:31 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '126'
       rndr-id:
-      - d4e5e8a0-eacc-4c15
-      x-api-key:
-      - REDACTED
+      - b68881af-0661-4fff
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -66,7 +62,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       anthropic-version:
       - '2023-06-01'
       connection:
@@ -78,134 +74,84 @@ interactions:
       host:
       - api.anthropic.com
       user-agent:
-      - Anthropic/Python 0.36.0
+      - Anthropic/Python 0.49.0
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 0.36.0
+      - 0.49.0
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
+      x-stainless-timeout:
+      - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA1SPy2rDMBBF/+WuFbCtFDfalUALqZ1NW/qiCNWeJCay5Hgk+jD+92KXQrOcO8M5
-        cwc0NRRa3uskvXpopXxMi/XnS95vi5XcXJd3JQTCV0fTFTGbPUGg93YKDHPDwbgAgdbXZKFQWRNr
-        WsjFwTTHuMiSbJnIJIdA5V0gF6Behz9i8N7qyBNy/mOao07Sm+y+OHxsY7X5LnfPq6f8NvenNQSc
-        aWdxXetdNWkb18UANcBASYF3qItxfBPg4Dvdk2Hvzj3zgukUyVUE5aK1AnHupYZfnA7+SI6h5PJS
-        wMfwP8vTcfwBAAD//wMAN1dOHTYBAAA=
+      string: '{"id":"msg_01RDEPuXJk3xub24eeqZYqtA","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"text","text":"Okay,
+        let''s use the "},{"type":"tool_use","id":"toolu_01LvXiFsHbgePhXqXtNQRdkt","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":348,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":78}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d107e6ba8438dc0-MIA
+      - 925d003f7c846e48-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:15:44 GMT
+      - Tue, 25 Mar 2025 08:22:32 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
       X-Robots-Tag:
       - none
+      anthropic-organization-id:
+      - a2610b2c-742e-455d-9552-6abe105b2a44
+      anthropic-ratelimit-input-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2025-03-25T08:22:32Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '80000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '80000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2025-03-25T08:22:32Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2024-10-11T17:16:32Z'
+      - '2025-03-25T08:22:31Z'
       anthropic-ratelimit-tokens-limit:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-remaining:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-reset:
-      - '2024-10-11T17:15:44Z'
+      - '2025-03-25T08:22:32Z'
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '416'
       request-id:
-      - req_01PehH3qjeDDkNnj7NVSd6Yq
+      - req_01FVvTMdpKN7C9Mc5eXwueTe
       via:
       - 1.1 google
-      x-api-key:
-      - REDACTED
-      x-cloud-trace-context:
-      - 2e27659d52ad4c55cdea88a2b55e1136
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
-      [{"provider": "anthropic", "model": "claude-3-haiku-20240307", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
-      [{"type": "function", "function": {"name": "add_fct", "description": "Adds a
-      and b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
-      "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '541'
-      User-Agent:
-      - Python-SDK/0.3.20
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-haiku-20240307"}],"session_id":"6e656608-73d2-4858-9cb5-bd6604959a83"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d28c73cc822a542-MIA
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 14 Oct 2024 15:59:44 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      rndr-id:
-      - b7666280-f9a4-4d86
-      x-api-key:
-      - REDACTED
-      x-render-origin-server:
-      - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK

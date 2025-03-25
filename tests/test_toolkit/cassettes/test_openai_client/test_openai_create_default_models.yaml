@@ -28,6 +28,10 @@ interactions:
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
       null}, {"provider": "openai", "model": "gpt-4-0125-preview", "is_custom": false,
       "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}, {"provider": "openai", "model": "gpt-4.5-preview", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}, {"provider": "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
       null}, {"provider": "openai", "model": "o1-preview", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, {"provider":
       "openai", "model": "o1-preview-2024-09-12", "is_custom": false, "context_length":
@@ -35,55 +39,53 @@ interactions:
       "openai", "model": "o1-mini", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}, {"provider": "openai", "model":
       "o1-mini-2024-09-12", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
+      "chatgpt-4o-latest", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
       1, "hash_content": false}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
-      - '2977'
+      - '3458'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"65a787bc-7363-44f3-8318-fe81e49fdc53"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"23c71146-06d4-4390-ad51-eb4936e98dae"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d10898dcec28d97-MIA
+      CF-RAY:
+      - 925d1725af8c2693-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:23:20 GMT
+      - Tue, 25 Mar 2025 08:38:10 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '122'
       rndr-id:
-      - 186ec241-5581-40ec
-      x-api-key:
-      - REDACTED
+      - 3c591231-bfeb-4923
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
@@ -94,7 +96,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -104,57 +106,59 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.51.2
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '600'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA2xSwU7bQBC9+ysee3aqECCg3FpoBUiVKrWXtqqiyXpsT1nvmJ01FCH+vbKTEiq4
-        7OG9fW9m3sxjATip3ArOt5R914fZ+8sLPv949GNz/enk7vzLRXeb0pFed/NvXz9/cOWo0M1v9vmf
-        6p3Xrg+cReOW9okp8+h6eLo4Wy5Pj+fziei04jDKmj7PjnXWSZTZYr44ns1PZ4dnO3Wr4tncCj8L
-        AHic3rHPWPEft8LkNSEdm1HDbvX8CXBJw4g4MhPLFLMr96TXmDlOrV9yCHqA72wlruApYqvAveQW
-        hHupGIliw9AaWXvxVkKiD0MlsUHFNQ0hYxrKIBF3lEQHQy0cKoMNvgUZOvKtREZgSlFiU8IyZbEs
-        nsJWPqEUK3Sa+B2uajzogJbuGNazl1o8bge2MWODJkTmChJrTR2NIGijQwahp5TFD4ES8kM/tT5V
-        KFEzB9SJGVlBdnPwMpfE9WA07iYOIezwp+eggzZ90o3t+Ge8lijWrhOTaRxDtay9m9inAvg1LXT4
-        b0euT9r1eZ31hqNNN7K1c/sz2pMnhzsya6awx5dn5Rtu64ozSbAXB+E8+ZarvXJevBjtdc23LLbj
-        SWxeuRQ7J2cPlrlb1xIbTn2S7YnV/ZoXm4pPjnjJrngq/gIAAP//AwBrdWiYcAMAAA==
+      string: "{\n  \"id\": \"chatcmpl-BEu5SnCjtB27jQGWnJ2z5Td2XYzv9\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742891890,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"Hello! Yes, I can assist with various
+        default models, whether you're looking for pre-trained machine learning models,
+        default configurations for software applications, or anything else related
+        to models. Could you provide more details about what you need?\",\n        \"refusal\":
+        null,\n        \"annotations\": []\n      },\n      \"logprobs\": null,\n
+        \     \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        17,\n    \"completion_tokens\": 46,\n    \"total_tokens\": 63,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_b8bc95a0ac\"\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d108993bda28dc7-MIA
+      - 925d172c1df65a9d-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:23:21 GMT
+      - Tue, 25 Mar 2025 08:38:11 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=aoWIfO1mRB70AU.QYDL9xDKDNRj7BS.tzcwdco_dHa0-1728667401-1.0.1.1-aGUKtSDcUVkVCRGfZ6szpveRLChDmqIOIKodMIY7aKzK0Vu5X4V.BmvzqI.pPZg0c11JTBYyC7VPp4vvJlrJVA;
-        path=/; expires=Fri, 11-Oct-24 17:53:21 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=DK3VZlPjBLmQpiWQ3tyt4Jq736ww6NycvDAdFv5Wmik-1742891891-1.0.1.1-bFg7ik0sWyJHa7fuFi2j89kXzOOlMMEkn2vFPi.dZkUj321sdjET4HBwCkMBQAW57JmVZhTrIuSxCVtwfA1bM4PtcdrxrxkrbDIL3SbKtto;
+        path=/; expires=Tue, 25-Mar-25 09:08:11 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=ejnz4.jLx4qZUQJnbwUrZhakxubdftPC33GkZ7w87NU-1728667401385-0.0.1.1-604800000;
+      - _cfuvid=BaB9D3xwBbdppY6DgutWtoueS6t5CnuPzHhSQCYXx.w-1742891891873-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -164,16 +168,18 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '1062'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '1006'
+      - '1146'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
-      x-api-key:
-      - REDACTED
       x-ratelimit-limit-requests:
       - '30000'
       x-ratelimit-limit-tokens:
@@ -181,103 +187,13 @@ interactions:
       x-ratelimit-remaining-requests:
       - '29999'
       x-ratelimit-remaining-tokens:
-      - '149999971'
+      - '149999987'
       x-ratelimit-reset-requests:
       - 2ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_45595cd4e44ac9434fb2e956bf28926e
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "Hello, world! Do you handle
-      default models?"}], "llm_providers": [{"provider": "openai", "model": "gpt-3.5-turbo",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-3.5-turbo-0125",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4-0613", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4-1106-preview", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4-turbo", "is_custom": false, "context_length": null,
-      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
-      "model": "gpt-4-turbo-preview", "is_custom": false, "context_length": null,
-      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
-      "model": "gpt-4-turbo-2024-04-09", "is_custom": false, "context_length": null,
-      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
-      "model": "gpt-4o-2024-05-13", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4o-2024-08-06", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4o", "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4o-mini-2024-07-18",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4o-mini", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4-0125-preview", "is_custom": false,
-      "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-preview", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-preview-2024-09-12", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-mini", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "o1-mini-2024-09-12", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
-      1, "hash_content": false}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2977'
-      User-Agent:
-      - Python-SDK/0.3.20
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"920856e3-b618-4b41-a8b2-aba9dc2e7127"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d28cfe959bc4986-MIA
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 14 Oct 2024 16:05:41 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      rndr-id:
-      - 163a714a-fe18-4973
-      x-api-key:
-      - REDACTED
-      x-render-origin-server:
-      - uvicorn
-      x-token:
-      - REDACTED
+      - req_77b6fe11e7f26db0951c3d89e5fc344c
     status:
       code: 200
       message: OK

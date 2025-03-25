@@ -8,30 +8,29 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '304'
       User-Agent:
-      - Python-SDK/0.3.40
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"detail":"requestID=150e332c-e98b-4354, Fuzzy hashing is not available
-        on the free tier. Please upgrade to use this feature."}'
+      string: '{"providers":[{"provider":"openai","model":"chatgpt-4o-latest"}],"session_id":"4b20281f-01a7-47c9-9796-78bce5d5955b"}'
     headers:
       CF-RAY:
-      - 923d418fda805afb-VIE
+      - 925d12ac0f45d0d2-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Mar 2025 11:54:42 GMT
+      - Tue, 25 Mar 2025 08:35:06 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -41,16 +40,16 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '127'
+      - '117'
       rndr-id:
-      - 150e332c-e98b-4354
+      - 27d3f100-1da2-4cfb
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
 - request:
     body: '{"messages": [{"content": "The output should be formatted as a JSON instance
       that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
@@ -68,7 +67,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -78,7 +77,7 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.55.1
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
       - x64
       x-stainless-async:
@@ -88,7 +87,9 @@ interactions:
       x-stainless-os:
       - Linux
       x-stainless-package-version:
-      - 1.55.1
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
@@ -99,8 +100,8 @@ interactions:
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BDVFTFojMnh7tNGecqQ0z6tQaQwgc\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742558083,\n  \"model\": \"chatgpt-4o-latest\",\n
+      string: "{\n  \"id\": \"chatcmpl-BEu2VjAGtu2W0zTCUSnJzuzeax9cP\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742891707,\n  \"model\": \"chatgpt-4o-latest\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": \"```json\\n{\\n  \\\"setup\\\": \\\"Why
         don't skeletons fight each other?\\\",\\n  \\\"punchline\\\": \\\"Because
@@ -111,23 +112,23 @@ interactions:
         0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
-        \"default\",\n  \"system_fingerprint\": \"fp_0a26939952\"\n}\n"
+        \"default\",\n  \"system_fingerprint\": \"fp_52f55c74b1\"\n}\n"
     headers:
       CF-RAY:
-      - 923d41929bbe5d3b-VIE
+      - 925d12b07e39d0f3-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 21 Mar 2025 11:54:43 GMT
+      - Tue, 25 Mar 2025 08:35:11 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=K0xzZuIB7kPovw1gU_PvDDFuva5IL4lCSKpeM4jomkE-1742558083-1.0.1.1-pMg2oUYwNaMeuF8MCNT1dkMkXeFZ6Xr_LMOKRgP1JOPPQLRGo8BPD90Abc2j5poqQ2hukcvQap6xdMHxLzsW.Pctf3LBF079_XIIe50re4U;
-        path=/; expires=Fri, 21-Mar-25 12:24:43 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=d4tnAA7HuqxjV9iqJkHvFvHiNueDx9OxGWOu5_gpQfQ-1742891711-1.0.1.1-UJpflS7n360y96lun8bqyLAwIsByTtZYxAA6K0MiZEfxtuGg7S4Phd5jUSqhDpI1MbThXzSnYIZhLQW3SMABiHaIKGHoLkZw_w2p68dgbZo;
+        path=/; expires=Tue, 25-Mar-25 09:05:11 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=qNL2.4XWca4vAk.UILQkuGrXYVG9sSpThg2VLRjVOk4-1742558083828-0.0.1.1-604800000;
+      - _cfuvid=8N2cCrP11PryN_gFeCIxhedGV2v3Ptp2Tvy1V4kmIGo-1742891711193-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -144,7 +145,7 @@ interactions:
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '695'
+      - '4067'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -162,7 +163,7 @@ interactions:
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_0c4158b0dededf651966bb4f1d5ef3cc
+      - req_33a21a616334cdd6a67635dc4bc2c279
     status:
       code: 200
       message: OK

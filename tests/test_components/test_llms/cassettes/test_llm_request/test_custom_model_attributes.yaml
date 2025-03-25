@@ -10,41 +10,43 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '474'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4"}],"session_id":"df83cc7f-17e5-4712-b32d-ec1245e96e25"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4"}],"session_id":"e0d22c96-2ba2-442b-aecf-4fb1ca6be87e"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d38c0aa8b04d9fd-MIA
+      CF-RAY:
+      - 925cfc3df8357141-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Wed, 16 Oct 2024 14:31:28 GMT
+      - Tue, 25 Mar 2025 08:19:48 GMT
       Server:
       - cloudflare
-      Vary:
-      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
       - '105'
       rndr-id:
-      - cd6a1366-b46a-46c5
+      - a87801b0-08ff-43cf
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
@@ -57,7 +59,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -67,54 +69,56 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.51.2
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-AIzLcuR7ffvQDLjWyd5MHzHA1161v\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1729089088,\n  \"model\": \"gpt-4-0613\",\n
+      string: "{\n  \"id\": \"chatcmpl-BEtngDESR1be1rbiK88Wn1nQExTI7\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742890788,\n  \"model\": \"gpt-4-0613\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": \"Hello! How can I assist you today?\",\n
-        \       \"refusal\": null\n      },\n      \"logprobs\": null,\n      \"finish_reason\":
-        \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 8,\n    \"completion_tokens\":
-        9,\n    \"total_tokens\": 17,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
-        0\n    },\n    \"completion_tokens_details\": {\n      \"reasoning_tokens\":
-        0\n    }\n  },\n  \"system_fingerprint\": null\n}\n"
+        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"logprobs\":
+        null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        8,\n    \"completion_tokens\": 10,\n    \"total_tokens\": 18,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d38c0b2dfb07465-MIA
+      - 925cfc429db38e61-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Wed, 16 Oct 2024 14:31:29 GMT
+      - Tue, 25 Mar 2025 08:19:49 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=zHw4GWOnoQZJjgFPoVXIEgh9Oqi8lDJ9lEmHXfiO7KU-1729089089-1.0.1.1-6SLgaS5tfE_8HG.47n_O1eRJ0LnlGZgotqTIIL5qzXmHds1DzrmdB.YLCg7yg549H3vq_0pfxzOo8L6i19OuYA;
-        path=/; expires=Wed, 16-Oct-24 15:01:29 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=bAGcLuuH97v00NTpfXMIDC9jTytgBrdFeLq30UxNmjI-1742890789-1.0.1.1-g7IfWS0IJfa4_dwnF8Ry487xb8fned5h8W5TPMzkuseXUxFz7g3obFbukreSwUXLSOUsgi6Eg16kFQk5_roVhu3vO7UOTZtY9SGYyY3XuBg;
+        path=/; expires=Tue, 25-Mar-25 08:49:49 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=5tw6ZujN2ve3nq31q5YHxHUDrA6jsZ9WIjWGbiRM.Qw-1729089089199-0.0.1.1-604800000;
+      - _cfuvid=IFDIVuCYEb.Tzk9yWVKQ4RzfjeRKvXbA9zENI7xJ5S8-1742890789236-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -124,12 +128,14 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
-      - '632'
+      - '817'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '630'
+      - '829'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -141,13 +147,13 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '999980'
+      - '999996'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
-      - 1ms
+      - 0s
       x-request-id:
-      - req_337957d0175d833e375a4a52fd692fe9
+      - req_bae1f9a3b81400d1a8aa09aadf1fe5a3
     status:
       code: 200
       message: OK
@@ -162,131 +168,45 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '477'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"togetherai","model":"Meta-Llama-3.1-8B-Instruct-Turbo"}],"session_id":"5c04a96b-cda4-40af-9122-db0f28ab3dd4"}'
+      string: '{"providers":[{"provider":"togetherai","model":"Meta-Llama-3.1-8B-Instruct-Turbo"}],"session_id":"24ec7fad-7d61-4fe5-a074-4e6ae2c5e3b6"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d38c0b83f897461-MIA
+      CF-RAY:
+      - 925cfc499aab28d0-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Wed, 16 Oct 2024 14:31:30 GMT
+      - Tue, 25 Mar 2025 08:19:50 GMT
       Server:
       - cloudflare
-      Vary:
-      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       content-length:
       - '136'
       rndr-id:
-      - 3ec3419a-7a5c-4771
+      - aefc1f52-5777-424f
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo", "max_tokens":
-      200, "prompt": "Human: hello"}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '101'
-      Content-Type:
-      - application/json
-      User-Agent:
-      - python-requests/2.32.3
-    method: POST
-    uri: https://api.together.ai/v1/completions
-  response:
-    body:
-      string: "{\n  \"id\": \"8d38c0be5c4b7434-MIA\",\n  \"object\": \"text.completion\",\n
-        \ \"created\": 1729089090,\n  \"model\": \"meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo\",\n
-        \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"text\": \", I am a human.\\nAI:
-        Hello, I am an artificial intelligence. I am here to assist you.\\nHuman:
-        I am trying to learn about the concept of artificial intelligence. Can you
-        explain it to me?\\nAI: Of course! Artificial intelligence (AI) refers to
-        the development of computer systems that can perform tasks that would typically
-        require human intelligence. This includes tasks such as learning, problem-solving,
-        decision-making, and perception.\\nHuman: That sounds like a broad definition.
-        Can you give me some examples of AI in action?\\nAI: Certainly! Some examples
-        of AI include:\\nVirtual assistants like Siri, Alexa, and Google Assistant,
-        which can understand and respond to voice commands.\\nImage recognition systems,
-        which can identify objects and people in images.\\nSelf-driving cars, which
-        can navigate roads and make decisions in real-time.\\nChatbots, which can
-        engage in conversation with humans and provide customer support.\\nPredictive
-        analytics, which can analyze data to make predictions about future events.\\nHuman:
-        Those are\",\n      \"finish_reason\": \"length\",\n      \"seed\": 8992331493155465000,\n
-        \     \"logprobs\": null,\n      \"index\": 0\n    }\n  ],\n  \"usage\": {\n
-        \   \"prompt_tokens\": 4,\n    \"completion_tokens\": 200,\n    \"total_tokens\":
-        204\n  }\n}"
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 8d38c0be5c4b7434-MIA
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json; charset=utf-8
-      Date:
-      - Wed, 16 Oct 2024 14:31:33 GMT
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=2592000; includeSubDomains
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      access-control-allow-origin:
-      - '*'
-      content-length:
-      - '1451'
-      etag:
-      - W/"5ab-GvBub4/Mqr5RqL2cuOIBfPu/Zr4"
-      x-api-call-end:
-      - '2024-10-16T14:31:33.688Z'
-      x-api-call-start:
-      - '2024-10-16T14:31:30.365Z'
-      x-api-received:
-      - '2024-10-16T14:31:30.358Z'
-      x-inference-version:
-      - v2
-      x-ratelimit:
-      - 'false'
-      x-ratelimit-limit:
-      - '10'
-      x-ratelimit-limit-tokens:
-      - '3000'
-      x-ratelimit-remaining:
-      - '19'
-      x-ratelimit-remaining-tokens:
-      - '3000'
-      x-ratelimit-reset:
-      - '2'
     status:
       code: 200
       message: OK
@@ -297,7 +217,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -307,7 +227,7 @@ interactions:
       host:
       - api.together.ai
       user-agent:
-      - OpenAI/Python 1.55.1
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
       - x64
       x-stainless-async:
@@ -317,40 +237,40 @@ interactions:
       x-stainless-os:
       - Linux
       x-stainless-package-version:
-      - 1.55.1
+      - 1.68.2
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.11.7
+      - 3.12.3
     method: POST
     uri: https://api.together.ai/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"90944fa53a994411\",\n  \"object\": \"chat.completion\",\n
-        \ \"created\": 1738102211,\n  \"model\": \"meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo\",\n
-        \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"finish_reason\": \"eos\",\n
-        \     \"seed\": 11668428188348600000,\n      \"logprobs\": null,\n      \"index\":
+      string: "{\n  \"id\": \"nnQHsfF-4Yz4kd-925cfc500ad66e9f\",\n  \"object\": \"chat.completion\",\n
+        \ \"created\": 1742890790,\n  \"model\": \"meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo\",\n
+        \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n
+        \     \"seed\": 9171964240117630000,\n      \"logprobs\": null,\n      \"index\":
         0,\n      \"message\": {\n        \"role\": \"assistant\",\n        \"content\":
-        \"Hello. Is there something I can help you with or would you like to chat?\",\n
-        \       \"tool_calls\": []\n      }\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
-        36,\n    \"completion_tokens\": 18,\n    \"total_tokens\": 54\n  }\n}"
+        \"Hello. How can I assist you today?\",\n        \"tool_calls\": []\n      }\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 36,\n    \"completion_tokens\":
+        10,\n    \"total_tokens\": 46\n  }\n}"
     headers:
       Access-Control-Allow-Origin:
       - '*'
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 90944fa53a994411-EWR
+      - 925cfc500ad66e9f-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 28 Jan 2025 22:10:11 GMT
+      - Tue, 25 Mar 2025 08:19:50 GMT
       ETag:
-      - W/"23b-CfVSpdtgG2NXFNNTPLKElXohISI"
+      - W/"224-bInUljsaZEcJyCXTi1Qu2+2+UQw"
       Retry-After:
       - '2'
       Server:
@@ -366,29 +286,31 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400
       content-length:
-      - '571'
+      - '548'
       x-amzn-trace-id:
-      - 950da691-b307-4043-827d-5da8b7bb4f57-noamzn
+      - 5af7ef6e-4698-4eab-a442-115e474b94dd-noamzn
       x-api-call-end:
-      - '2025-01-28T22:10:11.767Z'
+      - '2025-03-25T08:19:50.753Z'
       x-api-call-start:
-      - '2025-01-28T22:10:11.672Z'
+      - '2025-03-25T08:19:50.675Z'
       x-api-received:
-      - '2025-01-28T22:10:11.552Z'
+      - '2025-03-25T08:19:50.658Z'
       x-inference-version:
       - v2
       x-ratelimit:
       - 'false'
       x-ratelimit-limit:
-      - '75'
+      - '10'
       x-ratelimit-limit-tokens:
-      - '16666'
+      - '3000'
       x-ratelimit-remaining:
-      - '149'
+      - '19'
       x-ratelimit-remaining-tokens:
-      - '16666'
+      - '3000'
       x-ratelimit-reset:
       - '2'
+      x-request-id:
+      - nnQHsfF-4Yz4kd-925cfc500ad66e9f
     status:
       code: 200
       message: OK

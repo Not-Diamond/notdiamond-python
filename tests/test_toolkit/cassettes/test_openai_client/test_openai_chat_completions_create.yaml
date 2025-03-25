@@ -28,6 +28,10 @@ interactions:
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
       null}, {"provider": "openai", "model": "gpt-4-0125-preview", "is_custom": false,
       "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}, {"provider": "openai", "model": "gpt-4.5-preview", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}, {"provider": "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
       null}, {"provider": "openai", "model": "o1-preview", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, {"provider":
       "openai", "model": "o1-preview-2024-09-12", "is_custom": false, "context_length":
@@ -35,135 +39,127 @@ interactions:
       "openai", "model": "o1-mini", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}, {"provider": "openai", "model":
       "o1-mini-2024-09-12", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
+      "chatgpt-4o-latest", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
       1, "hash_content": false}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
-      - '2992'
+      - '3473'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
-    uri: https://not-diamond-server-oqbj.onrender.com/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-2024-08-06"}],"session_id":"03a952e3-3695-4f3d-aec8-cd3d831e415f"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4.5-preview"}],"session_id":"235c5939-5b84-4292-9699-3398f98f8cc5"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d10899b2d2f8dee-MIA
+      CF-RAY:
+      - 925d17350ed8c2d4-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:23:22 GMT
+      - Tue, 25 Mar 2025 08:38:13 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '115'
       rndr-id:
-      - 4e3d3ec0-8512-478d
-      x-api-key:
-      - REDACTED
+      - c7c9b314-378e-478c
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
-      x-token:
-      - REDACTED
     status:
       code: 200
       message: OK
 - request:
     body: '{"messages": [{"role": "user", "content": "Hello, world! Does this chat.completions.create
-      call work?"}], "model": "gpt-4o-2024-08-06"}'
+      call work?"}], "model": "gpt-4.5-preview"}'
     headers:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
-      - '135'
+      - '133'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.51.2
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '600'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA2xVTW/bOBC9+1dMeEkCyILtuG5qIIdsWmxy2h66C3SjwKKpkcU1RTIk5VQI8t8X
-        Q9EfbXMxLI7mzcx7j6PXEQCTFVsCEw0PorVqfHv/Gb/c7Xr1/Ed19/zP7N9peO7+/Puzm+yUZBll
-        mPV/KMI+KxemtQqDNHoIC4c8IKFOP86uF4uP88ksBlpToaK0jQ3juRnPJrP5eHI9nixSYmOkQM+W
-        8DgCAHiNv9SirvAHW8Ik25+06D3fIFseXgJgzig6Ydx76QPXgWXHoDA6oI5d36NS5gweAihjth6U
-        3CL0pjt3CMH1Um8gGJA6oOMiwIsMDXANt18fMrDGe7lWPfxlUd8+nHs6zuFbg1D+wobPByZKaDE0
-        pgLpIfRWCq5UD53HispsUKPjAYGy4TQbvhloUFlA7TuHIAO8GLf1GbR8ixDPUtcESW3L1G1oEDQK
-        Isn1YLnjLQZ0Pod7dHjugae6CvAHp5JgamjMCwFCKzdNiJgQGulT+8tCF7osS9uHxuhCy9YaF8BY
-        1FxSbPiXcytXW+zhBgrWm86NuZXjLfYFo5ccemu0R7hJmfldw8PdYezE2UWhAaJfbopol6v8wzh0
-        bm0KlsXYYAB/80hPAK9FlL9gSyiY733AtmAZFHvdh8B30wF3CDwSW3cKDl7JC/aWvYPVeXTvIEUP
-        ZSSIqs4K9kaZT4W+pBmtkzpc7CfNk60fJ0956jpPUJeRUEp50APVSY0MHFrFBUL5K4nloDAdAheh
-        44ocCFvsc/gyGCWQk8gZOwSpfeBKkdcaTKaFr1FCsFxs+QaB6+qY4xA6T17isONKVoMKyeF71suj
-        p4Bm4VKTp5T0gYy0f21ArbCWGmN9YfQOneekNDTSB+P6DKQWqquoJtGe7mM5iFhmUJIEZRbbLA96
-        lXnkrY6ORS1MR/cVuO5Bet+hz6Ay3VrhWDQotrF8bZQyL1JvopenOXwnFhN9dD2FcQ5FiKW4CHKH
-        eaFnw/Dvcyf9CcUXpZV2/5z8XV7mhb4aICKVoHkbL2504sC19MB3XCq+VoMcvrN0u7DKCz2PfULD
-        dxRLfQ3rSSOtDK1RREZr42g3ECIN5fC5Qx/8KVMRxVsUspYC0DlK2ctl3IG7GlFB7RBpR1lndrKi
-        /h1ChYFL5c9Ol6vDuvOcdrvulErnb4dtrczGOrP2KX44r6WWvlk55N5o2sw+GMti9G0E8BS/Ct1P
-        i55ZZ1obVsFsURPgbDrAsePqPAl++pCiwQSujoGr6SJ7B2+Vhjv5rjDBRYPVMXUyOhnu96rvQQwD
-        Sr35DWWUkNLKWtVSb9DFBUJ81Ha1WC+u+fVsMl+z0dvofwAAAP//AwCEOp4DsgcAAA==
+      string: "{\n  \"id\": \"chatcmpl-BEu5VKAlfFVq2rt92k9nRfGBpOqTS\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742891893,\n  \"model\": \"gpt-4.5-preview-2025-02-27\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"Hello! It seems like you might be referencing
+        OpenAI's Chat Completion API (e.g., `openai.ChatCompletion.create`). Currently,
+        your provided call isn't fully included. Could you please share the actual
+        code snippet, request, or specific parameters you've used? Once provided,
+        I'll be happy to help you check if it's correctly implemented or suggest improvements.\",\n
+        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"finish_reason\":
+        \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 21,\n    \"completion_tokens\":
+        71,\n    \"total_tokens\": 92,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d1089a15c19a569-MIA
+      - 925d173d6c6a89c3-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Fri, 11 Oct 2024 17:23:27 GMT
+      - Tue, 25 Mar 2025 08:38:18 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=epUUDVCr48Bm9MNv8ReubLWMvEe7wGtDX48tLK7pkLw-1728667407-1.0.1.1-8FBOnf6uvs7I1Ga7LdqtVCxY3imTEHKe68R_i6AzEwpvi9.VfkVAZEQhOsv6WZKv91fIp2RXaV2BxQwIs6nVZA;
-        path=/; expires=Fri, 11-Oct-24 17:53:27 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=VyfeAucdWVfkj1WOPOMsKw5hoFmeWNCnKSdLNeTeUd8-1742891898-1.0.1.1-pWRvzE.ZVHK7Boe1yY6y8V7t1PaPqOSjjueVSiBWdDJugPJ08qCeleJRHYSp40OJxuFeVSZ6WNg9UUVakj18PKjByLRa3CS2yfPYHUYsV4s;
+        path=/; expires=Tue, 25-Mar-25 09:08:18 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=UQyI4aPNnGKsTiBG1nGVaMPkxktnS4WwU3WJtyJIAZU-1728667407292-0.0.1.1-604800000;
+      - _cfuvid=ASSjg.iib.TwWH5PuKS.0wo5uZ8.MHvGoyDJSklCITU-1742891898109-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -173,120 +169,32 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '1137'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '4763'
+      - '4605'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
-      x-api-key:
-      - REDACTED
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
-      - '30000000'
+      - '2000000'
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '29999968'
+      - '1999982'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_b774cb59fdd7bb44daac5daa7150c3c0
-      x-token:
-      - REDACTED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this chat.completions.create
-      call work?"}], "llm_providers": [{"provider": "openai", "model": "gpt-3.5-turbo",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-3.5-turbo-0125",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4-0613", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4-1106-preview", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "gpt-4-turbo", "is_custom": false, "context_length": null,
-      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
-      "model": "gpt-4-turbo-preview", "is_custom": false, "context_length": null,
-      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
-      "model": "gpt-4-turbo-2024-04-09", "is_custom": false, "context_length": null,
-      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
-      "model": "gpt-4o-2024-05-13", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4o-2024-08-06", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4o", "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4o-mini-2024-07-18",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4o-mini", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4-0125-preview", "is_custom": false,
-      "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-preview", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-preview-2024-09-12", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-mini", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "o1-mini-2024-09-12", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
-      1, "hash_content": false}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2992'
-      User-Agent:
-      - Python-SDK/0.3.20
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-2024-08-06"}],"session_id":"9061a70e-10bd-401f-97be-6e99e6d94903"}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d28cffbf95b745a-MIA
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 14 Oct 2024 16:05:43 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400
-      rndr-id:
-      - 22669a70-9969-476e
-      x-api-key:
-      - REDACTED
-      x-render-origin-server:
-      - uvicorn
-      x-token:
-      - REDACTED
+      - req_c6e1ba8d2dbe6fa7be237e4a7f493ad9
     status:
       code: 200
       message: OK

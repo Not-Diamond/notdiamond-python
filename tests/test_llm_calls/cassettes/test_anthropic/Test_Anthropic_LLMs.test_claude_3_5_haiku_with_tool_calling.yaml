@@ -11,47 +11,48 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '543'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"detail":"requestID=9ce5ba19-d626-4b68, Provider anthropic/claude-3-5-haiku-20241022
-        not recognized."}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-haiku-20241022"}],"session_id":"d0e9e5e4-2c93-4ee2-96d7-be90ce232aa1"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8dd6a29b682ea587-MIA
+      CF-RAY:
+      - 925d0094aa64c31e-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 04 Nov 2024 18:23:26 GMT
+      - Tue, 25 Mar 2025 08:22:45 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '128'
       rndr-id:
-      - 9ce5ba19-d626-4b68
+      - 8acbfdd1-1f92-4a04
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
 - request:
     body: '{"max_tokens": 200, "messages": [{"role": "user", "content": "How much
       is 3 + 5?"}], "model": "claude-3-5-haiku-20241022", "tools": [{"name": "add_fct",
@@ -61,7 +62,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       anthropic-version:
       - '2023-06-01'
       connection:
@@ -73,64 +74,82 @@ interactions:
       host:
       - api.anthropic.com
       user-agent:
-      - Anthropic/Python 0.36.0
+      - Anthropic/Python 0.49.0
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 0.36.0
+      - 0.49.0
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
+      x-stainless-timeout:
+      - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"id":"msg_019AY9ygRb5RdnD6K3LmZFjV","type":"message","role":"assistant","model":"claude-3-5-haiku-20241022","content":[{"type":"text","text":"I''ll
-        help you calculate that using the add_fct tool."},{"type":"tool_use","id":"toolu_0124x47E4aRAWVvcTdnDbt8W","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":348,"output_tokens":87}}'
+      string: '{"id":"msg_01DCUJzvz2P9uMHMUUVUxoN7","type":"message","role":"assistant","model":"claude-3-5-haiku-20241022","content":[{"type":"text","text":"I''ll
+        help you calculate that using the add_fct tool."},{"type":"tool_use","id":"toolu_011TG3aUEhwp4TYSLEZqBaHv","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":348,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":86}}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8dd6a29ede576dd4-MIA
+      - 925d00991f0b8ef6-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 04 Nov 2024 18:23:28 GMT
+      - Tue, 25 Mar 2025 08:22:48 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
       X-Robots-Tag:
       - none
+      anthropic-organization-id:
+      - a2610b2c-742e-455d-9552-6abe105b2a44
+      anthropic-ratelimit-input-tokens-limit:
+      - '400000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '400000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2025-03-25T08:22:46Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '80000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '80000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2025-03-25T08:22:48Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2024-11-04T18:23:32Z'
+      - '2025-03-25T08:22:46Z'
       anthropic-ratelimit-tokens-limit:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-remaining:
-      - '400000'
+      - '480000'
       anthropic-ratelimit-tokens-reset:
-      - '2024-11-04T18:23:28Z'
+      - '2025-03-25T08:22:46Z'
+      cf-cache-status:
+      - DYNAMIC
       content-length:
-      - '390'
+      - '450'
       request-id:
-      - req_012SoF8jKgLpaS6pFARqLg3y
+      - req_016d7qniNijWYWriNbzWCtr9
       via:
       - 1.1 google
     status:

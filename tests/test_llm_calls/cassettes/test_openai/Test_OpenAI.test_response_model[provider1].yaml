@@ -8,43 +8,43 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '305'
       User-Agent:
-      - Python-SDK/0.3.20
+      - Python-SDK/0.3.41
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo-0125"}],"session_id":"fe5ff978-d25e-4675-b7b9-cb0220881925"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo-0125"}],"session_id":"5cf1a0cb-7276-41fb-b381-02a5572e4aae"}'
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-Ray:
-      - 8d33377998e4b3ef-MIA
+      CF-RAY:
+      - 925d111c7f8bc297-SOF
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:23:59 GMT
+      - Tue, 25 Mar 2025 08:34:02 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '118'
       rndr-id:
-      - 1c40b0da-406f-4dca
+      - cea8a536-ecb7-4e15
+      vary:
+      - Accept-Encoding
       x-render-origin-server:
       - uvicorn
     status:
@@ -67,7 +67,7 @@ interactions:
       accept:
       - application/json
       accept-encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       connection:
       - keep-alive
       content-length:
@@ -77,56 +77,58 @@ interactions:
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.51.2
+      - OpenAI/Python 1.68.2
       x-stainless-arch:
-      - arm64
+      - x64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - MacOS
+      - Linux
       x-stainless-package-version:
-      - 1.51.2
+      - 1.68.2
+      x-stainless-read-timeout:
+      - '120.0'
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.12.3
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA2yRMW/bMBCFd/2K6y1Z7EC2awTREiQoChRIh6JDi1aBQVFniQ1FsuQRrmD4vxek
-        FdtBsmh4j+/T3bt9AYCqxQpQ9oLl4PT8/svz568339a/6PHTKL3Rvv+7E+tb2X3/2eEsJWzzhyS/
-        pK6lHZwmVtYcbelJMCXq4mZ5W64W5ccyG4NtSadY53i+ul7POfrGzsvFcj0le6skBazgdwEAsM/f
-        NKNp6R9WkDlZGSgE0RFWp0cA6K1OCooQVGBhGGdnU1rDZPLY+9oA1BiIo6uxghp/9CNIG3Vrrhi4
-        J2iUHKUmSJgWooNmBMWB9Pauxtkx76KRvVaGjowHkiIGAsWwEwF4Z4GVp/ZDjbU5XI7iaRuDSFWY
-        qPWkH067ads5b5sw+Sd9q4wK/caTCNakPQJbh9k9FABPucP4qhZ03g6ON2yfySTgspw6xPPZzu7q
-        xWTLQl+kTsYr3qYlFkqHiyugFLKn9hwti4vl3v70PcRxQWW6N5RiImEYA9Ow2SrTkXde5bvmMg/F
-        fwAAAP//AwC+w9wM1gIAAA==
+      string: "{\n  \"id\": \"chatcmpl-BEu1TtEPcAfELImIZ0QyzhdbkZ5WJ\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742891643,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"{\\n  \\\"setup\\\": \\\"Why did the
+        scarecrow win an award?\\\",\\n  \\\"punchline\\\": \\\"Because he was outstanding
+        in his field!\\\"\\n}\",\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
+        32,\n    \"total_tokens\": 232,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8d33377ee9cba52d-MIA
+      - 925d1120da272942-VIE
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
-      - Tue, 15 Oct 2024 22:24:00 GMT
+      - Tue, 25 Mar 2025 08:34:03 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=0yiPXVkL.TkCqhSj5NsaKd8wuPgH7U27vitiYh_PMRY-1729031040-1.0.1.1-qbnoGhhxXYK9P0cXgUx6.N2T2ljjMma.vlDKvki66zC6UtyAccnHGdwRpu4ySYhNt9ZjjlIzeNmdY_GbuaBGHw;
-        path=/; expires=Tue, 15-Oct-24 22:54:00 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=PSksDJmMhQ9hQv..Ey9MjQDFCUoobmj1Psc28A6Sj58-1742891643-1.0.1.1-9AoT6nTzRmVPUuOcs64EEsjz2TYt7VBFjfBqFpQoEwDj0ZoOD7N1ihHTQbcV.BUqvzRaN_RUASNFwD6HjaSCxnpPduTWkbzfJ2EMljRcleE;
+        path=/; expires=Tue, 25-Mar-25 09:04:03 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=ODam3l.2OkKBXdvW_5SDr8uRJc8dEB7XK8P5sQZ.HrE-1729031040664-0.0.1.1-604800000;
+      - _cfuvid=0sFOdw6UMVuc689ISihZpVlw0Lb90uu80sZwLTR.8Yo-1742891643864-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -136,10 +138,14 @@ interactions:
       - X-Request-ID
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '916'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '759'
+      - '563'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -151,13 +157,13 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '49999619'
+      - '49999818'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_e4c22817928b03cc33e8f2dbb73e1a3e
+      - req_e88a2f198012e5050cbfbee2f22ff990
     status:
       code: 200
       message: OK
