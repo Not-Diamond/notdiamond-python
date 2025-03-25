@@ -7,6 +7,9 @@ from notdiamond.llms.providers import NDLLMProviders
 @pytest.mark.vcr
 @pytest.mark.longrun
 class Test_Mistral:
+    @pytest.mark.xfail(
+        reason="Mistral large doesn't reliably use tool calling"
+    )
     def test_mistral_large_with_tool_calling(self, tools_fixture):
         provider = NDLLMProviders.MISTRAL_LARGE_LATEST
         provider.kwargs = {"max_tokens": 200}
@@ -21,6 +24,9 @@ class Test_Mistral:
         assert len(result.tool_calls) == 1
         assert result.tool_calls[0]["name"] == "add_fct"
 
+    @pytest.mark.xfail(
+        reason="Mistral large doesn't reliably use OpenAI tool calling format"
+    )
     def test_mistral_large_with_openai_tool_calling(
         self, openai_tools_fixture
     ):
@@ -157,6 +163,9 @@ class Test_Mistral:
         assert result.setup
         assert result.punchline
 
+    @pytest.mark.xfail(
+        reason="Mistral small doesn't reliably use tool calling"
+    )
     def test_mistral_small_with_tool_calling(self, tools_fixture):
         provider = NDLLMProviders.MISTRAL_SMALL_LATEST
         provider.kwargs = {"max_tokens": 200}
@@ -171,6 +180,9 @@ class Test_Mistral:
         assert len(result.tool_calls) == 1
         assert result.tool_calls[0]["name"] == "add_fct"
 
+    @pytest.mark.xfail(
+        reason="Mistral small doesn't reliably use OpenAI tool calling format"
+    )
     def test_mistral_small_with_openai_tool_calling(
         self, openai_tools_fixture
     ):

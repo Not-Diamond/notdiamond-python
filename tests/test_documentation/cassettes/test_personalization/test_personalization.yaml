@@ -36,17 +36,17 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"detail":"requestID=bff37a55-6721-4e52, Preference ID 5c5af286-b715-4d8b-8cf9-151230ef96a3
+      string: '{"detail":"requestID=0766224f-9c24-4b38, Preference ID 5c5af286-b715-4d8b-8cf9-151230ef96a3
         not found."}'
     headers:
       CF-RAY:
-      - 92589670af9dfea5-SOF
+      - 925cfe1898fed0e8-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:31:15 GMT
+      - Tue, 25 Mar 2025 08:21:03 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -58,7 +58,7 @@ interactions:
       content-length:
       - '104'
       rndr-id:
-      - bff37a55-6721-4e52
+      - 0766224f-9c24-4b38
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -107,48 +107,46 @@ interactions:
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEhnvRmX6R9LzZfzREk8NXbay3jxY\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742844675,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
+      string: "{\n  \"id\": \"chatcmpl-BEtouNm6GkpZkrapWtfVo87rR5LLX\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742890864,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": \"Sure! Here is an implementation of
         the merge sort algorithm in Python:\\n\\n```python\\ndef merge_sort(arr):\\n
-        \   if len(arr) <= 1:\\n        return arr\\n    \\n    # Split the array
-        into two halves\\n    mid = len(arr) // 2\\n    left = arr[:mid]\\n    right
-        = arr[mid:]\\n    \\n    # Recursively sort each half\\n    left = merge_sort(left)\\n
-        \   right = merge_sort(right)\\n    \\n    # Merge the sorted halves\\n    return
-        merge(left, right)\\n\\ndef merge(left, right):\\n    merged = []\\n    left_index
-        = 0\\n    right_index = 0\\n    \\n    while left_index < len(left) and right_index
-        < len(right):\\n        if left[left_index] < right[right_index]:\\n            merged.append(left[left_index])\\n
-        \           left_index += 1\\n        else:\\n            merged.append(right[right_index])\\n
-        \           right_index += 1\\n    \\n    merged += left[left_index:]\\n    merged
-        += right[right_index:]\\n    \\n    return merged\\n\\n# Example usage\\narr
-        = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]\\nsorted_arr = merge_sort(arr)\\nprint(sorted_arr)\\n```\\n\\nThis
-        implementation recursively divides the input array into two halves until each
-        subarray has only one element. Then it merges the sorted subarrays back together
-        in sorted order.\",\n        \"refusal\": null,\n        \"annotations\":
-        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
-        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\":
-        290,\n    \"total_tokens\": 312,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
-        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        \   if len(arr) <= 1:\\n        return arr\\n    \\n    mid = len(arr) //
+        2\\n    left = arr[:mid]\\n    right = arr[mid:]\\n    \\n    left = merge_sort(left)\\n
+        \   right = merge_sort(right)\\n    \\n    return merge(left, right)\\n\\ndef
+        merge(left, right):\\n    result = []\\n    i = j = 0\\n    \\n    while i
+        < len(left) and j < len(right):\\n        if left[i] < right[j]:\\n            result.append(left[i])\\n
+        \           i += 1\\n        else:\\n            result.append(right[j])\\n
+        \           j += 1\\n    \\n    result.extend(left[i:])\\n    result.extend(right[j:])\\n
+        \   \\n    return result\\n\\n# Example usage\\narr = [12, 11, 13, 5, 6, 7]\\nsorted_arr
+        = merge_sort(arr)\\nprint(sorted_arr)\\n```\\n\\nThis code defines a `merge_sort`
+        function that recursively divides the input list into two halves, sorts each
+        half, and then merges them back together using the `merge` function. Finally,
+        it demonstrates how to use the `merge_sort` function to sort a sample list.\",\n
+        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"logprobs\":
+        null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        22,\n    \"completion_tokens\": 258,\n    \"total_tokens\": 280,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 92589673fa6ed0ef-SOF
+      - 925cfe1baaead0ea-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:31:20 GMT
+      - Tue, 25 Mar 2025 08:21:06 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=feKnQlFsXeYFZ5n3BBrdiABZgzZYoJMIl9bOLggNcyM-1742844680-1.0.1.1-rAU6s7UuWJI1lMND2D0Pvdes2gTk7w4tGJQy8WTMbT4PYcejCH88OQbvoZ9jVntlzAhiiqqLTqdLlzPnIcoyyQCbNN5Zhkdoy8ae51tdBQg;
-        path=/; expires=Mon, 24-Mar-25 20:01:20 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=BJrNPhefu3PGOEjIJVcu0VH4nrmWDIvbI7cd_lx1AQI-1742890866-1.0.1.1-MShyu8nebWESwyj7NiiMxPTTavOMhMN3YXeNTgfZx1YKaqZYRY23cjXB4y4kl4m6Ab8FHygLSGe76ixgRq5OcZaWkhjql727PquQXE9_l4I;
+        path=/; expires=Tue, 25-Mar-25 08:51:06 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=6V3aqCDlQPe_gU_nQaQiJktd0PU4fWuHuAZcTgQr9bo-1742844680154-0.0.1.1-604800000;
+      - _cfuvid=lOE3MSTyD3IFPzD_G9lHo9NXnuqqZ5POx4kyBQL35Mo-1742890866627-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -161,11 +159,11 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '1994'
+      - '1850'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '4798'
+      - '2519'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -183,7 +181,7 @@ interactions:
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_f4e230cc3d995146d98e5bced048f767
+      - req_cb0c33b5dabb15f3cff2b64b365cd91c
     status:
       code: 200
       message: OK
@@ -191,7 +189,7 @@ interactions:
     body: '{"session_id": "NO-SESSION-ID", "provider": {"provider": "openai", "model":
       "gpt-3.5-turbo", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
-      57.7542114510681}}'
+      94.30827300893722}}'
     headers:
       Accept:
       - '*/*'
@@ -200,7 +198,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '250'
+      - '251'
       User-Agent:
       - Python-SDK/0.3.41
       content-type:
@@ -209,17 +207,17 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=f5d583ad-3db5-4d33, Session ID NO-SESSION-ID not
+      string: '{"detail":"requestID=49a75076-1c27-4265, Session ID NO-SESSION-ID not
         found."}'
     headers:
       CF-RAY:
-      - 92589693d9160c73-SOF
+      - 925cfe2d1eda8e61-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:31:20 GMT
+      - Tue, 25 Mar 2025 08:21:07 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -231,7 +229,7 @@ interactions:
       content-length:
       - '78'
       rndr-id:
-      - f5d583ad-3db5-4d33
+      - 49a75076-1c27-4265
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -258,17 +256,17 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/feedback
   response:
     body:
-      string: '{"detail":"requestID=a4000760-bbd2-40ce, Session ID NO-SESSION-ID not
+      string: '{"detail":"requestID=3e20ac25-bd03-4564, Session ID NO-SESSION-ID not
         found."}'
     headers:
       CF-RAY:
-      - 92589695cd3cc2b1-VIE
+      - 925cfe307c2af937-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:31:20 GMT
+      - Tue, 25 Mar 2025 08:21:07 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -280,7 +278,7 @@ interactions:
       content-length:
       - '78'
       rndr-id:
-      - a4000760-bbd2-40ce
+      - 3e20ac25-bd03-4564
       vary:
       - Accept-Encoding
       x-render-origin-server:

@@ -230,6 +230,6 @@ def vcr_config():
         "before_record_response": _redact_xtoken_response,
         "before_record_request": _before_record_request,
         "ignore_localhost": True,
-        "record_mode": "rewrite",
+        "record_mode": "none",
         "decode_compressed_response": True,
     }

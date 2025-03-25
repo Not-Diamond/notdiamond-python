@@ -34,16 +34,16 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"17912bb5-92a1-4f61-9d02-5562edc28940"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"d13fa799-3786-4b76-b4f0-466a6bbd3621"}'
     headers:
       CF-RAY:
-      - 9258953e5943d0f0-SOF
+      - 925cfce1f96d5b54-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:30:26 GMT
+      - Tue, 25 Mar 2025 08:20:14 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -55,7 +55,7 @@ interactions:
       content-length:
       - '118'
       rndr-id:
-      - b2bb99e0-28b8-46ed
+      - 597ded65-d52c-4db6
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -104,60 +104,53 @@ interactions:
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEhn8BI8mCVeW6xuXSpvTPvOuIoFV\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742844626,\n  \"model\": \"gpt-4-1106-preview\",\n
+      string: "{\n  \"id\": \"chatcmpl-BEto7Y7TEg4zRzLnih9WJxUf90FvQ\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742890815,\n  \"model\": \"gpt-4-1106-preview\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"Certainly! Below is an implementation
-        of the merge sort algorithm in Python:\\n\\n```python\\ndef merge_sort(arr):\\n
-        \   if len(arr) > 1:\\n        mid = len(arr) // 2  # Finding the mid of the
-        array\\n        left_half = arr[:mid]  # Dividing the array elements into
-        2 halves\\n        right_half = arr[mid:]\\n\\n        merge_sort(left_half)
-        \ # Sorting the first half\\n        merge_sort(right_half)  # Sorting the
-        second half\\n\\n        # Merging the sorted halves\\n        merge(arr,
-        left_half, right_half)\\n\\ndef merge(arr, left_half, right_half):\\n    i
-        = j = k = 0\\n\\n    # Copy data to temp arrays left_half[] and right_half[]\\n
-        \   while i < len(left_half) and j < len(right_half):\\n        if left_half[i]
-        < right_half[j]:\\n            arr[k] = left_half[i]\\n            i += 1\\n
-        \       else:\\n            arr[k] = right_half[j]\\n            j += 1\\n
-        \       k += 1\\n\\n    # Checking if any element was left\\n    while i <
-        len(left_half):\\n        arr[k] = left_half[i]\\n        i += 1\\n        k
-        += 1\\n\\n    while j < len(right_half):\\n        arr[k] = right_half[j]\\n
-        \       j += 1\\n        k += 1\\n\\n    return arr\\n\\n# Example usage:\\nif
-        __name__ == \\\"__main__\\\":\\n    arr = [12, 11, 13, 5, 6, 7]\\n    print(\\\"Given
-        array is\\\", end=\\\"\\\\n\\\")\\n    print(arr)\\n    merge_sort(arr)\\n
-        \   print(\\\"Sorted array is: \\\", end=\\\"\\\\n\\\")\\n    print(arr)\\n```\\n\\nThis
-        code defines two functions:\\n\\n1. `merge_sort(arr)`: This is the main function
-        that takes an array `arr` and performs the merge sort algorithm. It recursively
-        splits the array into halves until the subarrays contain only one element.
-        Then, it starts merging them back together in the correct order.\\n\\n2. `merge(arr,
-        left_half, right_half)`: This function is used by `merge_sort` to merge two
-        sorted subarrays, `left_half` and `right_half`, into a single sorted array
-        `arr`.\\n\\nThe example at the bottom of the script demonstrates how to use
-        the `merge_sort` function. It sorts the array `[12, 11, 13, 5, 6, 7]` and
-        prints the sorted array.\",\n        \"refusal\": null,\n        \"annotations\":
+        \"assistant\",\n        \"content\": \"Certainly! Below is a Python implementation
+        of the merge sort algorithm:\\n\\n```python\\ndef merge_sort(arr):\\n    if
+        len(arr) > 1:\\n        mid = len(arr) // 2  # Finding the mid of the array\\n
+        \       L = arr[:mid]  # Dividing the array elements into 2 halves\\n        R
+        = arr[mid:]\\n\\n        merge_sort(L)  # Sorting the first half\\n        merge_sort(R)
+        \ # Sorting the second half\\n\\n        i = j = k = 0\\n\\n        # Copy
+        data to temp arrays L[] and R[]\\n        while i < len(L) and j < len(R):\\n
+        \           if L[i] < R[j]:\\n                arr[k] = L[i]\\n                i
+        += 1\\n            else:\\n                arr[k] = R[j]\\n                j
+        += 1\\n            k += 1\\n\\n        # Checking if any element was left\\n
+        \       while i < len(L):\\n            arr[k] = L[i]\\n            i += 1\\n
+        \           k += 1\\n\\n        while j < len(R):\\n            arr[k] = R[j]\\n
+        \           j += 1\\n            k += 1\\n\\n    return arr\\n\\n# Example
+        usage:\\nif __name__ == \\\"__main__\\\":\\n    array = [12, 11, 13, 5, 6,
+        7]\\n    print(\\\"Given array is:\\\", array)\\n    merge_sort(array)\\n
+        \   print(\\\"Sorted array is:\\\", array)\\n```\\n\\nThis `merge_sort` function
+        takes an array as input and sorts it in place. The function works by recursively
+        dividing the array into two halves, sorting each half, and then merging the
+        sorted halves together. The `merge_sort` function does not return a value
+        because the sorting is done in place. However, the sorted array is accessible
+        after calling the function.\",\n        \"refusal\": null,\n        \"annotations\":
         []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
         \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 24,\n    \"completion_tokens\":
-        518,\n    \"total_tokens\": 542,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        376,\n    \"total_tokens\": 400,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
         0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 925895436a7f5acf-VIE
+      - 925cfce6fc0589c3-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:30:38 GMT
+      - Tue, 25 Mar 2025 08:20:25 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=4jxMfr57gxMBlXbXam2qZOO1h5PWKbF3T2xnsFAXH2Y-1742844638-1.0.1.1-e9SY97bxHwC.5zvINW9U2z3tJcGTO.RoWU0kNmWzWnZPp3WsKh1NyiYJdfrWhOwur8WW_4uN9JvwPkVcT34liWh48IliqWiSwfrW7cQ4yxU;
-        path=/; expires=Mon, 24-Mar-25 20:00:38 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=pKTc6RtmhT3_8wHFdO96i5VfsCsFpCJ.hgP7i2ci_RU-1742890825-1.0.1.1-9EnHjXq.y8.oIEASzSiTaU07t9WA9zZaLb0gY4VVtC1Z8Ye__XqsOTzzBGHxz6GQFWA1rJ9qkEEMCf4RRhkKswoQk4nSmtf4yUBcr1AoGmg;
+        path=/; expires=Tue, 25-Mar-25 08:50:25 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=SShCZGgELA390N96qqEm4gj5nM7oNVmXQ5jC85qPXJw-1742844638857-0.0.1.1-604800000;
+      - _cfuvid=LcnqWlXFgiUNV1lAgy1MVO867TUpuzGVFGIyrNVAvDY-1742890825814-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -170,11 +163,11 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '2792'
+      - '2284'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '12184'
+      - '11061'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -192,15 +185,15 @@ interactions:
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_94926f643eafadf7cc84af148135f9f3
+      - req_3cce22647bbc619c6e2518e0850d655d
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "17912bb5-92a1-4f61-9d02-5562edc28940", "provider": {"provider":
+    body: '{"session_id": "d13fa799-3786-4b76-b4f0-466a6bbd3621", "provider": {"provider":
       "openai", "model": "gpt-4-1106-preview", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 41.83543988731882}}'
+      {"tokens_per_second": 33.58513760769427}}'
     headers:
       Accept:
       - '*/*'
@@ -218,17 +211,17 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=0bd78518-685b-469a, Session 17912bb5-92a1-4f61-9d02-5562edc28940
+      string: '{"detail":"requestID=8fb1e50d-98ff-4cb4, Session d13fa799-3786-4b76-b4f0-466a6bbd3621
         does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
       CF-RAY:
-      - 92589591ba3acb7b-VIE
+      - 925cfd2e1ffa89c3-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:30:39 GMT
+      - Tue, 25 Mar 2025 08:20:26 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -238,7 +231,7 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       rndr-id:
-      - 0bd78518-685b-469a
+      - 8fb1e50d-98ff-4cb4
       vary:
       - Accept-Encoding
       x-render-origin-server:

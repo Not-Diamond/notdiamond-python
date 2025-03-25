@@ -21,16 +21,16 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"mistral","model":"mistral-medium-latest"}],"session_id":"7419dd14-2fa4-487c-a42b-bae579f7893a"}'
+      string: '{"providers":[{"provider":"mistral","model":"mistral-medium-latest"}],"session_id":"78b8bc9a-0d52-4d45-a5cb-c5793e5b05ad"}'
     headers:
       CF-RAY:
-      - 925899ee9c58cd3b-SOF
+      - 925d018c5d922bd8-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:33:38 GMT
+      - Tue, 25 Mar 2025 08:23:25 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,7 +42,7 @@ interactions:
       content-length:
       - '122'
       rndr-id:
-      - d2a83cf6-876d-4d65
+      - bbe6bad4-62bb-40a5
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -83,31 +83,27 @@ interactions:
     uri: https://api.mistral.ai/v1/chat/completions
   response:
     body:
-      string: '{"id":"40179cab8c1447418ca639e163b71f45","object":"chat.completion","created":1742844818,"model":"mistral-medium-latest","choices":[{"index":0,"message":{"role":"assistant","tool_calls":null,"content":"Here
-        is a well-formatted instance of the schema that represents a joke:\n```\n{\n  \"setup\":
-        \"Why did the chicken cross the road?\",\n  \"punchline\": \"To get to the
-        other side.\"\n}\n```\nThis instance has a \"setup\" property with a string
-        value of \"Why did the chicken cross the road?\", and a \"punchline\" property
-        with a string value of \"To get to the other side.\". This conforms to the
-        schema, which specifies that both the \"setup\" and \"punchline\" properties
-        are required and must be strings.\n\nHere is an example of an incorrectly
-        formatted instance that does not conform to the schema:\n```\n{\n  \"setup\":
-        \"Why did the chicken cross the road?\",\n  \"punchline\": 42\n}\n```\nThis
-        instance is not well-formatted because the value of the"},"finish_reason":"length"}],"usage":{"prompt_tokens":219,"total_tokens":419,"completion_tokens":200}}'
+      string: '{"id":"ea1cd0a16d464f43a645735a5f39b63d","object":"chat.completion","created":1742891005,"model":"mistral-medium-latest","choices":[{"index":0,"message":{"role":"assistant","tool_calls":null,"content":"Here
+        is a well-formatted instance of the schema that represents a joke:\n\n```json\n{\n  \"setup\":
+        \"Why don''t scientists trust atoms?\",\n  \"punchline\": \"Because they make
+        up everything!\"\n}\n```\n\nThis JSON object has two properties, \"setup\"
+        and \"punchline\", which are both strings. The \"setup\" property contains
+        the question that sets up the joke, and the \"punchline\" property contains
+        the answer that resolves the joke."},"finish_reason":"stop"}],"usage":{"prompt_tokens":219,"total_tokens":333,"completion_tokens":114}}'
     headers:
       CF-RAY:
-      - 925899f51824fea5-SOF
+      - 925d0190bb4cd0d3-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:33:43 GMT
+      - Tue, 25 Mar 2025 08:23:28 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=GEFacZDR4f8aOdee1WUX3APjXcdNMnR2OC9Ja8d8AOw-1742844823-1.0.1.1-flVpMegf5R.jsbPGAQX9jjx_5waN7NtjHmSpO2J3L549HmnEH2wWtwD9TYMjMDqT6h.po2qmH8mGGkAzUMxYdJeNIxaCLlts1vztdEUf2BA;
-        path=/; expires=Mon, 24-Mar-25 20:03:43 GMT; domain=.mistral.ai; HttpOnly;
+      - __cf_bm=AcNXqhIT5wpOxWh_pY5U2HeuhTN3vRjq134nHcQ.8Ec-1742891008-1.0.1.1-AcTki7oVbTsKG7l1_s_ffpxdYa66RRB6XYszdaTBwiT65EFmDnhBRshNAd0_jMWzdVZmk2YFarJ15dEfSRYmgUmSJA8h1Sz90wmWwJN_CTE;
+        path=/; expires=Tue, 25-Mar-25 08:53:28 GMT; domain=.mistral.ai; HttpOnly;
         Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -118,31 +114,31 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '1064'
+      - '740'
       ratelimitbysize-limit:
       - '2000000'
       ratelimitbysize-query-cost:
       - '336'
       ratelimitbysize-remaining:
-      - '1998784'
+      - '1998496'
       ratelimitbysize-reset:
-      - '22'
+      - '35'
       x-envoy-upstream-service-time:
-      - '4458'
+      - '2677'
       x-kong-proxy-latency:
       - '1'
       x-kong-request-id:
-      - f399b93172134219a37ddd79af14057a
+      - 6d4e950f5227ac65745fa744aa152a78
       x-kong-upstream-latency:
-      - '4566'
+      - '2678'
       x-ratelimitbysize-limit-minute:
       - '2000000'
       x-ratelimitbysize-limit-month:
       - '10000000000'
       x-ratelimitbysize-remaining-minute:
-      - '1998784'
+      - '1998496'
       x-ratelimitbysize-remaining-month:
-      - '9999740030'
+      - '9999594986'
     status:
       code: 200
       message: OK

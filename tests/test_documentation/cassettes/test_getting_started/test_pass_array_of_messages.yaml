@@ -34,16 +34,16 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"3356ab52-5760-4af7-92ea-6d254afd5b71"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"64006ca8-7407-46d3-ad56-5cc4e5da96e3"}'
     headers:
       CF-RAY:
-      - 925895947c9bc2b9-VIE
+      - 925cfd313828197e-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:30:40 GMT
+      - Tue, 25 Mar 2025 08:20:27 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -55,7 +55,7 @@ interactions:
       content-length:
       - '118'
       rndr-id:
-      - 5c69b9d9-1b06-4e93
+      - 112a0219-fc80-470b
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -104,53 +104,60 @@ interactions:
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEhnMYfiWKRlatrny8FF1BYexllLw\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742844640,\n  \"model\": \"gpt-4-1106-preview\",\n
+      string: "{\n  \"id\": \"chatcmpl-BEtoJKeexgdUkK65YW8C4Jh7PIG0v\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1742890827,\n  \"model\": \"gpt-4-1106-preview\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"Certainly! Below is a Python implementation
-        of the merge sort algorithm:\\n\\n```python\\ndef merge_sort(arr):\\n    if
-        len(arr) > 1:\\n        mid = len(arr) // 2  # Find the midpoint of the array\\n
-        \       L = arr[:mid]  # Dividing the array elements into 2 halves\\n        R
-        = arr[mid:]\\n\\n        merge_sort(L)  # Sorting the first half\\n        merge_sort(R)
-        \ # Sorting the second half\\n\\n        # Merging the sorted halves\\n        i
-        = j = k = 0\\n\\n        # Copy data to temp arrays L[] and R[]\\n        while
-        i < len(L) and j < len(R):\\n            if L[i] < R[j]:\\n                arr[k]
-        = L[i]\\n                i += 1\\n            else:\\n                arr[k]
-        = R[j]\\n                j += 1\\n            k += 1\\n\\n        # Checking
-        if any element was left\\n        while i < len(L):\\n            arr[k] =
-        L[i]\\n            i += 1\\n            k += 1\\n\\n        while j < len(R):\\n
-        \           arr[k] = R[j]\\n            j += 1\\n            k += 1\\n\\n
-        \   return arr\\n\\n# Example usage:\\narr = [12, 11, 13, 5, 6, 7]\\nsorted_arr
-        = merge_sort(arr)\\nprint(\\\"Sorted array is:\\\", sorted_arr)\\n```\\n\\nThis
-        function recursively divides the input list into halves until the base case
-        (lists of length 1) is reached, then merges the sorted lists back together.
-        The `merge_sort` function is called on the left and right halves, and then
-        the `merge` process handles the recombination.\\n\\nYou can test the function
-        with the provided example or with your own list of numbers. Just call `merge_sort`
-        with your list, and it will return the sorted list.\",\n        \"refusal\":
-        null,\n        \"annotations\": []\n      },\n      \"logprobs\": null,\n
-        \     \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
-        25,\n    \"completion_tokens\": 389,\n    \"total_tokens\": 414,\n    \"prompt_tokens_details\":
-        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        \"assistant\",\n        \"content\": \"Certainly! Below is an implementation
+        of the merge sort algorithm in Python:\\n\\n```python\\ndef merge_sort(arr):\\n
+        \   \\\"\\\"\\\"\\n    Sort an array using the merge sort algorithm.\\n    :param
+        arr: List of elements to be sorted\\n    :return: Sorted list of elements\\n
+        \   \\\"\\\"\\\"\\n    if len(arr) <= 1:\\n        return arr\\n\\n    # Divide
+        the array into two halves\\n    mid = len(arr) // 2\\n    left_half = arr[:mid]\\n
+        \   right_half = arr[mid:]\\n\\n    # Recursively sort both halves\\n    left_sorted
+        = merge_sort(left_half)\\n    right_sorted = merge_sort(right_half)\\n\\n
+        \   # Merge the sorted halves\\n    return merge(left_sorted, right_sorted)\\n\\ndef
+        merge(left, right):\\n    \\\"\\\"\\\"\\n    Merge two sorted lists into one
+        sorted list.\\n    :param left: Sorted list\\n    :param right: Sorted list\\n
+        \   :return: Merged and sorted list\\n    \\\"\\\"\\\"\\n    merged = []\\n
+        \   left_index = right_index = 0\\n\\n    # Merge the two lists together while
+        maintaining order\\n    while left_index < len(left) and right_index < len(right):\\n
+        \       if left[left_index] <= right[right_index]:\\n            merged.append(left[left_index])\\n
+        \           left_index += 1\\n        else:\\n            merged.append(right[right_index])\\n
+        \           right_index += 1\\n\\n    # If there are any remaining elements
+        in either list, add them to the merged list\\n    # This happens when one
+        list is exhausted before the other\\n    merged.extend(left[left_index:])\\n
+        \   merged.extend(right[right_index:])\\n\\n    return merged\\n\\n# Example
+        usage:\\nif __name__ == \\\"__main__\\\":\\n    array_to_sort = [5, 3, 8,
+        6, 2, 7, 4, 1]\\n    sorted_array = merge_sort(array_to_sort)\\n    print(\\\"Sorted
+        Array:\\\", sorted_array)\\n```\\n\\nThis `merge_sort` function is a recursive
+        algorithm that continuously splits the array in half, sorts each half, and
+        then merges the sorted halves back together. The `merge` function is a helper
+        function that takes two sorted lists and merges them into a single sorted
+        list. When you run the script, it will sort the example array and print out
+        the sorted array.\",\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 25,\n    \"completion_tokens\":
+        461,\n    \"total_tokens\": 486,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 92589599fd855a9b-VIE
+      - 925cfd367fa2d0f2-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:30:53 GMT
+      - Tue, 25 Mar 2025 08:20:41 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=F6X85kbq25ncTwWgxYcndMP35D66Kvc2NvniiIiy4kQ-1742844653-1.0.1.1-GocKeLdhhGciZbF2XBr1pMsNbuHXeesACGwUtA3W5t6K9Hi_3Fqqd2y43VAH8ZUxyCn33MO4pqO7CA4xaB5WPs.hvSsDnn5UD_bIZgWoSqM;
-        path=/; expires=Mon, 24-Mar-25 20:00:53 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=vfsO7goobxXc4tq1pkP1gftH2DM8n35kYwGW1E6MeY4-1742890841-1.0.1.1-ejJSm1l7yi4Yga_l9leZ_E5.QLZn3VwhBEmr_J.8QkdxCVGcGTEEBfa_3fc_3qPXXX5QGAEzR6iV53EbKl3zA4fCyWWgyGOwziF0Z.iRSLE;
+        path=/; expires=Tue, 25-Mar-25 08:50:41 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=NnfhGGQrYDL7pylKW3LgAiXOcM.U5X2Em8MAcqdeoc0-1742844653977-0.0.1.1-604800000;
+      - _cfuvid=rNlw4NkE0wn3UOhs78R.Jb.v31W7Qyv2v.Tlydf7BUA-1742890841611-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -163,11 +170,11 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '2335'
+      - '2833'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '13507'
+      - '14105'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -185,15 +192,15 @@ interactions:
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_270d810e9a059c5a4f9fc1b7ca3d989e
+      - req_7c650b522c0c990612197c45bed406ce
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "3356ab52-5760-4af7-92ea-6d254afd5b71", "provider": {"provider":
+    body: '{"session_id": "64006ca8-7407-46d3-ad56-5cc4e5da96e3", "provider": {"provider":
       "openai", "model": "gpt-4-1106-preview", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 27.852296609401865}}'
+      {"tokens_per_second": 32.06989394736696}}'
     headers:
       Accept:
       - '*/*'
@@ -202,7 +209,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '280'
+      - '279'
       User-Agent:
       - Python-SDK/0.3.41
       content-type:
@@ -211,17 +218,17 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=78b5dd8c-9566-443b, Session 3356ab52-5760-4af7-92ea-6d254afd5b71
+      string: '{"detail":"requestID=38faee3b-c615-4d3a, Session 64006ca8-7407-46d3-ad56-5cc4e5da96e3
         does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
       CF-RAY:
-      - 925895f0282ed0fb-SOF
+      - 925cfd917bcb5a71-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 Mar 2025 19:30:54 GMT
+      - Tue, 25 Mar 2025 08:20:42 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -231,7 +238,7 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       rndr-id:
-      - 78b5dd8c-9566-443b
+      - 38faee3b-c615-4d3a
       vary:
       - Accept-Encoding
       x-render-origin-server:
