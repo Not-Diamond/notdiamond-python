@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for notdiamond/llms/client.py: 78%</title>
+    <title>Coverage for notdiamond/llms/client.py: 79%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
     <link rel="stylesheet" href="style_cb_8e611ae1.css" type="text/css">
     <script src="coverage_html_cb_6fb7b396.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>notdiamond/llms/client.py</b>:
-            <span class="pc_cov">78%</span>
+            <span class="pc_cov">79%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -56,10 +56,10 @@
         </aside>
         <h2>
             <span class="text">525 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">415<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">110<span class="text"> missing</span></button>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">427<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">98<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
-            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">29<span class="text"> partial</span></button>
+            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">28<span class="text"> partial</span></button>
         </h2>
         <p class="text">
             <a id="prevFileLink" class="nav" href="z_a055ed082cb54a35_exceptions_py.html">&#xab; prev</a> &nbsp; &nbsp;
@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_d7ef8b4b74bd80fa_config_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.6.4">coverage.py v7.6.4</a>,
-            created at 2025-03-27 15:29 +0000
+            created at 2025-03-27 15:30 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -1523,7 +1523,7 @@
     <p class="pln"><span class="n"><a id="t1439" href="#t1439">1439</a></span><span class="t">            <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1440" href="#t1440">1440</a></span><span class="t">                <span class="nam">chain</span> <span class="op">=</span> <span class="nam">llm</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1441" href="#t1441">1441</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="par run show_par"><span class="n"><a id="t1442" href="#t1442">1442</a></span><span class="t">            <span class="key">async</span> <span class="key">for</span> <span class="nam">chunk</span> <span class="key">in</span> <span class="nam">chain</span><span class="op">.</span><span class="nam">astream</span><span class="op">(</span><span class="nam">messages</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">1442&#x202F;&#x219B;&#x202F;exit</span><span class="annotate long">line 1442 didn't return from function 'astream' because the loop on line 1442 didn't complete</span></span></p>
+    <p class="run"><span class="n"><a id="t1442" href="#t1442">1442</a></span><span class="t">            <span class="key">async</span> <span class="key">for</span> <span class="nam">chunk</span> <span class="key">in</span> <span class="nam">chain</span><span class="op">.</span><span class="nam">astream</span><span class="op">(</span><span class="nam">messages</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1443" href="#t1443">1443</a></span><span class="t">                <span class="key">if</span> <span class="nam">response_model</span> <span class="key">is</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1444" href="#t1444">1444</a></span><span class="t">                    <span class="key">yield</span> <span class="nam">chunk</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1445" href="#t1445">1445</a></span><span class="t">                <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -1775,17 +1775,17 @@
     <p class="pln"><span class="n"><a id="t1691" href="#t1691">1691</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1692" href="#t1692">1692</a></span><span class="t"><span class="key">class</span> <span class="nam">NotDiamond</span><span class="op">(</span><span class="nam">_NDClient</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1693" href="#t1693">1693</a></span><span class="t">    <span class="nam">api_key</span><span class="op">:</span> <span class="nam">str</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1694" href="#t1694">1694</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1694" href="#t1694">1694</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1695" href="#t1695">1695</a></span><span class="t"><span class="str">    API key required for making calls to NotDiamond.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1696" href="#t1696">1696</a></span><span class="t"><span class="str">    You can get an API key via our dashboard: https://app.notdiamond.ai</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1697" href="#t1697">1697</a></span><span class="t"><span class="str">    If an API key is not set, it will check for NOTDIAMOND_API_KEY in .env file.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1698" href="#t1698">1698</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1699" href="#t1699">1699</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1700" href="#t1700">1700</a></span><span class="t">    <span class="nam">llm_configs</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">List</span><span class="op">[</span><span class="nam">Union</span><span class="op">[</span><span class="nam">LLMConfig</span><span class="op">,</span> <span class="nam">str</span><span class="op">]</span><span class="op">]</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1701" href="#t1701">1701</a></span><span class="t">    <span class="str">"""The list of LLMs that are available to route between."""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1701" href="#t1701">1701</a></span><span class="t">    <span class="str">"""The list of LLMs that are available to route between."""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1702" href="#t1702">1702</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1703" href="#t1703">1703</a></span><span class="t">    <span class="nam">default</span><span class="op">:</span> <span class="nam">Union</span><span class="op">[</span><span class="nam">LLMConfig</span><span class="op">,</span> <span class="nam">int</span><span class="op">,</span> <span class="nam">str</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1704" href="#t1704">1704</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1704" href="#t1704">1704</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1705" href="#t1705">1705</a></span><span class="t"><span class="str">    Set a default LLM, so in case anything goes wrong in the flow,</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1706" href="#t1706">1706</a></span><span class="t"><span class="str">    as for example NotDiamond API call fails, your code won't break and you have</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1707" href="#t1707">1707</a></span><span class="t"><span class="str">    a fallback model. There are various ways to configure a default model:</span>&nbsp;</span><span class="r"></span></p>
@@ -1798,7 +1798,7 @@
     <p class="pln"><span class="n"><a id="t1714" href="#t1714">1714</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1715" href="#t1715">1715</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1716" href="#t1716">1716</a></span><span class="t">    <span class="nam">max_model_depth</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">int</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1717" href="#t1717">1717</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1717" href="#t1717">1717</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1718" href="#t1718">1718</a></span><span class="t"><span class="str">    If your top recommended model is down, specify up to which depth of routing you're willing to go.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1719" href="#t1719">1719</a></span><span class="t"><span class="str">    If max_model_depth is not set, it defaults to the length of the llm_configs list.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1720" href="#t1720">1720</a></span><span class="t"><span class="str">    If max_model_depth is set to 0, the init will fail.</span>&nbsp;</span><span class="r"></span></p>
@@ -1806,19 +1806,19 @@
     <p class="pln"><span class="n"><a id="t1722" href="#t1722">1722</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1723" href="#t1723">1723</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1724" href="#t1724">1724</a></span><span class="t">    <span class="nam">latency_tracking</span><span class="op">:</span> <span class="nam">bool</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1725" href="#t1725">1725</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1725" href="#t1725">1725</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1726" href="#t1726">1726</a></span><span class="t"><span class="str">    Tracking and sending latency of LLM call to NotDiamond server as feedback, so we can improve our router.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1727" href="#t1727">1727</a></span><span class="t"><span class="str">    By default this is turned on, set it to False to turn off.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1728" href="#t1728">1728</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1729" href="#t1729">1729</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1730" href="#t1730">1730</a></span><span class="t">    <span class="nam">hash_content</span><span class="op">:</span> <span class="nam">bool</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1731" href="#t1731">1731</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1731" href="#t1731">1731</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1732" href="#t1732">1732</a></span><span class="t"><span class="str">    Hashing the content before being sent to the NotDiamond API.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1733" href="#t1733">1733</a></span><span class="t"><span class="str">    By default this is False.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1734" href="#t1734">1734</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1735" href="#t1735">1735</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1736" href="#t1736">1736</a></span><span class="t">    <span class="nam">tradeoff</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1737" href="#t1737">1737</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1737" href="#t1737">1737</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1738" href="#t1738">1738</a></span><span class="t"><span class="str">    [DEPRECATED] The tradeoff constructor parameter is deprecated and will be removed in a future version.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1739" href="#t1739">1739</a></span><span class="t"><span class="str">    Please specify the tradeoff when using model_select or invocation methods.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1740" href="#t1740">1740</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -1831,21 +1831,21 @@
     <p class="pln"><span class="n"><a id="t1747" href="#t1747">1747</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1748" href="#t1748">1748</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1749" href="#t1749">1749</a></span><span class="t">    <span class="nam">preference_id</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1750" href="#t1750">1750</a></span><span class="t">    <span class="str">"""The ID of the router preference that was configured via the Dashboard. Defaults to None."""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1750" href="#t1750">1750</a></span><span class="t">    <span class="str">"""The ID of the router preference that was configured via the Dashboard. Defaults to None."""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1751" href="#t1751">1751</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1752" href="#t1752">1752</a></span><span class="t">    <span class="nam">tools</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">Sequence</span><span class="op">[</span><span class="nam">Union</span><span class="op">[</span><span class="nam">Dict</span><span class="op">[</span><span class="nam">str</span><span class="op">,</span> <span class="nam">Any</span><span class="op">]</span><span class="op">,</span> <span class="nam">Callable</span><span class="op">]</span><span class="op">]</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1753" href="#t1753">1753</a></span><span class="t">    <span class="str">"""Bind tools to the LLM object. The tools will be passed to the LLM object when invoking it."""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1753" href="#t1753">1753</a></span><span class="t">    <span class="str">"""Bind tools to the LLM object. The tools will be passed to the LLM object when invoking it."""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1754" href="#t1754">1754</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1755" href="#t1755">1755</a></span><span class="t">    <span class="nam">nd_api_url</span><span class="op">:</span> <span class="nam">Optional</span><span class="op">[</span><span class="nam">str</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1756" href="#t1756">1756</a></span><span class="t">    <span class="str">"""The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL."""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1756" href="#t1756">1756</a></span><span class="t">    <span class="str">"""The URL of the NotDiamond API. Defaults to settings.NOTDIAMOND_API_URL."""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1757" href="#t1757">1757</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1758" href="#t1758">1758</a></span><span class="t">    <span class="nam">user_agent</span><span class="op">:</span> <span class="nam">Union</span><span class="op">[</span><span class="nam">str</span><span class="op">,</span> <span class="key">None</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1759" href="#t1759">1759</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1760" href="#t1760">1760</a></span><span class="t">    <span class="nam">max_retries</span><span class="op">:</span> <span class="nam">int</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1761" href="#t1761">1761</a></span><span class="t">    <span class="str">"""The maximum number of retries to make when calling the Not Diamond API."""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1761" href="#t1761">1761</a></span><span class="t">    <span class="str">"""The maximum number of retries to make when calling the Not Diamond API."""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1762" href="#t1762">1762</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1763" href="#t1763">1763</a></span><span class="t">    <span class="nam">timeout</span><span class="op">:</span> <span class="nam">float</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t1764" href="#t1764">1764</a></span><span class="t">    <span class="str">"""The timeout for the Not Diamond API call."""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t1764" href="#t1764">1764</a></span><span class="t">    <span class="str">"""The timeout for the Not Diamond API call."""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t1765" href="#t1765">1765</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1766" href="#t1766">1766</a></span><span class="t">    <span class="key">class</span> <span class="nam">Config</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t1767" href="#t1767">1767</a></span><span class="t">        <span class="nam">arbitrary_types_allowed</span> <span class="op">=</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
@@ -1891,7 +1891,7 @@
             <a class="nav" href="z_d7ef8b4b74bd80fa_config_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.6.4">coverage.py v7.6.4</a>,
-            created at 2025-03-27 15:29 +0000
+            created at 2025-03-27 15:30 +0000
         </p>
     </div>
 </footer>
