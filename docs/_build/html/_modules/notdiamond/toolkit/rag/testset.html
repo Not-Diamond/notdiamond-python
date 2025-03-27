@@ -3,37 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>notdiamond.toolkit.rag.testset &mdash; NotDiamond 0.3.25</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+  <title>notdiamond.toolkit.rag.testset &mdash; NotDiamond 0.3.43</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
 
-
+  
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-
+  
         <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=30ad20df"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ef27c91"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
-    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
 
-
-
+          
+          
           <a href="../../../../index.html" class="icon icon-home">
             NotDiamond
           </a>
               <div class="version">
-                0.3.25
+                0.3.43
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -72,27 +72,26 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-
+             
   <h1>Source code for notdiamond.toolkit.rag.testset</h1><div class="highlight"><pre>
-<span></span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">langchain_core.callbacks</span> <span class="kn">import</span> <span class="n">Callbacks</span>
-<span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span> <span class="k">as</span> <span class="n">LCDocument</span>
-<span class="kn">from</span> <span class="nn">llama_index.core.base.embeddings.base</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callbacks</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span> <span class="k">as</span> <span class="n">LCDocument</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.base.embeddings.base</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BaseEmbedding</span> <span class="k">as</span> <span class="n">LlamaIndexEmbedding</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">llama_index.core.base.llms.base</span> <span class="kn">import</span> <span class="n">BaseLLM</span> <span class="k">as</span> <span class="n">LlamaIndexLLM</span>
-<span class="kn">from</span> <span class="nn">llama_index.core.schema</span> <span class="kn">import</span> <span class="n">Document</span> <span class="k">as</span> <span class="n">LlamaIndexDocument</span>
-<span class="kn">from</span> <span class="nn">ragas.embeddings</span> <span class="kn">import</span> <span class="n">BaseRagasEmbeddings</span><span class="p">,</span> <span class="n">LlamaIndexEmbeddingsWrapper</span>
-<span class="kn">from</span> <span class="nn">ragas.llms</span> <span class="kn">import</span> <span class="n">BaseRagasLLM</span><span class="p">,</span> <span class="n">LlamaIndexLLMWrapper</span>
-<span class="kn">from</span> <span class="nn">ragas.run_config</span> <span class="kn">import</span> <span class="n">RunConfig</span>
-<span class="kn">from</span> <span class="nn">ragas.testset</span> <span class="kn">import</span> <span class="n">TestsetGenerator</span>
-<span class="kn">from</span> <span class="nn">ragas.testset.graph</span> <span class="kn">import</span> <span class="n">KnowledgeGraph</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeType</span>
-<span class="kn">from</span> <span class="nn">ragas.testset.persona</span> <span class="kn">import</span> <span class="n">Persona</span>
-<span class="kn">from</span> <span class="nn">ragas.testset.synthesizers</span> <span class="kn">import</span> <span class="n">QueryDistribution</span>
-<span class="kn">from</span> <span class="nn">ragas.testset.transforms</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.base.llms.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseLLM</span> <span class="k">as</span> <span class="n">LlamaIndexLLM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span> <span class="k">as</span> <span class="n">LlamaIndexDocument</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRagasEmbeddings</span><span class="p">,</span> <span class="n">LlamaIndexEmbeddingsWrapper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRagasLLM</span><span class="p">,</span> <span class="n">LlamaIndexLLMWrapper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.run_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestsetGenerator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">KnowledgeGraph</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset.persona</span><span class="w"> </span><span class="kn">import</span> <span class="n">Persona</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset.synthesizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">QueryDistribution</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.testset.transforms</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Transforms</span><span class="p">,</span>
     <span class="n">apply_transforms</span><span class="p">,</span>
     <span class="n">default_transforms</span><span class="p">,</span>
@@ -101,10 +100,10 @@
 
 <div class="viewcode-block" id="TestDataGenerator">
 <a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.testset.TestDataGenerator">[docs]</a>
-<span class="k">class</span> <span class="nc">TestDataGenerator</span><span class="p">(</span><span class="n">TestsetGenerator</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TestDataGenerator</span><span class="p">(</span><span class="n">TestsetGenerator</span><span class="p">):</span>
 <div class="viewcode-block" id="TestDataGenerator.__init__">
 <a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.testset.TestDataGenerator.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">llm</span><span class="p">:</span> <span class="n">BaseRagasLLM</span><span class="p">,</span>
         <span class="n">embedding_model</span><span class="p">:</span> <span class="n">BaseRagasEmbeddings</span><span class="p">,</span>
@@ -133,7 +132,7 @@
 
 <div class="viewcode-block" id="TestDataGenerator.generate_from_docs">
 <a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.testset.TestDataGenerator.generate_from_docs">[docs]</a>
-    <span class="k">def</span> <span class="nf">generate_from_docs</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_from_docs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">documents</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">LCDocument</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">LlamaIndexDocument</span><span class="p">]],</span>
         <span class="n">testset_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -215,12 +214,14 @@
             <span class="p">)</span>
             <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Documents must be a list of langchain or llama-index documents.&quot;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Documents must be a list of langchain or llama-index documents.&quot;</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestDataGenerator.generate_with_llamaindex_docs">
 <a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.testset.TestDataGenerator.generate_with_llamaindex_docs">[docs]</a>
-    <span class="k">def</span> <span class="nf">generate_with_llamaindex_docs</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_with_llamaindex_docs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">documents</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">LlamaIndexDocument</span><span class="p">],</span>
         <span class="n">testset_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -314,14 +315,14 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Nov 22, 2024.
+      <span class="lastupdated">Last updated on Mar 27, 2025.
       </span></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
-
+   
 
 </footer>
         </div>
@@ -332,7 +333,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
+  </script> 
 
 </body>
 </html>
