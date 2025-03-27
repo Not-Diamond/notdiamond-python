@@ -89,7 +89,7 @@ from litellm.utils import (
 )
 from pydantic import BaseModel
 
-from . import notdiamond_key, provider_list
+from . import notdiamond_key, provider_list, deprecated
 from .litellm_notdiamond import completion as notdiamond_completion
 
 encoding = tiktoken.get_encoding("cl100k_base")
@@ -529,6 +529,7 @@ def get_llm_provider(
 
 
 @client
+@deprecated
 async def acompletion(
     model: str,
     # Optional OpenAI params: see https://platform.openai.com/docs/api-reference/chat/create
@@ -730,6 +731,7 @@ async def acompletion(
 
 
 @client
+@deprecated
 def completion(
     model: str,
     # Optional OpenAI params: see https://platform.openai.com/docs/api-reference/chat/create
@@ -2997,7 +2999,7 @@ def completion(
                 'data': [
                     {
                         'prompt': 'The capital of France is P',
-                        'output': ['The capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France'],
+                        'output': ['The capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France is PARIS.\nThe capital of France'],
                         'params': {'temperature': 0.7, 'top_k': 40, 'top_p': 1}}],
                         'message': 'ok'
                     }
