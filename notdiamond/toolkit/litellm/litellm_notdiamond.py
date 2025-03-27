@@ -35,6 +35,8 @@ import requests
 from litellm._version import version
 from litellm.utils import ModelResponse
 
+from . import deprecated
+
 # dict to map notdiamond providers and models to litellm providers and models
 ND2LITELLM = {
     # openai
@@ -130,7 +132,7 @@ class NotDiamondConfig:
     tradeoff: Optional[str] = None
     preference_id: Optional[str] = None
     hash_content: Optional[bool] = False
-
+    
     def __init__(
         self,
         llm_providers: List[Dict[str, str]],
@@ -140,6 +142,13 @@ class NotDiamondConfig:
         preference_id: Optional[str] = None,
         hash_content: Optional[bool] = False,
     ) -> None:
+        import warnings
+        warnings.warn(
+            "The NotDiamondConfig class is deprecated and will be removed in a future version. "
+            "Please use the standard notdiamond client and APIs instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
         locals_ = locals()
         for key, value in locals_.items():
             if key != "self" and value is not None:
@@ -205,6 +214,7 @@ def update_litellm_params(litellm_params: dict):
     return new_litellm_params
 
 
+@deprecated
 def completion(
     model: str,
     messages: list,

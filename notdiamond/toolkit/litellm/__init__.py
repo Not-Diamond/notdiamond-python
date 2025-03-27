@@ -1,5 +1,41 @@
+import warnings
+import functools
+import inspect
 from enum import Enum
 from typing import List, Optional, Union
+
+# Display a deprecation warning when the module is imported
+warnings.warn(
+    "The notdiamond.toolkit.litellm module is deprecated and will be removed in a future version. "
+    "Please use the standard notdiamond client and APIs instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
+
+# Decorator to mark functions as deprecated
+def deprecated(func):
+    if inspect.iscoroutinefunction(func):
+        @functools.wraps(func)
+        async def async_wrapper(*args, **kwargs):
+            warnings.warn(
+                f"Function {func.__name__} is deprecated and will be removed in a future version. "
+                "Please use the standard notdiamond client and APIs instead.",
+                DeprecationWarning,
+                stacklevel=2
+            )
+            return await func(*args, **kwargs)
+        return async_wrapper
+    else:
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            warnings.warn(
+                f"Function {func.__name__} is deprecated and will be removed in a future version. "
+                "Please use the standard notdiamond client and APIs instead.",
+                DeprecationWarning,
+                stacklevel=2
+            )
+            return func(*args, **kwargs)
+        return wrapper
 
 from litellm.__init__ import *  # noqa
 
