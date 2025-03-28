@@ -1,7 +1,8 @@
 NotDiamond package
 ==================
 
-
+Subpackages
+-----------
 
 .. toctree::
    :maxdepth: 4
@@ -10,47 +11,24 @@ NotDiamond package
    notdiamond.metrics
    notdiamond.toolkit
 
-notdiamond.callbacks
----------------------------
+Submodules
+----------
 
-.. automodule:: notdiamond.callbacks
+.. toctree::
+   :maxdepth: 4
+
+   notdiamond._utils
+   notdiamond.callbacks
+   notdiamond.exceptions
+   notdiamond.prompts
+   notdiamond.types
+
+Module contents
+--------------
+
+.. automodule:: notdiamond
    :members:
    :undoc-members:
    :show-inheritance:
-
-notdiamond.exceptions
-----------------------------
-
-.. automodule:: notdiamond.exceptions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-notdiamond.settings
---------------------------
-
-.. automodule:: notdiamond.settings
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-notdiamond.types
------------------------
-
-.. automodule:: notdiamond.types
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-notdiamond.prompts
----------------------------------------
-
-.. automodule:: notdiamond.prompts
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-notdiamond.init
----------------------------------------
 
 .. autofunction:: notdiamond.init

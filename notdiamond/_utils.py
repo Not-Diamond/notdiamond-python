@@ -1,6 +1,7 @@
 import importlib.util
 import logging
-from typing import Dict, cast
+import tiktoken
+from typing import Dict, cast, List, Optional, Union
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -98,3 +99,45 @@ def _default_headers(
         "Authorization": f"Bearer {notdiamond_api_key}",
         "User-Agent": user_agent,
     }
+
+
+def token_counter(
+    model: str = "",
+    text: Optional[str] = None,
+    messages: Optional[List[Dict[str, str]]] = None,
+) -> int:
+    """
+    Count the number of tokens in a given text or messages using a specified model.
+    
+    Args:
+        model (str): The name of the model to use for tokenization.
+        text (Optional[str]): The raw text string to count tokens for.
+        messages (Optional[List[Dict[str, str]]]): List of messages with "role" and "content" keys.
+        
+    Returns:
+        int: The number of tokens in the text or messages.
+    """
+    if text is None and messages is None:
+        raise ValueError("Either text or messages must be provided")
+    
+    if text is None:
+        text = ""
+        for message in messages:
+            if message.get("content", None) is not None:
+                content = message.get("content")
+                if isinstance(content, str):
+                    text += content
+    
+    # Use tiktoken for OpenAI models
+    try:
+        if "gpt-4" in model or "gpt-3.5" in model:
+            encoding = tiktoken.encoding_for_model(model)
+        else:
+            # Default to cl100k_base for other models
+            encoding = tiktoken.get_encoding("cl100k_base")
+        
+        return len(encoding.encode(text))
+    except Exception as e:
+        LOGGER.warning(f"Error using tiktoken: {e}. Using simple character count approximation.")
+        # Fallback: rough approximation (4 chars ≈ 1 token)
+        return len(text) // 4

@@ -20,14 +20,12 @@ from typing import (
     Union,
 )
 
-from litellm import token_counter
-
 # Details: https://python.langchain.com/v0.1/docs/guides/development/pydantic_compatibility/
 from pydantic.v1 import BaseModel
 from pydantic_partial import create_partial_model
 
 from notdiamond import settings
-from notdiamond._utils import _module_check
+from notdiamond._utils import _module_check, token_counter
 from notdiamond.exceptions import (
     ApiError,
     CreateUnavailableError,

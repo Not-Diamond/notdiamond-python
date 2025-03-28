@@ -3,37 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>notdiamond.toolkit.rag.evaluation &mdash; NotDiamond 0.3.25</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+  <title>notdiamond.toolkit.rag.evaluation &mdash; NotDiamond 0.3.43</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
 
-
+  
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-
+  
         <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=30ad20df"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ef27c91"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
-    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
 
-
-
+          
+          
           <a href="../../../../index.html" class="icon icon-home">
             NotDiamond
           </a>
               <div class="version">
-                0.3.25
+                0.3.43
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -72,34 +72,34 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-
+             
   <h1>Source code for notdiamond.toolkit.rag.evaluation</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">import</span> <span class="nn">optuna</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">langchain_core.callbacks</span> <span class="kn">import</span> <span class="n">Callbacks</span>
-<span class="kn">from</span> <span class="nn">langchain_core.embeddings</span> <span class="kn">import</span> <span class="n">Embeddings</span> <span class="k">as</span> <span class="n">LangchainEmbeddings</span>
-<span class="kn">from</span> <span class="nn">langchain_core.language_models</span> <span class="kn">import</span> <span class="n">BaseLanguageModel</span> <span class="k">as</span> <span class="n">LangchainLLM</span>
-<span class="kn">from</span> <span class="nn">langchain_core.prompt_values</span> <span class="kn">import</span> <span class="n">StringPromptValue</span>
-<span class="kn">from</span> <span class="nn">ragas</span> <span class="kn">import</span> <span class="n">EvaluationDataset</span><span class="p">,</span> <span class="n">SingleTurnSample</span>
-<span class="kn">from</span> <span class="nn">ragas._analytics</span> <span class="kn">import</span> <span class="n">track_was_completed</span>
-<span class="kn">from</span> <span class="nn">ragas.cost</span> <span class="kn">import</span> <span class="n">TokenUsageParser</span>
-<span class="kn">from</span> <span class="nn">ragas.embeddings.base</span> <span class="kn">import</span> <span class="n">BaseRagasEmbeddings</span>
-<span class="kn">from</span> <span class="nn">ragas.evaluation</span> <span class="kn">import</span> <span class="n">evaluate</span> <span class="k">as</span> <span class="n">ragas_evaluate</span>
-<span class="kn">from</span> <span class="nn">ragas.llms</span> <span class="kn">import</span> <span class="n">BaseRagasLLM</span>
-<span class="kn">from</span> <span class="nn">ragas.metrics.base</span> <span class="kn">import</span> <span class="n">Metric</span>
-<span class="kn">from</span> <span class="nn">ragas.run_config</span> <span class="kn">import</span> <span class="n">RunConfig</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">optuna</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callbacks</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">Embeddings</span> <span class="k">as</span> <span class="n">LangchainEmbeddings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.language_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseLanguageModel</span> <span class="k">as</span> <span class="n">LangchainLLM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompt_values</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringPromptValue</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas</span><span class="w"> </span><span class="kn">import</span> <span class="n">EvaluationDataset</span><span class="p">,</span> <span class="n">SingleTurnSample</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas._analytics</span><span class="w"> </span><span class="kn">import</span> <span class="n">track_was_completed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.cost</span><span class="w"> </span><span class="kn">import</span> <span class="n">TokenUsageParser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.embeddings.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRagasEmbeddings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.evaluation</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate</span> <span class="k">as</span> <span class="n">ragas_evaluate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRagasLLM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.metrics.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">Metric</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ragas.run_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
 
-<span class="kn">from</span> <span class="nn">notdiamond.llms.config</span> <span class="kn">import</span> <span class="n">LLMConfig</span>
-<span class="kn">from</span> <span class="nn">notdiamond.toolkit.rag.evaluation_dataset</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.llms.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LLMConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.toolkit.rag.evaluation_dataset</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">RAGEvaluationDataset</span><span class="p">,</span>
     <span class="n">RAGSample</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">notdiamond.toolkit.rag.llms</span> <span class="kn">import</span> <span class="n">get_llm</span>
-<span class="kn">from</span> <span class="nn">notdiamond.toolkit.rag.workflow</span> <span class="kn">import</span> <span class="n">BaseNDRagWorkflow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.toolkit.rag.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_llm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.toolkit.rag.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseNDRagWorkflow</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">LOGGER</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
@@ -109,7 +109,7 @@
 
 <div class="viewcode-block" id="get_eval_dataset">
 <a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation.get_eval_dataset">[docs]</a>
-<span class="k">def</span> <span class="nf">get_eval_dataset</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_eval_dataset</span><span class="p">(</span>
     <span class="n">test_queries</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">workflow</span><span class="p">:</span> <span class="n">BaseNDRagWorkflow</span><span class="p">,</span>
     <span class="n">generation_prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -161,7 +161,7 @@
 
 <div class="viewcode-block" id="auto_optimize">
 <a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation.auto_optimize">[docs]</a>
-<span class="k">def</span> <span class="nf">auto_optimize</span><span class="p">(</span><span class="n">workflow</span><span class="p">:</span> <span class="n">BaseNDRagWorkflow</span><span class="p">,</span> <span class="n">n_trials</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">auto_optimize</span><span class="p">(</span><span class="n">workflow</span><span class="p">:</span> <span class="n">BaseNDRagWorkflow</span><span class="p">,</span> <span class="n">n_trials</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;maximize&quot;</span> <span class="k">if</span> <span class="n">workflow</span><span class="o">.</span><span class="n">objective_maximize</span> <span class="k">else</span> <span class="s2">&quot;minimize&quot;</span>
     <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span>
         <span class="n">study_name</span><span class="o">=</span><span class="n">workflow</span><span class="o">.</span><span class="n">job_name</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span>
@@ -172,7 +172,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_map_to_ragas_samples</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_map_to_ragas_samples</span><span class="p">(</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">RAGEvaluationDataset</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">EvaluationDataset</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]:</span>
     <span class="n">ragas_samples</span> <span class="o">=</span> <span class="p">[]</span>
@@ -196,7 +196,7 @@
     <span class="k">return</span> <span class="n">EvaluationDataset</span><span class="p">(</span><span class="n">ragas_samples</span><span class="p">),</span> <span class="n">extra_columns_df</span>
 
 
-<span class="k">def</span> <span class="nf">_evaluate_dataset</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_evaluate_dataset</span><span class="p">(</span>
     <span class="n">generator_llm</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">EvaluationDataset</span><span class="p">,</span>
     <span class="n">metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Metric</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -232,7 +232,7 @@
     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">_generate_rag_eval_dataset</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_generate_rag_eval_dataset</span><span class="p">(</span>
     <span class="n">generator_llm</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">RAGEvaluationDataset</span><span class="p">,</span>
     <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_DEFAULT_GENERATION_TEMPERATURE</span><span class="p">,</span>
@@ -266,7 +266,7 @@
 <div class="viewcode-block" id="evaluate">
 <a class="viewcode-back" href="../../../../source/notdiamond.toolkit.rag.html#notdiamond.toolkit.rag.evaluation.evaluate">[docs]</a>
 <span class="nd">@track_was_completed</span>
-<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">RAGEvaluationDataset</span><span class="p">,</span>
     <span class="n">metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Metric</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">llm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">BaseRagasLLM</span><span class="p">,</span> <span class="n">LangchainLLM</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -349,14 +349,14 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Nov 22, 2024.
+      <span class="lastupdated">Last updated on Mar 27, 2025.
       </span></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
-
+   
 
 </footer>
         </div>
@@ -367,7 +367,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
+  </script> 
 
 </body>
 </html>

@@ -3,37 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>notdiamond.llms.client &mdash; NotDiamond 0.3.38</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+  <title>notdiamond.llms.client &mdash; NotDiamond 0.3.43</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
-
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-
+  
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=fd657331"></script>
+        <script src="../../../_static/documentation_options.js?v=4ef27c91"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
-    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
 
-
-
+          
+          
           <a href="../../../index.html" class="icon icon-home">
             NotDiamond
           </a>
               <div class="version">
-                0.3.38
+                0.3.43
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -72,17 +72,17 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-
+             
   <h1>Source code for notdiamond.llms.client</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;NotDiamond client class&quot;&quot;&quot;</span>
 
 
-<span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Any</span><span class="p">,</span>
     <span class="n">AsyncIterator</span><span class="p">,</span>
     <span class="n">Callable</span><span class="p">,</span>
@@ -96,45 +96,43 @@
     <span class="n">Union</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">litellm</span> <span class="kn">import</span> <span class="n">token_counter</span>
-
 <span class="c1"># Details: https://python.langchain.com/v0.1/docs/guides/development/pydantic_compatibility/</span>
-<span class="kn">from</span> <span class="nn">pydantic.v1</span> <span class="kn">import</span> <span class="n">BaseModel</span>
-<span class="kn">from</span> <span class="nn">pydantic_partial</span> <span class="kn">import</span> <span class="n">create_partial_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic.v1</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_partial</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_partial_model</span>
 
-<span class="kn">from</span> <span class="nn">notdiamond</span> <span class="kn">import</span> <span class="n">settings</span>
-<span class="kn">from</span> <span class="nn">notdiamond._utils</span> <span class="kn">import</span> <span class="n">_module_check</span>
-<span class="kn">from</span> <span class="nn">notdiamond.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond</span><span class="w"> </span><span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond._utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">_module_check</span><span class="p">,</span> <span class="n">token_counter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">ApiError</span><span class="p">,</span>
     <span class="n">CreateUnavailableError</span><span class="p">,</span>
     <span class="n">MissingLLMConfigs</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">notdiamond.llms.config</span> <span class="kn">import</span> <span class="n">LLMConfig</span>
-<span class="kn">from</span> <span class="nn">notdiamond.llms.providers</span> <span class="kn">import</span> <span class="n">is_o1_model</span>
-<span class="kn">from</span> <span class="nn">notdiamond.llms.request</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.llms.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LLMConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.llms.providers</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_o1_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.llms.request</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">amodel_select</span><span class="p">,</span>
     <span class="n">create_preference_id</span><span class="p">,</span>
     <span class="n">model_select</span><span class="p">,</span>
     <span class="n">report_latency</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">notdiamond.metrics.metric</span> <span class="kn">import</span> <span class="n">Metric</span>
-<span class="kn">from</span> <span class="nn">notdiamond.prompts</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.metrics.metric</span><span class="w"> </span><span class="kn">import</span> <span class="n">Metric</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">_curly_escape</span><span class="p">,</span>
     <span class="n">inject_system_prompt</span><span class="p">,</span>
     <span class="n">o1_system_prompt_translate</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">notdiamond.types</span> <span class="kn">import</span> <span class="n">NDApiKeyValidator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notdiamond.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">NDApiKeyValidator</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">LOGGER</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">_NDClientTarget</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_NDClientTarget</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="n">ROUTER</span> <span class="o">=</span> <span class="s2">&quot;router&quot;</span>
     <span class="n">INVOKER</span> <span class="o">=</span> <span class="s2">&quot;invoker&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">_ndllm_factory</span><span class="p">(</span><span class="n">import_target</span><span class="p">:</span> <span class="n">_NDClientTarget</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_ndllm_factory</span><span class="p">(</span><span class="n">import_target</span><span class="p">:</span> <span class="n">_NDClientTarget</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="n">_invoke_error_msg_tmpl</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">&quot;</span><span class="si">{fn_name}</span><span class="s2"> is not available. `notdiamond` can generate LLM responses after &quot;</span>
         <span class="s2">&quot;installing additional dependencies via `pip install notdiamond[create]`.&quot;</span>
@@ -146,7 +144,7 @@
         <span class="s2">&quot;No default LLMConfig set. Defaulting to </span><span class="si">{provider}</span><span class="s2">/</span><span class="si">{model}</span><span class="s2">&quot;</span>
     <span class="p">)</span>
 
-    <span class="k">class</span> <span class="nc">_NDRouterClient</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">_NDRouterClient</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
         <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
         <span class="n">default</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
@@ -162,10 +160,10 @@
         <span class="n">max_retries</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
 
-        <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
             <span class="n">arbitrary_types_allowed</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -239,17 +237,17 @@
             <span class="p">),</span> <span class="s2">&quot;API key is not set. Please set a Not Diamond API key.&quot;</span>
 
         <span class="nd">@property</span>
-        <span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">chat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span>
 
         <span class="nd">@property</span>
-        <span class="k">def</span> <span class="nf">completions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">completions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span>
 
-        <span class="k">def</span> <span class="nf">create_preference_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">create_preference_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">create_preference_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nd_api_url</span><span class="p">)</span>
 
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">amodel_select</span><span class="p">(</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">amodel_select</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
             <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -338,7 +336,7 @@
 
             <span class="k">return</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">best_llm</span>
 
-        <span class="k">def</span> <span class="nf">model_select</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">model_select</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
             <span class="nb">input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -427,7 +425,7 @@
             <span class="k">return</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">best_llm</span>
 
         <span class="nd">@staticmethod</span>
-        <span class="k">def</span> <span class="nf">_parse_llm_configs_data</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_parse_llm_configs_data</span><span class="p">(</span>
             <span class="n">llm_configs</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]:</span>
             <span class="n">providers</span> <span class="o">=</span> <span class="p">[]</span>
@@ -439,7 +437,7 @@
                 <span class="n">providers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed_provider</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">providers</span>
 
-        <span class="k">def</span> <span class="nf">validate_params</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">validate_params</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">default</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">max_model_depth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -486,7 +484,7 @@
             <span class="k">if</span> <span class="n">hash_content</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">hash_content</span> <span class="o">=</span> <span class="n">hash_content</span>
 
-        <span class="k">def</span> <span class="nf">bind_tools</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">bind_tools</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">tools</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Callable</span><span class="p">]]</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;NotDiamond&quot;</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
@@ -506,7 +504,7 @@
 
             <span class="k">return</span> <span class="bp">self</span>
 
-        <span class="k">def</span> <span class="nf">call_callbacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">call_callbacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Call all callbacks with a specific function name.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
@@ -518,38 +516,38 @@
                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">function_name</span><span class="p">):</span>
                     <span class="nb">getattr</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">function_name</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="n">format_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">function</span><span class="si">}</span><span class="s2">`&quot;</span>
             <span class="k">raise</span> <span class="n">CreateUnavailableError</span><span class="p">(</span>
                 <span class="n">_invoke_error_msg_tmpl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fn_name</span><span class="o">=</span><span class="n">format_str</span><span class="p">)</span>
             <span class="p">)</span>
 
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">acreate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">acreate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="n">format_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">function</span><span class="si">}</span><span class="s2">`&quot;</span>
             <span class="k">raise</span> <span class="n">CreateUnavailableError</span><span class="p">(</span>
                 <span class="n">_invoke_error_msg_tmpl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fn_name</span><span class="o">=</span><span class="n">format_str</span><span class="p">)</span>
             <span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="n">format_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">function</span><span class="si">}</span><span class="s2">`&quot;</span>
             <span class="k">raise</span> <span class="n">CreateUnavailableError</span><span class="p">(</span>
                 <span class="n">_invoke_error_msg_tmpl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fn_name</span><span class="o">=</span><span class="n">format_str</span><span class="p">)</span>
             <span class="p">)</span>
 
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">ainvoke</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ainvoke</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="n">format_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">function</span><span class="si">}</span><span class="s2">`&quot;</span>
             <span class="k">raise</span> <span class="n">CreateUnavailableError</span><span class="p">(</span>
                 <span class="n">_invoke_error_msg_tmpl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fn_name</span><span class="o">=</span><span class="n">format_str</span><span class="p">)</span>
             <span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">CreateUnavailableError</span><span class="p">(</span>
                 <span class="n">_invoke_error_msg_tmpl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="n">fn_name</span><span class="o">=</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">function</span>
                 <span class="p">)</span>
             <span class="p">)</span>
 
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">astream</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">astream</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">CreateUnavailableError</span><span class="p">(</span>
                 <span class="n">_invoke_error_msg_tmpl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="n">fn_name</span><span class="o">=</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">function</span>
@@ -557,7 +555,7 @@
             <span class="p">)</span>
 
         <span class="nd">@property</span>
-        <span class="k">def</span> <span class="nf">default_llm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LLMConfig</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">default_llm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LLMConfig</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Return the default LLM that&#39;s set on the NotDiamond client class.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
@@ -607,12 +605,12 @@
         <span class="n">msg</span> <span class="o">=</span> <span class="n">_invoke_error_msg_tmpl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;NotDiamond creation&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">import_target</span> <span class="o">==</span> <span class="n">_NDClientTarget</span><span class="o">.</span><span class="n">INVOKER</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot; Create was requested, however - raising...&quot;</span>
-            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">ierr</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ierr</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">_NDRouterClient</span>
 
-    <span class="k">class</span> <span class="nc">_NDInvokerClient</span><span class="p">(</span><span class="n">_NDRouterClient</span><span class="p">,</span> <span class="n">LLM</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">_NDInvokerClient</span><span class="p">(</span><span class="n">_NDRouterClient</span><span class="p">,</span> <span class="n">LLM</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Implementation of NotDiamond class, the main class responsible for creating and invoking LLM prompts.</span>
 <span class="sd">        The class inherits from Langchain&#39;s LLM class. Starting reference is from here:</span>
@@ -640,7 +638,7 @@
         <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
         <span class="n">user_agent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">llm_configs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -691,17 +689,17 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="p">),</span> <span class="s2">&quot;API key is not set. Please set a Not Diamond API key.&quot;</span>
 
-        <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="n">class_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
             <span class="n">address</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>  <span class="c1"># Gets the memory address of the object</span>
             <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="s2"> object at </span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
 
         <span class="nd">@property</span>
-        <span class="k">def</span> <span class="nf">_llm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_llm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;NotDiamond LLM&quot;</span>
 
         <span class="nd">@staticmethod</span>
-        <span class="k">def</span> <span class="nf">_inject_model_instruction</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_inject_model_instruction</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
             <span class="n">format_instructions</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">get_format_instructions</span><span class="p">()</span>
             <span class="n">format_instructions</span> <span class="o">=</span> <span class="n">format_instructions</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
                 <span class="s2">&quot;{&quot;</span><span class="p">,</span> <span class="s2">&quot;{{&quot;</span>
@@ -711,7 +709,7 @@
             <span class="p">)</span>
             <span class="k">return</span> <span class="n">messages</span>
 
-        <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_call</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">stop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -722,7 +720,7 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;stop kwargs are not permitted.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="s2">&quot;This function is deprecated for the latest LangChain version, use invoke instead&quot;</span>
 
-        <span class="k">def</span> <span class="nf">create</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
             <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -795,7 +793,7 @@
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
 
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">acreate</span><span class="p">(</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">acreate</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
             <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -868,7 +866,7 @@
             <span class="p">)</span>
             <span class="k">return</span> <span class="n">result</span>
 
-        <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
             <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1077,7 +1075,7 @@
 
             <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">best_llm</span>
 
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">ainvoke</span><span class="p">(</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ainvoke</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
             <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1282,7 +1280,7 @@
 
             <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">best_llm</span>
 
-        <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
             <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1403,7 +1401,7 @@
                     <span class="n">partial_model</span> <span class="o">=</span> <span class="n">create_partial_model</span><span class="p">(</span><span class="n">response_model</span><span class="p">)</span>
                     <span class="k">yield</span> <span class="n">partial_model</span><span class="p">(</span><span class="o">**</span><span class="n">chunk</span><span class="p">)</span>
 
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">astream</span><span class="p">(</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">astream</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
             <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LLMConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1522,7 +1520,7 @@
                     <span class="n">partial_model</span> <span class="o">=</span> <span class="n">create_partial_model</span><span class="p">(</span><span class="n">response_model</span><span class="p">)</span>
                     <span class="k">yield</span> <span class="n">partial_model</span><span class="p">(</span><span class="o">**</span><span class="n">chunk</span><span class="p">)</span>
 
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">_async_invoke_with_latency_tracking</span><span class="p">(</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_async_invoke_with_latency_tracking</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">chain</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
@@ -1568,7 +1566,7 @@
 
             <span class="k">return</span> <span class="n">result</span>
 
-        <span class="k">def</span> <span class="nf">_invoke_with_latency_tracking</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_invoke_with_latency_tracking</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">chain</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
@@ -1614,7 +1612,7 @@
             <span class="k">return</span> <span class="n">result</span>
 
         <span class="nd">@staticmethod</span>
-        <span class="k">def</span> <span class="nf">_llm_from_config</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_llm_from_config</span><span class="p">(</span>
             <span class="n">provider</span><span class="p">:</span> <span class="n">LLMConfig</span><span class="p">,</span>
             <span class="n">callbacks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -1742,7 +1740,7 @@
                 <span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported provider: </span><span class="si">{</span><span class="n">provider</span><span class="o">.</span><span class="n">provider</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">verify_against_response_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">verify_against_response_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Verify that the LLMs support response modeling.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
@@ -1767,7 +1765,7 @@
 
 <div class="viewcode-block" id="NotDiamond">
 <a class="viewcode-back" href="../../../source/notdiamond.llms.html#notdiamond.llms.client.NotDiamond">[docs]</a>
-<span class="k">class</span> <span class="nc">NotDiamond</span><span class="p">(</span><span class="n">_NDClient</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NotDiamond</span><span class="p">(</span><span class="n">_NDClient</span><span class="p">):</span>
     <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    API key required for making calls to NotDiamond.</span>
@@ -1843,11 +1841,11 @@
 
 <div class="viewcode-block" id="NotDiamond.Config">
 <a class="viewcode-back" href="../../../source/notdiamond.llms.html#notdiamond.llms.client.NotDiamond.Config">[docs]</a>
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
         <span class="n">arbitrary_types_allowed</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">nd_api_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTDIAMOND_API_URL</span><span class="p">,</span>
         <span class="n">user_agent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_USER_AGENT</span><span class="p">,</span>
@@ -1869,7 +1867,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_get_accepted_invoke_errors</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_accepted_invoke_errors</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;google&quot;</span><span class="p">:</span>
         <span class="n">ChatGoogleGenerativeAIError</span> <span class="o">=</span> <span class="n">_module_check</span><span class="p">(</span>
             <span class="s2">&quot;langchain_google_genai.chat_models&quot;</span><span class="p">,</span>
@@ -1890,14 +1888,14 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2024, NotDiamond.
-      <span class="lastupdated">Last updated on Feb 18, 2025.
+      <span class="lastupdated">Last updated on Mar 27, 2025.
       </span></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     provided by <a href="https://readthedocs.org">Read the Docs</a>.
-
+   
 
 </footer>
         </div>
@@ -1908,7 +1906,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
+  </script> 
 
 </body>
 </html>

@@ -25,10 +25,6 @@ Make sure to install `libmagic` if you intend to use the `create` or `rag` extra
 brew install libmagic
 ```
 
-### Deprecated Modules
-
-> **Note**: The `notdiamond.toolkit.litellm` module is deprecated and will be removed in a future version. Please use the standard client as shown in the examples below.
-
 ## Setting up
 
 Create a `.env` file with your [Not Diamond API key](https://app.notdiamond.ai/keys) and the [API keys of the models](https://notdiamond.readme.io/docs/api-keys) you want to route between:

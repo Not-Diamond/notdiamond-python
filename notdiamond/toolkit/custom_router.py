@@ -7,7 +7,6 @@ from typing import Dict, List, Optional, Tuple, Union
 import numpy as np
 import pandas as pd
 import requests
-from litellm import token_counter
 from tqdm import tqdm
 
 from notdiamond.exceptions import ApiError
@@ -15,6 +14,7 @@ from notdiamond.llms.client import NotDiamond
 from notdiamond.llms.config import LLMConfig
 from notdiamond.settings import NOTDIAMOND_API_KEY, NOTDIAMOND_API_URL, VERSION
 from notdiamond.types import NDApiKeyValidator
+from notdiamond._utils import token_counter
 
 
 class CustomRouter:
