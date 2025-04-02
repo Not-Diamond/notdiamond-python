@@ -17,23 +17,23 @@ interactions:
       Content-Length:
       - '501'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.2
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"80240449-0c09-4ffc-9f41-a588bf02cb89"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"cc398e9c-45dc-4322-84f1-8d25b5f3dde5"}'
     headers:
       CF-RAY:
-      - 925cfc73bebfd0eb-SOF
+      - 92a0772f79115b36-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:56 GMT
+      - Wed, 02 Apr 2025 12:52:49 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -45,7 +45,7 @@ interactions:
       content-length:
       - '113'
       rndr-id:
-      - 66093ddd-dcd6-4a3b
+      - 9d5de226-bc3b-4eb3
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -54,11 +54,9 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "You are a helpful AI bot. Your name is Bob.",
-      "role": "system"}, {"content": "Hello, how are you doing?", "role": "user"},
-      {"content": "I''m doing well, thanks!", "role": "assistant"}, {"content": "What
-      is your name?", "role": "user"}], "model": "gpt-3.5-turbo", "n": 1, "stream":
-      false, "temperature": 0.7}'
+    body: '{"messages":[{"content":"You are a helpful AI bot. Your name is Bob.","role":"system"},{"content":"Hello,
+      how are you doing?","role":"user"},{"content":"I''m doing well, thanks!","role":"assistant"},{"content":"What
+      is your name?","role":"user"}],"model":"gpt-3.5-turbo","stream":false}'
     headers:
       accept:
       - application/json
@@ -67,13 +65,13 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '333'
+      - '285'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.60.2
       x-stainless-arch:
       - x64
       x-stainless-async:
@@ -83,9 +81,7 @@ interactions:
       x-stainless-os:
       - Linux
       x-stainless-package-version:
-      - 1.68.2
-      x-stainless-read-timeout:
-      - '120.0'
+      - 1.60.2
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
@@ -96,10 +92,10 @@ interactions:
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEtnoEU1VfuyZhtet751ZtpzffTkK\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742890796,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
+      string: "{\n  \"id\": \"chatcmpl-BHrsINX3FIxIWUWoMlP3REuuw5oYO\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1743598370,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"My name is Bob. How can I assist you
+        \"assistant\",\n        \"content\": \"My name is Bob. How can I help you
         today?\",\n        \"refusal\": null,\n        \"annotations\": []\n      },\n
         \     \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n
         \ \"usage\": {\n    \"prompt_tokens\": 50,\n    \"completion_tokens\": 13,\n
@@ -110,20 +106,20 @@ interactions:
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 925cfc786f046e9f-SOF
+      - 92a077344db089c3-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:57 GMT
+      - Wed, 02 Apr 2025 12:52:50 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=xF1Y2qFS0xIZz7Tea7KCjCSUuo24b81bZNpq2BQsuM4-1742890797-1.0.1.1-lchVUvjee5zNQDFIm6SRgODd.RQn8AAK7.Rgu3Hljiv_8iZAXhFv5U2KdQFgQyu0KdaBSwplpzhyBvqy.GRFsNhn7Iee6SQc9hUZJcuuBxA;
-        path=/; expires=Tue, 25-Mar-25 08:49:57 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=Zw5TAktpjFJ9vmvwjvi3YuGr9jzB6bfKnhlYa1VXEZI-1743598370-1.0.1.1-MOMsiC7g5OcDZDR36vX080yQMces9gqOLKsma2iC0EBaaoiaNYmKcnvaicyl_xiiEZv4FBzLogRz_IDTPTjTN3sjdnRnfSY5J1CIBDLHaYI;
+        path=/; expires=Wed, 02-Apr-25 13:22:50 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=JrqxIbLbZ2cbksCn5D3GguGgmOtgJzrp0CJK16j_7ZY-1742890797235-0.0.1.1-604800000;
+      - _cfuvid=v_Vs4A_Yg8Wqy0vhfYAbNSTDj4liLzSA_K8_nFv4IEU-1743598370465-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -136,11 +132,11 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '835'
+      - '833'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '218'
+      - '343'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -158,15 +154,15 @@ interactions:
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_cae07ed04ad3ba68f91abd76bc9cddaf
+      - req_72d864f7eaf435b767b41f0e65efe2c5
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "80240449-0c09-4ffc-9f41-a588bf02cb89", "provider": {"provider":
+    body: '{"session_id": "cc398e9c-45dc-4322-84f1-8d25b5f3dde5", "provider": {"provider":
       "openai", "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null,
       "input_price": null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
-      39.15724903976222}}'
+      19.210625994755706}}'
     headers:
       Accept:
       - '*/*'
@@ -175,26 +171,26 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '274'
+      - '275'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.2
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=4db315a2-65b8-4cb3, Session 80240449-0c09-4ffc-9f41-a588bf02cb89
+      string: '{"detail":"requestID=7e4aea8f-87f8-4a9b, Session cc398e9c-45dc-4322-84f1-8d25b5f3dde5
         does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
       CF-RAY:
-      - 925cfc7b7cdc5b39-VIE
+      - 92a07738289ac2d4-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:57 GMT
+      - Wed, 02 Apr 2025 12:52:50 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -204,7 +200,7 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       rndr-id:
-      - 4db315a2-65b8-4cb3
+      - 7e4aea8f-87f8-4a9b
       vary:
       - Accept-Encoding
       x-render-origin-server:

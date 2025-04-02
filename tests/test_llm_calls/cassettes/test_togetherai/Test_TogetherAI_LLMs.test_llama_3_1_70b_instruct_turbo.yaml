@@ -14,23 +14,23 @@ interactions:
       Content-Length:
       - '329'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.2
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"togetherai","model":"Meta-Llama-3.1-70B-Instruct-Turbo"}],"session_id":"cd11678b-40bb-4b0c-86e5-19c8fd850dea"}'
+      string: '{"providers":[{"provider":"togetherai","model":"Meta-Llama-3.1-70B-Instruct-Turbo"}],"session_id":"ea2bf417-fe19-44c7-91b3-42bf78b2792a"}'
     headers:
       CF-RAY:
-      - 925d139a2ddec247-VIE
+      - 92a0353d4b065a86-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:35:44 GMT
+      - Wed, 02 Apr 2025 12:07:48 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,7 +42,7 @@ interactions:
       content-length:
       - '137'
       rndr-id:
-      - 110b0096-89a4-4478
+      - 4fbf6eec-f6e7-436e
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -51,9 +51,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "How much is 3 + 5?", "role": "user"}], "model":
-      "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "max_tokens": 10, "n": 1, "stream":
-      false, "temperature": 0.7}'
+    body: '{"messages":[{"content":"How much is 3 + 5?","role":"user"}],"model":"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo","max_tokens":10,"stream":false}'
     headers:
       accept:
       - application/json
@@ -62,13 +60,13 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '185'
+      - '147'
       content-type:
       - application/json
       host:
-      - api.together.ai
+      - api.together.xyz
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.60.2
       x-stainless-arch:
       - x64
       x-stainless-async:
@@ -78,7 +76,7 @@ interactions:
       x-stainless-os:
       - Linux
       x-stainless-package-version:
-      - 1.68.2
+      - 1.60.2
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
@@ -86,56 +84,54 @@ interactions:
       x-stainless-runtime-version:
       - 3.12.3
     method: POST
-    uri: https://api.together.ai/v1/chat/completions
+    uri: https://api.together.xyz/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"nnQNmXH-4Yz4kd-925d139ea9eed0c6\",\n  \"object\": \"chat.completion\",\n
-        \ \"created\": 1742891745,\n  \"model\": \"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo\",\n
+      string: "{\n  \"id\": \"noUaZQd-6UHjtw-92a035420fd4d0e3\",\n  \"object\": \"chat.completion\",\n
+        \ \"created\": 1743595668,\n  \"model\": \"meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo\",\n
         \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n
-        \     \"seed\": 5308162445650570000,\n      \"logprobs\": null,\n      \"index\":
+        \     \"seed\": 6587526916665092000,\n      \"logprobs\": null,\n      \"index\":
         0,\n      \"message\": {\n        \"role\": \"assistant\",\n        \"content\":
         \"3 + 5 = 8.\",\n        \"tool_calls\": []\n      }\n    }\n  ],\n  \"usage\":
         {\n    \"prompt_tokens\": 44,\n    \"completion_tokens\": 9,\n    \"total_tokens\":
-        53\n  }\n}"
+        53,\n    \"cached_tokens\": 0\n  }\n}"
     headers:
       Access-Control-Allow-Origin:
       - '*'
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 925d139ea9eed0c6-SOF
+      - 92a035420fd4d0e3-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 25 Mar 2025 08:35:45 GMT
+      - Wed, 02 Apr 2025 12:07:49 GMT
       ETag:
-      - W/"20c-9UMKpSjeQQE4+zOSz7WLZYE6eD4"
+      - W/"224-BSzxd20n/8ZTM4PVx88UAJ48Qjs"
       Retry-After:
       - '2'
       Server:
       - cloudflare
       Strict-Transport-Security:
-      - max-age=2592000; includeSubDomains
+      - max-age=15552000; includeSubDomains
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
       alt-svc:
       - h3=":443"; ma=86400
       content-length:
-      - '524'
+      - '548'
       x-amzn-trace-id:
-      - 5c7a7ef0-8171-48d6-a6d8-d8a366bb3a66-noamzn
+      - 1364e8c3-f884-4b7b-9c2c-c28ce13f4a54-noamzn
       x-api-call-end:
-      - '2025-03-25T08:35:45.802Z'
+      - '2025-04-02T12:07:49.102Z'
       x-api-call-start:
-      - '2025-03-25T08:35:45.591Z'
+      - '2025-04-02T12:07:48.926Z'
       x-api-received:
-      - '2025-03-25T08:35:45.572Z'
+      - '2025-04-02T12:07:48.914Z'
       x-inference-version:
       - v2
       x-ratelimit:
@@ -151,7 +147,7 @@ interactions:
       x-ratelimit-reset:
       - '2'
       x-request-id:
-      - nnQNmXH-4Yz4kd-925d139ea9eed0c6
+      - noUaZQd-6UHjtw-92a035420fd4d0e3
     status:
       code: 200
       message: OK

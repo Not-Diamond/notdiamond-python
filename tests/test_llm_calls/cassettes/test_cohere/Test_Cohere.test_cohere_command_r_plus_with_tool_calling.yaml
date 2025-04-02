@@ -5,8 +5,8 @@ interactions:
       null, "input_price": null, "output_price": null, "latency": null}], "metric":
       "accuracy", "max_model_depth": 1, "hash_content": true, "tools": [{"type": "function",
       "function": {"name": "add_fct", "description": "Adds a and b.", "parameters":
-      {"type": "object", "properties": {"a": {"type": "integer"}, "b": {"type": "integer"}},
-      "required": ["a", "b"]}}}]}'
+      {"properties": {"a": {"type": "integer"}, "b": {"type": "integer"}}, "required":
+      ["a", "b"], "type": "object"}}}]}'
     headers:
       Accept:
       - '*/*'
@@ -17,23 +17,23 @@ interactions:
       Content-Length:
       - '529'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.2
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"cohere","model":"command-r-plus"}],"session_id":"27cdb745-e712-49d0-850f-bf99dd75f250"}'
+      string: '{"providers":[{"provider":"cohere","model":"command-r-plus"}],"session_id":"a29c2d34-c80c-41d7-af5f-2e6a0b43862c"}'
     headers:
       CF-RAY:
-      - 925d00df381d0d50-VIE
+      - 92a02c1a4d68d0ff-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:22:58 GMT
+      - Wed, 02 Apr 2025 12:01:34 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -45,7 +45,7 @@ interactions:
       content-length:
       - '114'
       rndr-id:
-      - f623d3ce-b729-4b5a
+      - 4974b90f-8e20-48ff
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -54,10 +54,9 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"message": "How much is 3 + 5?", "model": "command-r-plus", "chat_history":
-      [], "tools": [{"name": "add_fct", "description": "Adds a and b.", "parameter_definitions":
-      {"a": {"description": "", "type": "int", "required": true}, "b": {"description":
-      "", "type": "int", "required": true}}}], "stream": false}'
+    body: '{"model":"command-r-plus","messages":[{"role":"user","content":"How much
+      is 3 + 5?"}],"tools":[{"type":"function","function":{"name":"add_fct","description":"Adds
+      a and b.","parameters":{"type":"object","properties":{"a":{"type":"integer","description":""},"b":{"type":"integer","description":""}},"required":["a","b"]}}}],"stream":false}'
     headers:
       accept:
       - '*/*'
@@ -66,13 +65,13 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '306'
+      - '338'
       content-type:
       - application/json
       host:
       - api.cohere.com
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
       x-client-name:
       - langchain:partner
       x-fern-language:
@@ -82,18 +81,16 @@ interactions:
       x-fern-sdk-version:
       - 5.14.0
     method: POST
-    uri: https://api.cohere.com/v1/chat
+    uri: https://api.cohere.com/v2/chat
   response:
     body:
-      string: '{"response_id":"b7a94c9d-f507-418e-ac80-8655019cb9d1","text":"I will
-        use the add_fct tool to add 3 and 5 together.","generation_id":"54c0feb6-6c48-444c-9f47-8185811280c0","chat_history":[{"role":"USER","message":"How
-        much is 3 + 5?"},{"role":"CHATBOT","message":"I will use the add_fct tool
-        to add 3 and 5 together.","tool_calls":[{"name":"add_fct","parameters":{"a":3,"b":5}}]}],"finish_reason":"COMPLETE","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":20,"output_tokens":31},"tokens":{"input_tokens":905,"output_tokens":67}},"tool_calls":[{"name":"add_fct","parameters":{"a":3,"b":5}}]}'
+      string: '{"id":"22b7f291-e854-4dae-ba47-ad26c200372f","message":{"role":"assistant","tool_plan":"I
+        will use the add_fct tool to add 3 and 5 together.","tool_calls":[{"id":"add_fct_y9r0dcrwgkth","type":"function","function":{"name":"add_fct","arguments":"{\"a\":3,\"b\":5}"}}]},"finish_reason":"TOOL_CALL","usage":{"billed_units":{"input_tokens":22,"output_tokens":31},"tokens":{"input_tokens":905,"output_tokens":67}}}'
     headers:
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Content-Length:
-      - '610'
+      - '409'
       Via:
       - 1.1 google
       access-control-expose-headers:
@@ -103,13 +100,13 @@ interactions:
       content-type:
       - application/json
       date:
-      - Tue, 25 Mar 2025 08:22:59 GMT
+      - Wed, 02 Apr 2025 12:01:35 GMT
       expires:
       - Thu, 01 Jan 1970 00:00:00 UTC
       num_chars:
       - '4298'
       num_tokens:
-      - '51'
+      - '53'
       pragma:
       - no-cache
       server:
@@ -119,9 +116,9 @@ interactions:
       x-accel-expires:
       - '0'
       x-debug-trace-id:
-      - 702e056b64714eda540d20032bb432af
+      - 556ccb2f2f32c79106707c8bdf93a322
       x-envoy-upstream-service-time:
-      - '1239'
+      - '1317'
     status:
       code: 200
       message: OK

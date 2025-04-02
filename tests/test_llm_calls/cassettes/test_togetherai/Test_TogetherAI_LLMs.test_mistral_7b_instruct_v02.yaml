@@ -14,23 +14,23 @@ interactions:
       Content-Length:
       - '319'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.2
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"togetherai","model":"Mistral-7B-Instruct-v0.2"}],"session_id":"2107f3aa-9681-4938-99ad-a61b5b54c42e"}'
+      string: '{"providers":[{"provider":"togetherai","model":"Mistral-7B-Instruct-v0.2"}],"session_id":"06aa3a52-8b28-4c9f-b9b1-adadc8acda0e"}'
     headers:
       CF-RAY:
-      - 925d13708a2a89c3-SOF
+      - 92a03501ba315b6d-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:35:38 GMT
+      - Wed, 02 Apr 2025 12:07:39 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,7 +42,7 @@ interactions:
       content-length:
       - '128'
       rndr-id:
-      - d96f0bff-0067-4453
+      - 1b39e021-b17b-4c4b
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -51,9 +51,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "How much is 3 + 5?", "role": "user"}], "model":
-      "mistralai/Mistral-7B-Instruct-v0.2", "max_tokens": 10, "n": 1, "stream": false,
-      "temperature": 0.7}'
+    body: '{"messages":[{"content":"How much is 3 + 5?","role":"user"}],"model":"mistralai/Mistral-7B-Instruct-v0.2","max_tokens":10,"stream":false}'
     headers:
       accept:
       - application/json
@@ -62,13 +60,13 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '175'
+      - '137'
       content-type:
       - application/json
       host:
-      - api.together.ai
+      - api.together.xyz
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.60.2
       x-stainless-arch:
       - x64
       x-stainless-async:
@@ -78,7 +76,7 @@ interactions:
       x-stainless-os:
       - Linux
       x-stainless-package-version:
-      - 1.68.2
+      - 1.60.2
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
@@ -86,13 +84,13 @@ interactions:
       x-stainless-runtime-version:
       - 3.12.3
     method: POST
-    uri: https://api.together.ai/v1/chat/completions
+    uri: https://api.together.xyz/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"nnQNjgH-3NKUce-925d13754caa5ba5\",\n  \"object\": \"chat.completion\",\n
-        \ \"created\": 1742891739,\n  \"model\": \"mistralai/Mistral-7B-Instruct-v0.2\",\n
+      string: "{\n  \"id\": \"noUaWjG-6UHjtw-92a035071a5cd0d4\",\n  \"object\": \"chat.completion\",\n
+        \ \"created\": 1743595659,\n  \"model\": \"mistralai/Mistral-7B-Instruct-v0.2\",\n
         \ \"prompt\": [],\n  \"choices\": [\n    {\n      \"finish_reason\": \"length\",\n
-        \     \"seed\": 9820184033502745000,\n      \"logprobs\": null,\n      \"index\":
+        \     \"seed\": 1153930215679807500,\n      \"logprobs\": null,\n      \"index\":
         0,\n      \"message\": {\n        \"role\": \"assistant\",\n        \"content\":
         \" The sum of 3 and 5 is \",\n        \"tool_calls\": []\n      }\n    }\n
         \ ],\n  \"usage\": {\n    \"prompt_tokens\": 13,\n    \"completion_tokens\":
@@ -103,39 +101,37 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 925d13754caa5ba5-VIE
+      - 92a035071a5cd0d4-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 25 Mar 2025 08:35:38 GMT
+      - Wed, 02 Apr 2025 12:07:40 GMT
       ETag:
-      - W/"212-bDoBYZBBImkHAHufrzIdX5lSu0w"
+      - W/"212-37cXL5p5ySjk70tVHG44iY5CZfU"
       Retry-After:
       - '2'
       Server:
       - cloudflare
       Strict-Transport-Security:
-      - max-age=2592000; includeSubDomains
+      - max-age=15552000; includeSubDomains
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
       alt-svc:
       - h3=":443"; ma=86400
       content-length:
       - '530'
       x-amzn-trace-id:
-      - bc17f4ed-c0af-46d6-810b-db340834c33e-noamzn
+      - 19bf20a2-7586-495c-9ae6-39159dbddb1c-noamzn
       x-api-call-end:
-      - '2025-03-25T08:35:39.499Z'
+      - '2025-04-02T12:07:40.218Z'
       x-api-call-start:
-      - '2025-03-25T08:35:39.371Z'
+      - '2025-04-02T12:07:40.035Z'
       x-api-received:
-      - '2025-03-25T08:35:39.366Z'
+      - '2025-04-02T12:07:39.903Z'
       x-inference-version:
       - v2
       x-ratelimit:
@@ -143,15 +139,15 @@ interactions:
       x-ratelimit-limit:
       - '10'
       x-ratelimit-limit-tokens:
-      - '3000'
+      - '1000000000000'
       x-ratelimit-remaining:
       - '19'
       x-ratelimit-remaining-tokens:
-      - '3000'
+      - '1000000000000'
       x-ratelimit-reset:
       - '2'
       x-request-id:
-      - nnQNjgH-3NKUce-925d13754caa5ba5
+      - noUaWjG-6UHjtw-92a035071a5cd0d4
     status:
       code: 200
       message: OK
