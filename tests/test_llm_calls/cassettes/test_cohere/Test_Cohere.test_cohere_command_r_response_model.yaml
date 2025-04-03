@@ -14,23 +14,23 @@ interactions:
       Content-Length:
       - '296'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.2
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"cohere","model":"command-r"}],"session_id":"d0885516-23dc-4b58-a98e-5ad15f3b846a"}'
+      string: '{"providers":[{"provider":"cohere","model":"command-r"}],"session_id":"ab9f9cb4-d055-4894-bbcb-cf6d16a74123"}'
     headers:
       CF-RAY:
-      - 925d0108a9e63a0d-VIE
+      - 92a02c3fdc915a86-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:23:04 GMT
+      - Wed, 02 Apr 2025 12:01:40 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,7 +42,7 @@ interactions:
       content-length:
       - '109'
       rndr-id:
-      - 3344730f-f4d3-4213
+      - b926eb03-7f7c-438d
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -51,17 +51,17 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"message": "The output should be formatted as a JSON instance that conforms
-      to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
-      {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
-      \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
-      object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted instance of the schema.
-      The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere
-      is the output schema:\n```\n{\"properties\": {\"setup\": {\"description\": \"question
-      to set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
-      {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
-      \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
-      me a joke", "model": "command-r", "chat_history": [], "stream": false}'
+    body: '{"model":"command-r","messages":[{"role":"user","content":"The output should
+      be formatted as a JSON instance that conforms to the JSON schema below.\n\nAs
+      an example, for the schema {\"properties\": {\"foo\": {\"title\": \"Foo\", \"description\":
+      \"a list of strings\", \"type\": \"array\", \"items\": {\"type\": \"string\"}}},
+      \"required\": [\"foo\"]}\nthe object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted
+      instance of the schema. The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}}
+      is not well-formatted.\n\nHere is the output schema:\n```\n{\"properties\":
+      {\"setup\": {\"description\": \"question to set up a joke\", \"title\": \"Setup\",
+      \"type\": \"string\"}, \"punchline\": {\"description\": \"answer to resolve
+      the joke\", \"title\": \"Punchline\", \"type\": \"string\"}}, \"required\":
+      [\"setup\", \"punchline\"]}\n```\nTell me a joke"}],"stream":false}'
     headers:
       accept:
       - '*/*'
@@ -70,13 +70,13 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '872'
+      - '876'
       content-type:
       - application/json
       host:
       - api.cohere.com
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
       x-client-name:
       - langchain:partner
       x-fern-language:
@@ -86,30 +86,17 @@ interactions:
       x-fern-sdk-version:
       - 5.14.0
     method: POST
-    uri: https://api.cohere.com/v1/chat
+    uri: https://api.cohere.com/v2/chat
   response:
     body:
-      string: '{"response_id":"d5101733-7675-4662-b311-c81b260d7c79","text":"```json\n{\n    \"setup\":
+      string: '{"id":"eae36446-805e-470c-8e30-2bf9990f3558","message":{"role":"assistant","content":[{"type":"text","text":"```json\n{\n    \"setup\":
         \"Why did the chicken cross the road?\",\n    \"punchline\": \"I''m not sure,
-        but the road will have its vengeance!\"\n}\n```","generation_id":"b8817003-2cfe-4588-b12d-3106f06a76c4","chat_history":[{"role":"USER","message":"The
-        output should be formatted as a JSON instance that conforms to the JSON schema
-        below.\n\nAs an example, for the schema {\"properties\": {\"foo\": {\"title\":
-        \"Foo\", \"description\": \"a list of strings\", \"type\": \"array\", \"items\":
-        {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe object {\"foo\": [\"bar\",
-        \"baz\"]} is a well-formatted instance of the schema. The object {\"properties\":
-        {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere is the output
-        schema:\n```\n{\"properties\": {\"setup\": {\"description\": \"question to
-        set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
-        {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
-        \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
-        me a joke"},{"role":"CHATBOT","message":"```json\n{\n    \"setup\": \"Why
-        did the chicken cross the road?\",\n    \"punchline\": \"I''m not sure, but
-        the road will have its vengeance!\"\n}\n```"}],"finish_reason":"COMPLETE","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":196,"output_tokens":40},"tokens":{"input_tokens":262,"output_tokens":40}}}'
+        but the road will have its vengeance!\"\n}\n```"}]},"finish_reason":"COMPLETE","usage":{"billed_units":{"input_tokens":196,"output_tokens":40},"tokens":{"input_tokens":262,"output_tokens":40}}}'
     headers:
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Content-Length:
-      - '1467'
+      - '406'
       Via:
       - 1.1 google
       access-control-expose-headers:
@@ -119,11 +106,11 @@ interactions:
       content-type:
       - application/json
       date:
-      - Tue, 25 Mar 2025 08:23:05 GMT
+      - Wed, 02 Apr 2025 12:01:41 GMT
       expires:
       - Thu, 01 Jan 1970 00:00:00 UTC
       num_chars:
-      - '1129'
+      - '1131'
       num_tokens:
       - '236'
       pragma:
@@ -135,9 +122,9 @@ interactions:
       x-accel-expires:
       - '0'
       x-debug-trace-id:
-      - 1b2d15094f3525c07ecfcf1c531175cb
+      - 21947759d3e7acbaeffcb18b9ea0b647
       x-envoy-upstream-service-time:
-      - '465'
+      - '352'
     status:
       code: 200
       message: OK

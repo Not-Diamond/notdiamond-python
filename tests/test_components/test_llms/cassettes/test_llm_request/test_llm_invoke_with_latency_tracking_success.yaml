@@ -14,23 +14,23 @@ interactions:
       Content-Length:
       - '310'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.2
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"d293f99d-1841-400a-a753-da53dc62d838"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"7dea9c55-e38b-46f3-82c1-06842a878216"}'
     headers:
       CF-RAY:
-      - 925cfc338d0cd0ce-SOF
+      - 92a076de4d910d4f-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:46 GMT
+      - Wed, 02 Apr 2025 12:52:36 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,7 +42,7 @@ interactions:
       content-length:
       - '113'
       rndr-id:
-      - edb4dfd6-72f5-4c3c
+      - 2ffcdd16-5f4c-41b0
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -51,9 +51,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "Prompt: Tell me a joke.", "role": "user"}],
-      "model": "gpt-3.5-turbo", "max_tokens": 10, "n": 1, "stream": false, "temperature":
-      0.7}'
+    body: '{"messages":[{"content":"Prompt: Tell me a joke.","role":"user"}],"model":"gpt-3.5-turbo","stream":false}'
     headers:
       accept:
       - application/json
@@ -62,13 +60,13 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '159'
+      - '105'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.60.2
       x-stainless-arch:
       - x64
       x-stainless-async:
@@ -78,9 +76,7 @@ interactions:
       x-stainless-os:
       - Linux
       x-stainless-package-version:
-      - 1.68.2
-      x-stainless-read-timeout:
-      - '120.0'
+      - 1.60.2
       x-stainless-retry-count:
       - '0'
       x-stainless-runtime:
@@ -91,34 +87,34 @@ interactions:
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEtneyf0gthP1ZXMSq7a6c5SxdW68\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742890786,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
+      string: "{\n  \"id\": \"chatcmpl-BHrs5DcfVRas5i5ZuCh3QxgU6gWDv\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1743598357,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"Why did the scarecrow win an award?\\n\\nBecause\",\n
-        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"logprobs\":
-        null,\n      \"finish_reason\": \"length\"\n    }\n  ],\n  \"usage\": {\n
-        \   \"prompt_tokens\": 14,\n    \"completion_tokens\": 10,\n    \"total_tokens\":
-        24,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\": 0,\n      \"audio_tokens\":
-        0\n    },\n    \"completion_tokens_details\": {\n      \"reasoning_tokens\":
-        0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\": 0,\n
-        \     \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"assistant\",\n        \"content\": \"Why don't scientists trust atoms? Because
+        they make up everything!\",\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 14,\n    \"completion_tokens\":
+        14,\n    \"total_tokens\": 28,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 925cfc381b46b69b-SOF
+      - 92a076e3fdcfd0fd-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:46 GMT
+      - Wed, 02 Apr 2025 12:52:38 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=c.pi.C7hQrWTK9cnTusxTR74V.IFhrEhIPhTczZfrkc-1742890786-1.0.1.1-W1._vTxS._KvfzEppEo65OloIQG52DGZZ6lm82dgsG39LCSB5MSI3RBatsGAJHleTzGxArR1ePPEYUMlPOu_Zt1mbaN02MRgpPAdBNnzQe0;
-        path=/; expires=Tue, 25-Mar-25 08:49:46 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=te_jNi7n2Ahv5Ro3QiePJ0MeSnZi1d4gFozkPAtTN5g-1743598358-1.0.1.1-9APdYF.Mw8_U76xArI9mdolAdx6pNrnVQgp7W.i21TsjOVR5o3TzfYjTW91Bf0RUga6uYWHOgwykoiI4qJN6ZeSq6AQBzIUrEIQHj7yx3nU;
+        path=/; expires=Wed, 02-Apr-25 13:22:38 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=7NCRZtGfv0L6njupQEx_9CTQhlvjUrX6xlagUy9q9v0-1742890786976-0.0.1.1-604800000;
+      - _cfuvid=13_pPlMbk.7IePYLiyErHD2WHHDXgk2fCzJglc49Ez0-1743598358331-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -131,11 +127,11 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '840'
+      - '858'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '240'
+      - '476'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
@@ -153,15 +149,15 @@ interactions:
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_f07c8d2187d81710a16e870b6f952bfd
+      - req_80f1765d8a0d2064b72fd824581fbab3
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "d293f99d-1841-400a-a753-da53dc62d838", "provider": {"provider":
+    body: '{"session_id": "7dea9c55-e38b-46f3-82c1-06842a878216", "provider": {"provider":
       "openai", "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null,
       "input_price": null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
-      32.980280241295766}}'
+      9.7690516472367}}'
     headers:
       Accept:
       - '*/*'
@@ -170,26 +166,26 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '275'
+      - '272'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.2
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=57cdacc0-e387-43ec, Session d293f99d-1841-400a-a753-da53dc62d838
+      string: '{"detail":"requestID=e2f78b72-3e33-46d3, Session 7dea9c55-e38b-46f3-82c1-06842a878216
         does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
       CF-RAY:
-      - 925cfc3b48645b25-VIE
+      - 92a076ecb9bcdd2f-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:47 GMT
+      - Wed, 02 Apr 2025 12:52:38 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -199,7 +195,7 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       rndr-id:
-      - 57cdacc0-e387-43ec
+      - e2f78b72-3e33-46d3
       vary:
       - Accept-Encoding
       x-render-origin-server:

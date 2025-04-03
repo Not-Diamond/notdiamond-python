@@ -58,6 +58,7 @@ class Test_OpenAI:
         assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_with_openai_tool_calling(self, openai_tools_fixture, provider):
+        # gpt-4.5 models will skip simple tool calling tests - see test_with_stock_tool_gpt4_5
         if provider.model == "chatgpt-4o-latest" or provider.model.startswith(
             "gpt-4.5"
         ):
@@ -87,3 +88,21 @@ class Test_OpenAI:
         assert isinstance(result, response_model)
         assert result.setup
         assert result.punchline
+
+    def test_with_stock_tool_gpt4_5(
+        self, get_stock_price_tool_fixture, provider
+    ):
+        if not provider.model.startswith("gpt-4.5"):
+            pytest.skip("Test only for gpt-4.5 models")
+
+        provider.kwargs = {"max_tokens": 200}
+        nd_llm = NotDiamond(llm_configs=[provider])
+        nd_llm = nd_llm.bind_tools(get_stock_price_tool_fixture)
+        result, session_id, _ = nd_llm.invoke(
+            [{"role": "user", "content": "What is the stock price of NVDA?"}]
+        )
+
+        assert len(result.tool_calls) >= 1
+        assert result.tool_calls[0]["name"] == "get_stock_price"
+        assert "ticker" in result.tool_calls[0]["args"]
+        assert result.tool_calls[0]["args"]["ticker"] == "NVDA"

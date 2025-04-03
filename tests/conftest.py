@@ -96,6 +96,23 @@ def openai_tools_fixture():
 
 
 @pytest.fixture
+def get_stock_price_tool_fixture():
+    """Fixture that creates a tool for getting stock prices."""
+    stock_tool = {
+        "name": "get_stock_price",
+        "description": "Get current stock price for a provided ticker symbol from Yahoo Finance using the yahooquery Python library.",
+        "parameters": {
+            "type": "object",
+            "properties": {"ticker": {"type": "string"}},
+            "required": ["ticker"],
+            "additionalProperties": False,
+        },
+    }
+
+    return [stock_tool]
+
+
+@pytest.fixture
 def response_model():
     class Joke(BaseModel):
         setup: str = Field(description="question to set up a joke")

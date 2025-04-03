@@ -21,7 +21,7 @@ from typing import (
 )
 
 # Details: https://python.langchain.com/v0.1/docs/guides/development/pydantic_compatibility/
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 from pydantic_partial import create_partial_model
 
 from notdiamond import settings

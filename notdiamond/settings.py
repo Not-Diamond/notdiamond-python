@@ -63,9 +63,8 @@ PROVIDERS = {
             "gpt-4-turbo-preview",
             "gpt-4-0125-preview",
             "gpt-4-1106-preview",
-            # Need to update langchain-openai to >=0.3.9 to support these
-            # "gpt-4.5-preview",
-            # "gpt-4.5-preview-2025-02-27"
+            "gpt-4.5-preview",
+            "gpt-4.5-preview-2025-02-27",
         ],
         "support_response_model": [
             "gpt-3.5-turbo",
