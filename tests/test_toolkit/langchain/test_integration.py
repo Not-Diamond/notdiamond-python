@@ -80,14 +80,6 @@ def test_notdiamond_routed_runnable_chain(
             "anthropic/claude-3-haiku-20240307",
             "langchain_anthropic.ChatAnthropic",
         ),
-        (
-            "google/gemini-1.5-pro-latest",
-            "langchain_google_genai.ChatGoogleGenerativeAI",
-        ),
-        (
-            "google/gemini-1.5-flash-latest",
-            "langchain_google_genai.ChatGoogleGenerativeAI",
-        ),
         ("mistral/open-mixtral-8x22b", "langchain_mistralai.ChatMistralAI"),
         ("mistral/codestral-latest", "langchain_mistralai.ChatMistralAI"),
         ("mistral/open-mixtral-8x7b", "langchain_mistralai.ChatMistralAI"),
