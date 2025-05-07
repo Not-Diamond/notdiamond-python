@@ -189,9 +189,6 @@ PROVIDERS = {
         "models": [
             "gemini-pro",
             "gemini-1.0-pro-latest",
-            "gemini-1.5-pro-latest",
-            "gemini-1.5-pro-exp-0801",
-            "gemini-1.5-flash-latest",
             "gemini-2.0-flash",
             "gemini-2.0-flash-001",
         ],
@@ -199,34 +196,22 @@ PROVIDERS = {
         "support_tools": [
             "gemini-pro",
             "gemini-1.0-pro-latest",
-            "gemini-1.5-pro-latest",
-            "gemini-1.5-pro-exp-0801",
-            "gemini-1.5-flash-latest",
         ],
         "support_response_model": [
             "gemini-pro",
             "gemini-1.0-pro-latest",
-            "gemini-1.5-pro-latest",
-            "gemini-1.5-pro-exp-0801",
-            "gemini-1.5-flash-latest",
             "gemini-2.0-flash",
             "gemini-2.0-flash-001",
         ],
         "openrouter_identifier": {
             "gemini-pro": "google/gemini-pro",
             "gemini-1.0-pro-latest": "google/gemini-pro",
-            "gemini-1.5-pro-latest": "google/gemini-pro-1.5",  #
-            "gemini-1.5-pro-exp-0801": "google/gemini-pro-1.5-exp",  #
-            "gemini-1.5-flash-latest": "google/gemini-flash-1.5",  #
             "gemini-2.0-flash": "google/gemini-2.0-flash",  #
             "gemini-2.0-flash-001": "google/gemini-2.0-flash",  #
         },
         "price": {
             "gemini-pro": {"input": 0.5, "output": 1.5},
             "gemini-1.0-pro-latest": {"input": 0.5, "output": 1.5},
-            "gemini-1.5-pro-latest": {"input": 1.75, "output": 10.5},
-            "gemini-1.5-pro-exp-0801": {"input": 1.75, "output": 10.5},
-            "gemini-1.5-flash-latest": {"input": 0.35, "output": 1.05},
             "gemini-2.0-flash": {"input": 0.10, "output": 0.40},
             "gemini-2.0-flash-001": {"input": 0.10, "output": 0.40},
         },

@@ -41,9 +41,6 @@ class NDLLMProviders(Enum):
 
         GEMINI_PRO (NDLLMProvider): refers to 'gemini-pro' model by Google
         GEMINI_1_PRO_LATEST (NDLLMProvider): refers to 'gemini-1.0-pro-latest' model by Google
-        GEMINI_15_PRO_LATEST (NDLLMProvider): refers to 'gemini-1.5-pro-latest' model by Google
-        GEMINI_15_PRO_EXP_0801 (NDLLMProvider): refers to 'gemini-1.5-pro-exp-0801' model by Google
-        GEMINI_15_FLASH_LATEST (NDLLMProvider): refers to 'gemini-1.5-flash-latest' model by Google
         GEMINI_20_FLASH (NDLLMProvider): refers to 'gemini-20-flash' model by Google
         GEMINI_20_FLASH_001 (NDLLMProvider): refers to 'gemini-20-flash-001' model by Google
 
@@ -120,9 +117,6 @@ class NDLLMProviders(Enum):
 
     GEMINI_PRO = ("google", "gemini-pro")
     GEMINI_1_PRO_LATEST = ("google", "gemini-1.0-pro-latest")
-    GEMINI_15_PRO_LATEST = ("google", "gemini-1.5-pro-latest")
-    GEMINI_15_PRO_EXP_0801 = ("google", "gemini-1.5-pro-exp-0801")
-    GEMINI_15_FLASH_LATEST = ("google", "gemini-1.5-flash-latest")
     GEMINI_20_FLASH = ("google", "gemini-2.0-flash")
     GEMINI_20_FLASH_001 = ("google", "gemini-2.0-flash-001")
 
