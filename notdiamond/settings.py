@@ -39,6 +39,9 @@ PROVIDERS = {
             "gpt-4-turbo-preview",
             "gpt-4-0125-preview",
             "gpt-4-1106-preview",
+            "gpt-4.1",
+            "gpt-4.1-mini",
+            "gpt-4.1-nano",
             "gpt-4.5-preview",
             "gpt-4.5-preview-2025-02-27",
             "o1-preview",
@@ -65,6 +68,9 @@ PROVIDERS = {
             "gpt-4-1106-preview",
             "gpt-4.5-preview",
             "gpt-4.5-preview-2025-02-27",
+            "gpt-4.1",
+            "gpt-4.1-mini",
+            "gpt-4.1-nano",
         ],
         "support_response_model": [
             "gpt-3.5-turbo",
@@ -88,6 +94,9 @@ PROVIDERS = {
             "chatgpt-4o-latest",
             "gpt-4.5-preview",
             "gpt-4.5-preview-2025-02-27",
+            "gpt-4.1",
+            "gpt-4.1-mini",
+            "gpt-4.1-nano",
         ],
         "openrouter_identifier": {
             "gpt-3.5-turbo": "openai/gpt-3.5-turbo",
@@ -107,6 +116,9 @@ PROVIDERS = {
             "chatgpt-4o-latest": "openai/chatgpt-4o-latest",
             "gpt-4.5-preview": "openai/gpt-4.5-preview",
             "gpt-4.5-preview-2025-02-27": "openai/gpt-4.5-preview-2025-02-27",
+            "gpt-4.1": "openai/gpt-4.1",
+            "gpt-4.1-mini": "openai/gpt-4.1-mini",
+            "gpt-4.1-nano": "openai/gpt-4.1-nano",
         },
         "price": {
             "gpt-3.5-turbo": {"input": 0.5, "output": 1.5},
@@ -130,6 +142,9 @@ PROVIDERS = {
             "chatgpt-4o-latest": {"input": 5.0, "output": 15.0},
             "gpt-4.5-preview": {"input": 75.0, "output": 150.0},
             "gpt-4.5-preview-2025-02-27": {"input": 75.0, "output": 150.0},
+            "gpt-4.1": {"input": 2.0, "output": 8.0},
+            "gpt-4.1-mini": {"input": 0.5, "output": 1.6},
+            "gpt-4.1-nano": {"input": 0.1, "output": 0.4},
         },
     },
     "anthropic": {
@@ -144,6 +159,8 @@ PROVIDERS = {
             "claude-3-5-sonnet-latest",
             "claude-3-7-sonnet-latest",
             "claude-3-7-sonnet-20250219",
+            "claude-opus-4-20250514",
+            "claude-sonnet-4-20250514",
         ],
         "api_key": ANTHROPIC_API_KEY,
         "support_tools": [
@@ -156,6 +173,8 @@ PROVIDERS = {
             "claude-3-5-sonnet-latest",
             "claude-3-7-sonnet-latest",
             "claude-3-7-sonnet-20250219",
+            "claude-opus-4-20250514",
+            "claude-sonnet-4-20250514",
         ],
         "support_response_model": [
             "claude-2.1",
@@ -171,6 +190,8 @@ PROVIDERS = {
             "claude-3-5-haiku-20241022": "anthropic/claude-3.5-haiku",
             "claude-3-7-sonnet-latest": "anthropic/claude-3.7-sonnet",
             "claude-3-7-sonnet-20250219": "anthropic/claude-3.7-sonnet",
+            "claude-opus-4-20250514": "anthropic/claude-opus-4",
+            "claude-sonnet-4-20250514": "anthropic/claude-sonnet-4",
         },
         "price": {
             "claude-2.1": {"input": 8.0, "output": 24.0},
@@ -183,6 +204,8 @@ PROVIDERS = {
             "claude-3-5-sonnet-latest": {"input": 3.0, "output": 15.0},
             "claude-3-7-sonnet-latest": {"input": 3.0, "output": 15.0},
             "claude-3-7-sonnet-20250219": {"input": 3.0, "output": 15.0},
+            "claude-opus-4-20250514": {"input": 15.0, "output": 75.0},
+            "claude-sonnet-4-20250514": {"input": 3.0, "output": 15.0},
         },
     },
     "google": {
@@ -194,6 +217,8 @@ PROVIDERS = {
             "gemini-1.5-flash-latest",
             "gemini-2.0-flash",
             "gemini-2.0-flash-001",
+            "gemini-2.5-flash",
+            "gemini-2.5-pro",
         ],
         "api_key": GOOGLE_API_KEY,
         "support_tools": [
@@ -202,6 +227,8 @@ PROVIDERS = {
             "gemini-1.5-pro-latest",
             "gemini-1.5-pro-exp-0801",
             "gemini-1.5-flash-latest",
+            "gemini-2.5-flash",
+            "gemini-2.5-pro",
         ],
         "support_response_model": [
             "gemini-pro",
@@ -211,6 +238,8 @@ PROVIDERS = {
             "gemini-1.5-flash-latest",
             "gemini-2.0-flash",
             "gemini-2.0-flash-001",
+            "gemini-2.5-flash",
+            "gemini-2.5-pro",
         ],
         "openrouter_identifier": {
             "gemini-pro": "google/gemini-pro",
@@ -220,6 +249,8 @@ PROVIDERS = {
             "gemini-1.5-flash-latest": "google/gemini-flash-1.5",  #
             "gemini-2.0-flash": "google/gemini-2.0-flash",  #
             "gemini-2.0-flash-001": "google/gemini-2.0-flash",  #
+            "gemini-2.5-flash": "google/gemini-2.5-flash",  #
+            "gemini-2.5-pro": "google/gemini-2.5-pro",  #
         },
         "price": {
             "gemini-pro": {"input": 0.5, "output": 1.5},
@@ -229,6 +260,8 @@ PROVIDERS = {
             "gemini-1.5-flash-latest": {"input": 0.35, "output": 1.05},
             "gemini-2.0-flash": {"input": 0.10, "output": 0.40},
             "gemini-2.0-flash-001": {"input": 0.10, "output": 0.40},
+            "gemini-2.5-flash": {"input": 0.15, "output": 0.6},
+            "gemini-2.5-pro": {"input": 2.0, "output": 10.0},
         },
     },
     "cohere": {
