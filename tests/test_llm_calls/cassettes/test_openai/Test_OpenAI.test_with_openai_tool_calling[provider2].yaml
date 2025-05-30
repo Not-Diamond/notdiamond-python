@@ -18,23 +18,23 @@ interactions:
       Content-Length:
       - '594'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4"}],"session_id":"c25e9a59-d746-4002-a1aa-d2e9401091dc"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4"}],"session_id":"762e30da-0129-472b-b6b9-7b4f3518c2a7"}'
     headers:
       CF-RAY:
-      - 925d10385e97d0f6-SOF
+      - 947c73409804d0e3-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:33:26 GMT
+      - Fri, 30 May 2025 07:17:10 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -46,7 +46,7 @@ interactions:
       content-length:
       - '105'
       rndr-id:
-      - 99d31a19-1e91-42a9
+      - 99fea9c5-2c15-410d
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -55,12 +55,9 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "How much is 3 + 5?", "role": "user"}], "model":
-      "gpt-4", "max_tokens": 200, "n": 1, "stream": false, "temperature": 0.7, "tools":
-      [{"type": "function", "function": {"name": "add_fct", "description": "Add two
-      numbers", "parameters": {"type": "object", "properties": {"a": {"type": "integer",
-      "description": "The first number"}, "b": {"type": "integer", "description":
-      "The second number"}}, "required": ["a", "b"]}}}]}'
+    body: '{"messages":[{"content":"How much is 3 + 5?","role":"user"}],"model":"gpt-4","max_completion_tokens":200,"stream":false,"tools":[{"type":"function","function":{"name":"add_fct","description":"Add
+      two numbers","parameters":{"type":"object","properties":{"a":{"type":"integer","description":"The
+      first number"},"b":{"type":"integer","description":"The second number"}},"required":["a","b"]}}}]}'
     headers:
       accept:
       - application/json
@@ -69,23 +66,23 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '444'
+      - '392'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.70.0
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 1.68.2
+      - 1.70.0
       x-stainless-read-timeout:
       - '120.0'
       x-stainless-retry-count:
@@ -93,42 +90,42 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEu0s2DfiLNb0TxS7ZSxYMcPloTi2\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742891606,\n  \"model\": \"gpt-4-0613\",\n
+      string: "{\n  \"id\": \"chatcmpl-BcoHGXxW1WJ2nMjn8yHI6SYCV7hT2\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589430,\n  \"model\": \"gpt-4-0613\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": null,\n        \"tool_calls\": [\n          {\n
-        \           \"id\": \"call_vVM7vWRpwg5L5ZUozr8922Bo\",\n            \"type\":
+        \           \"id\": \"call_hQUcAKO46HeA89wA1oIQVtbv\",\n            \"type\":
         \"function\",\n            \"function\": {\n              \"name\": \"add_fct\",\n
         \             \"arguments\": \"{\\n  \\\"a\\\": 3,\\n  \\\"b\\\": 5\\n}\"\n
         \           }\n          }\n        ],\n        \"refusal\": null,\n        \"annotations\":
         []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"tool_calls\"\n
         \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 67,\n    \"completion_tokens\":
-        24,\n    \"total_tokens\": 91,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        23,\n    \"total_tokens\": 90,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
         0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 925d103d3e58e1b8-SOF
+      - 947c7345ffa1b271-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:33:28 GMT
+      - Fri, 30 May 2025 07:17:12 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=vf5YY5i5O0jfJChfhsCr7fY.Pinh7BwsFyAAzIPKEjE-1742891608-1.0.1.1-cedftofO14.NMPrGQ0j6YLzgcW6hZz9fIcduBpgtOgd3RKLVkSD1H10RM_SZefkQMuNyEhXyD1MFZDR07C5in982z111rU1OjmXskzFp2YA;
-        path=/; expires=Tue, 25-Mar-25 09:03:28 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=J_xZ34Q1SD.s9FhDHevnDRcsvdYsUAUy7lAW7VfEFQM-1748589432-1.0.1.1-UR8BzVBvsypNhHip8c91UyaT3POEaqK1Aml0c4njy5OU3CkFq6XVodjsrdNqCVudWElF0n6N50qp.GV.9wAmKsoDUdix8r7TBkKPd9Vs78E;
+        path=/; expires=Fri, 30-May-25 07:47:12 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=_MYe9AanYCU8Q3CakP6yFmLGsAgPEh7ul_SxBs.yz0s-1742891608187-0.0.1.1-604800000;
+      - _cfuvid=V6mUKhNDv8rdAKO3RWRrkQrrpLcTHryJQweAgkTBQeA-1748589432429-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -145,11 +142,13 @@ interactions:
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '1421'
+      - '1549'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '1551'
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
@@ -163,15 +162,15 @@ interactions:
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_55358fe3874b659526f5c1259bfd4d96
+      - req_247b4bd9ddf9c8a91f5b4ff613761e7e
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "c25e9a59-d746-4002-a1aa-d2e9401091dc", "provider": {"provider":
+    body: '{"session_id": "762e30da-0129-472b-b6b9-7b4f3518c2a7", "provider": {"provider":
       "openai", "model": "gpt-4", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
-      4.093331453978175}}'
+      0.0}}'
     headers:
       Accept:
       - '*/*'
@@ -180,26 +179,26 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '266'
+      - '252'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=d3210933-c8c2-4803, Session c25e9a59-d746-4002-a1aa-d2e9401091dc
+      string: '{"detail":"requestID=353fa0c5-a6ba-42ed, Session 762e30da-0129-472b-b6b9-7b4f3518c2a7
         does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
       CF-RAY:
-      - 925d1047e8c8f406-VIE
+      - 947c73517a92d0fb-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:33:28 GMT
+      - Fri, 30 May 2025 07:17:12 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -209,7 +208,7 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       rndr-id:
-      - d3210933-c8c2-4803
+      - 353fa0c5-a6ba-42ed
       vary:
       - Accept-Encoding
       x-render-origin-server:

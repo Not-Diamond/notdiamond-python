@@ -1,0 +1,171 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Tell me a joke"}], "llm_providers":
+      [{"provider": "openai", "model": "gpt-4.1-nano", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '299'
+      User-Agent:
+      - Python-SDK/0.4.3
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4.1-nano"}],"session_id":"eff93f1a-9ab0-4aa7-974c-4caadbee3722"}'
+    headers:
+      CF-RAY:
+      - 947c7564af431488-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 30 May 2025 07:18:38 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '112'
+      rndr-id:
+      - 7eadc50c-18ec-4e72
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"content":"The output should be formatted as a JSON instance
+      that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
+      {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
+      \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
+      object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted instance of the schema.
+      The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere
+      is the output schema:\n```\n{\"properties\": {\"setup\": {\"description\": \"question
+      to set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
+      {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
+      \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
+      me a joke","role":"user"}],"model":"gpt-4.1-nano","max_completion_tokens":200,"stream":false}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '907'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.70.0
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.70.0
+      x-stainless-read-timeout:
+      - '120.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.12
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"chatcmpl-BcoIggEJrzqNGVNoRWMuA3kYho7cM\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589518,\n  \"model\": \"gpt-4.1-nano-2025-04-14\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"{\\n  \\\"setup\\\": \\\"Why did the
+        scarecrow win an award?\\\",\\n  \\\"punchline\\\": \\\"Because he was outstanding
+        in his field!\\\"\\n}\",\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
+        31,\n    \"total_tokens\": 231,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_f12167b370\"\n}\n"
+    headers:
+      CF-RAY:
+      - 947c756a7e0b3d44-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 30 May 2025 07:18:39 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=deuIj5FkCE115wu_BVxJTxA1QPzEDvs0CuJLbSKOjqA-1748589519-1.0.1.1-gOMs.9hmSzYF7_CALm76mF6O1vPgKDfFRsuU8BOIwfUWVOTMwvRqJYGqjnAMD4wN.1wKNOosTbgMwXaRpFunZ2v.rmeAK5tRO04qj7BES1U;
+        path=/; expires=Fri, 30-May-25 07:48:39 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=nckbD56VWfYi_2BI06gF3RuV.5C9O3jzI1BvJZapL9g-1748589519123-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '932'
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '501'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '505'
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999819'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_bfdf1daeb91dd44f0d17b1f84b942534
+    status:
+      code: 200
+      message: OK
+version: 1

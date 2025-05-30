@@ -14,23 +14,23 @@ interactions:
       Content-Length:
       - '305'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"4d7a7ad7-6eae-4787-af9a-f17b0004e3a9"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-1106-preview"}],"session_id":"ce198484-03fd-4ead-a376-d69622e2f0f5"}'
     headers:
       CF-RAY:
-      - 925d114a5b54c2aa-VIE
+      - 947c74a1ea8ef832-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:34:10 GMT
+      - Fri, 30 May 2025 07:18:07 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,7 +42,7 @@ interactions:
       content-length:
       - '118'
       rndr-id:
-      - 566d5c14-de24-4364
+      - 55a5d0f8-cf66-415f
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -51,7 +51,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "The output should be formatted as a JSON instance
+    body: '{"messages":[{"content":"The output should be formatted as a JSON instance
       that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
       {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
       \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
@@ -61,8 +61,7 @@ interactions:
       to set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
       {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
       \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
-      me a joke", "role": "user"}], "model": "gpt-4-1106-preview", "max_tokens": 200,
-      "n": 1, "stream": false, "temperature": 0.7}'
+      me a joke","role":"user"}],"model":"gpt-4-1106-preview","max_completion_tokens":200,"stream":false}'
     headers:
       accept:
       - application/json
@@ -71,23 +70,23 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '940'
+      - '913'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.70.0
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 1.68.2
+      - 1.70.0
       x-stainless-read-timeout:
       - '120.0'
       x-stainless-retry-count:
@@ -95,41 +94,41 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEu1a7feslTLkaDHJpGghQcASguKT\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742891650,\n  \"model\": \"gpt-4-1106-preview\",\n
+      string: "{\n  \"id\": \"chatcmpl-BcoIBwHttmj4BnWrhK1BlTn2nz74w\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589487,\n  \"model\": \"gpt-4-1106-preview\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"Here is a JSON-formatted joke that
-        conforms to the provided schema:\\n\\n```json\\n{\\n  \\\"setup\\\": \\\"Why
-        don't eggs tell jokes?\\\",\\n  \\\"punchline\\\": \\\"They'd crack each other
-        up.\\\"\\n}\\n```\",\n        \"refusal\": null,\n        \"annotations\":
+        \"assistant\",\n        \"content\": \"Here's a JSON-formatted joke conforming
+        to the provided schema:\\n\\n```json\\n{\\n  \\\"setup\\\": \\\"Why don't
+        scientists trust atoms?\\\",\\n  \\\"punchline\\\": \\\"Because they make
+        up everything!\\\"\\n}\\n```\",\n        \"refusal\": null,\n        \"annotations\":
         []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
         \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
-        47,\n    \"total_tokens\": 247,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        45,\n    \"total_tokens\": 245,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
         0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 925d11503b7fd0df-SOF
+      - 947c74a6fa43d0d3-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:34:12 GMT
+      - Fri, 30 May 2025 07:18:08 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=FbugKCHzKDipOQdI_4KLIXak8G2or5YLoKcpO7UK2Cg-1742891652-1.0.1.1-eVajUaKP0stGunAtwxSsaG0T_uXkLpqiZEWFrv5hhrZ6oLXAeUr7lfHYQPPn1wKrymWLpr5cQ.4SUJAMviFc0nrwySKQvECWRCxAg.4YBBI;
-        path=/; expires=Tue, 25-Mar-25 09:04:12 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=d_ESsr4qE7wFjoFl18yNE41uasL8EpYKT.oghoZAktk-1748589488-1.0.1.1-BiXyAz3q.8WPoOBoplOizGYW1E8BqvY9EYTGj9iIN5bToIY_wQPn1.Y2IKAhL5Z5YOjgFoleIswhoE4tVcSb67TeH1..kiBfk.VxbDdU3cY;
+        path=/; expires=Fri, 30-May-25 07:48:08 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=fsNbFRM_687yfGNKVV1mLvGstXS6X5dWSh6IpR.RYeI-1742891652781-0.0.1.1-604800000;
+      - _cfuvid=AI9lAGT2JxPh9lp946ZaTSGKFxsHejwYzdJH1bY0wvg-1748589488632-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -142,15 +141,17 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '979'
+      - '987'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '1962'
+      - '1223'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '1226'
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
@@ -164,7 +165,7 @@ interactions:
       x-ratelimit-reset-tokens:
       - 5ms
       x-request-id:
-      - req_a0258833db15f244f0c1b3493bc016d2
+      - req_30a3b7aefaf0ef62370d9ada377a8e1a
     status:
       code: 200
       message: OK

@@ -1,0 +1,171 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Tell me a joke"}], "llm_providers":
+      [{"provider": "openai", "model": "gpt-4.1-mini-2025-04-14", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '310'
+      User-Agent:
+      - Python-SDK/0.4.3
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"openai","model":"gpt-4.1-mini-2025-04-14"}],"session_id":"2705e3e9-41f2-4465-9896-c905313a0d69"}'
+    headers:
+      CF-RAY:
+      - 947c7554dde30d50-VIE
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 30 May 2025 07:18:36 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '123'
+      rndr-id:
+      - aefce8df-55bb-45cc
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"content":"The output should be formatted as a JSON instance
+      that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
+      {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
+      \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
+      object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted instance of the schema.
+      The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere
+      is the output schema:\n```\n{\"properties\": {\"setup\": {\"description\": \"question
+      to set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
+      {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
+      \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
+      me a joke","role":"user"}],"model":"gpt-4.1-mini-2025-04-14","max_completion_tokens":200,"stream":false}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '918'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.70.0
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.70.0
+      x-stainless-read-timeout:
+      - '120.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.12
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"chatcmpl-BcoIeOwLGw6BavL7s9n9FhLHWTlM4\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589516,\n  \"model\": \"gpt-4.1-mini-2025-04-14\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"```json\\n{\\n  \\\"setup\\\": \\\"Why
+        don't scientists trust atoms?\\\",\\n  \\\"punchline\\\": \\\"Because they
+        make up everything!\\\"\\n}\\n```\",\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
+        30,\n    \"total_tokens\": 230,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_6f2eabb9a5\"\n}\n"
+    headers:
+      CF-RAY:
+      - 947c755bfa4cd0fb-SOF
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 30 May 2025 07:18:37 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=Is_V5doqiPMUY38x6hO18CoC0yU5xJqR3VY81ZopxdE-1748589517-1.0.1.1-jE.gvyl2FBScdOFEF1wNrM9dOu6sTW9gGwX3VhaAlLF_ArhjhFuNqQ19w.GLLUm5lJfKUTrHAyYmYKutOjZv.ZeHMWZO7bCvWWWxOBZOBLo;
+        path=/; expires=Fri, 30-May-25 07:48:37 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=3VWPH84gUIQ4wAEAdO6SvpohlL7Dy0hQZL8iwQdsC6Q-1748589517362-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '936'
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '1048'
+      openai-version:
+      - '2020-10-01'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '1053'
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '150000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '149999818'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_4d255900e49d432fbe84646d57d2de31
+    status:
+      code: 200
+      message: OK
+version: 1

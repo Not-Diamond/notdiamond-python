@@ -1,14 +1,13 @@
 interactions:
 - request:
-    body: '{"messages": [{"role": "user", "content": "What is the stock price of NVDA?"}],
-      "llm_providers": [{"provider": "openai", "model": "gpt-4.5-preview", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "openai", "model": "gpt-4.1-mini-2025-04-14", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
       null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": false, "tools":
-      [{"type": "function", "function": {"name": "get_stock_price", "description":
-      "Get current stock price for a provided ticker symbol from Yahoo Finance using
-      the yahooquery Python library.", "parameters": {"type": "object", "properties":
-      {"ticker": {"type": "string"}}, "required": ["ticker"], "additionalProperties":
-      false}}}]}'
+      [{"type": "function", "function": {"name": "add_fct", "description": "Add two
+      numbers", "parameters": {"type": "object", "properties": {"a": {"type": "integer",
+      "description": "The first number"}, "b": {"type": "integer", "description":
+      "The second number"}}, "required": ["a", "b"]}}}]}'
     headers:
       Accept:
       - '*/*'
@@ -17,25 +16,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '657'
+      - '612'
       User-Agent:
-      - Python-SDK/0.4.2
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4.5-preview"}],"session_id":"29cad6f0-40b2-4cd0-87ed-8d7adb87fe98"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4.1-mini-2025-04-14"}],"session_id":"70ce8479-7513-48bb-ab01-ae4e768084ab"}'
     headers:
       CF-RAY:
-      - 92a160c32ad6d0e2-SOF
+      - 947c7442c9ddd0db-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Apr 2025 15:32:17 GMT
+      - Fri, 30 May 2025 07:17:51 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -45,9 +44,9 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '115'
+      - '123'
       rndr-id:
-      - 40efc163-cb79-4709
+      - 2ecfab9b-ece2-4b9d
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -56,13 +55,9 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "What is the stock price of NVDA?", "role": "user"}],
-      "model": "gpt-4.5-preview", "max_completion_tokens": 200, "stream": false, "tools":
-      [{"type": "function", "function": {"name": "get_stock_price", "description":
-      "Get current stock price for a provided ticker symbol from Yahoo Finance using
-      the yahooquery Python library.", "parameters": {"type": "object", "properties":
-      {"ticker": {"type": "string"}}, "required": ["ticker"], "additionalProperties":
-      false}}}]}'
+    body: '{"messages":[{"content":"How much is 3 + 5?","role":"user"}],"model":"gpt-4.1-mini-2025-04-14","max_completion_tokens":200,"stream":false,"tools":[{"type":"function","function":{"name":"add_fct","description":"Add
+      two numbers","parameters":{"type":"object","properties":{"a":{"type":"integer","description":"The
+      first number"},"b":{"type":"integer","description":"The second number"}},"required":["a","b"]}}}]}'
     headers:
       accept:
       - application/json
@@ -71,7 +66,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '490'
+      - '410'
       content-type:
       - application/json
       host:
@@ -79,13 +74,13 @@ interactions:
       user-agent:
       - OpenAI/Python 1.70.0
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
       - 1.70.0
       x-stainless-read-timeout:
@@ -95,42 +90,42 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BHuMdclViWWVziDVRdrUM2UjnR903\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1743607939,\n  \"model\": \"gpt-4.5-preview-2025-02-27\",\n
+      string: "{\n  \"id\": \"chatcmpl-BcoHw3JAaUnpK7IuETqHs7oCCekph\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589472,\n  \"model\": \"gpt-4.1-mini-2025-04-14\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": null,\n        \"tool_calls\": [\n          {\n
-        \           \"id\": \"call_XuTJSx5SxchhFYJOLcQ0a8kd\",\n            \"type\":
-        \"function\",\n            \"function\": {\n              \"name\": \"get_stock_price\",\n
-        \             \"arguments\": \"{\\n  \\\"ticker\\\": \\\"NVDA\\\"\\n}\"\n
-        \           }\n          }\n        ],\n        \"refusal\": null,\n        \"annotations\":
-        []\n      },\n      \"finish_reason\": \"tool_calls\"\n    }\n  ],\n  \"usage\":
-        {\n    \"prompt_tokens\": 66,\n    \"completion_tokens\": 21,\n    \"total_tokens\":
-        87,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\": 0,\n      \"audio_tokens\":
-        0\n    },\n    \"completion_tokens_details\": {\n      \"reasoning_tokens\":
-        0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\": 0,\n
-        \     \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
-        \"default\",\n  \"system_fingerprint\": null\n}\n"
+        \           \"id\": \"call_vT1IIT3nnIFHhWVHDy63uuyg\",\n            \"type\":
+        \"function\",\n            \"function\": {\n              \"name\": \"add_fct\",\n
+        \             \"arguments\": \"{\\\"a\\\":3,\\\"b\\\":5}\"\n            }\n
+        \         }\n        ],\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"tool_calls\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 64,\n    \"completion_tokens\":
+        19,\n    \"total_tokens\": 83,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_6f2eabb9a5\"\n}\n"
     headers:
       CF-RAY:
-      - 92a160c84a283254-VIE
+      - 947c74483b8ec5fa-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Apr 2025 15:32:22 GMT
+      - Fri, 30 May 2025 07:17:52 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=z8La2Gcp.M5IWub.aEZt.l6qOqx.72Z4WKXoHCW2ZA8-1743607942-1.0.1.1-MR77ZuR_3BLqJ.a2_CUzin0.R7dIbTEKDXE1IocAfW5GAo8i4J14R6zjyVtwonmT6IdhqOFgk7JdO3dvJZhxyMKOc1.Rlr9UBSBwBp44wEs;
-        path=/; expires=Wed, 02-Apr-25 16:02:22 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=eNY0GX0JGTQgtA.PzS3UDd1NDvUOejDZxD5woExilW4-1748589472-1.0.1.1-fukIzk4y40iVfRiIhjphT2WvuHohyc.HjJoDN.nfdztsz1GiooEBm_KTM0g7wYaKpzD8hCNuWRN.l8e0cwzbl1dosg9cV6QlWyWWtUD0.co;
+        path=/; expires=Fri, 30-May-25 07:47:52 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=8VhS1H6IX5vAyOalqZZRQRg1MqCuDZpIL8LwOGLMaFk-1743607942756-0.0.1.1-604800000;
+      - _cfuvid=vPuLUzS4cbvk5nA.cgJAySRrZZrVoxmMgF7Ypgmy59o-1748589472805-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -143,35 +138,37 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '1065'
+      - '1078'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '3631'
+      - '620'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '625'
       x-ratelimit-limit-requests:
-      - '10000'
+      - '30000'
       x-ratelimit-limit-tokens:
-      - '2000000'
+      - '150000000'
       x-ratelimit-remaining-requests:
-      - '9999'
+      - '29999'
       x-ratelimit-remaining-tokens:
-      - '1999989'
+      - '149999993'
       x-ratelimit-reset-requests:
-      - 6ms
+      - 2ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_9c23d0d4c2054838f1c7171da5570057
+      - req_b25daad1e7168189a21e1626036a516b
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "29cad6f0-40b2-4cd0-87ed-8d7adb87fe98", "provider": {"provider":
-      "openai", "model": "gpt-4.5-preview", "is_custom": false, "context_length":
+    body: '{"session_id": "70ce8479-7513-48bb-ab01-ae4e768084ab", "provider": {"provider":
+      "openai", "model": "gpt-4.1-mini-2025-04-14", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, "feedback":
       {"tokens_per_second": 0.0}}'
     headers:
@@ -182,26 +179,26 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '262'
+      - '270'
       User-Agent:
-      - Python-SDK/0.4.2
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=89fa0555-a784-47d4, Session 29cad6f0-40b2-4cd0-87ed-8d7adb87fe98
+      string: '{"detail":"requestID=7b1c1b00-ec15-4f69, Session 70ce8479-7513-48bb-ab01-ae4e768084ab
         does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
       CF-RAY:
-      - 92a160eafa11c2e6-VIE
+      - 947c744dccf1c747-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Apr 2025 15:32:23 GMT
+      - Fri, 30 May 2025 07:17:53 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -211,7 +208,7 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       rndr-id:
-      - 89fa0555-a784-47d4
+      - 7b1c1b00-ec15-4f69
       vary:
       - Accept-Encoding
       x-render-origin-server:
