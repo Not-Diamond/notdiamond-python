@@ -1,13 +1,13 @@
 interactions:
 - request:
     body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
-      [{"provider": "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": false, "tools":
-      [{"type": "function", "function": {"name": "add_fct", "description": "Add two
-      numbers", "parameters": {"type": "object", "properties": {"a": {"type": "integer",
-      "description": "The first number"}, "b": {"type": "integer", "description":
-      "The second number"}}, "required": ["a", "b"]}}}]}'
+      [{"provider": "openai", "model": "gpt-4.1-2025-04-14", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": false, "tools": [{"type":
+      "function", "function": {"name": "add_fct", "description": "Add two numbers",
+      "parameters": {"type": "object", "properties": {"a": {"type": "integer", "description":
+      "The first number"}, "b": {"type": "integer", "description": "The second number"}},
+      "required": ["a", "b"]}}}]}'
     headers:
       Accept:
       - '*/*'
@@ -16,25 +16,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '615'
+      - '607'
       User-Agent:
-      - Python-SDK/0.4.2
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4.5-preview-2025-02-27"}],"session_id":"ea5599e5-0647-4ff4-80e8-cc9e7c618e5e"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4.1-2025-04-14"}],"session_id":"084ecef5-79cb-438f-9c69-4edd9f8da498"}'
     headers:
       CF-RAY:
-      - 92a11e267f31c2cd-VIE
+      - 947c7424a8eed0f8-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Apr 2025 14:46:48 GMT
+      - Fri, 30 May 2025 07:17:47 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -44,9 +44,9 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '126'
+      - '118'
       rndr-id:
-      - df370fa6-47e4-4d86
+      - 6ea39ba1-3003-45cd
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -55,12 +55,9 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "How much is 3 + 5?", "role": "user"}], "model":
-      "gpt-4.5-preview-2025-02-27", "max_completion_tokens": 200, "stream": false,
-      "tools": [{"type": "function", "function": {"name": "add_fct", "description":
-      "Add two numbers", "parameters": {"type": "object", "properties": {"a": {"type":
-      "integer", "description": "The first number"}, "b": {"type": "integer", "description":
-      "The second number"}}, "required": ["a", "b"]}}}]}'
+    body: '{"messages":[{"content":"How much is 3 + 5?","role":"user"}],"model":"gpt-4.1-2025-04-14","max_completion_tokens":200,"stream":false,"tools":[{"type":"function","function":{"name":"add_fct","description":"Add
+      two numbers","parameters":{"type":"object","properties":{"a":{"type":"integer","description":"The
+      first number"},"b":{"type":"integer","description":"The second number"}},"required":["a","b"]}}}]}'
     headers:
       accept:
       - application/json
@@ -69,7 +66,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '448'
+      - '405'
       content-type:
       - application/json
       host:
@@ -77,13 +74,13 @@ interactions:
       user-agent:
       - OpenAI/Python 1.70.0
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
       - 1.70.0
       x-stainless-read-timeout:
@@ -93,38 +90,42 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BHtebYuIR4wRnD8IZWreh9ruXeotj\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1743605209,\n  \"model\": \"gpt-4.5-preview-2025-02-27\",\n
+      string: "{\n  \"id\": \"chatcmpl-BcoHrQoPjhr5WosBO44BEJuEhnhNp\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589467,\n  \"model\": \"gpt-4.1-2025-04-14\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"3 + 5 equals 8.\",\n        \"refusal\":
-        null,\n        \"annotations\": []\n      },\n      \"finish_reason\": \"stop\"\n
+        \"assistant\",\n        \"content\": null,\n        \"tool_calls\": [\n          {\n
+        \           \"id\": \"call_SybQf1dhhFVfzN2ZR4HsFF5N\",\n            \"type\":
+        \"function\",\n            \"function\": {\n              \"name\": \"add_fct\",\n
+        \             \"arguments\": \"{\\\"a\\\":3,\\\"b\\\":5}\"\n            }\n
+        \         }\n        ],\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"tool_calls\"\n
         \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 64,\n    \"completion_tokens\":
-        10,\n    \"total_tokens\": 74,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        19,\n    \"total_tokens\": 83,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
         0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
-        \"default\",\n  \"system_fingerprint\": null\n}\n"
+        \"default\",\n  \"system_fingerprint\": \"fp_51e1070cf2\"\n}\n"
     headers:
       CF-RAY:
-      - 92a11e2d1cadd0d3-SOF
+      - 947c7429b8360bcf-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Apr 2025 14:46:51 GMT
+      - Fri, 30 May 2025 07:17:48 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=SolCoTrCjvaCVB2UECBzRL3KVfr5glBsJuOfDWp3SAY-1743605211-1.0.1.1-lCM9fBvvi0Bk6Sj1Zpj7d_BNL4_beZ_BY4WhWynv8mPgYjbYWBAJdxdFRb5nLb6AdYTn4L2YxHzolfSK3FdRwI.AztoELEP5IuZgVXKx9DA;
-        path=/; expires=Wed, 02-Apr-25 15:16:51 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=8SUIfJgsToyrQytD7ixfY5VvpLHDb32iVzmeyXK6jh0-1748589468-1.0.1.1-p.u6bb9jhemO6Z7EFkW8KrtMUMv1eH0Xx7s6ECfYBMTjKNd2iwrWBkQBicZ6VvNiEhQCrI7u19Wmj.uEyBWfKtysJdXrzacR6L5AfxxLYAk;
+        path=/; expires=Fri, 30-May-25 07:47:48 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=E6YOO3pSXRIrWSLqmxW4FuOHCPCvi11ymeL8FRasaX0-1743605211321-0.0.1.1-604800000;
+      - _cfuvid=KHRPT.L31kclxSDhY6K1he124bbosjmIMtDmVK9e03Q-1748589468065-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -137,37 +138,39 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '791'
+      - '1073'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '1919'
+      - '512'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '518'
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
-      - '2000000'
+      - '30000000'
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '1999993'
+      - '29999993'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_8ac3caec73d1f7ad9ee7ed917990ce0a
+      - req_ef507e6fe3d19f7b54d636a732f3b007
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "ea5599e5-0647-4ff4-80e8-cc9e7c618e5e", "provider": {"provider":
-      "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom": false, "context_length":
+    body: '{"session_id": "084ecef5-79cb-438f-9c69-4edd9f8da498", "provider": {"provider":
+      "openai", "model": "gpt-4.1-2025-04-14", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 1.2960331097936106}}'
+      {"tokens_per_second": 0.0}}'
     headers:
       Accept:
       - '*/*'
@@ -176,26 +179,26 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '288'
+      - '265'
       User-Agent:
-      - Python-SDK/0.4.2
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=656d8e0e-08a9-48b9, Session ea5599e5-0647-4ff4-80e8-cc9e7c618e5e
+      string: '{"detail":"requestID=ae25629f-cd39-458e, Session 084ecef5-79cb-438f-9c69-4edd9f8da498
         does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
     headers:
       CF-RAY:
-      - 92a11e3b7889c27f-VIE
+      - 947c74303c585a7a-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Wed, 02 Apr 2025 14:46:52 GMT
+      - Fri, 30 May 2025 07:17:48 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -205,7 +208,7 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       rndr-id:
-      - 656d8e0e-08a9-48b9
+      - ae25629f-cd39-458e
       vary:
       - Accept-Encoding
       x-render-origin-server:

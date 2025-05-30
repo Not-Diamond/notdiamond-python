@@ -28,40 +28,48 @@ interactions:
       "gpt-4o-mini", "is_custom": false, "context_length": null, "input_price": null,
       "output_price": null, "latency": null}, {"provider": "openai", "model": "gpt-4-0125-preview",
       "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4.5-preview", "is_custom":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4.1", "is_custom":
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-preview", "is_custom": false, "context_length":
+      null}, {"provider": "openai", "model": "gpt-4.1-2025-04-14", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}, {"provider": "openai", "model": "gpt-4.1-mini", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-preview-2024-09-12", "is_custom": false, "context_length":
+      "openai", "model": "gpt-4.1-mini-2025-04-14", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-mini", "is_custom": false, "context_length": null, "input_price":
+      "openai", "model": "gpt-4.1-nano", "is_custom": false, "context_length": null,
+      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
+      "model": "gpt-4.1-nano-2025-04-14", "is_custom": false, "context_length": null,
+      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
+      "model": "o1-preview", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "o1-mini-2024-09-12", "is_custom": false, "context_length": null, "input_price":
+      "o1-preview-2024-09-12", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "chatgpt-4o-latest", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
-      1, "hash_content": false}'
+      "o1-mini", "is_custom": false, "context_length": null, "input_price": null,
+      "output_price": null, "latency": null}, {"provider": "openai", "model": "o1-mini-2024-09-12",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "chatgpt-4o-latest",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
     headers:
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini-2024-07-18"}],"session_id":"a4d1621f-4e3f-430b-9c97-95a40fa6fc2a"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4.1"}],"session_id":"886648f3-d957-45ca-ac1e-671c6133eee8"}'
     headers:
       CF-RAY:
-      - 925d18329e53d0ec-SOF
+      - 947c7ab8cd3e8ee7-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:38:53 GMT
+      - Fri, 30 May 2025 07:22:17 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -73,17 +81,17 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '122'
+      - '107'
       rndr-id:
-      - af034f7d-e01b-4685
+      - 409e62e3-4475-439c
       x-render-origin-server:
       - uvicorn
     status:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"role": "user", "content": "Hello, world! Do you handle
-      default models asynchronously?"}], "model": "gpt-4o-mini-2024-07-18"}'
+    body: '{"messages":[{"role":"user","content":"Hello, world! Do you handle default
+      models asynchronously?"}],"model":"gpt-4.1"}'
     headers:
       accept:
       - application/json
@@ -92,23 +100,23 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '140'
+      - '119'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - AsyncOpenAI/Python 1.68.2
+      - AsyncOpenAI/Python 1.70.0
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - async:asyncio
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 1.68.2
+      - 1.70.0
       x-stainless-read-timeout:
       - '600'
       x-stainless-retry-count:
@@ -116,41 +124,47 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEu69vfoztFFqkdK2dux0I9srBvAf\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742891933,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
+      string: "{\n  \"id\": \"chatcmpl-BcoMD6mNabX72sGjEW3DTIyi7LbhC\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589737,\n  \"model\": \"gpt-4.1-2025-04-14\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"Hello! Yes, I can provide information
-        and assist with topics related to asynchronous programming, including how
-        to handle models or operations asynchronously. If you have specific questions
-        or scenarios in mind, feel free to share, and I'll do my best to assist you!\",\n
-        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"logprobs\":
-        null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
-        18,\n    \"completion_tokens\": 51,\n    \"total_tokens\": 69,\n    \"prompt_tokens_details\":
-        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        \"assistant\",\n        \"content\": \"Hello, world! \U0001F30E\\n\\nI process
+        requests synchronously by default\u2014that is, you send a question or prompt,
+        and I generate a response before accepting the next input. However, the underlying
+        implementation can support asynchronous interactions, especially when integrated
+        into applications via APIs (such as OpenAI's GPT endpoints), where developers
+        can make asynchronous calls to the model.\\n\\n**In summary**:  \\n- My responses
+        here are synchronous.\\n- The backend/API can be used asynchronously, depending
+        on how it's integrated by developers.\\n\\nLet me know if you\u2019re asking
+        about a specific context or technology stack, and I can share more tailored
+        details!\",\n        \"refusal\": null,\n        \"annotations\": []\n      },\n
+        \     \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n
+        \ \"usage\": {\n    \"prompt_tokens\": 18,\n    \"completion_tokens\": 124,\n
+        \   \"total_tokens\": 142,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
-        \"default\",\n  \"system_fingerprint\": \"fp_b8bc95a0ac\"\n}\n"
+        \"default\",\n  \"system_fingerprint\": \"fp_b3f1157249\"\n}\n"
     headers:
       CF-RAY:
-      - 925d1838dd7a0c5f-SOF
+      - 947c7ac18b84d0d4-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:38:54 GMT
+      - Fri, 30 May 2025 07:22:21 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=c_u7vB_M2p1hmNL3n6YOTmS04lDmNhvNEBwWjcMoamc-1742891934-1.0.1.1-kKhB29f9rmc3klSffXzoazWG._FtuyeKaX9n8IpgY2ZwOoT79Sdb3mmj9bqiWiEPvpTho0sIxpR_dkzOhaa.g6eN5ae5FCGex9iNkunYQ8w;
-        path=/; expires=Tue, 25-Mar-25 09:08:54 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=nE.URcVUSZM6lj39P9tmdP8bjzbzfgBXV7l0Ia2hd0M-1748589741-1.0.1.1-sEuDT0yI1dVcFddK4rRCyBTqFH6l.DHdQ_VBG4nom33z5TP6IniReaugcfB2iILsCqU9dXXvae2fZ2uAgcenXj2j1zNHPQs66eh7Jnq9yE8;
+        path=/; expires=Fri, 30-May-25 07:52:21 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=KUXW1nMmELbJgoDiBbrrDw1QXMCWi6gv0sLMCGaMNUg-1742891934541-0.0.1.1-604800000;
+      - _cfuvid=SwWcKNgFoES1ilcVmiAczw6capY1haaQlYgQRE3PV1o-1748589741099-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -163,29 +177,31 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '1073'
+      - '1469'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '812'
+      - '3730'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '3742'
       x-ratelimit-limit-requests:
-      - '30000'
+      - '10000'
       x-ratelimit-limit-tokens:
-      - '150000000'
+      - '30000000'
       x-ratelimit-remaining-requests:
-      - '29999'
+      - '9999'
       x-ratelimit-remaining-tokens:
-      - '149999982'
+      - '29999983'
       x-ratelimit-reset-requests:
-      - 2ms
+      - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_b293502c708a7791a863defe10c9026d
+      - req_1e001133d719c7fec01c5f9ef700f254
     status:
       code: 200
       message: OK

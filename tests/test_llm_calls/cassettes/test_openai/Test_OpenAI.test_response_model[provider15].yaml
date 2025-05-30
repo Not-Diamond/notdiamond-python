@@ -1,9 +1,9 @@
 interactions:
 - request:
     body: '{"messages": [{"role": "user", "content": "Tell me a joke"}], "llm_providers":
-      [{"provider": "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true}'
+      [{"provider": "openai", "model": "gpt-4.1-2025-04-14", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": true}'
     headers:
       Accept:
       - '*/*'
@@ -12,25 +12,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '313'
+      - '305'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4.5-preview-2025-02-27"}],"session_id":"34a0e54c-2521-417c-9e1c-2a4a8546d71a"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4.1-2025-04-14"}],"session_id":"3dfff141-2a4e-4079-8028-0b23afc5ece4"}'
     headers:
       CF-RAY:
-      - 925d12939f6cd0dc-SOF
+      - 947c753e5d9084ce-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:35:02 GMT
+      - Fri, 30 May 2025 07:18:32 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -40,9 +40,9 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '126'
+      - '118'
       rndr-id:
-      - 14b63c8e-4e56-408c
+      - 6c9ae741-a11c-4553
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -51,7 +51,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "The output should be formatted as a JSON instance
+    body: '{"messages":[{"content":"The output should be formatted as a JSON instance
       that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
       {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
       \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
@@ -61,8 +61,7 @@ interactions:
       to set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
       {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
       \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
-      me a joke", "role": "user"}], "model": "gpt-4.5-preview-2025-02-27", "max_tokens":
-      200, "n": 1, "stream": false, "temperature": 0.7}'
+      me a joke","role":"user"}],"model":"gpt-4.1-2025-04-14","max_completion_tokens":200,"stream":false}'
     headers:
       accept:
       - application/json
@@ -71,23 +70,23 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '948'
+      - '913'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.70.0
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 1.68.2
+      - 1.70.0
       x-stainless-read-timeout:
       - '120.0'
       x-stainless-retry-count:
@@ -95,40 +94,39 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEu2RnRBy2rQud1GnmXmbNY40gsF1\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742891703,\n  \"model\": \"gpt-4.5-preview-2025-02-27\",\n
+      string: "{\n  \"id\": \"chatcmpl-BcoIanYJKiBFJHWKOl5T77eHHQ3Qp\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589512,\n  \"model\": \"gpt-4.1-2025-04-14\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"```json\\n{\\n  \\\"setup\\\": \\\"Why
-        did the scarecrow win an award?\\\",\\n  \\\"punchline\\\": \\\"Because he
-        was outstanding in his field!\\\"\\n}\\n```\",\n        \"refusal\": null,\n
-        \       \"annotations\": []\n      },\n      \"finish_reason\": \"stop\"\n
-        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
-        36,\n    \"total_tokens\": 236,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
-        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        \"assistant\",\n        \"content\": \"{\\\"setup\\\": \\\"Why did the math
+        book look sad?\\\", \\\"punchline\\\": \\\"Because it had too many problems.\\\"}\",\n
+        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"logprobs\":
+        null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        200,\n    \"completion_tokens\": 26,\n    \"total_tokens\": 226,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
-        \"default\",\n  \"system_fingerprint\": null\n}\n"
+        \"default\",\n  \"system_fingerprint\": \"fp_51e1070cf2\"\n}\n"
     headers:
       CF-RAY:
-      - 925d1297ff325b48-VIE
+      - 947c75439c17d0d7-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:35:06 GMT
+      - Fri, 30 May 2025 07:18:32 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=bNuVknno0IK6KTbZQYLLEiTBL8AIxzWxd87TVQ9rYiw-1742891706-1.0.1.1-eM9f7Mhp_cozzJuuyp8MbWkDl3GlXbVV9ZM4XdnejoLDwOINM4YTBBPQ1owE6T5JdXuMQTHP2ibRv6h5ySw6a4mfLEWA7uzeBHT.B6TFSTY;
-        path=/; expires=Tue, 25-Mar-25 09:05:06 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=EMslb206AHIvIHU.dj3egFbxThYu8l3is0BLF1qkImQ-1748589512-1.0.1.1-oqfRWZhd5YEBsVS_nrWVxITZlXaHrse0OoZqWvkhjt3zlmn4F7pBt7y9Bw9skemMTQ7K.cXW6jal2L0oDGevvaU5Bf8aMxd2.SgFs08WAkU;
+        path=/; expires=Fri, 30-May-25 07:48:32 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=Oy7P.2b5l3uC37R0w6aLlePTqZ0sUI_KcklyHxnBtkY-1742891706113-0.0.1.1-604800000;
+      - _cfuvid=8d6zXeN2qsW016KkRSpJtcJrorooZuacW_xmDQ.eY3k-1748589512857-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -141,29 +139,31 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '914'
+      - '907'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '2922'
+      - '451'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '454'
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
-      - '2000000'
+      - '30000000'
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '1999819'
+      - '29999818'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
-      - 5ms
+      - 0s
       x-request-id:
-      - req_1a2bcb5d51d08f746bb607ae166dab64
+      - req_52c3023d5837b82e5b9d01863dc3ef49
     status:
       code: 200
       message: OK

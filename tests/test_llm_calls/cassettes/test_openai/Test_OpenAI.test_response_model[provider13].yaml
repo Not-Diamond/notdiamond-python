@@ -14,23 +14,23 @@ interactions:
       Content-Length:
       - '305'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4-0125-preview"}],"session_id":"a2457aea-93db-4e76-8c4b-807b2e7c4a66"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4-0125-preview"}],"session_id":"009cda3f-7180-4d7c-a32c-2660f8a451a9"}'
     headers:
       CF-RAY:
-      - 925d12577b19bc1a-SOF
+      - 947c751ecc36c68a-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:34:53 GMT
+      - Fri, 30 May 2025 07:18:27 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,7 +42,7 @@ interactions:
       content-length:
       - '118'
       rndr-id:
-      - 28a86bf3-7f09-4bd0
+      - efe8e287-59c3-42e1
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -51,7 +51,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "The output should be formatted as a JSON instance
+    body: '{"messages":[{"content":"The output should be formatted as a JSON instance
       that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
       {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
       \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
@@ -61,8 +61,7 @@ interactions:
       to set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
       {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
       \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
-      me a joke", "role": "user"}], "model": "gpt-4-0125-preview", "max_tokens": 200,
-      "n": 1, "stream": false, "temperature": 0.7}'
+      me a joke","role":"user"}],"model":"gpt-4-0125-preview","max_completion_tokens":200,"stream":false}'
     headers:
       accept:
       - application/json
@@ -71,23 +70,23 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '940'
+      - '913'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.70.0
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 1.68.2
+      - 1.70.0
       x-stainless-read-timeout:
       - '120.0'
       x-stainless-retry-count:
@@ -95,40 +94,40 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEu2H9UrR9QH0WbtCCEplf5wwsq8n\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742891693,\n  \"model\": \"gpt-4-0125-preview\",\n
+      string: "{\n  \"id\": \"chatcmpl-BcoIVgMo3yPcxO2pyPqc4KBPX7YWD\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589507,\n  \"model\": \"gpt-4-0125-preview\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"```json\\n{\\n  \\\"setup\\\": \\\"Why
-        don't skeletons fight each other?\\\",\\n  \\\"punchline\\\": \\\"They don't
-        have the guts.\\\"\\n}\\n```\",\n        \"refusal\": null,\n        \"annotations\":
-        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
-        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
-        34,\n    \"total_tokens\": 234,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        \"assistant\",\n        \"content\": \"```json\\n{\\n    \\\"setup\\\": \\\"What's
+        the best thing about Switzerland?\\\",\\n    \\\"punchline\\\": \\\"I don't
+        know, but the flag is a big plus.\\\"\\n}\\n```\",\n        \"refusal\": null,\n
+        \       \"annotations\": []\n      },\n      \"logprobs\": null,\n      \"finish_reason\":
+        \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
+        39,\n    \"total_tokens\": 239,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
         0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 925d125be9be5a3b-VIE
+      - 947c752599e452f4-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:34:55 GMT
+      - Fri, 30 May 2025 07:18:29 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=9Ed9.mBfgwgdUJknHS2npuivbN4QAplpepmpfJSG7rI-1742891695-1.0.1.1-xglrC4FonWtKDhvDgrliB3LaYDd189Xm7ATGYQW_QVmykO7hcVco6zbcKVZFPBC4VxzyPdNSN_NjRyyBKqeG1iR9Eo6AoNO0FM.tG0SOSgI;
-        path=/; expires=Tue, 25-Mar-25 09:04:55 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=sNgAC1MgdJkwk50lf363Uld2YqrJXOPCNE951mpaxJ4-1748589509-1.0.1.1-CtHMOfvCZwADbtphZcaYkWn6JZdrj5n1JtmpLnBvru059wph59Dy8kLV812DZfY.J4u_edUIw.fNs9gj24yKJiv61je6i81EkYSR5dLAn5w;
+        path=/; expires=Fri, 30-May-25 07:48:29 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=0dq._NDjbcO5PLdLgTW0z4ytyciaddYXKtRx4pJnmp4-1742891695713-0.0.1.1-604800000;
+      - _cfuvid=jB1smACKNQu72SVUXVWDnKLSi3pNh0oNsqrzdzRnuVk-1748589509411-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -141,15 +140,17 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '917'
+      - '940'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '2136'
+      - '1805'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '1808'
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
@@ -163,7 +164,7 @@ interactions:
       x-ratelimit-reset-tokens:
       - 5ms
       x-request-id:
-      - req_f1c07eaf0fcd35443095ca38f598f3f2
+      - req_6112c0cad131cac5bde67b33c371680f
     status:
       code: 200
       message: OK

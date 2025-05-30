@@ -14,23 +14,23 @@ interactions:
       Content-Length:
       - '298'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini"}],"session_id":"7cda1d29-789b-4b07-be8e-149df1f4efb2"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4o-mini"}],"session_id":"98923331-a468-4e23-8963-caccdd2ccbe2"}'
     headers:
       CF-RAY:
-      - 925d11e5f8c43cc0-VIE
+      - 947c7511b996d0e8-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:34:35 GMT
+      - Fri, 30 May 2025 07:18:24 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,7 +42,7 @@ interactions:
       content-length:
       - '111'
       rndr-id:
-      - e8aa8a02-dfe4-4522
+      - 4e7f2983-ade3-4afd
       vary:
       - Accept-Encoding
       x-render-origin-server:
@@ -51,7 +51,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "The output should be formatted as a JSON instance
+    body: '{"messages":[{"content":"The output should be formatted as a JSON instance
       that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
       {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
       \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
@@ -61,8 +61,7 @@ interactions:
       to set up a joke\", \"title\": \"Setup\", \"type\": \"string\"}, \"punchline\":
       {\"description\": \"answer to resolve the joke\", \"title\": \"Punchline\",
       \"type\": \"string\"}}, \"required\": [\"setup\", \"punchline\"]}\n```\nTell
-      me a joke", "role": "user"}], "model": "gpt-4o-mini", "max_tokens": 200, "n":
-      1, "stream": false, "temperature": 0.7}'
+      me a joke","role":"user"}],"model":"gpt-4o-mini","max_completion_tokens":200,"stream":false}'
     headers:
       accept:
       - application/json
@@ -71,23 +70,23 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '933'
+      - '906'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.70.0
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 1.68.2
+      - 1.70.0
       x-stainless-read-timeout:
       - '120.0'
       x-stainless-retry-count:
@@ -95,40 +94,40 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEu1zaikeUlCHuay9vB9sHdZ9SVWY\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742891675,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
+      string: "{\n  \"id\": \"chatcmpl-BcoIT7pGrS52uNrJYgXeHwh3CanvH\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589505,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": \"```json\\n{\\n  \\\"setup\\\": \\\"Why
         don't scientists trust atoms?\\\",\\n  \\\"punchline\\\": \\\"Because they
         make up everything!\\\"\\n}\\n```\",\n        \"refusal\": null,\n        \"annotations\":
         []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
         \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 200,\n    \"completion_tokens\":
-        31,\n    \"total_tokens\": 231,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        30,\n    \"total_tokens\": 230,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
         0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
-        \"default\",\n  \"system_fingerprint\": \"fp_b8bc95a0ac\"\n}\n"
+        \"default\",\n  \"system_fingerprint\": \"fp_34a54ae93c\"\n}\n"
     headers:
       CF-RAY:
-      - 925d11eb9fe6d0c7-SOF
+      - 947c7516fd09d0df-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:34:52 GMT
+      - Fri, 30 May 2025 07:18:26 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=EQacSzKVQYedJWtmV5AdQVBcWwlAnZwl6Mq9eD5GXRY-1742891692-1.0.1.1-LbWQfqmrgCc3XsxhskUl0dtl2n3bTRjpkWPdqOaIBmRLEmEKaF01zK8kz6_euPqjLcGsmGpHfINlzun4h4CoDhaRqu3W86MIER8fsIloDvQ;
-        path=/; expires=Tue, 25-Mar-25 09:04:52 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=QH7U5jbXzzFY5G.qKRUOGDEt7NXjuCHj1CNowEY2Lc4-1748589506-1.0.1.1-bGMibnW1Lh91flehpmE5KqLI47zEm7q98EEf8O3JCfQJ.S2qurl0YQQw5bRQC2wK8UabRrhEktxygZNp2WwbRSlv4bUzGTPoIRpbUvI9q48;
+        path=/; expires=Fri, 30-May-25 07:48:26 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=BxmsqGsHszeMUfhNl3tAVtQgtd05pOfqMKMHxNJ27ts-1742891692590-0.0.1.1-604800000;
+      - _cfuvid=lrfapZcQ1m1Dlx_KL1.NihNDSOGOk9ta9BvXAWfCSNE-1748589506235-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -145,11 +144,13 @@ interactions:
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '16975'
+      - '972'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '976'
       x-ratelimit-limit-requests:
       - '30000'
       x-ratelimit-limit-tokens:
@@ -157,13 +158,13 @@ interactions:
       x-ratelimit-remaining-requests:
       - '29999'
       x-ratelimit-remaining-tokens:
-      - '149999818'
+      - '149999819'
       x-ratelimit-reset-requests:
       - 2ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_443cf0b2cab85d95f6878dfeb401bad6
+      - req_83547a8e9149ff7496df470e9ed921af
     status:
       code: 200
       message: OK

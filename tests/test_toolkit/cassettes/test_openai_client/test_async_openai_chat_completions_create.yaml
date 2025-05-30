@@ -28,40 +28,48 @@ interactions:
       "gpt-4o-mini", "is_custom": false, "context_length": null, "input_price": null,
       "output_price": null, "latency": null}, {"provider": "openai", "model": "gpt-4-0125-preview",
       "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "openai", "model": "gpt-4.5-preview", "is_custom":
+      null, "latency": null}, {"provider": "openai", "model": "gpt-4.1", "is_custom":
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "gpt-4.5-preview-2025-02-27", "is_custom":
-      false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "openai", "model": "o1-preview", "is_custom": false, "context_length":
+      null}, {"provider": "openai", "model": "gpt-4.1-2025-04-14", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}, {"provider": "openai", "model": "gpt-4.1-mini", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-preview-2024-09-12", "is_custom": false, "context_length":
+      "openai", "model": "gpt-4.1-mini-2025-04-14", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, {"provider":
-      "openai", "model": "o1-mini", "is_custom": false, "context_length": null, "input_price":
+      "openai", "model": "gpt-4.1-nano", "is_custom": false, "context_length": null,
+      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
+      "model": "gpt-4.1-nano-2025-04-14", "is_custom": false, "context_length": null,
+      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
+      "model": "o1-preview", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "o1-mini-2024-09-12", "is_custom": false, "context_length": null, "input_price":
+      "o1-preview-2024-09-12", "is_custom": false, "context_length": null, "input_price":
       null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "chatgpt-4o-latest", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
-      1, "hash_content": false}'
+      "o1-mini", "is_custom": false, "context_length": null, "input_price": null,
+      "output_price": null, "latency": null}, {"provider": "openai", "model": "o1-mini-2024-09-12",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}, {"provider": "openai", "model": "chatgpt-4o-latest",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      false}'
     headers:
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.3
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4.5-preview"}],"session_id":"c0ace81a-3709-4479-8611-0251a2ef04f8"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4.1"}],"session_id":"1cbeff0a-3b9d-4f0a-a353-3dd782c28734"}'
     headers:
       CF-RAY:
-      - 925d183fae258919-SOF
+      - 947c7ada9be05aaf-VIE
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:38:55 GMT
+      - Fri, 30 May 2025 07:22:22 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -73,17 +81,17 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '115'
+      - '107'
       rndr-id:
-      - 55aea6f2-0cb5-4471
+      - d7eb5a79-3bc0-4b75
       x-render-origin-server:
       - uvicorn
     status:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"role": "user", "content": "Hello, world! Does this async
-      chat.completions.create call work?"}], "model": "gpt-4.5-preview"}'
+    body: '{"messages":[{"role":"user","content":"Hello, world! Does this async chat.completions.create
+      call work?"}],"model":"gpt-4.1"}'
     headers:
       accept:
       - application/json
@@ -92,23 +100,23 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '139'
+      - '125'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - AsyncOpenAI/Python 1.68.2
+      - AsyncOpenAI/Python 1.70.0
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - async:asyncio
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 1.68.2
+      - 1.70.0
       x-stainless-read-timeout:
       - '600'
       x-stainless-retry-count:
@@ -116,42 +124,57 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEu6CXEpUCPNWeHh7mUdr3FFnuBK9\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742891936,\n  \"model\": \"gpt-4.5-preview-2025-02-27\",\n
+      string: "{\n  \"id\": \"chatcmpl-BcoMI6QuwYL1UoB0Z49QDEz3vxrBn\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1748589742,\n  \"model\": \"gpt-4.1-2025-04-14\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"You haven't included the specific code
-        snippet yet\u2014would you mind sharing the exact async call you're trying
-        to use? Once you provide your code, I'd be happy to help you determine if
-        your async call to `chat.completions.create` is structured correctly or help
-        troubleshoot any potential issues you're encountering!\",\n        \"refusal\":
-        null,\n        \"annotations\": []\n      },\n      \"finish_reason\": \"stop\"\n
-        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\":
-        60,\n    \"total_tokens\": 82,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
-        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        \"assistant\",\n        \"content\": \"Hello! From your message, it looks
+        like you're asking whether the `chat.completions.create` method can be used
+        asynchronously. While you haven\u2019t posted your exact code, I can clarify
+        how this works for the OpenAI Python library:\\n\\n**OpenAI Python API**  \\nThe
+        typical (synchronous) usage is:\\n```python\\nimport openai\\n\\nresponse
+        = openai.chat.completions.create(\\n    model=\\\"gpt-4\\\",\\n    messages=[{\\\"role\\\":
+        \\\"user\\\", \\\"content\\\": \\\"Hello, world!\\\"}]\\n)\\n```\\n\\n**Async
+        Usage:**\\nIf you want to use it asynchronously, you should use the `openai.AsyncClient`
+        (for the official OpenAI Python v1 client):\\n```python\\nimport asyncio\\nfrom
+        openai import AsyncOpenAI\\n\\nclient = AsyncOpenAI()\\n\\nasync def main():\\n
+        \   response = await client.chat.completions.create(\\n        model=\\\"gpt-4\\\",\\n
+        \       messages=[{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Hello,
+        world!\\\"}]\\n    )\\n    print(response.choices[0].message.content)\\n\\nasyncio.run(main())\\n```\\n**Key
+        Points:**  \\n- Directly using `await openai.chat.completions.create(...)`
+        won\u2019t work in the synchronous client.\\n- For async, instantiate `AsyncOpenAI()`
+        and use `await`.\\n- Make sure your OpenAI library version is `1.x` (API changed
+        from `openai.ChatCompletion.create` in v0.x).\\n\\n**References:**  \\n- [openai-python
+        README](https://github.com/openai/openai-python)\\n- [Migration Guide v0 to
+        v1](https://github.com/openai/openai-python#migration-guide)\\n\\nIf you post
+        your exact code snippet, I can give you more specific feedback!\",\n        \"refusal\":
+        null,\n        \"annotations\": []\n      },\n      \"logprobs\": null,\n
+        \     \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        22,\n    \"completion_tokens\": 357,\n    \"total_tokens\": 379,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
-        \"default\",\n  \"system_fingerprint\": null\n}\n"
+        \"default\",\n  \"system_fingerprint\": \"fp_b3f1157249\"\n}\n"
     headers:
       CF-RAY:
-      - 925d184729bf1c23-SOF
+      - 947c7ae14d0f1c37-SOF
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:39:04 GMT
+      - Fri, 30 May 2025 07:22:28 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=bheK48y.mOzcMwXir8EL3lgjnVuzsNyVIBdk26ddB8Y-1742891944-1.0.1.1-oAj4vUayjXcr5L4HdVXh4LX9bNFisKhBfiyv3ukhbwyusWZFRTuRMChw62IA_IVoimZnMhSyKG2Yb8P0JPCJfSwpzL2aml_fHsb4pE21q3s;
-        path=/; expires=Tue, 25-Mar-25 09:09:04 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=J0_wf_igbBqXPN0Ilm70I8kM5lP0i2Kg_mPnW0nHJx8-1748589748-1.0.1.1-B6mzRaGLLPGWRTxFupRObLIaBuTb_T3acZiCgarOtTHjrY20a.v8s99dWyFs0ugL1MSFVRFAy.7j6MqPlXpQRY6jHBgu9NVyPllrAyfX3Ms;
+        path=/; expires=Fri, 30-May-25 07:52:28 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=VeoZTxsWtTluxIAM9ykyPbGaxbpnClG_7sUAx4DvO84-1742891944215-0.0.1.1-604800000;
+      - _cfuvid=vkGxFUg7huJtcbOH6V66stMuBFnMDZZGV4HVmLhEQnM-1748589748859-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -164,29 +187,31 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '1092'
+      - '2298'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '8174'
+      - '6424'
       openai-version:
       - '2020-10-01'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '6427'
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
-      - '2000000'
+      - '30000000'
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '1999981'
+      - '29999982'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_acbb7137bdecaeb98cb9375d46c7a5f8
+      - req_4fe1d17eb93ca2a1c30616db2c4b966f
     status:
       code: 200
       message: OK
