@@ -27,7 +27,7 @@
 | notdiamond/toolkit/rag/\_\_init\_\_.py                       |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/rag/document\_loaders.py                  |        1 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/rag/evaluation.py                         |       87 |       18 |       16 |        0 |     77% |50-80, 89-90 |
-| notdiamond/toolkit/rag/evaluation\_dataset.py                |       35 |       10 |        6 |        2 |     66% |51, 55, 62-65, 68, 71-72, 81, 87 |
+| notdiamond/toolkit/rag/evaluation\_dataset.py                |       29 |        8 |        6 |        2 |     66% |62-65, 68, 71-72, 81, 87 |
 | notdiamond/toolkit/rag/llms.py                               |       29 |        7 |       12 |        1 |     66% |     53-67 |
 | notdiamond/toolkit/rag/metrics.py                            |        3 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/rag/testset.py                            |       50 |        9 |       18 |        7 |     76% |117, 132-134, 159, 165, 171->194, 176, 180, 196->195, 210-212 |
@@ -69,7 +69,7 @@
 | tests/test\_toolkit/test\_openai\_client.py                  |       83 |        0 |       12 |        4 |     96% |104->108, 105->104, 210->214, 211->210 |
 | tests/test\_toolkit/test\_retry.py                           |      326 |        0 |        0 |        0 |    100% |           |
 | tests/test\_types.py                                         |       16 |        0 |        0 |        0 |    100% |           |
-|                                                    **TOTAL** | **4722** |  **537** |  **696** |  **108** | **87%** |           |
+|                                                    **TOTAL** | **4716** |  **535** |  **696** |  **108** | **87%** |           |
 
 
 ## Setup coverage badge
