@@ -29,6 +29,9 @@ class NDLLMProviders(Enum):
         GPT_4_1_MINI_2025_04_14 (NDLLMProvider): refers to 'gpt-4.1-mini-2025-04-14' model by OpenAI
         GPT_4_1_NANO (NDLLMProvider): refers to 'gpt-4.1-nano' model by OpenAI
         GPT_4_1_NANO_2025_04_14 (NDLLMProvider): refers to 'gpt-4.1-nano-2025-04-14' model by OpenAI
+        GPT_5_2025_08_07 (NDLLMProvider): refers to 'gpt-5-2025-08-07' model by OpenAI
+        GPT_5_MINI_2025_08_07 (NDLLMProvider): refers to 'gpt-5-mini-2025-08-07' model by OpenAI
+        GPT_5_NANO_2025_08_07 (NDLLMProvider): refers to 'gpt-5-nano-2025-08-07' model by OpenA
         O1_PREVIEW (NDLLMProvider): refers to 'o1-preview' model by OpenAI
         O1_PREVIEW_2024_09_12 (NDLLMProvider): refers to 'o1-preview-2024-09-12' model by OpenAI
         O1_MINI (NDLLMProvider): refers to 'o1-mini' model by OpenAI
@@ -115,6 +118,9 @@ class NDLLMProviders(Enum):
     GPT_4_1_MINI_2025_04_14 = ("openai", "gpt-4.1-mini-2025-04-14")
     GPT_4_1_NANO = ("openai", "gpt-4.1-nano")
     GPT_4_1_NANO_2025_04_14 = ("openai", "gpt-4.1-nano-2025-04-14")
+    GPT_5_2025_08_07 = ("openai", "gpt-5-2025-08-07")
+    GPT_5_MINI_2025_08_07 = ("openai", "gpt-5-mini-2025-08-07")
+    GPT_5_NANO_2025_08_07 = ("openai", "gpt-5-nano-2025-08-07")
     O1_PREVIEW = ("openai", "o1-preview")
     O1_PREVIEW_2024_09_12 = ("openai", "o1-preview-2024-09-12")
     O1_MINI = ("openai", "o1-mini")

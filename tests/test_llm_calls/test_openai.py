@@ -31,6 +31,11 @@ class Test_OpenAI:
         await astream_chunks(nd_llm.astream(prompt))
 
     def test_streaming_use_stop(self, prompt, provider):
+        if "gpt-5-" in provider.model:
+            pytest.skip(
+                f"{provider.model} does not support streaming with stop"
+            )
+
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
         )
@@ -45,6 +50,11 @@ class Test_OpenAI:
             "gpt-4.5"
         ):
             return
+
+        if "gpt-5-" in provider.model:
+            pytest.skip(
+                f"{provider.model} does not consistently call tools via binding"
+            )
 
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(llm_configs=[provider])
@@ -64,6 +74,11 @@ class Test_OpenAI:
         ):
             return
 
+        if "gpt-5-" in provider.model:
+            pytest.skip(
+                f"{provider.model} does not consistently call tools via binding"
+            )
+
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(llm_configs=[provider])
         nd_llm = nd_llm.bind_tools(openai_tools_fixture)
@@ -76,6 +91,9 @@ class Test_OpenAI:
         assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_response_model(self, response_model, provider):
+        if "gpt-5-" in provider.model:
+            pytest.skip(f"{provider.model} does not support response modeling")
+
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True

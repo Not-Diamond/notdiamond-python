@@ -241,12 +241,13 @@ def _before_record_request(request: Any) -> Any:
 
 @pytest.fixture(scope="module")
 def vcr_config():
+    record_mode = os.getenv("RECORD_MODE", "none")
     return {
         "filter_headers": ["authorization", "x-token"],
         "allowed_hosts": ["testserver", "127.0.0.1"],
         "before_record_response": _redact_xtoken_response,
         "before_record_request": _before_record_request,
         "ignore_localhost": True,
-        "record_mode": "none",
+        "record_mode": record_mode,
         "decode_compressed_response": True,
     }
