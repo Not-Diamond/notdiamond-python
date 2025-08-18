@@ -43,8 +43,10 @@ class NDLLMProviders(Enum):
         CLAUDE_3_5_HAIKU_20241022 (NDLLMProvider): refers to 'claude-3-5-haiku-20241022' model by Anthropic
         CLAUDE_3_HAIKU_20240307 (NDLLMProvider): refers to 'claude-3-haiku-20240307' model by Anthropic
         CLAUDE_OPUS_4_20250514 (NDLLMProvider): refers to 'claude-opus-4-20250514' model by Anthropic
+        CLAUDE_OPUS_4_1_20250805 (NDLLMProvider): refers to 'claude-opus-4-1-20250805' model by Anthropic
         CLAUDE_SONNET_4_20250514 (NDLLMProvider): refers to 'claude-sonnet-4-20250514' model by Anthropic
         CLAUDE_OPUS_4_0 (NDLLMProvider): refers to 'claude-opus-4-0' model by Anthropic
+        CLAUDE_OPUS_4_1 (NDLLMProvider): refers to 'claude-opus-4-1' model by Anthropic
         CLAUDE_SONNET_4_0 (NDLLMProvider): refers to 'claude-sonnet-4-0' model by Anthropic
 
         GEMINI_PRO (NDLLMProvider): refers to 'gemini-pro' model by Google
@@ -132,8 +134,10 @@ class NDLLMProviders(Enum):
     CLAUDE_3_5_HAIKU_20241022 = ("anthropic", "claude-3-5-haiku-20241022")
     CLAUDE_3_HAIKU_20240307 = ("anthropic", "claude-3-haiku-20240307")
     CLAUDE_OPUS_4_20250514 = ("anthropic", "claude-opus-4-20250514")
+    CLAUDE_OPUS_4_1_20250805 = ("anthropic", "claude-opus-4-1-20250805")
     CLAUDE_SONNET_4_20250514 = ("anthropic", "claude-sonnet-4-20250514")
     CLAUDE_OPUS_4_0 = ("anthropic", "claude-opus-4-0")
+    CLAUDE_OPUS_4_1 = ("anthropic", "claude-opus-4-1")
     CLAUDE_SONNET_4_0 = ("anthropic", "claude-sonnet-4-0")
 
     GEMINI_PRO = ("google", "gemini-pro")
