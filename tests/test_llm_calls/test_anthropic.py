@@ -276,8 +276,8 @@ class Test_Anthropic_LLMs:
         assert len(result.tool_calls) == 1
         assert result.tool_calls[0]["name"] == "add_fct"
 
-    def test_claude_opus_4_20250805_with_tool_calling(self, tools_fixture):
-        provider = NDLLMProviders.CLAUDE_OPUS_4_20250805
+    def test_claude_opus_4_1_20250805_with_tool_calling(self, tools_fixture):
+        provider = NDLLMProviders.CLAUDE_OPUS_4_1_20250805
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -290,10 +290,10 @@ class Test_Anthropic_LLMs:
         assert len(result.tool_calls) == 1
         assert result.tool_calls[0]["name"] == "add_fct"
 
-    def test_claude_opus_4_20250805_with_openai_tool_calling(
+    def test_claude_opus_4_1_20250805_with_openai_tool_calling(
         self, openai_tools_fixture
     ):
-        provider = NDLLMProviders.CLAUDE_OPUS_4_20250805
+        provider = NDLLMProviders.CLAUDE_OPUS_4_1_20250805
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
