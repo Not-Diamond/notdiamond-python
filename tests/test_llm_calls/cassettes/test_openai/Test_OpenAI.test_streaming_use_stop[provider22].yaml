@@ -1,0 +1,220 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "Write me a song about goldfish
+      on the moon"}], "llm_providers": [{"provider": "openai", "model": "gpt-5-nano-2025-08-07",
+      "is_custom": false, "context_length": null, "input_price": null, "output_price":
+      null, "latency": null}], "metric": "accuracy", "max_model_depth": 1, "hash_content":
+      true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '336'
+      User-Agent:
+      - Python-SDK/0.4.4
+      content-type:
+      - application/json
+    method: POST
+    uri: https://api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"detail":"Could not find valid API key"}'
+    headers:
+      CF-RAY:
+      - 96fac352cc39aea4-MIA
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 15 Aug 2025 18:30:24 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      rndr-id:
+      - 46a62178-6c2a-43e1
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+      x-request-id:
+      - 46a62178-6c2a-43e1
+    status:
+      code: 401
+      message: Unauthorized
+- request:
+    body: '{"messages":[{"content":"Write me a song about goldfish on the moon","role":"user"}],"model":"gpt-5-nano-2025-08-07","stop":["a"],"stream":true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '144'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.99.9
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.99.9
+      x-stainless-read-timeout:
+      - '120.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: 'upstream connect error or disconnect/reset before headers. reset reason:
+        connection termination'
+    headers:
+      CF-RAY:
+      - 96fac354196a7476-MIA
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '95'
+      Content-Type:
+      - text/plain
+      Date:
+      - Fri, 15 Aug 2025 18:30:25 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=BM_JQox.4rej0KGOjo1e62FMISJpm6J9S5T6uu0Ygpw-1755282625-1.0.1.1-8vR259KmwrZmevb8U.ONS_4kb7h0DNJEAieZQDrAXOYH.azcONAKmznep0e1HtaqmXwgEpiaQsfkhq22j2qDup1e4nGHhi7fRYt.I6xYbn8;
+        path=/; expires=Fri, 15-Aug-25 19:00:25 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=_NgL0AIWTu_Nh0CSkI7iTCWJ7vcaR_41DBTDgcAW.4o-1755282625476-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 503
+      message: Service Unavailable
+- request:
+    body: '{"messages":[{"content":"Write me a song about goldfish on the moon","role":"user"}],"model":"gpt-5-nano-2025-08-07","stop":["a"],"stream":true}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '144'
+      content-type:
+      - application/json
+      cookie:
+      - __cf_bm=BM_JQox.4rej0KGOjo1e62FMISJpm6J9S5T6uu0Ygpw-1755282625-1.0.1.1-8vR259KmwrZmevb8U.ONS_4kb7h0DNJEAieZQDrAXOYH.azcONAKmznep0e1HtaqmXwgEpiaQsfkhq22j2qDup1e4nGHhi7fRYt.I6xYbn8;
+        _cfuvid=_NgL0AIWTu_Nh0CSkI7iTCWJ7vcaR_41DBTDgcAW.4o-1755282625476-0.0.1.1-604800000
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 1.99.9
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.99.9
+      x-stainless-read-timeout:
+      - '120.0'
+      x-stainless-retry-count:
+      - '1'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.6
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"error\": {\n    \"message\": \"Unsupported parameter: 'stop'
+        is not supported with this model.\",\n    \"type\": \"invalid_request_error\",\n
+        \   \"param\": \"stop\",\n    \"code\": \"unsupported_parameter\"\n  }\n}"
+    headers:
+      CF-RAY:
+      - 96fac35c09df7476-MIA
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '196'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 15 Aug 2025 18:30:26 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '27'
+      openai-project:
+      - proj_EvMLZJqcggqzjvd3BFXe4tfP
+      openai-version:
+      - '2020-10-01'
+      x-envoy-upstream-service-time:
+      - '51'
+      x-ratelimit-limit-requests:
+      - '30000'
+      x-ratelimit-limit-tokens:
+      - '180000000'
+      x-ratelimit-remaining-requests:
+      - '29999'
+      x-ratelimit-remaining-tokens:
+      - '179999985'
+      x-ratelimit-reset-requests:
+      - 2ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_ff350d4171694472acea77ce1dd20800
+    status:
+      code: 400
+      message: Bad Request
+version: 1
