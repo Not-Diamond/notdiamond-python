@@ -48,7 +48,8 @@ def gpt_4o():
 
 @pytest.fixture
 def sonnet_3_5():
-    return LLMConfig.from_string("anthropic/claude-3-5-sonnet-20241022")
+    # Deprecated; replacing with supported claude-3-5-haiku-20241022
+    return LLMConfig.from_string("anthropic/claude-3-5-haiku-20241022")
 
 
 @pytest.fixture

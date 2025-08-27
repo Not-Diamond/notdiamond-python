@@ -19,6 +19,7 @@ class NDLLMProviders(Enum):
         GPT_4_TURBO_2024_04_09 (NDLLMProvider): refers to 'gpt-4-turbo-2024-04-09' model by OpenAI
         GPT_4o_2024_05_13 (NDLLMProvider): refers to 'gpt-4o-2024-05-13' model by OpenAI
         GPT_4o_2024_08_06 (NDLLMProvider): refers to 'gpt-4o-2024-08-06' model by OpenAI
+        GPT_4o_2024_11_20 (NDLLMProvider): refers to 'gpt-4o-2024-11-20' model by OpenAI
         GPT_4o (NDLLMProvider): refers to 'gpt-4o' model by OpenAI
         GPT_4o_MINI_2024_07_18 (NDLLMProvider): refers to 'gpt-4o-mini-2024-07-18' model by OpenAI
         GPT_4o_MINI (NDLLMProvider): refers to 'gpt-4o-mini' model by OpenAI
@@ -35,9 +36,7 @@ class NDLLMProviders(Enum):
         O1_MINI_2024_09_12 (NDLLMProvider): refers to 'o1-mini-2024-09-12' model by OpenAI
 
         CLAUDE_2_1 (NDLLMProvider): refers to 'claude-2.1' model by Anthropic
-        CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to 'claude-3-opus-20240229' model by Anthropic
         CLAUDE_3_SONNET_20240229 (NDLLMProvider): refers to 'claude-3-sonnet-20240229' model by Anthropic
-        CLAUDE_3_5_SONNET_20240620 (NDLLMProvider): refers to 'claude-3-5-sonnet-20240620' model by Anthropic
         CLAUDE_3_7_SONNET_LATEST (NDLLMProvider): refers to 'claude-3-7-sonnet-latest' model by Anthropic
         CLAUDE_3_7_SONNET_20250219 (NDLLMProvider): refers to 'claude-3-7-sonnet-20250219' model by Anthropic
         CLAUDE_3_5_HAIKU_20241022 (NDLLMProvider): refers to 'claude-3-5-haiku-20241022' model by Anthropic
@@ -107,6 +106,7 @@ class NDLLMProviders(Enum):
     GPT_4_TURBO_2024_04_09 = ("openai", "gpt-4-turbo-2024-04-09")
     GPT_4o_2024_05_13 = ("openai", "gpt-4o-2024-05-13")
     GPT_4o_2024_08_06 = ("openai", "gpt-4o-2024-08-06")
+    GPT_4o_2024_11_20 = ("openai", "gpt-4o-2024-11-20")
     GPT_4o = ("openai", "gpt-4o")
     GPT_4o_MINI_2024_07_18 = ("openai", "gpt-4o-mini-2024-07-18")
     GPT_4o_MINI = ("openai", "gpt-4o-mini")
@@ -124,11 +124,7 @@ class NDLLMProviders(Enum):
     CHATGPT_4o_LATEST = ("openai", "chatgpt-4o-latest")
 
     CLAUDE_2_1 = ("anthropic", "claude-2.1")
-    CLAUDE_3_OPUS_20240229 = ("anthropic", "claude-3-opus-20240229")
     CLAUDE_3_SONNET_20240229 = ("anthropic", "claude-3-sonnet-20240229")
-    CLAUDE_3_5_SONNET_20240620 = ("anthropic", "claude-3-5-sonnet-20240620")
-    CLAUDE_3_5_SONNET_20241022 = ("anthropic", "claude-3-5-sonnet-20241022")
-    CLAUDE_3_5_SONNET_LATEST = ("anthropic", "claude-3-5-sonnet-latest")
     CLAUDE_3_7_SONNET_LATEST = ("anthropic", "claude-3-7-sonnet-latest")
     CLAUDE_3_7_SONNET_20250219 = ("anthropic", "claude-3-7-sonnet-20250219")
     CLAUDE_3_5_HAIKU_20241022 = ("anthropic", "claude-3-5-haiku-20241022")
