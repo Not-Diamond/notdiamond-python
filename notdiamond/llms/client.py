@@ -42,7 +42,6 @@ from notdiamond.metrics.metric import Metric
 from notdiamond.prompts import (
     _curly_escape,
     inject_system_prompt,
-    o1_system_prompt_translate,
 )
 from notdiamond.types import NDApiKeyValidator
 
@@ -906,8 +905,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     messages, best_llm.system_prompt
                 )
 
-            messages = o1_system_prompt_translate(messages, best_llm)
-
             self.call_callbacks("on_model_select", best_llm, best_llm.model)
 
             llm = self._llm_from_config(best_llm, callbacks=self.callbacks)
@@ -1108,8 +1105,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 messages = inject_system_prompt(
                     messages, best_llm.system_prompt
                 )
-
-            messages = o1_system_prompt_translate(messages, best_llm)
 
             self.call_callbacks("on_model_select", best_llm, best_llm.model)
 
