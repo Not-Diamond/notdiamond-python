@@ -32,7 +32,6 @@ from notdiamond.exceptions import (
     MissingLLMConfigs,
 )
 from notdiamond.llms.config import LLMConfig
-from notdiamond.llms.providers import is_o1_model
 from notdiamond.llms.request import (
     amodel_select,
     create_preference_id,
@@ -913,7 +912,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
             llm = self._llm_from_config(best_llm, callbacks=self.callbacks)
 
-            if self.tools and not is_o1_model(best_llm):
+            if self.tools:
                 llm = llm.bind_tools(self.tools)
 
             if response_model is not None:
@@ -1116,7 +1115,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
 
             llm = self._llm_from_config(best_llm, callbacks=self.callbacks)
 
-            if self.tools and not is_o1_model(best_llm):
+            if self.tools:
                 llm = llm.bind_tools(self.tools)
 
             if response_model is not None:
@@ -1549,9 +1548,6 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     "ChatOpenAI",
                     provider.provider,
                 )
-                if is_o1_model(provider):
-                    passed_kwargs["temperature"] = 1.0
-
                 return ChatOpenAI(
                     openai_api_key=provider.api_key,
                     model_name=provider.model,

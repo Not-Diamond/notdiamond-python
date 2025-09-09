@@ -29,10 +29,6 @@ class NDLLMProviders(Enum):
         GPT_4_1_MINI_2025_04_14 (NDLLMProvider): refers to 'gpt-4.1-mini-2025-04-14' model by OpenAI
         GPT_4_1_NANO (NDLLMProvider): refers to 'gpt-4.1-nano' model by OpenAI
         GPT_4_1_NANO_2025_04_14 (NDLLMProvider): refers to 'gpt-4.1-nano-2025-04-14' model by OpenAI
-        O1_PREVIEW (NDLLMProvider): refers to 'o1-preview' model by OpenAI
-        O1_PREVIEW_2024_09_12 (NDLLMProvider): refers to 'o1-preview-2024-09-12' model by OpenAI
-        O1_MINI (NDLLMProvider): refers to 'o1-mini' model by OpenAI
-        O1_MINI_2024_09_12 (NDLLMProvider): refers to 'o1-mini-2024-09-12' model by OpenAI
 
         CLAUDE_2_1 (NDLLMProvider): refers to 'claude-2.1' model by Anthropic
         CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to 'claude-3-opus-20240229' model by Anthropic
@@ -117,10 +113,6 @@ class NDLLMProviders(Enum):
     GPT_4_1_MINI_2025_04_14 = ("openai", "gpt-4.1-mini-2025-04-14")
     GPT_4_1_NANO = ("openai", "gpt-4.1-nano")
     GPT_4_1_NANO_2025_04_14 = ("openai", "gpt-4.1-nano-2025-04-14")
-    O1_PREVIEW = ("openai", "o1-preview")
-    O1_PREVIEW_2024_09_12 = ("openai", "o1-preview-2024-09-12")
-    O1_MINI = ("openai", "o1-mini")
-    O1_MINI_2024_09_12 = ("openai", "o1-mini-2024-09-12")
     CHATGPT_4o_LATEST = ("openai", "chatgpt-4o-latest")
 
     CLAUDE_2_1 = ("anthropic", "claude-2.1")
@@ -223,10 +215,3 @@ class NDLLMProviders(Enum):
         return LLMConfig(provider=provider, model=model)
 
 
-def is_o1_model(llm: LLMConfig):
-    return llm in (
-        NDLLMProviders.O1_PREVIEW,
-        NDLLMProviders.O1_PREVIEW_2024_09_12,
-        NDLLMProviders.O1_MINI,
-        NDLLMProviders.O1_MINI_2024_09_12,
-    )
