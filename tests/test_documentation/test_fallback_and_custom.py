@@ -14,7 +14,7 @@ def test_fallback_model():
         "openai/gpt-4-turbo-preview",
         "anthropic/claude-2.1",
         "anthropic/claude-3-sonnet-20240229",
-        "anthropic/claude-3-opus-20240229",
+        "anthropic/claude-sonnet-4-0",
         "google/gemini-pro",
     ]
 
@@ -34,7 +34,7 @@ def test_set_max_model_depth():
         "openai/gpt-4-turbo-preview",
         "anthropic/claude-2.1",
         "anthropic/claude-3-sonnet-20240229",
-        "anthropic/claude-3-opus-20240229",
+        "anthropic/claude-3-5-sonnet-20241022",
         "google/gemini-pro",
     ]
 

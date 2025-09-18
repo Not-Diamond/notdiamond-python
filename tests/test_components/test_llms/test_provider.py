@@ -53,9 +53,9 @@ def test_existing_openrouter_model():
     assert llm_provider.openrouter_model == "mistralai/mistral-large"
 
     llm_provider = LLMConfig(
-        provider="anthropic", model="claude-3-opus-20240229"
+        provider="anthropic", model="claude-sonnet-4-0"
     )
-    assert llm_provider.openrouter_model == "anthropic/claude-3-opus"
+    assert llm_provider.openrouter_model == "anthropic/claude-sonnet-4"
 
 
 def test_not_existing_openrouter_model():
