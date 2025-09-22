@@ -57,6 +57,7 @@ def test_notdiamond_routed_runnable_chain(
     [
         ("openai/gpt-4o", "langchain_openai.ChatOpenAI"),
         ("openai/gpt-4o-2024-08-06", "langchain_openai.ChatOpenAI"),
+        ("openai/gpt-4o-2024-11-20", "langchain_openai.ChatOpenAI"),
         ("openai/gpt-4o-2024-05-13", "langchain_openai.ChatOpenAI"),
         ("openai/gpt-4-turbo-2024-04-09", "langchain_openai.ChatOpenAI"),
         ("openai/gpt-4-0125-preview", "langchain_openai.ChatOpenAI"),
