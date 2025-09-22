@@ -66,14 +66,6 @@ def test_notdiamond_routed_runnable_chain(
         ("openai/gpt-3.5-turbo-0125", "langchain_openai.ChatOpenAI"),
         ("openai/gpt-4o-mini-2024-07-18", "langchain_openai.ChatOpenAI"),
         (
-            "anthropic/claude-3-5-sonnet-20240620",
-            "langchain_anthropic.ChatAnthropic",
-        ),
-        (
-            "anthropic/claude-3-opus-20240229",
-            "langchain_anthropic.ChatAnthropic",
-        ),
-        (
             "anthropic/claude-3-sonnet-20240229",
             "langchain_anthropic.ChatAnthropic",
         ),

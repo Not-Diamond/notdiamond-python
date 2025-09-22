@@ -10,10 +10,9 @@ interactions:
       "is_custom": false, "context_length": null, "input_price": null, "output_price":
       null, "latency": null}, {"provider": "openai", "model": "gpt-4-turbo-preview",
       "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}, {"provider": "anthropic", "model": "claude-3-opus-20240229",
-      "is_custom": false, "context_length": null, "input_price": null, "output_price":
-      null, "latency": null}], "metric": "accuracy", "max_model_depth": 5, "hash_content":
-      false}'
+      null, "latency": null}, {"provider": "anthropic", "model": "claude-2.1", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 5, "hash_content": false}'
     headers:
       Accept:
       - '*/*'
@@ -22,25 +21,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '1059'
+      - '1047'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.5
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"e45fff51-2655-4339-ab6d-1e83358de703"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-4"}],"session_id":"ad6856f7-f9fc-497f-9b46-26a472d2ecf9"}'
     headers:
       CF-RAY:
-      - 925cfe325f113dbe-SOF
+      - 982fb1d13ce248d5-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:21:08 GMT
+      - Mon, 22 Sep 2025 06:20:08 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -50,59 +49,56 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '125'
+      - '105'
       rndr-id:
-      - 93955f5b-362d-4df6
+      - 79f9a239-42e7-4fe7
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - 79f9a239-42e7-4fe7
     status:
       code: 200
       message: OK
 - request:
-    body: '{"max_tokens": 1024, "messages": [{"role": "user", "content": "What language
-      would you suggest for developing a web application?"}], "model": "claude-3-opus-20240229",
-      "system": "The output should be formatted as a JSON instance that conforms to
-      the JSON schema below.\n\nAs an example, for the schema {\"properties\": {\"foo\":
-      {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\": \"array\",
-      \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe object {\"foo\":
-      [\"bar\", \"baz\"]} is a well-formatted instance of the schema. The object {\"properties\":
-      {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere is the output
-      schema:\n```\n{\"properties\": {\"language\": {\"description\": \"The programming
-      language of choice.\", \"title\": \"Language\", \"type\": \"string\"}, \"reason\":
-      {\"description\": \"The reason to pick the programming language.\", \"title\":
-      \"Reason\", \"type\": \"string\"}}, \"required\": [\"language\", \"reason\"]}\n```\nYou
-      are a world class software developer."}'
+    body: '{"messages":[{"content":"The output should be formatted as a JSON instance
+      that conforms to the JSON schema below.\n\nAs an example, for the schema {\"properties\":
+      {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\":
+      \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe
+      object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted instance of the schema.
+      The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere
+      is the output schema:\n```\n{\"properties\": {\"language\": {\"description\":
+      \"The programming language of choice.\", \"title\": \"Language\", \"type\":
+      \"string\"}, \"reason\": {\"description\": \"The reason to pick the programming
+      language.\", \"title\": \"Reason\", \"type\": \"string\"}}, \"required\": [\"language\",
+      \"reason\"]}\n```\nYou are a world class software developer.","role":"system"},{"content":"What
+      language would you suggest for developing a web application?","role":"user"}],"model":"gpt-4","stream":false}'
     headers:
       accept:
       - application/json
       accept-encoding:
       - gzip, deflate, zstd
-      anthropic-version:
-      - '2023-06-01'
       connection:
       - keep-alive
       content-length:
-      - '1034'
+      - '1023'
       content-type:
       - application/json
       host:
-      - api.anthropic.com
+      - api.openai.com
       user-agent:
-      - Anthropic/Python 0.49.0
-      x-api-key:
-      - REDACTED
+      - OpenAI/Python 1.99.9
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 0.49.0
+      - 1.99.9
       x-stainless-read-timeout:
       - '120.0'
       x-stainless-retry-count:
@@ -110,78 +106,90 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
-      x-stainless-timeout:
-      - NOT_GIVEN
+      - 3.11.12
     method: POST
-    uri: https://api.anthropic.com/v1/messages
+    uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: '{"id":"msg_01YQX5CQxhfrypyCnZaNkG1w","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"Here
-        is my suggestion for a web application programming language:\n\n{\n  \"language\":
-        \"JavaScript\",\n  \"reason\": \"JavaScript is a versatile language that can
-        be used on both the front-end and back-end of web applications. It has a huge
-        ecosystem of frameworks and libraries like React, Angular, Node.js and Express
-        that enable rapid development of scalable, interactive web apps. JavaScript
-        is the lingua franca of the web and a critical skill for any web developer
-        to master.\"\n}"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":225,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":107}}'
+      string: "{\n  \"id\": \"chatcmpl-CIUC8NY8gMgDm4uERr1y5mJhMix4F\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1758522008,\n  \"model\": \"gpt-4-0613\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"{\\n  \\\"language\\\": \\\"JavaScript\\\",\\n
+        \ \\\"reason\\\": \\\"JavaScript is almost universally supported in web browsers
+        and is excellent for building interactive web elements. Also, Node.js allows
+        for JavaScript to be used on the server-side as well.\\\"\\n}\",\n        \"refusal\":
+        null,\n        \"annotations\": []\n      },\n      \"logprobs\": null,\n
+        \     \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        214,\n    \"completion_tokens\": 48,\n    \"total_tokens\": 262,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 925cfe38d98eb86d-VIE
+      - 982fb1da7f32c9de-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:21:12 GMT
+      - Mon, 22 Sep 2025 06:20:11 GMT
       Server:
       - cloudflare
+      Set-Cookie:
+      - __cf_bm=El8n3d.5hQ1ahFcj73I0ikZLrjG8j81gDXit3e8xH6c-1758522011-1.0.1.1-eJP3I2omzQaUYLh_tFsSrIMpJEJ1E4vpbERGMmcA18xVEOG8FZoOnSbijHM.ten2qoOvE07jLo4jKPWfS9Axtbbio80ZXHdYdcAKaotYDs4;
+        path=/; expires=Mon, 22-Sep-25 06:50:11 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=62BPVuFIiQCinhzWU8P5_Hd12q.qxWJrBSc1BfXiMV4-1758522011258-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      X-Robots-Tag:
-      - none
-      anthropic-organization-id:
-      - a2610b2c-742e-455d-9552-6abe105b2a44
-      anthropic-ratelimit-input-tokens-limit:
-      - '400000'
-      anthropic-ratelimit-input-tokens-remaining:
-      - '400000'
-      anthropic-ratelimit-input-tokens-reset:
-      - '2025-03-25T08:21:09Z'
-      anthropic-ratelimit-output-tokens-limit:
-      - '80000'
-      anthropic-ratelimit-output-tokens-remaining:
-      - '80000'
-      anthropic-ratelimit-output-tokens-reset:
-      - '2025-03-25T08:21:12Z'
-      anthropic-ratelimit-requests-limit:
-      - '4000'
-      anthropic-ratelimit-requests-remaining:
-      - '3999'
-      anthropic-ratelimit-requests-reset:
-      - '2025-03-25T08:21:08Z'
-      anthropic-ratelimit-tokens-limit:
-      - '480000'
-      anthropic-ratelimit-tokens-remaining:
-      - '480000'
-      anthropic-ratelimit-tokens-reset:
-      - '2025-03-25T08:21:09Z'
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '787'
-      request-id:
-      - req_01UFnNZAoyJ9MpcXKxXzhVCT
-      via:
-      - 1.1 google
+      - '1032'
+      openai-organization:
+      - not-diamond-bdz8cg
+      openai-processing-ms:
+      - '2332'
+      openai-project:
+      - proj_EvMLZJqcggqzjvd3BFXe4tfP
+      openai-version:
+      - '2020-10-01'
+      x-envoy-upstream-service-time:
+      - '2366'
+      x-openai-proxy-wasm:
+      - v0.1
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '1000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '999788'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 12ms
+      x-request-id:
+      - req_d60aacbf964947dabe7b944e2a493100
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "e45fff51-2655-4339-ab6d-1e83358de703", "provider": {"provider":
-      "anthropic", "model": "claude-3-opus-20240229", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 22.86174718831172}}'
+    body: '{"session_id": "ad6856f7-f9fc-497f-9b46-26a472d2ecf9", "provider": {"provider":
+      "openai", "model": "gpt-4", "is_custom": false, "context_length": null, "input_price":
+      null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
+      18.187881749394336}}'
     headers:
       Accept:
       - '*/*'
@@ -190,95 +198,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '286'
+      - '267'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.5
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=43d83326-20c0-4193, Session e45fff51-2655-4339-ab6d-1e83358de703
-        does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
+      string: '{"session_id":"ad6856f7-f9fc-497f-9b46-26a472d2ecf9","tokens_per_second":18.187881749394336}'
     headers:
       CF-RAY:
-      - 925cfe54c8c1e9e2-VIE
+      - 982fb1eb3abde44f-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:21:13 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      cf-cache-status:
-      - DYNAMIC
-      rndr-id:
-      - 43d83326-20c0-4193
-      vary:
-      - Accept-Encoding
-      x-render-origin-server:
-      - uvicorn
-    status:
-      code: 401
-      message: Unauthorized
-- request:
-    body: '{"messages": [{"role": "system", "content": "The output should be formatted
-      as a JSON instance that conforms to the JSON schema below.\n\nAs an example,
-      for the schema {{\"properties\": {{\"foo\": {{\"title\": \"Foo\", \"description\":
-      \"a list of strings\", \"type\": \"array\", \"items\": {{\"type\": \"string\"}}}}}},
-      \"required\": [\"foo\"]}}\nthe object {{\"foo\": [\"bar\", \"baz\"]}} is a well-formatted
-      instance of the schema. The object {{\"properties\": {{\"foo\": [\"bar\", \"baz\"]}}}}
-      is not well-formatted.\n\nHere is the output schema:\n```\n{{\"properties\":
-      {{\"language\": {{\"description\": \"The programming language of choice.\",
-      \"title\": \"Language\", \"type\": \"string\"}}, \"reason\": {{\"description\":
-      \"The reason to pick the programming language.\", \"title\": \"Reason\", \"type\":
-      \"string\"}}}}, \"required\": [\"language\", \"reason\"]}}\n```\nYou are a world
-      class software developer."}, {"role": "user", "content": "What language would
-      you suggest for developing a web application?"}], "llm_providers": [{"provider":
-      "openai", "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null,
-      "input_price": null, "output_price": null, "latency": null}, {"provider": "openai",
-      "model": "gpt-4", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4-1106-preview", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "openai", "model":
-      "gpt-4-turbo-preview", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}, {"provider": "anthropic", "model":
-      "claude-3-opus-20240229", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
-      5, "hash_content": false}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '1893'
-      User-Agent:
-      - Python-SDK/0.3.41
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
-  response:
-    body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"400423bf-470f-4d76-8af5-2da3275d0fb0"}'
-    headers:
-      CF-RAY:
-      - 925cfe577ca95ba6-VIE
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Mar 2025 08:21:14 GMT
+      - Mon, 22 Sep 2025 06:20:12 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -288,182 +226,16 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '125'
+      - '92'
       rndr-id:
-      - 17035e2d-40d7-49d8
+      - fa2d146b-9f57-4b39
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - fa2d146b-9f57-4b39
     status:
       code: 200
       message: OK
-- request:
-    body: '{"max_tokens": 1024, "messages": [{"role": "user", "content": "What language
-      would you suggest for developing a web application?"}], "model": "claude-3-opus-20240229",
-      "system": "The output should be formatted as a JSON instance that conforms to
-      the JSON schema below.\n\nAs an example, for the schema {\"properties\": {\"foo\":
-      {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\": \"array\",
-      \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\nthe object {\"foo\":
-      [\"bar\", \"baz\"]} is a well-formatted instance of the schema. The object {\"properties\":
-      {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n\nHere is the output
-      schema:\n```\n{\"properties\": {\"language\": {\"description\": \"The programming
-      language of choice.\", \"title\": \"Language\", \"type\": \"string\"}, \"reason\":
-      {\"description\": \"The reason to pick the programming language.\", \"title\":
-      \"Reason\", \"type\": \"string\"}}, \"required\": [\"language\", \"reason\"]}\n```\nYou
-      are a world class software developer."}'
-    headers:
-      accept:
-      - application/json
-      accept-encoding:
-      - gzip, deflate, zstd
-      anthropic-version:
-      - '2023-06-01'
-      connection:
-      - keep-alive
-      content-length:
-      - '1034'
-      content-type:
-      - application/json
-      host:
-      - api.anthropic.com
-      user-agent:
-      - Anthropic/Python 0.49.0
-      x-api-key:
-      - REDACTED
-      x-stainless-arch:
-      - x64
-      x-stainless-async:
-      - 'false'
-      x-stainless-lang:
-      - python
-      x-stainless-os:
-      - Linux
-      x-stainless-package-version:
-      - 0.49.0
-      x-stainless-read-timeout:
-      - '120.0'
-      x-stainless-retry-count:
-      - '0'
-      x-stainless-runtime:
-      - CPython
-      x-stainless-runtime-version:
-      - 3.12.3
-      x-stainless-timeout:
-      - NOT_GIVEN
-    method: POST
-    uri: https://api.anthropic.com/v1/messages
-  response:
-    body:
-      string: '{"id":"msg_019AYYt7f7sCmYXooRL6bYTF","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"Here
-        is my recommendation for a programming language for web development, formatted
-        as a JSON instance that conforms to the provided schema:\n\n```json\n{\n  \"language\":
-        \"JavaScript\",\n  \"reason\": \"JavaScript is a versatile language that can
-        be used on both the frontend and backend of web applications. It has a huge
-        ecosystem of frameworks and libraries like React, Angular, Vue, and Node.js
-        that provide powerful tools for building modern, interactive web apps. JavaScript
-        is also the native language of web browsers, enabling dynamic user interfaces.
-        Its event-driven, non-blocking nature is well-suited for web development.\"\n}\n```"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":225,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":135}}'
-    headers:
-      CF-RAY:
-      - 925cfe5c5acfdfcc-VIE
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Mar 2025 08:21:19 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      X-Robots-Tag:
-      - none
-      anthropic-organization-id:
-      - a2610b2c-742e-455d-9552-6abe105b2a44
-      anthropic-ratelimit-input-tokens-limit:
-      - '400000'
-      anthropic-ratelimit-input-tokens-remaining:
-      - '400000'
-      anthropic-ratelimit-input-tokens-reset:
-      - '2025-03-25T08:21:14Z'
-      anthropic-ratelimit-output-tokens-limit:
-      - '80000'
-      anthropic-ratelimit-output-tokens-remaining:
-      - '80000'
-      anthropic-ratelimit-output-tokens-reset:
-      - '2025-03-25T08:21:19Z'
-      anthropic-ratelimit-requests-limit:
-      - '4000'
-      anthropic-ratelimit-requests-remaining:
-      - '3999'
-      anthropic-ratelimit-requests-reset:
-      - '2025-03-25T08:21:14Z'
-      anthropic-ratelimit-tokens-limit:
-      - '480000'
-      anthropic-ratelimit-tokens-remaining:
-      - '480000'
-      anthropic-ratelimit-tokens-reset:
-      - '2025-03-25T08:21:14Z'
-      cf-cache-status:
-      - DYNAMIC
-      content-length:
-      - '944'
-      request-id:
-      - req_01F4iWVi5CVXmKT6pPDj6rj9
-      via:
-      - 1.1 google
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"session_id": "400423bf-470f-4d76-8af5-2da3275d0fb0", "provider": {"provider":
-      "anthropic", "model": "claude-3-opus-20240229", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 23.87048597230925}}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '286'
-      User-Agent:
-      - Python-SDK/0.3.41
-      content-type:
-      - application/json
-    method: POST
-    uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
-  response:
-    body:
-      string: '{"detail":"requestID=025a237d-db02-4f27, Session 400423bf-470f-4d76-8af5-2da3275d0fb0
-        does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
-    headers:
-      CF-RAY:
-      - 925cfe7e1da62942-VIE
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Mar 2025 08:21:20 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      cf-cache-status:
-      - DYNAMIC
-      rndr-id:
-      - 025a237d-db02-4f27
-      vary:
-      - Accept-Encoding
-      x-render-origin-server:
-      - uvicorn
-    status:
-      code: 401
-      message: Unauthorized
 version: 1

@@ -20,7 +20,7 @@ def test_personalization():
         "openai/gpt-4-turbo-preview",
         "anthropic/claude-2.1",
         "anthropic/claude-3-sonnet-20240229",
-        "anthropic/claude-3-opus-20240229",
+        "anthropic/claude-3-haiku-20240307",
         "google/gemini-pro",
     ]
 

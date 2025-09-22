@@ -33,7 +33,7 @@ def test_structured_output():
         "openai/gpt-4",
         "openai/gpt-4-1106-preview",
         "openai/gpt-4-turbo-preview",
-        "anthropic/claude-3-opus-20240229",
+        "anthropic/claude-2.1",
     ]
 
     nd_llm = NotDiamond(llm_configs=llm_configs)
@@ -99,7 +99,7 @@ def test_structured_output_streaming():
         "openai/gpt-4",
         "openai/gpt-4-1106-preview",
         "openai/gpt-4-turbo-preview",
-        "anthropic/claude-3-opus-20240229",
+        "anthropic/claude-2.1",
     ]
 
     nd_llm = NotDiamond(llm_configs=llm_configs)
