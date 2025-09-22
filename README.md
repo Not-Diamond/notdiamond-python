@@ -51,7 +51,7 @@ result, session_id, provider = client.chat.completions.create(
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Concisely explain merge sort."}  # Adjust as desired
     ],
-    model=['openai/gpt-3.5-turbo', 'openai/gpt-4o', 'anthropic/claude-3-5-sonnet-20240620']
+    model=['openai/gpt-3.5-turbo', 'openai/gpt-4o', 'anthropic/claude-3-sonnet-20240229']
 )
 
 print("ND session ID: ", session_id)  # A unique ID of Not Diamond's recommendation

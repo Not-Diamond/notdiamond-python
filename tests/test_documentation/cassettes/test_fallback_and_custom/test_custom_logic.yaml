@@ -15,23 +15,23 @@ interactions:
       Content-Length:
       - '327'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.5
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"detail":"requestID=2a52f8d9-4a00-4045, Messages format invalid."}'
+      string: '{"detail":"Messages format invalid."}'
     headers:
       CF-RAY:
-      - 925cfc7e4c94d0ec-SOF
+      - 982fb2ae5a686249-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:58 GMT
+      - Mon, 22 Sep 2025 06:20:43 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -41,131 +41,14 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       rndr-id:
-      - 2a52f8d9-4a00-4045
+      - 149da980-870a-4ae9
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - 149da980-870a-4ae9
     status:
       code: 400
       message: Bad Request
-- request:
-    body: '{"messages": [{"role": "user", "content": "You are a world class software
-      developer. Write a merge sort in Python."}], "model": "gpt-3.5-turbo"}'
-    headers:
-      accept:
-      - application/json
-      accept-encoding:
-      - gzip, deflate, zstd
-      connection:
-      - keep-alive
-      content-length:
-      - '144'
-      content-type:
-      - application/json
-      host:
-      - api.openai.com
-      user-agent:
-      - OpenAI/Python 1.68.2
-      x-stainless-arch:
-      - x64
-      x-stainless-async:
-      - 'false'
-      x-stainless-lang:
-      - python
-      x-stainless-os:
-      - Linux
-      x-stainless-package-version:
-      - 1.68.2
-      x-stainless-read-timeout:
-      - '600'
-      x-stainless-retry-count:
-      - '0'
-      x-stainless-runtime:
-      - CPython
-      x-stainless-runtime-version:
-      - 3.12.3
-    method: POST
-    uri: https://api.openai.com/v1/chat/completions
-  response:
-    body:
-      string: "{\n  \"id\": \"chatcmpl-BEtnqQUemyAjI6LtIlcncVQkOpe7Z\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742890798,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
-        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"Sure! Here's a Python implementation
-        of the merge sort algorithm:\\n\\n```python\\ndef merge_sort(arr):\\n    if
-        len(arr) > 1:\\n        mid = len(arr) // 2\\n        left_half = arr[:mid]\\n
-        \       right_half = arr[mid:]\\n\\n        merge_sort(left_half)\\n        merge_sort(right_half)\\n\\n
-        \       i = j = k = 0\\n\\n        while i < len(left_half) and j < len(right_half):\\n
-        \           if left_half[i] < right_half[j]:\\n                arr[k] = left_half[i]\\n
-        \               i += 1\\n            else:\\n                arr[k] = right_half[j]\\n
-        \               j += 1\\n            k += 1\\n\\n        while i < len(left_half):\\n
-        \           arr[k] = left_half[i]\\n            i += 1\\n            k +=
-        1\\n\\n        while j < len(right_half):\\n            arr[k] = right_half[j]\\n
-        \           j += 1\\n            k += 1\\n\\n    return arr\\n\\n# Example
-        usage\\narr = [38, 27, 43, 3, 9, 82, 10]\\nsorted_arr = merge_sort(arr)\\nprint(sorted_arr)\\n```\\n\\nThis
-        implementation recursively divides the input array into two halves, sorts
-        each half, and then merges the two sorted halves back together. The time complexity
-        of the merge sort algorithm is O(n*log(n)).\",\n        \"refusal\": null,\n
-        \       \"annotations\": []\n      },\n      \"logprobs\": null,\n      \"finish_reason\":
-        \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 22,\n    \"completion_tokens\":
-        284,\n    \"total_tokens\": 306,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
-        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
-        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
-        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
-        \"default\",\n  \"system_fingerprint\": null\n}\n"
-    headers:
-      CF-RAY:
-      - 925cfc813c2f8ee4-SOF
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Mar 2025 08:20:00 GMT
-      Server:
-      - cloudflare
-      Set-Cookie:
-      - __cf_bm=UEnUJt97I.W2M053iPJIuvRvZOcwuUWjzQW6qKNUmVc-1742890800-1.0.1.1-dW7G4PvCkye3q5wabFIynaD0ixsaI_OuDvTKpF0CudA4euSxw_d5ymUasIXCvhYtjLWseFyJ0zhp9o5UYh4JoWMWJG9pS7EIN.JG1Cy3Tb8;
-        path=/; expires=Tue, 25-Mar-25 08:50:00 GMT; domain=.api.openai.com; HttpOnly;
-        Secure; SameSite=None
-      - _cfuvid=G1lGnlWCgXi9GfSobTDl6zs5zw.iQ3T1anPBgHzIFec-1742890800832-0.0.1.1-604800000;
-        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      access-control-expose-headers:
-      - X-Request-ID
-      alt-svc:
-      - h3=":443"; ma=86400
-      cf-cache-status:
-      - DYNAMIC
-      content-length:
-      - '1932'
-      openai-organization:
-      - not-diamond-bdz8cg
-      openai-processing-ms:
-      - '2404'
-      openai-version:
-      - '2020-10-01'
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      x-ratelimit-limit-requests:
-      - '10000'
-      x-ratelimit-limit-tokens:
-      - '50000000'
-      x-ratelimit-remaining-requests:
-      - '9999'
-      x-ratelimit-remaining-tokens:
-      - '49999979'
-      x-ratelimit-reset-requests:
-      - 6ms
-      x-ratelimit-reset-tokens:
-      - 0s
-      x-request-id:
-      - req_5edfccb03d05381141520087c2d01a20
-    status:
-      code: 200
-      message: OK
 version: 1

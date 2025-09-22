@@ -21,7 +21,7 @@ def test_function_calling():
 
     # Creating an instance of NDLLM with specified providers
     nd_llm = NotDiamond(
-        llm_configs=["openai/gpt-4", "anthropic/claude-3-opus-20240229"]
+        llm_configs=["openai/gpt-4", "anthropic/claude-3-sonnet-20240229"]
     )
 
     # Binding the add and multiply tools to the nd_llm instance
@@ -119,7 +119,7 @@ def test_function_calling_via_rest_api():
         # The models you want to route between
         "llm_providers": [
             {"provider": "openai", "model": "gpt-4-1106-preview"},
-            {"provider": "anthropic", "model": "claude-3-opus-20240229"},
+            {"provider": "anthropic", "model": "claude-3-sonnet-20240229"},
         ],
         "tools": tools,
     }

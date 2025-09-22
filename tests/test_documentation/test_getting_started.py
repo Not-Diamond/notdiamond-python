@@ -24,7 +24,7 @@ def test_main_example():
         "openai/gpt-4-turbo-preview",
         "anthropic/claude-3-haiku-20240307",
         "anthropic/claude-3-sonnet-20240229",
-        "anthropic/claude-3-opus-20240229",
+        "anthropic/claude-3-5-haiku-20241022",
     ]
 
     client = NotDiamond()
@@ -56,7 +56,7 @@ def test_pass_array_of_messages(start_prompt):
         "openai/gpt-4-turbo-preview",
         "anthropic/claude-3-haiku-20240307",
         "anthropic/claude-3-sonnet-20240229",
-        "anthropic/claude-3-opus-20240229",
+        "anthropic/claude-3-5-haiku-20241022",
     ]
 
     # Create the NDLLM object -> like a 'meta-LLM' combining all of the specified models
@@ -119,7 +119,7 @@ def test_model_select(start_prompt):
         "openai/gpt-4-turbo-preview",
         "anthropic/claude-3-haiku-20240307",
         "anthropic/claude-3-sonnet-20240229",
-        "anthropic/claude-3-opus-20240229",
+        "anthropic/claude-3-5-haiku-20241022",
     ]
 
     # Create the NDLLM object -> like a 'meta-LLM' combining all of the specified models
