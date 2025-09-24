@@ -26,12 +26,12 @@
 | notdiamond/toolkit/openai.py                                 |       64 |        4 |        8 |        2 |     92% |56, 59, 62, 91->94, 95 |
 | notdiamond/toolkit/rag/\_\_init\_\_.py                       |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/rag/document\_loaders.py                  |        1 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/rag/evaluation.py                         |       87 |       16 |       16 |        0 |     79% |     50-80 |
+| notdiamond/toolkit/rag/evaluation.py                         |       87 |       18 |       16 |        0 |     77% |50-80, 89-90 |
 | notdiamond/toolkit/rag/evaluation\_dataset.py                |       29 |        8 |        6 |        2 |     66% |62-65, 68, 71-72, 81, 87 |
 | notdiamond/toolkit/rag/llms.py                               |       29 |        7 |       12 |        1 |     66% |     53-67 |
 | notdiamond/toolkit/rag/metrics.py                            |        3 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/rag/testset.py                            |       50 |        5 |       18 |        7 |     82% |134, 159, 165, 171->194, 176, 180, 196->195 |
-| notdiamond/toolkit/rag/workflow.py                           |       96 |       11 |       30 |        6 |     87% |104, 117, 123, 135, 143, 155, 162, 186, 232, 235, 238 |
+| notdiamond/toolkit/rag/testset.py                            |       50 |        9 |       18 |        7 |     76% |117, 132-134, 159, 165, 171->194, 176, 180, 196->195, 210-212 |
+| notdiamond/toolkit/rag/workflow.py                           |       96 |       13 |       30 |        6 |     85% |104, 117, 123, 135, 143, 155, 162, 186, 195-196, 232, 235, 238 |
 | notdiamond/types.py                                          |       28 |        0 |        4 |        0 |    100% |           |
 | tests/conftest.py                                            |      114 |       13 |       22 |        3 |     88% |55, 73, 187-202, 212, 221, 228-229, 235-236 |
 | tests/helpers.py                                             |       22 |        0 |        8 |        2 |     93% |4->11, 17->24 |
@@ -60,15 +60,15 @@
 | tests/test\_toolkit/langchain/test\_integration.py           |       54 |        0 |        0 |        0 |    100% |           |
 | tests/test\_toolkit/langchain/test\_unit.py                  |      130 |        2 |        8 |        2 |     97% |  142, 201 |
 | tests/test\_toolkit/rag/conftest.py                          |       47 |        0 |        0 |        0 |    100% |           |
-| tests/test\_toolkit/rag/test\_data\_gen.py                   |       43 |        0 |        0 |        0 |    100% |           |
+| tests/test\_toolkit/rag/test\_data\_gen.py                   |       43 |        4 |        0 |        0 |     91% |64-65, 77-78 |
 | tests/test\_toolkit/rag/test\_evaluation.py                  |       24 |        0 |        0 |        0 |    100% |           |
-| tests/test\_toolkit/rag/test\_example\_workflow.py           |       53 |        1 |        2 |        0 |     98% |        53 |
+| tests/test\_toolkit/rag/test\_example\_workflow.py           |       53 |        3 |        2 |        0 |     95% |53, 125, 133 |
 | tests/test\_toolkit/rag/test\_workflow.py                    |       28 |        2 |        0 |        0 |     93% |    14, 40 |
 | tests/test\_toolkit/test\_custom\_router.py                  |      139 |        0 |        8 |        0 |    100% |           |
 | tests/test\_toolkit/test\_openai\_client.py                  |       83 |        0 |       12 |        4 |     96% |104->108, 105->104, 210->214, 211->210 |
 | tests/test\_toolkit/test\_retry.py                           |      326 |        0 |        0 |        0 |    100% |           |
 | tests/test\_types.py                                         |       16 |        0 |        0 |        0 |    100% |           |
-|                                                    **TOTAL** | **4718** |  **517** |  **688** |  **108** | **87%** |           |
+|                                                    **TOTAL** | **4718** |  **531** |  **688** |  **108** | **87%** |           |
 
 
 ## Setup coverage badge
