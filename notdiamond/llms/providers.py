@@ -42,6 +42,8 @@ class NDLLMProviders(Enum):
         CLAUDE_OPUS_4_20250514 (NDLLMProvider): refers to 'claude-opus-4-20250514' model by Anthropic
         CLAUDE_OPUS_4_1_20250805 (NDLLMProvider): refers to 'claude-opus-4-1-20250805' model by Anthropic
         CLAUDE_SONNET_4_20250514 (NDLLMProvider): refers to 'claude-sonnet-4-20250514' model by Anthropic
+        CLAUDE_SONNET_4_5 (NDLLMProvider): refers to 'claude-sonnet-4-5' model by Anthropic
+        CLAUDE_SONNET_4_5_20250929 (NDLLMProvider): refers to 'claude-sonnet-4-5-20250929' model by Anthropic
         CLAUDE_OPUS_4_0 (NDLLMProvider): refers to 'claude-opus-4-0' model by Anthropic
         CLAUDE_OPUS_4_1 (NDLLMProvider): refers to 'claude-opus-4-1' model by Anthropic
         CLAUDE_SONNET_4_0 (NDLLMProvider): refers to 'claude-sonnet-4-0' model by Anthropic
@@ -130,6 +132,8 @@ class NDLLMProviders(Enum):
     CLAUDE_OPUS_4_20250514 = ("anthropic", "claude-opus-4-20250514")
     CLAUDE_OPUS_4_1_20250805 = ("anthropic", "claude-opus-4-1-20250805")
     CLAUDE_SONNET_4_20250514 = ("anthropic", "claude-sonnet-4-20250514")
+    CLAUDE_SONNET_4_5 = ("anthropic", "claude-sonnet-4-5")
+    CLAUDE_SONNET_4_5_20250929 = ("anthropic", "claude-sonnet-4-5-20250929")
     CLAUDE_OPUS_4_0 = ("anthropic", "claude-opus-4-0")
     CLAUDE_OPUS_4_1 = ("anthropic", "claude-opus-4-1")
     CLAUDE_SONNET_4_0 = ("anthropic", "claude-sonnet-4-0")
