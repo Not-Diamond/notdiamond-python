@@ -335,3 +335,33 @@ class Test_Anthropic_LLMs:
 
         assert len(result.tool_calls) == 1
         assert result.tool_calls[0]["name"] == "add_fct"
+
+    def test_claude_haiku_4_5_with_tool_calling(self, tools_fixture):
+        provider = NDLLMProviders.CLAUDE_HAIKU_4_5
+        provider.kwargs = {"max_tokens": 200}
+        nd_llm = NotDiamond(
+            llm_configs=[provider], latency_tracking=False, hash_content=True
+        )
+        nd_llm = nd_llm.bind_tools(tools_fixture)
+        result, session_id, _ = nd_llm.invoke(
+            [{"role": "user", "content": "How much is 3 + 5?"}]
+        )
+
+        assert len(result.tool_calls) == 1
+        assert result.tool_calls[0]["name"] == "add_fct"
+
+    def test_claude_haiku_4_5_with_openai_tool_calling(
+        self, openai_tools_fixture
+    ):
+        provider = NDLLMProviders.CLAUDE_HAIKU_4_5
+        provider.kwargs = {"max_tokens": 200}
+        nd_llm = NotDiamond(
+            llm_configs=[provider], latency_tracking=False, hash_content=True
+        )
+        nd_llm = nd_llm.bind_tools(openai_tools_fixture)
+        result, session_id, _ = nd_llm.invoke(
+            [{"role": "user", "content": "How much is 3 + 5?"}]
+        )
+
+        assert len(result.tool_calls) == 1
+        assert result.tool_calls[0]["name"] == "add_fct"
