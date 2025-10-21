@@ -12,7 +12,7 @@
 | notdiamond/llms/\_\_init\_\_.py                              |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/llms/client.py                                    |      519 |       98 |      204 |       28 |     79% |127, 219->222, 253-256, 307->310, 385, 388-391, 401, 438->437, 448-449, 491->496, 497, 526-533, 615-617, 621, 641-643, 773-789, 876->879, 939-990, 1058-1059, 1077->1080, 1098-1102, 1105, 1140-1193, 1253-1254, 1289-1292, 1295, 1373-1374, 1409-1412, 1415, 1451-1456, 1498-1503, 1563-1568, 1608->1610, 1634-1656, 1667, 1781-1786 |
 | notdiamond/llms/config.py                                    |       97 |       18 |       24 |        7 |     78% |108, 148, 155, 187-189, 207, 211, 264, 287, 290, 293-297, 300, 303-305, 323, 327 |
-| notdiamond/llms/providers.py                                 |       82 |        0 |        0 |        0 |    100% |           |
+| notdiamond/llms/providers.py                                 |       84 |        0 |        0 |        0 |    100% |           |
 | notdiamond/llms/request.py                                   |       87 |        8 |       22 |        3 |     88% |183->199, 261->281, 273-279, 327-331, 352 |
 | notdiamond/metrics/\_\_init\_\_.py                           |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/metrics/metric.py                                 |       20 |        2 |        4 |        2 |     83% |15, 25->27, 29 |
@@ -26,12 +26,12 @@
 | notdiamond/toolkit/openai.py                                 |       64 |        4 |        8 |        2 |     92% |56, 59, 62, 91->94, 95 |
 | notdiamond/toolkit/rag/\_\_init\_\_.py                       |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/rag/document\_loaders.py                  |        1 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/rag/evaluation.py                         |       87 |       16 |       16 |        0 |     79% |     50-80 |
+| notdiamond/toolkit/rag/evaluation.py                         |       87 |       18 |       16 |        0 |     77% |50-80, 89-90 |
 | notdiamond/toolkit/rag/evaluation\_dataset.py                |       29 |        8 |        6 |        2 |     66% |62-65, 68, 71-72, 81, 87 |
 | notdiamond/toolkit/rag/llms.py                               |       29 |        7 |       12 |        1 |     66% |     53-67 |
 | notdiamond/toolkit/rag/metrics.py                            |        3 |        0 |        0 |        0 |    100% |           |
-| notdiamond/toolkit/rag/testset.py                            |       50 |        5 |       18 |        7 |     82% |134, 159, 165, 171->194, 176, 180, 196->195 |
-| notdiamond/toolkit/rag/workflow.py                           |       96 |       11 |       30 |        6 |     87% |104, 117, 123, 135, 143, 155, 162, 186, 232, 235, 238 |
+| notdiamond/toolkit/rag/testset.py                            |       50 |        9 |       18 |        7 |     76% |117, 132-134, 159, 165, 171->194, 176, 180, 196->195, 210-212 |
+| notdiamond/toolkit/rag/workflow.py                           |       96 |       13 |       30 |        6 |     85% |104, 117, 123, 135, 143, 155, 162, 186, 195-196, 232, 235, 238 |
 | notdiamond/types.py                                          |       28 |        0 |        4 |        0 |    100% |           |
 | tests/conftest.py                                            |      114 |       13 |       22 |        3 |     88% |55, 73, 187-202, 212, 221, 228-229, 235-236 |
 | tests/helpers.py                                             |       22 |        0 |        8 |        2 |     93% |4->11, 17->24 |
@@ -49,7 +49,7 @@
 | tests/test\_documentation/test\_personalization.py           |       12 |        0 |        0 |        0 |    100% |           |
 | tests/test\_documentation/test\_structured\_output.py        |       46 |        3 |        4 |        1 |     92% |57-58, 110 |
 | tests/test\_init.py                                          |      128 |        0 |        0 |        0 |    100% |           |
-| tests/test\_llm\_calls/test\_anthropic.py                    |      184 |        0 |        0 |        0 |    100% |           |
+| tests/test\_llm\_calls/test\_anthropic.py                    |      200 |        0 |        0 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_cohere.py                       |       38 |        0 |        0 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_google.py                       |      197 |      164 |        0 |        0 |     17% |13-25, 28-40, 43-54, 57-68, 71-83, 86-98, 101-115, 120-134, 137-150, 155-168, 171-185, 188-202, 207-221, 224-237, 242-255, 258-272, 277-291, 296-310, 313-326, 331-344, 347-361, 364-378, 383-398, 401-414, 419-432 |
 | tests/test\_llm\_calls/test\_mistral.py                      |      170 |        2 |        0 |        0 |     99% |  181, 200 |
@@ -60,15 +60,15 @@
 | tests/test\_toolkit/langchain/test\_integration.py           |       54 |        0 |        0 |        0 |    100% |           |
 | tests/test\_toolkit/langchain/test\_unit.py                  |      130 |        2 |        8 |        2 |     97% |  142, 201 |
 | tests/test\_toolkit/rag/conftest.py                          |       47 |        0 |        0 |        0 |    100% |           |
-| tests/test\_toolkit/rag/test\_data\_gen.py                   |       43 |        0 |        0 |        0 |    100% |           |
+| tests/test\_toolkit/rag/test\_data\_gen.py                   |       43 |        4 |        0 |        0 |     91% |64-65, 77-78 |
 | tests/test\_toolkit/rag/test\_evaluation.py                  |       24 |        0 |        0 |        0 |    100% |           |
-| tests/test\_toolkit/rag/test\_example\_workflow.py           |       53 |        1 |        2 |        0 |     98% |        53 |
+| tests/test\_toolkit/rag/test\_example\_workflow.py           |       53 |        3 |        2 |        0 |     95% |53, 125, 133 |
 | tests/test\_toolkit/rag/test\_workflow.py                    |       28 |        2 |        0 |        0 |     93% |    14, 40 |
 | tests/test\_toolkit/test\_custom\_router.py                  |      139 |        0 |        8 |        0 |    100% |           |
 | tests/test\_toolkit/test\_openai\_client.py                  |       83 |        0 |       12 |        4 |     96% |104->108, 105->104, 210->214, 211->210 |
 | tests/test\_toolkit/test\_retry.py                           |      326 |        0 |        0 |        0 |    100% |           |
 | tests/test\_types.py                                         |       16 |        0 |        0 |        0 |    100% |           |
-|                                                    **TOTAL** | **4736** |  **517** |  **688** |  **108** | **87%** |           |
+|                                                    **TOTAL** | **4754** |  **531** |  **688** |  **108** | **87%** |           |
 
 
 ## Setup coverage badge

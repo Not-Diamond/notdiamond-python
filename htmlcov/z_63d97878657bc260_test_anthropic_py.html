@@ -55,8 +55,8 @@
             </div>
         </aside>
         <h2>
-            <span class="text">184 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">184<span class="text"> run</span></button>
+            <span class="text">200 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">200<span class="text"> run</span></button>
             <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">0<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
             <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">0<span class="text"> partial</span></button>
@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_63d97878657bc260_test_cohere_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.7">coverage.py v7.10.7</a>,
-            created at 2025-10-17 21:46 +0000
+            created at 2025-10-21 18:56 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -419,6 +419,36 @@
     <p class="pln"><span class="n"><a id="t335" href="#t335">335</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t336" href="#t336">336</a></span><span class="t">        <span class="key">assert</span> <span class="nam">len</span><span class="op">(</span><span class="nam">result</span><span class="op">.</span><span class="nam">tool_calls</span><span class="op">)</span> <span class="op">==</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t337" href="#t337">337</a></span><span class="t">        <span class="key">assert</span> <span class="nam">result</span><span class="op">.</span><span class="nam">tool_calls</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">[</span><span class="str">"name"</span><span class="op">]</span> <span class="op">==</span> <span class="str">"add_fct"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t338" href="#t338">338</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t339" href="#t339">339</a></span><span class="t">    <span class="key">def</span> <span class="nam">test_claude_haiku_4_5_with_tool_calling</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">tools_fixture</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t340" href="#t340">340</a></span><span class="t">        <span class="nam">provider</span> <span class="op">=</span> <span class="nam">NDLLMProviders</span><span class="op">.</span><span class="nam">CLAUDE_HAIKU_4_5</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t341" href="#t341">341</a></span><span class="t">        <span class="nam">provider</span><span class="op">.</span><span class="nam">kwargs</span> <span class="op">=</span> <span class="op">{</span><span class="str">"max_tokens"</span><span class="op">:</span> <span class="num">200</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t342" href="#t342">342</a></span><span class="t">        <span class="nam">nd_llm</span> <span class="op">=</span> <span class="nam">NotDiamond</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t343" href="#t343">343</a></span><span class="t">            <span class="nam">llm_configs</span><span class="op">=</span><span class="op">[</span><span class="nam">provider</span><span class="op">]</span><span class="op">,</span> <span class="nam">latency_tracking</span><span class="op">=</span><span class="key">False</span><span class="op">,</span> <span class="nam">hash_content</span><span class="op">=</span><span class="key">True</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t344" href="#t344">344</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t345" href="#t345">345</a></span><span class="t">        <span class="nam">nd_llm</span> <span class="op">=</span> <span class="nam">nd_llm</span><span class="op">.</span><span class="nam">bind_tools</span><span class="op">(</span><span class="nam">tools_fixture</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t346" href="#t346">346</a></span><span class="t">        <span class="nam">result</span><span class="op">,</span> <span class="nam">session_id</span><span class="op">,</span> <span class="nam">_</span> <span class="op">=</span> <span class="nam">nd_llm</span><span class="op">.</span><span class="nam">invoke</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t347" href="#t347">347</a></span><span class="t">            <span class="op">[</span><span class="op">{</span><span class="str">"role"</span><span class="op">:</span> <span class="str">"user"</span><span class="op">,</span> <span class="str">"content"</span><span class="op">:</span> <span class="str">"How much is 3 + 5?"</span><span class="op">}</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t348" href="#t348">348</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t349" href="#t349">349</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t350" href="#t350">350</a></span><span class="t">        <span class="key">assert</span> <span class="nam">len</span><span class="op">(</span><span class="nam">result</span><span class="op">.</span><span class="nam">tool_calls</span><span class="op">)</span> <span class="op">==</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t351" href="#t351">351</a></span><span class="t">        <span class="key">assert</span> <span class="nam">result</span><span class="op">.</span><span class="nam">tool_calls</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">[</span><span class="str">"name"</span><span class="op">]</span> <span class="op">==</span> <span class="str">"add_fct"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t352" href="#t352">352</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t353" href="#t353">353</a></span><span class="t">    <span class="key">def</span> <span class="nam">test_claude_haiku_4_5_with_openai_tool_calling</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t354" href="#t354">354</a></span><span class="t">        <span class="nam">self</span><span class="op">,</span> <span class="nam">openai_tools_fixture</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t355" href="#t355">355</a></span><span class="t">    <span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t356" href="#t356">356</a></span><span class="t">        <span class="nam">provider</span> <span class="op">=</span> <span class="nam">NDLLMProviders</span><span class="op">.</span><span class="nam">CLAUDE_HAIKU_4_5</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t357" href="#t357">357</a></span><span class="t">        <span class="nam">provider</span><span class="op">.</span><span class="nam">kwargs</span> <span class="op">=</span> <span class="op">{</span><span class="str">"max_tokens"</span><span class="op">:</span> <span class="num">200</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t358" href="#t358">358</a></span><span class="t">        <span class="nam">nd_llm</span> <span class="op">=</span> <span class="nam">NotDiamond</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t359" href="#t359">359</a></span><span class="t">            <span class="nam">llm_configs</span><span class="op">=</span><span class="op">[</span><span class="nam">provider</span><span class="op">]</span><span class="op">,</span> <span class="nam">latency_tracking</span><span class="op">=</span><span class="key">False</span><span class="op">,</span> <span class="nam">hash_content</span><span class="op">=</span><span class="key">True</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t360" href="#t360">360</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t361" href="#t361">361</a></span><span class="t">        <span class="nam">nd_llm</span> <span class="op">=</span> <span class="nam">nd_llm</span><span class="op">.</span><span class="nam">bind_tools</span><span class="op">(</span><span class="nam">openai_tools_fixture</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t362" href="#t362">362</a></span><span class="t">        <span class="nam">result</span><span class="op">,</span> <span class="nam">session_id</span><span class="op">,</span> <span class="nam">_</span> <span class="op">=</span> <span class="nam">nd_llm</span><span class="op">.</span><span class="nam">invoke</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t363" href="#t363">363</a></span><span class="t">            <span class="op">[</span><span class="op">{</span><span class="str">"role"</span><span class="op">:</span> <span class="str">"user"</span><span class="op">,</span> <span class="str">"content"</span><span class="op">:</span> <span class="str">"How much is 3 + 5?"</span><span class="op">}</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t364" href="#t364">364</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t365" href="#t365">365</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t366" href="#t366">366</a></span><span class="t">        <span class="key">assert</span> <span class="nam">len</span><span class="op">(</span><span class="nam">result</span><span class="op">.</span><span class="nam">tool_calls</span><span class="op">)</span> <span class="op">==</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t367" href="#t367">367</a></span><span class="t">        <span class="key">assert</span> <span class="nam">result</span><span class="op">.</span><span class="nam">tool_calls</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">[</span><span class="str">"name"</span><span class="op">]</span> <span class="op">==</span> <span class="str">"add_fct"</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -428,7 +458,7 @@
             <a class="nav" href="z_63d97878657bc260_test_cohere_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.10.7">coverage.py v7.10.7</a>,
-            created at 2025-10-17 21:46 +0000
+            created at 2025-10-21 18:56 +0000
         </p>
     </div>
 </footer>
