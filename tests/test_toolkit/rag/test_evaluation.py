@@ -21,7 +21,7 @@ def test_dataset_format(dataset):
 
 
 @pytest.mark.vcr
-def test_evaluate(dataset, gpt_4o, sonnet_3_5, openai_embedding):
+def test_evaluate(dataset, gpt_4o, sonnet_4_5, openai_embedding):
     evaluator_llm = get_llm(gpt_4o)
     evaluator_embedding = get_embedding(openai_embedding)
 
@@ -30,7 +30,7 @@ def test_evaluate(dataset, gpt_4o, sonnet_3_5, openai_embedding):
         SemanticSimilarity(embeddings=evaluator_embedding),
     ]
 
-    generator_llms = [gpt_4o, sonnet_3_5]
+    generator_llms = [gpt_4o, sonnet_4_5]
 
     results = evaluate(
         dataset=dataset,
@@ -38,7 +38,7 @@ def test_evaluate(dataset, gpt_4o, sonnet_3_5, openai_embedding):
         generator_llms=generator_llms,
     )
 
-    expected_results_keys = [str(gpt_4o), str(sonnet_3_5)]
+    expected_results_keys = [str(gpt_4o), str(sonnet_4_5)]
     assert all([key in expected_results_keys for key in results.keys()])
 
     gpt_4o_result = results[str(gpt_4o)]
