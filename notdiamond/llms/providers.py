@@ -34,7 +34,6 @@ class NDLLMProviders(Enum):
         CLAUDE_2_1 (NDLLMProvider): refers to 'claude-2.1' model by Anthropic
         CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to 'claude-3-opus-20240229' model by Anthropic
         CLAUDE_3_SONNET_20240229 (NDLLMProvider): refers to 'claude-3-sonnet-20240229' model by Anthropic
-        CLAUDE_3_5_SONNET_20240620 (NDLLMProvider): refers to 'claude-3-5-sonnet-20240620' model by Anthropic
         CLAUDE_3_7_SONNET_LATEST (NDLLMProvider): refers to 'claude-3-7-sonnet-latest' model by Anthropic
         CLAUDE_3_7_SONNET_20250219 (NDLLMProvider): refers to 'claude-3-7-sonnet-20250219' model by Anthropic
         CLAUDE_3_5_HAIKU_20241022 (NDLLMProvider): refers to 'claude-3-5-haiku-20241022' model by Anthropic
@@ -124,9 +123,6 @@ class NDLLMProviders(Enum):
     CLAUDE_2_1 = ("anthropic", "claude-2.1")
     CLAUDE_3_OPUS_20240229 = ("anthropic", "claude-3-opus-20240229")
     CLAUDE_3_SONNET_20240229 = ("anthropic", "claude-3-sonnet-20240229")
-    CLAUDE_3_5_SONNET_20240620 = ("anthropic", "claude-3-5-sonnet-20240620")
-    CLAUDE_3_5_SONNET_20241022 = ("anthropic", "claude-3-5-sonnet-20241022")
-    CLAUDE_3_5_SONNET_LATEST = ("anthropic", "claude-3-5-sonnet-latest")
     CLAUDE_3_7_SONNET_LATEST = ("anthropic", "claude-3-7-sonnet-latest")
     CLAUDE_3_7_SONNET_20250219 = ("anthropic", "claude-3-7-sonnet-20250219")
     CLAUDE_3_5_HAIKU_20241022 = ("anthropic", "claude-3-5-haiku-20241022")

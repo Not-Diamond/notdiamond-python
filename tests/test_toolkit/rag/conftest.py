@@ -47,8 +47,8 @@ def gpt_4o():
 
 
 @pytest.fixture
-def sonnet_3_5():
-    return LLMConfig.from_string("anthropic/claude-3-5-sonnet-20241022")
+def sonnet_4_5():
+    return LLMConfig.from_string("anthropic/claude-sonnet-4-5-20250929")
 
 
 @pytest.fixture
