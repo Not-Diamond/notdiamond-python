@@ -119,7 +119,14 @@ def model_select_parse(response_code, response_json, llm_configs):
         )[0]
         return best_llm, session_id
 
-    error_message = response_json["detail"]
+    # Handle different error response formats
+    if "error" in response_json and isinstance(response_json["error"], dict):
+        error_message = response_json["error"].get("message", str(response_json["error"]))
+    elif "detail" in response_json:
+        error_message = response_json["detail"]
+    else:
+        error_message = str(response_json)
+    
     LOGGER.error(f"API error: {response_code}. {error_message}")
     return None, "NO-SESSION-ID"
 

@@ -23,7 +23,7 @@ def test_main_example():
         "openai/gpt-4-1106-preview",
         "openai/gpt-4-turbo-preview",
         "anthropic/claude-3-haiku-20240307",
-        "anthropic/claude-3-sonnet-20240229",
+        "anthropic/claude-sonnet-4-5-20250929",
         "anthropic/claude-3-opus-20240229",
     ]
 
@@ -55,7 +55,7 @@ def test_pass_array_of_messages(start_prompt):
         "openai/gpt-4-1106-preview",
         "openai/gpt-4-turbo-preview",
         "anthropic/claude-3-haiku-20240307",
-        "anthropic/claude-3-sonnet-20240229",
+        "anthropic/claude-sonnet-4-5-20250929",
         "anthropic/claude-3-opus-20240229",
     ]
 
@@ -87,7 +87,7 @@ def test_programatic_define_llm_configs(start_prompt):
         ),
         LLMConfig(
             provider="anthropic",
-            model="claude-3-sonnet-20240229",
+            model="claude-sonnet-4-5-20250929",
             temperature=0.8,
             max_tokens=256,
         ),
@@ -118,7 +118,7 @@ def test_model_select(start_prompt):
         "openai/gpt-4-1106-preview",
         "openai/gpt-4-turbo-preview",
         "anthropic/claude-3-haiku-20240307",
-        "anthropic/claude-3-sonnet-20240229",
+        "anthropic/claude-sonnet-4-5-20250929",
         "anthropic/claude-3-opus-20240229",
     ]
 

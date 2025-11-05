@@ -70,7 +70,7 @@ def test_notdiamond_routed_runnable_chain(
             "langchain_anthropic.ChatAnthropic",
         ),
         (
-            "anthropic/claude-3-sonnet-20240229",
+            "anthropic/claude-sonnet-4-5-20250929",
             "langchain_anthropic.ChatAnthropic",
         ),
         (

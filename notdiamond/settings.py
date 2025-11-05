@@ -145,7 +145,6 @@ PROVIDERS = {
         "models": [
             "claude-2.1",
             "claude-3-opus-20240229",
-            "claude-3-sonnet-20240229",
             "claude-3-haiku-20240307",
             "claude-3-5-haiku-20241022",
             "claude-3-7-sonnet-latest",
@@ -164,7 +163,6 @@ PROVIDERS = {
         "api_key": ANTHROPIC_API_KEY,
         "support_tools": [
             "claude-3-opus-20240229",
-            "claude-3-sonnet-20240229",
             "claude-3-haiku-20240307",
             "claude-3-5-haiku-20241022",
             "claude-3-7-sonnet-latest",
@@ -187,7 +185,6 @@ PROVIDERS = {
         "openrouter_identifier": {
             "claude-2.1": "anthropic/claude-2.1",
             "claude-3-opus-20240229": "anthropic/claude-3-opus",
-            "claude-3-sonnet-20240229": "anthropic/claude-3-sonnet",
             "claude-3-haiku-20240307": "anthropic/claude-3-haiku",
             "claude-3-5-haiku-20241022": "anthropic/claude-3.5-haiku",
             "claude-3-7-sonnet-latest": "anthropic/claude-3.7-sonnet",
@@ -206,7 +203,6 @@ PROVIDERS = {
         "price": {
             "claude-2.1": {"input": 8.0, "output": 24.0},
             "claude-3-opus-20240229": {"input": 15.0, "output": 75.0},
-            "claude-3-sonnet-20240229": {"input": 3.0, "output": 15.0},
             "claude-3-haiku-20240307": {"input": 0.25, "output": 1.25},
             "claude-3-5-haiku-20241022": {"input": 1.0, "output": 5.0},
             "claude-3-7-sonnet-latest": {"input": 3.0, "output": 15.0},
