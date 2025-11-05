@@ -12,8 +12,8 @@
 | notdiamond/llms/\_\_init\_\_.py                              |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/llms/client.py                                    |      480 |       98 |      204 |       28 |     78% |127, 219->222, 253-256, 307->310, 385, 388-391, 401, 438->437, 448-449, 491->496, 497, 526-533, 615-617, 621, 641-643, 773-789, 876->879, 939-990, 1058-1059, 1077->1080, 1098-1102, 1105, 1140-1193, 1253-1254, 1289-1292, 1295, 1373-1374, 1409-1412, 1415, 1451-1456, 1498-1503, 1563-1568, 1608->1610, 1634-1656, 1667, 1781-1786 |
 | notdiamond/llms/config.py                                    |       97 |       18 |       24 |        7 |     78% |108, 148, 155, 187-189, 207, 211, 264, 287, 290, 293-297, 300, 303-305, 323, 327 |
-| notdiamond/llms/providers.py                                 |       81 |        0 |        0 |        0 |    100% |           |
-| notdiamond/llms/request.py                                   |       87 |        8 |       22 |        3 |     88% |183->199, 261->281, 273-279, 327-331, 352 |
+| notdiamond/llms/providers.py                                 |       80 |        0 |        0 |        0 |    100% |           |
+| notdiamond/llms/request.py                                   |       91 |        9 |       26 |        4 |     87% |128, 190->206, 268->288, 280-286, 334-338, 359 |
 | notdiamond/metrics/\_\_init\_\_.py                           |        0 |        0 |        0 |        0 |    100% |           |
 | notdiamond/metrics/metric.py                                 |       20 |        2 |        4 |        2 |     83% |15, 25->27, 29 |
 | notdiamond/metrics/request.py                                |       22 |        3 |        2 |        1 |     83% | 36-37, 45 |
@@ -41,7 +41,7 @@
 | tests/test\_components/test\_llms/test\_llm\_request.py      |       59 |        0 |        0 |        0 |    100% |           |
 | tests/test\_components/test\_llms/test\_provider.py          |       31 |        0 |        0 |        0 |    100% |           |
 | tests/test\_components/test\_utils.py                        |       32 |        0 |        0 |        0 |    100% |           |
-| tests/test\_documentation/test\_fallback\_and\_custom.py     |       30 |        3 |        4 |        2 |     85% |73->exit, 74->exit, 86-88 |
+| tests/test\_documentation/test\_fallback\_and\_custom.py     |       30 |        3 |        4 |        2 |     85% |71->exit, 72->exit, 84-86 |
 | tests/test\_documentation/test\_function\_calling.py         |       37 |        1 |        2 |        0 |     97% |        15 |
 | tests/test\_documentation/test\_getting\_started.py          |       37 |        0 |        0 |        0 |    100% |           |
 | tests/test\_documentation/test\_langchain.py                 |        8 |        0 |        2 |        0 |    100% |           |
@@ -49,7 +49,7 @@
 | tests/test\_documentation/test\_personalization.py           |       12 |        0 |        0 |        0 |    100% |           |
 | tests/test\_documentation/test\_structured\_output.py        |       46 |        3 |        4 |        1 |     92% |57-58, 110 |
 | tests/test\_init.py                                          |      128 |        0 |        0 |        0 |    100% |           |
-| tests/test\_llm\_calls/test\_anthropic.py                    |      168 |        0 |        0 |        0 |    100% |           |
+| tests/test\_llm\_calls/test\_anthropic.py                    |      152 |        0 |        0 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_cohere.py                       |       38 |        0 |        0 |        0 |    100% |           |
 | tests/test\_llm\_calls/test\_google.py                       |      197 |      164 |        0 |        0 |     17% |13-25, 28-40, 43-54, 57-68, 71-83, 86-98, 101-115, 120-134, 137-150, 155-168, 171-185, 188-202, 207-221, 224-237, 242-255, 258-272, 277-291, 296-310, 313-326, 331-344, 347-361, 364-378, 383-398, 401-414, 419-432 |
 | tests/test\_llm\_calls/test\_mistral.py                      |      170 |        2 |        0 |        0 |     99% |  181, 200 |
@@ -68,7 +68,7 @@
 | tests/test\_toolkit/test\_openai\_client.py                  |       83 |        0 |       12 |        4 |     96% |104->108, 105->104, 210->214, 211->210 |
 | tests/test\_toolkit/test\_retry.py                           |      326 |        0 |        0 |        0 |    100% |           |
 | tests/test\_types.py                                         |       16 |        0 |        0 |        0 |    100% |           |
-|                                                    **TOTAL** | **4657** |  **531** |  **688** |  **108** | **87%** |           |
+|                                                    **TOTAL** | **4644** |  **532** |  **692** |  **109** | **87%** |           |
 
 
 ## Setup coverage badge
