@@ -18,23 +18,23 @@ interactions:
       Content-Length:
       - '616'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-haiku-20241022"}],"session_id":"ad081298-dead-4ad5-bd97-47d6cd3fa88e"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-5-haiku-20241022"}],"session_id":"f50104a0-4410-4756-bb9f-1452eeb7f330"}'
     headers:
       CF-RAY:
-      - 925d00a78f8b5aa7-VIE
+      - 99a467daeb1fc9e0-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:22:48 GMT
+      - Thu, 06 Nov 2025 11:56:07 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -46,20 +46,21 @@ interactions:
       content-length:
       - '128'
       rndr-id:
-      - ee33c464-afca-4099
+      - fc3b1127-0b6d-4dc7
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - fc3b1127-0b6d-4dc7
     status:
       code: 200
       message: OK
 - request:
-    body: '{"max_tokens": 200, "messages": [{"role": "user", "content": "How much
-      is 3 + 5?"}], "model": "claude-3-5-haiku-20241022", "tools": [{"name": "add_fct",
-      "description": "Add two numbers", "input_schema": {"type": "object", "properties":
-      {"a": {"type": "integer", "description": "The first number"}, "b": {"type":
-      "integer", "description": "The second number"}}, "required": ["a", "b"]}}]}'
+    body: '{"max_tokens":200,"messages":[{"role":"user","content":"How much is 3 +
+      5?"}],"model":"claude-3-5-haiku-20241022","tools":[{"name":"add_fct","description":"Add
+      two numbers","input_schema":{"type":"object","properties":{"a":{"type":"integer","description":"The
+      first number"},"b":{"type":"integer","description":"The second number"}},"required":["a","b"]}}]}'
     headers:
       accept:
       - application/json
@@ -70,7 +71,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '387'
+      - '357'
       content-type:
       - application/json
       host:
@@ -80,13 +81,13 @@ interactions:
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
       - 0.49.0
       x-stainless-read-timeout:
@@ -96,24 +97,24 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
       x-stainless-timeout:
       - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"id":"msg_01MFq5XUg3wtpXtJ42Yy42V8","type":"message","role":"assistant","model":"claude-3-5-haiku-20241022","content":[{"type":"text","text":"I''ll
-        help you calculate that using the add_fct tool."},{"type":"tool_use","id":"toolu_01RSw14UDhu4ryyiXgUUKQ7x","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":362,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":86}}'
+      string: '{"model":"claude-3-5-haiku-20241022","id":"msg_01JU9rHTHEiTeQ1vYXMwoWGG","type":"message","role":"assistant","content":[{"type":"text","text":"I''ll
+        help you calculate that using the add_fct tool."},{"type":"tool_use","id":"toolu_01XEekdySGS5TbexJynD8WB2","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":362,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":86,"service_tier":"standard"}}'
     headers:
       CF-RAY:
-      - 925d00ac8ba48ee7-SOF
+      - 99a467e53f4db9ea-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:22:51 GMT
+      - Thu, 06 Nov 2025 11:56:09 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -127,33 +128,37 @@ interactions:
       anthropic-ratelimit-input-tokens-remaining:
       - '400000'
       anthropic-ratelimit-input-tokens-reset:
-      - '2025-03-25T08:22:50Z'
+      - '2025-11-06T11:56:08Z'
       anthropic-ratelimit-output-tokens-limit:
       - '80000'
       anthropic-ratelimit-output-tokens-remaining:
       - '80000'
       anthropic-ratelimit-output-tokens-reset:
-      - '2025-03-25T08:22:51Z'
+      - '2025-11-06T11:56:09Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2025-03-25T08:22:49Z'
+      - '2025-11-06T11:56:08Z'
       anthropic-ratelimit-tokens-limit:
       - '480000'
       anthropic-ratelimit-tokens-remaining:
       - '480000'
       anthropic-ratelimit-tokens-reset:
-      - '2025-03-25T08:22:50Z'
+      - '2025-11-06T11:56:08Z'
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '450'
+      - '555'
       request-id:
-      - req_01MZc2rG3hvAgv6hrcX5C8Rn
-      via:
-      - 1.1 google
+      - req_011CUrbNDu58PPu8YvLjYSbw
+      retry-after:
+      - '52'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '1546'
     status:
       code: 200
       message: OK

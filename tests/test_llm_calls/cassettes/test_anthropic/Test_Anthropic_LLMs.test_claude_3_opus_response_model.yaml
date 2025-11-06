@@ -1,8 +1,8 @@
 interactions:
 - request:
     body: '{"messages": [{"role": "user", "content": "Tell me a joke"}], "llm_providers":
-      [{"provider": "anthropic", "model": "claude-3-opus-20240229", "is_custom": false,
-      "context_length": null, "input_price": null, "output_price": null, "latency":
+      [{"provider": "anthropic", "model": "claude-sonnet-4-5-20250929", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
       null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true}'
     headers:
       Accept:
@@ -12,25 +12,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '312'
+      - '316'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-opus-20240229"}],"session_id":"5f820776-dbd4-4798-8515-d82619b90ef7"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-sonnet-4-5-20250929"}],"session_id":"b4077ba7-eb47-4f90-95cf-fd2573b641ac"}'
     headers:
       CF-RAY:
-      - 925d000a8db65ab1-VIE
+      - 99a46b628bb60533-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:22:23 GMT
+      - Thu, 06 Nov 2025 11:58:32 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -40,19 +40,21 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '125'
+      - '129'
       rndr-id:
-      - 0d45bb17-40cc-4b64
+      - 6410c7bd-a84b-4119
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - 6410c7bd-a84b-4119
     status:
       code: 200
       message: OK
 - request:
-    body: '{"max_tokens": 200, "messages": [{"role": "user", "content": "The output
-      should be formatted as a JSON instance that conforms to the JSON schema below.\n\nAs
+    body: '{"max_tokens":200,"messages":[{"role":"user","content":"The output should
+      be formatted as a JSON instance that conforms to the JSON schema below.\n\nAs
       an example, for the schema {\"properties\": {\"foo\": {\"title\": \"Foo\", \"description\":
       \"a list of strings\", \"type\": \"array\", \"items\": {\"type\": \"string\"}}},
       \"required\": [\"foo\"]}\nthe object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted
@@ -61,7 +63,7 @@ interactions:
       {\"setup\": {\"description\": \"question to set up a joke\", \"title\": \"Setup\",
       \"type\": \"string\"}, \"punchline\": {\"description\": \"answer to resolve
       the joke\", \"title\": \"Punchline\", \"type\": \"string\"}}, \"required\":
-      [\"setup\", \"punchline\"]}\n```\nTell me a joke"}], "model": "claude-3-opus-20240229"}'
+      [\"setup\", \"punchline\"]}\n```\nTell me a joke"}],"model":"claude-sonnet-4-5-20250929"}'
     headers:
       accept:
       - application/json
@@ -72,7 +74,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '899'
+      - '895'
       content-type:
       - application/json
       host:
@@ -82,13 +84,13 @@ interactions:
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
       - 0.49.0
       x-stainless-read-timeout:
@@ -98,25 +100,25 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
       x-stainless-timeout:
       - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"id":"msg_011a86VGccAHX95Pvcfypb9L","type":"message","role":"assistant","model":"claude-3-opus-20240229","content":[{"type":"text","text":"{\n  \"setup\":
-        \"Why was the math book sad?\",\n  \"punchline\": \"Because it had too many
-        problems.\"\n}"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":215,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":35}}'
+      string: '{"model":"claude-sonnet-4-5-20250929","id":"msg_01VLL6CNf8CzhXMLoZapT11E","type":"message","role":"assistant","content":[{"type":"text","text":"```json\n{\n  \"setup\":
+        \"Why don''t scientists trust atoms?\",\n  \"punchline\": \"Because they make
+        up everything!\"\n}\n```"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":215,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":39,"service_tier":"standard"}}'
     headers:
       CF-RAY:
-      - 925d000f2ca93ec1-VIE
+      - 99a46b6c3fb9e44e-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:22:25 GMT
+      - Thu, 06 Nov 2025 11:58:35 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -126,37 +128,41 @@ interactions:
       anthropic-organization-id:
       - a2610b2c-742e-455d-9552-6abe105b2a44
       anthropic-ratelimit-input-tokens-limit:
-      - '400000'
+      - '2000000'
       anthropic-ratelimit-input-tokens-remaining:
-      - '400000'
+      - '2000000'
       anthropic-ratelimit-input-tokens-reset:
-      - '2025-03-25T08:22:24Z'
+      - '2025-11-06T11:58:34Z'
       anthropic-ratelimit-output-tokens-limit:
-      - '80000'
+      - '400000'
       anthropic-ratelimit-output-tokens-remaining:
-      - '80000'
+      - '400000'
       anthropic-ratelimit-output-tokens-reset:
-      - '2025-03-25T08:22:25Z'
+      - '2025-11-06T11:58:35Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2025-03-25T08:22:23Z'
+      - '2025-11-06T11:58:32Z'
       anthropic-ratelimit-tokens-limit:
-      - '480000'
+      - '2400000'
       anthropic-ratelimit-tokens-remaining:
-      - '480000'
+      - '2400000'
       anthropic-ratelimit-tokens-reset:
-      - '2025-03-25T08:22:24Z'
+      - '2025-11-06T11:58:34Z'
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '404'
+      - '533'
       request-id:
-      - req_01X8maNWXWiQ9PeL1vndRWQj
-      via:
-      - 1.1 google
+      - req_011CUrbYsYGqqZXymdsofoNx
+      retry-after:
+      - '26'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '2834'
     status:
       code: 200
       message: OK

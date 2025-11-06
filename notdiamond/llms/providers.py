@@ -31,7 +31,6 @@ class NDLLMProviders(Enum):
         GPT_4_1_NANO_2025_04_14 (NDLLMProvider): refers to 'gpt-4.1-nano-2025-04-14' model by OpenAI
         GPT_4o_2024_11_20 (NDLLMProvider): refers to 'gpt-4o-2024-11-20' model by OpenAI
 
-        CLAUDE_2_1 (NDLLMProvider): refers to 'claude-2.1' model by Anthropic
         CLAUDE_3_OPUS_20240229 (NDLLMProvider): refers to 'claude-3-opus-20240229' model by Anthropic
         CLAUDE_3_7_SONNET_LATEST (NDLLMProvider): refers to 'claude-3-7-sonnet-latest' model by Anthropic
         CLAUDE_3_7_SONNET_20250219 (NDLLMProvider): refers to 'claude-3-7-sonnet-20250219' model by Anthropic
@@ -48,9 +47,6 @@ class NDLLMProviders(Enum):
         CLAUDE_OPUS_4_1 (NDLLMProvider): refers to 'claude-opus-4-1' model by Anthropic
         CLAUDE_SONNET_4_0 (NDLLMProvider): refers to 'claude-sonnet-4-0' model by Anthropic
 
-        GEMINI_PRO (NDLLMProvider): refers to 'gemini-pro' model by Google
-        GEMINI_1_PRO_LATEST (NDLLMProvider): refers to 'gemini-1.0-pro-latest' model by Google
-        GEMINI_15_PRO_LATEST (NDLLMProvider): refers to 'gemini-1.5-pro-latest' model by Google
         GEMINI_15_PRO_EXP_0801 (NDLLMProvider): refers to 'gemini-1.5-pro-exp-0801' model by Google
         GEMINI_15_FLASH_LATEST (NDLLMProvider): refers to 'gemini-1.5-flash-latest' model by Google
         GEMINI_20_FLASH (NDLLMProvider): refers to 'gemini-20-flash' model by Google
@@ -119,7 +115,6 @@ class NDLLMProviders(Enum):
     CHATGPT_4o_LATEST = ("openai", "chatgpt-4o-latest")
     GPT_4o_2024_11_20 = ("openai", "gpt-4o-2024-11-20")
 
-    CLAUDE_2_1 = ("anthropic", "claude-2.1")
     CLAUDE_3_OPUS_20240229 = ("anthropic", "claude-3-opus-20240229")
     CLAUDE_3_7_SONNET_LATEST = ("anthropic", "claude-3-7-sonnet-latest")
     CLAUDE_3_7_SONNET_20250219 = ("anthropic", "claude-3-7-sonnet-20250219")
@@ -136,9 +131,6 @@ class NDLLMProviders(Enum):
     CLAUDE_OPUS_4_1 = ("anthropic", "claude-opus-4-1")
     CLAUDE_SONNET_4_0 = ("anthropic", "claude-sonnet-4-0")
 
-    GEMINI_PRO = ("google", "gemini-pro")
-    GEMINI_1_PRO_LATEST = ("google", "gemini-1.0-pro-latest")
-    GEMINI_15_PRO_LATEST = ("google", "gemini-1.5-pro-latest")
     GEMINI_15_PRO_EXP_0801 = ("google", "gemini-1.5-pro-exp-0801")
     GEMINI_15_FLASH_LATEST = ("google", "gemini-1.5-flash-latest")
     GEMINI_20_FLASH = ("google", "gemini-2.0-flash")

@@ -16,23 +16,23 @@ interactions:
       Content-Length:
       - '423'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"b29ad773-b6ab-4d31-a840-c45b63ce57bf"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"7d06911a-086d-4922-b027-e8eaa892ff9a"}'
     headers:
       CF-RAY:
-      - 925cfba29a54197e-SOF
+      - 99a4650aff8ec9cd-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:23 GMT
+      - Thu, 06 Nov 2025 11:54:12 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -44,19 +44,19 @@ interactions:
       content-length:
       - '113'
       rndr-id:
-      - 7bc519b6-0ac1-4fec
+      - 83c4a4fe-69ca-4fdc
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - 83c4a4fe-69ca-4fdc
     status:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "Hello, what''s your name?", "role": "user"},
-      {"content": "My name is Isaac Asimov", "role": "assistant"}, {"content": "And
-      what do you do?", "role": "user"}], "model": "gpt-3.5-turbo", "max_tokens":
-      10, "n": 1, "stream": false, "temperature": 0.7}'
+    body: '{"messages":[{"content":"Hello, what''s your name?","role":"user"},{"content":"My
+      name is Isaac Asimov","role":"assistant"},{"content":"And what do you do?","role":"user"}],"model":"gpt-3.5-turbo","max_completion_tokens":10,"stream":false}'
     headers:
       accept:
       - application/json
@@ -65,23 +65,23 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '273'
+      - '238'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.99.9
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 1.68.2
+      - 1.99.9
       x-stainless-read-timeout:
       - '120.0'
       x-stainless-retry-count:
@@ -89,40 +89,42 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEtnHzvEZ6VVQjOUJ2OfLDrTKGVym\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742890763,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
+      string: "{\n  \"id\": \"chatcmpl-CYsr6jhDFSzya3WyimQrQ9l8ndiLA\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1762430052,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
-        \"assistant\",\n        \"content\": \"I am a large language model trained
-        by OpenAI\",\n        \"refusal\": null,\n        \"annotations\": []\n      },\n
-        \     \"logprobs\": null,\n      \"finish_reason\": \"length\"\n    }\n  ],\n
-        \ \"usage\": {\n    \"prompt_tokens\": 35,\n    \"completion_tokens\": 10,\n
-        \   \"total_tokens\": 45,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        \"assistant\",\n        \"content\": \"I'm a digital assistant designed to
+        provide information,\",\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"length\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 35,\n    \"completion_tokens\":
+        10,\n    \"total_tokens\": 45,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
         0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 925cfba77badd0df-SOF
+      - 99a465125bc0ca1a-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:23 GMT
+      - Thu, 06 Nov 2025 11:54:13 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=kVSgv6S0fsPHO3urtnCXjtqoeo6RZlNKCHvWq_Sh6jw-1742890763-1.0.1.1-5L3rp1JpD50T1K_ZyBpPB1SPbTtKI1IKaeOY7.CiSXKamN9Tyzmr9C8iVZcABggbYa5kmlnlvcWpkuV1nvMcBU1cjIiLcHS8NX0HZKy87tM;
-        path=/; expires=Tue, 25-Mar-25 08:49:23 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=HKuAeFdqHvCIpW7kvxv5Pi3PpykVGjTodRArVD8IDts-1762430053-1.0.1.1-bux2FzURl65LYH6wlUvcWfm.NpUfN4ZRVZE9liorPdjmU3qqE_f1gCZA5W4TLy45A4iaVln7VxHjDLK3RJ8waPdwDqa1Wz_006KHZp4wHVw;
+        path=/; expires=Thu, 06-Nov-25 12:24:13 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=Twbj.EKD9u95.Q.vm.wHxmmgrGk1irIjPSj01dztKDg-1742890763881-0.0.1.1-604800000;
+      - _cfuvid=rz2DPUiDJRJ8GE6zjJmziC5ahN1hNKa7cKzvKnt0Oe8-1762430053158-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
       X-Content-Type-Options:
@@ -134,15 +136,19 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '839'
+      - '850'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '278'
+      - '747'
+      openai-project:
+      - proj_EvMLZJqcggqzjvd3BFXe4tfP
       openai-version:
       - '2020-10-01'
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '775'
+      x-openai-proxy-wasm:
+      - v0.1
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
@@ -156,7 +162,7 @@ interactions:
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_6fb6df5e720744545ec8c969bc9541e0
+      - req_f81072d77a154671ac11ef7d3374a441
     status:
       code: 200
       message: OK

@@ -18,23 +18,23 @@ interactions:
       Content-Length:
       - '606'
       User-Agent:
-      - Python-SDK/0.4.4
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
-    uri: https://api.notdiamond.ai/v2/modelRouter/modelSelect
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"detail":"Could not find valid API key"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-opus-4-1"}],"session_id":"2dcde499-6cea-4d76-92dd-3a8a1f333dd4"}'
     headers:
       CF-RAY:
-      - 96fc5de6cf7ce00f-MIA
+      - 99a468411a80e43e-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 15 Aug 2025 23:10:41 GMT
+      - Thu, 06 Nov 2025 11:56:23 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -43,17 +43,19 @@ interactions:
       - h3=":443"; ma=86400
       cf-cache-status:
       - DYNAMIC
+      content-length:
+      - '118'
       rndr-id:
-      - dff267e2-2fc0-48c5
+      - 63130639-6d99-46f0
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
       x-request-id:
-      - dff267e2-2fc0-48c5
+      - 63130639-6d99-46f0
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
 - request:
     body: '{"max_tokens":200,"messages":[{"role":"user","content":"How much is 3 +
       5?"}],"model":"claude-opus-4-1","tools":[{"name":"add_fct","description":"Add
@@ -95,24 +97,23 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.6
+      - 3.11.12
       x-stainless-timeout:
       - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"id":"msg_01MLNm6MvsAe345rsrZLmQ6R","type":"message","role":"assistant","model":"claude-opus-4-1-20250805","content":[{"type":"text","text":"I''ll
-        help you add those two numbers together."},{"type":"tool_use","id":"toolu_01FnzqgbR95M2QVVRcGmxnCz","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":411,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":82,"service_tier":"standard"}}'
+      string: '{"model":"claude-opus-4-1-20250805","id":"msg_015rpyYthxGzxoRcSV45YKuq","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_01TPEezByM6Z3oS72WX1iWd6","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":411,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":71,"service_tier":"standard"}}'
     headers:
       CF-RAY:
-      - 96fc5de81b7aed33-MIA
+      - 99a468492d90c9ec-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 15 Aug 2025 23:10:44 GMT
+      - Thu, 06 Nov 2025 11:56:26 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -126,35 +127,37 @@ interactions:
       anthropic-ratelimit-input-tokens-remaining:
       - '2000000'
       anthropic-ratelimit-input-tokens-reset:
-      - '2025-08-15T23:10:42Z'
+      - '2025-11-06T11:56:25Z'
       anthropic-ratelimit-output-tokens-limit:
       - '400000'
       anthropic-ratelimit-output-tokens-remaining:
       - '400000'
       anthropic-ratelimit-output-tokens-reset:
-      - '2025-08-15T23:10:44Z'
+      - '2025-11-06T11:56:26Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2025-08-15T23:10:42Z'
+      - '2025-11-06T11:56:24Z'
       anthropic-ratelimit-tokens-limit:
       - '2400000'
       anthropic-ratelimit-tokens-remaining:
       - '2400000'
       anthropic-ratelimit-tokens-reset:
-      - '2025-08-15T23:10:42Z'
+      - '2025-11-06T11:56:25Z'
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '547'
+      - '476'
       request-id:
-      - req_011CSALfjb98PLc3UXmaXYxf
+      - req_011CUrbPQBEAP9LFZpqY8bNZ
+      retry-after:
+      - '36'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
-      via:
-      - 1.1 google
+      x-envoy-upstream-service-time:
+      - '2687'
     status:
       code: 200
       message: OK

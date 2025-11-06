@@ -18,23 +18,23 @@ interactions:
       Content-Length:
       - '595'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-haiku-20240307"}],"session_id":"436e374a-b29b-4f65-ae72-0c136bd5d84b"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-haiku-20240307"}],"session_id":"f808dc81-4bd3-4013-b98b-86c0b89843cc"}'
     headers:
       CF-RAY:
-      - 925cfc258bfb6e9d-SOF
+      - 99a466012fe9e466-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:44 GMT
+      - Thu, 06 Nov 2025 11:54:51 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -46,19 +46,21 @@ interactions:
       content-length:
       - '126'
       rndr-id:
-      - 4954d0d0-f697-4b9b
+      - 2752bc79-df79-445d
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - 2752bc79-df79-445d
     status:
       code: 200
       message: OK
 - request:
-    body: '{"max_tokens": 1024, "messages": [{"role": "user", "content": "Hello, what''s
-      your name?"}, {"role": "assistant", "content": "My name is Isaac Asimov"}, {"role":
-      "user", "content": "And what do you do?"}], "model": "claude-3-haiku-20240307",
-      "system": "You are a helpful assistant"}'
+    body: '{"max_tokens":1024,"messages":[{"role":"user","content":"Hello, what''s
+      your name?"},{"role":"assistant","content":"My name is Isaac Asimov"},{"role":"user","content":"And
+      what do you do?"}],"model":"claude-3-haiku-20240307","system":"You are a helpful
+      assistant"}'
     headers:
       accept:
       - application/json
@@ -69,7 +71,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '281'
+      - '263'
       content-type:
       - application/json
       host:
@@ -79,13 +81,13 @@ interactions:
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
       - 0.49.0
       x-stainless-read-timeout:
@@ -95,28 +97,27 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
       x-stainless-timeout:
       - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"id":"msg_011sm1FTg8Ut5y6m5HNSPoKL","type":"message","role":"assistant","model":"claude-3-haiku-20240307","content":[{"type":"text","text":"As
-        an artificial intelligence, I don''t have a specific job or role. I''m an
-        assistant created by Anthropic to be helpful, harmless, and honest. My purpose
-        is to engage in conversation, answer questions, and assist with a variety
-        of tasks to the best of my abilities. Please let me know if there is anything
-        I can help you with!"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":39,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":76}}'
+      string: '{"model":"claude-3-haiku-20240307","id":"msg_01JfwWFewH8umy2ra99J6UHQ","type":"message","role":"assistant","content":[{"type":"text","text":"I''m
+        an AI assistant. My role is to help people by answering questions, providing
+        information and analysis, and assisting with various tasks. I have a wide
+        range of knowledge that I can draw upon to help in many different areas. Please
+        let me know if there''s anything specific I can help you with!"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":39,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":66,"service_tier":"standard"}}'
     headers:
       CF-RAY:
-      - 925cfc2a285b3a0d-VIE
+      - 99a46608cb1fe447-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:45 GMT
+      - Thu, 06 Nov 2025 11:54:52 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -130,41 +131,45 @@ interactions:
       anthropic-ratelimit-input-tokens-remaining:
       - '400000'
       anthropic-ratelimit-input-tokens-reset:
-      - '2025-03-25T08:19:44Z'
+      - '2025-11-06T11:54:52Z'
       anthropic-ratelimit-output-tokens-limit:
       - '80000'
       anthropic-ratelimit-output-tokens-remaining:
       - '80000'
       anthropic-ratelimit-output-tokens-reset:
-      - '2025-03-25T08:19:45Z'
+      - '2025-11-06T11:54:52Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2025-03-25T08:19:44Z'
+      - '2025-11-06T11:54:51Z'
       anthropic-ratelimit-tokens-limit:
       - '480000'
       anthropic-ratelimit-tokens-remaining:
       - '480000'
       anthropic-ratelimit-tokens-reset:
-      - '2025-03-25T08:19:44Z'
+      - '2025-11-06T11:54:52Z'
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '624'
+      - '699'
       request-id:
-      - req_01QBiFJ3aYZDKGDQx5Ut7uhU
-      via:
-      - 1.1 google
+      - req_011CUrbGbxCrWE4ABN2W8JYN
+      retry-after:
+      - '8'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '1076'
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "436e374a-b29b-4f65-ae72-0c136bd5d84b", "provider": {"provider":
+    body: '{"session_id": "f808dc81-4bd3-4013-b98b-86c0b89843cc", "provider": {"provider":
       "anthropic", "model": "claude-3-haiku-20240307", "is_custom": false, "context_length":
       null, "input_price": null, "output_price": null, "latency": null}, "feedback":
-      {"tokens_per_second": 73.67441005764812}}'
+      {"tokens_per_second": 48.1957331989103}}'
     headers:
       Accept:
       - '*/*'
@@ -173,26 +178,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '287'
+      - '286'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=5abda49a-0562-4e7d, Session 436e374a-b29b-4f65-ae72-0c136bd5d84b
-        does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
+      string: '{"session_id":"f808dc81-4bd3-4013-b98b-86c0b89843cc","tokens_per_second":48.1957331989103}'
     headers:
       CF-RAY:
-      - 925cfc30c91ad0e0-SOF
+      - 99a46610bfa7a051-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:45 GMT
+      - Thu, 06 Nov 2025 11:54:53 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -201,13 +205,17 @@ interactions:
       - h3=":443"; ma=86400
       cf-cache-status:
       - DYNAMIC
+      content-length:
+      - '90'
       rndr-id:
-      - 5abda49a-0562-4e7d
+      - 9c0d95f0-a3a4-497d
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - 9c0d95f0-a3a4-497d
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
 version: 1

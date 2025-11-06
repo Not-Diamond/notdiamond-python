@@ -5,11 +5,11 @@ interactions:
       "is_custom": false, "context_length": null, "input_price": null, "output_price":
       null, "latency": null}, {"provider": "openai", "model": "gpt-4", "is_custom":
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "anthropic", "model": "claude-2.1", "is_custom": false,
+      null}, {"provider": "anthropic", "model": "claude-haiku-4-5-20251001", "is_custom":
+      false, "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}, {"provider": "google", "model": "gemini-2.5-pro", "is_custom": false,
       "context_length": null, "input_price": null, "output_price": null, "latency":
-      null}, {"provider": "google", "model": "gemini-pro", "is_custom": false, "context_length":
-      null, "input_price": null, "output_price": null, "latency": null}], "metric":
-      "accuracy", "max_model_depth": 4, "hash_content": true}'
+      null}], "metric": "accuracy", "max_model_depth": 4, "hash_content": true}'
     headers:
       Accept:
       - '*/*'
@@ -18,25 +18,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '779'
+      - '798'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-4"}],"session_id":"43eac436-56f1-4ec9-9dcd-4d51d1b31baf"}'
+      string: '{"providers":[{"provider":"google","model":"gemini-2.5-pro"}],"session_id":"79a85558-dc34-4cef-98e0-170f7c7a4591"}'
     headers:
       CF-RAY:
-      - 925cfad5eebad100-SOF
+      - 99a464020e1270ce-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:18:50 GMT
+      - Thu, 06 Nov 2025 11:53:30 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -46,13 +46,15 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '105'
+      - '114'
       rndr-id:
-      - 5072108e-7aad-4c90
+      - 0521f47e-24f7-4e25
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - 0521f47e-24f7-4e25
     status:
       code: 200
       message: OK

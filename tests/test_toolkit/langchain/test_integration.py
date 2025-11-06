@@ -74,11 +74,11 @@ def test_notdiamond_routed_runnable_chain(
             "langchain_anthropic.ChatAnthropic",
         ),
         (
-            "anthropic/claude-3-haiku-20240307",
+            "anthropic/claude-haiku-4-5-20251001",
             "langchain_anthropic.ChatAnthropic",
         ),
         (
-            "google/gemini-1.5-pro-latest",
+            "google/gemini-2.5-pro",
             "langchain_google_genai.ChatGoogleGenerativeAI",
         ),
         (

@@ -18,10 +18,10 @@ def test_personalization():
         "openai/gpt-4",
         "openai/gpt-4-1106-preview",
         "openai/gpt-4-turbo-preview",
-        "anthropic/claude-2.1",
+        "anthropic/claude-opus-4-1-20250805",
         "anthropic/claude-sonnet-4-5-20250929",
-        "anthropic/claude-3-opus-20240229",
-        "google/gemini-pro",
+        "anthropic/claude-haiku-4-5-20251001",
+        "google/gemini-2.5-pro",
     ]
 
     nd_llm = NotDiamond(

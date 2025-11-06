@@ -19,8 +19,8 @@ from notdiamond.toolkit.langchain import (
 def llm_configs() -> List[Any]:
     return [
         LLMConfig(provider="openai", model="gpt-4o"),
-        LLMConfig(provider="anthropic", model="claude-3-opus-20240229"),
-        LLMConfig(provider="google", model="gemini-1.5-pro-latest"),
+        LLMConfig(provider="anthropic", model="claude-opus-4-1-20250805"),
+        LLMConfig(provider="google", model="gemini-2.5-pro"),
     ]
 
 
