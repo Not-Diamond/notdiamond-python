@@ -21,7 +21,7 @@
 | notdiamond/settings.py                                       |       18 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/\_\_init\_\_.py                           |        1 |        0 |        0 |        0 |    100% |           |
 | notdiamond/toolkit/\_retry.py                                |      238 |       22 |       64 |       11 |     87% |72, 167->172, 182->exit, 191, 202, 215, 228, 255-259, 271->exit, 293->exit, 321, 324-330, 438, 489, 498-499, 531-534 |
-| notdiamond/toolkit/custom\_router.py                         |      172 |        9 |       52 |        5 |     92% |37->39, 76, 247, 300, 356-363 |
+| notdiamond/toolkit/custom\_router.py                         |      172 |        9 |       52 |        6 |     92% |37->39, 76, 247, 300, 347->323, 356-363 |
 | notdiamond/toolkit/langchain.py                              |      116 |       14 |       30 |        8 |     85% |63, 71->82, 86-87, 116, 123, 131, 139, 147, 155, 189->191, 235, 253, 281, 313, 319 |
 | notdiamond/toolkit/openai.py                                 |       64 |        4 |        8 |        2 |     92% |56, 59, 62, 91->94, 95 |
 | notdiamond/toolkit/rag/\_\_init\_\_.py                       |        0 |        0 |        0 |        0 |    100% |           |
@@ -68,7 +68,7 @@
 | tests/test\_toolkit/test\_openai\_client.py                  |       83 |        0 |       12 |        4 |     96% |104->108, 105->104, 210->214, 211->210 |
 | tests/test\_toolkit/test\_retry.py                           |      326 |        0 |        0 |        0 |    100% |           |
 | tests/test\_types.py                                         |       16 |        0 |        0 |        0 |    100% |           |
-|                                                    **TOTAL** | **4641** |  **526** |  **692** |  **110** | **87%** |           |
+|                                                    **TOTAL** | **4641** |  **526** |  **692** |  **111** | **87%** |           |
 
 
 ## Setup coverage badge
