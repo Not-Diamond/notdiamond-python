@@ -12,9 +12,9 @@ def test_fallback_model():
         "openai/gpt-4",
         "openai/gpt-4-1106-preview",
         "openai/gpt-4-turbo-preview",
-        "anthropic/claude-2.1",
-        "anthropic/claude-3-opus-20240229",
-        "google/gemini-pro",
+        "anthropic/claude-opus-4-1-20250805",
+        "anthropic/claude-sonnet-4-5-20250929",
+        "google/gemini-2.5-pro",
     ]
 
     # Setting a fallback model
@@ -31,9 +31,9 @@ def test_set_max_model_depth():
         "openai/gpt-4",
         "openai/gpt-4-1106-preview",
         "openai/gpt-4-turbo-preview",
-        "anthropic/claude-2.1",
-        "anthropic/claude-3-opus-20240229",
-        "google/gemini-pro",
+        "anthropic/claude-opus-4-1-20250805",
+        "anthropic/claude-sonnet-4-5-20250929",
+        "google/gemini-2.5-pro",
     ]
 
     # Setting recommendation depth

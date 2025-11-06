@@ -5,8 +5,8 @@ interactions:
       false, "context_length": null, "input_price": null, "output_price": null, "latency":
       null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
       [{"type": "function", "function": {"name": "add_fct", "description": "Adds a
-      and b.", "parameters": {"type": "object", "properties": {"a": {"type": "integer"},
-      "b": {"type": "integer"}}, "required": ["a", "b"]}}}]}'
+      and b.", "parameters": {"properties": {"a": {"type": "integer"}, "b": {"type":
+      "integer"}}, "required": ["a", "b"], "type": "object"}}}]}'
     headers:
       Accept:
       - '*/*'
@@ -17,23 +17,23 @@ interactions:
       Content-Length:
       - '544'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-3-7-sonnet-20250219"}],"session_id":"62111b7f-4e73-4d15-9eb3-aa0a226a7d68"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-3-7-sonnet-20250219"}],"session_id":"68e4f96b-e46e-4544-84f5-78de9d33a310"}'
     headers:
       CF-RAY:
-      - 925d00cd3b70c24f-VIE
+      - 99a46809fc41e461-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:22:54 GMT
+      - Thu, 06 Nov 2025 11:56:15 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -45,19 +45,20 @@ interactions:
       content-length:
       - '129'
       rndr-id:
-      - bef2924f-f790-4c27
+      - e277cf95-7559-45f8
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - e277cf95-7559-45f8
     status:
       code: 200
       message: OK
 - request:
-    body: '{"max_tokens": 200, "messages": [{"role": "user", "content": "How much
-      is 3 + 5?"}], "model": "claude-3-7-sonnet-20250219", "tools": [{"name": "add_fct",
-      "description": "Adds a and b.", "input_schema": {"type": "object", "properties":
-      {"a": {"type": "integer"}, "b": {"type": "integer"}}, "required": ["a", "b"]}}]}'
+    body: '{"max_tokens":200,"messages":[{"role":"user","content":"How much is 3 +
+      5?"}],"model":"claude-3-7-sonnet-20250219","tools":[{"name":"add_fct","description":"Adds
+      a and b.","input_schema":{"properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"],"type":"object"}}]}'
     headers:
       accept:
       - application/json
@@ -68,7 +69,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '315'
+      - '289'
       content-type:
       - application/json
       host:
@@ -78,13 +79,13 @@ interactions:
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
       - 0.49.0
       x-stainless-read-timeout:
@@ -94,24 +95,25 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
       x-stainless-timeout:
       - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"id":"msg_01ASrjNE7a8EqyL1nk7QF87f","type":"message","role":"assistant","model":"claude-3-7-sonnet-20250219","content":[{"type":"text","text":"I
-        can calculate the sum of 3 and 5 for you using the add function."},{"type":"tool_use","id":"toolu_01RHnrBiompo2VBkzoYi1Z5p","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":397,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":92}}'
+      string: '{"model":"claude-3-7-sonnet-20250219","id":"msg_01DgXRQvGeg5FtcuuyAUp6vQ","type":"message","role":"assistant","content":[{"type":"text","text":"I
+        can help you add 3 and 5 using the available addition function. Let me calculate
+        that for you."},{"type":"tool_use","id":"toolu_01PPuWNQDghTaLcXjDTTYADP","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":397,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":97,"service_tier":"standard"}}'
     headers:
       CF-RAY:
-      - 925d00d1deb8fe40-VIE
+      - 99a46813c964e3f7-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:22:57 GMT
+      - Thu, 06 Nov 2025 11:56:17 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -125,33 +127,37 @@ interactions:
       anthropic-ratelimit-input-tokens-remaining:
       - '200000'
       anthropic-ratelimit-input-tokens-reset:
-      - '2025-03-25T08:22:55Z'
+      - '2025-11-06T11:56:16Z'
       anthropic-ratelimit-output-tokens-limit:
       - '80000'
       anthropic-ratelimit-output-tokens-remaining:
       - '80000'
       anthropic-ratelimit-output-tokens-reset:
-      - '2025-03-25T08:22:56Z'
+      - '2025-11-06T11:56:17Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2025-03-25T08:22:55Z'
+      - '2025-11-06T11:56:15Z'
       anthropic-ratelimit-tokens-limit:
       - '280000'
       anthropic-ratelimit-tokens-remaining:
       - '280000'
       anthropic-ratelimit-tokens-reset:
-      - '2025-03-25T08:22:55Z'
+      - '2025-11-06T11:56:16Z'
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '465'
+      - '600'
       request-id:
-      - req_01Gq1HApbtG2tuwxi4tFL7dT
-      via:
-      - 1.1 google
+      - req_011CUrbNmf2YDyV6sBchZ2pU
+      retry-after:
+      - '47'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '1996'
     status:
       code: 200
       message: OK

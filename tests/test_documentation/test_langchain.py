@@ -17,8 +17,8 @@ def test_streaming():
         llm_configs=[
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
     )
 

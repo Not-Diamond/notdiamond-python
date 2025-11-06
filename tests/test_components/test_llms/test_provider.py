@@ -13,13 +13,13 @@ def test_supported_llm_provider():
     assert openai.provider == "openai"
     assert openai.model == "gpt-3.5-turbo"
 
-    openai = LLMConfig(provider="anthropic", model="claude-2.1")
+    openai = LLMConfig(provider="anthropic", model="claude-haiku-4-5-20251001")
     assert openai.provider == "anthropic"
-    assert openai.model == "claude-2.1"
+    assert openai.model == "claude-haiku-4-5-20251001"
 
-    openai = LLMConfig(provider="google", model="gemini-pro")
+    openai = LLMConfig(provider="google", model="gemini-2.5-pro")
     assert openai.provider == "google"
-    assert openai.model == "gemini-pro"
+    assert openai.model == "gemini-2.5-pro"
 
 
 def test_unsupported_model():

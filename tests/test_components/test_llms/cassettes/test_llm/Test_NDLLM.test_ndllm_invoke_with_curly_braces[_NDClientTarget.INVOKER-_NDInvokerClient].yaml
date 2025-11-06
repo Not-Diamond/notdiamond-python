@@ -15,23 +15,23 @@ interactions:
       Content-Length:
       - '330'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"535bc2cd-0c39-409f-b612-606a4973890d"}'
+      string: '{"providers":[{"provider":"openai","model":"gpt-3.5-turbo"}],"session_id":"63a95ce1-7579-4330-8062-cb75219a0c4d"}'
     headers:
       CF-RAY:
-      - 925cfb3af865e9e2-VIE
+      - 99a464882b47e40d-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:06 GMT
+      - Thu, 06 Nov 2025 11:53:51 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -43,18 +43,18 @@ interactions:
       content-length:
       - '113'
       rndr-id:
-      - d389e079-6fd7-442a
+      - d08880ad-e996-4add
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - d08880ad-e996-4add
     status:
       code: 200
       message: OK
 - request:
-    body: '{"messages": [{"content": "Tell me a joke about LaTeX like \\mathbb{x}",
-      "role": "user"}], "model": "gpt-3.5-turbo", "n": 1, "stream": false, "temperature":
-      0.7}'
+    body: '{"messages":[{"content":"Tell me a joke about LaTeX like \\mathbb{x}","role":"user"}],"model":"gpt-3.5-turbo","stream":false}'
     headers:
       accept:
       - application/json
@@ -63,23 +63,23 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '161'
+      - '125'
       content-type:
       - application/json
       host:
       - api.openai.com
       user-agent:
-      - OpenAI/Python 1.68.2
+      - OpenAI/Python 1.99.9
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
-      - 1.68.2
+      - 1.99.9
       x-stainless-read-timeout:
       - '120.0'
       x-stainless-retry-count:
@@ -87,40 +87,42 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
     method: POST
     uri: https://api.openai.com/v1/chat/completions
   response:
     body:
-      string: "{\n  \"id\": \"chatcmpl-BEtn1LuuiC5Y8SSFUPKhJ7X2ysCaV\",\n  \"object\":
-        \"chat.completion\",\n  \"created\": 1742890747,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
+      string: "{\n  \"id\": \"chatcmpl-CYsqlsraWDAH0n8J3NSlXiZ97V6ys\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1762430031,\n  \"model\": \"gpt-3.5-turbo-0125\",\n
         \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
         \"assistant\",\n        \"content\": \"Why did the LaTeX document go to therapy?
-        \\n\\nBecause it had too many \\\\mathbb{issues}!\",\n        \"refusal\":
-        null,\n        \"annotations\": []\n      },\n      \"logprobs\": null,\n
-        \     \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
-        19,\n    \"completion_tokens\": 23,\n    \"total_tokens\": 42,\n    \"prompt_tokens_details\":
-        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        \\nBecause it had \\\\mathbb{x} issues!\",\n        \"refusal\": null,\n        \"annotations\":
+        []\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n
+        \   }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 19,\n    \"completion_tokens\":
+        20,\n    \"total_tokens\": 39,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\":
+        0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
         {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
         0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
         \"default\",\n  \"system_fingerprint\": null\n}\n"
     headers:
       CF-RAY:
-      - 925cfb40eb83d0e6-SOF
+      - 99a46490c896c9d0-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:07 GMT
+      - Thu, 06 Nov 2025 11:53:51 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=vb1OJ7B6ThCDoKbVe3AeWnV9p8w.MztaOH6Iinegdbo-1742890747-1.0.1.1-CRAFt3hKfbewYkqQ7rVaourlSTG4I6DWaEW0WfqKfDtuhFDm3ed_eM8vNiRgvXHOyf9TDmbhSz7ZzAuEEhPClJsaEH1dPTv0DeYp.cCcL9Y;
-        path=/; expires=Tue, 25-Mar-25 08:49:07 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=QSHAFrZ9SnmGZ8i1Knc7ZxV8kIcO8NmkjZ4TBFzfa6k-1762430031-1.0.1.1-jX3P2fhvwhXc1FxtZCSLHlLpjyfyGiHfUrwszF1ZFA7lUpMBkTwRo9aTmT6aGAixxJ.7AwNBEi.b5TVt6sn47fd0FdpxPBccdlXnAQTIKao;
+        path=/; expires=Thu, 06-Nov-25 12:23:51 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=Gf2wAMSOFut0CdCod6qeKItNjvUYtkB7aoNUBuqjq4U-1742890747573-0.0.1.1-604800000;
+      - _cfuvid=CDFV5cwkNK0YV7slXCycAWlEWjzSeHNHkWjxwmfVk9w-1762430031964-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
       X-Content-Type-Options:
@@ -132,15 +134,19 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '879'
+      - '870'
       openai-organization:
       - not-diamond-bdz8cg
       openai-processing-ms:
-      - '391'
+      - '324'
+      openai-project:
+      - proj_EvMLZJqcggqzjvd3BFXe4tfP
       openai-version:
       - '2020-10-01'
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '343'
+      x-openai-proxy-wasm:
+      - v0.1
       x-ratelimit-limit-requests:
       - '10000'
       x-ratelimit-limit-tokens:
@@ -148,21 +154,21 @@ interactions:
       x-ratelimit-remaining-requests:
       - '9999'
       x-ratelimit-remaining-tokens:
-      - '49999986'
+      - '49999987'
       x-ratelimit-reset-requests:
       - 6ms
       x-ratelimit-reset-tokens:
       - 0s
       x-request-id:
-      - req_9bb41111d5dc43ff788ce3f26d2a50c1
+      - req_863c4244f7a64580aee0eb336297c0ee
     status:
       code: 200
       message: OK
 - request:
-    body: '{"session_id": "535bc2cd-0c39-409f-b612-606a4973890d", "provider": {"provider":
+    body: '{"session_id": "63a95ce1-7579-4330-8062-cb75219a0c4d", "provider": {"provider":
       "openai", "model": "gpt-3.5-turbo", "is_custom": false, "context_length": null,
       "input_price": null, "output_price": null, "latency": null}, "feedback": {"tokens_per_second":
-      43.93670590700077}}'
+      37.294487280202766}}'
     headers:
       Accept:
       - '*/*'
@@ -171,26 +177,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '274'
+      - '275'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/report/metrics/latency
   response:
     body:
-      string: '{"detail":"requestID=a3de5849-d3e0-401e, Session 535bc2cd-0c39-409f-b612-606a4973890d
-        does not belong to user d6b6f4db-9cd9-4a33-b885-506685cd2d34."}'
+      string: '{"session_id":"63a95ce1-7579-4330-8062-cb75219a0c4d","tokens_per_second":37.294487280202766}'
     headers:
       CF-RAY:
-      - 925cfb450c538919-SOF
+      - 99a464942db8e4a7-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:08 GMT
+      - Thu, 06 Nov 2025 11:53:52 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -199,13 +204,17 @@ interactions:
       - h3=":443"; ma=86400
       cf-cache-status:
       - DYNAMIC
+      content-length:
+      - '92'
       rndr-id:
-      - a3de5849-d3e0-401e
+      - 93d3d338-e6da-4715
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - 93d3d338-e6da-4715
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
 version: 1

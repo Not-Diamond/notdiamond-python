@@ -9,7 +9,7 @@ from notdiamond.llms.providers import NDLLMProviders
 @pytest.mark.vcr
 class Test_Anthropic_LLMs:
     def test_claude_21_with_streaming(self, prompt):
-        provider = NDLLMProviders.CLAUDE_2_1
+        provider = NDLLMProviders.CLAUDE_OPUS_4_1_20250805
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
         )
@@ -17,7 +17,7 @@ class Test_Anthropic_LLMs:
 
     @pytest.mark.asyncio
     async def test_claude_21_with_async_streaming(self, prompt):
-        provider = NDLLMProviders.CLAUDE_2_1
+        provider = NDLLMProviders.CLAUDE_OPUS_4_1_20250805
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
         )
@@ -25,7 +25,7 @@ class Test_Anthropic_LLMs:
         await astream_chunks(nd_llm.astream(prompt))
 
     def test_claude_21_response_model(self, response_model):
-        provider = NDLLMProviders.CLAUDE_2_1
+        provider = NDLLMProviders.CLAUDE_SONNET_4_5_20250929
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -40,7 +40,7 @@ class Test_Anthropic_LLMs:
         assert result.punchline
 
     def test_claude_3_opus_with_tool_calling(self, tools_fixture):
-        provider = NDLLMProviders.CLAUDE_3_OPUS_20240229
+        provider = NDLLMProviders.CLAUDE_OPUS_4_1_20250805
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -56,7 +56,7 @@ class Test_Anthropic_LLMs:
     def test_claude_3_opus_with_openai_tool_calling(
         self, openai_tools_fixture
     ):
-        provider = NDLLMProviders.CLAUDE_3_OPUS_20240229
+        provider = NDLLMProviders.CLAUDE_OPUS_4_1_20250805
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -70,7 +70,7 @@ class Test_Anthropic_LLMs:
         assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_claude_3_opus_response_model(self, response_model):
-        provider = NDLLMProviders.CLAUDE_3_OPUS_20240229
+        provider = NDLLMProviders.CLAUDE_SONNET_4_5_20250929
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True

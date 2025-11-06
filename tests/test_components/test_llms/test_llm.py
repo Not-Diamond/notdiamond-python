@@ -41,8 +41,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
         with patch.multiple(
             "notdiamond.llms.client", NDApiKeyValidator=Mock(return_value=True)
@@ -58,8 +58,8 @@ class Test_NDLLM:
         llm_configs = [
             NDLLMProviders.GPT_3_5_TURBO,
             NDLLMProviders.GPT_4,
-            NDLLMProviders.CLAUDE_2_1,
-            NDLLMProviders.GEMINI_PRO,
+            NDLLMProviders.CLAUDE_HAIKU_4_5_20251001,
+            NDLLMProviders.GEMINI_25_PRO,
         ]
 
         with patch.multiple(
@@ -76,8 +76,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         with patch.multiple(
@@ -95,8 +95,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         with patch.multiple(
@@ -108,15 +108,15 @@ class Test_NDLLM:
             assert nd_llm.llm_configs[0].model == "gpt-3.5-turbo"
             assert nd_llm.latency_tracking is True
             assert nd_llm.default_llm.provider == "anthropic"
-            assert nd_llm.default_llm.model == "claude-2.1"
+            assert nd_llm.default_llm.model == "claude-haiku-4-5-20251001"
 
     @pytest.mark.vcr
     def test_default_llm_provider_set_by_string(self, ndtarget, NDLLM):
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         with patch.multiple(
@@ -135,8 +135,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         with patch.multiple(
@@ -155,8 +155,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         with patch.multiple(
@@ -175,8 +175,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         with patch.multiple(
@@ -190,8 +190,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         with patch.multiple(
@@ -205,8 +205,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         with patch.multiple(
@@ -220,8 +220,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         nd_llm = NDLLM(llm_configs=llm_configs, hash_content=True)
@@ -237,8 +237,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         nd_llm = NDLLM(hash_content=True)
@@ -259,8 +259,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         nd_llm = NDLLM(llm_configs=llm_configs, hash_content=True)
@@ -441,8 +441,12 @@ class Test_NDLLM:
     def test_ndllm_tool_calling_unsupported_model(self, ndtarget, NDLLM):
         from langchain_core.tools import tool
 
+        # Note: This test is skipped as all current Anthropic models support tools
+        # The deprecated claude-2.1 model that didn't support tools has been removed
+        pytest.skip("All current Anthropic models support tools")
+
         llm_configs = [
-            "anthropic/claude-2.1",
+            "anthropic/claude-opus-4-1-20250805",
         ]
 
         @tool
@@ -585,8 +589,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         nd_llm = NDLLM(hash_content=True)
@@ -617,8 +621,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
 
         nd_llm = NDLLM(hash_content=True)
@@ -651,8 +655,8 @@ class Test_NDLLM:
         llm_configs = [
             "openai/gpt-3.5-turbo",
             "openai/gpt-4",
-            "anthropic/claude-2.1",
-            "google/gemini-pro",
+            "anthropic/claude-haiku-4-5-20251001",
+            "google/gemini-2.5-pro",
         ]
         with patch.multiple(
             "notdiamond.llms.client", NDApiKeyValidator=Mock(return_value=True)
@@ -756,7 +760,7 @@ class Test_OpenAI_style_input:
         """
         Test open ai style input but with model that is not openai
         """
-        provider = NDLLMProviders.CLAUDE_2_1
+        provider = NDLLMProviders.CLAUDE_HAIKU_4_5_20251001
         provider.kwargs = {"max_tokens": 10}
         nd_llm = NDLLM(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -797,7 +801,7 @@ class Test_OpenAI_style_input:
                 client.chat.completions.create(
                     messages=openai_style_messages,
                     model=[
-                        "anthropic/claude-3-haiku-20240307",
+                        "anthropic/claude-haiku-4-5-20251001",
                         "openai/gpt-4-1106-preview",
                     ],
                     tradeoff="cost",
@@ -807,7 +811,7 @@ class Test_OpenAI_style_input:
         result, session_id, provider = client.chat.completions.create(
             messages=openai_style_messages,
             model=[
-                "anthropic/claude-3-haiku-20240307",
+                "anthropic/claude-haiku-4-5-20251001",
                 "openai/gpt-4-1106-preview",
             ],
             tradeoff="cost",
@@ -842,7 +846,7 @@ class Test_OpenAI_style_input:
                 client.chat.completions.create(
                     messages=openai_style_messages,
                     model=[
-                        "anthropic/claude-3-haiku-20240307",
+                        "anthropic/claude-haiku-4-5-20251001",
                         "openai/gpt-4-1106-preview",
                     ],
                     tradeoff="cost",
@@ -852,7 +856,7 @@ class Test_OpenAI_style_input:
         result, session_id, provider = client.chat.completions.create(
             messages=openai_style_messages,
             model=[
-                "anthropic/claude-3-haiku-20240307",
+                "anthropic/claude-haiku-4-5-20251001",
                 "openai/gpt-4-1106-preview",
             ],
             tradeoff="cost",
@@ -871,7 +875,7 @@ class Test_OpenAI_style_input:
                 client.chat.completions.create(
                     messages=openai_style_messages,
                     model=[
-                        "anthropic/claude-3-haiku-20240307",
+                        "anthropic/claude-haiku-4-5-20251001",
                         "openai/gpt-4-1106-preview",
                     ],
                     tradeoff="speed",
@@ -881,7 +885,7 @@ class Test_OpenAI_style_input:
                 result, session_id, provider = client.chat.completions.create(
                     messages=openai_style_messages,
                     model=[
-                        "anthropic/claude-3-haiku-20240307",
+                        "anthropic/claude-haiku-4-5-20251001",
                         "openai/gpt-4-1106-preview",
                     ],
                     tradeoff="speed",
@@ -895,7 +899,7 @@ class Test_OpenAI_style_input:
                 client.chat.completions.create(
                     messages=openai_style_messages,
                     model=[
-                        "anthropic/claude-3-haiku-20240307",
+                        "anthropic/claude-haiku-4-5-20251001",
                         "openai/gpt-4-1106-preview",
                     ],
                     default=1,
@@ -906,7 +910,7 @@ class Test_OpenAI_style_input:
         result, session_id, provider = client.chat.completions.create(
             messages=openai_style_messages,
             model=[
-                "anthropic/claude-3-haiku-20240307",
+                "anthropic/claude-haiku-4-5-20251001",
                 "openai/gpt-4-1106-preview",
             ],
             default=1,
@@ -926,7 +930,7 @@ class Test_OpenAI_style_input:
                 client.chat.completions.create(
                     messages=openai_style_messages,
                     model=[
-                        "anthropic/claude-3-haiku-20240307",
+                        "anthropic/claude-haiku-4-5-20251001",
                         "openai/gpt-4-1106-preview",
                     ],
                     max_model_depth=2,
@@ -937,7 +941,7 @@ class Test_OpenAI_style_input:
         result, session_id, provider = client.chat.completions.create(
             messages=openai_style_messages,
             model=[
-                "anthropic/claude-3-haiku-20240307",
+                "anthropic/claude-haiku-4-5-20251001",
                 "openai/gpt-4-1106-preview",
             ],
             max_model_depth=2,
@@ -956,7 +960,7 @@ class Test_OpenAI_style_input:
                 client.chat.completions.create(
                     messages=openai_style_messages,
                     model=[
-                        "anthropic/claude-3-haiku-20240307",
+                        "anthropic/claude-haiku-4-5-20251001",
                         "openai/gpt-4-1106-preview",
                     ],
                     latency_tracking=False,
@@ -967,7 +971,7 @@ class Test_OpenAI_style_input:
         result, session_id, provider = client.chat.completions.create(
             messages=openai_style_messages,
             model=[
-                "anthropic/claude-3-haiku-20240307",
+                "anthropic/claude-haiku-4-5-20251001",
                 "openai/gpt-4-1106-preview",
             ],
             latency_tracking=False,
@@ -986,7 +990,7 @@ class Test_OpenAI_style_input:
             with pytest.raises(CreateUnavailableError):
                 client.chat.completions.create(
                     messages=openai_style_messages,
-                    model=["openai/gpt-3.5-turbo", "anthropic/claude-2.1"],
+                    model=["openai/gpt-3.5-turbo", "anthropic/claude-haiku-4-5-20251001"],
                     preference_id="de2852f7-10f6-4dd3-8428-970022a986ca",
                     hash_content=True,
                 )
@@ -994,7 +998,7 @@ class Test_OpenAI_style_input:
 
         result, session_id, provider = client.chat.completions.create(
             messages=openai_style_messages,
-            model=["openai/gpt-3.5-turbo", "anthropic/claude-2.1"],
+            model=["openai/gpt-3.5-turbo", "anthropic/claude-haiku-4-5-20251001"],
             preference_id="de2852f7-10f6-4dd3-8428-970022a986ca",
             hash_content=True,
         )

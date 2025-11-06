@@ -10,7 +10,7 @@ from notdiamond.metrics.metric import Metric
 @pytest.mark.skip(reason="Skipping due to API issues")
 class Test_Google_LLMs:
     def test_gemini_pro_with_prompt_template(self, prompt_template):
-        provider = NDLLMProviders.GEMINI_PRO
+        provider = NDLLMProviders.GEMINI_25_PRO
         provider.kwargs = {"max_tokens": 10}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -25,7 +25,7 @@ class Test_Google_LLMs:
         assert len(result.content) > 0
 
     def test_gemini_pro_with_chat_prompt_template(self, chat_prompt_template):
-        provider = NDLLMProviders.GEMINI_PRO
+        provider = NDLLMProviders.GEMINI_25_PRO
         provider.kwargs = {"max_tokens": 10}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -40,7 +40,7 @@ class Test_Google_LLMs:
         assert len(result.content) > 0
 
     def test_gemini_pro_with_tool_calling(self, tools_fixture):
-        provider = NDLLMProviders.GEMINI_PRO
+        provider = NDLLMProviders.GEMINI_25_PRO
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -54,7 +54,7 @@ class Test_Google_LLMs:
         assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_gemini_pro_with_openai_tool_calling(self, openai_tools_fixture):
-        provider = NDLLMProviders.GEMINI_PRO
+        provider = NDLLMProviders.GEMINI_25_PRO
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -68,7 +68,7 @@ class Test_Google_LLMs:
         assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_gemini_pro_response_model(self, response_model):
-        provider = NDLLMProviders.GEMINI_PRO
+        provider = NDLLMProviders.GEMINI_25_PRO
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -83,7 +83,7 @@ class Test_Google_LLMs:
         assert result.punchline
 
     def test_gemini_pro_1_latest_with_prompt_template(self, prompt_template):
-        provider = NDLLMProviders.GEMINI_1_PRO_LATEST
+        provider = NDLLMProviders.GEMINI_25_PRO
         provider.kwargs = {"max_tokens": 10}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
@@ -98,7 +98,7 @@ class Test_Google_LLMs:
         assert len(result.content) > 0
 
     def test_gemini_pro_15_with_prompt_template(self, prompt_template):
-        provider = NDLLMProviders.GEMINI_15_PRO_LATEST
+        provider = NDLLMProviders.GEMINI_15_FLASH_LATEST
         provider.kwargs = {"max_tokens": 10}
         nd_llm = NotDiamond(
             llm_configs=[provider],
@@ -117,7 +117,7 @@ class Test_Google_LLMs:
     def test_gemini_pro_15_with_chat_prompt_template(
         self, chat_prompt_template
     ):
-        provider = NDLLMProviders.GEMINI_15_PRO_LATEST
+        provider = NDLLMProviders.GEMINI_15_FLASH_LATEST
         provider.kwargs = {"max_tokens": 10}
         nd_llm = NotDiamond(
             llm_configs=[provider],
@@ -134,7 +134,7 @@ class Test_Google_LLMs:
         assert len(result.content) > 0
 
     def test_gemini_pro_15_with_tool_calling(self, tools_fixture):
-        provider = NDLLMProviders.GEMINI_15_PRO_LATEST
+        provider = NDLLMProviders.GEMINI_15_FLASH_LATEST
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider],
@@ -152,7 +152,7 @@ class Test_Google_LLMs:
     def test_gemini_pro_15_with_openai_tool_calling(
         self, openai_tools_fixture
     ):
-        provider = NDLLMProviders.GEMINI_15_PRO_LATEST
+        provider = NDLLMProviders.GEMINI_15_FLASH_LATEST
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider],
@@ -168,7 +168,7 @@ class Test_Google_LLMs:
         assert result.tool_calls[0]["name"] == "add_fct"
 
     def test_gemini_pro_15_response_model(self, response_model):
-        provider = NDLLMProviders.GEMINI_15_PRO_LATEST
+        provider = NDLLMProviders.GEMINI_15_FLASH_LATEST
         provider.kwargs = {"max_tokens": 200}
         nd_llm = NotDiamond(
             llm_configs=[provider],

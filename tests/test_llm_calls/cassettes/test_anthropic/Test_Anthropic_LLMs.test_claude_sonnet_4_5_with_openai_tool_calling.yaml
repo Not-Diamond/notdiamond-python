@@ -25,16 +25,16 @@ interactions:
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"detail":"Provider claude-sonnet-4-5 not recognized."}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-sonnet-4-5"}],"session_id":"5191568f-b828-4c8c-9515-af38a2f48db4"}'
     headers:
       CF-RAY:
-      - 98c6e24f0e9c0547-OTP
+      - 99a468ad1d8de4ae-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Oct 2025 14:42:24 GMT
+      - Thu, 06 Nov 2025 11:56:41 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -43,17 +43,19 @@ interactions:
       - h3=":443"; ma=86400
       cf-cache-status:
       - DYNAMIC
+      content-length:
+      - '120'
       rndr-id:
-      - 0876ff1a-9b5a-4b8d
+      - 0ba3c650-9ec3-4394
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
       x-request-id:
-      - 0876ff1a-9b5a-4b8d
+      - 0ba3c650-9ec3-4394
     status:
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
 - request:
     body: '{"max_tokens":200,"messages":[{"role":"user","content":"How much is 3 +
       5?"}],"model":"claude-sonnet-4-5","tools":[{"name":"add_fct","description":"Add
@@ -102,16 +104,16 @@ interactions:
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"model":"claude-sonnet-4-5-20250929","id":"msg_018RH9GR3icDmyGZgXN89e5a","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_01NDJdQv5LWScdEQTtPEsHKJ","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":594,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":71,"service_tier":"standard"}}'
+      string: '{"model":"claude-sonnet-4-5-20250929","id":"msg_012XPnVa9pUw3Jp4XBNFdfPx","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_01Rdw5URmLNvtTUeuZNzASxu","name":"add_fct","input":{"a":3,"b":5}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":594,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":71,"service_tier":"standard"}}'
     headers:
       CF-RAY:
-      - 98c6e256b8dfe441-OTP
+      - 99a468b51a6cc9ec-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Fri, 10 Oct 2025 14:42:27 GMT
+      - Thu, 06 Nov 2025 11:56:44 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -125,37 +127,37 @@ interactions:
       anthropic-ratelimit-input-tokens-remaining:
       - '2000000'
       anthropic-ratelimit-input-tokens-reset:
-      - '2025-10-10T14:42:26Z'
+      - '2025-11-06T11:56:43Z'
       anthropic-ratelimit-output-tokens-limit:
       - '400000'
       anthropic-ratelimit-output-tokens-remaining:
       - '400000'
       anthropic-ratelimit-output-tokens-reset:
-      - '2025-10-10T14:42:27Z'
+      - '2025-11-06T11:56:44Z'
       anthropic-ratelimit-requests-limit:
       - '4000'
       anthropic-ratelimit-requests-remaining:
       - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2025-10-10T14:42:24Z'
+      - '2025-11-06T11:56:41Z'
       anthropic-ratelimit-tokens-limit:
       - '2400000'
       anthropic-ratelimit-tokens-remaining:
       - '2400000'
       anthropic-ratelimit-tokens-reset:
-      - '2025-10-10T14:42:26Z'
+      - '2025-11-06T11:56:43Z'
       cf-cache-status:
       - DYNAMIC
       content-length:
       - '478'
       request-id:
-      - req_011CTyhCuxKyzFdmUyckYkQt
+      - req_011CUrbQfz2AbgYNXmRitwBd
+      retry-after:
+      - '18'
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
-      via:
-      - 1.1 google
       x-envoy-upstream-service-time:
-      - '2541'
+      - '3089'
     status:
       code: 200
       message: OK

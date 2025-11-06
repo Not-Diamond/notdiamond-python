@@ -143,7 +143,6 @@ PROVIDERS = {
     },
     "anthropic": {
         "models": [
-            "claude-2.1",
             "claude-3-opus-20240229",
             "claude-3-haiku-20240307",
             "claude-3-5-haiku-20241022",
@@ -179,11 +178,10 @@ PROVIDERS = {
             "claude-sonnet-4-0",
         ],
         "support_response_model": [
-            "claude-2.1",
             "claude-3-opus-20240229",
+            "claude-sonnet-4-5-20250929",
         ],
         "openrouter_identifier": {
-            "claude-2.1": "anthropic/claude-2.1",
             "claude-3-opus-20240229": "anthropic/claude-3-opus",
             "claude-3-haiku-20240307": "anthropic/claude-3-haiku",
             "claude-3-5-haiku-20241022": "anthropic/claude-3.5-haiku",
@@ -201,7 +199,6 @@ PROVIDERS = {
             "claude-sonnet-4-0": "anthropic/claude-sonnet-4",
         },
         "price": {
-            "claude-2.1": {"input": 8.0, "output": 24.0},
             "claude-3-opus-20240229": {"input": 15.0, "output": 75.0},
             "claude-3-haiku-20240307": {"input": 0.25, "output": 1.25},
             "claude-3-5-haiku-20241022": {"input": 1.0, "output": 5.0},
@@ -221,9 +218,6 @@ PROVIDERS = {
     },
     "google": {
         "models": [
-            "gemini-pro",
-            "gemini-1.0-pro-latest",
-            "gemini-1.5-pro-latest",
             "gemini-1.5-pro-exp-0801",
             "gemini-1.5-flash-latest",
             "gemini-2.0-flash",
@@ -233,18 +227,12 @@ PROVIDERS = {
         ],
         "api_key": GOOGLE_API_KEY,
         "support_tools": [
-            "gemini-pro",
-            "gemini-1.0-pro-latest",
-            "gemini-1.5-pro-latest",
             "gemini-1.5-pro-exp-0801",
             "gemini-1.5-flash-latest",
             "gemini-2.5-flash",
             "gemini-2.5-pro",
         ],
         "support_response_model": [
-            "gemini-pro",
-            "gemini-1.0-pro-latest",
-            "gemini-1.5-pro-latest",
             "gemini-1.5-pro-exp-0801",
             "gemini-1.5-flash-latest",
             "gemini-2.0-flash",
@@ -253,9 +241,6 @@ PROVIDERS = {
             "gemini-2.5-pro",
         ],
         "openrouter_identifier": {
-            "gemini-pro": "google/gemini-pro",
-            "gemini-1.0-pro-latest": "google/gemini-pro",
-            "gemini-1.5-pro-latest": "google/gemini-pro-1.5",  #
             "gemini-1.5-pro-exp-0801": "google/gemini-pro-1.5-exp",  #
             "gemini-1.5-flash-latest": "google/gemini-flash-1.5",  #
             "gemini-2.0-flash": "google/gemini-2.0-flash",  #
@@ -264,9 +249,6 @@ PROVIDERS = {
             "gemini-2.5-pro": "google/gemini-2.5-pro",  #
         },
         "price": {
-            "gemini-pro": {"input": 0.5, "output": 1.5},
-            "gemini-1.0-pro-latest": {"input": 0.5, "output": 1.5},
-            "gemini-1.5-pro-latest": {"input": 1.75, "output": 10.5},
             "gemini-1.5-pro-exp-0801": {"input": 1.75, "output": 10.5},
             "gemini-1.5-flash-latest": {"input": 0.35, "output": 1.05},
             "gemini-2.0-flash": {"input": 0.10, "output": 0.40},

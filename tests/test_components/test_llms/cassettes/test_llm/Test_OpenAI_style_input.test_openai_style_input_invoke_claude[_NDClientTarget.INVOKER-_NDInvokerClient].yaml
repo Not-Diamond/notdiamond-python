@@ -3,9 +3,9 @@ interactions:
     body: '{"messages": [{"role": "user", "content": "Hello, what''s your name?"},
       {"role": "assistant", "content": "My name is Isaac Asimov"}, {"role": "user",
       "content": "And what do you do?"}], "llm_providers": [{"provider": "anthropic",
-      "model": "claude-2.1", "is_custom": false, "context_length": null, "input_price":
-      null, "output_price": null, "latency": null}], "metric": "accuracy", "max_model_depth":
-      1, "hash_content": true}'
+      "model": "claude-haiku-4-5-20251001", "is_custom": false, "context_length":
+      null, "input_price": null, "output_price": null, "latency": null}], "metric":
+      "accuracy", "max_model_depth": 1, "hash_content": true}'
     headers:
       Accept:
       - '*/*'
@@ -14,25 +14,25 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '423'
+      - '438'
       User-Agent:
-      - Python-SDK/0.3.41
+      - Python-SDK/0.4.6
       content-type:
       - application/json
     method: POST
     uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
   response:
     body:
-      string: '{"providers":[{"provider":"anthropic","model":"claude-2.1"}],"session_id":"541025fd-475c-4341-b205-90bec13b0829"}'
+      string: '{"providers":[{"provider":"anthropic","model":"claude-haiku-4-5-20251001"}],"session_id":"a0ba045c-5850-40c6-ae91-b973be847fe1"}'
     headers:
       CF-RAY:
-      - 925cfbc26c6a89c3-SOF
+      - 99a4653b2bc8f3a9-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:28 GMT
+      - Thu, 06 Nov 2025 11:54:20 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -42,20 +42,22 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '113'
+      - '128'
       rndr-id:
-      - 485134d9-92b7-4a00
+      - e450d879-c150-4b7a
       vary:
       - Accept-Encoding
       x-render-origin-server:
       - uvicorn
+      x-request-id:
+      - e450d879-c150-4b7a
     status:
       code: 200
       message: OK
 - request:
-    body: '{"max_tokens": 10, "messages": [{"role": "user", "content": "Hello, what''s
-      your name?"}, {"role": "assistant", "content": "My name is Isaac Asimov"}, {"role":
-      "user", "content": "And what do you do?"}], "model": "claude-2.1"}'
+    body: '{"max_tokens":10,"messages":[{"role":"user","content":"Hello, what''s your
+      name?"},{"role":"assistant","content":"My name is Isaac Asimov"},{"role":"user","content":"And
+      what do you do?"}],"model":"claude-haiku-4-5-20251001"}'
     headers:
       accept:
       - application/json
@@ -66,7 +68,7 @@ interactions:
       connection:
       - keep-alive
       content-length:
-      - '225'
+      - '224'
       content-type:
       - application/json
       host:
@@ -76,13 +78,13 @@ interactions:
       x-api-key:
       - REDACTED
       x-stainless-arch:
-      - x64
+      - arm64
       x-stainless-async:
       - 'false'
       x-stainless-lang:
       - python
       x-stainless-os:
-      - Linux
+      - MacOS
       x-stainless-package-version:
       - 0.49.0
       x-stainless-read-timeout:
@@ -92,24 +94,24 @@ interactions:
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.3
+      - 3.11.12
       x-stainless-timeout:
       - NOT_GIVEN
     method: POST
     uri: https://api.anthropic.com/v1/messages
   response:
     body:
-      string: '{"id":"msg_01HMCFRZbopLW7a7tETNrj5T","type":"message","role":"assistant","model":"claude-2.1","content":[{"type":"text","text":"I''m
-        Claude, an AI assistant created by An"}],"stop_reason":"max_tokens","stop_sequence":null,"usage":{"input_tokens":36,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":10}}'
+      string: '{"model":"claude-haiku-4-5-20251001","id":"msg_014N91n4J3nA8qHMGJwsbnCz","type":"message","role":"assistant","content":[{"type":"text","text":"I
+        appreciate the question, but I need to correct"}],"stop_reason":"max_tokens","stop_sequence":null,"usage":{"input_tokens":34,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":10,"service_tier":"standard"}}'
     headers:
       CF-RAY:
-      - 925cfbc7e9e71c9c-SOF
+      - 99a46545ba5fca1d-OTP
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Tue, 25 Mar 2025 08:19:29 GMT
+      - Thu, 06 Nov 2025 11:54:22 GMT
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -119,37 +121,41 @@ interactions:
       anthropic-organization-id:
       - a2610b2c-742e-455d-9552-6abe105b2a44
       anthropic-ratelimit-input-tokens-limit:
-      - '400000'
+      - '4000000'
       anthropic-ratelimit-input-tokens-remaining:
-      - '400000'
+      - '4000000'
       anthropic-ratelimit-input-tokens-reset:
-      - '2025-03-25T08:19:29Z'
+      - '2025-11-06T11:54:22Z'
       anthropic-ratelimit-output-tokens-limit:
-      - '80000'
+      - '800000'
       anthropic-ratelimit-output-tokens-remaining:
-      - '80000'
+      - '800000'
       anthropic-ratelimit-output-tokens-reset:
-      - '2025-03-25T08:19:28Z'
+      - '2025-11-06T11:54:22Z'
       anthropic-ratelimit-requests-limit:
-      - '2000'
+      - '4000'
       anthropic-ratelimit-requests-remaining:
-      - '1999'
+      - '3999'
       anthropic-ratelimit-requests-reset:
-      - '2025-03-25T08:19:28Z'
+      - '2025-11-06T11:54:20Z'
       anthropic-ratelimit-tokens-limit:
-      - '480000'
+      - '4800000'
       anthropic-ratelimit-tokens-remaining:
-      - '480000'
+      - '4800000'
       anthropic-ratelimit-tokens-reset:
-      - '2025-03-25T08:19:28Z'
+      - '2025-11-06T11:54:22Z'
       cf-cache-status:
       - DYNAMIC
       content-length:
-      - '328'
+      - '455'
       request-id:
-      - req_01C4XLGZGwyzVkwjnyQgSoYg
-      via:
-      - 1.1 google
+      - req_011CUrbEJnHTaQDfdmJeLjBc
+      retry-after:
+      - '41'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-envoy-upstream-service-time:
+      - '2321'
     status:
       code: 200
       message: OK
