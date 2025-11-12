@@ -90,6 +90,8 @@ class NDLLMProviders(Enum):
             model served via Replicate
 
         SONAR (NDLLMProvider): refers to "sonar" model by Perplexity
+
+        KIMI_K2_THINKING (NDLLMProvider): refers to "kimi-k2-thinking" model by Moonshot AI
     """
 
     GPT_3_5_TURBO = ("openai", "gpt-3.5-turbo")
@@ -206,6 +208,8 @@ class NDLLMProviders(Enum):
         "replicate",
         "meta-llama-3.1-405b-instruct",
     )
+
+    KIMI_K2_THINKING = ("moonshotai", "kimi-k2-thinking")
 
     def __new__(cls, provider, model):
         return LLMConfig(provider=provider, model=model)
