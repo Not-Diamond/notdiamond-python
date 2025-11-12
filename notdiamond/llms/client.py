@@ -1653,6 +1653,19 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                     replicate_api_key=provider.api_key,
                     **passed_kwargs,
                 )
+            if provider.provider == "moonshotai":
+                ChatOpenAI = _module_check(
+                    "langchain_openai.chat_models",
+                    "ChatOpenAI",
+                    provider.provider,
+                )
+                return ChatOpenAI(
+                    openai_api_key=provider.api_key,
+                    model_name=provider.model,
+                    openai_api_base="https://api.moonshot.cn/v1",
+                    callbacks=callbacks,
+                    **passed_kwargs,
+                )
             raise ValueError(f"Unsupported provider: {provider.provider}")
 
         def verify_against_response_model(self) -> bool:

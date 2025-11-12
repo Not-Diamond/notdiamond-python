@@ -16,6 +16,7 @@ MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", default="")
 TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY", default="")
 PPLX_API_KEY = os.getenv("PPLX_API_KEY", default="")
 REPLICATE_API_KEY = os.getenv("REPLICATE_API_KEY", default="")
+MOONSHOT_API_KEY = os.getenv("MOONSHOT_API_KEY", default="")
 
 
 NOTDIAMOND_API_URL = os.getenv(
@@ -432,6 +433,24 @@ PROVIDERS = {
             "meta-llama-3-70b-instruct": {"input": 0.65, "output": 2.75},
             "meta-llama-3-8b-instruct": {"input": 0.05, "output": 0.25},
             "meta-llama-3.1-405b-instruct": {"input": 9.5, "output": 9.5},
+        },
+    },
+    "moonshotai": {
+        "models": [
+            "kimi-k2-thinking",
+        ],
+        "api_key": MOONSHOT_API_KEY,
+        "support_tools": [
+            "kimi-k2-thinking",
+        ],
+        "support_response_model": [
+            "kimi-k2-thinking",
+        ],
+        "openrouter_identifier": {
+            "kimi-k2-thinking": "moonshotai/kimi-k2-thinking",
+        },
+        "price": {
+            "kimi-k2-thinking": {"input": 0.6, "output": 2.5},
         },
     },
 }
