@@ -8,25 +8,33 @@ from notdiamond.llms.providers import NDLLMProviders
 @pytest.mark.longrun
 @pytest.mark.vcr
 class Test_Moonshotai_LLMs:
-    def test_kimi_k2_thinking_with_streaming(self, prompt):
+    def test_kimi_k2_thinking_with_streaming(self):
         provider = NDLLMProviders.KIMI_K2_THINKING
+        provider.kwargs = {"max_tokens": 2000}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
         )
-        stream_chunks(nd_llm.stream(prompt))
+        # Use simple prompt so reasoning doesn't consume all tokens
+        simple_prompt = [{"role": "user", "content": "Say hello"}]
+        # kimi-k2-thinking returns reasoning first, then content after many chunks
+        stream_chunks(nd_llm.stream(simple_prompt), max_chunks=None)
 
     @pytest.mark.asyncio
-    async def test_kimi_k2_thinking_with_async_streaming(self, prompt):
+    async def test_kimi_k2_thinking_with_async_streaming(self):
         provider = NDLLMProviders.KIMI_K2_THINKING
+        provider.kwargs = {"max_tokens": 2000}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
         )
-
-        await astream_chunks(nd_llm.astream(prompt))
+        # Use simple prompt so reasoning doesn't consume all tokens
+        simple_prompt = [{"role": "user", "content": "Say hello"}]
+        # kimi-k2-thinking returns reasoning first, then content after many chunks
+        await astream_chunks(nd_llm.astream(simple_prompt), max_chunks=None)
 
     def test_kimi_k2_thinking_response_model(self, response_model):
         provider = NDLLMProviders.KIMI_K2_THINKING
-        provider.kwargs = {"max_tokens": 200}
+        # kimi-k2-thinking needs more tokens for reasoning + content
+        provider.kwargs = {"max_tokens": 2000}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
         )
@@ -41,7 +49,8 @@ class Test_Moonshotai_LLMs:
 
     def test_kimi_k2_thinking_with_tool_calling(self, tools_fixture):
         provider = NDLLMProviders.KIMI_K2_THINKING
-        provider.kwargs = {"max_tokens": 200}
+        # kimi-k2-thinking needs more tokens for reasoning + content
+        provider.kwargs = {"max_tokens": 2000}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
         )
@@ -57,7 +66,8 @@ class Test_Moonshotai_LLMs:
         self, openai_tools_fixture
     ):
         provider = NDLLMProviders.KIMI_K2_THINKING
-        provider.kwargs = {"max_tokens": 200}
+        # kimi-k2-thinking needs more tokens for reasoning + content
+        provider.kwargs = {"max_tokens": 2000}
         nd_llm = NotDiamond(
             llm_configs=[provider], latency_tracking=False, hash_content=True
         )

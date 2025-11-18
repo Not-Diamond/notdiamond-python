@@ -1662,7 +1662,7 @@ def _ndllm_factory(import_target: _NDClientTarget = None):
                 return ChatOpenAI(
                     openai_api_key=provider.api_key,
                     model_name=provider.model,
-                    openai_api_base="https://api.moonshot.cn/v1",
+                    base_url="https://api.moonshot.ai/v1",
                     callbacks=callbacks,
                     **passed_kwargs,
                 )

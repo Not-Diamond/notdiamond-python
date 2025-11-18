@@ -1,0 +1,134 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "How much is 3 + 5?"}], "llm_providers":
+      [{"provider": "moonshotai", "model": "kimi-k2-thinking", "is_custom": false,
+      "context_length": null, "input_price": null, "output_price": null, "latency":
+      null}], "metric": "accuracy", "max_model_depth": 1, "hash_content": true, "tools":
+      [{"type": "function", "function": {"name": "add_fct", "description": "Adds a
+      and b.", "parameters": {"properties": {"a": {"type": "integer"}, "b": {"type":
+      "integer"}}, "required": ["a", "b"], "type": "object"}}}]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '535'
+      User-Agent:
+      - Python-SDK/0.4.6
+      content-type:
+      - application/json
+    method: POST
+    uri: https://staging-api.notdiamond.ai/v2/modelRouter/modelSelect
+  response:
+    body:
+      string: '{"providers":[{"provider":"moonshotai","model":"kimi-k2-thinking"}],"session_id":"6a12dbdd-fb2d-4dda-abe6-5e92b79adb20"}'
+    headers:
+      CF-RAY:
+      - 9a0a3d67995dca23-OTP
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Nov 2025 20:32:56 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '120'
+      rndr-id:
+      - 382f055f-9005-4bec
+      vary:
+      - Accept-Encoding
+      x-render-origin-server:
+      - uvicorn
+      x-request-id:
+      - 382f055f-9005-4bec
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"content":"How much is 3 + 5?","role":"user"}],"model":"kimi-k2-thinking","max_completion_tokens":2000,"stream":false,"tools":[{"type":"function","function":{"name":"add_fct","description":"Adds
+      a and b.","parameters":{"properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"],"type":"object"}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '335'
+      content-type:
+      - application/json
+      host:
+      - api.moonshot.ai
+      user-agent:
+      - OpenAI/Python 1.99.9
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.99.9
+      x-stainless-read-timeout:
+      - '120.0'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.12
+    method: POST
+    uri: https://api.moonshot.ai/v1/chat/completions
+  response:
+    body:
+      string: '{"id":"chatcmpl-691cd7f8ec0a4778e89b1aba","object":"chat.completion","created":1763497977,"model":"kimi-k2-thinking","choices":[{"index":0,"message":{"role":"assistant","content":"","reasoning_content":"The
+        user is asking for the result of 3 + 5. I can use the add_fct function to
+        calculate this.","tool_calls":[{"index":0,"id":"add_fct:0","type":"function","function":{"name":"add_fct","arguments":"{\"a\":
+        3, \"b\": 5}"}}]},"finish_reason":"tool_calls"}],"usage":{"prompt_tokens":60,"completion_tokens":51,"total_tokens":111,"cached_tokens":60}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '547'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 18 Nov 2025 20:32:59 GMT
+      Msh-Context-Cache-Token-Saved:
+      - '60'
+      Msh-Gid:
+      - free
+      Msh-Org-Id:
+      - org-67752d4c14124a4fb97b1cb607c5492a
+      Msh-Project-Id:
+      - proj-afa6516f69f142258a1acf013213e49c
+      Msh-Request-Id:
+      - c42d3639-c4bd-11f0-8ed1-00163e49fa2f
+      Msh-Trace-Mode:
+      - 'on'
+      Msh-Uid:
+      - d4a871m6s4t4vqocb090
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - Origin
+      X-Msh-Trace-Id:
+      - 6564d0cc2fd0ce395519d53f28de949a
+    status:
+      code: 200
+      message: OK
+version: 1
